@@ -77,12 +77,10 @@ struct PyjniusWrap: ParsableCommand {
             let doc = try reflector.reflect(config: config)
 
             // Emit using the existing pipeline emission logic.
-            // We still need a jarPath for the Options struct but it won't be used.
             let pipeline = Pipeline()
             let written = try pipeline.emit(doc: doc, opts: .init(
                 inputDir: inURL,
                 outputDir: outURL,
-                jarPath: inURL, // unused in emit path
                 fileLayout: singleFile ? .singleFile : .perClass,
                 backend: .swiftJava,
                 stripCommonPackagePrefix: !keepPackagePrefix,

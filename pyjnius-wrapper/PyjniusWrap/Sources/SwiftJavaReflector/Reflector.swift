@@ -45,7 +45,7 @@ public struct Reflector: Sendable {
         var classNodes: [ClassNode] = []
         for className in classNames {
             // Skip anonymous/synthetic classes.
-            if className.contains("$") && className.split(separator: "$").last?.first?.isNumber == true {
+            if isAnonymousClass(className) {
                 continue
             }
             do {
@@ -65,6 +65,12 @@ public struct Reflector: Sendable {
 
     // MARK: - Private Implementation
 
+    /// Returns true if the class name represents a Java anonymous class (e.g. "Foo$1", "Bar$2$1").
+    private func isAnonymousClass(_ className: String) -> Bool {
+        guard className.contains("$") else { return false }
+        return className.split(separator: "$").last?.first?.isNumber == true
+    }
+
     /// For .aar files, extract classes.jar; otherwise return as-is.
     private func resolveJarPath(_ inputPath: URL) throws -> URL {
         if inputPath.pathExtension.lowercased() == "aar" {
@@ -80,8 +86,8 @@ public struct Reflector: Sendable {
         try FileManager.default.createDirectory(at: tempDir, withIntermediateDirectories: true)
 
         let process = Process()
-        process.executableURL = URL(fileURLWithPath: "/usr/bin/unzip")
-        process.arguments = ["-o", aarPath.path, "classes.jar", "-d", tempDir.path]
+        process.executableURL = URL(fileURLWithPath: "/usr/bin/env")
+        process.arguments = ["unzip", "-o", aarPath.path, "classes.jar", "-d", tempDir.path]
         process.standardOutput = FileHandle.nullDevice
         process.standardError = FileHandle.nullDevice
         try process.run()

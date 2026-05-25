@@ -16,7 +16,8 @@ public struct Pipeline {
     public struct Options {
         public var inputDir: URL
         public var outputDir: URL
-        public var jarPath: URL
+        /// Path to `java-ast-emitter.jar`. Required for `.java` backend; unused for `.swiftJava`.
+        public var jarPath: URL?
         public var javaExecutable: String
         public var fileLayout: FileLayout
         /// Which extraction backend to use. Defaults to `.java` for backward compat.
@@ -32,7 +33,7 @@ public struct Pipeline {
         /// instead of synthesizing forward-declared stubs.
         public var externalModules: [(javaPrefix: String, pyPrefix: String)]
 
-        public init(inputDir: URL, outputDir: URL, jarPath: URL,
+        public init(inputDir: URL, outputDir: URL, jarPath: URL? = nil,
                     javaExecutable: String = "java",
                     fileLayout: FileLayout = .perClass,
                     backend: Backend = .java,
@@ -80,7 +81,10 @@ public struct Pipeline {
         let doc: AstDocument
         switch opts.backend {
         case .java:
-            let json = try invokeJar(opts: opts)
+            guard let jarPath = opts.jarPath else {
+                throw PipelineError.decodeFailed("jarPath is required for the java backend")
+            }
+            let json = try invokeJar(opts: opts, jarPath: jarPath)
             do {
                 doc = try JSONDecoder().decode(AstDocument.self, from: json)
             } catch {
@@ -226,12 +230,12 @@ public struct Pipeline {
         return prefix
     }
 
-    private func invokeJar(opts: Options) throws -> Data {
+    private func invokeJar(opts: Options, jarPath: URL) throws -> Data {
         let process = Process()
         process.executableURL = URL(fileURLWithPath: "/usr/bin/env")
         process.arguments = [
             opts.javaExecutable,
-            "-jar", opts.jarPath.path,
+            "-jar", jarPath.path,
             opts.inputDir.path,
         ]
         let stdoutPipe = Pipe()
