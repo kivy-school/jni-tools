@@ -15,7 +15,7 @@ a separate Gradle/Java build step.
 | Architecture design | ✅ Done |
 | Implementation | ✅ Done (Phase 1 + 2) |
 | Testing | ✅ Done (JNIDescriptor unit tests) |
-| Migration | ⏳ In Progress (Phase 3-4 pending) |
+| Migration | ✅ Phase 2 complete; Phase 3 partial; Phase 4 pending |
 
 ---
 
@@ -179,13 +179,13 @@ func jniDescriptor(from javaClass: JavaClass<JavaObject>) -> String {
 - [x] When `--backend swift-java`: skip subprocess JAR invocation, use `SwiftJavaReflector`
   directly to produce `[ClassNode]` in-process
 - [x] Keep `--backend java` (default initially) for backward compat
-- [ ] Eventually make `swift-java` the default and deprecate the JAR path
+- [x] Make `swift-java` the default and deprecate the JAR path
 
 ### Phase 3: Remove Java Build Requirement
 
 - [ ] Once swift-java backend is stable, remove the bundled `java-ast-emitter.jar` resource
 - [x] Update README to reflect that only a JDK runtime (not Gradle) is needed
-- [ ] Keep `java-ast-emitter/` source for reference or as an optional advanced backend
+- [x] Mark `java-ast-emitter/` as optional legacy backend (kept for reference)
 
 ### Phase 4: Source Backend via JavaParser (called from Swift)
 

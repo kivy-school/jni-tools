@@ -23,6 +23,7 @@ let package = Package(
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
             ],
             resources: [
+                // Legacy java backend resource — kept for backward compat with --backend java.
                 .copy("Resources/java-ast-emitter.jar"),
             ]
         ),

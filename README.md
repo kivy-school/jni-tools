@@ -53,12 +53,16 @@ Basic usage:
 cd pyjnius-wrapper/PyjniusWrap
 swift build -c release
 
-# Wrap a jar straight from Maven Central:
+# Wrap a jar straight from Maven Central (uses swift-java embedded JVM by default):
 .build/release/pyjnius-wrap /path/to/some-lib.jar ./out
 ```
 
 Key flags:
 
+* `--backend swift-java` *(default)* — use the embedded JVM reflector
+  (no Gradle, no subprocess). Requires JDK 17+ on `PATH`.
+* `--backend java` *(deprecated)* — use the legacy `java-ast-emitter.jar`
+  subprocess. Will be removed in a future release.
 * `--keep-package-prefix` — preserve the original Java package
   (`android.view.View` stays at `android/view/View.py` rather than
   having a common prefix stripped). Use this for foundation packages.
@@ -110,9 +114,9 @@ jni-tools/
 
 ## Requirements
 
-* Swift 6 toolchain (Xcode 16+ or swift.org)
-* JDK 21 (`java` on `PATH` at runtime — the emitter jar is bundled as a
-  Swift resource)
+* Swift 6.2+ toolchain (Xcode 16+ or swift.org) — swift-java requires 6.2+
+* JDK 17+ (`java` on `PATH` at runtime — swift-java embeds the JVM
+  in-process; no Gradle/Maven build step needed)
 * Python 3.10+ to consume the generated packages (with `pyjnius`
   installed in the Android runtime)
 

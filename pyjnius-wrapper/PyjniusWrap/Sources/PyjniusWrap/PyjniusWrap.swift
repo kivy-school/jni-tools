@@ -22,8 +22,8 @@ struct PyjniusWrap: ParsableCommand {
     @Option(name: .long, help: "Override the java executable.")
     var javaExecutable: String = "java"
 
-    @Option(name: .long, help: "Extraction backend: 'java' (default, uses java-ast-emitter subprocess) or 'swift-java' (embedded JVM reflection, no Gradle needed).")
-    var backend: String = "java"
+    @Option(name: .long, help: "Extraction backend: 'swift-java' (default, embedded JVM reflection, no Gradle needed) or 'java' (deprecated legacy subprocess via java-ast-emitter).")
+    var backend: String = "swift-java"
 
     @Flag(name: .long, help: "Flatten output into a single wrappers.py file.")
     var singleFile: Bool = false
@@ -51,6 +51,9 @@ struct PyjniusWrap: ParsableCommand {
 
         switch parsedBackend {
         case .java:
+            FileHandle.standardError.write(
+                Data("⚠️  Warning: The 'java' backend is deprecated and will be removed in a future release. Use '--backend swift-java' (now the default).\n".utf8)
+            )
             let jarURL: URL
             if let jar { jarURL = URL(fileURLWithPath: jar) }
             else { jarURL = try resolveBundledJar() }

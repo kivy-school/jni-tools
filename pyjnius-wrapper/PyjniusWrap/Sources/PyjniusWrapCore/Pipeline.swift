@@ -7,9 +7,9 @@ public struct Pipeline {
 
     /// Which extraction backend to use.
     public enum Backend: String, Sendable {
-        /// Legacy: launch `java -jar java-ast-emitter.jar` subprocess and parse JSON.
+        /// Deprecated legacy: launch `java -jar java-ast-emitter.jar` subprocess and parse JSON.
         case java
-        /// New: use swift-java embedded JVM to reflect on classes in-process.
+        /// Default: use swift-java embedded JVM to reflect on classes in-process.
         case swiftJava = "swift-java"
     }
 
@@ -20,7 +20,7 @@ public struct Pipeline {
         public var jarPath: URL?
         public var javaExecutable: String
         public var fileLayout: FileLayout
-        /// Which extraction backend to use. Defaults to `.java` for backward compat.
+        /// Which extraction backend to use. Defaults to `.swiftJava`.
         public var backend: Backend
         /// When true, strip the longest common reverse-DNS prefix shared by
         /// every emitted class (e.g. `com.google.android.gms.`) so the
@@ -36,7 +36,7 @@ public struct Pipeline {
         public init(inputDir: URL, outputDir: URL, jarPath: URL? = nil,
                     javaExecutable: String = "java",
                     fileLayout: FileLayout = .perClass,
-                    backend: Backend = .java,
+                    backend: Backend = .swiftJava,
                     stripCommonPackagePrefix: Bool = true,
                     externalModules: [(javaPrefix: String, pyPrefix: String)] = []) {
             self.inputDir = inputDir
