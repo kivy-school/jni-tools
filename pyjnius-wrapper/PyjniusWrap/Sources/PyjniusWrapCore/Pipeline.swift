@@ -5,12 +5,22 @@ import PySwiftCodeGen
 /// Orchestrates: `[input dir] -> JAR -> JSON -> AstDocument -> Python files`.
 public struct Pipeline {
 
+    /// Which extraction backend to use.
+    public enum Backend: String, Sendable {
+        /// Legacy: launch `java -jar java-ast-emitter.jar` subprocess and parse JSON.
+        case java
+        /// New: use swift-java embedded JVM to reflect on classes in-process.
+        case swiftJava = "swift-java"
+    }
+
     public struct Options {
         public var inputDir: URL
         public var outputDir: URL
         public var jarPath: URL
         public var javaExecutable: String
         public var fileLayout: FileLayout
+        /// Which extraction backend to use. Defaults to `.java` for backward compat.
+        public var backend: Backend
         /// When true, strip the longest common reverse-DNS prefix shared by
         /// every emitted class (e.g. `com.google.android.gms.`) so the
         /// output tree is short and Pythonic instead of mirroring Java's
@@ -25,6 +35,7 @@ public struct Pipeline {
         public init(inputDir: URL, outputDir: URL, jarPath: URL,
                     javaExecutable: String = "java",
                     fileLayout: FileLayout = .perClass,
+                    backend: Backend = .java,
                     stripCommonPackagePrefix: Bool = true,
                     externalModules: [(javaPrefix: String, pyPrefix: String)] = []) {
             self.inputDir = inputDir
@@ -32,6 +43,7 @@ public struct Pipeline {
             self.jarPath = jarPath
             self.javaExecutable = javaExecutable
             self.fileLayout = fileLayout
+            self.backend = backend
             self.stripCommonPackagePrefix = stripCommonPackagePrefix
             self.externalModules = externalModules
         }
@@ -48,6 +60,7 @@ public struct Pipeline {
     public enum PipelineError: Error, CustomStringConvertible {
         case javaFailed(exitCode: Int32, stderr: String)
         case decodeFailed(String)
+        case swiftJavaBackendNotLinked
 
         public var description: String {
             switch self {
@@ -55,6 +68,8 @@ public struct Pipeline {
                 return "java-ast-emitter exited \(code): \(err)"
             case .decodeFailed(let msg):
                 return "AST JSON decode failed: \(msg)"
+            case .swiftJavaBackendNotLinked:
+                return "swift-java backend requested but SwiftJavaReflector module is not linked. Use Pipeline.runWithReflector() from the CLI target."
             }
         }
     }
@@ -62,12 +77,21 @@ public struct Pipeline {
     public init() {}
 
     public func run(_ opts: Options) throws -> [URL] {
-        let json = try invokeJar(opts: opts)
         let doc: AstDocument
-        do {
-            doc = try JSONDecoder().decode(AstDocument.self, from: json)
-        } catch {
-            throw PipelineError.decodeFailed(String(describing: error))
+        switch opts.backend {
+        case .java:
+            let json = try invokeJar(opts: opts)
+            do {
+                doc = try JSONDecoder().decode(AstDocument.self, from: json)
+            } catch {
+                throw PipelineError.decodeFailed(String(describing: error))
+            }
+        case .swiftJava:
+            // Defer to the SwiftJavaReflector module (loaded dynamically to avoid
+            // hard-linking swift-java into every target). The caller must ensure
+            // SwiftJavaReflector is linked and call `Pipeline.runWithReflector(_:doc:)`
+            // or pass a pre-built AstDocument via `emit(doc:opts:)`.
+            throw PipelineError.swiftJavaBackendNotLinked
         }
         return try emit(doc: doc, opts: opts)
     }

@@ -1,6 +1,7 @@
 import ArgumentParser
 import Foundation
 import PyjniusWrapCore
+import SwiftJavaReflector
 
 @main
 struct PyjniusWrap: ParsableCommand {
@@ -9,7 +10,7 @@ struct PyjniusWrap: ParsableCommand {
         abstract: "Generate pyjnius wrapper modules from Java sources."
     )
 
-    @Argument(help: "Folder containing .java source files to scan recursively.")
+    @Argument(help: "Folder containing .java source files, or a .jar/.aar file to scan.")
     var inputDir: String
 
     @Argument(help: "Destination folder for generated Python files.")
@@ -20,6 +21,9 @@ struct PyjniusWrap: ParsableCommand {
 
     @Option(name: .long, help: "Override the java executable.")
     var javaExecutable: String = "java"
+
+    @Option(name: .long, help: "Extraction backend: 'java' (default, uses java-ast-emitter subprocess) or 'swift-java' (embedded JVM reflection, no Gradle needed).")
+    var backend: String = "java"
 
     @Flag(name: .long, help: "Flatten output into a single wrappers.py file.")
     var singleFile: Bool = false
@@ -38,24 +42,55 @@ struct PyjniusWrap: ParsableCommand {
     func run() throws {
         let inURL = URL(fileURLWithPath: inputDir)
         let outURL = URL(fileURLWithPath: outputDir)
-        let jarURL: URL
-        if let jar { jarURL = URL(fileURLWithPath: jar) }
-        else { jarURL = try resolveBundledJar() }
+
+        guard let parsedBackend = Pipeline.Backend(rawValue: backend) else {
+            throw ValidationError("Invalid backend '\(backend)'. Use 'java' or 'swift-java'.")
+        }
 
         let externals = try parseExternalModules(externalModule)
 
-        let pipeline = Pipeline()
-        let written = try pipeline.run(.init(
-            inputDir: inURL,
-            outputDir: outURL,
-            jarPath: jarURL,
-            javaExecutable: javaExecutable,
-            fileLayout: singleFile ? .singleFile : .perClass,
-            stripCommonPackagePrefix: !keepPackagePrefix,
-            externalModules: externals
-        ))
-        for url in written {
-            print(url.path)
+        switch parsedBackend {
+        case .java:
+            let jarURL: URL
+            if let jar { jarURL = URL(fileURLWithPath: jar) }
+            else { jarURL = try resolveBundledJar() }
+
+            let pipeline = Pipeline()
+            let written = try pipeline.run(.init(
+                inputDir: inURL,
+                outputDir: outURL,
+                jarPath: jarURL,
+                javaExecutable: javaExecutable,
+                fileLayout: singleFile ? .singleFile : .perClass,
+                backend: .java,
+                stripCommonPackagePrefix: !keepPackagePrefix,
+                externalModules: externals
+            ))
+            for url in written {
+                print(url.path)
+            }
+
+        case .swiftJava:
+            // Use the embedded JVM reflector — no subprocess needed.
+            let reflector = Reflector()
+            let config = Reflector.Config(inputPath: inURL)
+            let doc = try reflector.reflect(config: config)
+
+            // Emit using the existing pipeline emission logic.
+            // We still need a jarPath for the Options struct but it won't be used.
+            let pipeline = Pipeline()
+            let written = try pipeline.emit(doc: doc, opts: .init(
+                inputDir: inURL,
+                outputDir: outURL,
+                jarPath: inURL, // unused in emit path
+                fileLayout: singleFile ? .singleFile : .perClass,
+                backend: .swiftJava,
+                stripCommonPackagePrefix: !keepPackagePrefix,
+                externalModules: externals
+            ))
+            for url in written {
+                print(url.path)
+            }
         }
     }
 
