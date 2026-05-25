@@ -47,14 +47,9 @@ final class SourceParserTests: XCTestCase {
         }
     }
 
-    func testReflectorStubThrowsNotImplemented() {
+    func testReflectorThrowsOnMissingJar() {
         let reflector = Reflector()
-        let config = Reflector.Config(inputPath: URL(fileURLWithPath: "/tmp/x.jar"))
-        XCTAssertThrowsError(try reflector.reflect(config: config)) { error in
-            guard case ReflectorError.notImplemented = error else {
-                XCTFail("Expected ReflectorError.notImplemented, got \(error)")
-                return
-            }
-        }
+        let config = Reflector.Config(inputPath: URL(fileURLWithPath: "/tmp/nonexistent-\(UUID().uuidString).jar"))
+        XCTAssertThrowsError(try reflector.reflect(config: config))
     }
 }
