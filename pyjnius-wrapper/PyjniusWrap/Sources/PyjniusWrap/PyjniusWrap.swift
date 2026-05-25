@@ -2,18 +2,27 @@ import ArgumentParser
 import Foundation
 import PyjniusWrapCore
 import SwiftJavaReflector
+import CythonEmitter
 
 @main
 struct PyjniusWrap: ParsableCommand {
     static let configuration = CommandConfiguration(
         commandName: "pyjnius-wrap",
-        abstract: "Generate pyjnius wrapper modules from Java sources / JAR / AAR files."
+        abstract: "Generate Python wrappers from Java sources / JAR / AAR files.",
+        subcommands: [PyjniusCmd.self, CythonCmd.self],
+        defaultSubcommand: PyjniusCmd.self
     )
+}
 
+// MARK: - Shared option groups
+
+/// Options that pick which AST extractor to run. Both subcommands accept
+/// these — what changes is the emitter that consumes the resulting AST.
+struct ExtractionOptions: ParsableArguments {
     @Argument(help: "Folder containing .java source files, or a .jar/.aar file to scan.")
     var inputDir: String
 
-    @Argument(help: "Destination folder for generated Python files.")
+    @Argument(help: "Destination folder for generated files.")
     var outputDir: String
 
     @Option(name: .long,
@@ -24,12 +33,54 @@ struct PyjniusWrap: ParsableCommand {
             help: "Extraction backend: 'swift-java' (default, embedded JVM reflection for bytecode/JAR/AAR) or 'source' (JavaParser via swift-java for .java source files with javadoc).")
     var backend: String = "swift-java"
 
-    @Flag(name: .long, help: "Flatten output into a single wrappers.py file.")
+    func extract() throws -> (AstDocument, URL, URL) {
+        let inURL = URL(fileURLWithPath: inputDir)
+        let outURL = URL(fileURLWithPath: outputDir)
+        let parsed = try parsedBackend()
+        let doc: AstDocument
+        switch parsed {
+        case .swiftJava:
+            doc = try Reflector().reflect(config: .init(inputPath: inURL))
+        case .source:
+            let jarURL: URL? = javaParserJar.map { URL(fileURLWithPath: $0) }
+            doc = try SourceParser().parse(config: .init(
+                inputPath: inURL,
+                javaParserJarPath: jarURL
+            ))
+        }
+        return (doc, inURL, outURL)
+    }
+
+    /// Returns the parsed backend for callers that need to thread it through
+    /// to the emitter pipeline.
+    func parsedBackend() throws -> Pipeline.Backend {
+        guard let b = Pipeline.Backend(rawValue: backend) else {
+            throw ValidationError("Invalid backend '\(backend)'. Use 'swift-java' or 'source'.")
+        }
+        return b
+    }
+}
+
+/// Shared layout-shaping flags (used by both subcommands).
+struct LayoutOptions: ParsableArguments {
+    @Flag(name: .long, help: "Flatten output into a single file.")
     var singleFile: Bool = false
 
     @Flag(name: .long,
-          help: "Keep the full Java reverse-DNS package path (e.g. com/google/android/gms/ads/MobileAds.py). Default: strip the longest common prefix for a shorter, more Pythonic layout.")
+          help: "Keep the full Java reverse-DNS package path. Default: strip the longest common prefix.")
     var keepPackagePrefix: Bool = false
+}
+
+// MARK: - pyjnius subcommand (existing behaviour preserved verbatim)
+
+struct PyjniusCmd: ParsableCommand {
+    static let configuration = CommandConfiguration(
+        commandName: "pyjnius",
+        abstract: "Generate pyjnius wrapper modules (current default behaviour)."
+    )
+
+    @OptionGroup var extraction: ExtractionOptions
+    @OptionGroup var layout: LayoutOptions
 
     @Option(name: .customLong("external-module"),
             parsing: .singleValue,
@@ -39,43 +90,17 @@ struct PyjniusWrap: ParsableCommand {
     var externalModule: [String] = []
 
     func run() throws {
-        let inURL = URL(fileURLWithPath: inputDir)
-        let outURL = URL(fileURLWithPath: outputDir)
-
-        guard let parsedBackend = Pipeline.Backend(rawValue: backend) else {
-            throw ValidationError("Invalid backend '\(backend)'. Use 'swift-java' or 'source'.")
-        }
-
+        let (doc, inURL, outURL) = try extraction.extract()
         let externals = try parseExternalModules(externalModule)
-
-        // Produce the AST via the chosen backend.
-        let doc: AstDocument
-        switch parsedBackend {
-        case .swiftJava:
-            let reflector = Reflector()
-            doc = try reflector.reflect(config: .init(inputPath: inURL))
-        case .source:
-            let sourceParser = SourceParser()
-            let jarURL: URL? = javaParserJar.map { URL(fileURLWithPath: $0) }
-            doc = try sourceParser.parse(config: .init(
-                inputPath: inURL,
-                javaParserJarPath: jarURL
-            ))
-        }
-
-        // Emit Python files via the shared pipeline.
-        let pipeline = Pipeline()
-        let written = try pipeline.emit(doc: doc, opts: .init(
+        let written = try Pipeline().emit(doc: doc, opts: .init(
             inputDir: inURL,
             outputDir: outURL,
-            fileLayout: singleFile ? .singleFile : .perClass,
-            backend: parsedBackend,
-            stripCommonPackagePrefix: !keepPackagePrefix,
+            fileLayout: layout.singleFile ? .singleFile : .perClass,
+            backend: try extraction.parsedBackend(),
+            stripCommonPackagePrefix: !layout.keepPackagePrefix,
             externalModules: externals
         ))
-        for url in written {
-            print(url.path)
-        }
+        for url in written { print(url.path) }
     }
 
     private func parseExternalModules(_ raw: [String])
@@ -104,5 +129,33 @@ struct PyjniusWrap: ParsableCommand {
             result.append((javaPrefix, pyPrefix))
         }
         return result
+    }
+}
+
+// MARK: - cython subcommand (new — Phase 3 fills in the emitter)
+
+struct CythonCmd: ParsableCommand {
+    static let configuration = CommandConfiguration(
+        commandName: "cython",
+        abstract: "Generate Cython modules (.pyx/.pxd/.pyi) that call JNI directly via jni_core."
+    )
+
+    @OptionGroup var extraction: ExtractionOptions
+    @OptionGroup var layout: LayoutOptions
+
+    @Option(name: .long,
+            help: "Python module path to cimport the runtime from (default: jni_core).")
+    var jniCoreImport: String = "jni_core"
+
+    func run() throws {
+        let (doc, inURL, outURL) = try extraction.extract()
+        let written = try CythonPipeline().emit(doc: doc, opts: .init(
+            inputDir: inURL,
+            outputDir: outURL,
+            jniCoreImport: jniCoreImport,
+            singleFile: layout.singleFile,
+            stripCommonPackagePrefix: !layout.keepPackagePrefix
+        ))
+        for url in written { print(url.path) }
     }
 }
