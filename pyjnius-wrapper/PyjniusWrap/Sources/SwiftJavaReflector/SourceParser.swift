@@ -108,14 +108,14 @@ public struct SourceParser: Sendable {
 
         // Try the direct emitJson method first (preferred — no stdout redirect needed).
         do {
-            let stringClass = try JavaClass.forName("java.lang.String", environment: environment)
             let emitMethod = emitterClass.getDeclaredMethods().first { method in
                 method.getName() == "emitJson" &&
                 method.getParameterCount() == 1
             }
             if let emitMethod {
                 emitMethod.setAccessible(true)
-                let result = emitMethod.invoke(nil, args: [inputPath])
+                let javaInputPath = try JavaString(inputPath, environment: environment)
+                let result = emitMethod.invoke(nil, args: [javaInputPath])
                 if let jsonStr = result?.toString() {
                     return jsonStr
                 }
@@ -168,8 +168,10 @@ public struct SourceParser: Sendable {
 
         // Call JavaAstEmitter.main(new String[]{inputPath})
         defer {
-            // Restore original System.out
-            try? setOutMethod.invoke(nil, args: [originalOut!])
+            // Restore original System.out (if it was non-nil).
+            if let originalOut {
+                try? setOutMethod.invoke(nil, args: [originalOut])
+            }
         }
 
         let mainMethod = emitterClass.getDeclaredMethods().first { m in
@@ -179,10 +181,9 @@ public struct SourceParser: Sendable {
             throw SourceParserError.parseError("Cannot find JavaAstEmitter.main(String[]) method")
         }
 
-        // Create String[] with the input path
-        let stringArrayClass = try JavaClass.forName("[Ljava.lang.String;", environment: environment)
+        // Create String[] with the input path and invoke main.
         let argsArray = JavaArray<JavaObject>(count: 1, environment: environment)
-        argsArray[0] = inputPath as JavaObject
+        argsArray[0] = try JavaString(inputPath, environment: environment)
         try mainMethod.invoke(nil, args: [argsArray])
 
         // Flush and read captured output

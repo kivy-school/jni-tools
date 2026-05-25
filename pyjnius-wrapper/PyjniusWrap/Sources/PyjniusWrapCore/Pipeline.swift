@@ -94,12 +94,11 @@ public struct Pipeline {
                 throw PipelineError.decodeFailed(String(describing: error))
             }
         case .swiftJava, .source:
-            // Defer to the SwiftJavaReflector module (loaded dynamically to avoid
-            // hard-linking swift-java into every target). The caller must ensure
-            // SwiftJavaReflector is linked and call the appropriate method:
-            // - .swiftJava → Reflector.reflect() for bytecode/JAR/AAR
-            // - .source → SourceParser.parse() for .java source files
-            // Or pass a pre-built AstDocument via `emit(doc:opts:)`.
+            // These backends require the SwiftJavaReflector module, which is only
+            // linked in the CLI target (PyjniusWrap). When Pipeline.run() is called
+            // directly (e.g., from tests or other consumers of PyjniusWrapCore),
+            // callers should use `emit(doc:opts:)` with a pre-built AstDocument
+            // obtained from Reflector or SourceParser in the CLI layer.
             throw PipelineError.swiftJavaBackendNotLinked
         }
         return try emit(doc: doc, opts: opts)
