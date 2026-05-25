@@ -21,17 +21,20 @@ a separate Gradle/Java build step.
 
 ## TL;DR — Can swift-java replace the Java code?
 
-**Yes, for the bytecode (.jar/.class/.aar) backend** — which is the most important one
-(it's what wraps closed-source SDKs like AdMob, android.jar, Firebase, etc.).
+**Yes, for both backends** — bytecode AND source parsing.
 
-**No, for the .java source parsing backend** — swift-java uses live JVM reflection which
-requires compiled bytecode. JavaParser-style source analysis cannot be replicated.
+- **Bytecode path** (.jar/.class/.aar): swift-java embeds a JVM and uses
+  `java.lang.reflect` to inspect classes directly from Swift. No ASM needed.
+- **Source path** (.java files): swift-java can call JavaParser's Java API directly
+  from Swift — just put `javaparser.jar` on the embedded JVM's classpath and invoke
+  it. No separate Java CLI process needed.
 
-**Net result**: For the primary use case (wrapping compiled JARs/AARs), swift-java lets us
-do everything in Swift. The Gradle project and all its Java code (`BytecodeExtractor.java`,
-`AstDtos.java`, `JniDescriptor.java`, etc.) become unnecessary for that path. A JDK is
+**Net result**: The entire `java-ast-emitter/` Gradle project (all Java code) becomes
+unnecessary. swift-java can call *any* Java library from Swift — that includes ASM,
+JavaParser, Jackson, or anything else. The key insight is that swift-java doesn't just
+do reflection; it gives Swift full access to any Java API on the classpath. A JDK is
 still needed at runtime (swift-java embeds a JVM in the Swift process), but no separate
-Java build toolchain is required.
+Java build toolchain (Gradle) is required.
 
 ---
 
@@ -66,19 +69,22 @@ swift-java (Apple/swiftlang, pre-1.0, WWDC25 featured) offers:
               (ASM 9.7, Jackson, picocli)
 ```
 
-### Proposed (single-process, pure Swift)
+### Proposed (single-process, pure Swift calling Java libs directly)
 
 ```
-.jar/.aar  ──→  Swift (SwiftJavaReflector)  ──→  [ClassNode] in memory  ──→  Swift (PyjniusWrapCore)  ──→  .py/.pyi
-                     ↑                                                            ↑
-              SwiftPM build only                                           Same as today
+.jar/.aar  ──→  Swift calls java.lang.reflect (via swift-java)  ──→  [ClassNode] in memory  ──→  .py/.pyi
+.java src  ──→  Swift calls JavaParser API (via swift-java)     ──→  [ClassNode] in memory  ──→  .py/.pyi
+                     ↑
+              SwiftPM build only
               (swift-java dependency)
               JDK 17+ on PATH (runtime)
+              JavaParser JAR bundled (for source path)
 ```
 
-Key difference: No subprocess launch, no JSON serialization/deserialization for the
-bytecode path. The reflection data flows directly into our existing `Schema.swift`
-(`ClassNode`, `MethodNode`, `FieldNode`) structs.
+Key difference: No subprocess launch, no JSON serialization/deserialization. swift-java
+lets Swift call any Java library directly — whether that's `java.lang.reflect` for
+bytecode inspection or JavaParser for source analysis. Both paths produce `ClassNode`
+structs in-process.
 
 ---
 
@@ -98,7 +104,7 @@ bytecode path. The reflection data flows directly into our existing `Schema.swif
 | `MethodNode.jniDescriptor` | Need to build from param+return types | ⚠️ Custom logic needed |
 | `MethodNode.isVarargs` | `method.isVarArgs()` | ✅ Direct |
 | `ParamNode.name` | `getParameters()[i].getName()` | ⚠️ Only if compiled with `-parameters` |
-| `*.javadoc` | Not available via reflection | ❌ Same limitation as ASM |
+| `*.javadoc` | Call JavaParser from Swift (source path) | ✅ Available when using source backend via swift-java |
 | `EnumConstantNode.name` | `getEnumConstants()` | ⚠️ swift-java currently skips enums |
 
 ### JNI Descriptor Generation
@@ -137,9 +143,10 @@ func jniDescriptor(from javaClass: JavaClass<JavaObject>) -> String {
 
 4. **Pre-1.0 API instability** — swift-java may introduce breaking changes.
 
-5. **No .java source parsing** — If users rely on the JavaParser source backend for
-   javadoc extraction or compiling-from-source workflows, that path must remain as a
-   fallback (or be dropped as a feature).
+5. **Source parsing via JavaParser** — swift-java can call JavaParser directly from Swift
+   (just put the JavaParser JAR on the classpath). This means javadoc extraction, symbol
+   resolution, and all JavaParser features remain accessible without a separate Java tool.
+   The only requirement is the JavaParser JAR at runtime.
 
 6. **Transitive dependency loading** — JVM reflection requires all referenced classes to
    be loadable. For `android.jar` this is fine (self-contained), but some JARs may need
@@ -180,12 +187,15 @@ func jniDescriptor(from javaClass: JavaClass<JavaObject>) -> String {
 - [ ] Update README to reflect that only a JDK runtime (not Gradle) is needed
 - [ ] Keep `java-ast-emitter/` source for reference or as an optional advanced backend
 
-### Phase 4: Source Backend (Optional/Future)
+### Phase 4: Source Backend via JavaParser (called from Swift)
 
-- [ ] If .java source parsing is still needed, keep the JAR-based JavaParser path as a
-  legacy option
-- [ ] Alternatively, investigate whether swift-java could compile sources on-the-fly
-  using `javax.tools.JavaCompiler` (available via reflection) and then reflect on them
+- [ ] Add JavaParser JAR (+ symbol-solver) to the swift-java classpath at runtime
+- [ ] From Swift, call JavaParser's API directly via swift-java:
+  - `JavaParser.parse(path)` → `CompilationUnit`
+  - Walk the AST using JavaParser's visitor API, all called from Swift
+  - Extract the same class/method/field metadata as today's `ClassExtractor.java`
+- [ ] This gives us javadoc, parameter names, and full source-level info — all from Swift
+- [ ] Remove the last need for the separate `java-ast-emitter` Gradle project entirely
 
 ---
 
@@ -203,9 +213,10 @@ func jniDescriptor(from javaClass: JavaClass<JavaObject>) -> String {
 - One build system (SwiftPM), one language (Swift)
 
 The Java code in `java-ast-emitter/` (~375 lines of ASM/JavaParser/Jackson/picocli) gets
-replaced by ~200-300 lines of Swift using swift-java's reflection APIs. The JSON
-serialization/deserialization step disappears entirely since we produce `ClassNode` structs
-directly in-process.
+replaced by ~200-300 lines of Swift that calls the same Java libraries (JavaParser, ASM)
+directly via swift-java. The JSON serialization/deserialization step disappears entirely
+since we produce `ClassNode` structs directly in-process. No Gradle, no shadow JAR, no
+subprocess — just Swift calling Java APIs in-process.
 
 ---
 
