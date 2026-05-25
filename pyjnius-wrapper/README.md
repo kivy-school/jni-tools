@@ -24,16 +24,22 @@ wrapper modules from Java source files.
 
 ### Extraction Backends
 
-`pyjnius-wrap` supports two extraction backends:
+`pyjnius-wrap` supports three extraction backends:
 
 1. **`--backend swift-java`** (default) — Uses [swift-java](https://github.com/swiftlang/swift-java)
    to embed a JVM directly in the Swift process and reflect on classes via
    `java.lang.reflect`. No Gradle build, no subprocess, no JSON
    serialization/deserialization. Requires JDK 17+ on PATH (runtime only) and
-   Swift 6.2+. Currently supports bytecode/JAR/AAR reflection only (no source
-   parsing yet — Phase 4 will add JavaParser-from-Swift for that).
+   Swift 6.2+. Best for bytecode/JAR/AAR inputs.
 
-2. **`--backend java`** (deprecated) — Launches `java -jar java-ast-emitter.jar` as a
+2. **`--backend source`** — Uses JavaParser (called in-process from Swift via swift-java)
+   to parse `.java` source files. Provides javadoc extraction, proper parameter names,
+   and full symbol resolution via JavaParser's symbol solver. The bundled
+   `java-ast-emitter.jar` (fat JAR with JavaParser + ASM + Jackson) is loaded onto the
+   embedded JVM's classpath — no subprocess, no Gradle build step at runtime. Best for
+   source-level inputs when you want javadoc in the output.
+
+3. **`--backend java`** (deprecated) — Launches `java -jar java-ast-emitter.jar` as a
    subprocess. Requires a JDK on PATH and the bundled JAR. Supports both source
    (JavaParser) and bytecode (ASM) extraction. Will be removed in a future release.
 
@@ -124,9 +130,11 @@ swift run pyjnius-wrap gson-2.11.0.jar ./out
 # Single .class, .aar, or directory of compiled artifacts
 swift run pyjnius-wrap build/classes ./out
 
+# Source files with javadoc extraction (source backend via JavaParser)
+swift run pyjnius-wrap --backend source path/to/java/src ./out
+
 # Legacy java backend (deprecated — requires Gradle-built JAR)
 swift run pyjnius-wrap --backend java path/to/java/src ./out
-swift run pyjnius-wrap --backend java gson-2.11.0.jar ./out
 ```
 
 Example — wrap Gson 2.11.0 directly from Maven Central:
@@ -140,8 +148,8 @@ swift run pyjnius-wrap /tmp/gson.jar /tmp/gson-py
 
 Options:
 
-* `--backend java|swift-java` — extraction backend (default: `swift-java`).
-* `--jar PATH`  — override the bundled JAR (legacy `java` backend only).
+* `--backend swift-java|source|java` — extraction backend (default: `swift-java`).
+* `--jar PATH`  — override the bundled JAR (used by `source` and legacy `java` backends).
 * `--java-executable NAME` — override the `java` binary on PATH.
 * `--single-file` — emit one `wrappers.py` instead of a package tree.
 * `--keep-package-prefix` — preserve full Java package path in output layout.

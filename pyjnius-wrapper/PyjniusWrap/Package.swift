@@ -42,6 +42,11 @@ let package = Package(
                 .product(name: "JavaLangReflect", package: "swift-java"),
                 .product(name: "JavaUtilJar", package: "swift-java"),
                 .product(name: "JavaNet", package: "swift-java"),
+            ],
+            resources: [
+                // java-ast-emitter.jar bundled for the 'source' backend (SourceParser).
+                // Contains JavaParser + ASM + Jackson — called in-process via swift-java.
+                .copy("Resources/java-ast-emitter.jar"),
             ]
         ),
         .testTarget(

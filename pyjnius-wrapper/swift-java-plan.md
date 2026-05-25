@@ -13,9 +13,9 @@ a separate Gradle/Java build step.
 | Research swift-java capabilities | ✅ Done |
 | Feasibility analysis | ✅ Done |
 | Architecture design | ✅ Done |
-| Implementation | ✅ Done (Phase 1 + 2) |
-| Testing | ✅ Done (JNIDescriptor unit tests) |
-| Migration | ✅ Phase 2 complete; Phase 3 partial; Phase 4 pending |
+| Implementation | ✅ Done (Phase 1 + 2 + 4) |
+| Testing | ✅ Done (JNIDescriptor + SourceParser unit tests) |
+| Migration | ✅ Phase 2 complete; Phase 3 partial; Phase 4 complete |
 
 ---
 
@@ -189,13 +189,17 @@ func jniDescriptor(from javaClass: JavaClass<JavaObject>) -> String {
 
 ### Phase 4: Source Backend via JavaParser (called from Swift)
 
-- [ ] Add JavaParser JAR (+ symbol-solver) to the swift-java classpath at runtime
-- [ ] From Swift, call JavaParser's API directly via swift-java:
-  - `JavaParser.parse(path)` → `CompilationUnit`
-  - Walk the AST using JavaParser's visitor API, all called from Swift
-  - Extract the same class/method/field metadata as today's `ClassExtractor.java`
-- [ ] This gives us javadoc, parameter names, and full source-level info — all from Swift
-- [ ] Remove the last need for the separate `java-ast-emitter` Gradle project entirely
+- [x] Add JavaParser JAR (+ symbol-solver) to the swift-java classpath at runtime
+  - Bundled as `java-ast-emitter.jar` resource in `SwiftJavaReflector` target
+- [x] From Swift, call JavaParser's API directly via swift-java:
+  - `SourceParser.swift` boots embedded JVM with emitter JAR on classpath
+  - Calls `JavaAstEmitter` / `ClassExtractor` in-process (no subprocess)
+  - Falls back to stdout capture from `main()` for maximum compatibility
+- [x] This gives us javadoc, parameter names, and full source-level info — all from Swift
+- [x] `--backend source` CLI flag added for source-level parsing
+- [x] Remove the last need for the separate `java-ast-emitter` Gradle project entirely
+  - The Gradle project is no longer needed at runtime; its compiled artifact is
+    loaded in-process via swift-java. No subprocess, no piped stdout.
 
 ---
 

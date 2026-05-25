@@ -9,8 +9,11 @@ public struct Pipeline {
     public enum Backend: String, Sendable {
         /// Deprecated legacy: launch `java -jar java-ast-emitter.jar` subprocess and parse JSON.
         case java
-        /// Default: use swift-java embedded JVM to reflect on classes in-process.
+        /// Default: use swift-java embedded JVM to reflect on classes in-process (bytecode/JAR/AAR).
         case swiftJava = "swift-java"
+        /// Source backend: use JavaParser (called from Swift via swift-java) for .java source files.
+        /// Provides javadoc, parameter names, and full symbol resolution.
+        case source
     }
 
     public struct Options {
@@ -90,11 +93,13 @@ public struct Pipeline {
             } catch {
                 throw PipelineError.decodeFailed(String(describing: error))
             }
-        case .swiftJava:
+        case .swiftJava, .source:
             // Defer to the SwiftJavaReflector module (loaded dynamically to avoid
             // hard-linking swift-java into every target). The caller must ensure
-            // SwiftJavaReflector is linked and call `Pipeline.runWithReflector(_:doc:)`
-            // or pass a pre-built AstDocument via `emit(doc:opts:)`.
+            // SwiftJavaReflector is linked and call the appropriate method:
+            // - .swiftJava → Reflector.reflect() for bytecode/JAR/AAR
+            // - .source → SourceParser.parse() for .java source files
+            // Or pass a pre-built AstDocument via `emit(doc:opts:)`.
             throw PipelineError.swiftJavaBackendNotLinked
         }
         return try emit(doc: doc, opts: opts)

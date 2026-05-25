@@ -60,7 +60,10 @@ swift build -c release
 Key flags:
 
 * `--backend swift-java` *(default)* — use the embedded JVM reflector
-  (no Gradle, no subprocess). Requires JDK 17+ on `PATH`.
+  for bytecode/JAR/AAR (no Gradle, no subprocess). Requires JDK 17+ on `PATH`.
+* `--backend source` — use JavaParser (called in-process via swift-java) for
+  `.java` source files. Provides javadoc extraction, parameter names, and full
+  symbol resolution. Requires the bundled `java-ast-emitter.jar`.
 * `--backend java` *(deprecated)* — use the legacy `java-ast-emitter.jar`
   subprocess. Will be removed in a future release.
 * `--keep-package-prefix` — preserve the original Java package

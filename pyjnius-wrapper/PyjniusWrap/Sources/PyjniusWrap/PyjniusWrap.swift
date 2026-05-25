@@ -22,7 +22,7 @@ struct PyjniusWrap: ParsableCommand {
     @Option(name: .long, help: "Override the java executable.")
     var javaExecutable: String = "java"
 
-    @Option(name: .long, help: "Extraction backend: 'swift-java' (default, embedded JVM reflection, no Gradle needed) or 'java' (deprecated legacy subprocess via java-ast-emitter).")
+    @Option(name: .long, help: "Extraction backend: 'swift-java' (default, embedded JVM reflection for bytecode/JAR/AAR), 'source' (JavaParser via swift-java for .java source files with javadoc), or 'java' (deprecated legacy subprocess).")
     var backend: String = "swift-java"
 
     @Flag(name: .long, help: "Flatten output into a single wrappers.py file.")
@@ -44,7 +44,7 @@ struct PyjniusWrap: ParsableCommand {
         let outURL = URL(fileURLWithPath: outputDir)
 
         guard let parsedBackend = Pipeline.Backend(rawValue: backend) else {
-            throw ValidationError("Invalid backend '\(backend)'. Use 'java' or 'swift-java'.")
+            throw ValidationError("Invalid backend '\(backend)'. Use 'swift-java', 'source', or 'java'.")
         }
 
         let externals = try parseExternalModules(externalModule)
@@ -86,6 +86,31 @@ struct PyjniusWrap: ParsableCommand {
                 outputDir: outURL,
                 fileLayout: singleFile ? .singleFile : .perClass,
                 backend: .swiftJava,
+                stripCommonPackagePrefix: !keepPackagePrefix,
+                externalModules: externals
+            ))
+            for url in written {
+                print(url.path)
+            }
+
+        case .source:
+            // Use JavaParser (called from Swift via swift-java) for source-level parsing.
+            // Provides javadoc, parameter names, and full symbol resolution.
+            let sourceParser = SourceParser()
+            let jarURL: URL? = jar.map { URL(fileURLWithPath: $0) }
+            let config = SourceParser.Config(
+                inputPath: inURL,
+                emitterJarPath: jarURL
+            )
+            let doc = try sourceParser.parse(config: config)
+
+            // Emit using the existing pipeline emission logic.
+            let pipeline = Pipeline()
+            let written = try pipeline.emit(doc: doc, opts: .init(
+                inputDir: inURL,
+                outputDir: outURL,
+                fileLayout: singleFile ? .singleFile : .perClass,
+                backend: .source,
                 stripCommonPackagePrefix: !keepPackagePrefix,
                 externalModules: externals
             ))
