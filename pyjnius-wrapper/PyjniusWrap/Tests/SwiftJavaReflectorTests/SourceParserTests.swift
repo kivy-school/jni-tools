@@ -31,11 +31,30 @@ final class SourceParserTests: XCTestCase {
 
         let err2 = SourceParserError.symbolResolutionFailed("unresolved")
         XCTAssertTrue(err2.description.contains("unresolved"))
+
+        let err3 = SourceParserError.notImplemented("pending")
+        XCTAssertTrue(err3.description.contains("pending"))
     }
 
     func testSourceParserCreation() {
-        // Verify SourceParser can be instantiated.
         let parser = SourceParser()
-        XCTAssertNotNil(parser)
+        let config = SourceParser.Config(inputPath: URL(fileURLWithPath: "/tmp/x"))
+        XCTAssertThrowsError(try parser.parse(config: config)) { error in
+            guard case SourceParserError.notImplemented = error else {
+                XCTFail("Expected SourceParserError.notImplemented, got \(error)")
+                return
+            }
+        }
+    }
+
+    func testReflectorStubThrowsNotImplemented() {
+        let reflector = Reflector()
+        let config = Reflector.Config(inputPath: URL(fileURLWithPath: "/tmp/x.jar"))
+        XCTAssertThrowsError(try reflector.reflect(config: config)) { error in
+            guard case ReflectorError.notImplemented = error else {
+                XCTFail("Expected ReflectorError.notImplemented, got \(error)")
+                return
+            }
+        }
     }
 }

@@ -20,7 +20,6 @@ final class PyWrapperEmitterTests: XCTestCase {
         let written = try Pipeline().emit(doc: doc, opts: .init(
             inputDir: tmp,                 // unused on the emit-only path
             outputDir: tmp,
-            jarPath: tmp,                  // unused on the emit-only path
             fileLayout: .singleFile
         ))
         XCTAssertEqual(written.count, 1)
@@ -67,8 +66,8 @@ final class PyWrapperEmitterTests: XCTestCase {
         let written = try Pipeline().emit(doc: doc, opts: .init(
             inputDir: tmp,
             outputDir: tmp,
-            jarPath: tmp,
-            fileLayout: .perClass
+            fileLayout: .perClass,
+            stripCommonPackagePrefix: false
         ))
         let paths = written.map { $0.path }
         XCTAssertTrue(paths.contains { $0.hasSuffix("/com/example/fixture/Person.py") })

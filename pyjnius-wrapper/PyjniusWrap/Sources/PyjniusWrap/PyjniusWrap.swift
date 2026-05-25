@@ -7,7 +7,7 @@ import SwiftJavaReflector
 struct PyjniusWrap: ParsableCommand {
     static let configuration = CommandConfiguration(
         commandName: "pyjnius-wrap",
-        abstract: "Generate pyjnius wrapper modules from Java sources."
+        abstract: "Generate pyjnius wrapper modules from Java sources / JAR / AAR files."
     )
 
     @Argument(help: "Folder containing .java source files, or a .jar/.aar file to scan.")
@@ -16,10 +16,12 @@ struct PyjniusWrap: ParsableCommand {
     @Argument(help: "Destination folder for generated Python files.")
     var outputDir: String
 
-    @Option(name: .long, help: "Path to a JAR containing JavaParser and its dependencies (for the 'source' backend).")
+    @Option(name: .long,
+            help: "Path to a JAR containing JavaParser and its dependencies (used by the 'source' backend).")
     var javaParserJar: String?
 
-    @Option(name: .long, help: "Extraction backend: 'swift-java' (default, embedded JVM reflection for bytecode/JAR/AAR) or 'source' (JavaParser via swift-java for .java source files with javadoc).")
+    @Option(name: .long,
+            help: "Extraction backend: 'swift-java' (default, embedded JVM reflection for bytecode/JAR/AAR) or 'source' (JavaParser via swift-java for .java source files with javadoc).")
     var backend: String = "swift-java"
 
     @Flag(name: .long, help: "Flatten output into a single wrappers.py file.")
@@ -46,51 +48,33 @@ struct PyjniusWrap: ParsableCommand {
 
         let externals = try parseExternalModules(externalModule)
 
+        // Produce the AST via the chosen backend.
+        let doc: AstDocument
         switch parsedBackend {
         case .swiftJava:
-            // Use the embedded JVM reflector — no subprocess needed.
             let reflector = Reflector()
-            let config = Reflector.Config(inputPath: inURL)
-            let doc = try reflector.reflect(config: config)
-
-            // Emit using the existing pipeline emission logic.
-            let pipeline = Pipeline()
-            let written = try pipeline.emit(doc: doc, opts: .init(
-                inputDir: inURL,
-                outputDir: outURL,
-                fileLayout: singleFile ? .singleFile : .perClass,
-                backend: .swiftJava,
-                stripCommonPackagePrefix: !keepPackagePrefix,
-                externalModules: externals
-            ))
-            for url in written {
-                print(url.path)
-            }
-
+            doc = try reflector.reflect(config: .init(inputPath: inURL))
         case .source:
-            // Use JavaParser (called from Swift via swift-java) for source-level parsing.
-            // Provides javadoc, parameter names, and full symbol resolution.
             let sourceParser = SourceParser()
             let jarURL: URL? = javaParserJar.map { URL(fileURLWithPath: $0) }
-            let config = SourceParser.Config(
+            doc = try sourceParser.parse(config: .init(
                 inputPath: inURL,
                 javaParserJarPath: jarURL
-            )
-            let doc = try sourceParser.parse(config: config)
-
-            // Emit using the existing pipeline emission logic.
-            let pipeline = Pipeline()
-            let written = try pipeline.emit(doc: doc, opts: .init(
-                inputDir: inURL,
-                outputDir: outURL,
-                fileLayout: singleFile ? .singleFile : .perClass,
-                backend: .source,
-                stripCommonPackagePrefix: !keepPackagePrefix,
-                externalModules: externals
             ))
-            for url in written {
-                print(url.path)
-            }
+        }
+
+        // Emit Python files via the shared pipeline.
+        let pipeline = Pipeline()
+        let written = try pipeline.emit(doc: doc, opts: .init(
+            inputDir: inURL,
+            outputDir: outURL,
+            fileLayout: singleFile ? .singleFile : .perClass,
+            backend: parsedBackend,
+            stripCommonPackagePrefix: !keepPackagePrefix,
+            externalModules: externals
+        ))
+        for url in written {
+            print(url.path)
         }
     }
 
@@ -105,7 +89,6 @@ struct PyjniusWrap: ParsableCommand {
             if parts.count == 2 {
                 pyPrefix = String(parts[1])
             } else {
-                // Default: java prefix minus trailing dot.
                 pyPrefix = javaPrefix.hasSuffix(".")
                     ? String(javaPrefix.dropLast())
                     : javaPrefix

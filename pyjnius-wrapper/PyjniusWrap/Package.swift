@@ -12,7 +12,13 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/Py-Swift/PySwiftAST.git", branch: "master"),
         .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.3.0"),
-        .package(url: "https://github.com/swiftlang/swift-java.git", branch: "main"),
+        // NOTE: swift-java dependency is intentionally NOT declared here yet.
+        // SwiftJavaReflector ships as a stub target while the in-process JVM
+        // implementation (Reflector / SourceParser) is being built out. Once
+        // those modules call real swift-java APIs, add:
+        //     .package(url: "https://github.com/swiftlang/swift-java.git", branch: "main")
+        // and wire the product deps (SwiftJava, JavaLangReflect, JavaUtilJar, JavaNet)
+        // into the SwiftJavaReflector target below.
     ],
     targets: [
         .executableTarget(
@@ -34,10 +40,11 @@ let package = Package(
             name: "SwiftJavaReflector",
             dependencies: [
                 "PyjniusWrapCore",
-                .product(name: "SwiftJavaStatic", package: "swift-java"),
-                .product(name: "JavaLangReflect", package: "swift-java"),
-                .product(name: "JavaUtilJar", package: "swift-java"),
-                .product(name: "JavaNet", package: "swift-java"),
+                // Pending: swift-java products
+                // .product(name: "SwiftJava", package: "swift-java"),
+                // .product(name: "JavaLangReflect", package: "swift-java"),
+                // .product(name: "JavaUtilJar", package: "swift-java"),
+                // .product(name: "JavaNet", package: "swift-java"),
             ]
         ),
         .testTarget(
