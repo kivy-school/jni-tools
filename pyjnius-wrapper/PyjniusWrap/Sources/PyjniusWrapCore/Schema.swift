@@ -1,11 +1,16 @@
 import Foundation
 
-/// Codable mirror of the JSON produced by `java-ast-emitter.jar`.
+/// Schema definitions for the AST representation of Java classes.
 ///
-/// Keep field names in sync with the Java DTOs in
-/// `pyjnius-wrapper/java-ast-emitter/src/main/java/dev/kivyschool/pyjniuswrap/AstDtos.java`.
+/// These types represent the intermediate data model produced by the
+/// `SwiftJavaReflector` (via embedded JVM reflection or JavaParser)
+/// and consumed by the Python code generation pipeline.
 public struct AstDocument: Codable, Sendable {
     public let classes: [ClassNode]
+
+    public init(classes: [ClassNode]) {
+        self.classes = classes
+    }
 }
 
 public enum ClassKind: String, Codable, Sendable {
@@ -39,6 +44,25 @@ public struct ClassNode: Codable, Sendable {
     public let methods: [MethodNode]
     public let nested: [ClassNode]
     public let enumConstants: [EnumConstantNode]?
+
+    public init(fqcn: String, jniName: String, simpleName: String, kind: ClassKind,
+                modifiers: [JavaModifier], superclass: String?, interfaces: [String],
+                javadoc: String?, fields: [FieldNode], constructors: [ConstructorNode],
+                methods: [MethodNode], nested: [ClassNode], enumConstants: [EnumConstantNode]?) {
+        self.fqcn = fqcn
+        self.jniName = jniName
+        self.simpleName = simpleName
+        self.kind = kind
+        self.modifiers = modifiers
+        self.superclass = superclass
+        self.interfaces = interfaces
+        self.javadoc = javadoc
+        self.fields = fields
+        self.constructors = constructors
+        self.methods = methods
+        self.nested = nested
+        self.enumConstants = enumConstants
+    }
 }
 
 public struct FieldNode: Codable, Sendable {
@@ -48,12 +72,28 @@ public struct FieldNode: Codable, Sendable {
     public let isStatic: Bool
     public let modifiers: [JavaModifier]
     public let javadoc: String?
+
+    public init(name: String, jniDescriptor: String, typeFqcn: String,
+                isStatic: Bool, modifiers: [JavaModifier], javadoc: String?) {
+        self.name = name
+        self.jniDescriptor = jniDescriptor
+        self.typeFqcn = typeFqcn
+        self.isStatic = isStatic
+        self.modifiers = modifiers
+        self.javadoc = javadoc
+    }
 }
 
 public struct ParamNode: Codable, Sendable {
     public let name: String
     public let jniDescriptor: String
     public let typeFqcn: String
+
+    public init(name: String, jniDescriptor: String, typeFqcn: String) {
+        self.name = name
+        self.jniDescriptor = jniDescriptor
+        self.typeFqcn = typeFqcn
+    }
 }
 
 public struct ConstructorNode: Codable, Sendable {
@@ -62,6 +102,15 @@ public struct ConstructorNode: Codable, Sendable {
     public let modifiers: [JavaModifier]
     public let parameters: [ParamNode]
     public let javadoc: String?
+
+    public init(jniDescriptor: String, isVarargs: Bool, modifiers: [JavaModifier],
+                parameters: [ParamNode], javadoc: String?) {
+        self.jniDescriptor = jniDescriptor
+        self.isVarargs = isVarargs
+        self.modifiers = modifiers
+        self.parameters = parameters
+        self.javadoc = javadoc
+    }
 }
 
 public struct MethodNode: Codable, Sendable {
@@ -73,9 +122,27 @@ public struct MethodNode: Codable, Sendable {
     public let parameters: [ParamNode]
     public let returnTypeFqcn: String
     public let javadoc: String?
+
+    public init(name: String, jniDescriptor: String, isStatic: Bool, isVarargs: Bool,
+                modifiers: [JavaModifier], parameters: [ParamNode],
+                returnTypeFqcn: String, javadoc: String?) {
+        self.name = name
+        self.jniDescriptor = jniDescriptor
+        self.isStatic = isStatic
+        self.isVarargs = isVarargs
+        self.modifiers = modifiers
+        self.parameters = parameters
+        self.returnTypeFqcn = returnTypeFqcn
+        self.javadoc = javadoc
+    }
 }
 
 public struct EnumConstantNode: Codable, Sendable {
     public let name: String
     public let javadoc: String?
+
+    public init(name: String, javadoc: String?) {
+        self.name = name
+        self.javadoc = javadoc
+    }
 }

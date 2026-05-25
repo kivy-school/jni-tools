@@ -7,7 +7,7 @@ This repo contains two complementary halves:
 
 | Path                | What it is |
 | ------------------- | ---------- |
-| [`pyjnius-wrapper/`](pyjnius-wrapper/) | **The generator.** A Swift 6 CLI (`pyjnius-wrap`) + a JDK 21 Java AST emitter that turn `.java` / `.jar` / `.aar` inputs into pyjnius-style Python wrappers plus PEP 561 `.pyi` stubs. |
+| [`pyjnius-wrapper/`](pyjnius-wrapper/) | **The generator.** A pure Swift 6 CLI (`pyjnius-wrap`) that uses [swift-java](https://github.com/swiftlang/swift-java) to call JavaParser and JVM reflection APIs directly, turning `.java` / `.jar` / `.aar` inputs into pyjnius-style Python wrappers plus PEP 561 `.pyi` stubs. |
 | [`examples/`](examples/)               | **Pre-generated, installable Python packages** produced by that generator, ready to drop into a Kivy / Buildozer / pyjnius project. |
 
 ## Pre-built packages (`examples/`)
@@ -43,8 +43,8 @@ from compiled JVM artifacts. No Java source required.
 
 ```
 .java sources        ─┐
-.jar / .aar / .class ─┤──►  java-ast-emitter.jar  ──JSON──►  pyjnius-wrap  ──►  .py + .pyi
-                      ┘      (JavaParser or ASM)            (Swift 6, SwiftPM)
+.jar / .aar / .class ─┤──►  swift-java (embedded JVM)  ──►  pyjnius-wrap  ──►  .py + .pyi
+                      ┘      (JavaParser or Reflection)     (Swift 6, SwiftPM)
 ```
 
 Basic usage:
@@ -53,12 +53,17 @@ Basic usage:
 cd pyjnius-wrapper/PyjniusWrap
 swift build -c release
 
-# Wrap a jar straight from Maven Central:
+# Wrap a jar straight from Maven Central (uses swift-java embedded JVM by default):
 .build/release/pyjnius-wrap /path/to/some-lib.jar ./out
 ```
 
 Key flags:
 
+* `--backend swift-java` *(default)* — use the embedded JVM reflector
+  for bytecode/JAR/AAR (no Gradle, no subprocess). Requires JDK 17+ on `PATH`.
+* `--backend source` — use JavaParser (called directly from Swift via swift-java) for
+  `.java` source files. Provides javadoc extraction, parameter names, and full
+  symbol resolution. Requires a JavaParser JAR on the classpath (passed via `--java-parser-jar`).
 * `--keep-package-prefix` — preserve the original Java package
   (`android.view.View` stays at `android/view/View.py` rather than
   having a common prefix stripped). Use this for foundation packages.
@@ -99,9 +104,7 @@ jni-tools/
 │   ├── admob/                      #   admob-pyjnius 25.3.0
 │   └── onesignal/                  #   onesignal-pyjnius 4.8.10
 └── pyjnius-wrapper/                # the generator
-    ├── PyjniusWrap/                #   Swift 6 SwiftPM package — CLI + codegen
-    ├── java-ast-emitter/           #   JDK 21 Gradle — Java→JSON AST emitter
-    ├── examples/                   #   in-repo example outputs for the generator
+    ├── PyjniusWrap/                #   Swift 6 SwiftPM package — CLI + codegen + swift-java backends
     ├── fixtures/                   #   shared test fixtures
     ├── README.md
     ├── auto-wrap-java-classes.md   #   how-to: single class / source dir
@@ -110,9 +113,9 @@ jni-tools/
 
 ## Requirements
 
-* Swift 6 toolchain (Xcode 16+ or swift.org)
-* JDK 21 (`java` on `PATH` at runtime — the emitter jar is bundled as a
-  Swift resource)
+* Swift 6.2+ toolchain (Xcode 16+ or swift.org) — swift-java requires 6.2+
+* JDK 17+ (`java` on `PATH` at runtime — swift-java embeds the JVM
+  in-process; no Gradle/Maven build step needed)
 * Python 3.10+ to consume the generated packages (with `pyjnius`
   installed in the Android runtime)
 

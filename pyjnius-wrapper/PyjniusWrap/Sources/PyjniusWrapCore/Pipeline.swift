@@ -2,15 +2,24 @@ import Foundation
 import PySwiftAST
 import PySwiftCodeGen
 
-/// Orchestrates: `[input dir] -> JAR -> JSON -> AstDocument -> Python files`.
+/// Orchestrates: `[input dir] -> AstDocument -> Python files`.
 public struct Pipeline {
+
+    /// Which extraction backend to use.
+    public enum Backend: String, Sendable {
+        /// Default: use swift-java embedded JVM to reflect on classes in-process (bytecode/JAR/AAR).
+        case swiftJava = "swift-java"
+        /// Source backend: use JavaParser (called from Swift via swift-java) for .java source files.
+        /// Provides javadoc, parameter names, and full symbol resolution.
+        case source
+    }
 
     public struct Options {
         public var inputDir: URL
         public var outputDir: URL
-        public var jarPath: URL
-        public var javaExecutable: String
         public var fileLayout: FileLayout
+        /// Which extraction backend to use. Defaults to `.swiftJava`.
+        public var backend: Backend
         /// When true, strip the longest common reverse-DNS prefix shared by
         /// every emitted class (e.g. `com.google.android.gms.`) so the
         /// output tree is short and Pythonic instead of mirroring Java's
@@ -22,16 +31,15 @@ public struct Pipeline {
         /// instead of synthesizing forward-declared stubs.
         public var externalModules: [(javaPrefix: String, pyPrefix: String)]
 
-        public init(inputDir: URL, outputDir: URL, jarPath: URL,
-                    javaExecutable: String = "java",
+        public init(inputDir: URL, outputDir: URL,
                     fileLayout: FileLayout = .perClass,
+                    backend: Backend = .swiftJava,
                     stripCommonPackagePrefix: Bool = true,
                     externalModules: [(javaPrefix: String, pyPrefix: String)] = []) {
             self.inputDir = inputDir
             self.outputDir = outputDir
-            self.jarPath = jarPath
-            self.javaExecutable = javaExecutable
             self.fileLayout = fileLayout
+            self.backend = backend
             self.stripCommonPackagePrefix = stripCommonPackagePrefix
             self.externalModules = externalModules
         }
@@ -46,31 +54,20 @@ public struct Pipeline {
     }
 
     public enum PipelineError: Error, CustomStringConvertible {
-        case javaFailed(exitCode: Int32, stderr: String)
         case decodeFailed(String)
+        case swiftJavaBackendNotLinked
 
         public var description: String {
             switch self {
-            case .javaFailed(let code, let err):
-                return "java-ast-emitter exited \(code): \(err)"
             case .decodeFailed(let msg):
                 return "AST JSON decode failed: \(msg)"
+            case .swiftJavaBackendNotLinked:
+                return "swift-java backend requested but SwiftJavaReflector module is not linked. Use Pipeline.runWithReflector() from the CLI target."
             }
         }
     }
 
     public init() {}
-
-    public func run(_ opts: Options) throws -> [URL] {
-        let json = try invokeJar(opts: opts)
-        let doc: AstDocument
-        do {
-            doc = try JSONDecoder().decode(AstDocument.self, from: json)
-        } catch {
-            throw PipelineError.decodeFailed(String(describing: error))
-        }
-        return try emit(doc: doc, opts: opts)
-    }
 
     /// Decoupled hook so tests can feed a pre-baked AST without launching the JVM.
     public func emit(doc: AstDocument, opts: Options) throws -> [URL] {
@@ -200,45 +197,5 @@ public struct Pipeline {
             if prefix.isEmpty { return [] }
         }
         return prefix
-    }
-
-    private func invokeJar(opts: Options) throws -> Data {
-        let process = Process()
-        process.executableURL = URL(fileURLWithPath: "/usr/bin/env")
-        process.arguments = [
-            opts.javaExecutable,
-            "-jar", opts.jarPath.path,
-            opts.inputDir.path,
-        ]
-        let stdoutPipe = Pipe()
-        let stderrPipe = Pipe()
-        process.standardOutput = stdoutPipe
-        process.standardError = stderrPipe
-        try process.run()
-        // Drain pipes concurrently to avoid blocking the child on a full pipe
-        // buffer (macOS default is ~64KB; large ASTs easily exceed this).
-        var stdout = Data()
-        var stderr = Data()
-        let group = DispatchGroup()
-        let queue = DispatchQueue(label: "pyjnius-wrap.pipe-drain", attributes: .concurrent)
-        group.enter()
-        queue.async {
-            stdout = stdoutPipe.fileHandleForReading.readDataToEndOfFile()
-            group.leave()
-        }
-        group.enter()
-        queue.async {
-            stderr = stderrPipe.fileHandleForReading.readDataToEndOfFile()
-            group.leave()
-        }
-        process.waitUntilExit()
-        group.wait()
-        if process.terminationStatus != 0 {
-            throw PipelineError.javaFailed(
-                exitCode: process.terminationStatus,
-                stderr: String(data: stderr, encoding: .utf8) ?? ""
-            )
-        }
-        return stdout
     }
 }
