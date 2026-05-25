@@ -1,6 +1,7 @@
 import ArgumentParser
 import Foundation
 import PyjniusWrapCore
+import SwiftJavaReflector
 
 @main
 struct PyjniusWrap: ParsableCommand {
@@ -9,7 +10,7 @@ struct PyjniusWrap: ParsableCommand {
         abstract: "Generate pyjnius wrapper modules from Java sources."
     )
 
-    @Argument(help: "Folder containing .java source files to scan recursively.")
+    @Argument(help: "Folder containing .java source files, or a .jar/.aar file to scan.")
     var inputDir: String
 
     @Argument(help: "Destination folder for generated Python files.")
@@ -20,6 +21,9 @@ struct PyjniusWrap: ParsableCommand {
 
     @Option(name: .long, help: "Override the java executable.")
     var javaExecutable: String = "java"
+
+    @Option(name: .long, help: "Extraction backend: 'swift-java' (default, embedded JVM reflection for bytecode/JAR/AAR), 'source' (JavaParser via swift-java for .java source files with javadoc), or 'java' (deprecated legacy subprocess).")
+    var backend: String = "swift-java"
 
     @Flag(name: .long, help: "Flatten output into a single wrappers.py file.")
     var singleFile: Bool = false
@@ -38,24 +42,81 @@ struct PyjniusWrap: ParsableCommand {
     func run() throws {
         let inURL = URL(fileURLWithPath: inputDir)
         let outURL = URL(fileURLWithPath: outputDir)
-        let jarURL: URL
-        if let jar { jarURL = URL(fileURLWithPath: jar) }
-        else { jarURL = try resolveBundledJar() }
+
+        guard let parsedBackend = Pipeline.Backend(rawValue: backend) else {
+            throw ValidationError("Invalid backend '\(backend)'. Use 'swift-java', 'source', or 'java'.")
+        }
 
         let externals = try parseExternalModules(externalModule)
 
-        let pipeline = Pipeline()
-        let written = try pipeline.run(.init(
-            inputDir: inURL,
-            outputDir: outURL,
-            jarPath: jarURL,
-            javaExecutable: javaExecutable,
-            fileLayout: singleFile ? .singleFile : .perClass,
-            stripCommonPackagePrefix: !keepPackagePrefix,
-            externalModules: externals
-        ))
-        for url in written {
-            print(url.path)
+        switch parsedBackend {
+        case .java:
+            FileHandle.standardError.write(
+                Data("⚠️  Warning: The 'java' backend is deprecated and will be removed in a future release. Use '--backend swift-java' (now the default).\n".utf8)
+            )
+            let jarURL: URL
+            if let jar { jarURL = URL(fileURLWithPath: jar) }
+            else { jarURL = try resolveBundledJar() }
+
+            let pipeline = Pipeline()
+            let written = try pipeline.run(.init(
+                inputDir: inURL,
+                outputDir: outURL,
+                jarPath: jarURL,
+                javaExecutable: javaExecutable,
+                fileLayout: singleFile ? .singleFile : .perClass,
+                backend: .java,
+                stripCommonPackagePrefix: !keepPackagePrefix,
+                externalModules: externals
+            ))
+            for url in written {
+                print(url.path)
+            }
+
+        case .swiftJava:
+            // Use the embedded JVM reflector — no subprocess needed.
+            let reflector = Reflector()
+            let config = Reflector.Config(inputPath: inURL)
+            let doc = try reflector.reflect(config: config)
+
+            // Emit using the existing pipeline emission logic.
+            let pipeline = Pipeline()
+            let written = try pipeline.emit(doc: doc, opts: .init(
+                inputDir: inURL,
+                outputDir: outURL,
+                fileLayout: singleFile ? .singleFile : .perClass,
+                backend: .swiftJava,
+                stripCommonPackagePrefix: !keepPackagePrefix,
+                externalModules: externals
+            ))
+            for url in written {
+                print(url.path)
+            }
+
+        case .source:
+            // Use JavaParser (called from Swift via swift-java) for source-level parsing.
+            // Provides javadoc, parameter names, and full symbol resolution.
+            let sourceParser = SourceParser()
+            let jarURL: URL? = jar.map { URL(fileURLWithPath: $0) }
+            let config = SourceParser.Config(
+                inputPath: inURL,
+                emitterJarPath: jarURL
+            )
+            let doc = try sourceParser.parse(config: config)
+
+            // Emit using the existing pipeline emission logic.
+            let pipeline = Pipeline()
+            let written = try pipeline.emit(doc: doc, opts: .init(
+                inputDir: inURL,
+                outputDir: outURL,
+                fileLayout: singleFile ? .singleFile : .perClass,
+                backend: .source,
+                stripCommonPackagePrefix: !keepPackagePrefix,
+                externalModules: externals
+            ))
+            for url in written {
+                print(url.path)
+            }
         }
     }
 
