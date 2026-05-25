@@ -192,13 +192,14 @@ func jniDescriptor(from javaClass: JavaClass<JavaObject>) -> String {
 ## What This Means Practically
 
 **Before**: To build `pyjnius-wrap`, you needed:
-- JDK 21 + Gradle (to build java-ast-emitter.jar)
+- JDK 21 + Gradle (to build java-ast-emitter.jar from source)
+- JDK 17+ on PATH (to run the built JAR at runtime)
 - Swift 6.1+ (to build PyjniusWrap)
 - Two separate build systems, two languages
 
 **After**: To build `pyjnius-wrap`, you need:
-- Swift 6.2+ (to build everything)
-- JDK 17+ on PATH (runtime only, no Gradle needed)
+- Swift 6.2+ (to build everything via SwiftPM)
+- JDK 17+ on PATH (runtime only — swift-java embeds the JVM, no Gradle needed)
 - One build system (SwiftPM), one language (Swift)
 
 The Java code in `java-ast-emitter/` (~375 lines of ASM/JavaParser/Jackson/picocli) gets
