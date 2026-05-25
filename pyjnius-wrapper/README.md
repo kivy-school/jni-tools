@@ -84,6 +84,63 @@ swift build -c release                    # → .build/release/pyjnius-wrap
 - For `--backend source`: a JavaParser JAR (with symbol solver dependencies) passed via `--java-parser-jar`
 - No Gradle, no separate Java build step, no custom Java code
 
+## Subcommands
+
+`pyjnius-wrap` is a multi-target generator with two emission backends:
+
+| Subcommand | Output | Runtime dependency |
+|---|---|---|
+| `pyjnius-wrap pyjnius` (default) | pyjnius-style `.py` + `.pyi` wrappers | [pyjnius](https://github.com/kivy/pyjnius) |
+| `pyjnius-wrap cython` | Cython `.pyx` + `.pxd` + `.pyi` calling JNI directly | [`jni_core`](../jni_core) |
+
+Both subcommands share the same `<input-dir> <output-dir>` positional
+arguments and the same extraction backends (`--backend swift-java|source`).
+Run any of them with `--help` for the full flag list.
+
+### Cython subcommand
+
+`pyjnius-wrap cython` emits per-class `.pyx` modules that cimport
+[`jni_core`](../jni_core) and dispatch JNI calls directly (no Python →
+pyjnius → JNI roundtrip). Layout mirrors the pyjnius output:
+
+```
+out/
+└── com/example/fixture/
+    ├── Person.pyx     # Cython implementation, JNI calls via jni_core
+    ├── Person.pxd     # cdef class declaration for cross-module cimports
+    ├── Person.pyi     # PEP 484 stub (re-uses the same emitter as pyjnius)
+    └── __init__.py
+```
+
+```sh
+# Generate Cython wrappers for a JAR
+swift run pyjnius-wrap cython /tmp/gson.jar /tmp/gson-cy
+
+# Then cythonize them against jni_core
+pip install -e ../jni_core
+cythonize -i /tmp/gson-cy/**/*.pyx
+```
+
+Cython-specific options:
+
+* `--jni-core-import MODULE` — Python module to cimport the runtime from
+  (default `jni_core`). Override when shipping a vendored copy.
+* `--single-file` — flatten all classes into one `wrappers.{pyx,pxd,pyi}`.
+* `--keep-package-prefix` — preserve full reverse-DNS package path
+  (default: strip the longest common prefix).
+
+**v1 limitations** baked into the Cython emitter:
+
+* Only the **first overload** per Python method name is wired; siblings
+  are listed as `# TODO:` comments. (pyjnius routes overloads via
+  `JavaMultipleMethod`; the Cython path needs an explicit dispatcher.)
+* Java interfaces emit as plain `cdef class` — there is no
+  `PythonJavaClass` equivalent yet.
+* Opaque `jobject` returns wrap as bare `JavaObject` rather than the
+  typed subclass.
+* Nested `cdef` classes are hoisted to file scope (Cython forbids
+  nested cdef classes).
+
 ## Usage
 
 ```sh
