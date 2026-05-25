@@ -1,0 +1,53 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["NumberFormat"]
+
+class NumberFormat(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "java/text/NumberFormat"
+    __javaconstructor__ = [("()V", False)]
+    FRACTION_FIELD = JavaStaticField("I")
+    INTEGER_FIELD = JavaStaticField("I")
+    format = JavaMultipleMethod([("(Ljava/lang/Object;Ljava/lang/StringBuffer;Ljava/text/FieldPosition;)Ljava/lang/StringBuffer;", False, False), ("(D)Ljava/lang/String;", False, False), ("(J)Ljava/lang/String;", False, False), ("(DLjava/lang/StringBuffer;Ljava/text/FieldPosition;)Ljava/lang/StringBuffer;", False, False), ("(JLjava/lang/StringBuffer;Ljava/text/FieldPosition;)Ljava/lang/StringBuffer;", False, False)])
+    parseObject = JavaMethod("(Ljava/lang/String;Ljava/text/ParsePosition;)Ljava/lang/Object;")
+    parse = JavaMultipleMethod([("(Ljava/lang/String;Ljava/text/ParsePosition;)Ljava/lang/Number;", False, False), ("(Ljava/lang/String;)Ljava/lang/Number;", False, False)])
+    isParseIntegerOnly = JavaMethod("()Z")
+    setParseIntegerOnly = JavaMethod("(Z)V")
+    getInstance = JavaMultipleMethod([("()Ljava/text/NumberFormat;", True, False), ("(Ljava/util/Locale;)Ljava/text/NumberFormat;", True, False)])
+    getNumberInstance = JavaMultipleMethod([("()Ljava/text/NumberFormat;", True, False), ("(Ljava/util/Locale;)Ljava/text/NumberFormat;", True, False)])
+    getIntegerInstance = JavaMultipleMethod([("()Ljava/text/NumberFormat;", True, False), ("(Ljava/util/Locale;)Ljava/text/NumberFormat;", True, False)])
+    getCurrencyInstance = JavaMultipleMethod([("()Ljava/text/NumberFormat;", True, False), ("(Ljava/util/Locale;)Ljava/text/NumberFormat;", True, False)])
+    getPercentInstance = JavaMultipleMethod([("()Ljava/text/NumberFormat;", True, False), ("(Ljava/util/Locale;)Ljava/text/NumberFormat;", True, False)])
+    getAvailableLocales = JavaStaticMethod("()[Ljava/util/Locale;")
+    hashCode = JavaMethod("()I")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    clone = JavaMethod("()Ljava/lang/Object;")
+    isGroupingUsed = JavaMethod("()Z")
+    setGroupingUsed = JavaMethod("(Z)V")
+    getMaximumIntegerDigits = JavaMethod("()I")
+    setMaximumIntegerDigits = JavaMethod("(I)V")
+    getMinimumIntegerDigits = JavaMethod("()I")
+    setMinimumIntegerDigits = JavaMethod("(I)V")
+    getMaximumFractionDigits = JavaMethod("()I")
+    setMaximumFractionDigits = JavaMethod("(I)V")
+    getMinimumFractionDigits = JavaMethod("()I")
+    setMinimumFractionDigits = JavaMethod("(I)V")
+    getCurrency = JavaMethod("()Ljava/util/Currency;")
+    setCurrency = JavaMethod("(Ljava/util/Currency;)V")
+    getRoundingMode = JavaMethod("()Ljava/math/RoundingMode;")
+    setRoundingMode = JavaMethod("(Ljava/math/RoundingMode;)V")
+
+    class Field(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "java/text/NumberFormat/Field"
+        __javaconstructor__ = [("(Ljava/lang/String;)V", False)]
+        CURRENCY = JavaStaticField("Ljava/text/NumberFormat$Field;")
+        DECIMAL_SEPARATOR = JavaStaticField("Ljava/text/NumberFormat$Field;")
+        EXPONENT = JavaStaticField("Ljava/text/NumberFormat$Field;")
+        EXPONENT_SIGN = JavaStaticField("Ljava/text/NumberFormat$Field;")
+        EXPONENT_SYMBOL = JavaStaticField("Ljava/text/NumberFormat$Field;")
+        FRACTION = JavaStaticField("Ljava/text/NumberFormat$Field;")
+        GROUPING_SEPARATOR = JavaStaticField("Ljava/text/NumberFormat$Field;")
+        INTEGER = JavaStaticField("Ljava/text/NumberFormat$Field;")
+        PERCENT = JavaStaticField("Ljava/text/NumberFormat$Field;")
+        PERMILLE = JavaStaticField("Ljava/text/NumberFormat$Field;")
+        SIGN = JavaStaticField("Ljava/text/NumberFormat$Field;")
+        readResolve = JavaMethod("()Ljava/lang/Object;")

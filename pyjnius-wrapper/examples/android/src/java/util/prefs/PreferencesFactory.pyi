@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from java.util.prefs.Preferences import Preferences
+
+class PreferencesFactory:
+    def systemRoot(self) -> Preferences: ...
+    def userRoot(self) -> Preferences: ...

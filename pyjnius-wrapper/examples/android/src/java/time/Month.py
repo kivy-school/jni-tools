@@ -1,0 +1,37 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["Month"]
+
+class Month(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "java/time/Month"
+    values = JavaStaticMethod("()[Ljava/time/Month;")
+    valueOf = JavaStaticMethod("(Ljava/lang/String;)Ljava/time/Month;")
+    of = JavaStaticMethod("(I)Ljava/time/Month;")
+    from = JavaStaticMethod("(Ljava/time/temporal/TemporalAccessor;)Ljava/time/Month;")
+    getValue = JavaMethod("()I")
+    getDisplayName = JavaMethod("(Ljava/time/format/TextStyle;Ljava/util/Locale;)Ljava/lang/String;")
+    isSupported = JavaMethod("(Ljava/time/temporal/TemporalField;)Z")
+    range = JavaMethod("(Ljava/time/temporal/TemporalField;)Ljava/time/temporal/ValueRange;")
+    get = JavaMethod("(Ljava/time/temporal/TemporalField;)I")
+    getLong = JavaMethod("(Ljava/time/temporal/TemporalField;)J")
+    plus = JavaMethod("(J)Ljava/time/Month;")
+    minus = JavaMethod("(J)Ljava/time/Month;")
+    length = JavaMethod("(Z)I")
+    minLength = JavaMethod("()I")
+    maxLength = JavaMethod("()I")
+    firstDayOfYear = JavaMethod("(Z)I")
+    firstMonthOfQuarter = JavaMethod("()Ljava/time/Month;")
+    query = JavaMethod("(Ljava/time/temporal/TemporalQuery;)Ljava/lang/Object;")
+    adjustInto = JavaMethod("(Ljava/time/temporal/Temporal;)Ljava/time/temporal/Temporal;")
+    JANUARY = JavaStaticField("Ljava/time/Month;")
+    FEBRUARY = JavaStaticField("Ljava/time/Month;")
+    MARCH = JavaStaticField("Ljava/time/Month;")
+    APRIL = JavaStaticField("Ljava/time/Month;")
+    MAY = JavaStaticField("Ljava/time/Month;")
+    JUNE = JavaStaticField("Ljava/time/Month;")
+    JULY = JavaStaticField("Ljava/time/Month;")
+    AUGUST = JavaStaticField("Ljava/time/Month;")
+    SEPTEMBER = JavaStaticField("Ljava/time/Month;")
+    OCTOBER = JavaStaticField("Ljava/time/Month;")
+    NOVEMBER = JavaStaticField("Ljava/time/Month;")
+    DECEMBER = JavaStaticField("Ljava/time/Month;")

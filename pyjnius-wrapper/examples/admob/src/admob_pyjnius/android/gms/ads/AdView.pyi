@@ -1,0 +1,13 @@
+from typing import Any, ClassVar, overload
+from android.content.Context import Context
+from android.gms.ads.VideoController import VideoController
+from android.util.AttributeSet import AttributeSet
+
+class AdView:
+    @overload
+    def __init__(self, arg0: Context) -> None: ...
+    @overload
+    def __init__(self, arg0: Context, arg1: AttributeSet) -> None: ...
+    @overload
+    def __init__(self, arg0: Context, arg1: AttributeSet, arg2: int) -> None: ...
+    def zza(self) -> VideoController: ...

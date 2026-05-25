@@ -1,0 +1,39 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["zzf"]
+
+class zzf(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "com/google/android/gms/ads/internal/util/client/zzf"
+    __javaconstructor__ = [("()V", False)]
+    zza = JavaStaticField("Landroid/os/Handler;")
+    zza = JavaMethod("(Landroid/content/Context;I)I")
+    zzb = JavaMethod("(Landroid/view/ViewGroup;Lcom/google/android/gms/ads/internal/client/zzr;Ljava/lang/String;Ljava/lang/String;)V")
+    zzc = JavaMethod("(Landroid/view/ViewGroup;Lcom/google/android/gms/ads/internal/client/zzr;Ljava/lang/String;)V")
+    zzd = JavaStaticMethod("(Ljava/util/Map;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;")
+    zze = JavaStaticMethod("(Landroid/content/Context;)Landroid/app/ActivityManager$MemoryInfo;")
+    zzf = JavaStaticMethod("(Landroid/content/Context;)Ljava/lang/String;")
+    zzg = JavaStaticMethod("(Ljava/lang/String;)Ljava/lang/String;")
+    zzh = JavaStaticMethod("(Ljava/lang/String;)Ljava/lang/String;")
+    zzi = JavaMethod("(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;Landroid/os/Bundle;Z)V")
+    zzj = JavaStaticMethod("()Ljava/lang/String;")
+    zzk = JavaStaticMethod("(Landroid/content/Context;III)Lcom/google/android/gms/ads/AdSize;")
+    zzl = JavaStaticMethod("(Landroid/content/Context;II)Lcom/google/android/gms/ads/AdSize;")
+    zzm = JavaMethod("(Ljava/util/Map;)Lorg/json/JSONObject;")
+    zzn = JavaMethod("(Landroid/os/Bundle;Lorg/json/JSONObject;)Lorg/json/JSONObject;")
+    zzo = JavaMethod("(Landroid/os/Bundle;)Lorg/json/JSONObject;")
+    zzq = JavaStaticMethod("(Ljava/lang/String;)Z")
+    zzr = JavaStaticMethod("(Landroid/content/Context;I)I")
+    zzs = JavaStaticMethod("(Lcom/google/android/gms/ads/internal/client/zzfp;)Lcom/google/android/gms/ads/preload/PreloadConfiguration;")
+    zzt = JavaStaticMethod("(Lcom/google/android/gms/ads/internal/client/zzfp;)Lcom/google/android/gms/ads/preload/PreloadConfiguration;")
+    zzu = JavaStaticMethod("(Landroid/content/Context;Lcom/google/android/gms/ads/preload/PreloadConfiguration;Lcom/google/android/gms/ads/AdFormat;)Lcom/google/android/gms/ads/internal/client/zzfp;")
+    zzv = JavaStaticMethod("(Landroid/content/Context;Lcom/google/android/gms/ads/preload/PreloadConfiguration;I)Lcom/google/android/gms/ads/internal/client/zzfp;")
+    zzw = JavaStaticMethod("(Landroid/util/DisplayMetrics;I)I")
+    zzx = JavaStaticMethod("([Ljava/lang/StackTraceElement;Ljava/lang/String;)Ljava/lang/String;")
+    zzy = JavaStaticMethod("()Z")
+    zzz = JavaStaticMethod("(Landroid/content/Context;I)Z")
+    zzA = JavaStaticMethod("(Landroid/content/Context;)Z")
+    zzB = JavaStaticMethod("()Z")
+    zzC = JavaStaticMethod("(Landroid/util/DisplayMetrics;I)I")
+    zzD = JavaStaticMethod("(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;Landroid/os/Bundle;ZLcom/google/android/gms/ads/internal/util/client/zze;)V")
+    zzE = JavaStaticMethod("(Landroid/content/Context;I)I")
+    zzF = JavaStaticMethod("(Landroid/content/Context;)Ljava/lang/String;")

@@ -1,0 +1,9 @@
+from typing import Any, ClassVar, overload
+from java.net.URLConnection import URLConnection
+
+class ContentHandler:
+    def __init__(self) -> None: ...
+    @overload
+    def getContent(self, arg0: URLConnection) -> Any: ...
+    @overload
+    def getContent(self, arg0: URLConnection, arg1: list[type]) -> Any: ...

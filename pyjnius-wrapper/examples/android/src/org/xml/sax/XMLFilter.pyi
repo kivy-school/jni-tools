@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from org.xml.sax.XMLReader import XMLReader
+
+class XMLFilter:
+    def setParent(self, arg0: XMLReader) -> None: ...
+    def getParent(self) -> XMLReader: ...

@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from java.io.PrintWriter import PrintWriter
+
+class Dumpable:
+    def getDumpableName(self) -> str: ...
+    def dump(self, arg0: PrintWriter, arg1: list[str]) -> None: ...

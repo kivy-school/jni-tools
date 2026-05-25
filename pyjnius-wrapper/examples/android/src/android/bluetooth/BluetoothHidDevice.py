@@ -1,0 +1,50 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["BluetoothHidDevice"]
+
+class BluetoothHidDevice(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/bluetooth/BluetoothHidDevice"
+    ACTION_CONNECTION_STATE_CHANGED = JavaStaticField("Ljava/lang/String;")
+    ERROR_RSP_INVALID_PARAM = JavaStaticField("B")
+    ERROR_RSP_INVALID_RPT_ID = JavaStaticField("B")
+    ERROR_RSP_NOT_READY = JavaStaticField("B")
+    ERROR_RSP_SUCCESS = JavaStaticField("B")
+    ERROR_RSP_UNKNOWN = JavaStaticField("B")
+    ERROR_RSP_UNSUPPORTED_REQ = JavaStaticField("B")
+    PROTOCOL_BOOT_MODE = JavaStaticField("B")
+    PROTOCOL_REPORT_MODE = JavaStaticField("B")
+    REPORT_TYPE_FEATURE = JavaStaticField("B")
+    REPORT_TYPE_INPUT = JavaStaticField("B")
+    REPORT_TYPE_OUTPUT = JavaStaticField("B")
+    SUBCLASS1_COMBO = JavaStaticField("B")
+    SUBCLASS1_KEYBOARD = JavaStaticField("B")
+    SUBCLASS1_MOUSE = JavaStaticField("B")
+    SUBCLASS1_NONE = JavaStaticField("B")
+    SUBCLASS2_CARD_READER = JavaStaticField("B")
+    SUBCLASS2_DIGITIZER_TABLET = JavaStaticField("B")
+    SUBCLASS2_GAMEPAD = JavaStaticField("B")
+    SUBCLASS2_JOYSTICK = JavaStaticField("B")
+    SUBCLASS2_REMOTE_CONTROL = JavaStaticField("B")
+    SUBCLASS2_SENSING_DEVICE = JavaStaticField("B")
+    SUBCLASS2_UNCATEGORIZED = JavaStaticField("B")
+    getConnectedDevices = JavaMethod("()Ljava/util/List;")
+    getDevicesMatchingConnectionStates = JavaMethod("([I)Ljava/util/List;")
+    getConnectionState = JavaMethod("(Landroid/bluetooth/BluetoothDevice;)I")
+    registerApp = JavaMethod("(Landroid/bluetooth/BluetoothHidDeviceAppSdpSettings;Landroid/bluetooth/BluetoothHidDeviceAppQosSettings;Landroid/bluetooth/BluetoothHidDeviceAppQosSettings;Ljava/util/concurrent/Executor;Landroid/bluetooth/BluetoothHidDevice$Callback;)Z")
+    unregisterApp = JavaMethod("()Z")
+    sendReport = JavaMethod("(Landroid/bluetooth/BluetoothDevice;I[B)Z")
+    replyReport = JavaMethod("(Landroid/bluetooth/BluetoothDevice;BB[B)Z")
+    reportError = JavaMethod("(Landroid/bluetooth/BluetoothDevice;B)Z")
+    connect = JavaMethod("(Landroid/bluetooth/BluetoothDevice;)Z")
+    disconnect = JavaMethod("(Landroid/bluetooth/BluetoothDevice;)Z")
+
+    class Callback(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/bluetooth/BluetoothHidDevice/Callback"
+        __javaconstructor__ = [("()V", False)]
+        onAppStatusChanged = JavaMethod("(Landroid/bluetooth/BluetoothDevice;Z)V")
+        onConnectionStateChanged = JavaMethod("(Landroid/bluetooth/BluetoothDevice;I)V")
+        onGetReport = JavaMethod("(Landroid/bluetooth/BluetoothDevice;BBI)V")
+        onSetReport = JavaMethod("(Landroid/bluetooth/BluetoothDevice;BB[B)V")
+        onSetProtocol = JavaMethod("(Landroid/bluetooth/BluetoothDevice;B)V")
+        onInterruptData = JavaMethod("(Landroid/bluetooth/BluetoothDevice;B[B)V")
+        onVirtualCableUnplug = JavaMethod("(Landroid/bluetooth/BluetoothDevice;)V")

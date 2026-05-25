@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from android.view.inspector.InspectionCompanion import InspectionCompanion
+
+class StaticInspectionCompanionProvider:
+    def __init__(self) -> None: ...
+    def provide(self, arg0: type) -> InspectionCompanion: ...

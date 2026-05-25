@@ -1,0 +1,13 @@
+from typing import Any, ClassVar, overload
+from android.gms.internal.ads.zzgai import zzgai
+from android.gms.internal.ads.zzgas import zzgas
+from android.gms.internal.ads.zzguj import zzguj
+
+class zzgag:
+    def __init__(self) -> None: ...
+    @staticmethod
+    def zza() -> zzgas: ...
+    @staticmethod
+    def zzb(arg0: zzguj, arg1: zzguj, arg2: zzgai) -> zzgas: ...
+    @staticmethod
+    def zzc(arg0: int, arg1: zzgai) -> zzgas: ...

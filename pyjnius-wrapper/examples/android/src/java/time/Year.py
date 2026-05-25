@@ -1,0 +1,38 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["Year"]
+
+class Year(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "java/time/Year"
+    MAX_VALUE = JavaStaticField("I")
+    MIN_VALUE = JavaStaticField("I")
+    now = JavaMultipleMethod([("()Ljava/time/Year;", True, False), ("(Ljava/time/ZoneId;)Ljava/time/Year;", True, False), ("(Ljava/time/Clock;)Ljava/time/Year;", True, False)])
+    of = JavaStaticMethod("(I)Ljava/time/Year;")
+    from = JavaStaticMethod("(Ljava/time/temporal/TemporalAccessor;)Ljava/time/Year;")
+    parse = JavaMultipleMethod([("(Ljava/lang/CharSequence;)Ljava/time/Year;", True, False), ("(Ljava/lang/CharSequence;Ljava/time/format/DateTimeFormatter;)Ljava/time/Year;", True, False)])
+    isLeap = JavaMultipleMethod([("(J)Z", True, False), ("()Z", False, False)])
+    getValue = JavaMethod("()I")
+    isSupported = JavaMultipleMethod([("(Ljava/time/temporal/TemporalField;)Z", False, False), ("(Ljava/time/temporal/TemporalUnit;)Z", False, False)])
+    range = JavaMethod("(Ljava/time/temporal/TemporalField;)Ljava/time/temporal/ValueRange;")
+    get = JavaMethod("(Ljava/time/temporal/TemporalField;)I")
+    getLong = JavaMethod("(Ljava/time/temporal/TemporalField;)J")
+    isValidMonthDay = JavaMethod("(Ljava/time/MonthDay;)Z")
+    length = JavaMethod("()I")
+    with = JavaMultipleMethod([("(Ljava/time/temporal/TemporalAdjuster;)Ljava/time/Year;", False, False), ("(Ljava/time/temporal/TemporalField;J)Ljava/time/Year;", False, False)])
+    plus = JavaMultipleMethod([("(Ljava/time/temporal/TemporalAmount;)Ljava/time/Year;", False, False), ("(JLjava/time/temporal/TemporalUnit;)Ljava/time/Year;", False, False)])
+    plusYears = JavaMethod("(J)Ljava/time/Year;")
+    minus = JavaMultipleMethod([("(Ljava/time/temporal/TemporalAmount;)Ljava/time/Year;", False, False), ("(JLjava/time/temporal/TemporalUnit;)Ljava/time/Year;", False, False)])
+    minusYears = JavaMethod("(J)Ljava/time/Year;")
+    query = JavaMethod("(Ljava/time/temporal/TemporalQuery;)Ljava/lang/Object;")
+    adjustInto = JavaMethod("(Ljava/time/temporal/Temporal;)Ljava/time/temporal/Temporal;")
+    until = JavaMethod("(Ljava/time/temporal/Temporal;Ljava/time/temporal/TemporalUnit;)J")
+    format = JavaMethod("(Ljava/time/format/DateTimeFormatter;)Ljava/lang/String;")
+    atDay = JavaMethod("(I)Ljava/time/LocalDate;")
+    atMonth = JavaMultipleMethod([("(Ljava/time/Month;)Ljava/time/YearMonth;", False, False), ("(I)Ljava/time/YearMonth;", False, False)])
+    atMonthDay = JavaMethod("(Ljava/time/MonthDay;)Ljava/time/LocalDate;")
+    compareTo = JavaMethod("(Ljava/time/Year;)I")
+    isAfter = JavaMethod("(Ljava/time/Year;)Z")
+    isBefore = JavaMethod("(Ljava/time/Year;)Z")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    hashCode = JavaMethod("()I")
+    toString = JavaMethod("()Ljava/lang/String;")

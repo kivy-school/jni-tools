@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from android.gms.ads.h5.OnH5AdsEventListener import OnH5AdsEventListener
+
+class zzbqu:
+    def __init__(self, arg0: OnH5AdsEventListener) -> None: ...
+    def zzb(self, arg0: str) -> None: ...

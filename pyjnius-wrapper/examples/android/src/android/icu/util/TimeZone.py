@@ -1,0 +1,56 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["TimeZone"]
+
+class TimeZone(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/icu/util/TimeZone"
+    __javaconstructor__ = [("()V", False)]
+    GENERIC_LOCATION = JavaStaticField("I")
+    GMT_ZONE = JavaStaticField("Landroid/icu/util/TimeZone;")
+    LONG = JavaStaticField("I")
+    LONG_GENERIC = JavaStaticField("I")
+    LONG_GMT = JavaStaticField("I")
+    SHORT = JavaStaticField("I")
+    SHORT_COMMONLY_USED = JavaStaticField("I")
+    SHORT_GENERIC = JavaStaticField("I")
+    SHORT_GMT = JavaStaticField("I")
+    TIMEZONE_ICU = JavaStaticField("I")
+    TIMEZONE_JDK = JavaStaticField("I")
+    UNKNOWN_ZONE = JavaStaticField("Landroid/icu/util/TimeZone;")
+    UNKNOWN_ZONE_ID = JavaStaticField("Ljava/lang/String;")
+    getOffset = JavaMultipleMethod([("(IIIIII)I", False, False), ("(J)I", False, False), ("(JZ[I)V", False, False)])
+    setRawOffset = JavaMethod("(I)V")
+    getRawOffset = JavaMethod("()I")
+    getID = JavaMethod("()Ljava/lang/String;")
+    setID = JavaMethod("(Ljava/lang/String;)V")
+    getDisplayName = JavaMultipleMethod([("()Ljava/lang/String;", False, False), ("(Ljava/util/Locale;)Ljava/lang/String;", False, False), ("(Landroid/icu/util/ULocale;)Ljava/lang/String;", False, False), ("(ZI)Ljava/lang/String;", False, False), ("(ZILjava/util/Locale;)Ljava/lang/String;", False, False), ("(ZILandroid/icu/util/ULocale;)Ljava/lang/String;", False, False)])
+    getDSTSavings = JavaMethod("()I")
+    useDaylightTime = JavaMethod("()Z")
+    observesDaylightTime = JavaMethod("()Z")
+    inDaylightTime = JavaMethod("(Ljava/util/Date;)Z")
+    getTimeZone = JavaMultipleMethod([("(Ljava/lang/String;)Landroid/icu/util/TimeZone;", True, False), ("(Ljava/lang/String;I)Landroid/icu/util/TimeZone;", True, False)])
+    getFrozenTimeZone = JavaStaticMethod("(Ljava/lang/String;)Landroid/icu/util/TimeZone;")
+    getAvailableIDs = JavaMultipleMethod([("(Landroid/icu/util/TimeZone$SystemTimeZoneType;Ljava/lang/String;Ljava/lang/Integer;)Ljava/util/Set;", True, False), ("(I)[Ljava/lang/String;", True, False), ("(Ljava/lang/String;)[Ljava/lang/String;", True, False), ("()[Ljava/lang/String;", True, False)])
+    countEquivalentIDs = JavaStaticMethod("(Ljava/lang/String;)I")
+    getEquivalentID = JavaStaticMethod("(Ljava/lang/String;I)Ljava/lang/String;")
+    getDefault = JavaStaticMethod("()Landroid/icu/util/TimeZone;")
+    hasSameRules = JavaMethod("(Landroid/icu/util/TimeZone;)Z")
+    clone = JavaMethod("()Ljava/lang/Object;")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    hashCode = JavaMethod("()I")
+    getTZDataVersion = JavaStaticMethod("()Ljava/lang/String;")
+    getCanonicalID = JavaMultipleMethod([("(Ljava/lang/String;)Ljava/lang/String;", True, False), ("(Ljava/lang/String;[Z)Ljava/lang/String;", True, False)])
+    getRegion = JavaStaticMethod("(Ljava/lang/String;)Ljava/lang/String;")
+    getWindowsID = JavaStaticMethod("(Ljava/lang/String;)Ljava/lang/String;")
+    getIDForWindowsID = JavaStaticMethod("(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;")
+    isFrozen = JavaMethod("()Z")
+    freeze = JavaMethod("()Landroid/icu/util/TimeZone;")
+    cloneAsThawed = JavaMethod("()Landroid/icu/util/TimeZone;")
+
+    class SystemTimeZoneType(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/icu/util/TimeZone/SystemTimeZoneType"
+        values = JavaStaticMethod("()[Landroid/icu/util/TimeZone$SystemTimeZoneType;")
+        valueOf = JavaStaticMethod("(Ljava/lang/String;)Landroid/icu/util/TimeZone$SystemTimeZoneType;")
+        ANY = JavaStaticField("Landroid/icu/util/TimeZone/SystemTimeZoneType;")
+        CANONICAL = JavaStaticField("Landroid/icu/util/TimeZone/SystemTimeZoneType;")
+        CANONICAL_LOCATION = JavaStaticField("Landroid/icu/util/TimeZone/SystemTimeZoneType;")

@@ -1,0 +1,16 @@
+from typing import Any, ClassVar, overload
+from android.gms.ads.VersionInfo import VersionInfo
+from android.os.Parcel import Parcel
+from android.os.Parcelable.Creator import Creator
+
+class zzbxx:
+    CREATOR: ClassVar[Creator]
+    zza: int
+    zzb: int
+    zzc: int
+    @staticmethod
+    def zza(arg0: VersionInfo) -> "zzbxx": ...
+    def writeToParcel(self, arg0: Parcel, arg1: int) -> None: ...
+    def toString(self) -> str: ...
+    def equals(self, arg0: Any) -> bool: ...
+    def hashCode(self) -> int: ...

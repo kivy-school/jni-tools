@@ -1,0 +1,39 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["NativeAdView"]
+
+class NativeAdView(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "com/google/android/gms/ads/nativead/NativeAdView"
+    __javaconstructor__ = [("(Landroid/content/Context;)V", False), ("(Landroid/content/Context;Landroid/util/AttributeSet;)V", False), ("(Landroid/content/Context;Landroid/util/AttributeSet;I)V", False), ("(Landroid/content/Context;Landroid/util/AttributeSet;II)V", False)]
+    setHeadlineView = JavaMethod("(Landroid/view/View;)V")
+    setCallToActionView = JavaMethod("(Landroid/view/View;)V")
+    setIconView = JavaMethod("(Landroid/view/View;)V")
+    setBodyView = JavaMethod("(Landroid/view/View;)V")
+    setAdvertiserView = JavaMethod("(Landroid/view/View;)V")
+    setStoreView = JavaMethod("(Landroid/view/View;)V")
+    setClickConfirmingView = JavaMethod("(Landroid/view/View;)V")
+    setPriceView = JavaMethod("(Landroid/view/View;)V")
+    setImageView = JavaMethod("(Landroid/view/View;)V")
+    setStarRatingView = JavaMethod("(Landroid/view/View;)V")
+    setMediaView = JavaMethod("(Lcom/google/android/gms/ads/nativead/MediaView;)V")
+    setAdChoicesView = JavaMethod("(Lcom/google/android/gms/ads/nativead/AdChoicesView;)V")
+    setNativeAd = JavaMethod("(Lcom/google/android/gms/ads/nativead/NativeAd;)V")
+    getHeadlineView = JavaMethod("()Landroid/view/View;")
+    getCallToActionView = JavaMethod("()Landroid/view/View;")
+    getIconView = JavaMethod("()Landroid/view/View;")
+    getBodyView = JavaMethod("()Landroid/view/View;")
+    getStoreView = JavaMethod("()Landroid/view/View;")
+    getPriceView = JavaMethod("()Landroid/view/View;")
+    getAdvertiserView = JavaMethod("()Landroid/view/View;")
+    getImageView = JavaMethod("()Landroid/view/View;")
+    getStarRatingView = JavaMethod("()Landroid/view/View;")
+    getMediaView = JavaMethod("()Lcom/google/android/gms/ads/nativead/MediaView;")
+    getAdChoicesView = JavaMethod("()Lcom/google/android/gms/ads/nativead/AdChoicesView;")
+    destroy = JavaMethod("()V")
+    addView = JavaMethod("(Landroid/view/View;ILandroid/view/ViewGroup$LayoutParams;)V")
+    removeView = JavaMethod("(Landroid/view/View;)V")
+    removeAllViews = JavaMethod("()V")
+    bringChildToFront = JavaMethod("(Landroid/view/View;)V")
+    onVisibilityChanged = JavaMethod("(Landroid/view/View;I)V")
+    dispatchTouchEvent = JavaMethod("(Landroid/view/MotionEvent;)Z")
+    zza = JavaMethod("(Ljava/lang/String;)Landroid/view/View;")

@@ -1,0 +1,38 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["List"]
+
+class List(JavaInterface, metaclass=MetaJavaClass):
+    __javaclass__ = "java/util/List"
+    size = JavaMethod("()I")
+    isEmpty = JavaMethod("()Z")
+    contains = JavaMethod("(Ljava/lang/Object;)Z")
+    iterator = JavaMethod("()Ljava/util/Iterator;")
+    toArray = JavaMultipleMethod([("()[Ljava/lang/Object;", False, False), ("([Ljava/lang/Object;)[Ljava/lang/Object;", False, False)])
+    add = JavaMultipleMethod([("(Ljava/lang/Object;)Z", False, False), ("(ILjava/lang/Object;)V", False, False)])
+    remove = JavaMultipleMethod([("(Ljava/lang/Object;)Z", False, False), ("(I)Ljava/lang/Object;", False, False)])
+    containsAll = JavaMethod("(Ljava/util/Collection;)Z")
+    addAll = JavaMultipleMethod([("(Ljava/util/Collection;)Z", False, False), ("(ILjava/util/Collection;)Z", False, False)])
+    removeAll = JavaMethod("(Ljava/util/Collection;)Z")
+    retainAll = JavaMethod("(Ljava/util/Collection;)Z")
+    replaceAll = JavaMethod("(Ljava/util/function/UnaryOperator;)V")
+    sort = JavaMethod("(Ljava/util/Comparator;)V")
+    clear = JavaMethod("()V")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    hashCode = JavaMethod("()I")
+    get = JavaMethod("(I)Ljava/lang/Object;")
+    set = JavaMethod("(ILjava/lang/Object;)Ljava/lang/Object;")
+    indexOf = JavaMethod("(Ljava/lang/Object;)I")
+    lastIndexOf = JavaMethod("(Ljava/lang/Object;)I")
+    listIterator = JavaMultipleMethod([("()Ljava/util/ListIterator;", False, False), ("(I)Ljava/util/ListIterator;", False, False)])
+    subList = JavaMethod("(II)Ljava/util/List;")
+    spliterator = JavaMethod("()Ljava/util/Spliterator;")
+    addFirst = JavaMethod("(Ljava/lang/Object;)V")
+    addLast = JavaMethod("(Ljava/lang/Object;)V")
+    getFirst = JavaMethod("()Ljava/lang/Object;")
+    getLast = JavaMethod("()Ljava/lang/Object;")
+    removeFirst = JavaMethod("()Ljava/lang/Object;")
+    removeLast = JavaMethod("()Ljava/lang/Object;")
+    reversed = JavaMethod("()Ljava/util/List;")
+    of = JavaMultipleMethod([("()Ljava/util/List;", True, False), ("(Ljava/lang/Object;)Ljava/util/List;", True, False), ("(Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/List;", True, False), ("(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/List;", True, False), ("(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/List;", True, False), ("(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/List;", True, False), ("(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/List;", True, False), ("(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/List;", True, False), ("(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/List;", True, False), ("(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/List;", True, False), ("(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/List;", True, False), ("([Ljava/lang/Object;)Ljava/util/List;", True, True)])
+    copyOf = JavaStaticMethod("(Ljava/util/Collection;)Ljava/util/List;")

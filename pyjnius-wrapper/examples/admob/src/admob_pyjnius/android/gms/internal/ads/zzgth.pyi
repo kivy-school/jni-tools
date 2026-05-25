@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from android.gms.internal.ads.zzgtg import zzgtg
+
+class zzgth:
+    def __init__(self) -> None: ...
+    def zza(self, arg0: str) -> zzgtg: ...

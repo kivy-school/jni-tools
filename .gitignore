@@ -60,3 +60,22 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+
+# Gradle / Java AST emitter
+.gradle/
+build/
+*.class
+
+# Python (examples/)
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+.venv/
+venv/
+
+# macOS
+.DS_Store
+
+# Swift package manager
+.swiftpm/

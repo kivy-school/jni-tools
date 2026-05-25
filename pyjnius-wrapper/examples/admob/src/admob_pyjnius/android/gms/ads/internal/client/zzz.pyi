@@ -1,0 +1,9 @@
+from typing import Any, ClassVar, overload
+from android.content.Context import Context
+from android.gms.ads.AdSize import AdSize
+from android.util.AttributeSet import AttributeSet
+
+class zzz:
+    def __init__(self, arg0: Context, arg1: AttributeSet) -> None: ...
+    def zza(self, arg0: bool) -> list[AdSize]: ...
+    def zzb(self) -> str: ...

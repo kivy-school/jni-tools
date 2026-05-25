@@ -1,0 +1,43 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["CopyOnWriteArrayList"]
+
+class CopyOnWriteArrayList(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "java/util/concurrent/CopyOnWriteArrayList"
+    __javaconstructor__ = [("()V", False), ("(Ljava/util/Collection;)V", False), ("([Ljava/lang/Object;)V", False)]
+    size = JavaMethod("()I")
+    isEmpty = JavaMethod("()Z")
+    contains = JavaMethod("(Ljava/lang/Object;)Z")
+    indexOf = JavaMultipleMethod([("(Ljava/lang/Object;)I", False, False), ("(Ljava/lang/Object;I)I", False, False)])
+    lastIndexOf = JavaMultipleMethod([("(Ljava/lang/Object;)I", False, False), ("(Ljava/lang/Object;I)I", False, False)])
+    clone = JavaMethod("()Ljava/lang/Object;")
+    toArray = JavaMultipleMethod([("()[Ljava/lang/Object;", False, False), ("([Ljava/lang/Object;)[Ljava/lang/Object;", False, False)])
+    get = JavaMethod("(I)Ljava/lang/Object;")
+    getFirst = JavaMethod("()Ljava/lang/Object;")
+    getLast = JavaMethod("()Ljava/lang/Object;")
+    set = JavaMethod("(ILjava/lang/Object;)Ljava/lang/Object;")
+    add = JavaMultipleMethod([("(Ljava/lang/Object;)Z", False, False), ("(ILjava/lang/Object;)V", False, False)])
+    addFirst = JavaMethod("(Ljava/lang/Object;)V")
+    addLast = JavaMethod("(Ljava/lang/Object;)V")
+    remove = JavaMultipleMethod([("(I)Ljava/lang/Object;", False, False), ("(Ljava/lang/Object;)Z", False, False)])
+    removeFirst = JavaMethod("()Ljava/lang/Object;")
+    removeLast = JavaMethod("()Ljava/lang/Object;")
+    addIfAbsent = JavaMethod("(Ljava/lang/Object;)Z")
+    containsAll = JavaMethod("(Ljava/util/Collection;)Z")
+    removeAll = JavaMethod("(Ljava/util/Collection;)Z")
+    retainAll = JavaMethod("(Ljava/util/Collection;)Z")
+    addAllAbsent = JavaMethod("(Ljava/util/Collection;)I")
+    clear = JavaMethod("()V")
+    addAll = JavaMultipleMethod([("(Ljava/util/Collection;)Z", False, False), ("(ILjava/util/Collection;)Z", False, False)])
+    forEach = JavaMethod("(Ljava/util/function/Consumer;)V")
+    removeIf = JavaMethod("(Ljava/util/function/Predicate;)Z")
+    replaceAll = JavaMethod("(Ljava/util/function/UnaryOperator;)V")
+    sort = JavaMethod("(Ljava/util/Comparator;)V")
+    toString = JavaMethod("()Ljava/lang/String;")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    hashCode = JavaMethod("()I")
+    iterator = JavaMethod("()Ljava/util/Iterator;")
+    listIterator = JavaMultipleMethod([("()Ljava/util/ListIterator;", False, False), ("(I)Ljava/util/ListIterator;", False, False)])
+    spliterator = JavaMethod("()Ljava/util/Spliterator;")
+    subList = JavaMethod("(II)Ljava/util/List;")
+    reversed = JavaMethod("()Ljava/util/List;")

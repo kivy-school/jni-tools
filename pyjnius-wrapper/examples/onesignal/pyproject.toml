@@ -1,0 +1,13 @@
+[build-system]
+requires = ["pyjnius-builder"]
+build-backend = "pyjnius_builder"
+
+[project]
+name = "onesignal-pyjnius"
+version = "4.8.10"
+description = "pyjnius wrappers for OneSignal Android SDK 4.8.10"
+requires-python = ">=3.11"
+dependencies = ["pyjnius", "android-pyjnius"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/onesignal_pyjnius"]

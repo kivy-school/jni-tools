@@ -1,0 +1,59 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["EnvironmentalReverb"]
+
+class EnvironmentalReverb(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/media/audiofx/EnvironmentalReverb"
+    __javaconstructor__ = [("(II)V", False)]
+    PARAM_DECAY_HF_RATIO = JavaStaticField("I")
+    PARAM_DECAY_TIME = JavaStaticField("I")
+    PARAM_DENSITY = JavaStaticField("I")
+    PARAM_DIFFUSION = JavaStaticField("I")
+    PARAM_REFLECTIONS_DELAY = JavaStaticField("I")
+    PARAM_REFLECTIONS_LEVEL = JavaStaticField("I")
+    PARAM_REVERB_DELAY = JavaStaticField("I")
+    PARAM_REVERB_LEVEL = JavaStaticField("I")
+    PARAM_ROOM_HF_LEVEL = JavaStaticField("I")
+    PARAM_ROOM_LEVEL = JavaStaticField("I")
+    setRoomLevel = JavaMethod("(S)V")
+    getRoomLevel = JavaMethod("()S")
+    setRoomHFLevel = JavaMethod("(S)V")
+    getRoomHFLevel = JavaMethod("()S")
+    setDecayTime = JavaMethod("(I)V")
+    getDecayTime = JavaMethod("()I")
+    setDecayHFRatio = JavaMethod("(S)V")
+    getDecayHFRatio = JavaMethod("()S")
+    setReflectionsLevel = JavaMethod("(S)V")
+    getReflectionsLevel = JavaMethod("()S")
+    setReflectionsDelay = JavaMethod("(I)V")
+    getReflectionsDelay = JavaMethod("()I")
+    setReverbLevel = JavaMethod("(S)V")
+    getReverbLevel = JavaMethod("()S")
+    setReverbDelay = JavaMethod("(I)V")
+    getReverbDelay = JavaMethod("()I")
+    setDiffusion = JavaMethod("(S)V")
+    getDiffusion = JavaMethod("()S")
+    setDensity = JavaMethod("(S)V")
+    getDensity = JavaMethod("()S")
+    setParameterListener = JavaMethod("(Landroid/media/audiofx/EnvironmentalReverb$OnParameterChangeListener;)V")
+    getProperties = JavaMethod("()Landroid/media/audiofx/EnvironmentalReverb$Settings;")
+    setProperties = JavaMethod("(Landroid/media/audiofx/EnvironmentalReverb$Settings;)V")
+
+    class OnParameterChangeListener(JavaInterface, metaclass=MetaJavaClass):
+        __javaclass__ = "android/media/audiofx/EnvironmentalReverb/OnParameterChangeListener"
+        onParameterChange = JavaMethod("(Landroid/media/audiofx/EnvironmentalReverb;III)V")
+
+    class Settings(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/media/audiofx/EnvironmentalReverb/Settings"
+        __javaconstructor__ = [("()V", False), ("(Ljava/lang/String;)V", False)]
+        decayHFRatio = JavaField("S")
+        decayTime = JavaField("I")
+        density = JavaField("S")
+        diffusion = JavaField("S")
+        reflectionsDelay = JavaField("I")
+        reflectionsLevel = JavaField("S")
+        reverbDelay = JavaField("I")
+        reverbLevel = JavaField("S")
+        roomHFLevel = JavaField("S")
+        roomLevel = JavaField("S")
+        toString = JavaMethod("()Ljava/lang/String;")

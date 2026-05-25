@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from java.nio.file.Path import Path
+
+class FileTypeDetector:
+    def __init__(self) -> None: ...
+    def probeContentType(self, arg0: Path) -> str: ...

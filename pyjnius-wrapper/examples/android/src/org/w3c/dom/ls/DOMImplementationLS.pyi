@@ -1,0 +1,13 @@
+from typing import Any, ClassVar, overload
+from org.w3c.dom.ls.LSInput import LSInput
+from org.w3c.dom.ls.LSOutput import LSOutput
+from org.w3c.dom.ls.LSParser import LSParser
+from org.w3c.dom.ls.LSSerializer import LSSerializer
+
+class DOMImplementationLS:
+    MODE_ASYNCHRONOUS: ClassVar[int]
+    MODE_SYNCHRONOUS: ClassVar[int]
+    def createLSParser(self, arg0: int, arg1: str) -> LSParser: ...
+    def createLSSerializer(self) -> LSSerializer: ...
+    def createLSInput(self) -> LSInput: ...
+    def createLSOutput(self) -> LSOutput: ...

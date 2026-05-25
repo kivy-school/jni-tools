@@ -1,0 +1,40 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["ForkJoinTask"]
+
+class ForkJoinTask(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "java/util/concurrent/ForkJoinTask"
+    __javaconstructor__ = [("()V", False)]
+    fork = JavaMethod("()Ljava/util/concurrent/ForkJoinTask;")
+    join = JavaMethod("()Ljava/lang/Object;")
+    invoke = JavaMethod("()Ljava/lang/Object;")
+    invokeAll = JavaMultipleMethod([("(Ljava/util/concurrent/ForkJoinTask;Ljava/util/concurrent/ForkJoinTask;)V", True, False), ("([Ljava/util/concurrent/ForkJoinTask;)V", True, True), ("(Ljava/util/Collection;)Ljava/util/Collection;", True, False)])
+    cancel = JavaMethod("(Z)Z")
+    isDone = JavaMethod("()Z")
+    isCancelled = JavaMethod("()Z")
+    isCompletedAbnormally = JavaMethod("()Z")
+    isCompletedNormally = JavaMethod("()Z")
+    getException = JavaMethod("()Ljava/lang/Throwable;")
+    completeExceptionally = JavaMethod("(Ljava/lang/Throwable;)V")
+    complete = JavaMethod("(Ljava/lang/Object;)V")
+    quietlyComplete = JavaMethod("()V")
+    get = JavaMultipleMethod([("()Ljava/lang/Object;", False, False), ("(JLjava/util/concurrent/TimeUnit;)Ljava/lang/Object;", False, False)])
+    quietlyJoin = JavaMethod("()V")
+    quietlyInvoke = JavaMethod("()V")
+    helpQuiesce = JavaStaticMethod("()V")
+    reinitialize = JavaMethod("()V")
+    getPool = JavaStaticMethod("()Ljava/util/concurrent/ForkJoinPool;")
+    inForkJoinPool = JavaStaticMethod("()Z")
+    tryUnfork = JavaMethod("()Z")
+    getQueuedTaskCount = JavaStaticMethod("()I")
+    getSurplusQueuedTaskCount = JavaStaticMethod("()I")
+    getRawResult = JavaMethod("()Ljava/lang/Object;")
+    setRawResult = JavaMethod("(Ljava/lang/Object;)V")
+    exec = JavaMethod("()Z")
+    peekNextLocalTask = JavaStaticMethod("()Ljava/util/concurrent/ForkJoinTask;")
+    pollNextLocalTask = JavaStaticMethod("()Ljava/util/concurrent/ForkJoinTask;")
+    pollTask = JavaStaticMethod("()Ljava/util/concurrent/ForkJoinTask;")
+    getForkJoinTaskTag = JavaMethod("()S")
+    setForkJoinTaskTag = JavaMethod("(S)S")
+    compareAndSetForkJoinTaskTag = JavaMethod("(SS)Z")
+    adapt = JavaMultipleMethod([("(Ljava/lang/Runnable;)Ljava/util/concurrent/ForkJoinTask;", True, False), ("(Ljava/lang/Runnable;Ljava/lang/Object;)Ljava/util/concurrent/ForkJoinTask;", True, False), ("(Ljava/util/concurrent/Callable;)Ljava/util/concurrent/ForkJoinTask;", True, False)])

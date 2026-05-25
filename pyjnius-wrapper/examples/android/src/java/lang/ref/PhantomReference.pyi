@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from java.lang.ref.ReferenceQueue import ReferenceQueue
+
+class PhantomReference:
+    def __init__(self, arg0: Any, arg1: ReferenceQueue) -> None: ...
+    def get(self) -> Any: ...

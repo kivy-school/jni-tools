@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from android.view.View import View
+
+class ViewGroupOverlay:
+    def add(self, arg0: View) -> None: ...
+    def remove(self, arg0: View) -> None: ...

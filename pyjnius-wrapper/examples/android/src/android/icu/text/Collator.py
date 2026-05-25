@@ -1,0 +1,56 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["Collator"]
+
+class Collator(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/icu/text/Collator"
+    __javaconstructor__ = [("()V", False)]
+    CANONICAL_DECOMPOSITION = JavaStaticField("I")
+    FULL_DECOMPOSITION = JavaStaticField("I")
+    IDENTICAL = JavaStaticField("I")
+    NO_DECOMPOSITION = JavaStaticField("I")
+    PRIMARY = JavaStaticField("I")
+    QUATERNARY = JavaStaticField("I")
+    SECONDARY = JavaStaticField("I")
+    TERTIARY = JavaStaticField("I")
+    equals = JavaMultipleMethod([("(Ljava/lang/Object;)Z", False, False), ("(Ljava/lang/String;Ljava/lang/String;)Z", False, False)])
+    hashCode = JavaMethod("()I")
+    setStrength = JavaMethod("(I)V")
+    setDecomposition = JavaMethod("(I)V")
+    setReorderCodes = JavaMethod("([I)V", varargs=True)
+    getInstance = JavaMultipleMethod([("()Landroid/icu/text/Collator;", True, False), ("(Landroid/icu/util/ULocale;)Landroid/icu/text/Collator;", True, False), ("(Ljava/util/Locale;)Landroid/icu/text/Collator;", True, False)])
+    clone = JavaMethod("()Ljava/lang/Object;")
+    getAvailableLocales = JavaStaticMethod("()[Ljava/util/Locale;")
+    getAvailableULocales = JavaStaticMethod("()[Landroid/icu/util/ULocale;")
+    getKeywords = JavaStaticMethod("()[Ljava/lang/String;")
+    getKeywordValues = JavaStaticMethod("(Ljava/lang/String;)[Ljava/lang/String;")
+    getKeywordValuesForLocale = JavaStaticMethod("(Ljava/lang/String;Landroid/icu/util/ULocale;Z)[Ljava/lang/String;")
+    getFunctionalEquivalent = JavaMultipleMethod([("(Ljava/lang/String;Landroid/icu/util/ULocale;[Z)Landroid/icu/util/ULocale;", True, False), ("(Ljava/lang/String;Landroid/icu/util/ULocale;)Landroid/icu/util/ULocale;", True, False)])
+    getDisplayName = JavaMultipleMethod([("(Ljava/util/Locale;Ljava/util/Locale;)Ljava/lang/String;", True, False), ("(Landroid/icu/util/ULocale;Landroid/icu/util/ULocale;)Ljava/lang/String;", True, False), ("(Ljava/util/Locale;)Ljava/lang/String;", True, False), ("(Landroid/icu/util/ULocale;)Ljava/lang/String;", True, False)])
+    getStrength = JavaMethod("()I")
+    getDecomposition = JavaMethod("()I")
+    getTailoredSet = JavaMethod("()Landroid/icu/text/UnicodeSet;")
+    compare = JavaMultipleMethod([("(Ljava/lang/String;Ljava/lang/String;)I", False, False), ("(Ljava/lang/Object;Ljava/lang/Object;)I", False, False)])
+    getCollationKey = JavaMethod("(Ljava/lang/String;)Landroid/icu/text/CollationKey;")
+    setMaxVariable = JavaMethod("(I)Landroid/icu/text/Collator;")
+    getMaxVariable = JavaMethod("()I")
+    getVariableTop = JavaMethod("()I")
+    getVersion = JavaMethod("()Landroid/icu/util/VersionInfo;")
+    getUCAVersion = JavaMethod("()Landroid/icu/util/VersionInfo;")
+    getReorderCodes = JavaMethod("()[I")
+    getEquivalentReorderCodes = JavaStaticMethod("(I)[I")
+    isFrozen = JavaMethod("()Z")
+    freeze = JavaMethod("()Landroid/icu/text/Collator;")
+    cloneAsThawed = JavaMethod("()Landroid/icu/text/Collator;")
+
+    class ReorderCodes(JavaInterface, metaclass=MetaJavaClass):
+        __javaclass__ = "android/icu/text/Collator/ReorderCodes"
+        CURRENCY = JavaStaticField("I")
+        DEFAULT = JavaStaticField("I")
+        DIGIT = JavaStaticField("I")
+        FIRST = JavaStaticField("I")
+        NONE = JavaStaticField("I")
+        OTHERS = JavaStaticField("I")
+        PUNCTUATION = JavaStaticField("I")
+        SPACE = JavaStaticField("I")
+        SYMBOL = JavaStaticField("I")

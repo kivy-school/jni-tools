@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from android.gms.ads.internal.client.zzt import zzt
+
+class zzdo:
+    def zze(self, arg0: zzt) -> None: ...
+    def zzf(self) -> bool: ...

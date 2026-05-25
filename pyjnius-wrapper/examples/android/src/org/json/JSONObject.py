@@ -1,0 +1,39 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["JSONObject"]
+
+class JSONObject(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "org/json/JSONObject"
+    __javaconstructor__ = [("()V", False), ("(Ljava/util/Map;)V", False), ("(Lorg/json/JSONTokener;)V", False), ("(Ljava/lang/String;)V", False), ("(Lorg/json/JSONObject;[Ljava/lang/String;)V", False)]
+    NULL = JavaStaticField("Ljava/lang/Object;")
+    length = JavaMethod("()I")
+    put = JavaMultipleMethod([("(Ljava/lang/String;Z)Lorg/json/JSONObject;", False, False), ("(Ljava/lang/String;D)Lorg/json/JSONObject;", False, False), ("(Ljava/lang/String;I)Lorg/json/JSONObject;", False, False), ("(Ljava/lang/String;J)Lorg/json/JSONObject;", False, False), ("(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;", False, False)])
+    putOpt = JavaMethod("(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;")
+    accumulate = JavaMethod("(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;")
+    append = JavaMethod("(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;")
+    remove = JavaMethod("(Ljava/lang/String;)Ljava/lang/Object;")
+    isNull = JavaMethod("(Ljava/lang/String;)Z")
+    has = JavaMethod("(Ljava/lang/String;)Z")
+    get = JavaMethod("(Ljava/lang/String;)Ljava/lang/Object;")
+    opt = JavaMethod("(Ljava/lang/String;)Ljava/lang/Object;")
+    getBoolean = JavaMethod("(Ljava/lang/String;)Z")
+    optBoolean = JavaMultipleMethod([("(Ljava/lang/String;)Z", False, False), ("(Ljava/lang/String;Z)Z", False, False)])
+    getDouble = JavaMethod("(Ljava/lang/String;)D")
+    optDouble = JavaMultipleMethod([("(Ljava/lang/String;)D", False, False), ("(Ljava/lang/String;D)D", False, False)])
+    getInt = JavaMethod("(Ljava/lang/String;)I")
+    optInt = JavaMultipleMethod([("(Ljava/lang/String;)I", False, False), ("(Ljava/lang/String;I)I", False, False)])
+    getLong = JavaMethod("(Ljava/lang/String;)J")
+    optLong = JavaMultipleMethod([("(Ljava/lang/String;)J", False, False), ("(Ljava/lang/String;J)J", False, False)])
+    getString = JavaMethod("(Ljava/lang/String;)Ljava/lang/String;")
+    optString = JavaMultipleMethod([("(Ljava/lang/String;)Ljava/lang/String;", False, False), ("(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", False, False)])
+    getJSONArray = JavaMethod("(Ljava/lang/String;)Lorg/json/JSONArray;")
+    optJSONArray = JavaMethod("(Ljava/lang/String;)Lorg/json/JSONArray;")
+    getJSONObject = JavaMethod("(Ljava/lang/String;)Lorg/json/JSONObject;")
+    optJSONObject = JavaMethod("(Ljava/lang/String;)Lorg/json/JSONObject;")
+    toJSONArray = JavaMethod("(Lorg/json/JSONArray;)Lorg/json/JSONArray;")
+    keys = JavaMethod("()Ljava/util/Iterator;")
+    names = JavaMethod("()Lorg/json/JSONArray;")
+    toString = JavaMultipleMethod([("()Ljava/lang/String;", False, False), ("(I)Ljava/lang/String;", False, False)])
+    numberToString = JavaStaticMethod("(Ljava/lang/Number;)Ljava/lang/String;")
+    quote = JavaStaticMethod("(Ljava/lang/String;)Ljava/lang/String;")
+    wrap = JavaStaticMethod("(Ljava/lang/Object;)Ljava/lang/Object;")

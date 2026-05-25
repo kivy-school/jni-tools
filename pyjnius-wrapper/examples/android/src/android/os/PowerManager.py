@@ -1,0 +1,76 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["PowerManager"]
+
+class PowerManager(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/os/PowerManager"
+    ACQUIRE_CAUSES_WAKEUP = JavaStaticField("I")
+    ACTION_DEVICE_IDLE_MODE_CHANGED = JavaStaticField("Ljava/lang/String;")
+    ACTION_DEVICE_LIGHT_IDLE_MODE_CHANGED = JavaStaticField("Ljava/lang/String;")
+    ACTION_LOW_POWER_STANDBY_ENABLED_CHANGED = JavaStaticField("Ljava/lang/String;")
+    ACTION_LOW_POWER_STANDBY_POLICY_CHANGED = JavaStaticField("Ljava/lang/String;")
+    ACTION_POWER_SAVE_MODE_CHANGED = JavaStaticField("Ljava/lang/String;")
+    FEATURE_WAKE_ON_LAN_IN_LOW_POWER_STANDBY = JavaStaticField("Ljava/lang/String;")
+    FULL_WAKE_LOCK = JavaStaticField("I")
+    LOCATION_MODE_ALL_DISABLED_WHEN_SCREEN_OFF = JavaStaticField("I")
+    LOCATION_MODE_FOREGROUND_ONLY = JavaStaticField("I")
+    LOCATION_MODE_GPS_DISABLED_WHEN_SCREEN_OFF = JavaStaticField("I")
+    LOCATION_MODE_NO_CHANGE = JavaStaticField("I")
+    LOCATION_MODE_THROTTLE_REQUESTS_WHEN_SCREEN_OFF = JavaStaticField("I")
+    LOW_POWER_STANDBY_ALLOWED_REASON_ONGOING_CALL = JavaStaticField("I")
+    LOW_POWER_STANDBY_ALLOWED_REASON_TEMP_POWER_SAVE_ALLOWLIST = JavaStaticField("I")
+    LOW_POWER_STANDBY_ALLOWED_REASON_VOICE_INTERACTION = JavaStaticField("I")
+    ON_AFTER_RELEASE = JavaStaticField("I")
+    PARTIAL_WAKE_LOCK = JavaStaticField("I")
+    PROXIMITY_SCREEN_OFF_WAKE_LOCK = JavaStaticField("I")
+    RELEASE_FLAG_WAIT_FOR_NO_PROXIMITY = JavaStaticField("I")
+    SCREEN_BRIGHT_WAKE_LOCK = JavaStaticField("I")
+    SCREEN_DIM_WAKE_LOCK = JavaStaticField("I")
+    THERMAL_STATUS_CRITICAL = JavaStaticField("I")
+    THERMAL_STATUS_EMERGENCY = JavaStaticField("I")
+    THERMAL_STATUS_LIGHT = JavaStaticField("I")
+    THERMAL_STATUS_MODERATE = JavaStaticField("I")
+    THERMAL_STATUS_NONE = JavaStaticField("I")
+    THERMAL_STATUS_SEVERE = JavaStaticField("I")
+    THERMAL_STATUS_SHUTDOWN = JavaStaticField("I")
+    newWakeLock = JavaMethod("(ILjava/lang/String;)Landroid/os/PowerManager$WakeLock;")
+    isWakeLockLevelSupported = JavaMethod("(I)Z")
+    isScreenOn = JavaMethod("()Z")
+    isInteractive = JavaMethod("()Z")
+    isRebootingUserspaceSupported = JavaMethod("()Z")
+    reboot = JavaMethod("(Ljava/lang/String;)V")
+    isPowerSaveMode = JavaMethod("()Z")
+    getBatteryDischargePrediction = JavaMethod("()Ljava/time/Duration;")
+    isBatteryDischargePredictionPersonalized = JavaMethod("()Z")
+    getLocationPowerSaveMode = JavaMethod("()I")
+    isDeviceIdleMode = JavaMethod("()Z")
+    isDeviceLightIdleMode = JavaMethod("()Z")
+    isLowPowerStandbyEnabled = JavaMethod("()Z")
+    isExemptFromLowPowerStandby = JavaMethod("()Z")
+    isAllowedInLowPowerStandby = JavaMultipleMethod([("(I)Z", False, False), ("(Ljava/lang/String;)Z", False, False)])
+    isIgnoringBatteryOptimizations = JavaMethod("(Ljava/lang/String;)Z")
+    isSustainedPerformanceModeSupported = JavaMethod("()Z")
+    getCurrentThermalStatus = JavaMethod("()I")
+    addThermalStatusListener = JavaMultipleMethod([("(Landroid/os/PowerManager$OnThermalStatusChangedListener;)V", False, False), ("(Ljava/util/concurrent/Executor;Landroid/os/PowerManager$OnThermalStatusChangedListener;)V", False, False)])
+    removeThermalStatusListener = JavaMethod("(Landroid/os/PowerManager$OnThermalStatusChangedListener;)V")
+    getThermalHeadroom = JavaMethod("(I)F")
+    getThermalHeadroomThresholds = JavaMethod("()Ljava/util/Map;")
+
+    class OnThermalStatusChangedListener(JavaInterface, metaclass=MetaJavaClass):
+        __javaclass__ = "android/os/PowerManager/OnThermalStatusChangedListener"
+        onThermalStatusChanged = JavaMethod("(I)V")
+
+    class WakeLock(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/os/PowerManager/WakeLock"
+        finalize = JavaMethod("()V")
+        setReferenceCounted = JavaMethod("(Z)V")
+        acquire = JavaMultipleMethod([("()V", False, False), ("(J)V", False, False)])
+        release = JavaMultipleMethod([("()V", False, False), ("(I)V", False, False)])
+        isHeld = JavaMethod("()Z")
+        setWorkSource = JavaMethod("(Landroid/os/WorkSource;)V")
+        toString = JavaMethod("()Ljava/lang/String;")
+        setStateListener = JavaMethod("(Ljava/util/concurrent/Executor;Landroid/os/PowerManager$WakeLockStateListener;)V")
+
+    class WakeLockStateListener(JavaInterface, metaclass=MetaJavaClass):
+        __javaclass__ = "android/os/PowerManager/WakeLockStateListener"
+        onStateChanged = JavaMethod("(Z)V")

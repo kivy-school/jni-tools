@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from android.gms.internal.ads.zzidz import zzidz
+
+class zzieh:
+    def __init__(self) -> None: ...
+    def zza(self) -> zzidz: ...

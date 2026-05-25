@@ -1,0 +1,19 @@
+from typing import Any, ClassVar, overload
+from android.adservices.common.AdServicesOutcomeReceiver import AdServicesOutcomeReceiver
+from android.adservices.customaudience.FetchAndJoinCustomAudienceRequest import FetchAndJoinCustomAudienceRequest
+from android.adservices.customaudience.JoinCustomAudienceRequest import JoinCustomAudienceRequest
+from android.adservices.customaudience.LeaveCustomAudienceRequest import LeaveCustomAudienceRequest
+from android.adservices.customaudience.ScheduleCustomAudienceUpdateRequest import ScheduleCustomAudienceUpdateRequest
+from android.adservices.customaudience.TestCustomAudienceManager import TestCustomAudienceManager
+from android.content.Context import Context
+from android.os.OutcomeReceiver import OutcomeReceiver
+from java.util.concurrent.Executor import Executor
+
+class CustomAudienceManager:
+    @staticmethod
+    def get(arg0: Context) -> "CustomAudienceManager": ...
+    def getTestCustomAudienceManager(self) -> TestCustomAudienceManager: ...
+    def joinCustomAudience(self, arg0: JoinCustomAudienceRequest, arg1: Executor, arg2: OutcomeReceiver) -> None: ...
+    def fetchAndJoinCustomAudience(self, arg0: FetchAndJoinCustomAudienceRequest, arg1: Executor, arg2: OutcomeReceiver) -> None: ...
+    def leaveCustomAudience(self, arg0: LeaveCustomAudienceRequest, arg1: Executor, arg2: OutcomeReceiver) -> None: ...
+    def scheduleCustomAudienceUpdate(self, arg0: ScheduleCustomAudienceUpdateRequest, arg1: Executor, arg2: AdServicesOutcomeReceiver) -> None: ...

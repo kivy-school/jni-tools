@@ -1,0 +1,13 @@
+from typing import Any, ClassVar, overload
+from java.lang.Runnable import Runnable
+from java.util.concurrent.Callable import Callable
+from java.util.concurrent.ScheduledFuture import ScheduledFuture
+from java.util.concurrent.TimeUnit import TimeUnit
+
+class ScheduledExecutorService:
+    @overload
+    def schedule(self, arg0: Runnable, arg1: int, arg2: TimeUnit) -> ScheduledFuture: ...
+    @overload
+    def schedule(self, arg0: Callable, arg1: int, arg2: TimeUnit) -> ScheduledFuture: ...
+    def scheduleAtFixedRate(self, arg0: Runnable, arg1: int, arg2: int, arg3: TimeUnit) -> ScheduledFuture: ...
+    def scheduleWithFixedDelay(self, arg0: Runnable, arg1: int, arg2: int, arg3: TimeUnit) -> ScheduledFuture: ...

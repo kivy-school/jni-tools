@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from android.view.InputDevice import InputDevice
+
+class SearchEvent:
+    def __init__(self, arg0: InputDevice) -> None: ...
+    def getInputDevice(self) -> InputDevice: ...

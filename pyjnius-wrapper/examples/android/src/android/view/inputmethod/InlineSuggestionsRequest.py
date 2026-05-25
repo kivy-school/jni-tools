@@ -1,0 +1,30 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["InlineSuggestionsRequest"]
+
+class InlineSuggestionsRequest(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/view/inputmethod/InlineSuggestionsRequest"
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    SUGGESTION_COUNT_UNLIMITED = JavaStaticField("I")
+    getMaxSuggestionCount = JavaMethod("()I")
+    getInlinePresentationSpecs = JavaMethod("()Ljava/util/List;")
+    getHostPackageName = JavaMethod("()Ljava/lang/String;")
+    getSupportedLocales = JavaMethod("()Landroid/os/LocaleList;")
+    getExtras = JavaMethod("()Landroid/os/Bundle;")
+    getInlineTooltipPresentationSpec = JavaMethod("()Landroid/widget/inline/InlinePresentationSpec;")
+    toString = JavaMethod("()Ljava/lang/String;")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    hashCode = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
+
+    class Builder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/view/inputmethod/InlineSuggestionsRequest/Builder"
+        __javaconstructor__ = [("(Ljava/util/List;)V", False)]
+        setMaxSuggestionCount = JavaMethod("(I)Landroid/view/inputmethod/InlineSuggestionsRequest$Builder;")
+        setInlinePresentationSpecs = JavaMethod("(Ljava/util/List;)Landroid/view/inputmethod/InlineSuggestionsRequest$Builder;")
+        addInlinePresentationSpecs = JavaMethod("(Landroid/widget/inline/InlinePresentationSpec;)Landroid/view/inputmethod/InlineSuggestionsRequest$Builder;")
+        setSupportedLocales = JavaMethod("(Landroid/os/LocaleList;)Landroid/view/inputmethod/InlineSuggestionsRequest$Builder;")
+        setExtras = JavaMethod("(Landroid/os/Bundle;)Landroid/view/inputmethod/InlineSuggestionsRequest$Builder;")
+        setInlineTooltipPresentationSpec = JavaMethod("(Landroid/widget/inline/InlinePresentationSpec;)Landroid/view/inputmethod/InlineSuggestionsRequest$Builder;")
+        build = JavaMethod("()Landroid/view/inputmethod/InlineSuggestionsRequest;")

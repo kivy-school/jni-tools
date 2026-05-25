@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from java.util.function.Function import Function
+
+class BiFunction:
+    def apply(self, arg0: Any, arg1: Any) -> Any: ...
+    def andThen(self, arg0: Function) -> "BiFunction": ...

@@ -1,0 +1,71 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["GestureOverlayView"]
+
+class GestureOverlayView(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/gesture/GestureOverlayView"
+    __javaconstructor__ = [("(Landroid/content/Context;)V", False), ("(Landroid/content/Context;Landroid/util/AttributeSet;)V", False), ("(Landroid/content/Context;Landroid/util/AttributeSet;I)V", False), ("(Landroid/content/Context;Landroid/util/AttributeSet;II)V", False)]
+    GESTURE_STROKE_TYPE_MULTIPLE = JavaStaticField("I")
+    GESTURE_STROKE_TYPE_SINGLE = JavaStaticField("I")
+    ORIENTATION_HORIZONTAL = JavaStaticField("I")
+    ORIENTATION_VERTICAL = JavaStaticField("I")
+    getCurrentStroke = JavaMethod("()Ljava/util/ArrayList;")
+    getOrientation = JavaMethod("()I")
+    setOrientation = JavaMethod("(I)V")
+    setGestureColor = JavaMethod("(I)V")
+    setUncertainGestureColor = JavaMethod("(I)V")
+    getUncertainGestureColor = JavaMethod("()I")
+    getGestureColor = JavaMethod("()I")
+    getGestureStrokeWidth = JavaMethod("()F")
+    setGestureStrokeWidth = JavaMethod("(F)V")
+    getGestureStrokeType = JavaMethod("()I")
+    setGestureStrokeType = JavaMethod("(I)V")
+    getGestureStrokeLengthThreshold = JavaMethod("()F")
+    setGestureStrokeLengthThreshold = JavaMethod("(F)V")
+    getGestureStrokeSquarenessTreshold = JavaMethod("()F")
+    setGestureStrokeSquarenessTreshold = JavaMethod("(F)V")
+    getGestureStrokeAngleThreshold = JavaMethod("()F")
+    setGestureStrokeAngleThreshold = JavaMethod("(F)V")
+    isEventsInterceptionEnabled = JavaMethod("()Z")
+    setEventsInterceptionEnabled = JavaMethod("(Z)V")
+    isFadeEnabled = JavaMethod("()Z")
+    setFadeEnabled = JavaMethod("(Z)V")
+    getGesture = JavaMethod("()Landroid/gesture/Gesture;")
+    setGesture = JavaMethod("(Landroid/gesture/Gesture;)V")
+    getGesturePath = JavaMultipleMethod([("()Landroid/graphics/Path;", False, False), ("(Landroid/graphics/Path;)Landroid/graphics/Path;", False, False)])
+    isGestureVisible = JavaMethod("()Z")
+    setGestureVisible = JavaMethod("(Z)V")
+    getFadeOffset = JavaMethod("()J")
+    setFadeOffset = JavaMethod("(J)V")
+    addOnGestureListener = JavaMethod("(Landroid/gesture/GestureOverlayView$OnGestureListener;)V")
+    removeOnGestureListener = JavaMethod("(Landroid/gesture/GestureOverlayView$OnGestureListener;)V")
+    removeAllOnGestureListeners = JavaMethod("()V")
+    addOnGesturePerformedListener = JavaMethod("(Landroid/gesture/GestureOverlayView$OnGesturePerformedListener;)V")
+    removeOnGesturePerformedListener = JavaMethod("(Landroid/gesture/GestureOverlayView$OnGesturePerformedListener;)V")
+    removeAllOnGesturePerformedListeners = JavaMethod("()V")
+    addOnGesturingListener = JavaMethod("(Landroid/gesture/GestureOverlayView$OnGesturingListener;)V")
+    removeOnGesturingListener = JavaMethod("(Landroid/gesture/GestureOverlayView$OnGesturingListener;)V")
+    removeAllOnGesturingListeners = JavaMethod("()V")
+    isGesturing = JavaMethod("()Z")
+    draw = JavaMethod("(Landroid/graphics/Canvas;)V")
+    clear = JavaMethod("(Z)V")
+    cancelClearAnimation = JavaMethod("()V")
+    cancelGesture = JavaMethod("()V")
+    onDetachedFromWindow = JavaMethod("()V")
+    dispatchTouchEvent = JavaMethod("(Landroid/view/MotionEvent;)Z")
+
+    class OnGestureListener(JavaInterface, metaclass=MetaJavaClass):
+        __javaclass__ = "android/gesture/GestureOverlayView/OnGestureListener"
+        onGestureStarted = JavaMethod("(Landroid/gesture/GestureOverlayView;Landroid/view/MotionEvent;)V")
+        onGesture = JavaMethod("(Landroid/gesture/GestureOverlayView;Landroid/view/MotionEvent;)V")
+        onGestureEnded = JavaMethod("(Landroid/gesture/GestureOverlayView;Landroid/view/MotionEvent;)V")
+        onGestureCancelled = JavaMethod("(Landroid/gesture/GestureOverlayView;Landroid/view/MotionEvent;)V")
+
+    class OnGesturePerformedListener(JavaInterface, metaclass=MetaJavaClass):
+        __javaclass__ = "android/gesture/GestureOverlayView/OnGesturePerformedListener"
+        onGesturePerformed = JavaMethod("(Landroid/gesture/GestureOverlayView;Landroid/gesture/Gesture;)V")
+
+    class OnGesturingListener(JavaInterface, metaclass=MetaJavaClass):
+        __javaclass__ = "android/gesture/GestureOverlayView/OnGesturingListener"
+        onGesturingStarted = JavaMethod("(Landroid/gesture/GestureOverlayView;)V")
+        onGesturingEnded = JavaMethod("(Landroid/gesture/GestureOverlayView;)V")

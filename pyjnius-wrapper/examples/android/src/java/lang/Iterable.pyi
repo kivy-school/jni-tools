@@ -1,0 +1,9 @@
+from typing import Any, ClassVar, overload
+from java.util.Iterator import Iterator
+from java.util.Spliterator import Spliterator
+from java.util.function.Consumer import Consumer
+
+class Iterable:
+    def iterator(self) -> Iterator: ...
+    def forEach(self, arg0: Consumer) -> None: ...
+    def spliterator(self) -> Spliterator: ...

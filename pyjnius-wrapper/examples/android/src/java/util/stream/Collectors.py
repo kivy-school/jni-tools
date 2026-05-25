@@ -1,0 +1,36 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["Collectors"]
+
+class Collectors(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "java/util/stream/Collectors"
+    toCollection = JavaStaticMethod("(Ljava/util/function/Supplier;)Ljava/util/stream/Collector;")
+    toList = JavaStaticMethod("()Ljava/util/stream/Collector;")
+    toUnmodifiableList = JavaStaticMethod("()Ljava/util/stream/Collector;")
+    toSet = JavaStaticMethod("()Ljava/util/stream/Collector;")
+    toUnmodifiableSet = JavaStaticMethod("()Ljava/util/stream/Collector;")
+    joining = JavaMultipleMethod([("()Ljava/util/stream/Collector;", True, False), ("(Ljava/lang/CharSequence;)Ljava/util/stream/Collector;", True, False), ("(Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/util/stream/Collector;", True, False)])
+    mapping = JavaStaticMethod("(Ljava/util/function/Function;Ljava/util/stream/Collector;)Ljava/util/stream/Collector;")
+    flatMapping = JavaStaticMethod("(Ljava/util/function/Function;Ljava/util/stream/Collector;)Ljava/util/stream/Collector;")
+    filtering = JavaStaticMethod("(Ljava/util/function/Predicate;Ljava/util/stream/Collector;)Ljava/util/stream/Collector;")
+    collectingAndThen = JavaStaticMethod("(Ljava/util/stream/Collector;Ljava/util/function/Function;)Ljava/util/stream/Collector;")
+    counting = JavaStaticMethod("()Ljava/util/stream/Collector;")
+    minBy = JavaStaticMethod("(Ljava/util/Comparator;)Ljava/util/stream/Collector;")
+    maxBy = JavaStaticMethod("(Ljava/util/Comparator;)Ljava/util/stream/Collector;")
+    summingInt = JavaStaticMethod("(Ljava/util/function/ToIntFunction;)Ljava/util/stream/Collector;")
+    summingLong = JavaStaticMethod("(Ljava/util/function/ToLongFunction;)Ljava/util/stream/Collector;")
+    summingDouble = JavaStaticMethod("(Ljava/util/function/ToDoubleFunction;)Ljava/util/stream/Collector;")
+    averagingInt = JavaStaticMethod("(Ljava/util/function/ToIntFunction;)Ljava/util/stream/Collector;")
+    averagingLong = JavaStaticMethod("(Ljava/util/function/ToLongFunction;)Ljava/util/stream/Collector;")
+    averagingDouble = JavaStaticMethod("(Ljava/util/function/ToDoubleFunction;)Ljava/util/stream/Collector;")
+    reducing = JavaMultipleMethod([("(Ljava/lang/Object;Ljava/util/function/BinaryOperator;)Ljava/util/stream/Collector;", True, False), ("(Ljava/util/function/BinaryOperator;)Ljava/util/stream/Collector;", True, False), ("(Ljava/lang/Object;Ljava/util/function/Function;Ljava/util/function/BinaryOperator;)Ljava/util/stream/Collector;", True, False)])
+    groupingBy = JavaMultipleMethod([("(Ljava/util/function/Function;)Ljava/util/stream/Collector;", True, False), ("(Ljava/util/function/Function;Ljava/util/stream/Collector;)Ljava/util/stream/Collector;", True, False), ("(Ljava/util/function/Function;Ljava/util/function/Supplier;Ljava/util/stream/Collector;)Ljava/util/stream/Collector;", True, False)])
+    groupingByConcurrent = JavaMultipleMethod([("(Ljava/util/function/Function;)Ljava/util/stream/Collector;", True, False), ("(Ljava/util/function/Function;Ljava/util/stream/Collector;)Ljava/util/stream/Collector;", True, False), ("(Ljava/util/function/Function;Ljava/util/function/Supplier;Ljava/util/stream/Collector;)Ljava/util/stream/Collector;", True, False)])
+    partitioningBy = JavaMultipleMethod([("(Ljava/util/function/Predicate;)Ljava/util/stream/Collector;", True, False), ("(Ljava/util/function/Predicate;Ljava/util/stream/Collector;)Ljava/util/stream/Collector;", True, False)])
+    toMap = JavaMultipleMethod([("(Ljava/util/function/Function;Ljava/util/function/Function;)Ljava/util/stream/Collector;", True, False), ("(Ljava/util/function/Function;Ljava/util/function/Function;Ljava/util/function/BinaryOperator;)Ljava/util/stream/Collector;", True, False), ("(Ljava/util/function/Function;Ljava/util/function/Function;Ljava/util/function/BinaryOperator;Ljava/util/function/Supplier;)Ljava/util/stream/Collector;", True, False)])
+    toUnmodifiableMap = JavaMultipleMethod([("(Ljava/util/function/Function;Ljava/util/function/Function;)Ljava/util/stream/Collector;", True, False), ("(Ljava/util/function/Function;Ljava/util/function/Function;Ljava/util/function/BinaryOperator;)Ljava/util/stream/Collector;", True, False)])
+    toConcurrentMap = JavaMultipleMethod([("(Ljava/util/function/Function;Ljava/util/function/Function;)Ljava/util/stream/Collector;", True, False), ("(Ljava/util/function/Function;Ljava/util/function/Function;Ljava/util/function/BinaryOperator;)Ljava/util/stream/Collector;", True, False), ("(Ljava/util/function/Function;Ljava/util/function/Function;Ljava/util/function/BinaryOperator;Ljava/util/function/Supplier;)Ljava/util/stream/Collector;", True, False)])
+    summarizingInt = JavaStaticMethod("(Ljava/util/function/ToIntFunction;)Ljava/util/stream/Collector;")
+    summarizingLong = JavaStaticMethod("(Ljava/util/function/ToLongFunction;)Ljava/util/stream/Collector;")
+    summarizingDouble = JavaStaticMethod("(Ljava/util/function/ToDoubleFunction;)Ljava/util/stream/Collector;")
+    teeing = JavaStaticMethod("(Ljava/util/stream/Collector;Ljava/util/stream/Collector;Ljava/util/function/BiFunction;)Ljava/util/stream/Collector;")

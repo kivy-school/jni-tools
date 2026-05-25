@@ -1,0 +1,61 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["IntStream"]
+
+class IntStream(JavaInterface, metaclass=MetaJavaClass):
+    __javaclass__ = "java/util/stream/IntStream"
+    filter = JavaMethod("(Ljava/util/function/IntPredicate;)Ljava/util/stream/IntStream;")
+    map = JavaMethod("(Ljava/util/function/IntUnaryOperator;)Ljava/util/stream/IntStream;")
+    mapToObj = JavaMethod("(Ljava/util/function/IntFunction;)Ljava/util/stream/Stream;")
+    mapToLong = JavaMethod("(Ljava/util/function/IntToLongFunction;)Ljava/util/stream/LongStream;")
+    mapToDouble = JavaMethod("(Ljava/util/function/IntToDoubleFunction;)Ljava/util/stream/DoubleStream;")
+    flatMap = JavaMethod("(Ljava/util/function/IntFunction;)Ljava/util/stream/IntStream;")
+    mapMulti = JavaMethod("(Ljava/util/stream/IntStream$IntMapMultiConsumer;)Ljava/util/stream/IntStream;")
+    distinct = JavaMethod("()Ljava/util/stream/IntStream;")
+    sorted = JavaMethod("()Ljava/util/stream/IntStream;")
+    peek = JavaMethod("(Ljava/util/function/IntConsumer;)Ljava/util/stream/IntStream;")
+    limit = JavaMethod("(J)Ljava/util/stream/IntStream;")
+    skip = JavaMethod("(J)Ljava/util/stream/IntStream;")
+    takeWhile = JavaMethod("(Ljava/util/function/IntPredicate;)Ljava/util/stream/IntStream;")
+    dropWhile = JavaMethod("(Ljava/util/function/IntPredicate;)Ljava/util/stream/IntStream;")
+    forEach = JavaMethod("(Ljava/util/function/IntConsumer;)V")
+    forEachOrdered = JavaMethod("(Ljava/util/function/IntConsumer;)V")
+    toArray = JavaMethod("()[I")
+    reduce = JavaMultipleMethod([("(ILjava/util/function/IntBinaryOperator;)I", False, False), ("(Ljava/util/function/IntBinaryOperator;)Ljava/util/OptionalInt;", False, False)])
+    collect = JavaMethod("(Ljava/util/function/Supplier;Ljava/util/function/ObjIntConsumer;Ljava/util/function/BiConsumer;)Ljava/lang/Object;")
+    sum = JavaMethod("()I")
+    min = JavaMethod("()Ljava/util/OptionalInt;")
+    max = JavaMethod("()Ljava/util/OptionalInt;")
+    count = JavaMethod("()J")
+    average = JavaMethod("()Ljava/util/OptionalDouble;")
+    summaryStatistics = JavaMethod("()Ljava/util/IntSummaryStatistics;")
+    anyMatch = JavaMethod("(Ljava/util/function/IntPredicate;)Z")
+    allMatch = JavaMethod("(Ljava/util/function/IntPredicate;)Z")
+    noneMatch = JavaMethod("(Ljava/util/function/IntPredicate;)Z")
+    findFirst = JavaMethod("()Ljava/util/OptionalInt;")
+    findAny = JavaMethod("()Ljava/util/OptionalInt;")
+    asLongStream = JavaMethod("()Ljava/util/stream/LongStream;")
+    asDoubleStream = JavaMethod("()Ljava/util/stream/DoubleStream;")
+    boxed = JavaMethod("()Ljava/util/stream/Stream;")
+    sequential = JavaMethod("()Ljava/util/stream/IntStream;")
+    parallel = JavaMethod("()Ljava/util/stream/IntStream;")
+    iterator = JavaMethod("()Ljava/util/PrimitiveIterator$OfInt;")
+    spliterator = JavaMethod("()Ljava/util/Spliterator$OfInt;")
+    builder = JavaStaticMethod("()Ljava/util/stream/IntStream$Builder;")
+    empty = JavaStaticMethod("()Ljava/util/stream/IntStream;")
+    of = JavaMultipleMethod([("(I)Ljava/util/stream/IntStream;", True, False), ("([I)Ljava/util/stream/IntStream;", True, True)])
+    iterate = JavaMultipleMethod([("(ILjava/util/function/IntUnaryOperator;)Ljava/util/stream/IntStream;", True, False), ("(ILjava/util/function/IntPredicate;Ljava/util/function/IntUnaryOperator;)Ljava/util/stream/IntStream;", True, False)])
+    generate = JavaStaticMethod("(Ljava/util/function/IntSupplier;)Ljava/util/stream/IntStream;")
+    range = JavaStaticMethod("(II)Ljava/util/stream/IntStream;")
+    rangeClosed = JavaStaticMethod("(II)Ljava/util/stream/IntStream;")
+    concat = JavaStaticMethod("(Ljava/util/stream/IntStream;Ljava/util/stream/IntStream;)Ljava/util/stream/IntStream;")
+
+    class Builder(JavaInterface, metaclass=MetaJavaClass):
+        __javaclass__ = "java/util/stream/IntStream/Builder"
+        accept = JavaMethod("(I)V")
+        add = JavaMethod("(I)Ljava/util/stream/IntStream$Builder;")
+        build = JavaMethod("()Ljava/util/stream/IntStream;")
+
+    class IntMapMultiConsumer(JavaInterface, metaclass=MetaJavaClass):
+        __javaclass__ = "java/util/stream/IntStream/IntMapMultiConsumer"
+        accept = JavaMethod("(ILjava/util/function/IntConsumer;)V")

@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from java.util.concurrent.locks.Lock import Lock
+
+class ReadWriteLock:
+    def readLock(self) -> Lock: ...
+    def writeLock(self) -> Lock: ...

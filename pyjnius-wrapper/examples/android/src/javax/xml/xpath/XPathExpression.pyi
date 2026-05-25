@@ -1,0 +1,13 @@
+from typing import Any, ClassVar, overload
+from javax.xml.namespace.QName import QName
+from org.xml.sax.InputSource import InputSource
+
+class XPathExpression:
+    @overload
+    def evaluate(self, arg0: Any, arg1: QName) -> Any: ...
+    @overload
+    def evaluate(self, arg0: Any) -> str: ...
+    @overload
+    def evaluate(self, arg0: InputSource, arg1: QName) -> Any: ...
+    @overload
+    def evaluate(self, arg0: InputSource) -> str: ...

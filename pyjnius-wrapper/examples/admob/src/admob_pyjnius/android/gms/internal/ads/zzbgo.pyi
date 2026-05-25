@@ -1,0 +1,29 @@
+from typing import Any, ClassVar, overload
+from android.gms.ads.internal.client.zzbu import zzbu
+from android.gms.ads.internal.client.zzdq import zzdq
+from android.gms.ads.internal.client.zzdx import zzdx
+from android.gms.internal.ads.zzbgx import zzbgx
+
+# Forward declarations for Java types we do not wrap.
+# Bound as empty classes so annotations resolve in the IDE.
+class IObjectWrapper:
+    """Forward declaration for ``com.google.android.gms.dynamic.IObjectWrapper``.
+
+    This Java type is referenced by the wrapper but is not itself
+    wrapped by pyjnius-wrap. At runtime pyjnius will hand you a
+    live ``autoclass('com.google.android.gms.dynamic.IObjectWrapper')`` proxy; this empty class exists
+    purely so static type checkers and IDEs can resolve the name.
+
+    See: https://developers.google.com/android/reference/com/google/android/gms/dynamic/IObjectWrapper
+    """
+    ...
+
+class zzbgo:
+    def zze(self) -> zzbu: ...
+    def zzf(self, arg0: IObjectWrapper, arg1: zzbgx) -> None: ...
+    def zzg(self) -> zzdx: ...
+    def zzh(self, arg0: bool) -> None: ...
+    def zzi(self, arg0: zzdq) -> None: ...
+    def zzj(self) -> str: ...
+    def zzk(self) -> int: ...
+    def zzl(self, arg0: int) -> None: ...

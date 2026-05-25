@@ -1,0 +1,9 @@
+from typing import Any, ClassVar, overload
+from org.xml.sax.ContentHandler import ContentHandler
+
+class RootElement:
+    @overload
+    def __init__(self, arg0: str, arg1: str) -> None: ...
+    @overload
+    def __init__(self, arg0: str) -> None: ...
+    def getContentHandler(self) -> ContentHandler: ...

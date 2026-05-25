@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+
+class RewardItem:
+    DEFAULT_REWARD: ClassVar["RewardItem"]
+    def getType(self) -> str: ...
+    def getAmount(self) -> int: ...

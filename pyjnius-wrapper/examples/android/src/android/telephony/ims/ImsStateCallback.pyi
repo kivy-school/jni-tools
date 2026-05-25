@@ -1,0 +1,13 @@
+from typing import Any, ClassVar, overload
+
+class ImsStateCallback:
+    REASON_IMS_SERVICE_DISCONNECTED: ClassVar[int]
+    REASON_IMS_SERVICE_NOT_READY: ClassVar[int]
+    REASON_NO_IMS_SERVICE_CONFIGURED: ClassVar[int]
+    REASON_SUBSCRIPTION_INACTIVE: ClassVar[int]
+    REASON_UNKNOWN_PERMANENT_ERROR: ClassVar[int]
+    REASON_UNKNOWN_TEMPORARY_ERROR: ClassVar[int]
+    def __init__(self) -> None: ...
+    def onUnavailable(self, arg0: int) -> None: ...
+    def onAvailable(self) -> None: ...
+    def onError(self) -> None: ...

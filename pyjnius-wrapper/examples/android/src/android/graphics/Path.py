@@ -1,0 +1,72 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["Path"]
+
+class Path(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/graphics/Path"
+    __javaconstructor__ = [("()V", False), ("(Landroid/graphics/Path;)V", False)]
+    reset = JavaMethod("()V")
+    rewind = JavaMethod("()V")
+    set = JavaMethod("(Landroid/graphics/Path;)V")
+    getPathIterator = JavaMethod("()Landroid/graphics/PathIterator;")
+    op = JavaMultipleMethod([("(Landroid/graphics/Path;Landroid/graphics/Path$Op;)Z", False, False), ("(Landroid/graphics/Path;Landroid/graphics/Path;Landroid/graphics/Path$Op;)Z", False, False)])
+    isConvex = JavaMethod("()Z")
+    getFillType = JavaMethod("()Landroid/graphics/Path$FillType;")
+    setFillType = JavaMethod("(Landroid/graphics/Path$FillType;)V")
+    isInverseFillType = JavaMethod("()Z")
+    toggleInverseFillType = JavaMethod("()V")
+    isEmpty = JavaMethod("()Z")
+    isRect = JavaMethod("(Landroid/graphics/RectF;)Z")
+    computeBounds = JavaMethod("(Landroid/graphics/RectF;Z)V")
+    incReserve = JavaMethod("(I)V")
+    moveTo = JavaMethod("(FF)V")
+    rMoveTo = JavaMethod("(FF)V")
+    lineTo = JavaMethod("(FF)V")
+    rLineTo = JavaMethod("(FF)V")
+    quadTo = JavaMethod("(FFFF)V")
+    rQuadTo = JavaMethod("(FFFF)V")
+    conicTo = JavaMethod("(FFFFF)V")
+    rConicTo = JavaMethod("(FFFFF)V")
+    cubicTo = JavaMethod("(FFFFFF)V")
+    rCubicTo = JavaMethod("(FFFFFF)V")
+    arcTo = JavaMultipleMethod([("(Landroid/graphics/RectF;FFZ)V", False, False), ("(Landroid/graphics/RectF;FF)V", False, False), ("(FFFFFFZ)V", False, False)])
+    close = JavaMethod("()V")
+    addRect = JavaMultipleMethod([("(Landroid/graphics/RectF;Landroid/graphics/Path$Direction;)V", False, False), ("(FFFFLandroid/graphics/Path$Direction;)V", False, False)])
+    addOval = JavaMultipleMethod([("(Landroid/graphics/RectF;Landroid/graphics/Path$Direction;)V", False, False), ("(FFFFLandroid/graphics/Path$Direction;)V", False, False)])
+    addCircle = JavaMethod("(FFFLandroid/graphics/Path$Direction;)V")
+    addArc = JavaMultipleMethod([("(Landroid/graphics/RectF;FF)V", False, False), ("(FFFFFF)V", False, False)])
+    addRoundRect = JavaMultipleMethod([("(Landroid/graphics/RectF;FFLandroid/graphics/Path$Direction;)V", False, False), ("(FFFFFFLandroid/graphics/Path$Direction;)V", False, False), ("(Landroid/graphics/RectF;[FLandroid/graphics/Path$Direction;)V", False, False), ("(FFFF[FLandroid/graphics/Path$Direction;)V", False, False)])
+    addPath = JavaMultipleMethod([("(Landroid/graphics/Path;FF)V", False, False), ("(Landroid/graphics/Path;)V", False, False), ("(Landroid/graphics/Path;Landroid/graphics/Matrix;)V", False, False)])
+    offset = JavaMultipleMethod([("(FFLandroid/graphics/Path;)V", False, False), ("(FF)V", False, False)])
+    setLastPoint = JavaMethod("(FF)V")
+    transform = JavaMultipleMethod([("(Landroid/graphics/Matrix;Landroid/graphics/Path;)V", False, False), ("(Landroid/graphics/Matrix;)V", False, False)])
+    approximate = JavaMethod("(F)[F")
+    getGenerationId = JavaMethod("()I")
+    isInterpolatable = JavaMethod("(Landroid/graphics/Path;)Z")
+    interpolate = JavaMethod("(Landroid/graphics/Path;FLandroid/graphics/Path;)Z")
+
+    class Direction(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/graphics/Path/Direction"
+        values = JavaStaticMethod("()[Landroid/graphics/Path$Direction;")
+        valueOf = JavaStaticMethod("(Ljava/lang/String;)Landroid/graphics/Path$Direction;")
+        CW = JavaStaticField("Landroid/graphics/Path/Direction;")
+        CCW = JavaStaticField("Landroid/graphics/Path/Direction;")
+
+    class FillType(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/graphics/Path/FillType"
+        values = JavaStaticMethod("()[Landroid/graphics/Path$FillType;")
+        valueOf = JavaStaticMethod("(Ljava/lang/String;)Landroid/graphics/Path$FillType;")
+        WINDING = JavaStaticField("Landroid/graphics/Path/FillType;")
+        EVEN_ODD = JavaStaticField("Landroid/graphics/Path/FillType;")
+        INVERSE_WINDING = JavaStaticField("Landroid/graphics/Path/FillType;")
+        INVERSE_EVEN_ODD = JavaStaticField("Landroid/graphics/Path/FillType;")
+
+    class Op(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/graphics/Path/Op"
+        values = JavaStaticMethod("()[Landroid/graphics/Path$Op;")
+        valueOf = JavaStaticMethod("(Ljava/lang/String;)Landroid/graphics/Path$Op;")
+        DIFFERENCE = JavaStaticField("Landroid/graphics/Path/Op;")
+        INTERSECT = JavaStaticField("Landroid/graphics/Path/Op;")
+        UNION = JavaStaticField("Landroid/graphics/Path/Op;")
+        XOR = JavaStaticField("Landroid/graphics/Path/Op;")
+        REVERSE_DIFFERENCE = JavaStaticField("Landroid/graphics/Path/Op;")

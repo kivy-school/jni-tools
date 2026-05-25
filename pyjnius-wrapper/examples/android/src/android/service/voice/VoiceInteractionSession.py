@@ -1,0 +1,140 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["VoiceInteractionSession"]
+
+class VoiceInteractionSession(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/service/voice/VoiceInteractionSession"
+    __javaconstructor__ = [("(Landroid/content/Context;)V", False), ("(Landroid/content/Context;Landroid/os/Handler;)V", False)]
+    KEY_FOREGROUND_ACTIVITIES = JavaStaticField("Ljava/lang/String;")
+    KEY_SHOW_SESSION_ID = JavaStaticField("Ljava/lang/String;")
+    SHOW_SOURCE_ACTIVITY = JavaStaticField("I")
+    SHOW_SOURCE_APPLICATION = JavaStaticField("I")
+    SHOW_SOURCE_ASSIST_GESTURE = JavaStaticField("I")
+    SHOW_SOURCE_AUTOMOTIVE_SYSTEM_UI = JavaStaticField("I")
+    SHOW_SOURCE_NOTIFICATION = JavaStaticField("I")
+    SHOW_SOURCE_PUSH_TO_TALK = JavaStaticField("I")
+    SHOW_WITH_ASSIST = JavaStaticField("I")
+    SHOW_WITH_SCREENSHOT = JavaStaticField("I")
+    getContext = JavaMethod("()Landroid/content/Context;")
+    setDisabledShowContext = JavaMethod("(I)V")
+    getDisabledShowContext = JavaMethod("()I")
+    getUserDisabledShowContext = JavaMethod("()I")
+    show = JavaMethod("(Landroid/os/Bundle;I)V")
+    hide = JavaMethod("()V")
+    setUiEnabled = JavaMethod("(Z)V")
+    setTheme = JavaMethod("(I)V")
+    startVoiceActivity = JavaMethod("(Landroid/content/Intent;)V")
+    startAssistantActivity = JavaMultipleMethod([("(Landroid/content/Intent;)V", False, False), ("(Landroid/content/Intent;Landroid/os/Bundle;)V", False, False)])
+    requestDirectActions = JavaMethod("(Landroid/service/voice/VoiceInteractionSession$ActivityId;Landroid/os/CancellationSignal;Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V")
+    onDirectActionsInvalidated = JavaMethod("(Landroid/service/voice/VoiceInteractionSession$ActivityId;)V")
+    performDirectAction = JavaMethod("(Landroid/app/DirectAction;Landroid/os/Bundle;Landroid/os/CancellationSignal;Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V")
+    setKeepAwake = JavaMethod("(Z)V")
+    closeSystemDialogs = JavaMethod("()V")
+    getLayoutInflater = JavaMethod("()Landroid/view/LayoutInflater;")
+    getWindow = JavaMethod("()Landroid/app/Dialog;")
+    finish = JavaMethod("()V")
+    onCreate = JavaMethod("()V")
+    onPrepareShow = JavaMethod("(Landroid/os/Bundle;I)V")
+    onShow = JavaMethod("(Landroid/os/Bundle;I)V")
+    onHide = JavaMethod("()V")
+    onDestroy = JavaMethod("()V")
+    onCreateContentView = JavaMethod("()Landroid/view/View;")
+    setContentView = JavaMethod("(Landroid/view/View;)V")
+    onAssistStructureFailure = JavaMethod("(Ljava/lang/Throwable;)V")
+    onHandleAssist = JavaMultipleMethod([("(Landroid/os/Bundle;Landroid/app/assist/AssistStructure;Landroid/app/assist/AssistContent;)V", False, False), ("(Landroid/service/voice/VoiceInteractionSession$AssistState;)V", False, False)])
+    onHandleAssistSecondary = JavaMethod("(Landroid/os/Bundle;Landroid/app/assist/AssistStructure;Landroid/app/assist/AssistContent;II)V")
+    onHandleScreenshot = JavaMethod("(Landroid/graphics/Bitmap;)V")
+    onKeyDown = JavaMethod("(ILandroid/view/KeyEvent;)Z")
+    onKeyLongPress = JavaMethod("(ILandroid/view/KeyEvent;)Z")
+    onKeyUp = JavaMethod("(ILandroid/view/KeyEvent;)Z")
+    onKeyMultiple = JavaMethod("(IILandroid/view/KeyEvent;)Z")
+    onBackPressed = JavaMethod("()V")
+    onCloseSystemDialogs = JavaMethod("()V")
+    onLockscreenShown = JavaMethod("()V")
+    onConfigurationChanged = JavaMethod("(Landroid/content/res/Configuration;)V")
+    onLowMemory = JavaMethod("()V")
+    onTrimMemory = JavaMethod("(I)V")
+    onComputeInsets = JavaMethod("(Landroid/service/voice/VoiceInteractionSession$Insets;)V")
+    onTaskStarted = JavaMethod("(Landroid/content/Intent;I)V")
+    onTaskFinished = JavaMethod("(Landroid/content/Intent;I)V")
+    onGetSupportedCommands = JavaMethod("([Ljava/lang/String;)[Z")
+    onRequestConfirmation = JavaMethod("(Landroid/service/voice/VoiceInteractionSession$ConfirmationRequest;)V")
+    onRequestPickOption = JavaMethod("(Landroid/service/voice/VoiceInteractionSession$PickOptionRequest;)V")
+    onRequestCompleteVoice = JavaMethod("(Landroid/service/voice/VoiceInteractionSession$CompleteVoiceRequest;)V")
+    onRequestAbortVoice = JavaMethod("(Landroid/service/voice/VoiceInteractionSession$AbortVoiceRequest;)V")
+    onRequestCommand = JavaMethod("(Landroid/service/voice/VoiceInteractionSession$CommandRequest;)V")
+    onCancelRequest = JavaMethod("(Landroid/service/voice/VoiceInteractionSession$Request;)V")
+    registerVisibleActivityCallback = JavaMethod("(Ljava/util/concurrent/Executor;Landroid/service/voice/VoiceInteractionSession$VisibleActivityCallback;)V")
+    unregisterVisibleActivityCallback = JavaMethod("(Landroid/service/voice/VoiceInteractionSession$VisibleActivityCallback;)V")
+    dump = JavaMethod("(Ljava/lang/String;Ljava/io/FileDescriptor;Ljava/io/PrintWriter;[Ljava/lang/String;)V")
+
+    class AbortVoiceRequest(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/service/voice/VoiceInteractionSession/AbortVoiceRequest"
+        getVoicePrompt = JavaMethod("()Landroid/app/VoiceInteractor$Prompt;")
+        getMessage = JavaMethod("()Ljava/lang/CharSequence;")
+        sendAbortResult = JavaMethod("(Landroid/os/Bundle;)V")
+
+    class ActivityId(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/service/voice/VoiceInteractionSession/ActivityId"
+        equals = JavaMethod("(Ljava/lang/Object;)Z")
+        hashCode = JavaMethod("()I")
+
+    class AssistState(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/service/voice/VoiceInteractionSession/AssistState"
+        isFocused = JavaMethod("()Z")
+        getIndex = JavaMethod("()I")
+        getCount = JavaMethod("()I")
+        getActivityId = JavaMethod("()Landroid/service/voice/VoiceInteractionSession$ActivityId;")
+        getAssistData = JavaMethod("()Landroid/os/Bundle;")
+        getAssistStructure = JavaMethod("()Landroid/app/assist/AssistStructure;")
+        getAssistContent = JavaMethod("()Landroid/app/assist/AssistContent;")
+
+    class CommandRequest(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/service/voice/VoiceInteractionSession/CommandRequest"
+        getCommand = JavaMethod("()Ljava/lang/String;")
+        sendIntermediateResult = JavaMethod("(Landroid/os/Bundle;)V")
+        sendResult = JavaMethod("(Landroid/os/Bundle;)V")
+
+    class CompleteVoiceRequest(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/service/voice/VoiceInteractionSession/CompleteVoiceRequest"
+        getVoicePrompt = JavaMethod("()Landroid/app/VoiceInteractor$Prompt;")
+        getMessage = JavaMethod("()Ljava/lang/CharSequence;")
+        sendCompleteResult = JavaMethod("(Landroid/os/Bundle;)V")
+
+    class ConfirmationRequest(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/service/voice/VoiceInteractionSession/ConfirmationRequest"
+        getVoicePrompt = JavaMethod("()Landroid/app/VoiceInteractor$Prompt;")
+        getPrompt = JavaMethod("()Ljava/lang/CharSequence;")
+        sendConfirmationResult = JavaMethod("(ZLandroid/os/Bundle;)V")
+
+    class Insets(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/service/voice/VoiceInteractionSession/Insets"
+        __javaconstructor__ = [("()V", False)]
+        TOUCHABLE_INSETS_CONTENT = JavaStaticField("I")
+        TOUCHABLE_INSETS_FRAME = JavaStaticField("I")
+        TOUCHABLE_INSETS_REGION = JavaStaticField("I")
+        contentInsets = JavaField("Landroid/graphics/Rect;")
+        touchableInsets = JavaField("I")
+        touchableRegion = JavaField("Landroid/graphics/Region;")
+
+    class PickOptionRequest(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/service/voice/VoiceInteractionSession/PickOptionRequest"
+        getVoicePrompt = JavaMethod("()Landroid/app/VoiceInteractor$Prompt;")
+        getPrompt = JavaMethod("()Ljava/lang/CharSequence;")
+        getOptions = JavaMethod("()[Landroid/app/VoiceInteractor$PickOptionRequest$Option;")
+        sendIntermediatePickOptionResult = JavaMethod("([Landroid/app/VoiceInteractor$PickOptionRequest$Option;Landroid/os/Bundle;)V")
+        sendPickOptionResult = JavaMethod("([Landroid/app/VoiceInteractor$PickOptionRequest$Option;Landroid/os/Bundle;)V")
+
+    class Request(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/service/voice/VoiceInteractionSession/Request"
+        getCallingUid = JavaMethod("()I")
+        getCallingPackage = JavaMethod("()Ljava/lang/String;")
+        getExtras = JavaMethod("()Landroid/os/Bundle;")
+        isActive = JavaMethod("()Z")
+        cancel = JavaMethod("()V")
+        toString = JavaMethod("()Ljava/lang/String;")
+
+    class VisibleActivityCallback(JavaInterface, metaclass=MetaJavaClass):
+        __javaclass__ = "android/service/voice/VoiceInteractionSession/VisibleActivityCallback"
+        onVisible = JavaMethod("(Landroid/service/voice/VisibleActivityInfo;)V")
+        onInvisible = JavaMethod("(Landroid/service/voice/VoiceInteractionSession$ActivityId;)V")

@@ -1,0 +1,39 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["AdSize"]
+
+class AdSize(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "com/google/android/gms/ads/AdSize"
+    __javaconstructor__ = [("(II)V", False)]
+    FULL_WIDTH = JavaStaticField("I")
+    AUTO_HEIGHT = JavaStaticField("I")
+    BANNER = JavaStaticField("Lcom/google/android/gms/ads/AdSize;")
+    FULL_BANNER = JavaStaticField("Lcom/google/android/gms/ads/AdSize;")
+    LARGE_BANNER = JavaStaticField("Lcom/google/android/gms/ads/AdSize;")
+    LEADERBOARD = JavaStaticField("Lcom/google/android/gms/ads/AdSize;")
+    MEDIUM_RECTANGLE = JavaStaticField("Lcom/google/android/gms/ads/AdSize;")
+    WIDE_SKYSCRAPER = JavaStaticField("Lcom/google/android/gms/ads/AdSize;")
+    SMART_BANNER = JavaStaticField("Lcom/google/android/gms/ads/AdSize;")
+    FLUID = JavaStaticField("Lcom/google/android/gms/ads/AdSize;")
+    INVALID = JavaStaticField("Lcom/google/android/gms/ads/AdSize;")
+    zza = JavaStaticField("Lcom/google/android/gms/ads/AdSize;")
+    getLargePortraitAnchoredAdaptiveBannerAdSize = JavaStaticMethod("(Landroid/content/Context;I)Lcom/google/android/gms/ads/AdSize;")
+    getLargeLandscapeAnchoredAdaptiveBannerAdSize = JavaStaticMethod("(Landroid/content/Context;I)Lcom/google/android/gms/ads/AdSize;")
+    getLargeAnchoredAdaptiveBannerAdSize = JavaStaticMethod("(Landroid/content/Context;I)Lcom/google/android/gms/ads/AdSize;")
+    getPortraitAnchoredAdaptiveBannerAdSize = JavaStaticMethod("(Landroid/content/Context;I)Lcom/google/android/gms/ads/AdSize;")
+    getLandscapeAnchoredAdaptiveBannerAdSize = JavaStaticMethod("(Landroid/content/Context;I)Lcom/google/android/gms/ads/AdSize;")
+    getCurrentOrientationAnchoredAdaptiveBannerAdSize = JavaStaticMethod("(Landroid/content/Context;I)Lcom/google/android/gms/ads/AdSize;")
+    getPortraitInlineAdaptiveBannerAdSize = JavaStaticMethod("(Landroid/content/Context;I)Lcom/google/android/gms/ads/AdSize;")
+    getLandscapeInlineAdaptiveBannerAdSize = JavaStaticMethod("(Landroid/content/Context;I)Lcom/google/android/gms/ads/AdSize;")
+    getCurrentOrientationInlineAdaptiveBannerAdSize = JavaStaticMethod("(Landroid/content/Context;I)Lcom/google/android/gms/ads/AdSize;")
+    getInlineAdaptiveBannerAdSize = JavaStaticMethod("(II)Lcom/google/android/gms/ads/AdSize;")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    getHeight = JavaMethod("()I")
+    getHeightInPixels = JavaMethod("(Landroid/content/Context;)I")
+    getWidth = JavaMethod("()I")
+    getWidthInPixels = JavaMethod("(Landroid/content/Context;)I")
+    hashCode = JavaMethod("()I")
+    isAutoHeight = JavaMethod("()Z")
+    isFullWidth = JavaMethod("()Z")
+    isFluid = JavaMethod("()Z")
+    toString = JavaMethod("()Ljava/lang/String;")

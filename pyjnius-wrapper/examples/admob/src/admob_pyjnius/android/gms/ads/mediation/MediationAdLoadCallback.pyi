@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from android.gms.ads.AdError import AdError
+
+class MediationAdLoadCallback:
+    def onSuccess(self, arg0: Any) -> Any: ...
+    def onFailure(self, arg0: AdError) -> None: ...

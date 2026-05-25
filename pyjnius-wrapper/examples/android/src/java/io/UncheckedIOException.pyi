@@ -1,0 +1,9 @@
+from typing import Any, ClassVar, overload
+from java.io.IOException import IOException
+
+class UncheckedIOException:
+    @overload
+    def __init__(self, arg0: str, arg1: IOException) -> None: ...
+    @overload
+    def __init__(self, arg0: IOException) -> None: ...
+    def getCause(self) -> IOException: ...

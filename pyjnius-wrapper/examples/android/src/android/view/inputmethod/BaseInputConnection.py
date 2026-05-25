@@ -1,0 +1,41 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["BaseInputConnection"]
+
+class BaseInputConnection(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/view/inputmethod/BaseInputConnection"
+    __javaconstructor__ = [("(Landroid/view/View;Z)V", False)]
+    removeComposingSpans = JavaStaticMethod("(Landroid/text/Spannable;)V")
+    setComposingSpans = JavaStaticMethod("(Landroid/text/Spannable;)V")
+    getComposingSpanStart = JavaStaticMethod("(Landroid/text/Spannable;)I")
+    getComposingSpanEnd = JavaStaticMethod("(Landroid/text/Spannable;)I")
+    getEditable = JavaMethod("()Landroid/text/Editable;")
+    beginBatchEdit = JavaMethod("()Z")
+    endBatchEdit = JavaMethod("()Z")
+    closeConnection = JavaMethod("()V")
+    clearMetaKeyStates = JavaMethod("(I)Z")
+    commitCompletion = JavaMethod("(Landroid/view/inputmethod/CompletionInfo;)Z")
+    commitCorrection = JavaMethod("(Landroid/view/inputmethod/CorrectionInfo;)Z")
+    commitText = JavaMethod("(Ljava/lang/CharSequence;I)Z")
+    deleteSurroundingText = JavaMethod("(II)Z")
+    deleteSurroundingTextInCodePoints = JavaMethod("(II)Z")
+    finishComposingText = JavaMethod("()Z")
+    getCursorCapsMode = JavaMethod("(I)I")
+    getExtractedText = JavaMethod("(Landroid/view/inputmethod/ExtractedTextRequest;I)Landroid/view/inputmethod/ExtractedText;")
+    getTextBeforeCursor = JavaMethod("(II)Ljava/lang/CharSequence;")
+    getSelectedText = JavaMethod("(I)Ljava/lang/CharSequence;")
+    getTextAfterCursor = JavaMethod("(II)Ljava/lang/CharSequence;")
+    getSurroundingText = JavaMethod("(III)Landroid/view/inputmethod/SurroundingText;")
+    performEditorAction = JavaMethod("(I)Z")
+    performContextMenuAction = JavaMethod("(I)Z")
+    performPrivateCommand = JavaMethod("(Ljava/lang/String;Landroid/os/Bundle;)Z")
+    requestCursorUpdates = JavaMethod("(I)Z")
+    getHandler = JavaMethod("()Landroid/os/Handler;")
+    setComposingText = JavaMethod("(Ljava/lang/CharSequence;I)Z")
+    setComposingRegion = JavaMethod("(II)Z")
+    setSelection = JavaMethod("(II)Z")
+    sendKeyEvent = JavaMethod("(Landroid/view/KeyEvent;)Z")
+    reportFullscreenMode = JavaMethod("(Z)Z")
+    replaceText = JavaMethod("(IILjava/lang/CharSequence;ILandroid/view/inputmethod/TextAttribute;)Z")
+    commitContent = JavaMethod("(Landroid/view/inputmethod/InputContentInfo;ILandroid/os/Bundle;)Z")
+    takeSnapshot = JavaMethod("()Landroid/view/inputmethod/TextSnapshot;")

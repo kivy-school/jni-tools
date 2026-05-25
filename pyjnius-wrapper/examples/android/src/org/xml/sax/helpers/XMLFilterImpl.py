@@ -1,0 +1,39 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["XMLFilterImpl"]
+
+class XMLFilterImpl(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "org/xml/sax/helpers/XMLFilterImpl"
+    __javaconstructor__ = [("()V", False), ("(Lorg/xml/sax/XMLReader;)V", False)]
+    setParent = JavaMethod("(Lorg/xml/sax/XMLReader;)V")
+    getParent = JavaMethod("()Lorg/xml/sax/XMLReader;")
+    setFeature = JavaMethod("(Ljava/lang/String;Z)V")
+    getFeature = JavaMethod("(Ljava/lang/String;)Z")
+    setProperty = JavaMethod("(Ljava/lang/String;Ljava/lang/Object;)V")
+    getProperty = JavaMethod("(Ljava/lang/String;)Ljava/lang/Object;")
+    setEntityResolver = JavaMethod("(Lorg/xml/sax/EntityResolver;)V")
+    getEntityResolver = JavaMethod("()Lorg/xml/sax/EntityResolver;")
+    setDTDHandler = JavaMethod("(Lorg/xml/sax/DTDHandler;)V")
+    getDTDHandler = JavaMethod("()Lorg/xml/sax/DTDHandler;")
+    setContentHandler = JavaMethod("(Lorg/xml/sax/ContentHandler;)V")
+    getContentHandler = JavaMethod("()Lorg/xml/sax/ContentHandler;")
+    setErrorHandler = JavaMethod("(Lorg/xml/sax/ErrorHandler;)V")
+    getErrorHandler = JavaMethod("()Lorg/xml/sax/ErrorHandler;")
+    parse = JavaMultipleMethod([("(Lorg/xml/sax/InputSource;)V", False, False), ("(Ljava/lang/String;)V", False, False)])
+    resolveEntity = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)Lorg/xml/sax/InputSource;")
+    notationDecl = JavaMethod("(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V")
+    unparsedEntityDecl = JavaMethod("(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V")
+    setDocumentLocator = JavaMethod("(Lorg/xml/sax/Locator;)V")
+    startDocument = JavaMethod("()V")
+    endDocument = JavaMethod("()V")
+    startPrefixMapping = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)V")
+    endPrefixMapping = JavaMethod("(Ljava/lang/String;)V")
+    startElement = JavaMethod("(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/xml/sax/Attributes;)V")
+    endElement = JavaMethod("(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V")
+    characters = JavaMethod("([CII)V")
+    ignorableWhitespace = JavaMethod("([CII)V")
+    processingInstruction = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)V")
+    skippedEntity = JavaMethod("(Ljava/lang/String;)V")
+    warning = JavaMethod("(Lorg/xml/sax/SAXParseException;)V")
+    error = JavaMethod("(Lorg/xml/sax/SAXParseException;)V")
+    fatalError = JavaMethod("(Lorg/xml/sax/SAXParseException;)V")

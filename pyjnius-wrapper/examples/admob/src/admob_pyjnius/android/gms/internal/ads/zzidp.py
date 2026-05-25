@@ -1,0 +1,37 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["zzidp"]
+
+class zzidp(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "com/google/android/gms/internal/ads/zzidp"
+    zzH = JavaStaticMethod("(Ljava/io/InputStream;I)Lcom/google/android/gms/internal/ads/zzidp;")
+    zzJ = JavaMethod("()V")
+    zzK = JavaMethod("()V")
+    zza = JavaMethod("()I")
+    zzb = JavaMethod("(I)V")
+    zzc = JavaMethod("(I)Z")
+    zzL = JavaMethod("()V")
+    zzd = JavaMethod("()D")
+    zze = JavaMethod("()F")
+    zzf = JavaMethod("()J")
+    zzg = JavaMethod("()J")
+    zzh = JavaMethod("()I")
+    zzi = JavaMethod("()J")
+    zzj = JavaMethod("()I")
+    zzk = JavaMethod("()Z")
+    zzl = JavaMethod("()Ljava/lang/String;")
+    zzm = JavaMethod("()Ljava/lang/String;")
+    zzn = JavaMethod("()Lcom/google/android/gms/internal/ads/zzidl;")
+    zzo = JavaMethod("()I")
+    zzp = JavaMethod("()I")
+    zzq = JavaMethod("()I")
+    zzr = JavaMethod("()J")
+    zzs = JavaMethod("()I")
+    zzt = JavaMethod("()J")
+    zzB = JavaMethod("(I)I")
+    zzC = JavaMethod("(I)V")
+    zzD = JavaMethod("()Z")
+    zzE = JavaMethod("()I")
+    zzM = JavaStaticMethod("(I)I")
+    zzN = JavaStaticMethod("(J)J")
+    zzO = JavaStaticMethod("(ILjava/io/InputStream;)I")

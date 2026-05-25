@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from android.gms.internal.ads.zzifz import zzifz
+
+class zziga:
+    def zzbw(self) -> zzifz: ...
+    def zzbi(self) -> bool: ...

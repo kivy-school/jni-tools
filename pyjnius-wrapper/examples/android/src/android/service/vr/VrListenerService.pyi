@@ -1,0 +1,13 @@
+from typing import Any, ClassVar, overload
+from android.content.ComponentName import ComponentName
+from android.content.Context import Context
+from android.content.Intent import Intent
+from android.os.IBinder import IBinder
+
+class VrListenerService:
+    SERVICE_INTERFACE: ClassVar[str]
+    def __init__(self) -> None: ...
+    def onBind(self, arg0: Intent) -> IBinder: ...
+    def onCurrentVrActivityChanged(self, arg0: ComponentName) -> None: ...
+    @staticmethod
+    def isVrModePackageEnabled(arg0: Context, arg1: ComponentName) -> bool: ...

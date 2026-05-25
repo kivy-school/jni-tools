@@ -1,0 +1,39 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["Gravity"]
+
+class Gravity(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/view/Gravity"
+    __javaconstructor__ = [("()V", False)]
+    AXIS_CLIP = JavaStaticField("I")
+    AXIS_PULL_AFTER = JavaStaticField("I")
+    AXIS_PULL_BEFORE = JavaStaticField("I")
+    AXIS_SPECIFIED = JavaStaticField("I")
+    AXIS_X_SHIFT = JavaStaticField("I")
+    AXIS_Y_SHIFT = JavaStaticField("I")
+    BOTTOM = JavaStaticField("I")
+    CENTER = JavaStaticField("I")
+    CENTER_HORIZONTAL = JavaStaticField("I")
+    CENTER_VERTICAL = JavaStaticField("I")
+    CLIP_HORIZONTAL = JavaStaticField("I")
+    CLIP_VERTICAL = JavaStaticField("I")
+    DISPLAY_CLIP_HORIZONTAL = JavaStaticField("I")
+    DISPLAY_CLIP_VERTICAL = JavaStaticField("I")
+    END = JavaStaticField("I")
+    FILL = JavaStaticField("I")
+    FILL_HORIZONTAL = JavaStaticField("I")
+    FILL_VERTICAL = JavaStaticField("I")
+    HORIZONTAL_GRAVITY_MASK = JavaStaticField("I")
+    LEFT = JavaStaticField("I")
+    NO_GRAVITY = JavaStaticField("I")
+    RELATIVE_HORIZONTAL_GRAVITY_MASK = JavaStaticField("I")
+    RELATIVE_LAYOUT_DIRECTION = JavaStaticField("I")
+    RIGHT = JavaStaticField("I")
+    START = JavaStaticField("I")
+    TOP = JavaStaticField("I")
+    VERTICAL_GRAVITY_MASK = JavaStaticField("I")
+    apply = JavaMultipleMethod([("(IIILandroid/graphics/Rect;Landroid/graphics/Rect;)V", True, False), ("(IIILandroid/graphics/Rect;Landroid/graphics/Rect;I)V", True, False), ("(IIILandroid/graphics/Rect;IILandroid/graphics/Rect;)V", True, False), ("(IIILandroid/graphics/Rect;IILandroid/graphics/Rect;I)V", True, False)])
+    applyDisplay = JavaMultipleMethod([("(ILandroid/graphics/Rect;Landroid/graphics/Rect;)V", True, False), ("(ILandroid/graphics/Rect;Landroid/graphics/Rect;I)V", True, False)])
+    isVertical = JavaStaticMethod("(I)Z")
+    isHorizontal = JavaStaticMethod("(I)Z")
+    getAbsoluteGravity = JavaStaticMethod("(II)I")

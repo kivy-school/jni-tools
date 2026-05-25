@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from android.view.accessibility.AccessibilityEvent import AccessibilityEvent
+
+class AccessibilityEventSource:
+    def sendAccessibilityEvent(self, arg0: int) -> None: ...
+    def sendAccessibilityEventUnchecked(self, arg0: AccessibilityEvent) -> None: ...

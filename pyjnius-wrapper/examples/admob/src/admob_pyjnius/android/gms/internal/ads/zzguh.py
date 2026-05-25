@@ -1,0 +1,37 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["zzguh"]
+
+class zzguh(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "com/google/android/gms/internal/ads/zzguh"
+    values = JavaStaticMethod("()[Lcom/google/android/gms/internal/ads/zzguh;")
+    zza = JavaMethod("()Ljava/lang/String;")
+    toString = JavaMethod("()Ljava/lang/String;")
+    zza = JavaStaticField("Lcom/google/android/gms/internal/ads/zzguh;")
+    zzb = JavaStaticField("Lcom/google/android/gms/internal/ads/zzguh;")
+    zzc = JavaStaticField("Lcom/google/android/gms/internal/ads/zzguh;")
+    zzd = JavaStaticField("Lcom/google/android/gms/internal/ads/zzguh;")
+    zze = JavaStaticField("Lcom/google/android/gms/internal/ads/zzguh;")
+    zzf = JavaStaticField("Lcom/google/android/gms/internal/ads/zzguh;")
+    zzg = JavaStaticField("Lcom/google/android/gms/internal/ads/zzguh;")
+    zzh = JavaStaticField("Lcom/google/android/gms/internal/ads/zzguh;")
+    zzi = JavaStaticField("Lcom/google/android/gms/internal/ads/zzguh;")
+    zzj = JavaStaticField("Lcom/google/android/gms/internal/ads/zzguh;")
+    zzk = JavaStaticField("Lcom/google/android/gms/internal/ads/zzguh;")
+    zzl = JavaStaticField("Lcom/google/android/gms/internal/ads/zzguh;")
+    zzm = JavaStaticField("Lcom/google/android/gms/internal/ads/zzguh;")
+    zzn = JavaStaticField("Lcom/google/android/gms/internal/ads/zzguh;")
+    zzo = JavaStaticField("Lcom/google/android/gms/internal/ads/zzguh;")
+    zzp = JavaStaticField("Lcom/google/android/gms/internal/ads/zzguh;")
+    zzq = JavaStaticField("Lcom/google/android/gms/internal/ads/zzguh;")
+    zzr = JavaStaticField("Lcom/google/android/gms/internal/ads/zzguh;")
+    zzs = JavaStaticField("Lcom/google/android/gms/internal/ads/zzguh;")
+    zzt = JavaStaticField("Lcom/google/android/gms/internal/ads/zzguh;")
+    zzu = JavaStaticField("Lcom/google/android/gms/internal/ads/zzguh;")
+    zzv = JavaStaticField("Lcom/google/android/gms/internal/ads/zzguh;")
+    zzw = JavaStaticField("Lcom/google/android/gms/internal/ads/zzguh;")
+    zzx = JavaStaticField("Lcom/google/android/gms/internal/ads/zzguh;")
+    zzy = JavaStaticField("Lcom/google/android/gms/internal/ads/zzguh;")
+    zzz = JavaStaticField("Lcom/google/android/gms/internal/ads/zzguh;")
+    zzA = JavaStaticField("Lcom/google/android/gms/internal/ads/zzguh;")
+    zzB = JavaStaticField("Lcom/google/android/gms/internal/ads/zzguh;")

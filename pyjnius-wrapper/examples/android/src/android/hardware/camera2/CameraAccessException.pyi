@@ -1,0 +1,18 @@
+from typing import Any, ClassVar, overload
+from java.lang.Throwable import Throwable
+
+class CameraAccessException:
+    CAMERA_DISABLED: ClassVar[int]
+    CAMERA_DISCONNECTED: ClassVar[int]
+    CAMERA_ERROR: ClassVar[int]
+    CAMERA_IN_USE: ClassVar[int]
+    MAX_CAMERAS_IN_USE: ClassVar[int]
+    @overload
+    def __init__(self, arg0: int) -> None: ...
+    @overload
+    def __init__(self, arg0: int, arg1: str) -> None: ...
+    @overload
+    def __init__(self, arg0: int, arg1: str, arg2: Throwable) -> None: ...
+    @overload
+    def __init__(self, arg0: int, arg1: Throwable) -> None: ...
+    def getReason(self) -> int: ...

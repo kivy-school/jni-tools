@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from java.util.prefs.NodeChangeEvent import NodeChangeEvent
+
+class NodeChangeListener:
+    def childAdded(self, arg0: NodeChangeEvent) -> None: ...
+    def childRemoved(self, arg0: NodeChangeEvent) -> None: ...

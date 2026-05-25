@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from android.gms.ads.AdError import AdError
+
+class SignalCallbacks:
+    def onSuccess(self, arg0: str) -> None: ...
+    def onFailure(self, arg0: AdError) -> None: ...

@@ -1,0 +1,9 @@
+from typing import Any, ClassVar, overload
+
+class InvalidClassException:
+    classname: str
+    @overload
+    def __init__(self, arg0: str) -> None: ...
+    @overload
+    def __init__(self, arg0: str, arg1: str) -> None: ...
+    def getMessage(self) -> str: ...

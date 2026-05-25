@@ -1,0 +1,9 @@
+from typing import Any, ClassVar, overload
+from android.content.Context import Context
+from android.gms.ads.internal.client.zzez import zzez
+from android.gms.internal.ads.zzbvj import zzbvj
+
+class LiteSdkInfo:
+    def __init__(self, arg0: Context) -> None: ...
+    def getLiteSdkVersion(self) -> zzez: ...
+    def getAdapterCreator(self) -> zzbvj: ...

@@ -1,0 +1,42 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["XMLGregorianCalendar"]
+
+class XMLGregorianCalendar(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "javax/xml/datatype/XMLGregorianCalendar"
+    __javaconstructor__ = [("()V", False)]
+    clear = JavaMethod("()V")
+    reset = JavaMethod("()V")
+    setYear = JavaMultipleMethod([("(Ljava/math/BigInteger;)V", False, False), ("(I)V", False, False)])
+    setMonth = JavaMethod("(I)V")
+    setDay = JavaMethod("(I)V")
+    setTimezone = JavaMethod("(I)V")
+    setTime = JavaMultipleMethod([("(III)V", False, False), ("(IIILjava/math/BigDecimal;)V", False, False), ("(IIII)V", False, False)])
+    setHour = JavaMethod("(I)V")
+    setMinute = JavaMethod("(I)V")
+    setSecond = JavaMethod("(I)V")
+    setMillisecond = JavaMethod("(I)V")
+    setFractionalSecond = JavaMethod("(Ljava/math/BigDecimal;)V")
+    getEon = JavaMethod("()Ljava/math/BigInteger;")
+    getYear = JavaMethod("()I")
+    getEonAndYear = JavaMethod("()Ljava/math/BigInteger;")
+    getMonth = JavaMethod("()I")
+    getDay = JavaMethod("()I")
+    getTimezone = JavaMethod("()I")
+    getHour = JavaMethod("()I")
+    getMinute = JavaMethod("()I")
+    getSecond = JavaMethod("()I")
+    getMillisecond = JavaMethod("()I")
+    getFractionalSecond = JavaMethod("()Ljava/math/BigDecimal;")
+    compare = JavaMethod("(Ljavax/xml/datatype/XMLGregorianCalendar;)I")
+    normalize = JavaMethod("()Ljavax/xml/datatype/XMLGregorianCalendar;")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    hashCode = JavaMethod("()I")
+    toXMLFormat = JavaMethod("()Ljava/lang/String;")
+    getXMLSchemaType = JavaMethod("()Ljavax/xml/namespace/QName;")
+    toString = JavaMethod("()Ljava/lang/String;")
+    isValid = JavaMethod("()Z")
+    add = JavaMethod("(Ljavax/xml/datatype/Duration;)V")
+    toGregorianCalendar = JavaMultipleMethod([("()Ljava/util/GregorianCalendar;", False, False), ("(Ljava/util/TimeZone;Ljava/util/Locale;Ljavax/xml/datatype/XMLGregorianCalendar;)Ljava/util/GregorianCalendar;", False, False)])
+    getTimeZone = JavaMethod("(I)Ljava/util/TimeZone;")
+    clone = JavaMethod("()Ljava/lang/Object;")

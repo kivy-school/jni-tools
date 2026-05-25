@@ -1,0 +1,51 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["RoutingSessionInfo"]
+
+class RoutingSessionInfo(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/media/RoutingSessionInfo"
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    TRANSFER_REASON_APP = JavaStaticField("I")
+    TRANSFER_REASON_FALLBACK = JavaStaticField("I")
+    TRANSFER_REASON_SYSTEM_REQUEST = JavaStaticField("I")
+    getId = JavaMethod("()Ljava/lang/String;")
+    getName = JavaMethod("()Ljava/lang/CharSequence;")
+    getClientPackageName = JavaMethod("()Ljava/lang/String;")
+    getSelectedRoutes = JavaMethod("()Ljava/util/List;")
+    getSelectableRoutes = JavaMethod("()Ljava/util/List;")
+    getDeselectableRoutes = JavaMethod("()Ljava/util/List;")
+    getTransferableRoutes = JavaMethod("()Ljava/util/List;")
+    getVolumeHandling = JavaMethod("()I")
+    getVolumeMax = JavaMethod("()I")
+    getVolume = JavaMethod("()I")
+    getControlHints = JavaMethod("()Landroid/os/Bundle;")
+    getTransferReason = JavaMethod("()I")
+    describeContents = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    hashCode = JavaMethod("()I")
+    toString = JavaMethod("()Ljava/lang/String;")
+
+    class Builder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/media/RoutingSessionInfo/Builder"
+        __javaconstructor__ = [("(Ljava/lang/String;Ljava/lang/String;)V", False), ("(Landroid/media/RoutingSessionInfo;)V", False)]
+        setName = JavaMethod("(Ljava/lang/CharSequence;)Landroid/media/RoutingSessionInfo$Builder;")
+        clearSelectedRoutes = JavaMethod("()Landroid/media/RoutingSessionInfo$Builder;")
+        addSelectedRoute = JavaMethod("(Ljava/lang/String;)Landroid/media/RoutingSessionInfo$Builder;")
+        removeSelectedRoute = JavaMethod("(Ljava/lang/String;)Landroid/media/RoutingSessionInfo$Builder;")
+        clearSelectableRoutes = JavaMethod("()Landroid/media/RoutingSessionInfo$Builder;")
+        addSelectableRoute = JavaMethod("(Ljava/lang/String;)Landroid/media/RoutingSessionInfo$Builder;")
+        removeSelectableRoute = JavaMethod("(Ljava/lang/String;)Landroid/media/RoutingSessionInfo$Builder;")
+        clearDeselectableRoutes = JavaMethod("()Landroid/media/RoutingSessionInfo$Builder;")
+        addDeselectableRoute = JavaMethod("(Ljava/lang/String;)Landroid/media/RoutingSessionInfo$Builder;")
+        removeDeselectableRoute = JavaMethod("(Ljava/lang/String;)Landroid/media/RoutingSessionInfo$Builder;")
+        clearTransferableRoutes = JavaMethod("()Landroid/media/RoutingSessionInfo$Builder;")
+        addTransferableRoute = JavaMethod("(Ljava/lang/String;)Landroid/media/RoutingSessionInfo$Builder;")
+        removeTransferableRoute = JavaMethod("(Ljava/lang/String;)Landroid/media/RoutingSessionInfo$Builder;")
+        setVolumeHandling = JavaMethod("(I)Landroid/media/RoutingSessionInfo$Builder;")
+        setVolumeMax = JavaMethod("(I)Landroid/media/RoutingSessionInfo$Builder;")
+        setVolume = JavaMethod("(I)Landroid/media/RoutingSessionInfo$Builder;")
+        setControlHints = JavaMethod("(Landroid/os/Bundle;)Landroid/media/RoutingSessionInfo$Builder;")
+        setTransferReason = JavaMethod("(I)Landroid/media/RoutingSessionInfo$Builder;")
+        setTransferInitiator = JavaMethod("(Landroid/os/UserHandle;Ljava/lang/String;)Landroid/media/RoutingSessionInfo$Builder;")
+        build = JavaMethod("()Landroid/media/RoutingSessionInfo;")

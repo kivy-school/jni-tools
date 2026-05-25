@@ -1,0 +1,42 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["ServiceState"]
+
+class ServiceState(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/telephony/ServiceState"
+    __javaconstructor__ = [("()V", False), ("(Landroid/telephony/ServiceState;)V", False), ("(Landroid/os/Parcel;)V", False)]
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    DUPLEX_MODE_FDD = JavaStaticField("I")
+    DUPLEX_MODE_TDD = JavaStaticField("I")
+    DUPLEX_MODE_UNKNOWN = JavaStaticField("I")
+    STATE_EMERGENCY_ONLY = JavaStaticField("I")
+    STATE_IN_SERVICE = JavaStaticField("I")
+    STATE_OUT_OF_SERVICE = JavaStaticField("I")
+    STATE_POWER_OFF = JavaStaticField("I")
+    UNKNOWN_ID = JavaStaticField("I")
+    copyFrom = JavaMethod("(Landroid/telephony/ServiceState;)V")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
+    getState = JavaMethod("()I")
+    getDuplexMode = JavaMethod("()I")
+    getChannelNumber = JavaMethod("()I")
+    getCellBandwidths = JavaMethod("()[I")
+    getRoaming = JavaMethod("()Z")
+    getOperatorAlphaLong = JavaMethod("()Ljava/lang/String;")
+    getOperatorAlphaShort = JavaMethod("()Ljava/lang/String;")
+    getOperatorNumeric = JavaMethod("()Ljava/lang/String;")
+    getIsManualSelection = JavaMethod("()Z")
+    hashCode = JavaMethod("()I")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    setStateOutOfService = JavaMethod("()V")
+    setStateOff = JavaMethod("()V")
+    setState = JavaMethod("(I)V")
+    setRoaming = JavaMethod("(Z)V")
+    setOperatorName = JavaMethod("(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V")
+    setIsManualSelection = JavaMethod("(Z)V")
+    getCdmaNetworkId = JavaMethod("()I")
+    getCdmaSystemId = JavaMethod("()I")
+    getNetworkRegistrationInfoList = JavaMethod("()Ljava/util/List;")
+    isSearching = JavaMethod("()Z")
+    isUsingNonTerrestrialNetwork = JavaMethod("()Z")

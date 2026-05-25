@@ -1,0 +1,42 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["BreakIterator"]
+
+class BreakIterator(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/icu/text/BreakIterator"
+    __javaconstructor__ = [("()V", False)]
+    DONE = JavaStaticField("I")
+    KIND_CHARACTER = JavaStaticField("I")
+    KIND_LINE = JavaStaticField("I")
+    KIND_SENTENCE = JavaStaticField("I")
+    KIND_TITLE = JavaStaticField("I")
+    KIND_WORD = JavaStaticField("I")
+    WORD_IDEO = JavaStaticField("I")
+    WORD_IDEO_LIMIT = JavaStaticField("I")
+    WORD_KANA = JavaStaticField("I")
+    WORD_KANA_LIMIT = JavaStaticField("I")
+    WORD_LETTER = JavaStaticField("I")
+    WORD_LETTER_LIMIT = JavaStaticField("I")
+    WORD_NONE = JavaStaticField("I")
+    WORD_NONE_LIMIT = JavaStaticField("I")
+    WORD_NUMBER = JavaStaticField("I")
+    WORD_NUMBER_LIMIT = JavaStaticField("I")
+    clone = JavaMethod("()Ljava/lang/Object;")
+    first = JavaMethod("()I")
+    last = JavaMethod("()I")
+    next = JavaMultipleMethod([("(I)I", False, False), ("()I", False, False)])
+    previous = JavaMethod("()I")
+    following = JavaMethod("(I)I")
+    preceding = JavaMethod("(I)I")
+    isBoundary = JavaMethod("(I)Z")
+    current = JavaMethod("()I")
+    getRuleStatus = JavaMethod("()I")
+    getRuleStatusVec = JavaMethod("([I)I")
+    getText = JavaMethod("()Ljava/text/CharacterIterator;")
+    setText = JavaMultipleMethod([("(Ljava/lang/String;)V", False, False), ("(Ljava/lang/CharSequence;)V", False, False), ("(Ljava/text/CharacterIterator;)V", False, False)])
+    getWordInstance = JavaMultipleMethod([("()Landroid/icu/text/BreakIterator;", True, False), ("(Ljava/util/Locale;)Landroid/icu/text/BreakIterator;", True, False), ("(Landroid/icu/util/ULocale;)Landroid/icu/text/BreakIterator;", True, False)])
+    getLineInstance = JavaMultipleMethod([("()Landroid/icu/text/BreakIterator;", True, False), ("(Ljava/util/Locale;)Landroid/icu/text/BreakIterator;", True, False), ("(Landroid/icu/util/ULocale;)Landroid/icu/text/BreakIterator;", True, False)])
+    getCharacterInstance = JavaMultipleMethod([("()Landroid/icu/text/BreakIterator;", True, False), ("(Ljava/util/Locale;)Landroid/icu/text/BreakIterator;", True, False), ("(Landroid/icu/util/ULocale;)Landroid/icu/text/BreakIterator;", True, False)])
+    getSentenceInstance = JavaMultipleMethod([("()Landroid/icu/text/BreakIterator;", True, False), ("(Ljava/util/Locale;)Landroid/icu/text/BreakIterator;", True, False), ("(Landroid/icu/util/ULocale;)Landroid/icu/text/BreakIterator;", True, False)])
+    getTitleInstance = JavaMultipleMethod([("()Landroid/icu/text/BreakIterator;", True, False), ("(Ljava/util/Locale;)Landroid/icu/text/BreakIterator;", True, False), ("(Landroid/icu/util/ULocale;)Landroid/icu/text/BreakIterator;", True, False)])
+    getAvailableLocales = JavaStaticMethod("()[Ljava/util/Locale;")

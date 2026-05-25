@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from java.io.PrintStream import PrintStream
+
+class PrintStreamPrinter:
+    def __init__(self, arg0: PrintStream) -> None: ...
+    def println(self, arg0: str) -> None: ...

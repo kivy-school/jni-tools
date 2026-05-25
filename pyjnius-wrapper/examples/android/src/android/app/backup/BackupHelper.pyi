@@ -1,0 +1,9 @@
+from typing import Any, ClassVar, overload
+from android.app.backup.BackupDataInputStream import BackupDataInputStream
+from android.app.backup.BackupDataOutput import BackupDataOutput
+from android.os.ParcelFileDescriptor import ParcelFileDescriptor
+
+class BackupHelper:
+    def performBackup(self, arg0: ParcelFileDescriptor, arg1: BackupDataOutput, arg2: ParcelFileDescriptor) -> None: ...
+    def restoreEntity(self, arg0: BackupDataInputStream) -> None: ...
+    def writeNewStateDescription(self, arg0: ParcelFileDescriptor) -> None: ...

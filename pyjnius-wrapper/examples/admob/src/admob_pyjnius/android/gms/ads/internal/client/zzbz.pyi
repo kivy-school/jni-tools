@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from android.gms.ads.internal.client.zzfp import zzfp
+
+class zzbz:
+    def zze(self, arg0: zzfp) -> None: ...
+    def zzf(self, arg0: zzfp) -> None: ...

@@ -1,0 +1,49 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["Attributes"]
+
+class Attributes(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "java/util/jar/Attributes"
+    __javaconstructor__ = [("()V", False), ("(I)V", False), ("(Ljava/util/jar/Attributes;)V", False)]
+    map = JavaField("Ljava/util/Map;")
+    get = JavaMethod("(Ljava/lang/Object;)Ljava/lang/Object;")
+    getValue = JavaMultipleMethod([("(Ljava/lang/String;)Ljava/lang/String;", False, False), ("(Ljava/util/jar/Attributes$Name;)Ljava/lang/String;", False, False)])
+    put = JavaMethod("(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;")
+    putValue = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;")
+    remove = JavaMethod("(Ljava/lang/Object;)Ljava/lang/Object;")
+    containsValue = JavaMethod("(Ljava/lang/Object;)Z")
+    containsKey = JavaMethod("(Ljava/lang/Object;)Z")
+    putAll = JavaMethod("(Ljava/util/Map;)V")
+    clear = JavaMethod("()V")
+    size = JavaMethod("()I")
+    isEmpty = JavaMethod("()Z")
+    keySet = JavaMethod("()Ljava/util/Set;")
+    values = JavaMethod("()Ljava/util/Collection;")
+    entrySet = JavaMethod("()Ljava/util/Set;")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    hashCode = JavaMethod("()I")
+    clone = JavaMethod("()Ljava/lang/Object;")
+
+    class Name(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "java/util/jar/Attributes/Name"
+        __javaconstructor__ = [("(Ljava/lang/String;)V", False)]
+        CLASS_PATH = JavaStaticField("Ljava/util/jar/Attributes$Name;")
+        CONTENT_TYPE = JavaStaticField("Ljava/util/jar/Attributes$Name;")
+        EXTENSION_INSTALLATION = JavaStaticField("Ljava/util/jar/Attributes$Name;")
+        EXTENSION_LIST = JavaStaticField("Ljava/util/jar/Attributes$Name;")
+        EXTENSION_NAME = JavaStaticField("Ljava/util/jar/Attributes$Name;")
+        IMPLEMENTATION_TITLE = JavaStaticField("Ljava/util/jar/Attributes$Name;")
+        IMPLEMENTATION_URL = JavaStaticField("Ljava/util/jar/Attributes$Name;")
+        IMPLEMENTATION_VENDOR = JavaStaticField("Ljava/util/jar/Attributes$Name;")
+        IMPLEMENTATION_VENDOR_ID = JavaStaticField("Ljava/util/jar/Attributes$Name;")
+        IMPLEMENTATION_VERSION = JavaStaticField("Ljava/util/jar/Attributes$Name;")
+        MAIN_CLASS = JavaStaticField("Ljava/util/jar/Attributes$Name;")
+        MANIFEST_VERSION = JavaStaticField("Ljava/util/jar/Attributes$Name;")
+        SEALED = JavaStaticField("Ljava/util/jar/Attributes$Name;")
+        SIGNATURE_VERSION = JavaStaticField("Ljava/util/jar/Attributes$Name;")
+        SPECIFICATION_TITLE = JavaStaticField("Ljava/util/jar/Attributes$Name;")
+        SPECIFICATION_VENDOR = JavaStaticField("Ljava/util/jar/Attributes$Name;")
+        SPECIFICATION_VERSION = JavaStaticField("Ljava/util/jar/Attributes$Name;")
+        equals = JavaMethod("(Ljava/lang/Object;)Z")
+        hashCode = JavaMethod("()I")
+        toString = JavaMethod("()Ljava/lang/String;")

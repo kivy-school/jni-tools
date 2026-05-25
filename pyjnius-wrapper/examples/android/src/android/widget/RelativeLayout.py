@@ -1,0 +1,56 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["RelativeLayout"]
+
+class RelativeLayout(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/widget/RelativeLayout"
+    __javaconstructor__ = [("(Landroid/content/Context;)V", False), ("(Landroid/content/Context;Landroid/util/AttributeSet;)V", False), ("(Landroid/content/Context;Landroid/util/AttributeSet;I)V", False), ("(Landroid/content/Context;Landroid/util/AttributeSet;II)V", False)]
+    ABOVE = JavaStaticField("I")
+    ALIGN_BASELINE = JavaStaticField("I")
+    ALIGN_BOTTOM = JavaStaticField("I")
+    ALIGN_END = JavaStaticField("I")
+    ALIGN_LEFT = JavaStaticField("I")
+    ALIGN_PARENT_BOTTOM = JavaStaticField("I")
+    ALIGN_PARENT_END = JavaStaticField("I")
+    ALIGN_PARENT_LEFT = JavaStaticField("I")
+    ALIGN_PARENT_RIGHT = JavaStaticField("I")
+    ALIGN_PARENT_START = JavaStaticField("I")
+    ALIGN_PARENT_TOP = JavaStaticField("I")
+    ALIGN_RIGHT = JavaStaticField("I")
+    ALIGN_START = JavaStaticField("I")
+    ALIGN_TOP = JavaStaticField("I")
+    BELOW = JavaStaticField("I")
+    CENTER_HORIZONTAL = JavaStaticField("I")
+    CENTER_IN_PARENT = JavaStaticField("I")
+    CENTER_VERTICAL = JavaStaticField("I")
+    END_OF = JavaStaticField("I")
+    LEFT_OF = JavaStaticField("I")
+    RIGHT_OF = JavaStaticField("I")
+    START_OF = JavaStaticField("I")
+    TRUE = JavaStaticField("I")
+    shouldDelayChildPressedState = JavaMethod("()Z")
+    setIgnoreGravity = JavaMethod("(I)V")
+    getIgnoreGravity = JavaMethod("()I")
+    getGravity = JavaMethod("()I")
+    setGravity = JavaMethod("(I)V")
+    setHorizontalGravity = JavaMethod("(I)V")
+    setVerticalGravity = JavaMethod("(I)V")
+    getBaseline = JavaMethod("()I")
+    requestLayout = JavaMethod("()V")
+    onMeasure = JavaMethod("(II)V")
+    onLayout = JavaMethod("(ZIIII)V")
+    generateLayoutParams = JavaMultipleMethod([("(Landroid/util/AttributeSet;)Landroid/widget/RelativeLayout$LayoutParams;", False, False), ("(Landroid/view/ViewGroup$LayoutParams;)Landroid/view/ViewGroup$LayoutParams;", False, False)])
+    generateDefaultLayoutParams = JavaMethod("()Landroid/view/ViewGroup$LayoutParams;")
+    checkLayoutParams = JavaMethod("(Landroid/view/ViewGroup$LayoutParams;)Z")
+    getAccessibilityClassName = JavaMethod("()Ljava/lang/CharSequence;")
+
+    class LayoutParams(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/widget/RelativeLayout/LayoutParams"
+        __javaconstructor__ = [("(Landroid/content/Context;Landroid/util/AttributeSet;)V", False), ("(II)V", False), ("(Landroid/view/ViewGroup$LayoutParams;)V", False), ("(Landroid/view/ViewGroup$MarginLayoutParams;)V", False), ("(Landroid/widget/RelativeLayout$LayoutParams;)V", False)]
+        alignWithParent = JavaField("Z")
+        debug = JavaMethod("(Ljava/lang/String;)Ljava/lang/String;")
+        addRule = JavaMultipleMethod([("(I)V", False, False), ("(II)V", False, False)])
+        removeRule = JavaMethod("(I)V")
+        getRule = JavaMethod("(I)I")
+        getRules = JavaMethod("()[I")
+        resolveLayoutDirection = JavaMethod("(I)V")

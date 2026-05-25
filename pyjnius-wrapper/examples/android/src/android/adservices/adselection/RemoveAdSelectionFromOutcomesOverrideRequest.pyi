@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from android.adservices.adselection.AdSelectionFromOutcomesConfig import AdSelectionFromOutcomesConfig
+
+class RemoveAdSelectionFromOutcomesOverrideRequest:
+    def __init__(self, arg0: AdSelectionFromOutcomesConfig) -> None: ...
+    def getAdSelectionFromOutcomesConfig(self) -> AdSelectionFromOutcomesConfig: ...

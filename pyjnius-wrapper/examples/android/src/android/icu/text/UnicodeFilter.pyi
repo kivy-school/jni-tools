@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from android.icu.text.Replaceable import Replaceable
+
+class UnicodeFilter:
+    def contains(self, arg0: int) -> bool: ...
+    def matches(self, arg0: Replaceable, arg1: list[int], arg2: int, arg3: bool) -> int: ...

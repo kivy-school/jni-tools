@@ -1,0 +1,35 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["CompletionStage"]
+
+class CompletionStage(JavaInterface, metaclass=MetaJavaClass):
+    __javaclass__ = "java/util/concurrent/CompletionStage"
+    thenApply = JavaMethod("(Ljava/util/function/Function;)Ljava/util/concurrent/CompletionStage;")
+    thenApplyAsync = JavaMultipleMethod([("(Ljava/util/function/Function;)Ljava/util/concurrent/CompletionStage;", False, False), ("(Ljava/util/function/Function;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletionStage;", False, False)])
+    thenAccept = JavaMethod("(Ljava/util/function/Consumer;)Ljava/util/concurrent/CompletionStage;")
+    thenAcceptAsync = JavaMultipleMethod([("(Ljava/util/function/Consumer;)Ljava/util/concurrent/CompletionStage;", False, False), ("(Ljava/util/function/Consumer;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletionStage;", False, False)])
+    thenRun = JavaMethod("(Ljava/lang/Runnable;)Ljava/util/concurrent/CompletionStage;")
+    thenRunAsync = JavaMultipleMethod([("(Ljava/lang/Runnable;)Ljava/util/concurrent/CompletionStage;", False, False), ("(Ljava/lang/Runnable;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletionStage;", False, False)])
+    thenCombine = JavaMethod("(Ljava/util/concurrent/CompletionStage;Ljava/util/function/BiFunction;)Ljava/util/concurrent/CompletionStage;")
+    thenCombineAsync = JavaMultipleMethod([("(Ljava/util/concurrent/CompletionStage;Ljava/util/function/BiFunction;)Ljava/util/concurrent/CompletionStage;", False, False), ("(Ljava/util/concurrent/CompletionStage;Ljava/util/function/BiFunction;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletionStage;", False, False)])
+    thenAcceptBoth = JavaMethod("(Ljava/util/concurrent/CompletionStage;Ljava/util/function/BiConsumer;)Ljava/util/concurrent/CompletionStage;")
+    thenAcceptBothAsync = JavaMultipleMethod([("(Ljava/util/concurrent/CompletionStage;Ljava/util/function/BiConsumer;)Ljava/util/concurrent/CompletionStage;", False, False), ("(Ljava/util/concurrent/CompletionStage;Ljava/util/function/BiConsumer;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletionStage;", False, False)])
+    runAfterBoth = JavaMethod("(Ljava/util/concurrent/CompletionStage;Ljava/lang/Runnable;)Ljava/util/concurrent/CompletionStage;")
+    runAfterBothAsync = JavaMultipleMethod([("(Ljava/util/concurrent/CompletionStage;Ljava/lang/Runnable;)Ljava/util/concurrent/CompletionStage;", False, False), ("(Ljava/util/concurrent/CompletionStage;Ljava/lang/Runnable;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletionStage;", False, False)])
+    applyToEither = JavaMethod("(Ljava/util/concurrent/CompletionStage;Ljava/util/function/Function;)Ljava/util/concurrent/CompletionStage;")
+    applyToEitherAsync = JavaMultipleMethod([("(Ljava/util/concurrent/CompletionStage;Ljava/util/function/Function;)Ljava/util/concurrent/CompletionStage;", False, False), ("(Ljava/util/concurrent/CompletionStage;Ljava/util/function/Function;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletionStage;", False, False)])
+    acceptEither = JavaMethod("(Ljava/util/concurrent/CompletionStage;Ljava/util/function/Consumer;)Ljava/util/concurrent/CompletionStage;")
+    acceptEitherAsync = JavaMultipleMethod([("(Ljava/util/concurrent/CompletionStage;Ljava/util/function/Consumer;)Ljava/util/concurrent/CompletionStage;", False, False), ("(Ljava/util/concurrent/CompletionStage;Ljava/util/function/Consumer;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletionStage;", False, False)])
+    runAfterEither = JavaMethod("(Ljava/util/concurrent/CompletionStage;Ljava/lang/Runnable;)Ljava/util/concurrent/CompletionStage;")
+    runAfterEitherAsync = JavaMultipleMethod([("(Ljava/util/concurrent/CompletionStage;Ljava/lang/Runnable;)Ljava/util/concurrent/CompletionStage;", False, False), ("(Ljava/util/concurrent/CompletionStage;Ljava/lang/Runnable;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletionStage;", False, False)])
+    thenCompose = JavaMethod("(Ljava/util/function/Function;)Ljava/util/concurrent/CompletionStage;")
+    thenComposeAsync = JavaMultipleMethod([("(Ljava/util/function/Function;)Ljava/util/concurrent/CompletionStage;", False, False), ("(Ljava/util/function/Function;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletionStage;", False, False)])
+    handle = JavaMethod("(Ljava/util/function/BiFunction;)Ljava/util/concurrent/CompletionStage;")
+    handleAsync = JavaMultipleMethod([("(Ljava/util/function/BiFunction;)Ljava/util/concurrent/CompletionStage;", False, False), ("(Ljava/util/function/BiFunction;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletionStage;", False, False)])
+    whenComplete = JavaMethod("(Ljava/util/function/BiConsumer;)Ljava/util/concurrent/CompletionStage;")
+    whenCompleteAsync = JavaMultipleMethod([("(Ljava/util/function/BiConsumer;)Ljava/util/concurrent/CompletionStage;", False, False), ("(Ljava/util/function/BiConsumer;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletionStage;", False, False)])
+    exceptionally = JavaMethod("(Ljava/util/function/Function;)Ljava/util/concurrent/CompletionStage;")
+    exceptionallyAsync = JavaMultipleMethod([("(Ljava/util/function/Function;)Ljava/util/concurrent/CompletionStage;", False, False), ("(Ljava/util/function/Function;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletionStage;", False, False)])
+    exceptionallyCompose = JavaMethod("(Ljava/util/function/Function;)Ljava/util/concurrent/CompletionStage;")
+    exceptionallyComposeAsync = JavaMultipleMethod([("(Ljava/util/function/Function;)Ljava/util/concurrent/CompletionStage;", False, False), ("(Ljava/util/function/Function;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletionStage;", False, False)])
+    toCompletableFuture = JavaMethod("()Ljava/util/concurrent/CompletableFuture;")

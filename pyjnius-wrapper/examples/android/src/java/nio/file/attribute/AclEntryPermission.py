@@ -1,0 +1,25 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["AclEntryPermission"]
+
+class AclEntryPermission(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "java/nio/file/attribute/AclEntryPermission"
+    ADD_FILE = JavaStaticField("Ljava/nio/file/attribute/AclEntryPermission;")
+    ADD_SUBDIRECTORY = JavaStaticField("Ljava/nio/file/attribute/AclEntryPermission;")
+    LIST_DIRECTORY = JavaStaticField("Ljava/nio/file/attribute/AclEntryPermission;")
+    values = JavaStaticMethod("()[Ljava/nio/file/attribute/AclEntryPermission;")
+    valueOf = JavaStaticMethod("(Ljava/lang/String;)Ljava/nio/file/attribute/AclEntryPermission;")
+    READ_DATA = JavaStaticField("Ljava/nio/file/attribute/AclEntryPermission;")
+    WRITE_DATA = JavaStaticField("Ljava/nio/file/attribute/AclEntryPermission;")
+    APPEND_DATA = JavaStaticField("Ljava/nio/file/attribute/AclEntryPermission;")
+    READ_NAMED_ATTRS = JavaStaticField("Ljava/nio/file/attribute/AclEntryPermission;")
+    WRITE_NAMED_ATTRS = JavaStaticField("Ljava/nio/file/attribute/AclEntryPermission;")
+    EXECUTE = JavaStaticField("Ljava/nio/file/attribute/AclEntryPermission;")
+    DELETE_CHILD = JavaStaticField("Ljava/nio/file/attribute/AclEntryPermission;")
+    READ_ATTRIBUTES = JavaStaticField("Ljava/nio/file/attribute/AclEntryPermission;")
+    WRITE_ATTRIBUTES = JavaStaticField("Ljava/nio/file/attribute/AclEntryPermission;")
+    DELETE = JavaStaticField("Ljava/nio/file/attribute/AclEntryPermission;")
+    READ_ACL = JavaStaticField("Ljava/nio/file/attribute/AclEntryPermission;")
+    WRITE_ACL = JavaStaticField("Ljava/nio/file/attribute/AclEntryPermission;")
+    WRITE_OWNER = JavaStaticField("Ljava/nio/file/attribute/AclEntryPermission;")
+    SYNCHRONIZE = JavaStaticField("Ljava/nio/file/attribute/AclEntryPermission;")

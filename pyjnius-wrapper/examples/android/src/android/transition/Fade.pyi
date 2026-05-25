@@ -1,0 +1,20 @@
+from typing import Any, ClassVar, overload
+from android.animation.Animator import Animator
+from android.content.Context import Context
+from android.transition.TransitionValues import TransitionValues
+from android.util.AttributeSet import AttributeSet
+from android.view.View import View
+from android.view.ViewGroup import ViewGroup
+
+class Fade:
+    IN: ClassVar[int]
+    OUT: ClassVar[int]
+    @overload
+    def __init__(self) -> None: ...
+    @overload
+    def __init__(self, arg0: int) -> None: ...
+    @overload
+    def __init__(self, arg0: Context, arg1: AttributeSet) -> None: ...
+    def captureStartValues(self, arg0: TransitionValues) -> None: ...
+    def onAppear(self, arg0: ViewGroup, arg1: View, arg2: TransitionValues, arg3: TransitionValues) -> Animator: ...
+    def onDisappear(self, arg0: ViewGroup, arg1: View, arg2: TransitionValues, arg3: TransitionValues) -> Animator: ...

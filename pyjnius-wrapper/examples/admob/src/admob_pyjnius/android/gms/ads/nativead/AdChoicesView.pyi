@@ -1,0 +1,13 @@
+from typing import Any, ClassVar, overload
+from android.content.Context import Context
+from android.util.AttributeSet import AttributeSet
+
+class AdChoicesView:
+    @overload
+    def __init__(self, arg0: Context) -> None: ...
+    @overload
+    def __init__(self, arg0: Context, arg1: AttributeSet) -> None: ...
+    @overload
+    def __init__(self, arg0: Context, arg1: AttributeSet, arg2: int) -> None: ...
+    @overload
+    def __init__(self, arg0: Context, arg1: AttributeSet, arg2: int, arg3: int) -> None: ...

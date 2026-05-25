@@ -1,0 +1,75 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["Credential"]
+
+class Credential(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/net/wifi/hotspot2/pps/Credential"
+    __javaconstructor__ = [("()V", False), ("(Landroid/net/wifi/hotspot2/pps/Credential;)V", False)]
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    setRealm = JavaMethod("(Ljava/lang/String;)V")
+    getRealm = JavaMethod("()Ljava/lang/String;")
+    setUserCredential = JavaMethod("(Landroid/net/wifi/hotspot2/pps/Credential$UserCredential;)V")
+    getUserCredential = JavaMethod("()Landroid/net/wifi/hotspot2/pps/Credential$UserCredential;")
+    setCertCredential = JavaMethod("(Landroid/net/wifi/hotspot2/pps/Credential$CertificateCredential;)V")
+    getCertCredential = JavaMethod("()Landroid/net/wifi/hotspot2/pps/Credential$CertificateCredential;")
+    setSimCredential = JavaMethod("(Landroid/net/wifi/hotspot2/pps/Credential$SimCredential;)V")
+    getSimCredential = JavaMethod("()Landroid/net/wifi/hotspot2/pps/Credential$SimCredential;")
+    setCaCertificate = JavaMethod("(Ljava/security/cert/X509Certificate;)V")
+    getCaCertificate = JavaMethod("()Ljava/security/cert/X509Certificate;")
+    setClientCertificateChain = JavaMethod("([Ljava/security/cert/X509Certificate;)V")
+    getClientCertificateChain = JavaMethod("()[Ljava/security/cert/X509Certificate;")
+    setClientPrivateKey = JavaMethod("(Ljava/security/PrivateKey;)V")
+    getClientPrivateKey = JavaMethod("()Ljava/security/PrivateKey;")
+    setMinimumTlsVersion = JavaMethod("(I)V")
+    getMinimumTlsVersion = JavaMethod("()I")
+    describeContents = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    hashCode = JavaMethod("()I")
+    toString = JavaMethod("()Ljava/lang/String;")
+
+    class CertificateCredential(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/net/wifi/hotspot2/pps/Credential/CertificateCredential"
+        __javaconstructor__ = [("()V", False), ("(Landroid/net/wifi/hotspot2/pps/Credential$CertificateCredential;)V", False)]
+        CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+        setCertType = JavaMethod("(Ljava/lang/String;)V")
+        getCertType = JavaMethod("()Ljava/lang/String;")
+        setCertSha256Fingerprint = JavaMethod("([B)V")
+        getCertSha256Fingerprint = JavaMethod("()[B")
+        describeContents = JavaMethod("()I")
+        writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+        equals = JavaMethod("(Ljava/lang/Object;)Z")
+        hashCode = JavaMethod("()I")
+        toString = JavaMethod("()Ljava/lang/String;")
+
+    class SimCredential(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/net/wifi/hotspot2/pps/Credential/SimCredential"
+        __javaconstructor__ = [("()V", False), ("(Landroid/net/wifi/hotspot2/pps/Credential$SimCredential;)V", False)]
+        CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+        setImsi = JavaMethod("(Ljava/lang/String;)V")
+        getImsi = JavaMethod("()Ljava/lang/String;")
+        setEapType = JavaMethod("(I)V")
+        getEapType = JavaMethod("()I")
+        describeContents = JavaMethod("()I")
+        equals = JavaMethod("(Ljava/lang/Object;)Z")
+        hashCode = JavaMethod("()I")
+        toString = JavaMethod("()Ljava/lang/String;")
+        writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+
+    class UserCredential(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/net/wifi/hotspot2/pps/Credential/UserCredential"
+        __javaconstructor__ = [("()V", False), ("(Landroid/net/wifi/hotspot2/pps/Credential$UserCredential;)V", False)]
+        CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+        setUsername = JavaMethod("(Ljava/lang/String;)V")
+        getUsername = JavaMethod("()Ljava/lang/String;")
+        setPassword = JavaMethod("(Ljava/lang/String;)V")
+        getPassword = JavaMethod("()Ljava/lang/String;")
+        setEapType = JavaMethod("(I)V")
+        getEapType = JavaMethod("()I")
+        setNonEapInnerMethod = JavaMethod("(Ljava/lang/String;)V")
+        getNonEapInnerMethod = JavaMethod("()Ljava/lang/String;")
+        describeContents = JavaMethod("()I")
+        writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+        equals = JavaMethod("(Ljava/lang/Object;)Z")
+        hashCode = JavaMethod("()I")
+        toString = JavaMethod("()Ljava/lang/String;")

@@ -1,0 +1,41 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["AtomicInteger"]
+
+class AtomicInteger(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "java/util/concurrent/atomic/AtomicInteger"
+    __javaconstructor__ = [("(I)V", False), ("()V", False)]
+    get = JavaMethod("()I")
+    set = JavaMethod("(I)V")
+    lazySet = JavaMethod("(I)V")
+    getAndSet = JavaMethod("(I)I")
+    compareAndSet = JavaMethod("(II)Z")
+    weakCompareAndSet = JavaMethod("(II)Z")
+    weakCompareAndSetPlain = JavaMethod("(II)Z")
+    getAndIncrement = JavaMethod("()I")
+    getAndDecrement = JavaMethod("()I")
+    getAndAdd = JavaMethod("(I)I")
+    incrementAndGet = JavaMethod("()I")
+    decrementAndGet = JavaMethod("()I")
+    addAndGet = JavaMethod("(I)I")
+    getAndUpdate = JavaMethod("(Ljava/util/function/IntUnaryOperator;)I")
+    updateAndGet = JavaMethod("(Ljava/util/function/IntUnaryOperator;)I")
+    getAndAccumulate = JavaMethod("(ILjava/util/function/IntBinaryOperator;)I")
+    accumulateAndGet = JavaMethod("(ILjava/util/function/IntBinaryOperator;)I")
+    toString = JavaMethod("()Ljava/lang/String;")
+    intValue = JavaMethod("()I")
+    longValue = JavaMethod("()J")
+    floatValue = JavaMethod("()F")
+    doubleValue = JavaMethod("()D")
+    getPlain = JavaMethod("()I")
+    setPlain = JavaMethod("(I)V")
+    getOpaque = JavaMethod("()I")
+    setOpaque = JavaMethod("(I)V")
+    getAcquire = JavaMethod("()I")
+    setRelease = JavaMethod("(I)V")
+    compareAndExchange = JavaMethod("(II)I")
+    compareAndExchangeAcquire = JavaMethod("(II)I")
+    compareAndExchangeRelease = JavaMethod("(II)I")
+    weakCompareAndSetVolatile = JavaMethod("(II)Z")
+    weakCompareAndSetAcquire = JavaMethod("(II)Z")
+    weakCompareAndSetRelease = JavaMethod("(II)Z")

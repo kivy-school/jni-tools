@@ -1,0 +1,19 @@
+from typing import Any, ClassVar, overload
+from android.content.Context import Context
+from android.gms.ads.AdFormat import AdFormat
+from android.gms.ads.AdRequest import AdRequest
+from android.gms.ads.internal.client.zzex import zzex
+from android.gms.ads.query.QueryInfoGenerationCallback import QueryInfoGenerationCallback
+from android.os.Bundle import Bundle
+
+class QueryInfo:
+    def __init__(self, arg0: zzex) -> None: ...
+    def getQuery(self) -> str: ...
+    def getQueryBundle(self) -> Bundle: ...
+    def getRequestId(self) -> str: ...
+    @overload
+    @staticmethod
+    def generate(arg0: Context, arg1: AdFormat, arg2: AdRequest, arg3: QueryInfoGenerationCallback) -> None: ...
+    @overload
+    @staticmethod
+    def generate(arg0: Context, arg1: AdFormat, arg2: AdRequest, arg3: str, arg4: QueryInfoGenerationCallback) -> None: ...

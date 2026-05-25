@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from android.gms.ads.rewarded.OnAdMetadataChangedListener import OnAdMetadataChangedListener
+
+class zzfn:
+    def __init__(self, arg0: OnAdMetadataChangedListener) -> None: ...
+    def zze(self) -> None: ...

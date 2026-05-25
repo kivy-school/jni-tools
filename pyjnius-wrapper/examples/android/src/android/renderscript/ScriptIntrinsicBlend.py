@@ -1,0 +1,37 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["ScriptIntrinsicBlend"]
+
+class ScriptIntrinsicBlend(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/renderscript/ScriptIntrinsicBlend"
+    create = JavaStaticMethod("(Landroid/renderscript/RenderScript;Landroid/renderscript/Element;)Landroid/renderscript/ScriptIntrinsicBlend;")
+    forEachClear = JavaMultipleMethod([("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;)V", False, False), ("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;Landroid/renderscript/Script$LaunchOptions;)V", False, False)])
+    getKernelIDClear = JavaMethod("()Landroid/renderscript/Script$KernelID;")
+    forEachSrc = JavaMultipleMethod([("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;)V", False, False), ("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;Landroid/renderscript/Script$LaunchOptions;)V", False, False)])
+    getKernelIDSrc = JavaMethod("()Landroid/renderscript/Script$KernelID;")
+    forEachDst = JavaMultipleMethod([("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;)V", False, False), ("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;Landroid/renderscript/Script$LaunchOptions;)V", False, False)])
+    getKernelIDDst = JavaMethod("()Landroid/renderscript/Script$KernelID;")
+    forEachSrcOver = JavaMultipleMethod([("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;)V", False, False), ("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;Landroid/renderscript/Script$LaunchOptions;)V", False, False)])
+    getKernelIDSrcOver = JavaMethod("()Landroid/renderscript/Script$KernelID;")
+    forEachDstOver = JavaMultipleMethod([("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;)V", False, False), ("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;Landroid/renderscript/Script$LaunchOptions;)V", False, False)])
+    getKernelIDDstOver = JavaMethod("()Landroid/renderscript/Script$KernelID;")
+    forEachSrcIn = JavaMultipleMethod([("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;)V", False, False), ("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;Landroid/renderscript/Script$LaunchOptions;)V", False, False)])
+    getKernelIDSrcIn = JavaMethod("()Landroid/renderscript/Script$KernelID;")
+    forEachDstIn = JavaMultipleMethod([("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;)V", False, False), ("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;Landroid/renderscript/Script$LaunchOptions;)V", False, False)])
+    getKernelIDDstIn = JavaMethod("()Landroid/renderscript/Script$KernelID;")
+    forEachSrcOut = JavaMultipleMethod([("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;)V", False, False), ("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;Landroid/renderscript/Script$LaunchOptions;)V", False, False)])
+    getKernelIDSrcOut = JavaMethod("()Landroid/renderscript/Script$KernelID;")
+    forEachDstOut = JavaMultipleMethod([("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;)V", False, False), ("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;Landroid/renderscript/Script$LaunchOptions;)V", False, False)])
+    getKernelIDDstOut = JavaMethod("()Landroid/renderscript/Script$KernelID;")
+    forEachSrcAtop = JavaMultipleMethod([("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;)V", False, False), ("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;Landroid/renderscript/Script$LaunchOptions;)V", False, False)])
+    getKernelIDSrcAtop = JavaMethod("()Landroid/renderscript/Script$KernelID;")
+    forEachDstAtop = JavaMultipleMethod([("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;)V", False, False), ("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;Landroid/renderscript/Script$LaunchOptions;)V", False, False)])
+    getKernelIDDstAtop = JavaMethod("()Landroid/renderscript/Script$KernelID;")
+    forEachXor = JavaMultipleMethod([("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;)V", False, False), ("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;Landroid/renderscript/Script$LaunchOptions;)V", False, False)])
+    getKernelIDXor = JavaMethod("()Landroid/renderscript/Script$KernelID;")
+    forEachMultiply = JavaMultipleMethod([("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;)V", False, False), ("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;Landroid/renderscript/Script$LaunchOptions;)V", False, False)])
+    getKernelIDMultiply = JavaMethod("()Landroid/renderscript/Script$KernelID;")
+    forEachAdd = JavaMultipleMethod([("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;)V", False, False), ("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;Landroid/renderscript/Script$LaunchOptions;)V", False, False)])
+    getKernelIDAdd = JavaMethod("()Landroid/renderscript/Script$KernelID;")
+    forEachSubtract = JavaMultipleMethod([("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;)V", False, False), ("(Landroid/renderscript/Allocation;Landroid/renderscript/Allocation;Landroid/renderscript/Script$LaunchOptions;)V", False, False)])
+    getKernelIDSubtract = JavaMethod("()Landroid/renderscript/Script$KernelID;")

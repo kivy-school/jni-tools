@@ -1,0 +1,13 @@
+from typing import Any, ClassVar, overload
+from java.time.LocalTime import LocalTime
+from java.util.TimeZone import TimeZone
+
+class TimeUtils:
+    @staticmethod
+    def getTimeZone(arg0: int, arg1: bool, arg2: int, arg3: str) -> TimeZone: ...
+    @staticmethod
+    def getTimeZoneIdsForCountryCode(arg0: str) -> list: ...
+    @staticmethod
+    def getTimeZoneDatabaseVersion() -> str: ...
+    @staticmethod
+    def isTimeBetween(arg0: LocalTime, arg1: LocalTime, arg2: LocalTime) -> bool: ...

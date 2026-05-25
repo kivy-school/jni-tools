@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from android.gms.ads.preload.PreloadConfiguration import PreloadConfiguration
+
+class PreloadCallback:
+    def onAdsAvailable(self, arg0: PreloadConfiguration) -> None: ...
+    def onAdsExhausted(self, arg0: PreloadConfiguration) -> None: ...

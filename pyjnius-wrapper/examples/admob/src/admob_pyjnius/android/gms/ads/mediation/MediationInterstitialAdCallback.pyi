@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from android.gms.ads.AdError import AdError
+
+class MediationInterstitialAdCallback:
+    def onAdLeftApplication(self) -> None: ...
+    def onAdFailedToShow(self, arg0: AdError) -> None: ...

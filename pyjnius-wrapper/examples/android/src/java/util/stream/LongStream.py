@@ -1,0 +1,60 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["LongStream"]
+
+class LongStream(JavaInterface, metaclass=MetaJavaClass):
+    __javaclass__ = "java/util/stream/LongStream"
+    filter = JavaMethod("(Ljava/util/function/LongPredicate;)Ljava/util/stream/LongStream;")
+    map = JavaMethod("(Ljava/util/function/LongUnaryOperator;)Ljava/util/stream/LongStream;")
+    mapToObj = JavaMethod("(Ljava/util/function/LongFunction;)Ljava/util/stream/Stream;")
+    mapToInt = JavaMethod("(Ljava/util/function/LongToIntFunction;)Ljava/util/stream/IntStream;")
+    mapToDouble = JavaMethod("(Ljava/util/function/LongToDoubleFunction;)Ljava/util/stream/DoubleStream;")
+    flatMap = JavaMethod("(Ljava/util/function/LongFunction;)Ljava/util/stream/LongStream;")
+    mapMulti = JavaMethod("(Ljava/util/stream/LongStream$LongMapMultiConsumer;)Ljava/util/stream/LongStream;")
+    distinct = JavaMethod("()Ljava/util/stream/LongStream;")
+    sorted = JavaMethod("()Ljava/util/stream/LongStream;")
+    peek = JavaMethod("(Ljava/util/function/LongConsumer;)Ljava/util/stream/LongStream;")
+    limit = JavaMethod("(J)Ljava/util/stream/LongStream;")
+    skip = JavaMethod("(J)Ljava/util/stream/LongStream;")
+    takeWhile = JavaMethod("(Ljava/util/function/LongPredicate;)Ljava/util/stream/LongStream;")
+    dropWhile = JavaMethod("(Ljava/util/function/LongPredicate;)Ljava/util/stream/LongStream;")
+    forEach = JavaMethod("(Ljava/util/function/LongConsumer;)V")
+    forEachOrdered = JavaMethod("(Ljava/util/function/LongConsumer;)V")
+    toArray = JavaMethod("()[J")
+    reduce = JavaMultipleMethod([("(JLjava/util/function/LongBinaryOperator;)J", False, False), ("(Ljava/util/function/LongBinaryOperator;)Ljava/util/OptionalLong;", False, False)])
+    collect = JavaMethod("(Ljava/util/function/Supplier;Ljava/util/function/ObjLongConsumer;Ljava/util/function/BiConsumer;)Ljava/lang/Object;")
+    sum = JavaMethod("()J")
+    min = JavaMethod("()Ljava/util/OptionalLong;")
+    max = JavaMethod("()Ljava/util/OptionalLong;")
+    count = JavaMethod("()J")
+    average = JavaMethod("()Ljava/util/OptionalDouble;")
+    summaryStatistics = JavaMethod("()Ljava/util/LongSummaryStatistics;")
+    anyMatch = JavaMethod("(Ljava/util/function/LongPredicate;)Z")
+    allMatch = JavaMethod("(Ljava/util/function/LongPredicate;)Z")
+    noneMatch = JavaMethod("(Ljava/util/function/LongPredicate;)Z")
+    findFirst = JavaMethod("()Ljava/util/OptionalLong;")
+    findAny = JavaMethod("()Ljava/util/OptionalLong;")
+    asDoubleStream = JavaMethod("()Ljava/util/stream/DoubleStream;")
+    boxed = JavaMethod("()Ljava/util/stream/Stream;")
+    sequential = JavaMethod("()Ljava/util/stream/LongStream;")
+    parallel = JavaMethod("()Ljava/util/stream/LongStream;")
+    iterator = JavaMethod("()Ljava/util/PrimitiveIterator$OfLong;")
+    spliterator = JavaMethod("()Ljava/util/Spliterator$OfLong;")
+    builder = JavaStaticMethod("()Ljava/util/stream/LongStream$Builder;")
+    empty = JavaStaticMethod("()Ljava/util/stream/LongStream;")
+    of = JavaMultipleMethod([("(J)Ljava/util/stream/LongStream;", True, False), ("([J)Ljava/util/stream/LongStream;", True, True)])
+    iterate = JavaMultipleMethod([("(JLjava/util/function/LongUnaryOperator;)Ljava/util/stream/LongStream;", True, False), ("(JLjava/util/function/LongPredicate;Ljava/util/function/LongUnaryOperator;)Ljava/util/stream/LongStream;", True, False)])
+    generate = JavaStaticMethod("(Ljava/util/function/LongSupplier;)Ljava/util/stream/LongStream;")
+    range = JavaStaticMethod("(JJ)Ljava/util/stream/LongStream;")
+    rangeClosed = JavaStaticMethod("(JJ)Ljava/util/stream/LongStream;")
+    concat = JavaStaticMethod("(Ljava/util/stream/LongStream;Ljava/util/stream/LongStream;)Ljava/util/stream/LongStream;")
+
+    class Builder(JavaInterface, metaclass=MetaJavaClass):
+        __javaclass__ = "java/util/stream/LongStream/Builder"
+        accept = JavaMethod("(J)V")
+        add = JavaMethod("(J)Ljava/util/stream/LongStream$Builder;")
+        build = JavaMethod("()Ljava/util/stream/LongStream;")
+
+    class LongMapMultiConsumer(JavaInterface, metaclass=MetaJavaClass):
+        __javaclass__ = "java/util/stream/LongStream/LongMapMultiConsumer"
+        accept = JavaMethod("(JLjava/util/function/LongConsumer;)V")

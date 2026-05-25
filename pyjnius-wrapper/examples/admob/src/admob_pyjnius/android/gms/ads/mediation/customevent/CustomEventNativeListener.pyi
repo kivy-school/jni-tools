@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from android.gms.ads.mediation.UnifiedNativeAdMapper import UnifiedNativeAdMapper
+
+class CustomEventNativeListener:
+    def onAdLoaded(self, arg0: UnifiedNativeAdMapper) -> None: ...
+    def onAdImpression(self) -> None: ...

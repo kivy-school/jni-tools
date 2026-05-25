@@ -1,0 +1,43 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["ArrayDeque"]
+
+class ArrayDeque(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "java/util/ArrayDeque"
+    __javaconstructor__ = [("()V", False), ("(I)V", False), ("(Ljava/util/Collection;)V", False)]
+    addFirst = JavaMethod("(Ljava/lang/Object;)V")
+    addLast = JavaMethod("(Ljava/lang/Object;)V")
+    addAll = JavaMethod("(Ljava/util/Collection;)Z")
+    offerFirst = JavaMethod("(Ljava/lang/Object;)Z")
+    offerLast = JavaMethod("(Ljava/lang/Object;)Z")
+    removeFirst = JavaMethod("()Ljava/lang/Object;")
+    removeLast = JavaMethod("()Ljava/lang/Object;")
+    pollFirst = JavaMethod("()Ljava/lang/Object;")
+    pollLast = JavaMethod("()Ljava/lang/Object;")
+    getFirst = JavaMethod("()Ljava/lang/Object;")
+    getLast = JavaMethod("()Ljava/lang/Object;")
+    peekFirst = JavaMethod("()Ljava/lang/Object;")
+    peekLast = JavaMethod("()Ljava/lang/Object;")
+    removeFirstOccurrence = JavaMethod("(Ljava/lang/Object;)Z")
+    removeLastOccurrence = JavaMethod("(Ljava/lang/Object;)Z")
+    add = JavaMethod("(Ljava/lang/Object;)Z")
+    offer = JavaMethod("(Ljava/lang/Object;)Z")
+    remove = JavaMultipleMethod([("()Ljava/lang/Object;", False, False), ("(Ljava/lang/Object;)Z", False, False)])
+    poll = JavaMethod("()Ljava/lang/Object;")
+    element = JavaMethod("()Ljava/lang/Object;")
+    peek = JavaMethod("()Ljava/lang/Object;")
+    push = JavaMethod("(Ljava/lang/Object;)V")
+    pop = JavaMethod("()Ljava/lang/Object;")
+    size = JavaMethod("()I")
+    isEmpty = JavaMethod("()Z")
+    iterator = JavaMethod("()Ljava/util/Iterator;")
+    descendingIterator = JavaMethod("()Ljava/util/Iterator;")
+    spliterator = JavaMethod("()Ljava/util/Spliterator;")
+    forEach = JavaMethod("(Ljava/util/function/Consumer;)V")
+    removeIf = JavaMethod("(Ljava/util/function/Predicate;)Z")
+    removeAll = JavaMethod("(Ljava/util/Collection;)Z")
+    retainAll = JavaMethod("(Ljava/util/Collection;)Z")
+    contains = JavaMethod("(Ljava/lang/Object;)Z")
+    clear = JavaMethod("()V")
+    toArray = JavaMultipleMethod([("()[Ljava/lang/Object;", False, False), ("([Ljava/lang/Object;)[Ljava/lang/Object;", False, False)])
+    clone = JavaMethod("()Ljava/util/ArrayDeque;")

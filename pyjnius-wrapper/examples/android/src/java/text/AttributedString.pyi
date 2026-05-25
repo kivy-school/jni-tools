@@ -1,0 +1,39 @@
+from typing import Any, ClassVar, overload
+from java.text.AttributedCharacterIterator import AttributedCharacterIterator
+
+# Forward declarations for Java types we do not wrap.
+# Bound as empty classes so annotations resolve in the IDE.
+class Attribute:
+    """Forward declaration for ``java.text.AttributedCharacterIterator.Attribute``.
+
+    This Java type is referenced by the wrapper but is not itself
+    wrapped by pyjnius-wrap. At runtime pyjnius will hand you a
+    live ``autoclass('java.text.AttributedCharacterIterator.Attribute')`` proxy; this empty class exists
+    purely so static type checkers and IDEs can resolve the name.
+
+    See: https://docs.oracle.com/javase/8/docs/api/java/text/AttributedCharacterIterator/Attribute.html
+    """
+    ...
+
+class AttributedString:
+    @overload
+    def __init__(self, arg0: str) -> None: ...
+    @overload
+    def __init__(self, arg0: str, arg1: dict) -> None: ...
+    @overload
+    def __init__(self, arg0: AttributedCharacterIterator) -> None: ...
+    @overload
+    def __init__(self, arg0: AttributedCharacterIterator, arg1: int, arg2: int) -> None: ...
+    @overload
+    def __init__(self, arg0: AttributedCharacterIterator, arg1: int, arg2: int, arg3: list[Attribute]) -> None: ...
+    @overload
+    def addAttribute(self, arg0: Attribute, arg1: Any) -> None: ...
+    @overload
+    def addAttribute(self, arg0: Attribute, arg1: Any, arg2: int, arg3: int) -> None: ...
+    def addAttributes(self, arg0: dict, arg1: int, arg2: int) -> None: ...
+    @overload
+    def getIterator(self) -> AttributedCharacterIterator: ...
+    @overload
+    def getIterator(self, arg0: list[Attribute]) -> AttributedCharacterIterator: ...
+    @overload
+    def getIterator(self, arg0: list[Attribute], arg1: int, arg2: int) -> AttributedCharacterIterator: ...

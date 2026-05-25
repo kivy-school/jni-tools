@@ -1,0 +1,36 @@
+from typing import Any, ClassVar, overload
+
+# Forward declarations for Java types we do not wrap.
+# Bound as empty classes so annotations resolve in the IDE.
+class JSONArray:
+    """Forward declaration for ``org.json.JSONArray``.
+
+    This Java type is referenced by the wrapper but is not itself
+    wrapped by pyjnius-wrap. At runtime pyjnius will hand you a
+    live ``autoclass('org.json.JSONArray')`` proxy; this empty class exists
+    purely so static type checkers and IDEs can resolve the name.
+    """
+    ...
+class JSONObject:
+    """Forward declaration for ``org.json.JSONObject``.
+
+    This Java type is referenced by the wrapper but is not itself
+    wrapped by pyjnius-wrap. At runtime pyjnius will hand you a
+    live ``autoclass('org.json.JSONObject')`` proxy; this empty class exists
+    purely so static type checkers and IDEs can resolve the name.
+    """
+    ...
+
+class OSOutcomeSourceBody:
+    @overload
+    def __init__(self, arg0: JSONArray, arg1: JSONArray) -> None: ...
+    @overload
+    def __init__(self, arg0: JSONArray) -> None: ...
+    @overload
+    def __init__(self) -> None: ...
+    def getNotificationIds(self) -> JSONArray: ...
+    def setNotificationIds(self, arg0: JSONArray) -> None: ...
+    def getInAppMessagesIds(self) -> JSONArray: ...
+    def setInAppMessagesIds(self, arg0: JSONArray) -> None: ...
+    def toJSONObject(self) -> JSONObject: ...
+    def toString(self) -> str: ...

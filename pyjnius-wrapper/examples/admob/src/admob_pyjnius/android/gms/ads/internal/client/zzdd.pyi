@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from android.gms.ads.MuteThisAdListener import MuteThisAdListener
+
+class zzdd:
+    def __init__(self, arg0: MuteThisAdListener) -> None: ...
+    def zze(self) -> None: ...

@@ -1,0 +1,16 @@
+from typing import Any, ClassVar, overload
+from android.gms.internal.ads.zzbig import zzbig
+from android.gms.internal.ads.zzbip import zzbip
+from android.gms.internal.ads.zzbiq import zzbiq
+from android.gms.internal.ads.zzbiv import zzbiv
+
+class zzba:
+    def __init__(self) -> None: ...
+    @staticmethod
+    def zza() -> zzbiq: ...
+    @staticmethod
+    def zzb() -> zzbip: ...
+    @staticmethod
+    def zzc() -> zzbiv: ...
+    @staticmethod
+    def zzd() -> zzbig: ...

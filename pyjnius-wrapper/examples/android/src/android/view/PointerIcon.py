@@ -1,0 +1,38 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["PointerIcon"]
+
+class PointerIcon(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/view/PointerIcon"
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    TYPE_ALIAS = JavaStaticField("I")
+    TYPE_ALL_SCROLL = JavaStaticField("I")
+    TYPE_ARROW = JavaStaticField("I")
+    TYPE_CELL = JavaStaticField("I")
+    TYPE_CONTEXT_MENU = JavaStaticField("I")
+    TYPE_COPY = JavaStaticField("I")
+    TYPE_CROSSHAIR = JavaStaticField("I")
+    TYPE_DEFAULT = JavaStaticField("I")
+    TYPE_GRAB = JavaStaticField("I")
+    TYPE_GRABBING = JavaStaticField("I")
+    TYPE_HAND = JavaStaticField("I")
+    TYPE_HANDWRITING = JavaStaticField("I")
+    TYPE_HELP = JavaStaticField("I")
+    TYPE_HORIZONTAL_DOUBLE_ARROW = JavaStaticField("I")
+    TYPE_NO_DROP = JavaStaticField("I")
+    TYPE_NULL = JavaStaticField("I")
+    TYPE_TEXT = JavaStaticField("I")
+    TYPE_TOP_LEFT_DIAGONAL_DOUBLE_ARROW = JavaStaticField("I")
+    TYPE_TOP_RIGHT_DIAGONAL_DOUBLE_ARROW = JavaStaticField("I")
+    TYPE_VERTICAL_DOUBLE_ARROW = JavaStaticField("I")
+    TYPE_VERTICAL_TEXT = JavaStaticField("I")
+    TYPE_WAIT = JavaStaticField("I")
+    TYPE_ZOOM_IN = JavaStaticField("I")
+    TYPE_ZOOM_OUT = JavaStaticField("I")
+    getSystemIcon = JavaStaticMethod("(Landroid/content/Context;I)Landroid/view/PointerIcon;")
+    create = JavaStaticMethod("(Landroid/graphics/Bitmap;FF)Landroid/view/PointerIcon;")
+    load = JavaStaticMethod("(Landroid/content/res/Resources;I)Landroid/view/PointerIcon;")
+    describeContents = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")

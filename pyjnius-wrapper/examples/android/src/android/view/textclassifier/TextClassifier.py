@@ -1,0 +1,61 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["TextClassifier"]
+
+class TextClassifier(JavaInterface, metaclass=MetaJavaClass):
+    __javaclass__ = "android/view/textclassifier/TextClassifier"
+    EXTRA_FROM_TEXT_CLASSIFIER = JavaStaticField("Ljava/lang/String;")
+    HINT_TEXT_IS_EDITABLE = JavaStaticField("Ljava/lang/String;")
+    HINT_TEXT_IS_NOT_EDITABLE = JavaStaticField("Ljava/lang/String;")
+    NO_OP = JavaStaticField("Landroid/view/textclassifier/TextClassifier;")
+    TYPE_ADDRESS = JavaStaticField("Ljava/lang/String;")
+    TYPE_DATE = JavaStaticField("Ljava/lang/String;")
+    TYPE_DATE_TIME = JavaStaticField("Ljava/lang/String;")
+    TYPE_EMAIL = JavaStaticField("Ljava/lang/String;")
+    TYPE_FLIGHT_NUMBER = JavaStaticField("Ljava/lang/String;")
+    TYPE_OTHER = JavaStaticField("Ljava/lang/String;")
+    TYPE_PHONE = JavaStaticField("Ljava/lang/String;")
+    TYPE_UNKNOWN = JavaStaticField("Ljava/lang/String;")
+    TYPE_URL = JavaStaticField("Ljava/lang/String;")
+    WIDGET_TYPE_CLIPBOARD = JavaStaticField("Ljava/lang/String;")
+    WIDGET_TYPE_CUSTOM_EDITTEXT = JavaStaticField("Ljava/lang/String;")
+    WIDGET_TYPE_CUSTOM_TEXTVIEW = JavaStaticField("Ljava/lang/String;")
+    WIDGET_TYPE_CUSTOM_UNSELECTABLE_TEXTVIEW = JavaStaticField("Ljava/lang/String;")
+    WIDGET_TYPE_EDITTEXT = JavaStaticField("Ljava/lang/String;")
+    WIDGET_TYPE_EDIT_WEBVIEW = JavaStaticField("Ljava/lang/String;")
+    WIDGET_TYPE_NOTIFICATION = JavaStaticField("Ljava/lang/String;")
+    WIDGET_TYPE_TEXTVIEW = JavaStaticField("Ljava/lang/String;")
+    WIDGET_TYPE_UNKNOWN = JavaStaticField("Ljava/lang/String;")
+    WIDGET_TYPE_UNSELECTABLE_TEXTVIEW = JavaStaticField("Ljava/lang/String;")
+    WIDGET_TYPE_WEBVIEW = JavaStaticField("Ljava/lang/String;")
+    suggestSelection = JavaMultipleMethod([("(Landroid/view/textclassifier/TextSelection$Request;)Landroid/view/textclassifier/TextSelection;", False, False), ("(Ljava/lang/CharSequence;IILandroid/os/LocaleList;)Landroid/view/textclassifier/TextSelection;", False, False)])
+    classifyText = JavaMultipleMethod([("(Landroid/view/textclassifier/TextClassification$Request;)Landroid/view/textclassifier/TextClassification;", False, False), ("(Ljava/lang/CharSequence;IILandroid/os/LocaleList;)Landroid/view/textclassifier/TextClassification;", False, False)])
+    generateLinks = JavaMethod("(Landroid/view/textclassifier/TextLinks$Request;)Landroid/view/textclassifier/TextLinks;")
+    getMaxGenerateLinksTextLength = JavaMethod("()I")
+    detectLanguage = JavaMethod("(Landroid/view/textclassifier/TextLanguage$Request;)Landroid/view/textclassifier/TextLanguage;")
+    suggestConversationActions = JavaMethod("(Landroid/view/textclassifier/ConversationActions$Request;)Landroid/view/textclassifier/ConversationActions;")
+    onSelectionEvent = JavaMethod("(Landroid/view/textclassifier/SelectionEvent;)V")
+    onTextClassifierEvent = JavaMethod("(Landroid/view/textclassifier/TextClassifierEvent;)V")
+    destroy = JavaMethod("()V")
+    isDestroyed = JavaMethod("()Z")
+
+    class EntityConfig(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/view/textclassifier/TextClassifier/EntityConfig"
+        CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+        writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+        createWithHints = JavaStaticMethod("(Ljava/util/Collection;)Landroid/view/textclassifier/TextClassifier$EntityConfig;")
+        create = JavaStaticMethod("(Ljava/util/Collection;Ljava/util/Collection;Ljava/util/Collection;)Landroid/view/textclassifier/TextClassifier$EntityConfig;")
+        createWithExplicitEntityList = JavaStaticMethod("(Ljava/util/Collection;)Landroid/view/textclassifier/TextClassifier$EntityConfig;")
+        resolveEntityListModifications = JavaMethod("(Ljava/util/Collection;)Ljava/util/Collection;")
+        getHints = JavaMethod("()Ljava/util/Collection;")
+        shouldIncludeTypesFromTextClassifier = JavaMethod("()Z")
+        describeContents = JavaMethod("()I")
+
+        class Builder(JavaClass, metaclass=MetaJavaClass):
+            __javaclass__ = "android/view/textclassifier/TextClassifier/EntityConfig/Builder"
+            __javaconstructor__ = [("()V", False)]
+            setIncludedTypes = JavaMethod("(Ljava/util/Collection;)Landroid/view/textclassifier/TextClassifier$EntityConfig$Builder;")
+            setExcludedTypes = JavaMethod("(Ljava/util/Collection;)Landroid/view/textclassifier/TextClassifier$EntityConfig$Builder;")
+            includeTypesFromTextClassifier = JavaMethod("(Z)Landroid/view/textclassifier/TextClassifier$EntityConfig$Builder;")
+            setHints = JavaMethod("(Ljava/util/Collection;)Landroid/view/textclassifier/TextClassifier$EntityConfig$Builder;")
+            build = JavaMethod("()Landroid/view/textclassifier/TextClassifier$EntityConfig;")

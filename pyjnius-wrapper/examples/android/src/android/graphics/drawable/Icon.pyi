@@ -1,0 +1,89 @@
+from typing import Any, ClassVar, overload
+from android.content.Context import Context
+from android.content.res.ColorStateList import ColorStateList
+from android.graphics.Bitmap import Bitmap
+from android.graphics.BlendMode import BlendMode
+from android.graphics.drawable.Drawable import Drawable
+from android.net.Uri import Uri
+from android.os.Handler import Handler
+from android.os.Message import Message
+from android.os.Parcel import Parcel
+
+# Forward declarations for Java types we do not wrap.
+# Bound as empty classes so annotations resolve in the IDE.
+class Creator:
+    """Forward declaration for ``android.os.Parcelable.Creator``.
+
+    This Java type is referenced by the wrapper but is not itself
+    wrapped by pyjnius-wrap. At runtime pyjnius will hand you a
+    live ``autoclass('android.os.Parcelable.Creator')`` proxy; this empty class exists
+    purely so static type checkers and IDEs can resolve the name.
+
+    See: https://developer.android.com/reference/android/os/Parcelable/Creator
+    """
+    ...
+class Mode:
+    """Forward declaration for ``android.graphics.PorterDuff.Mode``.
+
+    This Java type is referenced by the wrapper but is not itself
+    wrapped by pyjnius-wrap. At runtime pyjnius will hand you a
+    live ``autoclass('android.graphics.PorterDuff.Mode')`` proxy; this empty class exists
+    purely so static type checkers and IDEs can resolve the name.
+
+    See: https://developer.android.com/reference/android/graphics/PorterDuff/Mode
+    """
+    ...
+
+class Icon:
+    CREATOR: ClassVar[Creator]
+    TYPE_ADAPTIVE_BITMAP: ClassVar[int]
+    TYPE_BITMAP: ClassVar[int]
+    TYPE_DATA: ClassVar[int]
+    TYPE_RESOURCE: ClassVar[int]
+    TYPE_URI: ClassVar[int]
+    TYPE_URI_ADAPTIVE_BITMAP: ClassVar[int]
+    def getType(self) -> int: ...
+    def getResPackage(self) -> str: ...
+    def getResId(self) -> int: ...
+    def getUri(self) -> Uri: ...
+    @overload
+    def loadDrawableAsync(self, arg0: Context, arg1: Message) -> None: ...
+    @overload
+    def loadDrawableAsync(self, arg0: Context, arg1: "OnDrawableLoadedListener", arg2: Handler) -> None: ...
+    def loadDrawable(self, arg0: Context) -> Drawable: ...
+    @overload
+    @staticmethod
+    def createWithResource(arg0: Context, arg1: int) -> "Icon": ...
+    @overload
+    @staticmethod
+    def createWithResource(arg0: str, arg1: int) -> "Icon": ...
+    @staticmethod
+    def createWithBitmap(arg0: Bitmap) -> "Icon": ...
+    @staticmethod
+    def createWithAdaptiveBitmap(arg0: Bitmap) -> "Icon": ...
+    @staticmethod
+    def createWithData(arg0: list[int], arg1: int, arg2: int) -> "Icon": ...
+    @overload
+    @staticmethod
+    def createWithContentUri(arg0: str) -> "Icon": ...
+    @overload
+    @staticmethod
+    def createWithContentUri(arg0: Uri) -> "Icon": ...
+    @overload
+    @staticmethod
+    def createWithAdaptiveBitmapContentUri(arg0: str) -> "Icon": ...
+    @overload
+    @staticmethod
+    def createWithAdaptiveBitmapContentUri(arg0: Uri) -> "Icon": ...
+    def setTint(self, arg0: int) -> "Icon": ...
+    def setTintList(self, arg0: ColorStateList) -> "Icon": ...
+    def setTintMode(self, arg0: Mode) -> "Icon": ...
+    def setTintBlendMode(self, arg0: BlendMode) -> "Icon": ...
+    @staticmethod
+    def createWithFilePath(arg0: str) -> "Icon": ...
+    def toString(self) -> str: ...
+    def describeContents(self) -> int: ...
+    def writeToParcel(self, arg0: Parcel, arg1: int) -> None: ...
+
+    class OnDrawableLoadedListener:
+        def onDrawableLoaded(self, arg0: Drawable) -> None: ...

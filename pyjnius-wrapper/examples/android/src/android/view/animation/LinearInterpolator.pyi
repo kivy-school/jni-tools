@@ -1,0 +1,10 @@
+from typing import Any, ClassVar, overload
+from android.content.Context import Context
+from android.util.AttributeSet import AttributeSet
+
+class LinearInterpolator:
+    @overload
+    def __init__(self) -> None: ...
+    @overload
+    def __init__(self, arg0: Context, arg1: AttributeSet) -> None: ...
+    def getInterpolation(self, arg0: float) -> float: ...

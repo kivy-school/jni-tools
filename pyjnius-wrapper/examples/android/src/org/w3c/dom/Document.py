@@ -1,0 +1,37 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["Document"]
+
+class Document(JavaInterface, metaclass=MetaJavaClass):
+    __javaclass__ = "org/w3c/dom/Document"
+    getDoctype = JavaMethod("()Lorg/w3c/dom/DocumentType;")
+    getImplementation = JavaMethod("()Lorg/w3c/dom/DOMImplementation;")
+    getDocumentElement = JavaMethod("()Lorg/w3c/dom/Element;")
+    createElement = JavaMethod("(Ljava/lang/String;)Lorg/w3c/dom/Element;")
+    createDocumentFragment = JavaMethod("()Lorg/w3c/dom/DocumentFragment;")
+    createTextNode = JavaMethod("(Ljava/lang/String;)Lorg/w3c/dom/Text;")
+    createComment = JavaMethod("(Ljava/lang/String;)Lorg/w3c/dom/Comment;")
+    createCDATASection = JavaMethod("(Ljava/lang/String;)Lorg/w3c/dom/CDATASection;")
+    createProcessingInstruction = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)Lorg/w3c/dom/ProcessingInstruction;")
+    createAttribute = JavaMethod("(Ljava/lang/String;)Lorg/w3c/dom/Attr;")
+    createEntityReference = JavaMethod("(Ljava/lang/String;)Lorg/w3c/dom/EntityReference;")
+    getElementsByTagName = JavaMethod("(Ljava/lang/String;)Lorg/w3c/dom/NodeList;")
+    importNode = JavaMethod("(Lorg/w3c/dom/Node;Z)Lorg/w3c/dom/Node;")
+    createElementNS = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)Lorg/w3c/dom/Element;")
+    createAttributeNS = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)Lorg/w3c/dom/Attr;")
+    getElementsByTagNameNS = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)Lorg/w3c/dom/NodeList;")
+    getElementById = JavaMethod("(Ljava/lang/String;)Lorg/w3c/dom/Element;")
+    getInputEncoding = JavaMethod("()Ljava/lang/String;")
+    getXmlEncoding = JavaMethod("()Ljava/lang/String;")
+    getXmlStandalone = JavaMethod("()Z")
+    setXmlStandalone = JavaMethod("(Z)V")
+    getXmlVersion = JavaMethod("()Ljava/lang/String;")
+    setXmlVersion = JavaMethod("(Ljava/lang/String;)V")
+    getStrictErrorChecking = JavaMethod("()Z")
+    setStrictErrorChecking = JavaMethod("(Z)V")
+    getDocumentURI = JavaMethod("()Ljava/lang/String;")
+    setDocumentURI = JavaMethod("(Ljava/lang/String;)V")
+    adoptNode = JavaMethod("(Lorg/w3c/dom/Node;)Lorg/w3c/dom/Node;")
+    getDomConfig = JavaMethod("()Lorg/w3c/dom/DOMConfiguration;")
+    normalizeDocument = JavaMethod("()V")
+    renameNode = JavaMethod("(Lorg/w3c/dom/Node;Ljava/lang/String;Ljava/lang/String;)Lorg/w3c/dom/Node;")

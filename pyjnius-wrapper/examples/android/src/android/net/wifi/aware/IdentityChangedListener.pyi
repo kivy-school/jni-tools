@@ -1,0 +1,9 @@
+from typing import Any, ClassVar, overload
+from android.net.MacAddress import MacAddress
+
+class IdentityChangedListener:
+    CLUSTER_CHANGE_EVENT_JOINED: ClassVar[int]
+    CLUSTER_CHANGE_EVENT_STARTED: ClassVar[int]
+    def __init__(self) -> None: ...
+    def onIdentityChanged(self, arg0: list[int]) -> None: ...
+    def onClusterIdChanged(self, arg0: int, arg1: MacAddress) -> None: ...

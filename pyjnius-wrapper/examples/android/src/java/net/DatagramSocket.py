@@ -1,0 +1,39 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["DatagramSocket"]
+
+class DatagramSocket(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "java/net/DatagramSocket"
+    __javaconstructor__ = [("()V", False), ("(Ljava/net/DatagramSocketImpl;)V", False), ("(Ljava/net/SocketAddress;)V", False), ("(I)V", False), ("(ILjava/net/InetAddress;)V", False)]
+    bind = JavaMethod("(Ljava/net/SocketAddress;)V")
+    connect = JavaMultipleMethod([("(Ljava/net/InetAddress;I)V", False, False), ("(Ljava/net/SocketAddress;)V", False, False)])
+    disconnect = JavaMethod("()V")
+    isBound = JavaMethod("()Z")
+    isConnected = JavaMethod("()Z")
+    getInetAddress = JavaMethod("()Ljava/net/InetAddress;")
+    getPort = JavaMethod("()I")
+    getRemoteSocketAddress = JavaMethod("()Ljava/net/SocketAddress;")
+    getLocalSocketAddress = JavaMethod("()Ljava/net/SocketAddress;")
+    send = JavaMethod("(Ljava/net/DatagramPacket;)V")
+    receive = JavaMethod("(Ljava/net/DatagramPacket;)V")
+    getLocalAddress = JavaMethod("()Ljava/net/InetAddress;")
+    getLocalPort = JavaMethod("()I")
+    setSoTimeout = JavaMethod("(I)V")
+    getSoTimeout = JavaMethod("()I")
+    setSendBufferSize = JavaMethod("(I)V")
+    getSendBufferSize = JavaMethod("()I")
+    setReceiveBufferSize = JavaMethod("(I)V")
+    getReceiveBufferSize = JavaMethod("()I")
+    setReuseAddress = JavaMethod("(Z)V")
+    getReuseAddress = JavaMethod("()Z")
+    setBroadcast = JavaMethod("(Z)V")
+    getBroadcast = JavaMethod("()Z")
+    setTrafficClass = JavaMethod("(I)V")
+    getTrafficClass = JavaMethod("()I")
+    close = JavaMethod("()V")
+    isClosed = JavaMethod("()Z")
+    getChannel = JavaMethod("()Ljava/nio/channels/DatagramChannel;")
+    setDatagramSocketImplFactory = JavaStaticMethod("(Ljava/net/DatagramSocketImplFactory;)V")
+    setOption = JavaMethod("(Ljava/net/SocketOption;Ljava/lang/Object;)Ljava/net/DatagramSocket;")
+    getOption = JavaMethod("(Ljava/net/SocketOption;)Ljava/lang/Object;")
+    supportedOptions = JavaMethod("()Ljava/util/Set;")

@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from android.database.sqlite.SQLiteDatabase import SQLiteDatabase
+
+class DefaultDatabaseErrorHandler:
+    def __init__(self) -> None: ...
+    def onCorruption(self, arg0: SQLiteDatabase) -> None: ...

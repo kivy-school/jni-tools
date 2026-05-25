@@ -1,0 +1,42 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["RingtoneManager"]
+
+class RingtoneManager(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/media/RingtoneManager"
+    __javaconstructor__ = [("(Landroid/app/Activity;)V", False), ("(Landroid/content/Context;)V", False)]
+    ACTION_RINGTONE_PICKER = JavaStaticField("Ljava/lang/String;")
+    EXTRA_RINGTONE_DEFAULT_URI = JavaStaticField("Ljava/lang/String;")
+    EXTRA_RINGTONE_EXISTING_URI = JavaStaticField("Ljava/lang/String;")
+    EXTRA_RINGTONE_INCLUDE_DRM = JavaStaticField("Ljava/lang/String;")
+    EXTRA_RINGTONE_PICKED_URI = JavaStaticField("Ljava/lang/String;")
+    EXTRA_RINGTONE_SHOW_DEFAULT = JavaStaticField("Ljava/lang/String;")
+    EXTRA_RINGTONE_SHOW_SILENT = JavaStaticField("Ljava/lang/String;")
+    EXTRA_RINGTONE_TITLE = JavaStaticField("Ljava/lang/String;")
+    EXTRA_RINGTONE_TYPE = JavaStaticField("Ljava/lang/String;")
+    ID_COLUMN_INDEX = JavaStaticField("I")
+    TITLE_COLUMN_INDEX = JavaStaticField("I")
+    TYPE_ALARM = JavaStaticField("I")
+    TYPE_ALL = JavaStaticField("I")
+    TYPE_NOTIFICATION = JavaStaticField("I")
+    TYPE_RINGTONE = JavaStaticField("I")
+    URI_COLUMN_INDEX = JavaStaticField("I")
+    setType = JavaMethod("(I)V")
+    inferStreamType = JavaMethod("()I")
+    setStopPreviousRingtone = JavaMethod("(Z)V")
+    getStopPreviousRingtone = JavaMethod("()Z")
+    stopPreviousRingtone = JavaMethod("()V")
+    getIncludeDrm = JavaMethod("()Z")
+    setIncludeDrm = JavaMethod("(Z)V")
+    getCursor = JavaMethod("()Landroid/database/Cursor;")
+    getRingtone = JavaMultipleMethod([("(I)Landroid/media/Ringtone;", False, False), ("(Landroid/content/Context;Landroid/net/Uri;)Landroid/media/Ringtone;", True, False)])
+    getRingtoneUri = JavaMethod("(I)Landroid/net/Uri;")
+    getRingtonePosition = JavaMethod("(Landroid/net/Uri;)I")
+    getValidRingtoneUri = JavaStaticMethod("(Landroid/content/Context;)Landroid/net/Uri;")
+    getActualDefaultRingtoneUri = JavaStaticMethod("(Landroid/content/Context;I)Landroid/net/Uri;")
+    setActualDefaultRingtoneUri = JavaStaticMethod("(Landroid/content/Context;ILandroid/net/Uri;)V")
+    isDefault = JavaStaticMethod("(Landroid/net/Uri;)Z")
+    getDefaultType = JavaStaticMethod("(Landroid/net/Uri;)I")
+    getDefaultUri = JavaStaticMethod("(I)Landroid/net/Uri;")
+    openDefaultRingtoneUri = JavaStaticMethod("(Landroid/content/Context;Landroid/net/Uri;)Landroid/content/res/AssetFileDescriptor;")
+    hasHapticChannels = JavaMultipleMethod([("(I)Z", False, False), ("(Landroid/net/Uri;)Z", True, False), ("(Landroid/content/Context;Landroid/net/Uri;)Z", True, False)])
