@@ -7,9 +7,6 @@ import JavaNet
 
 /// Reflects on Java classes in a JAR (or .aar) file using an embedded JVM via swift-java,
 /// producing `[ClassNode]` compatible with `PyjniusWrapCore.Schema`.
-///
-/// This replaces the external `java-ast-emitter.jar` subprocess by performing reflection
-/// directly in-process using swift-java's embedded JVM.
 public struct Reflector: Sendable {
 
     /// Configuration for the reflector.

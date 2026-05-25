@@ -16,13 +16,10 @@ struct PyjniusWrap: ParsableCommand {
     @Argument(help: "Destination folder for generated Python files.")
     var outputDir: String
 
-    @Option(name: .long, help: "Override the bundled java-ast-emitter.jar path.")
-    var jar: String?
+    @Option(name: .long, help: "Path to a JAR containing JavaParser and its dependencies (for the 'source' backend).")
+    var javaParserJar: String?
 
-    @Option(name: .long, help: "Override the java executable.")
-    var javaExecutable: String = "java"
-
-    @Option(name: .long, help: "Extraction backend: 'swift-java' (default, embedded JVM reflection for bytecode/JAR/AAR), 'source' (JavaParser via swift-java for .java source files with javadoc), or 'java' (deprecated legacy subprocess).")
+    @Option(name: .long, help: "Extraction backend: 'swift-java' (default, embedded JVM reflection for bytecode/JAR/AAR) or 'source' (JavaParser via swift-java for .java source files with javadoc).")
     var backend: String = "swift-java"
 
     @Flag(name: .long, help: "Flatten output into a single wrappers.py file.")
@@ -44,35 +41,12 @@ struct PyjniusWrap: ParsableCommand {
         let outURL = URL(fileURLWithPath: outputDir)
 
         guard let parsedBackend = Pipeline.Backend(rawValue: backend) else {
-            throw ValidationError("Invalid backend '\(backend)'. Use 'swift-java', 'source', or 'java'.")
+            throw ValidationError("Invalid backend '\(backend)'. Use 'swift-java' or 'source'.")
         }
 
         let externals = try parseExternalModules(externalModule)
 
         switch parsedBackend {
-        case .java:
-            FileHandle.standardError.write(
-                Data("⚠️  Warning: The 'java' backend is deprecated and will be removed in a future release. Use '--backend swift-java' (now the default).\n".utf8)
-            )
-            let jarURL: URL
-            if let jar { jarURL = URL(fileURLWithPath: jar) }
-            else { jarURL = try resolveBundledJar() }
-
-            let pipeline = Pipeline()
-            let written = try pipeline.run(.init(
-                inputDir: inURL,
-                outputDir: outURL,
-                jarPath: jarURL,
-                javaExecutable: javaExecutable,
-                fileLayout: singleFile ? .singleFile : .perClass,
-                backend: .java,
-                stripCommonPackagePrefix: !keepPackagePrefix,
-                externalModules: externals
-            ))
-            for url in written {
-                print(url.path)
-            }
-
         case .swiftJava:
             // Use the embedded JVM reflector — no subprocess needed.
             let reflector = Reflector()
@@ -97,10 +71,10 @@ struct PyjniusWrap: ParsableCommand {
             // Use JavaParser (called from Swift via swift-java) for source-level parsing.
             // Provides javadoc, parameter names, and full symbol resolution.
             let sourceParser = SourceParser()
-            let jarURL: URL? = jar.map { URL(fileURLWithPath: $0) }
+            let jarURL: URL? = javaParserJar.map { URL(fileURLWithPath: $0) }
             let config = SourceParser.Config(
                 inputPath: inURL,
-                emitterJarPath: jarURL
+                javaParserJarPath: jarURL
             )
             let doc = try sourceParser.parse(config: config)
 
@@ -147,13 +121,5 @@ struct PyjniusWrap: ParsableCommand {
             result.append((javaPrefix, pyPrefix))
         }
         return result
-    }
-
-
-    private func resolveBundledJar() throws -> URL {
-        if let url = Bundle.module.url(forResource: "java-ast-emitter", withExtension: "jar") {
-            return url
-        }
-        throw ValidationError("Bundled java-ast-emitter.jar not found; pass --jar explicitly.")
     }
 }
