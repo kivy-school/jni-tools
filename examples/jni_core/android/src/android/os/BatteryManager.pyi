@@ -1,0 +1,45 @@
+from typing import Any, ClassVar, overload
+
+class BatteryManager:
+    ACTION_CHARGING: ClassVar[str]
+    ACTION_DISCHARGING: ClassVar[str]
+    BATTERY_HEALTH_COLD: ClassVar[int]
+    BATTERY_HEALTH_DEAD: ClassVar[int]
+    BATTERY_HEALTH_GOOD: ClassVar[int]
+    BATTERY_HEALTH_OVERHEAT: ClassVar[int]
+    BATTERY_HEALTH_OVER_VOLTAGE: ClassVar[int]
+    BATTERY_HEALTH_UNKNOWN: ClassVar[int]
+    BATTERY_HEALTH_UNSPECIFIED_FAILURE: ClassVar[int]
+    BATTERY_PLUGGED_AC: ClassVar[int]
+    BATTERY_PLUGGED_DOCK: ClassVar[int]
+    BATTERY_PLUGGED_USB: ClassVar[int]
+    BATTERY_PLUGGED_WIRELESS: ClassVar[int]
+    BATTERY_PROPERTY_CAPACITY: ClassVar[int]
+    BATTERY_PROPERTY_CHARGE_COUNTER: ClassVar[int]
+    BATTERY_PROPERTY_CURRENT_AVERAGE: ClassVar[int]
+    BATTERY_PROPERTY_CURRENT_NOW: ClassVar[int]
+    BATTERY_PROPERTY_ENERGY_COUNTER: ClassVar[int]
+    BATTERY_PROPERTY_STATUS: ClassVar[int]
+    BATTERY_STATUS_CHARGING: ClassVar[int]
+    BATTERY_STATUS_DISCHARGING: ClassVar[int]
+    BATTERY_STATUS_FULL: ClassVar[int]
+    BATTERY_STATUS_NOT_CHARGING: ClassVar[int]
+    BATTERY_STATUS_UNKNOWN: ClassVar[int]
+    EXTRA_BATTERY_LOW: ClassVar[str]
+    EXTRA_CHARGING_STATUS: ClassVar[str]
+    EXTRA_CYCLE_COUNT: ClassVar[str]
+    EXTRA_HEALTH: ClassVar[str]
+    EXTRA_ICON_SMALL: ClassVar[str]
+    EXTRA_LEVEL: ClassVar[str]
+    EXTRA_PLUGGED: ClassVar[str]
+    EXTRA_PRESENT: ClassVar[str]
+    EXTRA_SCALE: ClassVar[str]
+    EXTRA_STATUS: ClassVar[str]
+    EXTRA_TECHNOLOGY: ClassVar[str]
+    EXTRA_TEMPERATURE: ClassVar[str]
+    EXTRA_VOLTAGE: ClassVar[str]
+    def isCharging(self) -> bool: ...
+    def getIntProperty(self, p0: int) -> int: ...
+    def getLongProperty(self, p0: int) -> int: ...
+    def getStringProperty(self, p0: int) -> str: ...
+    def computeChargeTimeRemaining(self) -> int: ...

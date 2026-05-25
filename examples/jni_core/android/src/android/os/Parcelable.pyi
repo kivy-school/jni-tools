@@ -1,0 +1,16 @@
+from typing import Any, ClassVar, overload
+from android.os.Parcel import Parcel
+from java.lang.ClassLoader import ClassLoader
+
+class Parcelable:
+    CONTENTS_FILE_DESCRIPTOR: ClassVar[int]
+    PARCELABLE_WRITE_RETURN_VALUE: ClassVar[int]
+    def describeContents(self) -> int: ...
+    def writeToParcel(self, p0: Parcel, p1: int) -> None: ...
+
+    class Creator:
+        def createFromParcel(self, p0: Parcel) -> Any: ...
+        def newArray(self, p0: int) -> Any: ...
+
+    class ClassLoaderCreator:
+        def createFromParcel(self, p0: Parcel, p1: ClassLoader) -> Any: ...

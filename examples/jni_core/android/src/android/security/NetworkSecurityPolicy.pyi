@@ -1,0 +1,9 @@
+from typing import Any, ClassVar, overload
+
+class NetworkSecurityPolicy:
+    @overload
+    def isCleartextTrafficPermitted(self, p0: str) -> bool: ...
+    @overload
+    def isCleartextTrafficPermitted(self) -> bool: ...
+    @staticmethod
+    def getInstance() -> "NetworkSecurityPolicy": ...

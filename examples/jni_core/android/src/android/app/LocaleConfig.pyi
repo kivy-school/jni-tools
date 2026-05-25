@@ -1,0 +1,26 @@
+from typing import Any, ClassVar, overload
+from android.content.Context import Context
+from android.os.LocaleList import LocaleList
+from android.os.Parcel import Parcel
+from java.util.Locale import Locale
+
+class LocaleConfig:
+    CREATOR: ClassVar[Any]
+    STATUS_NOT_SPECIFIED: ClassVar[int]
+    STATUS_PARSING_FAILED: ClassVar[int]
+    STATUS_SUCCESS: ClassVar[int]
+    TAG_LOCALE: ClassVar[str]
+    TAG_LOCALE_CONFIG: ClassVar[str]
+    CONTENTS_FILE_DESCRIPTOR: ClassVar[int]
+    PARCELABLE_WRITE_RETURN_VALUE: ClassVar[int]
+    @overload
+    def __init__(self, p0: Context) -> None: ...
+    @overload
+    def __init__(self, p0: LocaleList) -> None: ...
+    @staticmethod
+    def fromContextIgnoringOverride(p0: Context) -> "LocaleConfig": ...
+    def getDefaultLocale(self) -> Locale: ...
+    def getSupportedLocales(self) -> LocaleList: ...
+    def describeContents(self) -> int: ...
+    def writeToParcel(self, p0: Parcel, p1: int) -> None: ...
+    def getStatus(self) -> int: ...

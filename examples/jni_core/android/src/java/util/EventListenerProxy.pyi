@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from java.util.EventListener import EventListener
+
+class EventListenerProxy:
+    def __init__(self, p0: EventListener) -> None: ...
+    def getListener(self) -> EventListener: ...

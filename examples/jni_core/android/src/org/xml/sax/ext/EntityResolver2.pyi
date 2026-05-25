@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from org.xml.sax.InputSource import InputSource
+
+class EntityResolver2:
+    def getExternalSubset(self, p0: str, p1: str) -> InputSource: ...
+    def resolveEntity(self, p0: str, p1: str, p2: str, p3: str) -> InputSource: ...

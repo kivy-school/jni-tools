@@ -1,0 +1,22 @@
+from typing import Any, ClassVar, overload
+from android.text.Editable import Editable
+from android.text.Spannable import Spannable
+from android.view.KeyEvent import KeyEvent
+from android.view.View import View
+
+class QwertyKeyListener:
+    META_ALT_LOCKED: ClassVar[int]
+    META_ALT_ON: ClassVar[int]
+    META_CAP_LOCKED: ClassVar[int]
+    META_SHIFT_ON: ClassVar[int]
+    META_SYM_LOCKED: ClassVar[int]
+    META_SYM_ON: ClassVar[int]
+    def __init__(self, p0: Any, p1: bool) -> None: ...
+    @staticmethod
+    def getInstanceForFullKeyboard() -> "QwertyKeyListener": ...
+    @staticmethod
+    def markAsReplaced(p0: Spannable, p1: int, p2: int, p3: str) -> None: ...
+    def onKeyDown(self, p0: View, p1: Editable, p2: int, p3: KeyEvent) -> bool: ...
+    def getInputType(self) -> int: ...
+    @staticmethod
+    def getInstance(p0: bool, p1: Any) -> "QwertyKeyListener": ...

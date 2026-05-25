@@ -1,0 +1,16 @@
+from typing import Any, ClassVar, overload
+from android.content.Context import Context
+from java.io.File import File
+
+class RecoverySystem:
+    @staticmethod
+    def verifyPackage(p0: File, p1: Any, p2: File) -> None: ...
+    @staticmethod
+    def installPackage(p0: Context, p1: File) -> None: ...
+    @staticmethod
+    def rebootWipeUserData(p0: Context) -> None: ...
+    @staticmethod
+    def rebootWipeCache(p0: Context) -> None: ...
+
+    class ProgressListener:
+        def onProgress(self, p0: int) -> None: ...

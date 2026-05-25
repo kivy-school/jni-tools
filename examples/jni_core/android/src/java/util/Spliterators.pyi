@@ -1,0 +1,143 @@
+from typing import Any, ClassVar, overload
+from java.util.Iterator import Iterator
+from java.util.Spliterator import Spliterator
+
+class Spliterators:
+    @staticmethod
+    def emptySpliterator() -> Spliterator: ...
+    @staticmethod
+    def emptyLongSpliterator() -> Any: ...
+    @staticmethod
+    def emptyIntSpliterator() -> Any: ...
+    @staticmethod
+    def emptyDoubleSpliterator() -> Any: ...
+    @overload
+    @staticmethod
+    def iterator(p0: Spliterator) -> Iterator: ...
+    @overload
+    @staticmethod
+    def iterator(p0: Any) -> Any: ...
+    @overload
+    @staticmethod
+    def iterator(p0: Any) -> Any: ...
+    @overload
+    @staticmethod
+    def iterator(p0: Any) -> Any: ...
+    @overload
+    @staticmethod
+    def spliteratorUnknownSize(p0: Any, p1: int) -> Any: ...
+    @overload
+    @staticmethod
+    def spliteratorUnknownSize(p0: Iterator, p1: int) -> Spliterator: ...
+    @overload
+    @staticmethod
+    def spliteratorUnknownSize(p0: Any, p1: int) -> Any: ...
+    @overload
+    @staticmethod
+    def spliteratorUnknownSize(p0: Any, p1: int) -> Any: ...
+    @overload
+    @staticmethod
+    def spliterator(p0: list, p1: int) -> Spliterator: ...
+    @overload
+    @staticmethod
+    def spliterator(p0: Any, p1: int, p2: int) -> Any: ...
+    @overload
+    @staticmethod
+    def spliterator(p0: Any, p1: int, p2: int) -> Any: ...
+    @overload
+    @staticmethod
+    def spliterator(p0: Any, p1: int) -> Any: ...
+    @overload
+    @staticmethod
+    def spliterator(p0: Any, p1: int, p2: int, p3: int) -> Any: ...
+    @overload
+    @staticmethod
+    def spliterator(p0: Any, p1: int) -> Any: ...
+    @overload
+    @staticmethod
+    def spliterator(p0: Any, p1: int, p2: int, p3: int) -> Any: ...
+    @overload
+    @staticmethod
+    def spliterator(p0: Any, p1: int) -> Any: ...
+    @overload
+    @staticmethod
+    def spliterator(p0: Any, p1: int, p2: int) -> Any: ...
+    @overload
+    @staticmethod
+    def spliterator(p0: Iterator, p1: int, p2: int) -> Spliterator: ...
+    @overload
+    @staticmethod
+    def spliterator(p0: Any, p1: int) -> Spliterator: ...
+    @overload
+    @staticmethod
+    def spliterator(p0: Any, p1: int, p2: int, p3: int) -> Spliterator: ...
+    @overload
+    @staticmethod
+    def spliterator(p0: Any, p1: int, p2: int, p3: int) -> Any: ...
+
+    class AbstractDoubleSpliterator:
+        ORDERED: ClassVar[int]
+        DISTINCT: ClassVar[int]
+        SORTED: ClassVar[int]
+        SIZED: ClassVar[int]
+        NONNULL: ClassVar[int]
+        IMMUTABLE: ClassVar[int]
+        CONCURRENT: ClassVar[int]
+        SUBSIZED: ClassVar[int]
+        @overload
+        def trySplit(self) -> Any: ...
+        @overload
+        def trySplit(self) -> Any: ...
+        @overload
+        def trySplit(self) -> Spliterator: ...
+        def estimateSize(self) -> int: ...
+        def characteristics(self) -> int: ...
+
+    class AbstractLongSpliterator:
+        ORDERED: ClassVar[int]
+        DISTINCT: ClassVar[int]
+        SORTED: ClassVar[int]
+        SIZED: ClassVar[int]
+        NONNULL: ClassVar[int]
+        IMMUTABLE: ClassVar[int]
+        CONCURRENT: ClassVar[int]
+        SUBSIZED: ClassVar[int]
+        @overload
+        def trySplit(self) -> Any: ...
+        @overload
+        def trySplit(self) -> Any: ...
+        @overload
+        def trySplit(self) -> Spliterator: ...
+        def estimateSize(self) -> int: ...
+        def characteristics(self) -> int: ...
+
+    class AbstractIntSpliterator:
+        ORDERED: ClassVar[int]
+        DISTINCT: ClassVar[int]
+        SORTED: ClassVar[int]
+        SIZED: ClassVar[int]
+        NONNULL: ClassVar[int]
+        IMMUTABLE: ClassVar[int]
+        CONCURRENT: ClassVar[int]
+        SUBSIZED: ClassVar[int]
+        @overload
+        def trySplit(self) -> Any: ...
+        @overload
+        def trySplit(self) -> Any: ...
+        @overload
+        def trySplit(self) -> Spliterator: ...
+        def estimateSize(self) -> int: ...
+        def characteristics(self) -> int: ...
+
+    class AbstractSpliterator:
+        ORDERED: ClassVar[int]
+        DISTINCT: ClassVar[int]
+        SORTED: ClassVar[int]
+        SIZED: ClassVar[int]
+        NONNULL: ClassVar[int]
+        IMMUTABLE: ClassVar[int]
+        CONCURRENT: ClassVar[int]
+        SUBSIZED: ClassVar[int]
+        def trySplit(self) -> Spliterator: ...
+        def estimateSize(self) -> int: ...
+        def characteristics(self) -> int: ...

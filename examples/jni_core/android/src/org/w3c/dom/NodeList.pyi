@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from org.w3c.dom.Node import Node
+
+class NodeList:
+    def item(self, p0: int) -> Node: ...
+    def getLength(self) -> int: ...

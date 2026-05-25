@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from java.util.logging.LogRecord import LogRecord
+
+class SimpleFormatter:
+    def __init__(self) -> None: ...
+    def format(self, p0: LogRecord) -> str: ...
