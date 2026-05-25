@@ -2,13 +2,11 @@ import Foundation
 import PySwiftAST
 import PySwiftCodeGen
 
-/// Orchestrates: `[input dir] -> JAR -> JSON -> AstDocument -> Python files`.
+/// Orchestrates: `[input dir] -> AstDocument -> Python files`.
 public struct Pipeline {
 
     /// Which extraction backend to use.
     public enum Backend: String, Sendable {
-        /// Deprecated legacy: launch `java -jar java-ast-emitter.jar` subprocess and parse JSON.
-        case java
         /// Default: use swift-java embedded JVM to reflect on classes in-process (bytecode/JAR/AAR).
         case swiftJava = "swift-java"
         /// Source backend: use JavaParser (called from Swift via swift-java) for .java source files.
@@ -19,9 +17,6 @@ public struct Pipeline {
     public struct Options {
         public var inputDir: URL
         public var outputDir: URL
-        /// Path to `java-ast-emitter.jar`. Required for `.java` backend; unused for `.swiftJava`.
-        public var jarPath: URL?
-        public var javaExecutable: String
         public var fileLayout: FileLayout
         /// Which extraction backend to use. Defaults to `.swiftJava`.
         public var backend: Backend
@@ -36,16 +31,13 @@ public struct Pipeline {
         /// instead of synthesizing forward-declared stubs.
         public var externalModules: [(javaPrefix: String, pyPrefix: String)]
 
-        public init(inputDir: URL, outputDir: URL, jarPath: URL? = nil,
-                    javaExecutable: String = "java",
+        public init(inputDir: URL, outputDir: URL,
                     fileLayout: FileLayout = .perClass,
                     backend: Backend = .swiftJava,
                     stripCommonPackagePrefix: Bool = true,
                     externalModules: [(javaPrefix: String, pyPrefix: String)] = []) {
             self.inputDir = inputDir
             self.outputDir = outputDir
-            self.jarPath = jarPath
-            self.javaExecutable = javaExecutable
             self.fileLayout = fileLayout
             self.backend = backend
             self.stripCommonPackagePrefix = stripCommonPackagePrefix
@@ -62,14 +54,11 @@ public struct Pipeline {
     }
 
     public enum PipelineError: Error, CustomStringConvertible {
-        case javaFailed(exitCode: Int32, stderr: String)
         case decodeFailed(String)
         case swiftJavaBackendNotLinked
 
         public var description: String {
             switch self {
-            case .javaFailed(let code, let err):
-                return "java-ast-emitter exited \(code): \(err)"
             case .decodeFailed(let msg):
                 return "AST JSON decode failed: \(msg)"
             case .swiftJavaBackendNotLinked:
@@ -79,30 +68,6 @@ public struct Pipeline {
     }
 
     public init() {}
-
-    public func run(_ opts: Options) throws -> [URL] {
-        let doc: AstDocument
-        switch opts.backend {
-        case .java:
-            guard let jarPath = opts.jarPath else {
-                throw PipelineError.decodeFailed("jarPath is required for the java backend")
-            }
-            let json = try invokeJar(opts: opts, jarPath: jarPath)
-            do {
-                doc = try JSONDecoder().decode(AstDocument.self, from: json)
-            } catch {
-                throw PipelineError.decodeFailed(String(describing: error))
-            }
-        case .swiftJava, .source:
-            // These backends require the SwiftJavaReflector module, which is only
-            // linked in the CLI target (PyjniusWrap). When Pipeline.run() is called
-            // directly (e.g., from tests or other consumers of PyjniusWrapCore),
-            // callers should use `emit(doc:opts:)` with a pre-built AstDocument
-            // obtained from Reflector or SourceParser in the CLI layer.
-            throw PipelineError.swiftJavaBackendNotLinked
-        }
-        return try emit(doc: doc, opts: opts)
-    }
 
     /// Decoupled hook so tests can feed a pre-baked AST without launching the JVM.
     public func emit(doc: AstDocument, opts: Options) throws -> [URL] {
@@ -232,45 +197,5 @@ public struct Pipeline {
             if prefix.isEmpty { return [] }
         }
         return prefix
-    }
-
-    private func invokeJar(opts: Options, jarPath: URL) throws -> Data {
-        let process = Process()
-        process.executableURL = URL(fileURLWithPath: "/usr/bin/env")
-        process.arguments = [
-            opts.javaExecutable,
-            "-jar", jarPath.path,
-            opts.inputDir.path,
-        ]
-        let stdoutPipe = Pipe()
-        let stderrPipe = Pipe()
-        process.standardOutput = stdoutPipe
-        process.standardError = stderrPipe
-        try process.run()
-        // Drain pipes concurrently to avoid blocking the child on a full pipe
-        // buffer (macOS default is ~64KB; large ASTs easily exceed this).
-        var stdout = Data()
-        var stderr = Data()
-        let group = DispatchGroup()
-        let queue = DispatchQueue(label: "pyjnius-wrap.pipe-drain", attributes: .concurrent)
-        group.enter()
-        queue.async {
-            stdout = stdoutPipe.fileHandleForReading.readDataToEndOfFile()
-            group.leave()
-        }
-        group.enter()
-        queue.async {
-            stderr = stderrPipe.fileHandleForReading.readDataToEndOfFile()
-            group.leave()
-        }
-        process.waitUntilExit()
-        group.wait()
-        if process.terminationStatus != 0 {
-            throw PipelineError.javaFailed(
-                exitCode: process.terminationStatus,
-                stderr: String(data: stderr, encoding: .utf8) ?? ""
-            )
-        }
-        return stdout
     }
 }

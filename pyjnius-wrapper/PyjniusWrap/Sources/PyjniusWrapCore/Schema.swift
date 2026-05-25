@@ -1,9 +1,10 @@
 import Foundation
 
-/// Codable mirror of the JSON produced by `java-ast-emitter.jar`.
+/// Schema definitions for the AST representation of Java classes.
 ///
-/// Keep field names in sync with the Java DTOs in
-/// `pyjnius-wrapper/java-ast-emitter/src/main/java/dev/kivyschool/pyjniuswrap/AstDtos.java`.
+/// These types represent the intermediate data model produced by the
+/// `SwiftJavaReflector` (via embedded JVM reflection or JavaParser)
+/// and consumed by the Python code generation pipeline.
 public struct AstDocument: Codable, Sendable {
     public let classes: [ClassNode]
 

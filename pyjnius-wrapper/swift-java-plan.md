@@ -13,9 +13,21 @@ a separate Gradle/Java build step.
 | Research swift-java capabilities | ✅ Done |
 | Feasibility analysis | ✅ Done |
 | Architecture design | ✅ Done |
-| Implementation | ✅ Done (Phase 1 + 2 + 4) |
+| Implementation | ✅ Done (All phases) |
 | Testing | ✅ Done (JNIDescriptor + SourceParser unit tests) |
-| Migration | ✅ Phase 2 complete; Phase 3 partial; Phase 4 complete |
+| Migration | ✅ **COMPLETE** — All Java code removed |
+
+---
+
+## ✅ Migration Complete
+
+All Java source code has been removed from this project. The `java-ast-emitter/`
+Gradle project no longer exists. Both extraction backends are now pure Swift
+calling Java libraries (JavaParser, JVM reflection API) directly through swift-java:
+
+- **Bytecode path**: `Reflector.swift` — embeds JVM, uses `java.lang.reflect`
+- **Source path**: `SourceParser.swift` — calls JavaParser API directly via swift-java
+- **No custom Java code** — only third-party Java libraries on the classpath
 
 ---
 

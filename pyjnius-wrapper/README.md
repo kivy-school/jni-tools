@@ -11,10 +11,10 @@ wrapper modules from Java source files.
     .jar / .aar / .class ──┤  (compiled artifacts, no source needed)
                        │
                        ▼
-   java-ast-emitter.jar     (JavaParser OR ASM bytecode, JDK 17+)
-      ─── OR ───
-   swift-java reflector     (embedded JVM, no Gradle needed)
-                       │  [ClassNode] in-process / JSON
+   swift-java reflector     (embedded JVM reflection, no custom Java code)
+       ─── OR ───
+   swift-java + JavaParser  (source-level parsing via JavaParser API)
+                       │  [ClassNode] in-process
                        ▼
     pyjnius-wrap            (Swift 6 + PySwiftAST)
                        │  .py
@@ -24,65 +24,42 @@ wrapper modules from Java source files.
 
 ### Extraction Backends
 
-`pyjnius-wrap` supports three extraction backends:
+`pyjnius-wrap` supports two extraction backends — both are pure Swift calling
+Java libraries directly through [swift-java](https://github.com/swiftlang/swift-java):
 
-1. **`--backend swift-java`** (default) — Uses [swift-java](https://github.com/swiftlang/swift-java)
-   to embed a JVM directly in the Swift process and reflect on classes via
-   `java.lang.reflect`. No Gradle build, no subprocess, no JSON
-   serialization/deserialization. Requires JDK 17+ on PATH (runtime only) and
-   Swift 6.2+. Best for bytecode/JAR/AAR inputs.
+1. **`--backend swift-java`** (default) — Uses swift-java to embed a JVM directly
+   in the Swift process and reflect on classes via `java.lang.reflect`. No Gradle
+   build, no subprocess, no JSON serialization/deserialization. Requires JDK 17+
+   on PATH (runtime only) and Swift 6.2+. Best for bytecode/JAR/AAR inputs.
 
-2. **`--backend source`** — Uses JavaParser (called in-process from Swift via swift-java)
-   to parse `.java` source files. Provides javadoc extraction, proper parameter names,
-   and full symbol resolution via JavaParser's symbol solver. The bundled
-   `java-ast-emitter.jar` (fat JAR with JavaParser + ASM + Jackson) is loaded onto the
-   embedded JVM's classpath — no subprocess, no Gradle build step at runtime. Best for
+2. **`--backend source`** — Uses JavaParser (called directly from Swift via
+   swift-java) to parse `.java` source files. Calls the JavaParser API
+   (`com.github.javaparser.*`) in-process — no custom Java wrapper code needed.
+   Provides javadoc extraction, proper parameter names, and full symbol resolution.
+   Requires a JavaParser JAR (with dependencies) on the classpath. Best for
    source-level inputs when you want javadoc in the output.
 
-3. **`--backend java`** (deprecated) — Launches `java -jar java-ast-emitter.jar` as a
-   subprocess. Requires a JDK on PATH and the bundled JAR. Supports both source
-   (JavaParser) and bytecode (ASM) extraction. Will be removed in a future release.
-
-* Stage 1 — `java-ast-emitter/` (Gradle, Kotlin DSL) accepts **either**:
-  * a folder of `.java` files (walked via **JavaParser + JavaSymbolSolver**), or
-  * a `.jar` / `.aar` / `.class` file or directory of compiled artifacts
-    (walked via **ASM 9.7**). This is what lets you wrap closed-source
-    SDKs like AdMob, Google Play Services, or `android.jar` directly
-    from their Gradle/Maven distribution.
-
-  The backend is auto-detected from the input; pass `--bytecode` to force.
-  Both backends emit the same Jackson DTO tree as a single JSON document
-  on stdout.
-* Stage 2 — `PyjniusWrap/` (SwiftPM) decodes that JSON with `Codable`,
-  builds a [PySwiftAST](https://github.com/Py-Swift/PySwiftAST) `Module`
-  per class, and renders it via `PySwiftCodeGen.generatePythonCode`.
-* The JAR is bundled inside the Swift executable's resources, so the
-  end-user only needs `java` on PATH.
+**Architecture**: The entire codebase is Swift. Java libraries (JavaParser for
+source parsing, JVM reflection API for bytecode) are called directly through
+swift-java's embedded JVM bridge — no custom Java code exists in this project.
 
 ## Layout
 
 ```
 pyjnius-wrapper/
-├── java-ast-emitter/                    # Gradle project (Stage 1 — legacy backend)
-│   ├── build.gradle.kts
-│   ├── src/main/java/dev/kivyschool/pyjniuswrap/
-│   │   ├── AstDtos.java                 # Jackson DTOs
-│   │   ├── JniDescriptor.java           # JNI signature builder
-│   │   ├── ClassExtractor.java          # CompilationUnit walker
-│   │   └── JavaAstEmitter.java          # picocli CLI entry
-│   └── src/test/java/.../PersonFixtureTest.java
-├── PyjniusWrap/                         # SwiftPM package (Stage 2)
+├── PyjniusWrap/                         # SwiftPM package (pure Swift)
 │   ├── Package.swift
 │   ├── Sources/
 │   │   ├── PyjniusWrap/                 # executable target
-│   │   │   ├── PyjniusWrap.swift        # ArgumentParser CLI
-│   │   │   └── Resources/java-ast-emitter.jar
+│   │   │   └── PyjniusWrap.swift        # ArgumentParser CLI
 │   │   ├── PyjniusWrapCore/             # library target
-│   │   │   ├── Schema.swift             # Codable mirror of AstDtos.java
+│   │   │   ├── Schema.swift             # AST data model
 │   │   │   ├── PyWrapperEmitter.swift   # ClassNode → PySwiftAST Module
-│   │   │   └── Pipeline.swift           # subprocess + file writer
-│   │   └── SwiftJavaReflector/          # swift-java backend (Phase 1)
-│   │       ├── Reflector.swift          # Embedded JVM reflection
+│   │   │   ├── PyiStubEmitter.swift     # PEP 484 .pyi stub generation
+│   │   │   └── Pipeline.swift           # orchestrator + file writer
+│   │   └── SwiftJavaReflector/          # swift-java backends
+│   │       ├── Reflector.swift          # Embedded JVM reflection (bytecode)
+│   │       ├── SourceParser.swift       # JavaParser API caller (source)
 │   │       └── JNIDescriptor.swift      # Type → JNI descriptor conversion
 │   └── Tests/
 │       ├── PyjniusWrapCoreTests/
@@ -95,31 +72,17 @@ pyjnius-wrapper/
 ## Build & test
 
 ```sh
-# Stage 1: Java (legacy backend only)
-cd java-ast-emitter
-gradle test shadowJar
-# → build/libs/java-ast-emitter.jar
-
-# Stage 2: Swift
-cd ../PyjniusWrap
+cd PyjniusWrap
 swift test                                # unit tests
 swift build -c release                    # → .build/release/pyjnius-wrap
 ```
 
-The Swift build copies the JAR from `Sources/PyjniusWrap/Resources/`. To
-refresh after editing the Java side, rebuild the JAR and copy it back:
+### Requirements
 
-```sh
-cp java-ast-emitter/build/libs/java-ast-emitter.jar \
-   PyjniusWrap/Sources/PyjniusWrap/Resources/
-```
-
-### swift-java backend requirements
-
-The `--backend swift-java` path requires:
 - **Swift 6.2+** (for swift-java macro support)
 - **JDK 17+** on `PATH` or `JAVA_HOME` (runtime only — the JVM is embedded in-process)
-- No Gradle, no separate Java build step
+- For `--backend source`: a JavaParser JAR (with symbol solver dependencies) passed via `--java-parser-jar`
+- No Gradle, no separate Java build step, no custom Java code
 
 ## Usage
 
@@ -131,10 +94,7 @@ swift run pyjnius-wrap gson-2.11.0.jar ./out
 swift run pyjnius-wrap build/classes ./out
 
 # Source files with javadoc extraction (source backend via JavaParser)
-swift run pyjnius-wrap --backend source path/to/java/src ./out
-
-# Legacy java backend (deprecated — requires Gradle-built JAR)
-swift run pyjnius-wrap --backend java path/to/java/src ./out
+swift run pyjnius-wrap --backend source --java-parser-jar /path/to/javaparser-fat.jar path/to/java/src ./out
 ```
 
 Example — wrap Gson 2.11.0 directly from Maven Central:
@@ -148,9 +108,8 @@ swift run pyjnius-wrap /tmp/gson.jar /tmp/gson-py
 
 Options:
 
-* `--backend swift-java|source|java` — extraction backend (default: `swift-java`).
-* `--jar PATH`  — override the bundled JAR (used by `source` and legacy `java` backends).
-* `--java-executable NAME` — override the `java` binary on PATH.
+* `--backend swift-java|source` — extraction backend (default: `swift-java`).
+* `--java-parser-jar PATH` — path to JavaParser JAR (for `source` backend).
 * `--single-file` — emit one `wrappers.py` instead of a package tree.
 * `--keep-package-prefix` — preserve full Java package path in output layout.
 * `--external-module` — map a Java package to an existing Python module.
