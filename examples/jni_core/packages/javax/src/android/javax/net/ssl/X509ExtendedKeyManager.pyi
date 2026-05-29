@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from javax.net.ssl.SSLEngine import SSLEngine
+
+class X509ExtendedKeyManager:
+    def chooseEngineClientAlias(self, p0: Any, p1: Any, p2: SSLEngine) -> str: ...
+    def chooseEngineServerAlias(self, p0: str, p1: Any, p2: SSLEngine) -> str: ...

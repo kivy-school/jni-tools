@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from java.security.Guard import Guard
+
+class GuardedObject:
+    def __init__(self, p0: Any, p1: Guard) -> None: ...
+    def getObject(self) -> Any: ...

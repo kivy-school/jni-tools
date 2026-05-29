@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from java.lang.StringBuilder import StringBuilder
+
+class StringBuilderPrinter:
+    def __init__(self, p0: StringBuilder) -> None: ...
+    def println(self, p0: str) -> None: ...

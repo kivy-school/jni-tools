@@ -1,0 +1,15 @@
+from typing import Any, ClassVar, overload
+from android.adservices.ondevicepersonalization.SurfacePackageToken import SurfacePackageToken
+from android.content.ComponentName import ComponentName
+from android.os.IBinder import IBinder
+from android.os.OutcomeReceiver import OutcomeReceiver
+from android.os.PersistableBundle import PersistableBundle
+from java.util.concurrent.Executor import Executor
+
+class OnDevicePersonalizationManager:
+    def requestSurfacePackage(self, p0: SurfacePackageToken, p1: IBinder, p2: int, p3: int, p4: int, p5: Executor, p6: OutcomeReceiver) -> None: ...
+    def execute(self, p0: ComponentName, p1: PersistableBundle, p2: Executor, p3: OutcomeReceiver) -> None: ...
+
+    class ExecuteResult:
+        def getSurfacePackageToken(self) -> SurfacePackageToken: ...
+        def getOutputData(self) -> Any: ...

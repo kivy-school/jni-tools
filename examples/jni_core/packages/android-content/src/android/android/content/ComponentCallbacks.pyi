@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from android.content.res.Configuration import Configuration
+
+class ComponentCallbacks:
+    def onConfigurationChanged(self, p0: Configuration) -> None: ...
+    def onLowMemory(self) -> None: ...

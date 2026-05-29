@@ -1,0 +1,7 @@
+# Exclude Cython-generated C sources and input files from sdist and wheel.
+# These are build artifacts that live in src/ alongside .pyx but must not be
+# shipped in the binary wheel (the compiled .so files are enough).
+recursive-exclude src *.c
+recursive-exclude src *.pyx
+recursive-exclude src *.pxd
+recursive-exclude src *.pxi

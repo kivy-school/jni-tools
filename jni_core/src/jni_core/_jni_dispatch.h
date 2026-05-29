@@ -18,7 +18,7 @@
 /* ----- Invocation API (JavaVM) ------------------------------------- */
 
 static inline jint jnicore_AttachCurrentThread(JavaVM* vm, JNIEnv** env, void* args) {
-    return (*vm)->AttachCurrentThread(vm, (void**)env, args);
+    return (*vm)->AttachCurrentThread(vm, env, args);
 }
 
 static inline jint jnicore_DetachCurrentThread(JavaVM* vm) {

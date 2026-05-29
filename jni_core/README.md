@@ -1,6 +1,6 @@
 # jni_core
 
-Tiny Cython runtime that the `pyjnius-wrap cython` generator targets.
+Tiny Cython runtime that the `jni-wrap cython` generator targets.
 
 It contains **only** what generated code needs to call JNI directly:
 

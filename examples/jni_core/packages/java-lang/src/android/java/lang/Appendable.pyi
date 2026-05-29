@@ -1,0 +1,9 @@
+from typing import Any, ClassVar, overload
+
+class Appendable:
+    @overload
+    def append(self, p0: str) -> "Appendable": ...
+    @overload
+    def append(self, p0: str, p1: int, p2: int) -> "Appendable": ...
+    @overload
+    def append(self, p0: str) -> "Appendable": ...
