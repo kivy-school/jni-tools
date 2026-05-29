@@ -1,10 +1,10 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["NdefRecord"]
 
 class NdefRecord(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/nfc/NdefRecord"
-    __javaconstructor__ = [("(S[B[B[B)V", False), ("([B)V", False)]
+    __javaconstructor__ = [("([B)V", False), ("(S[B[B[B)V", False)]
     CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
     RTD_ALTERNATIVE_CARRIER = JavaStaticField("[B")
     RTD_HANDOVER_CARRIER = JavaStaticField("[B")
@@ -20,20 +20,22 @@ class NdefRecord(JavaClass, metaclass=MetaJavaClass):
     TNF_UNCHANGED = JavaStaticField("S")
     TNF_UNKNOWN = JavaStaticField("S")
     TNF_WELL_KNOWN = JavaStaticField("S")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     createApplicationRecord = JavaStaticMethod("(Ljava/lang/String;)Landroid/nfc/NdefRecord;")
-    createUri = JavaMultipleMethod([("(Landroid/net/Uri;)Landroid/nfc/NdefRecord;", True, False), ("(Ljava/lang/String;)Landroid/nfc/NdefRecord;", True, False)])
-    createMime = JavaStaticMethod("(Ljava/lang/String;[B)Landroid/nfc/NdefRecord;")
     createExternal = JavaStaticMethod("(Ljava/lang/String;Ljava/lang/String;[B)Landroid/nfc/NdefRecord;")
+    createMime = JavaStaticMethod("(Ljava/lang/String;[B)Landroid/nfc/NdefRecord;")
     createTextRecord = JavaStaticMethod("(Ljava/lang/String;Ljava/lang/String;)Landroid/nfc/NdefRecord;")
+    createUri = JavaMultipleMethod([("(Ljava/lang/String;)Landroid/nfc/NdefRecord;", True, False), ("(Landroid/net/Uri;)Landroid/nfc/NdefRecord;", True, False)])
     getTnf = JavaMethod("()S")
-    getType = JavaMethod("()[B")
-    getId = JavaMethod("()[B")
-    getPayload = JavaMethod("()[B")
-    toByteArray = JavaMethod("()[B")
     toMimeType = JavaMethod("()Ljava/lang/String;")
-    toUri = JavaMethod("()Landroid/net/Uri;")
-    describeContents = JavaMethod("()I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
-    hashCode = JavaMethod("()I")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
     toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    getId = JavaMethod("()[B")
+    getType = JavaMethod("()[B")
+    getPayload = JavaMethod("()[B")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
+    toByteArray = JavaMethod("()[B")
+    toUri = JavaMethod("()Landroid/net/Uri;")

@@ -1,7 +1,9 @@
 from typing import Any, ClassVar, overload
 from android.icu.number.FormattedNumberRange import FormattedNumberRange
+from android.icu.number.UnlocalizedNumberRangeFormatter import UnlocalizedNumberRangeFormatter
 
 class LocalizedNumberRangeFormatter:
+    def withoutLocale(self) -> UnlocalizedNumberRangeFormatter: ...
     @overload
     def formatRange(self, p0: float, p1: float) -> FormattedNumberRange: ...
     @overload

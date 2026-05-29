@@ -1,18 +1,10 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SSLParameters"]
 
 class SSLParameters(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "javax/net/ssl/SSLParameters"
-    __javaconstructor__ = [("()V", False), ("([Ljava/lang/String;)V", False), ("([Ljava/lang/String;[Ljava/lang/String;)V", False)]
-    getCipherSuites = JavaMethod("()[Ljava/lang/String;")
-    setCipherSuites = JavaMethod("([Ljava/lang/String;)V")
-    getProtocols = JavaMethod("()[Ljava/lang/String;")
-    setProtocols = JavaMethod("([Ljava/lang/String;)V")
-    getWantClientAuth = JavaMethod("()Z")
-    setWantClientAuth = JavaMethod("(Z)V")
-    getNeedClientAuth = JavaMethod("()Z")
-    setNeedClientAuth = JavaMethod("(Z)V")
+    __javaconstructor__ = [("([Ljava/lang/String;[Ljava/lang/String;)V", False), ("([Ljava/lang/String;)V", False), ("()V", False)]
     getAlgorithmConstraints = JavaMethod("()Ljava/security/AlgorithmConstraints;")
     setAlgorithmConstraints = JavaMethod("(Ljava/security/AlgorithmConstraints;)V")
     getEndpointIdentificationAlgorithm = JavaMethod("()Ljava/lang/String;")
@@ -23,5 +15,21 @@ class SSLParameters(JavaClass, metaclass=MetaJavaClass):
     getSNIMatchers = JavaMethod("()Ljava/util/Collection;")
     setUseCipherSuitesOrder = JavaMethod("(Z)V")
     getUseCipherSuitesOrder = JavaMethod("()Z")
+    setEnableRetransmissions = JavaMethod("(Z)V")
+    getEnableRetransmissions = JavaMethod("()Z")
+    setMaximumPacketSize = JavaMethod("(I)V")
+    getMaximumPacketSize = JavaMethod("()I")
     getApplicationProtocols = JavaMethod("()[Ljava/lang/String;")
     setApplicationProtocols = JavaMethod("([Ljava/lang/String;)V")
+    getSignatureSchemes = JavaMethod("()[Ljava/lang/String;")
+    setSignatureSchemes = JavaMethod("([Ljava/lang/String;)V")
+    getNamedGroups = JavaMethod("()[Ljava/lang/String;")
+    setNamedGroups = JavaMethod("([Ljava/lang/String;)V")
+    setCipherSuites = JavaMethod("([Ljava/lang/String;)V")
+    setProtocols = JavaMethod("([Ljava/lang/String;)V")
+    getNeedClientAuth = JavaMethod("()Z")
+    setNeedClientAuth = JavaMethod("(Z)V")
+    getWantClientAuth = JavaMethod("()Z")
+    setWantClientAuth = JavaMethod("(Z)V")
+    getCipherSuites = JavaMethod("()[Ljava/lang/String;")
+    getProtocols = JavaMethod("()[Ljava/lang/String;")

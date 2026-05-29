@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["MicrophoneInfo"]
 
@@ -22,24 +22,24 @@ class MicrophoneInfo(JavaClass, metaclass=MetaJavaClass):
     POSITION_UNKNOWN = JavaStaticField("Landroid/media/MicrophoneInfo$Coordinate3F;")
     SENSITIVITY_UNKNOWN = JavaStaticField("F")
     SPL_UNKNOWN = JavaStaticField("F")
-    getDescription = JavaMethod("()Ljava/lang/String;")
+    getLocation = JavaMethod("()I")
     getId = JavaMethod("()I")
     getType = JavaMethod("()I")
     getAddress = JavaMethod("()Ljava/lang/String;")
-    getLocation = JavaMethod("()I")
     getGroup = JavaMethod("()I")
-    getIndexInTheGroup = JavaMethod("()I")
-    getPosition = JavaMethod("()Landroid/media/MicrophoneInfo$Coordinate3F;")
     getOrientation = JavaMethod("()Landroid/media/MicrophoneInfo$Coordinate3F;")
-    getFrequencyResponse = JavaMethod("()Ljava/util/List;")
+    getPosition = JavaMethod("()Landroid/media/MicrophoneInfo$Coordinate3F;")
+    getDescription = JavaMethod("()Ljava/lang/String;")
+    getIndexInTheGroup = JavaMethod("()I")
     getChannelMapping = JavaMethod("()Ljava/util/List;")
-    getSensitivity = JavaMethod("()F")
+    getFrequencyResponse = JavaMethod("()Ljava/util/List;")
     getMaxSpl = JavaMethod("()F")
     getMinSpl = JavaMethod("()F")
+    getSensitivity = JavaMethod("()F")
     getDirectionality = JavaMethod("()I")
 
     class Coordinate3F(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/MicrophoneInfo/Coordinate3F"
+        __javaclass__ = "android/media/MicrophoneInfo$Coordinate3F"
         x = JavaField("F")
         y = JavaField("F")
         z = JavaField("F")

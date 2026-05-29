@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ScanCallback"]
 
@@ -11,6 +11,6 @@ class ScanCallback(JavaClass, metaclass=MetaJavaClass):
     SCAN_FAILED_INTERNAL_ERROR = JavaStaticField("I")
     SCAN_FAILED_OUT_OF_HARDWARE_RESOURCES = JavaStaticField("I")
     SCAN_FAILED_SCANNING_TOO_FREQUENTLY = JavaStaticField("I")
+    onScanFailed = JavaMethod("(I)V")
     onScanResult = JavaMethod("(ILandroid/bluetooth/le/ScanResult;)V")
     onBatchScanResults = JavaMethod("(Ljava/util/List;)V")
-    onScanFailed = JavaMethod("(I)V")

@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["PointerIcon"]
 
@@ -29,10 +29,12 @@ class PointerIcon(JavaClass, metaclass=MetaJavaClass):
     TYPE_WAIT = JavaStaticField("I")
     TYPE_ZOOM_IN = JavaStaticField("I")
     TYPE_ZOOM_OUT = JavaStaticField("I")
-    getSystemIcon = JavaStaticMethod("(Landroid/content/Context;I)Landroid/view/PointerIcon;")
-    create = JavaStaticMethod("(Landroid/graphics/Bitmap;FF)Landroid/view/PointerIcon;")
-    load = JavaStaticMethod("(Landroid/content/res/Resources;I)Landroid/view/PointerIcon;")
-    describeContents = JavaMethod("()I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
     toString = JavaMethod("()Ljava/lang/String;")
+    load = JavaStaticMethod("(Landroid/content/res/Resources;I)Landroid/view/PointerIcon;")
+    create = JavaStaticMethod("(Landroid/graphics/Bitmap;FF)Landroid/view/PointerIcon;")
+    getSystemIcon = JavaStaticMethod("(Landroid/content/Context;I)Landroid/view/PointerIcon;")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

@@ -76,6 +76,7 @@ class CarrierConfigManager:
     KEY_CARRIER_NR_AVAILABILITIES_INT_ARRAY: ClassVar[str]
     KEY_CARRIER_PROVISIONS_WIFI_MERGED_NETWORKS_BOOL: ClassVar[str]
     KEY_CARRIER_RCS_PROVISIONING_REQUIRED_BOOL: ClassVar[str]
+    KEY_CARRIER_ROAMING_NTN_EMERGENCY_CALL_TO_SATELLITE_HANDOVER_TYPE_INT: ClassVar[str]
     KEY_CARRIER_SERVICE_NAME_STRING_ARRAY: ClassVar[str]
     KEY_CARRIER_SERVICE_NUMBER_STRING_ARRAY: ClassVar[str]
     KEY_CARRIER_SETTINGS_ACTIVITY_COMPONENT_NAME_STRING: ClassVar[str]
@@ -257,6 +258,11 @@ class CarrierConfigManager:
     KEY_SATELLITE_CONNECTION_HYSTERESIS_SEC_INT: ClassVar[str]
     KEY_SATELLITE_ENTITLEMENT_STATUS_REFRESH_DAYS_INT: ClassVar[str]
     KEY_SATELLITE_ENTITLEMENT_SUPPORTED_BOOL: ClassVar[str]
+    KEY_SATELLITE_ESOS_SUPPORTED_BOOL: ClassVar[str]
+    KEY_SATELLITE_ROAMING_ESOS_INACTIVITY_TIMEOUT_SEC_INT: ClassVar[str]
+    KEY_SATELLITE_ROAMING_P2P_SMS_INACTIVITY_TIMEOUT_SEC_INT: ClassVar[str]
+    KEY_SATELLITE_ROAMING_P2P_SMS_SUPPORTED_BOOL: ClassVar[str]
+    KEY_SATELLITE_ROAMING_SCREEN_OFF_INACTIVITY_TIMEOUT_SEC_INT: ClassVar[str]
     KEY_SHOW_4G_FOR_3G_DATA_ICON_BOOL: ClassVar[str]
     KEY_SHOW_4G_FOR_LTE_DATA_ICON_BOOL: ClassVar[str]
     KEY_SHOW_APN_SETTING_CDMA_BOOL: ClassVar[str]
@@ -332,14 +338,14 @@ class CarrierConfigManager:
     USSD_OVER_CS_PREFERRED: ClassVar[int]
     USSD_OVER_IMS_ONLY: ClassVar[int]
     USSD_OVER_IMS_PREFERRED: ClassVar[int]
-    @overload
-    def getConfigForSubId(self, p0: int, p1: Any) -> PersistableBundle: ...
+    def getConfigByComponentForSubId(self, p0: str, p1: int) -> PersistableBundle: ...
     @overload
     def getConfigForSubId(self, p0: int) -> PersistableBundle: ...
+    @overload
+    def getConfigForSubId(self, p0: int, p1: Any) -> PersistableBundle: ...
     @staticmethod
     def isConfigForIdentifiedCarrier(p0: PersistableBundle) -> bool: ...
     def notifyConfigChangedForSubId(self, p0: int) -> None: ...
-    def getConfigByComponentForSubId(self, p0: str, p1: int) -> PersistableBundle: ...
     def registerCarrierConfigChangeListener(self, p0: Executor, p1: Any) -> None: ...
     def unregisterCarrierConfigChangeListener(self, p0: Any) -> None: ...
     @overload
@@ -705,6 +711,7 @@ class CarrierConfigManager:
         RTP_INACTIVITY_ON_CONNECTED: ClassVar[int]
 
     class Gps:
+        KEY_ENABLE_NI_SUPL_MESSAGE_INJECTION_BOOL: ClassVar[str]
         KEY_PERSIST_LPP_MODE_BOOL: ClassVar[str]
         KEY_PREFIX: ClassVar[str]
 

@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SaveInfo"]
 
@@ -22,20 +22,22 @@ class SaveInfo(JavaClass, metaclass=MetaJavaClass):
     SAVE_DATA_TYPE_PASSWORD = JavaStaticField("I")
     SAVE_DATA_TYPE_PAYMENT_CARD = JavaStaticField("I")
     SAVE_DATA_TYPE_USERNAME = JavaStaticField("I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     toString = JavaMethod("()Ljava/lang/String;")
-    describeContents = JavaMethod("()I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
 
     class Builder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/service/autofill/SaveInfo/Builder"
-        __javaconstructor__ = [("(I[Landroid/view/autofill/AutofillId;)V", False), ("(I)V", False)]
-        setFlags = JavaMethod("(I)Landroid/service/autofill/SaveInfo$Builder;")
-        setOptionalIds = JavaMethod("([Landroid/view/autofill/AutofillId;)Landroid/service/autofill/SaveInfo$Builder;")
-        setDescription = JavaMethod("(Ljava/lang/CharSequence;)Landroid/service/autofill/SaveInfo$Builder;")
-        setCustomDescription = JavaMethod("(Landroid/service/autofill/CustomDescription;)Landroid/service/autofill/SaveInfo$Builder;")
-        setNegativeAction = JavaMethod("(ILandroid/content/IntentSender;)Landroid/service/autofill/SaveInfo$Builder;")
-        setPositiveAction = JavaMethod("(I)Landroid/service/autofill/SaveInfo$Builder;")
-        setValidator = JavaMethod("(Landroid/service/autofill/Validator;)Landroid/service/autofill/SaveInfo$Builder;")
+        __javaclass__ = "android/service/autofill/SaveInfo$Builder"
+        __javaconstructor__ = [("(I)V", False), ("(I[Landroid/view/autofill/AutofillId;)V", False)]
         addSanitizer = JavaMethod("(Landroid/service/autofill/Sanitizer;[Landroid/view/autofill/AutofillId;)Landroid/service/autofill/SaveInfo$Builder;", varargs=True)
+        setNegativeAction = JavaMethod("(ILandroid/content/IntentSender;)Landroid/service/autofill/SaveInfo$Builder;")
+        setOptionalIds = JavaMethod("([Landroid/view/autofill/AutofillId;)Landroid/service/autofill/SaveInfo$Builder;")
+        setPositiveAction = JavaMethod("(I)Landroid/service/autofill/SaveInfo$Builder;")
         setTriggerId = JavaMethod("(Landroid/view/autofill/AutofillId;)Landroid/service/autofill/SaveInfo$Builder;")
+        setCustomDescription = JavaMethod("(Landroid/service/autofill/CustomDescription;)Landroid/service/autofill/SaveInfo$Builder;")
+        setDescription = JavaMethod("(Ljava/lang/CharSequence;)Landroid/service/autofill/SaveInfo$Builder;")
+        setFlags = JavaMethod("(I)Landroid/service/autofill/SaveInfo$Builder;")
         build = JavaMethod("()Landroid/service/autofill/SaveInfo;")
+        setValidator = JavaMethod("(Landroid/service/autofill/Validator;)Landroid/service/autofill/SaveInfo$Builder;")

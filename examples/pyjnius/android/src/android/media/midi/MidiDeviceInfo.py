@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["MidiDeviceInfo"]
 
@@ -23,24 +23,26 @@ class MidiDeviceInfo(JavaClass, metaclass=MetaJavaClass):
     TYPE_BLUETOOTH = JavaStaticField("I")
     TYPE_USB = JavaStaticField("I")
     TYPE_VIRTUAL = JavaStaticField("I")
-    getType = JavaMethod("()I")
-    getId = JavaMethod("()I")
-    getInputPortCount = JavaMethod("()I")
-    getOutputPortCount = JavaMethod("()I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getPorts = JavaMethod("()[Landroid/media/midi/MidiDeviceInfo$PortInfo;")
-    getProperties = JavaMethod("()Landroid/os/Bundle;")
-    isPrivate = JavaMethod("()Z")
+    getInputPortCount = JavaMethod("()I")
     getDefaultProtocol = JavaMethod("()I")
+    getOutputPortCount = JavaMethod("()I")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
-    hashCode = JavaMethod("()I")
     toString = JavaMethod("()Ljava/lang/String;")
-    describeContents = JavaMethod("()I")
+    hashCode = JavaMethod("()I")
+    getProperties = JavaMethod("()Landroid/os/Bundle;")
+    getId = JavaMethod("()I")
+    getType = JavaMethod("()I")
+    isPrivate = JavaMethod("()Z")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
 
     class PortInfo(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/midi/MidiDeviceInfo/PortInfo"
+        __javaclass__ = "android/media/midi/MidiDeviceInfo$PortInfo"
         TYPE_INPUT = JavaStaticField("I")
         TYPE_OUTPUT = JavaStaticField("I")
-        getType = JavaMethod("()I")
         getPortNumber = JavaMethod("()I")
         getName = JavaMethod("()Ljava/lang/String;")
+        getType = JavaMethod("()I")

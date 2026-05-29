@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["AppOpsManager"]
 
@@ -43,43 +43,45 @@ class AppOpsManager(JavaClass, metaclass=MetaJavaClass):
     OPSTR_WRITE_CONTACTS = JavaStaticField("Ljava/lang/String;")
     OPSTR_WRITE_EXTERNAL_STORAGE = JavaStaticField("Ljava/lang/String;")
     OPSTR_WRITE_SETTINGS = JavaStaticField("Ljava/lang/String;")
+    OP_NOTED_CALLBACK_FLAG_IGNORE_ASYNC = JavaStaticField("I")
     WATCH_FOREGROUND_CHANGES = JavaStaticField("I")
-    permissionToOp = JavaStaticMethod("(Ljava/lang/String;)Ljava/lang/String;")
-    startWatchingMode = JavaMultipleMethod([("(Ljava/lang/String;Ljava/lang/String;Landroid/app/AppOpsManager$OnOpChangedListener;)V", False, False), ("(Ljava/lang/String;Ljava/lang/String;ILandroid/app/AppOpsManager$OnOpChangedListener;)V", False, False)])
-    stopWatchingMode = JavaMethod("(Landroid/app/AppOpsManager$OnOpChangedListener;)V")
-    startWatchingActive = JavaMethod("([Ljava/lang/String;Ljava/util/concurrent/Executor;Landroid/app/AppOpsManager$OnOpActiveChangedListener;)V")
-    stopWatchingActive = JavaMethod("(Landroid/app/AppOpsManager$OnOpActiveChangedListener;)V")
-    unsafeCheckOp = JavaMethod("(Ljava/lang/String;ILjava/lang/String;)I")
-    checkOp = JavaMethod("(Ljava/lang/String;ILjava/lang/String;)I")
-    unsafeCheckOpNoThrow = JavaMethod("(Ljava/lang/String;ILjava/lang/String;)I")
-    checkOpNoThrow = JavaMethod("(Ljava/lang/String;ILjava/lang/String;)I")
-    unsafeCheckOpRaw = JavaMethod("(Ljava/lang/String;ILjava/lang/String;)I")
-    unsafeCheckOpRawNoThrow = JavaMethod("(Ljava/lang/String;ILjava/lang/String;)I")
-    noteOp = JavaMultipleMethod([("(Ljava/lang/String;ILjava/lang/String;)I", False, False), ("(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)I", False, False)])
-    noteOpNoThrow = JavaMultipleMethod([("(Ljava/lang/String;ILjava/lang/String;)I", False, False), ("(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)I", False, False)])
-    noteProxyOp = JavaMultipleMethod([("(Ljava/lang/String;Ljava/lang/String;)I", False, False), ("(Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)I", False, False)])
-    noteProxyOpNoThrow = JavaMultipleMethod([("(Ljava/lang/String;Ljava/lang/String;)I", False, False), ("(Ljava/lang/String;Ljava/lang/String;I)I", False, False), ("(Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)I", False, False)])
+    checkOp = JavaMultipleMethod([("(Ljava/lang/String;ILjava/lang/String;)I", False, False), ("(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)I", False, False)])
+    checkOpNoThrow = JavaMultipleMethod([("(Ljava/lang/String;ILjava/lang/String;)I", False, False), ("(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)I", False, False)])
+    checkOpRawNoThrow = JavaMethod("(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)I")
     checkPackage = JavaMethod("(ILjava/lang/String;)V")
-    startOp = JavaMultipleMethod([("(Ljava/lang/String;ILjava/lang/String;)I", False, False), ("(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)I", False, False)])
-    startOpNoThrow = JavaMultipleMethod([("(Ljava/lang/String;ILjava/lang/String;)I", False, False), ("(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)I", False, False)])
-    startProxyOp = JavaMethod("(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)I")
-    startProxyOpNoThrow = JavaMethod("(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)I")
     finishOp = JavaMultipleMethod([("(Ljava/lang/String;ILjava/lang/String;)V", False, False), ("(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V", False, False)])
     finishProxyOp = JavaMethod("(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V")
     isOpActive = JavaMethod("(Ljava/lang/String;ILjava/lang/String;)Z")
-    setOnOpNotedCallback = JavaMethod("(Ljava/util/concurrent/Executor;Landroid/app/AppOpsManager$OnOpNotedCallback;)V")
-
-    class OnOpActiveChangedListener(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/app/AppOpsManager/OnOpActiveChangedListener"
-        onOpActiveChanged = JavaMultipleMethod([("(Ljava/lang/String;ILjava/lang/String;Z)V", False, False), ("(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;IZII)V", False, False)])
-
-    class OnOpChangedListener(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/app/AppOpsManager/OnOpChangedListener"
-        onOpChanged = JavaMultipleMethod([("(Ljava/lang/String;Ljava/lang/String;)V", False, False), ("(Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;)V", False, False)])
+    noteOp = JavaMultipleMethod([("(Ljava/lang/String;ILjava/lang/String;)I", False, False), ("(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)I", False, False)])
+    noteOpNoThrow = JavaMultipleMethod([("(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)I", False, False), ("(Ljava/lang/String;ILjava/lang/String;)I", False, False)])
+    noteProxyOp = JavaMultipleMethod([("(Ljava/lang/String;Ljava/lang/String;)I", False, False), ("(Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)I", False, False)])
+    noteProxyOpNoThrow = JavaMultipleMethod([("(Ljava/lang/String;Ljava/lang/String;)I", False, False), ("(Ljava/lang/String;Ljava/lang/String;I)I", False, False), ("(Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)I", False, False)])
+    permissionToOp = JavaStaticMethod("(Ljava/lang/String;)Ljava/lang/String;")
+    setOnOpNotedCallback = JavaMultipleMethod([("(Ljava/util/concurrent/Executor;Landroid/app/AppOpsManager$OnOpNotedCallback;I)V", False, False), ("(Ljava/util/concurrent/Executor;Landroid/app/AppOpsManager$OnOpNotedCallback;)V", False, False)])
+    startOp = JavaMultipleMethod([("(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)I", False, False), ("(Ljava/lang/String;ILjava/lang/String;)I", False, False)])
+    startOpNoThrow = JavaMultipleMethod([("(Ljava/lang/String;ILjava/lang/String;)I", False, False), ("(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)I", False, False)])
+    startProxyOp = JavaMethod("(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)I")
+    startProxyOpNoThrow = JavaMethod("(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)I")
+    startWatchingActive = JavaMethod("([Ljava/lang/String;Ljava/util/concurrent/Executor;Landroid/app/AppOpsManager$OnOpActiveChangedListener;)V")
+    startWatchingMode = JavaMultipleMethod([("(Ljava/lang/String;Ljava/lang/String;Landroid/app/AppOpsManager$OnOpChangedListener;)V", False, False), ("(Ljava/lang/String;Ljava/lang/String;ILandroid/app/AppOpsManager$OnOpChangedListener;)V", False, False)])
+    stopWatchingActive = JavaMethod("(Landroid/app/AppOpsManager$OnOpActiveChangedListener;)V")
+    stopWatchingMode = JavaMethod("(Landroid/app/AppOpsManager$OnOpChangedListener;)V")
+    unsafeCheckOp = JavaMethod("(Ljava/lang/String;ILjava/lang/String;)I")
+    unsafeCheckOpNoThrow = JavaMethod("(Ljava/lang/String;ILjava/lang/String;)I")
+    unsafeCheckOpRaw = JavaMethod("(Ljava/lang/String;ILjava/lang/String;)I")
+    unsafeCheckOpRawNoThrow = JavaMethod("(Ljava/lang/String;ILjava/lang/String;)I")
 
     class OnOpNotedCallback(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/app/AppOpsManager/OnOpNotedCallback"
+        __javaclass__ = "android/app/AppOpsManager$OnOpNotedCallback"
         __javaconstructor__ = [("()V", False)]
         onNoted = JavaMethod("(Landroid/app/SyncNotedAppOp;)V")
         onSelfNoted = JavaMethod("(Landroid/app/SyncNotedAppOp;)V")
         onAsyncNoted = JavaMethod("(Landroid/app/AsyncNotedAppOp;)V")
+
+    class OnOpChangedListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/app/AppOpsManager$OnOpChangedListener"
+        onOpChanged = JavaMultipleMethod([("(Ljava/lang/String;Ljava/lang/String;)V", False, False), ("(Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;)V", False, False)])
+
+    class OnOpActiveChangedListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/app/AppOpsManager$OnOpActiveChangedListener"
+        onOpActiveChanged = JavaMultipleMethod([("(Ljava/lang/String;ILjava/lang/String;Z)V", False, False), ("(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;IZII)V", False, False)])

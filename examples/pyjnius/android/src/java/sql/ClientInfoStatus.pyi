@@ -5,7 +5,11 @@ class ClientInfoStatus:
     REASON_UNKNOWN_PROPERTY: ClassVar["ClientInfoStatus"]
     REASON_VALUE_INVALID: ClassVar["ClientInfoStatus"]
     REASON_VALUE_TRUNCATED: ClassVar["ClientInfoStatus"]
+    REASON_UNKNOWN: ClassVar["ClientInfoStatus"]
+    REASON_UNKNOWN_PROPERTY: ClassVar["ClientInfoStatus"]
+    REASON_VALUE_INVALID: ClassVar["ClientInfoStatus"]
+    REASON_VALUE_TRUNCATED: ClassVar["ClientInfoStatus"]
     @staticmethod
-    def values() -> list["ClientInfoStatus"]: ...
+    def values() -> Any: ...
     @staticmethod
-    def valueOf(arg0: str) -> "ClientInfoStatus": ...
+    def valueOf(p0: str) -> "ClientInfoStatus": ...

@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["LocaleConfig"]
 
@@ -11,9 +11,11 @@ class LocaleConfig(JavaClass, metaclass=MetaJavaClass):
     STATUS_SUCCESS = JavaStaticField("I")
     TAG_LOCALE = JavaStaticField("Ljava/lang/String;")
     TAG_LOCALE_CONFIG = JavaStaticField("Ljava/lang/String;")
-    fromContextIgnoringOverride = JavaStaticMethod("(Landroid/content/Context;)Landroid/app/LocaleConfig;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getStatus = JavaMethod("()I")
     getSupportedLocales = JavaMethod("()Landroid/os/LocaleList;")
     getDefaultLocale = JavaMethod("()Ljava/util/Locale;")
-    getStatus = JavaMethod("()I")
-    describeContents = JavaMethod("()I")
+    fromContextIgnoringOverride = JavaStaticMethod("(Landroid/content/Context;)Landroid/app/LocaleConfig;")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

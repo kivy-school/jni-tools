@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["StreamingService"]
 
@@ -16,6 +16,6 @@ class StreamingService(JavaClass, metaclass=MetaJavaClass):
     STATE_STARTED = JavaStaticField("I")
     STATE_STOPPED = JavaStaticField("I")
     UNICAST_METHOD = JavaStaticField("I")
-    getPlaybackUri = JavaMethod("()Landroid/net/Uri;")
     getInfo = JavaMethod("()Landroid/telephony/mbms/StreamingServiceInfo;")
+    getPlaybackUri = JavaMethod("()Landroid/net/Uri;")
     close = JavaMethod("()V")

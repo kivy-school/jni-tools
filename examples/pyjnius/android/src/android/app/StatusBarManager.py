@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["StatusBarManager"]
 
@@ -13,5 +13,5 @@ class StatusBarManager(JavaClass, metaclass=MetaJavaClass):
     TILE_ADD_REQUEST_RESULT_TILE_ADDED = JavaStaticField("I")
     TILE_ADD_REQUEST_RESULT_TILE_ALREADY_ADDED = JavaStaticField("I")
     TILE_ADD_REQUEST_RESULT_TILE_NOT_ADDED = JavaStaticField("I")
-    requestAddTileService = JavaMethod("(Landroid/content/ComponentName;Ljava/lang/CharSequence;Landroid/graphics/drawable/Icon;Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V")
     canLaunchCaptureContentActivityForNote = JavaMethod("(Landroid/app/Activity;)Z")
+    requestAddTileService = JavaMethod("(Landroid/content/ComponentName;Ljava/lang/CharSequence;Landroid/graphics/drawable/Icon;Ljava/util/concurrent/Executor;Ljava/util/function/Consumer;)V")

@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ServiceInfo"]
 
@@ -30,8 +30,27 @@ class ServiceInfo(JavaClass, metaclass=MetaJavaClass):
     FOREGROUND_SERVICE_TYPE_SYSTEM_EXEMPTED = JavaStaticField("I")
     flags = JavaField("I")
     permission = JavaField("Ljava/lang/String;")
-    getForegroundServiceType = JavaMethod("()I")
-    dump = JavaMethod("(Landroid/util/Printer;Ljava/lang/String;)V")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    applicationInfo = JavaField("Landroid/content/pm/ApplicationInfo;")
+    attributionTags = JavaField("[Ljava/lang/String;")
+    descriptionRes = JavaField("I")
+    directBootAware = JavaField("Z")
+    enabled = JavaField("Z")
+    exported = JavaField("Z")
+    processName = JavaField("Ljava/lang/String;")
+    splitName = JavaField("Ljava/lang/String;")
+    banner = JavaField("I")
+    icon = JavaField("I")
+    isArchived = JavaField("Z")
+    labelRes = JavaField("I")
+    logo = JavaField("I")
+    metaData = JavaField("Landroid/os/Bundle;")
+    name = JavaField("Ljava/lang/String;")
+    nonLocalizedLabel = JavaField("Ljava/lang/CharSequence;")
+    packageName = JavaField("Ljava/lang/String;")
     toString = JavaMethod("()Ljava/lang/String;")
-    describeContents = JavaMethod("()I")
+    dump = JavaMethod("(Landroid/util/Printer;Ljava/lang/String;)V")
+    getForegroundServiceType = JavaMethod("()I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

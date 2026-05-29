@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["IpSecAlgorithm"]
 
@@ -17,10 +17,12 @@ class IpSecAlgorithm(JavaClass, metaclass=MetaJavaClass):
     CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
     CRYPT_AES_CBC = JavaStaticField("Ljava/lang/String;")
     CRYPT_AES_CTR = JavaStaticField("Ljava/lang/String;")
-    getName = JavaMethod("()Ljava/lang/String;")
-    getKey = JavaMethod("()[B")
-    getTruncationLengthBits = JavaMethod("()I")
-    describeContents = JavaMethod("()I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getSupportedAlgorithms = JavaStaticMethod("()Ljava/util/Set;")
+    getTruncationLengthBits = JavaMethod("()I")
+    getName = JavaMethod("()Ljava/lang/String;")
     toString = JavaMethod("()Ljava/lang/String;")
+    getKey = JavaMethod("()[B")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

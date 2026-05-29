@@ -1,7 +1,7 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["EntityResolver"]
 
-class EntityResolver(JavaInterface, metaclass=MetaJavaClass):
+class EntityResolver(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "org/xml/sax/EntityResolver"
     resolveEntity = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)Lorg/xml/sax/InputSource;")

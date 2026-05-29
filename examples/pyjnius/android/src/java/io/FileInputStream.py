@@ -1,14 +1,16 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["FileInputStream"]
 
 class FileInputStream(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/io/FileInputStream"
-    __javaconstructor__ = [("(Ljava/lang/String;)V", False), ("(Ljava/io/File;)V", False), ("(Ljava/io/FileDescriptor;)V", False)]
-    read = JavaMultipleMethod([("()I", False, False), ("([B)I", False, False), ("([BII)I", False, False)])
+    __javaconstructor__ = [("(Ljava/io/FileDescriptor;)V", False), ("(Ljava/io/File;)V", False), ("(Ljava/lang/String;)V", False)]
+    close = JavaMethod("()V")
+    readAllBytes = JavaMethod("()[B")
+    read = JavaMultipleMethod([("([BII)I", False, False), ("([B)I", False, False), ("()I", False, False)])
+    readNBytes = JavaMethod("(I)[B")
+    transferTo = JavaMethod("(Ljava/io/OutputStream;)J")
     skip = JavaMethod("(J)J")
     available = JavaMethod("()I")
-    close = JavaMethod("()V")
-    getFD = JavaMethod("()Ljava/io/FileDescriptor;")
     getChannel = JavaMethod("()Ljava/nio/channels/FileChannel;")
-    finalize = JavaMethod("()V")
+    getFD = JavaMethod("()Ljava/io/FileDescriptor;")

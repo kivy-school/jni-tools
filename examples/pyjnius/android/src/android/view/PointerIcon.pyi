@@ -4,22 +4,8 @@ from android.content.res.Resources import Resources
 from android.graphics.Bitmap import Bitmap
 from android.os.Parcel import Parcel
 
-# Forward declarations for Java types we do not wrap.
-# Bound as empty classes so annotations resolve in the IDE.
-class Creator:
-    """Forward declaration for ``android.os.Parcelable.Creator``.
-
-    This Java type is referenced by the wrapper but is not itself
-    wrapped by pyjnius-wrap. At runtime pyjnius will hand you a
-    live ``autoclass('android.os.Parcelable.Creator')`` proxy; this empty class exists
-    purely so static type checkers and IDEs can resolve the name.
-
-    See: https://developer.android.com/reference/android/os/Parcelable/Creator
-    """
-    ...
-
 class PointerIcon:
-    CREATOR: ClassVar[Creator]
+    CREATOR: ClassVar[Any]
     TYPE_ALIAS: ClassVar[int]
     TYPE_ALL_SCROLL: ClassVar[int]
     TYPE_ARROW: ClassVar[int]
@@ -44,13 +30,15 @@ class PointerIcon:
     TYPE_WAIT: ClassVar[int]
     TYPE_ZOOM_IN: ClassVar[int]
     TYPE_ZOOM_OUT: ClassVar[int]
-    @staticmethod
-    def getSystemIcon(arg0: Context, arg1: int) -> "PointerIcon": ...
-    @staticmethod
-    def create(arg0: Bitmap, arg1: float, arg2: float) -> "PointerIcon": ...
-    @staticmethod
-    def load(arg0: Resources, arg1: int) -> "PointerIcon": ...
-    def describeContents(self) -> int: ...
-    def writeToParcel(self, arg0: Parcel, arg1: int) -> None: ...
-    def equals(self, arg0: Any) -> bool: ...
+    CONTENTS_FILE_DESCRIPTOR: ClassVar[int]
+    PARCELABLE_WRITE_RETURN_VALUE: ClassVar[int]
+    def equals(self, p0: Any) -> bool: ...
     def toString(self) -> str: ...
+    @staticmethod
+    def load(p0: Resources, p1: int) -> "PointerIcon": ...
+    @staticmethod
+    def create(p0: Bitmap, p1: float, p2: float) -> "PointerIcon": ...
+    @staticmethod
+    def getSystemIcon(p0: Context, p1: int) -> "PointerIcon": ...
+    def writeToParcel(self, p0: Parcel, p1: int) -> None: ...
+    def describeContents(self) -> int: ...

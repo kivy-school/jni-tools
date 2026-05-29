@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["UserDictionary"]
 
@@ -9,7 +9,7 @@ class UserDictionary(JavaClass, metaclass=MetaJavaClass):
     CONTENT_URI = JavaStaticField("Landroid/net/Uri;")
 
     class Words(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/provider/UserDictionary/Words"
+        __javaclass__ = "android/provider/UserDictionary$Words"
         __javaconstructor__ = [("()V", False)]
         APP_ID = JavaStaticField("Ljava/lang/String;")
         CONTENT_ITEM_TYPE = JavaStaticField("Ljava/lang/String;")
@@ -22,5 +22,7 @@ class UserDictionary(JavaClass, metaclass=MetaJavaClass):
         LOCALE_TYPE_CURRENT = JavaStaticField("I")
         SHORTCUT = JavaStaticField("Ljava/lang/String;")
         WORD = JavaStaticField("Ljava/lang/String;")
+        _ID = JavaStaticField("Ljava/lang/String;")
+        _COUNT = JavaStaticField("Ljava/lang/String;")
         _ID = JavaStaticField("Ljava/lang/String;")
         addWord = JavaMultipleMethod([("(Landroid/content/Context;Ljava/lang/String;II)V", True, False), ("(Landroid/content/Context;Ljava/lang/String;ILjava/lang/String;Ljava/util/Locale;)V", True, False)])

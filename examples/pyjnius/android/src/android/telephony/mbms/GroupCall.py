@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["GroupCall"]
 
@@ -13,6 +13,6 @@ class GroupCall(JavaClass, metaclass=MetaJavaClass):
     STATE_STALLED = JavaStaticField("I")
     STATE_STARTED = JavaStaticField("I")
     STATE_STOPPED = JavaStaticField("I")
-    getTmgi = JavaMethod("()J")
     updateGroupCall = JavaMethod("(Ljava/util/List;Ljava/util/List;)V")
+    getTmgi = JavaMethod("()J")
     close = JavaMethod("()V")

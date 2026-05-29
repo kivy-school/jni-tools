@@ -1,11 +1,11 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["TemporalAccessor"]
 
-class TemporalAccessor(JavaInterface, metaclass=MetaJavaClass):
+class TemporalAccessor(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/time/temporal/TemporalAccessor"
-    isSupported = JavaMethod("(Ljava/time/temporal/TemporalField;)Z")
-    range = JavaMethod("(Ljava/time/temporal/TemporalField;)Ljava/time/temporal/ValueRange;")
-    get = JavaMethod("(Ljava/time/temporal/TemporalField;)I")
     getLong = JavaMethod("(Ljava/time/temporal/TemporalField;)J")
+    get = JavaMethod("(Ljava/time/temporal/TemporalField;)I")
+    isSupported = JavaMethod("(Ljava/time/temporal/TemporalField;)Z")
     query = JavaMethod("(Ljava/time/temporal/TemporalQuery;)Ljava/lang/Object;")
+    range = JavaMethod("(Ljava/time/temporal/TemporalField;)Ljava/time/temporal/ValueRange;")

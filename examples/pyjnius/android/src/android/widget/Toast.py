@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Toast"]
 
@@ -7,26 +7,26 @@ class Toast(JavaClass, metaclass=MetaJavaClass):
     __javaconstructor__ = [("(Landroid/content/Context;)V", False)]
     LENGTH_LONG = JavaStaticField("I")
     LENGTH_SHORT = JavaStaticField("I")
-    show = JavaMethod("()V")
     cancel = JavaMethod("()V")
-    setView = JavaMethod("(Landroid/view/View;)V")
-    getView = JavaMethod("()Landroid/view/View;")
-    setDuration = JavaMethod("(I)V")
-    getDuration = JavaMethod("()I")
-    setMargin = JavaMethod("(FF)V")
-    getHorizontalMargin = JavaMethod("()F")
-    getVerticalMargin = JavaMethod("()F")
-    setGravity = JavaMethod("(III)V")
+    show = JavaMethod("()V")
     getGravity = JavaMethod("()I")
+    setGravity = JavaMethod("(III)V")
+    getDuration = JavaMethod("()I")
+    setDuration = JavaMethod("(I)V")
+    getView = JavaMethod("()Landroid/view/View;")
+    setText = JavaMultipleMethod([("(I)V", False, False), ("(Ljava/lang/CharSequence;)V", False, False)])
     getXOffset = JavaMethod("()I")
     getYOffset = JavaMethod("()I")
-    addCallback = JavaMethod("(Landroid/widget/Toast$Callback;)V")
+    makeText = JavaMultipleMethod([("(Landroid/content/Context;II)Landroid/widget/Toast;", True, False), ("(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;", True, False)])
+    getVerticalMargin = JavaMethod("()F")
+    getHorizontalMargin = JavaMethod("()F")
     removeCallback = JavaMethod("(Landroid/widget/Toast$Callback;)V")
-    makeText = JavaMultipleMethod([("(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;", True, False), ("(Landroid/content/Context;II)Landroid/widget/Toast;", True, False)])
-    setText = JavaMultipleMethod([("(I)V", False, False), ("(Ljava/lang/CharSequence;)V", False, False)])
+    setMargin = JavaMethod("(FF)V")
+    setView = JavaMethod("(Landroid/view/View;)V")
+    addCallback = JavaMethod("(Landroid/widget/Toast$Callback;)V")
 
     class Callback(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/widget/Toast/Callback"
+        __javaclass__ = "android/widget/Toast$Callback"
         __javaconstructor__ = [("()V", False)]
-        onToastShown = JavaMethod("()V")
         onToastHidden = JavaMethod("()V")
+        onToastShown = JavaMethod("()V")

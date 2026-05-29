@@ -1,10 +1,11 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["NfcAdapter"]
 
 class NfcAdapter(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/nfc/NfcAdapter"
     ACTION_ADAPTER_STATE_CHANGED = JavaStaticField("Ljava/lang/String;")
+    ACTION_CHANGE_TAG_INTENT_PREFERENCE = JavaStaticField("Ljava/lang/String;")
     ACTION_NDEF_DISCOVERED = JavaStaticField("Ljava/lang/String;")
     ACTION_PREFERRED_PAYMENT_CHANGED = JavaStaticField("Ljava/lang/String;")
     ACTION_TAG_DISCOVERED = JavaStaticField("Ljava/lang/String;")
@@ -40,40 +41,44 @@ class NfcAdapter(JavaClass, metaclass=MetaJavaClass):
     STATE_ON = JavaStaticField("I")
     STATE_TURNING_OFF = JavaStaticField("I")
     STATE_TURNING_ON = JavaStaticField("I")
-    getDefaultAdapter = JavaStaticMethod("(Landroid/content/Context;)Landroid/nfc/NfcAdapter;")
-    isEnabled = JavaMethod("()Z")
-    isObserveModeSupported = JavaMethod("()Z")
-    isObserveModeEnabled = JavaMethod("()Z")
-    setObserveModeEnabled = JavaMethod("(Z)Z")
-    enableForegroundDispatch = JavaMethod("(Landroid/app/Activity;Landroid/app/PendingIntent;[Landroid/content/IntentFilter;[[Ljava/lang/String;)V")
+    disable = JavaMethod("()Z")
     disableForegroundDispatch = JavaMethod("(Landroid/app/Activity;)V")
-    enableReaderMode = JavaMethod("(Landroid/app/Activity;Landroid/nfc/NfcAdapter$ReaderCallback;ILandroid/os/Bundle;)V")
     disableReaderMode = JavaMethod("(Landroid/app/Activity;)V")
-    setDiscoveryTechnology = JavaMethod("(Landroid/app/Activity;II)V")
-    resetDiscoveryTechnology = JavaMethod("(Landroid/app/Activity;)V")
-    isSecureNfcSupported = JavaMethod("()Z")
+    enableForegroundDispatch = JavaMethod("(Landroid/app/Activity;Landroid/app/PendingIntent;[Landroid/content/IntentFilter;[[Ljava/lang/String;)V")
+    enableReaderMode = JavaMethod("(Landroid/app/Activity;Landroid/nfc/NfcAdapter$ReaderCallback;ILandroid/os/Bundle;)V")
+    getDefaultAdapter = JavaStaticMethod("(Landroid/content/Context;)Landroid/nfc/NfcAdapter;")
     getNfcAntennaInfo = JavaMethod("()Landroid/nfc/NfcAntennaInfo;")
-    isSecureNfcEnabled = JavaMethod("()Z")
-    isReaderOptionSupported = JavaMethod("()Z")
+    isObserveModeEnabled = JavaMethod("()Z")
+    isObserveModeSupported = JavaMethod("()Z")
     isReaderOptionEnabled = JavaMethod("()Z")
+    isReaderOptionSupported = JavaMethod("()Z")
+    isSecureNfcEnabled = JavaMethod("()Z")
+    isSecureNfcSupported = JavaMethod("()Z")
+    isTagIntentAllowed = JavaMethod("()Z")
+    isTagIntentAppPreferenceSupported = JavaMethod("()Z")
+    resetDiscoveryTechnology = JavaMethod("(Landroid/app/Activity;)V")
+    setDiscoveryTechnology = JavaMethod("(Landroid/app/Activity;II)V")
+    setObserveModeEnabled = JavaMethod("(Z)Z")
+    isEnabled = JavaMethod("()Z")
     ignore = JavaMethod("(Landroid/nfc/Tag;ILandroid/nfc/NfcAdapter$OnTagRemovedListener;Landroid/os/Handler;)Z")
+    enable = JavaMethod("()Z")
 
-    class CreateBeamUrisCallback(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/nfc/NfcAdapter/CreateBeamUrisCallback"
-        createBeamUris = JavaMethod("(Landroid/nfc/NfcEvent;)[Landroid/net/Uri;")
+    class ReaderCallback(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/nfc/NfcAdapter$ReaderCallback"
+        onTagDiscovered = JavaMethod("(Landroid/nfc/Tag;)V")
 
-    class CreateNdefMessageCallback(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/nfc/NfcAdapter/CreateNdefMessageCallback"
-        createNdefMessage = JavaMethod("(Landroid/nfc/NfcEvent;)Landroid/nfc/NdefMessage;")
-
-    class OnNdefPushCompleteCallback(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/nfc/NfcAdapter/OnNdefPushCompleteCallback"
-        onNdefPushComplete = JavaMethod("(Landroid/nfc/NfcEvent;)V")
-
-    class OnTagRemovedListener(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/nfc/NfcAdapter/OnTagRemovedListener"
+    class OnTagRemovedListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/nfc/NfcAdapter$OnTagRemovedListener"
         onTagRemoved = JavaMethod("()V")
 
-    class ReaderCallback(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/nfc/NfcAdapter/ReaderCallback"
-        onTagDiscovered = JavaMethod("(Landroid/nfc/Tag;)V")
+    class OnNdefPushCompleteCallback(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/nfc/NfcAdapter$OnNdefPushCompleteCallback"
+        onNdefPushComplete = JavaMethod("(Landroid/nfc/NfcEvent;)V")
+
+    class CreateNdefMessageCallback(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/nfc/NfcAdapter$CreateNdefMessageCallback"
+        createNdefMessage = JavaMethod("(Landroid/nfc/NfcEvent;)Landroid/nfc/NdefMessage;")
+
+    class CreateBeamUrisCallback(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/nfc/NfcAdapter$CreateBeamUrisCallback"
+        createBeamUris = JavaMethod("(Landroid/nfc/NfcEvent;)[Landroid/net/Uri;")

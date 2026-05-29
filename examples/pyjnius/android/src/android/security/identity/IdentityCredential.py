@@ -1,22 +1,22 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["IdentityCredential"]
 
 class IdentityCredential(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/security/identity/IdentityCredential"
+    update = JavaMethod("(Landroid/security/identity/PersonalizationData;)[B")
+    delete = JavaMethod("([B)[B")
+    getEntries = JavaMethod("([BLjava/util/Map;[B[B)Landroid/security/identity/ResultData;")
     createEphemeralKeyPair = JavaMethod("()Ljava/security/KeyPair;")
-    setReaderEphemeralPublicKey = JavaMethod("(Ljava/security/PublicKey;)V")
-    encryptMessageToReader = JavaMethod("([B)[B")
     decryptMessageFromReader = JavaMethod("([B)[B")
+    encryptMessageToReader = JavaMethod("([B)[B")
+    getAuthKeysNeedingCertification = JavaMethod("()Ljava/util/Collection;")
+    getAuthenticationDataUsageCount = JavaMethod("()[I")
+    getAuthenticationKeyMetadata = JavaMethod("()Ljava/util/List;")
     getCredentialKeyCertificateChain = JavaMethod("()Ljava/util/Collection;")
+    proveOwnership = JavaMethod("([B)[B")
     setAllowUsingExhaustedKeys = JavaMethod("(Z)V")
     setAllowUsingExpiredKeys = JavaMethod("(Z)V")
-    getEntries = JavaMethod("([BLjava/util/Map;[B[B)Landroid/security/identity/ResultData;")
-    setAvailableAuthenticationKeys = JavaMultipleMethod([("(II)V", False, False), ("(IIJ)V", False, False)])
-    getAuthKeysNeedingCertification = JavaMethod("()Ljava/util/Collection;")
-    storeStaticAuthenticationData = JavaMultipleMethod([("(Ljava/security/cert/X509Certificate;[B)V", False, False), ("(Ljava/security/cert/X509Certificate;Ljava/time/Instant;[B)V", False, False)])
-    getAuthenticationDataUsageCount = JavaMethod("()[I")
-    proveOwnership = JavaMethod("([B)[B")
-    delete = JavaMethod("([B)[B")
-    update = JavaMethod("(Landroid/security/identity/PersonalizationData;)[B")
-    getAuthenticationKeyMetadata = JavaMethod("()Ljava/util/List;")
+    setAvailableAuthenticationKeys = JavaMultipleMethod([("(IIJ)V", False, False), ("(II)V", False, False)])
+    setReaderEphemeralPublicKey = JavaMethod("(Ljava/security/PublicKey;)V")
+    storeStaticAuthenticationData = JavaMultipleMethod([("(Ljava/security/cert/X509Certificate;Ljava/time/Instant;[B)V", False, False), ("(Ljava/security/cert/X509Certificate;[B)V", False, False)])

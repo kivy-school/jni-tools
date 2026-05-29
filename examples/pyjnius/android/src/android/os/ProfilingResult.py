@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ProfilingResult"]
 
@@ -14,9 +14,14 @@ class ProfilingResult(JavaClass, metaclass=MetaJavaClass):
     ERROR_FAILED_RATE_LIMIT_SYSTEM = JavaStaticField("I")
     ERROR_NONE = JavaStaticField("I")
     ERROR_UNKNOWN = JavaStaticField("I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getErrorMessage = JavaMethod("()Ljava/lang/String;")
+    getResultFilePath = JavaMethod("()Ljava/lang/String;")
+    getTriggerType = JavaMethod("()I")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    hashCode = JavaMethod("()I")
+    getTag = JavaMethod("()Ljava/lang/String;")
+    getErrorCode = JavaMethod("()I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
     describeContents = JavaMethod("()I")
-    getErrorCode = JavaMethod("()I")
-    getResultFilePath = JavaMethod("()Ljava/lang/String;")
-    getTag = JavaMethod("()Ljava/lang/String;")
-    getErrorMessage = JavaMethod("()Ljava/lang/String;")

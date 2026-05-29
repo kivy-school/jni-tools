@@ -1,7 +1,7 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["TimeInterpolator"]
 
-class TimeInterpolator(JavaInterface, metaclass=MetaJavaClass):
+class TimeInterpolator(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/animation/TimeInterpolator"
     getInterpolation = JavaMethod("(F)F")

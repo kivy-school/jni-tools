@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["MbmsDownloadSession"]
 
@@ -22,19 +22,19 @@ class MbmsDownloadSession(JavaClass, metaclass=MetaJavaClass):
     STATUS_PENDING_DOWNLOAD_WINDOW = JavaStaticField("I")
     STATUS_PENDING_REPAIR = JavaStaticField("I")
     STATUS_UNKNOWN = JavaStaticField("I")
-    create = JavaMultipleMethod([("(Landroid/content/Context;Ljava/util/concurrent/Executor;Landroid/telephony/mbms/MbmsDownloadSessionCallback;)Landroid/telephony/MbmsDownloadSession;", True, False), ("(Landroid/content/Context;Ljava/util/concurrent/Executor;ILandroid/telephony/mbms/MbmsDownloadSessionCallback;)Landroid/telephony/MbmsDownloadSession;", True, False)])
-    getMaximumServiceAnnouncementSize = JavaStaticMethod("()I")
-    requestUpdateFileServices = JavaMethod("(Ljava/util/List;)V")
-    addServiceAnnouncement = JavaMethod("([B)V")
-    setTempFileRootDirectory = JavaMethod("(Ljava/io/File;)V")
-    getTempFileRootDirectory = JavaMethod("()Ljava/io/File;")
-    download = JavaMethod("(Landroid/telephony/mbms/DownloadRequest;)V")
-    listPendingDownloads = JavaMethod("()Ljava/util/List;")
-    addStatusListener = JavaMethod("(Landroid/telephony/mbms/DownloadRequest;Ljava/util/concurrent/Executor;Landroid/telephony/mbms/DownloadStatusListener;)V")
-    removeStatusListener = JavaMethod("(Landroid/telephony/mbms/DownloadRequest;Landroid/telephony/mbms/DownloadStatusListener;)V")
     addProgressListener = JavaMethod("(Landroid/telephony/mbms/DownloadRequest;Ljava/util/concurrent/Executor;Landroid/telephony/mbms/DownloadProgressListener;)V")
-    removeProgressListener = JavaMethod("(Landroid/telephony/mbms/DownloadRequest;Landroid/telephony/mbms/DownloadProgressListener;)V")
+    addServiceAnnouncement = JavaMethod("([B)V")
+    addStatusListener = JavaMethod("(Landroid/telephony/mbms/DownloadRequest;Ljava/util/concurrent/Executor;Landroid/telephony/mbms/DownloadStatusListener;)V")
     cancelDownload = JavaMethod("(Landroid/telephony/mbms/DownloadRequest;)V")
+    getMaximumServiceAnnouncementSize = JavaStaticMethod("()I")
+    getTempFileRootDirectory = JavaMethod("()Ljava/io/File;")
+    listPendingDownloads = JavaMethod("()Ljava/util/List;")
+    removeProgressListener = JavaMethod("(Landroid/telephony/mbms/DownloadRequest;Landroid/telephony/mbms/DownloadProgressListener;)V")
+    removeStatusListener = JavaMethod("(Landroid/telephony/mbms/DownloadRequest;Landroid/telephony/mbms/DownloadStatusListener;)V")
     requestDownloadState = JavaMethod("(Landroid/telephony/mbms/DownloadRequest;Landroid/telephony/mbms/FileInfo;)V")
+    requestUpdateFileServices = JavaMethod("(Ljava/util/List;)V")
     resetDownloadKnowledge = JavaMethod("(Landroid/telephony/mbms/DownloadRequest;)V")
+    setTempFileRootDirectory = JavaMethod("(Ljava/io/File;)V")
     close = JavaMethod("()V")
+    create = JavaMultipleMethod([("(Landroid/content/Context;Ljava/util/concurrent/Executor;Landroid/telephony/mbms/MbmsDownloadSessionCallback;)Landroid/telephony/MbmsDownloadSession;", True, False), ("(Landroid/content/Context;Ljava/util/concurrent/Executor;ILandroid/telephony/mbms/MbmsDownloadSessionCallback;)Landroid/telephony/MbmsDownloadSession;", True, False)])
+    download = JavaMethod("(Landroid/telephony/mbms/DownloadRequest;)V")

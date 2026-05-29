@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["AudioEffect"]
 
@@ -37,32 +37,31 @@ class AudioEffect(JavaClass, metaclass=MetaJavaClass):
     EXTRA_CONTENT_TYPE = JavaStaticField("Ljava/lang/String;")
     EXTRA_PACKAGE_NAME = JavaStaticField("Ljava/lang/String;")
     SUCCESS = JavaStaticField("I")
-    release = JavaMethod("()V")
-    finalize = JavaMethod("()V")
-    getDescriptor = JavaMethod("()Landroid/media/audiofx/AudioEffect$Descriptor;")
-    queryEffects = JavaStaticMethod("()[Landroid/media/audiofx/AudioEffect$Descriptor;")
-    setEnabled = JavaMethod("(Z)I")
-    getId = JavaMethod("()I")
     getEnabled = JavaMethod("()Z")
     hasControl = JavaMethod("()Z")
-    setEnableStatusListener = JavaMethod("(Landroid/media/audiofx/AudioEffect$OnEnableStatusChangeListener;)V")
+    queryEffects = JavaStaticMethod("()[Landroid/media/audiofx/AudioEffect$Descriptor;")
     setControlStatusListener = JavaMethod("(Landroid/media/audiofx/AudioEffect$OnControlStatusChangeListener;)V")
+    setEnableStatusListener = JavaMethod("(Landroid/media/audiofx/AudioEffect$OnEnableStatusChangeListener;)V")
+    getDescriptor = JavaMethod("()Landroid/media/audiofx/AudioEffect$Descriptor;")
+    getId = JavaMethod("()I")
+    release = JavaMethod("()V")
+    setEnabled = JavaMethod("(Z)I")
+
+    class OnEnableStatusChangeListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/media/audiofx/AudioEffect$OnEnableStatusChangeListener"
+        onEnableStatusChange = JavaMethod("(Landroid/media/audiofx/AudioEffect;Z)V")
+
+    class OnControlStatusChangeListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/media/audiofx/AudioEffect$OnControlStatusChangeListener"
+        onControlStatusChange = JavaMethod("(Landroid/media/audiofx/AudioEffect;Z)V")
 
     class Descriptor(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/audiofx/AudioEffect/Descriptor"
+        __javaclass__ = "android/media/audiofx/AudioEffect$Descriptor"
         __javaconstructor__ = [("()V", False), ("(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", False)]
         connectMode = JavaField("Ljava/lang/String;")
         implementor = JavaField("Ljava/lang/String;")
         name = JavaField("Ljava/lang/String;")
         type = JavaField("Ljava/util/UUID;")
         uuid = JavaField("Ljava/util/UUID;")
-        hashCode = JavaMethod("()I")
         equals = JavaMethod("(Ljava/lang/Object;)Z")
-
-    class OnControlStatusChangeListener(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/audiofx/AudioEffect/OnControlStatusChangeListener"
-        onControlStatusChange = JavaMethod("(Landroid/media/audiofx/AudioEffect;Z)V")
-
-    class OnEnableStatusChangeListener(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/audiofx/AudioEffect/OnEnableStatusChangeListener"
-        onEnableStatusChange = JavaMethod("(Landroid/media/audiofx/AudioEffect;Z)V")
+        hashCode = JavaMethod("()I")

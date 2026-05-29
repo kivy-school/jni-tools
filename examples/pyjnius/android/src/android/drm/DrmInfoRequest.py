@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["DrmInfoRequest"]
 
@@ -11,9 +11,9 @@ class DrmInfoRequest(JavaClass, metaclass=MetaJavaClass):
     TYPE_RIGHTS_ACQUISITION_INFO = JavaStaticField("I")
     TYPE_RIGHTS_ACQUISITION_PROGRESS_INFO = JavaStaticField("I")
     TYPE_UNREGISTRATION_INFO = JavaStaticField("I")
-    getMimeType = JavaMethod("()Ljava/lang/String;")
     getInfoType = JavaMethod("()I")
+    keyIterator = JavaMethod("()Ljava/util/Iterator;")
     put = JavaMethod("(Ljava/lang/String;Ljava/lang/Object;)V")
     get = JavaMethod("(Ljava/lang/String;)Ljava/lang/Object;")
-    keyIterator = JavaMethod("()Ljava/util/Iterator;")
     iterator = JavaMethod("()Ljava/util/Iterator;")
+    getMimeType = JavaMethod("()Ljava/lang/String;")

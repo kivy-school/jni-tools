@@ -1,14 +1,14 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ArcShape"]
 
 class ArcShape(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/graphics/drawable/shapes/ArcShape"
     __javaconstructor__ = [("(FF)V", False)]
-    getStartAngle = JavaMethod("()F")
     getSweepAngle = JavaMethod("()F")
-    draw = JavaMethod("(Landroid/graphics/Canvas;Landroid/graphics/Paint;)V")
-    getOutline = JavaMethod("(Landroid/graphics/Outline;)V")
-    clone = JavaMethod("()Landroid/graphics/drawable/shapes/ArcShape;")
+    getStartAngle = JavaMethod("()F")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
     hashCode = JavaMethod("()I")
+    clone = JavaMultipleMethod([("()Landroid/graphics/drawable/shapes/Shape;", False, False), ("()Ljava/lang/Object;", False, False), ("()Landroid/graphics/drawable/shapes/RectShape;", False, False), ("()Landroid/graphics/drawable/shapes/ArcShape;", False, False)])
+    draw = JavaMethod("(Landroid/graphics/Canvas;Landroid/graphics/Paint;)V")
+    getOutline = JavaMethod("(Landroid/graphics/Outline;)V")

@@ -1,23 +1,11 @@
 from typing import Any, ClassVar, overload
+from android.content.pm.ApplicationInfo import ApplicationInfo
+from android.os.Bundle import Bundle
 from android.os.Parcel import Parcel
 from android.util.Printer import Printer
 
-# Forward declarations for Java types we do not wrap.
-# Bound as empty classes so annotations resolve in the IDE.
-class Creator:
-    """Forward declaration for ``android.os.Parcelable.Creator``.
-
-    This Java type is referenced by the wrapper but is not itself
-    wrapped by pyjnius-wrap. At runtime pyjnius will hand you a
-    live ``autoclass('android.os.Parcelable.Creator')`` proxy; this empty class exists
-    purely so static type checkers and IDEs can resolve the name.
-
-    See: https://developer.android.com/reference/android/os/Parcelable/Creator
-    """
-    ...
-
 class ServiceInfo:
-    CREATOR: ClassVar[Creator]
+    CREATOR: ClassVar[Any]
     FLAG_ALLOW_SHARED_ISOLATED_PROCESS: ClassVar[int]
     FLAG_EXTERNAL_SERVICE: ClassVar[int]
     FLAG_ISOLATED_PROCESS: ClassVar[int]
@@ -40,14 +28,33 @@ class ServiceInfo:
     FOREGROUND_SERVICE_TYPE_SHORT_SERVICE: ClassVar[int]
     FOREGROUND_SERVICE_TYPE_SPECIAL_USE: ClassVar[int]
     FOREGROUND_SERVICE_TYPE_SYSTEM_EXEMPTED: ClassVar[int]
+    CONTENTS_FILE_DESCRIPTOR: ClassVar[int]
+    PARCELABLE_WRITE_RETURN_VALUE: ClassVar[int]
     flags: int
     permission: str
+    applicationInfo: ApplicationInfo
+    attributionTags: Any
+    descriptionRes: int
+    directBootAware: bool
+    enabled: bool
+    exported: bool
+    processName: str
+    splitName: str
+    banner: int
+    icon: int
+    isArchived: bool
+    labelRes: int
+    logo: int
+    metaData: Bundle
+    name: str
+    nonLocalizedLabel: str
+    packageName: str
     @overload
     def __init__(self) -> None: ...
     @overload
-    def __init__(self, arg0: "ServiceInfo") -> None: ...
-    def getForegroundServiceType(self) -> int: ...
-    def dump(self, arg0: Printer, arg1: str) -> None: ...
+    def __init__(self, p0: "ServiceInfo") -> None: ...
     def toString(self) -> str: ...
+    def dump(self, p0: Printer, p1: str) -> None: ...
+    def getForegroundServiceType(self) -> int: ...
+    def writeToParcel(self, p0: Parcel, p1: int) -> None: ...
     def describeContents(self) -> int: ...
-    def writeToParcel(self, arg0: Parcel, arg1: int) -> None: ...

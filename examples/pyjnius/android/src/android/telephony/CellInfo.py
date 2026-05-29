@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["CellInfo"]
 
@@ -11,14 +11,16 @@ class CellInfo(JavaClass, metaclass=MetaJavaClass):
     CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
     UNAVAILABLE = JavaStaticField("I")
     UNAVAILABLE_LONG = JavaStaticField("J")
-    isRegistered = JavaMethod("()Z")
-    getTimestampMillis = JavaMethod("()J")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getCellConnectionStatus = JavaMethod("()I")
     getTimeStamp = JavaMethod("()J")
     getCellIdentity = JavaMethod("()Landroid/telephony/CellIdentity;")
     getCellSignalStrength = JavaMethod("()Landroid/telephony/CellSignalStrength;")
-    getCellConnectionStatus = JavaMethod("()I")
-    hashCode = JavaMethod("()I")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
     toString = JavaMethod("()Ljava/lang/String;")
-    describeContents = JavaMethod("()I")
+    hashCode = JavaMethod("()I")
+    isRegistered = JavaMethod("()Z")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
+    getTimestampMillis = JavaMethod("()J")

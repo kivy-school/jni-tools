@@ -7,6 +7,16 @@ class CallLog:
     CONTENT_URI: ClassVar[Uri]
     def __init__(self) -> None: ...
 
+    class Locations:
+        AUTHORITY: ClassVar[str]
+        CONTENT_ITEM_TYPE: ClassVar[str]
+        CONTENT_TYPE: ClassVar[str]
+        CONTENT_URI: ClassVar[Uri]
+        LATITUDE: ClassVar[str]
+        LONGITUDE: ClassVar[str]
+        _COUNT: ClassVar[str]
+        _ID: ClassVar[str]
+
     class Calls:
         ANSWERED_EXTERNALLY_TYPE: ClassVar[int]
         ASSERTED_DISPLAY_NAME: ClassVar[str]
@@ -94,14 +104,8 @@ class CallLog:
         VIA_NUMBER: ClassVar[str]
         VOICEMAIL_TYPE: ClassVar[int]
         VOICEMAIL_URI: ClassVar[str]
+        _COUNT: ClassVar[str]
+        _ID: ClassVar[str]
         def __init__(self) -> None: ...
         @staticmethod
-        def getLastOutgoingCall(arg0: Context) -> str: ...
-
-    class Locations:
-        AUTHORITY: ClassVar[str]
-        CONTENT_ITEM_TYPE: ClassVar[str]
-        CONTENT_TYPE: ClassVar[str]
-        CONTENT_URI: ClassVar[Uri]
-        LATITUDE: ClassVar[str]
-        LONGITUDE: ClassVar[str]
+        def getLastOutgoingCall(p0: Context) -> str: ...

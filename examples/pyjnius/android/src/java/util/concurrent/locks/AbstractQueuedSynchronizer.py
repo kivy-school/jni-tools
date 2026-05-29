@@ -1,50 +1,38 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["AbstractQueuedSynchronizer"]
 
 class AbstractQueuedSynchronizer(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/util/concurrent/locks/AbstractQueuedSynchronizer"
-    __javaconstructor__ = [("()V", False)]
-    getState = JavaMethod("()I")
-    setState = JavaMethod("(I)V")
-    compareAndSetState = JavaMethod("(II)Z")
-    tryAcquire = JavaMethod("(I)Z")
-    tryRelease = JavaMethod("(I)Z")
-    tryAcquireShared = JavaMethod("(I)I")
-    tryReleaseShared = JavaMethod("(I)Z")
-    isHeldExclusively = JavaMethod("()Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    release = JavaMethod("(I)Z")
+    hasQueuedThreads = JavaMethod("()Z")
+    isQueued = JavaMethod("(Ljava/lang/Thread;)Z")
+    getQueueLength = JavaMethod("()I")
+    getQueuedThreads = JavaMethod("()Ljava/util/Collection;")
+    hasWaiters = JavaMethod("(Ljava/util/concurrent/locks/AbstractQueuedSynchronizer$ConditionObject;)Z")
+    getWaitQueueLength = JavaMethod("(Ljava/util/concurrent/locks/AbstractQueuedSynchronizer$ConditionObject;)I")
+    getWaitingThreads = JavaMethod("(Ljava/util/concurrent/locks/AbstractQueuedSynchronizer$ConditionObject;)Ljava/util/Collection;")
     acquire = JavaMethod("(I)V")
     acquireInterruptibly = JavaMethod("(I)V")
     tryAcquireNanos = JavaMethod("(IJ)Z")
-    release = JavaMethod("(I)Z")
+    getFirstQueuedThread = JavaMethod("()Ljava/lang/Thread;")
+    owns = JavaMethod("(Ljava/util/concurrent/locks/AbstractQueuedSynchronizer$ConditionObject;)Z")
     acquireShared = JavaMethod("(I)V")
     acquireSharedInterruptibly = JavaMethod("(I)V")
     tryAcquireSharedNanos = JavaMethod("(IJ)Z")
     releaseShared = JavaMethod("(I)Z")
-    hasQueuedThreads = JavaMethod("()Z")
     hasContended = JavaMethod("()Z")
-    getFirstQueuedThread = JavaMethod("()Ljava/lang/Thread;")
-    isQueued = JavaMethod("(Ljava/lang/Thread;)Z")
     hasQueuedPredecessors = JavaMethod("()Z")
-    getQueueLength = JavaMethod("()I")
-    getQueuedThreads = JavaMethod("()Ljava/util/Collection;")
     getExclusiveQueuedThreads = JavaMethod("()Ljava/util/Collection;")
     getSharedQueuedThreads = JavaMethod("()Ljava/util/Collection;")
-    toString = JavaMethod("()Ljava/lang/String;")
-    owns = JavaMethod("(Ljava/util/concurrent/locks/AbstractQueuedSynchronizer$ConditionObject;)Z")
-    hasWaiters = JavaMethod("(Ljava/util/concurrent/locks/AbstractQueuedSynchronizer$ConditionObject;)Z")
-    getWaitQueueLength = JavaMethod("(Ljava/util/concurrent/locks/AbstractQueuedSynchronizer$ConditionObject;)I")
-    getWaitingThreads = JavaMethod("(Ljava/util/concurrent/locks/AbstractQueuedSynchronizer$ConditionObject;)Ljava/util/Collection;")
 
     class ConditionObject(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "java/util/concurrent/locks/AbstractQueuedSynchronizer/ConditionObject"
+        __javaclass__ = "java/util/concurrent/locks/AbstractQueuedSynchronizer$ConditionObject"
         __javaconstructor__ = [("(Ljava/util/concurrent/locks/AbstractQueuedSynchronizer;)V", False)]
+        await = JavaMultipleMethod([("(JLjava/util/concurrent/TimeUnit;)Z", False, False), ("()V", False, False)])
         signal = JavaMethod("()V")
-        signalAll = JavaMethod("()V")
         awaitUninterruptibly = JavaMethod("()V")
-        await = JavaMultipleMethod([("()V", False, False), ("(JLjava/util/concurrent/TimeUnit;)Z", False, False)])
-        awaitNanos = JavaMethod("(J)J")
         awaitUntil = JavaMethod("(Ljava/util/Date;)Z")
-        hasWaiters = JavaMethod("()Z")
-        getWaitQueueLength = JavaMethod("()I")
-        getWaitingThreads = JavaMethod("()Ljava/util/Collection;")
+        signalAll = JavaMethod("()V")
+        awaitNanos = JavaMethod("(J)J")

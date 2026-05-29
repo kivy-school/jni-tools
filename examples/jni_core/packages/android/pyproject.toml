@@ -55,6 +55,7 @@ all = [
     "android-android-print == 35.0.0",
     "android-android-printservice == 35.0.0",
     "android-android-provider == 35.0.0",
+    "android-android-ranging == 35.0.0",
     "android-android-renderscript == 35.0.0",
     "android-android-sax == 35.0.0",
     "android-android-se == 35.0.0",
@@ -164,6 +165,9 @@ provider = [
 ]
 r = [
     "android-android-r == 35.0.0",
+]
+ranging = [
+    "android-android-ranging == 35.0.0",
 ]
 renderscript = [
     "android-android-renderscript == 35.0.0",

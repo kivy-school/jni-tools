@@ -1,5 +1,6 @@
 from typing import Any, ClassVar, overload
 from android.companion.AssociationInfo import AssociationInfo
+from android.companion.DevicePresenceEvent import DevicePresenceEvent
 from android.content.Intent import Intent
 from android.os.IBinder import IBinder
 from java.io.InputStream import InputStream
@@ -27,8 +28,10 @@ class CompanionDeviceService:
     ACCESSIBILITY_SERVICE: ClassVar[str]
     ACCOUNT_SERVICE: ClassVar[str]
     ACTIVITY_SERVICE: ClassVar[str]
+    ADVANCED_PROTECTION_SERVICE: ClassVar[str]
     ALARM_SERVICE: ClassVar[str]
     APPWIDGET_SERVICE: ClassVar[str]
+    APP_FUNCTION_SERVICE: ClassVar[str]
     APP_OPS_SERVICE: ClassVar[str]
     APP_SEARCH_SERVICE: ClassVar[str]
     AUDIO_SERVICE: ClassVar[str]
@@ -87,6 +90,7 @@ class CompanionDeviceService:
     IPSEC_SERVICE: ClassVar[str]
     JOB_SCHEDULER_SERVICE: ClassVar[str]
     KEYGUARD_SERVICE: ClassVar[str]
+    KEYSTORE_SERVICE: ClassVar[str]
     LAUNCHER_APPS_SERVICE: ClassVar[str]
     LAYOUT_INFLATER_SERVICE: ClassVar[str]
     LOCALE_SERVICE: ClassVar[str]
@@ -94,6 +98,7 @@ class CompanionDeviceService:
     MEDIA_COMMUNICATION_SERVICE: ClassVar[str]
     MEDIA_METRICS_SERVICE: ClassVar[str]
     MEDIA_PROJECTION_SERVICE: ClassVar[str]
+    MEDIA_QUALITY_SERVICE: ClassVar[str]
     MEDIA_ROUTER_SERVICE: ClassVar[str]
     MEDIA_SESSION_SERVICE: ClassVar[str]
     MIDI_SERVICE: ClassVar[str]
@@ -120,6 +125,7 @@ class CompanionDeviceService:
     RECEIVER_VISIBLE_TO_INSTANT_APPS: ClassVar[int]
     RESTRICTIONS_SERVICE: ClassVar[str]
     ROLE_SERVICE: ClassVar[str]
+    SATELLITE_SERVICE: ClassVar[str]
     SEARCH_SERVICE: ClassVar[str]
     SECURITY_STATE_SERVICE: ClassVar[str]
     SENSOR_SERVICE: ClassVar[str]
@@ -132,8 +138,10 @@ class CompanionDeviceService:
     TELEPHONY_IMS_SERVICE: ClassVar[str]
     TELEPHONY_SERVICE: ClassVar[str]
     TELEPHONY_SUBSCRIPTION_SERVICE: ClassVar[str]
+    TETHERING_SERVICE: ClassVar[str]
     TEXT_CLASSIFICATION_SERVICE: ClassVar[str]
     TEXT_SERVICES_MANAGER_SERVICE: ClassVar[str]
+    TV_AD_SERVICE: ClassVar[str]
     TV_INPUT_SERVICE: ClassVar[str]
     TV_INTERACTIVE_APP_SERVICE: ClassVar[str]
     UI_MODE_SERVICE: ClassVar[str]
@@ -154,11 +162,12 @@ class CompanionDeviceService:
     def attachSystemDataTransport(self, p0: int, p1: InputStream, p2: OutputStream) -> None: ...
     def detachSystemDataTransport(self, p0: int) -> None: ...
     @overload
-    def onDeviceAppeared(self, p0: AssociationInfo) -> None: ...
-    @overload
     def onDeviceAppeared(self, p0: str) -> None: ...
     @overload
-    def onDeviceDisappeared(self, p0: str) -> None: ...
+    def onDeviceAppeared(self, p0: AssociationInfo) -> None: ...
     @overload
     def onDeviceDisappeared(self, p0: AssociationInfo) -> None: ...
+    @overload
+    def onDeviceDisappeared(self, p0: str) -> None: ...
+    def onDevicePresenceEvent(self, p0: DevicePresenceEvent) -> None: ...
     def onBind(self, p0: Intent) -> IBinder: ...

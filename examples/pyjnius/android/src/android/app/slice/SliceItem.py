@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SliceItem"]
 
@@ -13,17 +13,19 @@ class SliceItem(JavaClass, metaclass=MetaJavaClass):
     FORMAT_REMOTE_INPUT = JavaStaticField("Ljava/lang/String;")
     FORMAT_SLICE = JavaStaticField("Ljava/lang/String;")
     FORMAT_TEXT = JavaStaticField("Ljava/lang/String;")
-    getHints = JavaMethod("()Ljava/util/List;")
-    getFormat = JavaMethod("()Ljava/lang/String;")
-    getSubType = JavaMethod("()Ljava/lang/String;")
-    getText = JavaMethod("()Ljava/lang/CharSequence;")
-    getBundle = JavaMethod("()Landroid/os/Bundle;")
-    getIcon = JavaMethod("()Landroid/graphics/drawable/Icon;")
-    getAction = JavaMethod("()Landroid/app/PendingIntent;")
-    getRemoteInput = JavaMethod("()Landroid/app/RemoteInput;")
-    getInt = JavaMethod("()I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getSlice = JavaMethod("()Landroid/app/slice/Slice;")
-    getLong = JavaMethod("()J")
+    getHints = JavaMethod("()Ljava/util/List;")
+    getRemoteInput = JavaMethod("()Landroid/app/RemoteInput;")
     hasHint = JavaMethod("(Ljava/lang/String;)Z")
-    describeContents = JavaMethod("()I")
+    getSubType = JavaMethod("()Ljava/lang/String;")
+    getInt = JavaMethod("()I")
+    getLong = JavaMethod("()J")
+    getAction = JavaMethod("()Landroid/app/PendingIntent;")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    getBundle = JavaMethod("()Landroid/os/Bundle;")
+    describeContents = JavaMethod("()I")
+    getIcon = JavaMethod("()Landroid/graphics/drawable/Icon;")
+    getText = JavaMethod("()Ljava/lang/CharSequence;")
+    getFormat = JavaMethod("()Ljava/lang/String;")

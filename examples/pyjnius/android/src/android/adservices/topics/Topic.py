@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Topic"]
 
@@ -9,5 +9,5 @@ class Topic(JavaClass, metaclass=MetaJavaClass):
     getTaxonomyVersion = JavaMethod("()J")
     getTopicId = JavaMethod("()I")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
-    hashCode = JavaMethod("()I")
     toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")

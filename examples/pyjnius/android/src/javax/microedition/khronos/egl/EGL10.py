@@ -1,8 +1,8 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["EGL10"]
 
-class EGL10(JavaInterface, metaclass=MetaJavaClass):
+class EGL10(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "javax/microedition/khronos/egl/EGL10"
     EGL_ALPHA_FORMAT = JavaStaticField("I")
     EGL_ALPHA_MASK_SIZE = JavaStaticField("I")

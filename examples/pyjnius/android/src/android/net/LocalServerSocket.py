@@ -1,11 +1,11 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["LocalServerSocket"]
 
 class LocalServerSocket(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/net/LocalServerSocket"
-    __javaconstructor__ = [("(Ljava/lang/String;)V", False), ("(Ljava/io/FileDescriptor;)V", False)]
-    getLocalSocketAddress = JavaMethod("()Landroid/net/LocalSocketAddress;")
+    __javaconstructor__ = [("(Ljava/io/FileDescriptor;)V", False), ("(Ljava/lang/String;)V", False)]
+    close = JavaMethod("()V")
     accept = JavaMethod("()Landroid/net/LocalSocket;")
     getFileDescriptor = JavaMethod("()Ljava/io/FileDescriptor;")
-    close = JavaMethod("()V")
+    getLocalSocketAddress = JavaMethod("()Landroid/net/LocalSocketAddress;")

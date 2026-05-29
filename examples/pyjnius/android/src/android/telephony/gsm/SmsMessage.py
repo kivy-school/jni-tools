@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SmsMessage"]
 
@@ -12,48 +12,53 @@ class SmsMessage(JavaClass, metaclass=MetaJavaClass):
     MAX_USER_DATA_BYTES = JavaStaticField("I")
     MAX_USER_DATA_SEPTETS = JavaStaticField("I")
     MAX_USER_DATA_SEPTETS_WITH_HEADER = JavaStaticField("I")
+    getStatus = JavaMethod("()I")
     createFromPdu = JavaStaticMethod("([B)Landroid/telephony/gsm/SmsMessage;")
-    getTPLayerLengthForPDU = JavaStaticMethod("(Ljava/lang/String;)I")
     calculateLength = JavaMultipleMethod([("(Ljava/lang/CharSequence;Z)[I", True, False), ("(Ljava/lang/String;Z)[I", True, False)])
-    getSubmitPdu = JavaMultipleMethod([("(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)Landroid/telephony/gsm/SmsMessage$SubmitPdu;", True, False), ("(Ljava/lang/String;Ljava/lang/String;S[BZ)Landroid/telephony/gsm/SmsMessage$SubmitPdu;", True, False)])
-    getServiceCenterAddress = JavaMethod("()Ljava/lang/String;")
-    getOriginatingAddress = JavaMethod("()Ljava/lang/String;")
-    getDisplayOriginatingAddress = JavaMethod("()Ljava/lang/String;")
-    getMessageBody = JavaMethod("()Ljava/lang/String;")
-    getMessageClass = JavaMethod("()Landroid/telephony/gsm/SmsMessage$MessageClass;")
     getDisplayMessageBody = JavaMethod("()Ljava/lang/String;")
-    getPseudoSubject = JavaMethod("()Ljava/lang/String;")
-    getTimestampMillis = JavaMethod("()J")
-    isEmail = JavaMethod("()Z")
+    getDisplayOriginatingAddress = JavaMethod("()Ljava/lang/String;")
     getEmailBody = JavaMethod("()Ljava/lang/String;")
     getEmailFrom = JavaMethod("()Ljava/lang/String;")
+    getIndexOnSim = JavaMethod("()I")
+    getMessageBody = JavaMethod("()Ljava/lang/String;")
+    getMessageClass = JavaMethod("()Landroid/telephony/gsm/SmsMessage$MessageClass;")
+    getOriginatingAddress = JavaMethod("()Ljava/lang/String;")
+    getPdu = JavaMethod("()[B")
     getProtocolIdentifier = JavaMethod("()I")
-    isReplace = JavaMethod("()Z")
+    getPseudoSubject = JavaMethod("()Ljava/lang/String;")
+    getServiceCenterAddress = JavaMethod("()Ljava/lang/String;")
+    getStatusOnSim = JavaMethod("()I")
+    getSubmitPdu = JavaMultipleMethod([("(Ljava/lang/String;Ljava/lang/String;S[BZ)Landroid/telephony/gsm/SmsMessage$SubmitPdu;", True, False), ("(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)Landroid/telephony/gsm/SmsMessage$SubmitPdu;", True, False)])
+    getTPLayerLengthForPDU = JavaStaticMethod("(Ljava/lang/String;)I")
+    getUserData = JavaMethod("()[B")
     isCphsMwiMessage = JavaMethod("()Z")
+    isEmail = JavaMethod("()Z")
     isMWIClearMessage = JavaMethod("()Z")
     isMWISetMessage = JavaMethod("()Z")
     isMwiDontStore = JavaMethod("()Z")
-    getUserData = JavaMethod("()[B")
-    getPdu = JavaMethod("()[B")
-    getStatusOnSim = JavaMethod("()I")
-    getIndexOnSim = JavaMethod("()I")
-    getStatus = JavaMethod("()I")
-    isStatusReportMessage = JavaMethod("()Z")
+    isReplace = JavaMethod("()Z")
     isReplyPathPresent = JavaMethod("()Z")
-
-    class MessageClass(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/telephony/gsm/SmsMessage/MessageClass"
-        values = JavaStaticMethod("()[Landroid/telephony/gsm/SmsMessage$MessageClass;")
-        valueOf = JavaStaticMethod("(Ljava/lang/String;)Landroid/telephony/gsm/SmsMessage$MessageClass;")
-        UNKNOWN = JavaStaticField("Landroid/telephony/gsm/SmsMessage/MessageClass;")
-        CLASS_0 = JavaStaticField("Landroid/telephony/gsm/SmsMessage/MessageClass;")
-        CLASS_1 = JavaStaticField("Landroid/telephony/gsm/SmsMessage/MessageClass;")
-        CLASS_2 = JavaStaticField("Landroid/telephony/gsm/SmsMessage/MessageClass;")
-        CLASS_3 = JavaStaticField("Landroid/telephony/gsm/SmsMessage/MessageClass;")
+    isStatusReportMessage = JavaMethod("()Z")
+    getTimestampMillis = JavaMethod("()J")
 
     class SubmitPdu(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/telephony/gsm/SmsMessage/SubmitPdu"
+        __javaclass__ = "android/telephony/gsm/SmsMessage$SubmitPdu"
         __javaconstructor__ = [("()V", False)]
         encodedMessage = JavaField("[B")
         encodedScAddress = JavaField("[B")
         toString = JavaMethod("()Ljava/lang/String;")
+
+    class MessageClass(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/telephony/gsm/SmsMessage$MessageClass"
+        CLASS_0 = JavaStaticField("Landroid/telephony/gsm/SmsMessage$MessageClass;")
+        CLASS_1 = JavaStaticField("Landroid/telephony/gsm/SmsMessage$MessageClass;")
+        CLASS_2 = JavaStaticField("Landroid/telephony/gsm/SmsMessage$MessageClass;")
+        CLASS_3 = JavaStaticField("Landroid/telephony/gsm/SmsMessage$MessageClass;")
+        UNKNOWN = JavaStaticField("Landroid/telephony/gsm/SmsMessage$MessageClass;")
+        values = JavaStaticMethod("()[Landroid/telephony/gsm/SmsMessage$MessageClass;")
+        valueOf = JavaStaticMethod("(Ljava/lang/String;)Landroid/telephony/gsm/SmsMessage$MessageClass;")
+        CLASS_0 = JavaStaticField("Landroid/telephony/gsm/SmsMessage$MessageClass;")
+        CLASS_1 = JavaStaticField("Landroid/telephony/gsm/SmsMessage$MessageClass;")
+        CLASS_2 = JavaStaticField("Landroid/telephony/gsm/SmsMessage$MessageClass;")
+        CLASS_3 = JavaStaticField("Landroid/telephony/gsm/SmsMessage$MessageClass;")
+        UNKNOWN = JavaStaticField("Landroid/telephony/gsm/SmsMessage$MessageClass;")

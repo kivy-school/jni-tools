@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["MGF1ParameterSpec"]
 
@@ -9,12 +9,12 @@ class MGF1ParameterSpec(JavaClass, metaclass=MetaJavaClass):
     SHA224 = JavaStaticField("Ljava/security/spec/MGF1ParameterSpec;")
     SHA256 = JavaStaticField("Ljava/security/spec/MGF1ParameterSpec;")
     SHA384 = JavaStaticField("Ljava/security/spec/MGF1ParameterSpec;")
+    SHA512 = JavaStaticField("Ljava/security/spec/MGF1ParameterSpec;")
+    SHA512_224 = JavaStaticField("Ljava/security/spec/MGF1ParameterSpec;")
+    SHA512_256 = JavaStaticField("Ljava/security/spec/MGF1ParameterSpec;")
     SHA3_224 = JavaStaticField("Ljava/security/spec/MGF1ParameterSpec;")
     SHA3_256 = JavaStaticField("Ljava/security/spec/MGF1ParameterSpec;")
     SHA3_384 = JavaStaticField("Ljava/security/spec/MGF1ParameterSpec;")
     SHA3_512 = JavaStaticField("Ljava/security/spec/MGF1ParameterSpec;")
-    SHA512 = JavaStaticField("Ljava/security/spec/MGF1ParameterSpec;")
-    SHA512_224 = JavaStaticField("Ljava/security/spec/MGF1ParameterSpec;")
-    SHA512_256 = JavaStaticField("Ljava/security/spec/MGF1ParameterSpec;")
-    getDigestAlgorithm = JavaMethod("()Ljava/lang/String;")
     toString = JavaMethod("()Ljava/lang/String;")
+    getDigestAlgorithm = JavaMethod("()Ljava/lang/String;")

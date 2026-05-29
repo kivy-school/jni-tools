@@ -1,21 +1,20 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Ringtone"]
 
 class Ringtone(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/media/Ringtone"
+    getAudioAttributes = JavaMethod("()Landroid/media/AudioAttributes;")
+    isLooping = JavaMethod("()Z")
+    setLooping = JavaMethod("(Z)V")
+    isHapticGeneratorEnabled = JavaMethod("()Z")
+    setHapticGeneratorEnabled = JavaMethod("(Z)Z")
+    setVolume = JavaMethod("(F)V")
     setStreamType = JavaMethod("(I)V")
     getStreamType = JavaMethod("()I")
-    setAudioAttributes = JavaMethod("(Landroid/media/AudioAttributes;)V")
-    getAudioAttributes = JavaMethod("()Landroid/media/AudioAttributes;")
-    setLooping = JavaMethod("(Z)V")
-    isLooping = JavaMethod("()Z")
-    setVolume = JavaMethod("(F)V")
-    getVolume = JavaMethod("()F")
-    setHapticGeneratorEnabled = JavaMethod("(Z)Z")
-    isHapticGeneratorEnabled = JavaMethod("()Z")
     getTitle = JavaMethod("(Landroid/content/Context;)Ljava/lang/String;")
-    play = JavaMethod("()V")
-    stop = JavaMethod("()V")
     isPlaying = JavaMethod("()Z")
-    finalize = JavaMethod("()V")
+    setAudioAttributes = JavaMethod("(Landroid/media/AudioAttributes;)V")
+    stop = JavaMethod("()V")
+    getVolume = JavaMethod("()F")
+    play = JavaMethod("()V")

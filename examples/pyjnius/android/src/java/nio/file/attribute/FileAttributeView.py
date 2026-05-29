@@ -1,6 +1,6 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["FileAttributeView"]
 
-class FileAttributeView(JavaInterface, metaclass=MetaJavaClass):
+class FileAttributeView(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/nio/file/attribute/FileAttributeView"

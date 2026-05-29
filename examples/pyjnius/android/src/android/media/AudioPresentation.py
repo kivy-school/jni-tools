@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["AudioPresentation"]
 
@@ -21,28 +21,30 @@ class AudioPresentation(JavaClass, metaclass=MetaJavaClass):
     MASTERING_NOT_INDICATED = JavaStaticField("I")
     PRESENTATION_ID_UNKNOWN = JavaStaticField("I")
     PROGRAM_ID_UNKNOWN = JavaStaticField("I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getLabels = JavaMethod("()Ljava/util/Map;")
+    getMasteringIndication = JavaMethod("()I")
     getPresentationId = JavaMethod("()I")
     getProgramId = JavaMethod("()I")
-    getLabels = JavaMethod("()Ljava/util/Map;")
-    getLocale = JavaMethod("()Ljava/util/Locale;")
-    getMasteringIndication = JavaMethod("()I")
     hasAudioDescription = JavaMethod("()Z")
-    hasSpokenSubtitles = JavaMethod("()Z")
     hasDialogueEnhancement = JavaMethod("()Z")
+    hasSpokenSubtitles = JavaMethod("()Z")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
-    hashCode = JavaMethod("()I")
     toString = JavaMethod("()Ljava/lang/String;")
-    describeContents = JavaMethod("()I")
+    hashCode = JavaMethod("()I")
+    getLocale = JavaMethod("()Ljava/util/Locale;")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
 
     class Builder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/AudioPresentation/Builder"
+        __javaclass__ = "android/media/AudioPresentation$Builder"
         __javaconstructor__ = [("(I)V", False)]
-        setProgramId = JavaMethod("(I)Landroid/media/AudioPresentation$Builder;")
-        setLocale = JavaMethod("(Landroid/icu/util/ULocale;)Landroid/media/AudioPresentation$Builder;")
-        setMasteringIndication = JavaMethod("(I)Landroid/media/AudioPresentation$Builder;")
-        setLabels = JavaMethod("(Ljava/util/Map;)Landroid/media/AudioPresentation$Builder;")
-        setHasAudioDescription = JavaMethod("(Z)Landroid/media/AudioPresentation$Builder;")
-        setHasSpokenSubtitles = JavaMethod("(Z)Landroid/media/AudioPresentation$Builder;")
         setHasDialogueEnhancement = JavaMethod("(Z)Landroid/media/AudioPresentation$Builder;")
+        setHasSpokenSubtitles = JavaMethod("(Z)Landroid/media/AudioPresentation$Builder;")
+        setLabels = JavaMethod("(Ljava/util/Map;)Landroid/media/AudioPresentation$Builder;")
+        setMasteringIndication = JavaMethod("(I)Landroid/media/AudioPresentation$Builder;")
+        setProgramId = JavaMethod("(I)Landroid/media/AudioPresentation$Builder;")
+        setHasAudioDescription = JavaMethod("(Z)Landroid/media/AudioPresentation$Builder;")
         build = JavaMethod("()Landroid/media/AudioPresentation;")
+        setLocale = JavaMethod("(Landroid/icu/util/ULocale;)Landroid/media/AudioPresentation$Builder;")

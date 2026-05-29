@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Checksum"]
 
@@ -13,7 +13,9 @@ class Checksum(JavaClass, metaclass=MetaJavaClass):
     TYPE_WHOLE_SHA1 = JavaStaticField("I")
     TYPE_WHOLE_SHA256 = JavaStaticField("I")
     TYPE_WHOLE_SHA512 = JavaStaticField("I")
-    getType = JavaMethod("()I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getValue = JavaMethod("()[B")
+    getType = JavaMethod("()I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
     describeContents = JavaMethod("()I")

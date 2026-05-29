@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["UiAutomation"]
 
@@ -12,41 +12,41 @@ class UiAutomation(JavaClass, metaclass=MetaJavaClass):
     ROTATION_FREEZE_90 = JavaStaticField("I")
     ROTATION_FREEZE_CURRENT = JavaStaticField("I")
     ROTATION_UNFREEZE = JavaStaticField("I")
-    setOnAccessibilityEventListener = JavaMethod("(Landroid/app/UiAutomation$OnAccessibilityEventListener;)V")
-    clearCache = JavaMethod("()Z")
-    adoptShellPermissionIdentity = JavaMultipleMethod([("()V", False, False), ("([Ljava/lang/String;)V", False, True)])
-    dropShellPermissionIdentity = JavaMethod("()V")
-    performGlobalAction = JavaMethod("(I)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
     findFocus = JavaMethod("(I)Landroid/view/accessibility/AccessibilityNodeInfo;")
-    getServiceInfo = JavaMethod("()Landroid/accessibilityservice/AccessibilityServiceInfo;")
-    setServiceInfo = JavaMethod("(Landroid/accessibilityservice/AccessibilityServiceInfo;)V")
-    getWindows = JavaMethod("()Ljava/util/List;")
-    getWindowsOnAllDisplays = JavaMethod("()Landroid/util/SparseArray;")
-    getRootInActiveWindow = JavaMethod("()Landroid/view/accessibility/AccessibilityNodeInfo;")
-    injectInputEvent = JavaMethod("(Landroid/view/InputEvent;Z)Z")
-    setAnimationScale = JavaMethod("(F)V")
     setRotation = JavaMethod("(I)Z")
-    executeAndWaitForEvent = JavaMethod("(Ljava/lang/Runnable;Landroid/app/UiAutomation$AccessibilityEventFilter;J)Landroid/view/accessibility/AccessibilityEvent;")
-    waitForIdle = JavaMethod("(JJ)V")
-    takeScreenshot = JavaMultipleMethod([("()Landroid/graphics/Bitmap;", False, False), ("(Landroid/view/Window;)Landroid/graphics/Bitmap;", False, False)])
-    setRunAsMonkey = JavaMethod("(Z)V")
-    clearWindowContentFrameStats = JavaMethod("(I)Z")
-    getWindowContentFrameStats = JavaMethod("(I)Landroid/view/WindowContentFrameStats;")
+    getServiceInfo = JavaMethod("()Landroid/accessibilityservice/AccessibilityServiceInfo;")
+    clearCache = JavaMethod("()Z")
+    injectInputEvent = JavaMethod("(Landroid/view/InputEvent;Z)Z")
+    adoptShellPermissionIdentity = JavaMultipleMethod([("()V", False, False), ("([Ljava/lang/String;)V", False, True)])
     clearWindowAnimationFrameStats = JavaMethod("()V")
-    getWindowAnimationFrameStats = JavaMethod("()Landroid/view/WindowAnimationFrameStats;")
-    grantRuntimePermission = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)V")
-    grantRuntimePermissionAsUser = JavaMethod("(Ljava/lang/String;Ljava/lang/String;Landroid/os/UserHandle;)V")
+    clearWindowContentFrameStats = JavaMethod("(I)Z")
+    dropShellPermissionIdentity = JavaMethod("()V")
+    executeAndWaitForEvent = JavaMethod("(Ljava/lang/Runnable;Landroid/app/UiAutomation$AccessibilityEventFilter;J)Landroid/view/accessibility/AccessibilityEvent;")
+    performGlobalAction = JavaMethod("(I)Z")
     revokeRuntimePermission = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)V")
     revokeRuntimePermissionAsUser = JavaMethod("(Ljava/lang/String;Ljava/lang/String;Landroid/os/UserHandle;)V")
+    setOnAccessibilityEventListener = JavaMethod("(Landroid/app/UiAutomation$OnAccessibilityEventListener;)V")
+    setRunAsMonkey = JavaMethod("(Z)V")
+    waitForIdle = JavaMethod("(JJ)V")
+    takeScreenshot = JavaMultipleMethod([("(Landroid/view/Window;)Landroid/graphics/Bitmap;", False, False), ("()Landroid/graphics/Bitmap;", False, False)])
+    getWindows = JavaMethod("()Ljava/util/List;")
+    setServiceInfo = JavaMethod("(Landroid/accessibilityservice/AccessibilityServiceInfo;)V")
+    getWindowAnimationFrameStats = JavaMethod("()Landroid/view/WindowAnimationFrameStats;")
+    getWindowContentFrameStats = JavaMethod("(I)Landroid/view/WindowContentFrameStats;")
+    getWindowsOnAllDisplays = JavaMethod("()Landroid/util/SparseArray;")
+    grantRuntimePermission = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)V")
+    grantRuntimePermissionAsUser = JavaMethod("(Ljava/lang/String;Ljava/lang/String;Landroid/os/UserHandle;)V")
+    setAnimationScale = JavaMethod("(F)V")
     executeShellCommand = JavaMethod("(Ljava/lang/String;)Landroid/os/ParcelFileDescriptor;")
     executeShellCommandRw = JavaMethod("(Ljava/lang/String;)[Landroid/os/ParcelFileDescriptor;")
     executeShellCommandRwe = JavaMethod("(Ljava/lang/String;)[Landroid/os/ParcelFileDescriptor;")
-    toString = JavaMethod("()Ljava/lang/String;")
+    getRootInActiveWindow = JavaMethod("()Landroid/view/accessibility/AccessibilityNodeInfo;")
 
-    class AccessibilityEventFilter(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/app/UiAutomation/AccessibilityEventFilter"
-        accept = JavaMethod("(Landroid/view/accessibility/AccessibilityEvent;)Z")
-
-    class OnAccessibilityEventListener(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/app/UiAutomation/OnAccessibilityEventListener"
+    class OnAccessibilityEventListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/app/UiAutomation$OnAccessibilityEventListener"
         onAccessibilityEvent = JavaMethod("(Landroid/view/accessibility/AccessibilityEvent;)V")
+
+    class AccessibilityEventFilter(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/app/UiAutomation$AccessibilityEventFilter"
+        accept = JavaMethod("(Landroid/view/accessibility/AccessibilityEvent;)Z")

@@ -1,10 +1,10 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ScanResult"]
 
 class ScanResult(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/net/wifi/ScanResult"
-    __javaconstructor__ = [("(Landroid/net/wifi/ScanResult;)V", False), ("()V", False)]
+    __javaconstructor__ = [("()V", False), ("(Landroid/net/wifi/ScanResult;)V", False)]
     BSSID = JavaField("Ljava/lang/String;")
     CHANNEL_WIDTH_160MHZ = JavaStaticField("I")
     CHANNEL_WIDTH_20MHZ = JavaStaticField("I")
@@ -40,31 +40,37 @@ class ScanResult(JavaClass, metaclass=MetaJavaClass):
     operatorFriendlyName = JavaField("Ljava/lang/CharSequence;")
     timestamp = JavaField("J")
     venueName = JavaField("Ljava/lang/CharSequence;")
-    getWifiSsid = JavaMethod("()Landroid/net/wifi/WifiSsid;")
-    getApMldMacAddress = JavaMethod("()Landroid/net/MacAddress;")
-    getApMloLinkId = JavaMethod("()I")
-    getAffiliatedMloLinks = JavaMethod("()Ljava/util/List;")
-    getWifiStandard = JavaMethod("()I")
-    is80211mcResponder = JavaMethod("()Z")
-    is80211azNtbResponder = JavaMethod("()Z")
-    isPasspointNetwork = JavaMethod("()Z")
-    isTwtResponder = JavaMethod("()Z")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     convertChannelToFrequencyMhzIfSupported = JavaStaticMethod("(II)I")
     convertFrequencyMhzToChannelIfSupported = JavaStaticMethod("(I)I")
+    getAffiliatedMloLinks = JavaMethod("()Ljava/util/List;")
+    getApMldMacAddress = JavaMethod("()Landroid/net/MacAddress;")
+    getApMloLinkId = JavaMethod("()I")
     getInformationElements = JavaMethod("()Ljava/util/List;")
     getSecurityTypes = JavaMethod("()[I")
+    getWifiSsid = JavaMethod("()Landroid/net/wifi/WifiSsid;")
+    getWifiStandard = JavaMethod("()I")
+    is80211azNtbResponder = JavaMethod("()Z")
+    is80211mcResponder = JavaMethod("()Z")
+    isPasspointNetwork = JavaMethod("()Z")
+    isRangingFrameProtectionRequired = JavaMethod("()Z")
+    isSecureHeLtfSupported = JavaMethod("()Z")
+    isTwtResponder = JavaMethod("()Z")
     toString = JavaMethod("()Ljava/lang/String;")
-    describeContents = JavaMethod("()I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
 
     class InformationElement(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/net/wifi/ScanResult/InformationElement"
-        __javaconstructor__ = [("(II[B)V", False), ("(Landroid/net/wifi/ScanResult$InformationElement;)V", False)]
+        __javaclass__ = "android/net/wifi/ScanResult$InformationElement"
+        __javaconstructor__ = [("(Landroid/net/wifi/ScanResult$InformationElement;)V", False), ("(II[B)V", False)]
         CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
-        getId = JavaMethod("()I")
+        CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+        PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
         getIdExt = JavaMethod("()I")
-        getBytes = JavaMethod("()Ljava/nio/ByteBuffer;")
-        describeContents = JavaMethod("()I")
-        writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
         equals = JavaMethod("(Ljava/lang/Object;)Z")
         hashCode = JavaMethod("()I")
+        getBytes = JavaMethod("()Ljava/nio/ByteBuffer;")
+        getId = JavaMethod("()I")
+        writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+        describeContents = JavaMethod("()I")

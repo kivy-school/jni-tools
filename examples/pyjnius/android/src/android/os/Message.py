@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Message"]
 
@@ -12,19 +12,21 @@ class Message(JavaClass, metaclass=MetaJavaClass):
     replyTo = JavaField("Landroid/os/Messenger;")
     sendingUid = JavaField("I")
     what = JavaField("I")
-    obtain = JavaMultipleMethod([("()Landroid/os/Message;", True, False), ("(Landroid/os/Message;)Landroid/os/Message;", True, False), ("(Landroid/os/Handler;)Landroid/os/Message;", True, False), ("(Landroid/os/Handler;Ljava/lang/Runnable;)Landroid/os/Message;", True, False), ("(Landroid/os/Handler;I)Landroid/os/Message;", True, False), ("(Landroid/os/Handler;ILjava/lang/Object;)Landroid/os/Message;", True, False), ("(Landroid/os/Handler;III)Landroid/os/Message;", True, False), ("(Landroid/os/Handler;IIILjava/lang/Object;)Landroid/os/Message;", True, False)])
-    recycle = JavaMethod("()V")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     copyFrom = JavaMethod("(Landroid/os/Message;)V")
     getWhen = JavaMethod("()J")
-    setTarget = JavaMethod("(Landroid/os/Handler;)V")
-    getTarget = JavaMethod("()Landroid/os/Handler;")
-    getCallback = JavaMethod("()Ljava/lang/Runnable;")
-    getData = JavaMethod("()Landroid/os/Bundle;")
-    peekData = JavaMethod("()Landroid/os/Bundle;")
-    setData = JavaMethod("(Landroid/os/Bundle;)V")
-    sendToTarget = JavaMethod("()V")
     isAsynchronous = JavaMethod("()Z")
+    peekData = JavaMethod("()Landroid/os/Bundle;")
+    sendToTarget = JavaMethod("()V")
     setAsynchronous = JavaMethod("(Z)V")
     toString = JavaMethod("()Ljava/lang/String;")
-    describeContents = JavaMethod("()I")
+    getTarget = JavaMethod("()Landroid/os/Handler;")
+    setTarget = JavaMethod("(Landroid/os/Handler;)V")
+    setData = JavaMethod("(Landroid/os/Bundle;)V")
+    getData = JavaMethod("()Landroid/os/Bundle;")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
+    recycle = JavaMethod("()V")
+    obtain = JavaMultipleMethod([("(Landroid/os/Handler;IIILjava/lang/Object;)Landroid/os/Message;", True, False), ("(Landroid/os/Handler;ILjava/lang/Object;)Landroid/os/Message;", True, False), ("(Landroid/os/Handler;III)Landroid/os/Message;", True, False), ("(Landroid/os/Handler;I)Landroid/os/Message;", True, False), ("(Landroid/os/Handler;)Landroid/os/Message;", True, False), ("()Landroid/os/Message;", True, False), ("(Landroid/os/Message;)Landroid/os/Message;", True, False), ("(Landroid/os/Handler;Ljava/lang/Runnable;)Landroid/os/Message;", True, False)])
+    getCallback = JavaMethod("()Ljava/lang/Runnable;")

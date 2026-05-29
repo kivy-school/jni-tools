@@ -10,6 +10,37 @@ class VoicemailContract:
     EXTRA_SELF_CHANGE: ClassVar[str]
     PARAM_KEY_SOURCE_PACKAGE: ClassVar[str]
 
+    class Voicemails:
+        ARCHIVED: ClassVar[str]
+        BACKED_UP: ClassVar[str]
+        CONTENT_URI: ClassVar[Uri]
+        DATE: ClassVar[str]
+        DELETED: ClassVar[str]
+        DIRTY: ClassVar[str]
+        DIRTY_RETAIN: ClassVar[int]
+        DIR_TYPE: ClassVar[str]
+        DURATION: ClassVar[str]
+        HAS_CONTENT: ClassVar[str]
+        IS_OMTP_VOICEMAIL: ClassVar[str]
+        IS_READ: ClassVar[str]
+        ITEM_TYPE: ClassVar[str]
+        LAST_MODIFIED: ClassVar[str]
+        MIME_TYPE: ClassVar[str]
+        NEW: ClassVar[str]
+        NUMBER: ClassVar[str]
+        PHONE_ACCOUNT_COMPONENT_NAME: ClassVar[str]
+        PHONE_ACCOUNT_ID: ClassVar[str]
+        RESTORED: ClassVar[str]
+        SOURCE_DATA: ClassVar[str]
+        SOURCE_PACKAGE: ClassVar[str]
+        TRANSCRIPTION: ClassVar[str]
+        _COUNT: ClassVar[str]
+        _ID: ClassVar[str]
+        DISPLAY_NAME: ClassVar[str]
+        SIZE: ClassVar[str]
+        @staticmethod
+        def buildSourceUri(p0: str) -> Uri: ...
+
     class Status:
         CONFIGURATION_STATE: ClassVar[str]
         CONFIGURATION_STATE_CAN_BE_CONFIGURED: ClassVar[int]
@@ -42,32 +73,7 @@ class VoicemailContract:
         SOURCE_PACKAGE: ClassVar[str]
         SOURCE_TYPE: ClassVar[str]
         VOICEMAIL_ACCESS_URI: ClassVar[str]
+        _COUNT: ClassVar[str]
+        _ID: ClassVar[str]
         @staticmethod
-        def buildSourceUri(arg0: str) -> Uri: ...
-
-    class Voicemails:
-        ARCHIVED: ClassVar[str]
-        BACKED_UP: ClassVar[str]
-        CONTENT_URI: ClassVar[Uri]
-        DATE: ClassVar[str]
-        DELETED: ClassVar[str]
-        DIRTY: ClassVar[str]
-        DIRTY_RETAIN: ClassVar[int]
-        DIR_TYPE: ClassVar[str]
-        DURATION: ClassVar[str]
-        HAS_CONTENT: ClassVar[str]
-        IS_OMTP_VOICEMAIL: ClassVar[str]
-        IS_READ: ClassVar[str]
-        ITEM_TYPE: ClassVar[str]
-        LAST_MODIFIED: ClassVar[str]
-        MIME_TYPE: ClassVar[str]
-        NEW: ClassVar[str]
-        NUMBER: ClassVar[str]
-        PHONE_ACCOUNT_COMPONENT_NAME: ClassVar[str]
-        PHONE_ACCOUNT_ID: ClassVar[str]
-        RESTORED: ClassVar[str]
-        SOURCE_DATA: ClassVar[str]
-        SOURCE_PACKAGE: ClassVar[str]
-        TRANSCRIPTION: ClassVar[str]
-        @staticmethod
-        def buildSourceUri(arg0: str) -> Uri: ...
+        def buildSourceUri(p0: str) -> Uri: ...

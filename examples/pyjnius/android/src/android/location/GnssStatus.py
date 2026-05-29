@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["GnssStatus"]
 
@@ -13,35 +13,37 @@ class GnssStatus(JavaClass, metaclass=MetaJavaClass):
     CONSTELLATION_SBAS = JavaStaticField("I")
     CONSTELLATION_UNKNOWN = JavaStaticField("I")
     CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
-    getSatelliteCount = JavaMethod("()I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getConstellationType = JavaMethod("(I)I")
-    getSvid = JavaMethod("(I)I")
+    getCarrierFrequencyHz = JavaMethod("(I)F")
+    getAzimuthDegrees = JavaMethod("(I)F")
+    getBasebandCn0DbHz = JavaMethod("(I)F")
     getCn0DbHz = JavaMethod("(I)F")
     getElevationDegrees = JavaMethod("(I)F")
-    getAzimuthDegrees = JavaMethod("(I)F")
-    hasEphemerisData = JavaMethod("(I)Z")
+    getSatelliteCount = JavaMethod("()I")
+    getSvid = JavaMethod("(I)I")
     hasAlmanacData = JavaMethod("(I)Z")
-    usedInFix = JavaMethod("(I)Z")
-    hasCarrierFrequencyHz = JavaMethod("(I)Z")
-    getCarrierFrequencyHz = JavaMethod("(I)F")
     hasBasebandCn0DbHz = JavaMethod("(I)Z")
-    getBasebandCn0DbHz = JavaMethod("(I)F")
+    hasCarrierFrequencyHz = JavaMethod("(I)Z")
+    hasEphemerisData = JavaMethod("(I)Z")
+    usedInFix = JavaMethod("(I)Z")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
     hashCode = JavaMethod("()I")
-    describeContents = JavaMethod("()I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
-
-    class Builder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/location/GnssStatus/Builder"
-        __javaconstructor__ = [("()V", False)]
-        addSatellite = JavaMethod("(IIFFFZZZZFZF)Landroid/location/GnssStatus$Builder;")
-        clearSatellites = JavaMethod("()Landroid/location/GnssStatus$Builder;")
-        build = JavaMethod("()Landroid/location/GnssStatus;")
+    describeContents = JavaMethod("()I")
 
     class Callback(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/location/GnssStatus/Callback"
+        __javaclass__ = "android/location/GnssStatus$Callback"
         __javaconstructor__ = [("()V", False)]
         onStarted = JavaMethod("()V")
         onStopped = JavaMethod("()V")
         onFirstFix = JavaMethod("(I)V")
         onSatelliteStatusChanged = JavaMethod("(Landroid/location/GnssStatus;)V")
+
+    class Builder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/location/GnssStatus$Builder"
+        __javaconstructor__ = [("()V", False)]
+        build = JavaMethod("()Landroid/location/GnssStatus;")
+        addSatellite = JavaMethod("(IIFFFZZZZFZF)Landroid/location/GnssStatus$Builder;")
+        clearSatellites = JavaMethod("()Landroid/location/GnssStatus$Builder;")

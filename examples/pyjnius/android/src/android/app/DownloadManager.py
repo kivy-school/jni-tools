@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["DownloadManager"]
 
@@ -41,24 +41,18 @@ class DownloadManager(JavaClass, metaclass=MetaJavaClass):
     STATUS_PENDING = JavaStaticField("I")
     STATUS_RUNNING = JavaStaticField("I")
     STATUS_SUCCESSFUL = JavaStaticField("I")
-    enqueue = JavaMethod("(Landroid/app/DownloadManager$Request;)J")
-    remove = JavaMethod("([J)I", varargs=True)
-    query = JavaMethod("(Landroid/app/DownloadManager$Query;)Landroid/database/Cursor;")
-    openDownloadedFile = JavaMethod("(J)Landroid/os/ParcelFileDescriptor;")
-    getUriForDownloadedFile = JavaMethod("(J)Landroid/net/Uri;")
-    getMimeTypeForDownloadedFile = JavaMethod("(J)Ljava/lang/String;")
+    addCompletedDownload = JavaMultipleMethod([("(Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;Ljava/lang/String;JZLandroid/net/Uri;Landroid/net/Uri;)J", False, False), ("(Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;Ljava/lang/String;JZ)J", False, False)])
     getMaxBytesOverMobile = JavaStaticMethod("(Landroid/content/Context;)Ljava/lang/Long;")
+    getMimeTypeForDownloadedFile = JavaMethod("(J)Ljava/lang/String;")
     getRecommendedMaxBytesOverMobile = JavaStaticMethod("(Landroid/content/Context;)Ljava/lang/Long;")
-    addCompletedDownload = JavaMultipleMethod([("(Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;Ljava/lang/String;JZ)J", False, False), ("(Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;Ljava/lang/String;JZLandroid/net/Uri;Landroid/net/Uri;)J", False, False)])
-
-    class Query(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/app/DownloadManager/Query"
-        __javaconstructor__ = [("()V", False)]
-        setFilterById = JavaMethod("([J)Landroid/app/DownloadManager$Query;", varargs=True)
-        setFilterByStatus = JavaMethod("(I)Landroid/app/DownloadManager$Query;")
+    getUriForDownloadedFile = JavaMethod("(J)Landroid/net/Uri;")
+    openDownloadedFile = JavaMethod("(J)Landroid/os/ParcelFileDescriptor;")
+    remove = JavaMethod("([J)I", varargs=True)
+    enqueue = JavaMethod("(Landroid/app/DownloadManager$Request;)J")
+    query = JavaMethod("(Landroid/app/DownloadManager$Query;)Landroid/database/Cursor;")
 
     class Request(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/app/DownloadManager/Request"
+        __javaclass__ = "android/app/DownloadManager$Request"
         __javaconstructor__ = [("(Landroid/net/Uri;)V", False)]
         NETWORK_MOBILE = JavaStaticField("I")
         NETWORK_WIFI = JavaStaticField("I")
@@ -66,19 +60,25 @@ class DownloadManager(JavaClass, metaclass=MetaJavaClass):
         VISIBILITY_VISIBLE = JavaStaticField("I")
         VISIBILITY_VISIBLE_NOTIFY_COMPLETED = JavaStaticField("I")
         VISIBILITY_VISIBLE_NOTIFY_ONLY_COMPLETION = JavaStaticField("I")
-        setDestinationUri = JavaMethod("(Landroid/net/Uri;)Landroid/app/DownloadManager$Request;")
-        setDestinationInExternalFilesDir = JavaMethod("(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;)Landroid/app/DownloadManager$Request;")
-        setDestinationInExternalPublicDir = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)Landroid/app/DownloadManager$Request;")
-        allowScanningByMediaScanner = JavaMethod("()V")
-        addRequestHeader = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)Landroid/app/DownloadManager$Request;")
+        setRequiresDeviceIdle = JavaMethod("(Z)Landroid/app/DownloadManager$Request;")
+        setMimeType = JavaMethod("(Ljava/lang/String;)Landroid/app/DownloadManager$Request;")
         setTitle = JavaMethod("(Ljava/lang/CharSequence;)Landroid/app/DownloadManager$Request;")
         setDescription = JavaMethod("(Ljava/lang/CharSequence;)Landroid/app/DownloadManager$Request;")
-        setMimeType = JavaMethod("(Ljava/lang/String;)Landroid/app/DownloadManager$Request;")
-        setShowRunningNotification = JavaMethod("(Z)Landroid/app/DownloadManager$Request;")
-        setNotificationVisibility = JavaMethod("(I)Landroid/app/DownloadManager$Request;")
-        setAllowedNetworkTypes = JavaMethod("(I)Landroid/app/DownloadManager$Request;")
-        setAllowedOverRoaming = JavaMethod("(Z)Landroid/app/DownloadManager$Request;")
-        setAllowedOverMetered = JavaMethod("(Z)Landroid/app/DownloadManager$Request;")
         setRequiresCharging = JavaMethod("(Z)Landroid/app/DownloadManager$Request;")
-        setRequiresDeviceIdle = JavaMethod("(Z)Landroid/app/DownloadManager$Request;")
+        addRequestHeader = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)Landroid/app/DownloadManager$Request;")
+        allowScanningByMediaScanner = JavaMethod("()V")
+        setAllowedNetworkTypes = JavaMethod("(I)Landroid/app/DownloadManager$Request;")
+        setAllowedOverMetered = JavaMethod("(Z)Landroid/app/DownloadManager$Request;")
+        setAllowedOverRoaming = JavaMethod("(Z)Landroid/app/DownloadManager$Request;")
+        setDestinationInExternalFilesDir = JavaMethod("(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;)Landroid/app/DownloadManager$Request;")
+        setDestinationInExternalPublicDir = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)Landroid/app/DownloadManager$Request;")
+        setDestinationUri = JavaMethod("(Landroid/net/Uri;)Landroid/app/DownloadManager$Request;")
+        setNotificationVisibility = JavaMethod("(I)Landroid/app/DownloadManager$Request;")
+        setShowRunningNotification = JavaMethod("(Z)Landroid/app/DownloadManager$Request;")
         setVisibleInDownloadsUi = JavaMethod("(Z)Landroid/app/DownloadManager$Request;")
+
+    class Query(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/app/DownloadManager$Query"
+        __javaconstructor__ = [("()V", False)]
+        setFilterById = JavaMethod("([J)Landroid/app/DownloadManager$Query;", varargs=True)
+        setFilterByStatus = JavaMethod("(I)Landroid/app/DownloadManager$Query;")

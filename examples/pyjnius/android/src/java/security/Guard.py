@@ -1,7 +1,7 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Guard"]
 
-class Guard(JavaInterface, metaclass=MetaJavaClass):
+class Guard(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/security/Guard"
     checkGuard = JavaMethod("(Ljava/lang/Object;)V")

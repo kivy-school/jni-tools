@@ -4,4 +4,4 @@ from android.hardware.Sensor import Sensor
 class TriggerEvent:
     sensor: Sensor
     timestamp: int
-    values: list[float]
+    values: Any

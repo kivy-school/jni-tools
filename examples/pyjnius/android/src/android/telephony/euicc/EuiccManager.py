@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["EuiccManager"]
 
@@ -48,14 +48,14 @@ class EuiccManager(JavaClass, metaclass=MetaJavaClass):
     OPERATION_SMDX_SUBJECT_REASON_CODE = JavaStaticField("I")
     OPERATION_SWITCH = JavaStaticField("I")
     OPERATION_SYSTEM = JavaStaticField("I")
-    createForCardId = JavaMethod("(I)Landroid/telephony/euicc/EuiccManager;")
-    isEnabled = JavaMethod("()Z")
     getEid = JavaMethod("()Ljava/lang/String;")
-    getAvailableMemoryInBytes = JavaMethod("()J")
-    downloadSubscription = JavaMethod("(Landroid/telephony/euicc/DownloadableSubscription;ZLandroid/app/PendingIntent;)V")
-    startResolutionActivity = JavaMethod("(Landroid/app/Activity;ILandroid/content/Intent;Landroid/app/PendingIntent;)V")
-    getEuiccInfo = JavaMethod("()Landroid/telephony/euicc/EuiccInfo;")
+    createForCardId = JavaMethod("(I)Landroid/telephony/euicc/EuiccManager;")
     deleteSubscription = JavaMethod("(ILandroid/app/PendingIntent;)V")
-    switchToSubscription = JavaMultipleMethod([("(ILandroid/app/PendingIntent;)V", False, False), ("(IILandroid/app/PendingIntent;)V", False, False)])
-    updateSubscriptionNickname = JavaMethod("(ILjava/lang/String;Landroid/app/PendingIntent;)V")
+    downloadSubscription = JavaMethod("(Landroid/telephony/euicc/DownloadableSubscription;ZLandroid/app/PendingIntent;)V")
+    getAvailableMemoryInBytes = JavaMethod("()J")
+    getEuiccInfo = JavaMethod("()Landroid/telephony/euicc/EuiccInfo;")
     isSimPortAvailable = JavaMethod("(I)Z")
+    startResolutionActivity = JavaMethod("(Landroid/app/Activity;ILandroid/content/Intent;Landroid/app/PendingIntent;)V")
+    updateSubscriptionNickname = JavaMethod("(ILjava/lang/String;Landroid/app/PendingIntent;)V")
+    isEnabled = JavaMethod("()Z")
+    switchToSubscription = JavaMultipleMethod([("(IILandroid/app/PendingIntent;)V", False, False), ("(ILandroid/app/PendingIntent;)V", False, False)])

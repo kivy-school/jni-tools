@@ -1,23 +1,23 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Matrix"]
 
 class Matrix(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/opengl/Matrix"
     __javaconstructor__ = [("()V", False)]
-    multiplyMM = JavaStaticMethod("([FI[FI[FI)V")
+    frustumM = JavaStaticMethod("([FIFFFFFF)V")
     multiplyMV = JavaStaticMethod("([FI[FI[FI)V")
-    transposeM = JavaStaticMethod("([FI[FI)V")
     invertM = JavaStaticMethod("([FI[FI)Z")
     orthoM = JavaStaticMethod("([FIFFFFFF)V")
-    frustumM = JavaStaticMethod("([FIFFFFFF)V")
     perspectiveM = JavaStaticMethod("([FIFFFF)V")
-    length = JavaStaticMethod("(FFF)F")
-    setIdentityM = JavaStaticMethod("([FI)V")
+    rotateM = JavaMultipleMethod([("([FIFFFF)V", True, False), ("([FI[FIFFFF)V", True, False)])
     scaleM = JavaMultipleMethod([("([FI[FIFFF)V", True, False), ("([FIFFF)V", True, False)])
-    translateM = JavaMultipleMethod([("([FI[FIFFF)V", True, False), ("([FIFFF)V", True, False)])
-    rotateM = JavaMultipleMethod([("([FI[FIFFFF)V", True, False), ("([FIFFFF)V", True, False)])
-    setRotateM = JavaStaticMethod("([FIFFFF)V")
+    multiplyMM = JavaStaticMethod("([FI[FI[FI)V")
+    setIdentityM = JavaStaticMethod("([FI)V")
+    setLookAtM = JavaStaticMethod("([FIFFFFFFFFF)V")
     setRotateEulerM = JavaStaticMethod("([FIFFF)V")
     setRotateEulerM2 = JavaStaticMethod("([FIFFF)V")
-    setLookAtM = JavaStaticMethod("([FIFFFFFFFFF)V")
+    setRotateM = JavaStaticMethod("([FIFFFF)V")
+    translateM = JavaMultipleMethod([("([FIFFF)V", True, False), ("([FI[FIFFF)V", True, False)])
+    transposeM = JavaStaticMethod("([FI[FI)V")
+    length = JavaStaticMethod("(FFF)F")

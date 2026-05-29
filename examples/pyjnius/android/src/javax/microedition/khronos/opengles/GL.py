@@ -1,6 +1,6 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["GL"]
 
-class GL(JavaInterface, metaclass=MetaJavaClass):
+class GL(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "javax/microedition/khronos/opengles/GL"

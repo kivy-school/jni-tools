@@ -1,10 +1,10 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ClipDescription"]
 
 class ClipDescription(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/content/ClipDescription"
-    __javaconstructor__ = [("(Ljava/lang/CharSequence;[Ljava/lang/String;)V", False), ("(Landroid/content/ClipDescription;)V", False)]
+    __javaconstructor__ = [("(Landroid/content/ClipDescription;)V", False), ("(Ljava/lang/CharSequence;[Ljava/lang/String;)V", False)]
     CLASSIFICATION_COMPLETE = JavaStaticField("I")
     CLASSIFICATION_NOT_COMPLETE = JavaStaticField("I")
     CLASSIFICATION_NOT_PERFORMED = JavaStaticField("I")
@@ -16,18 +16,20 @@ class ClipDescription(JavaClass, metaclass=MetaJavaClass):
     MIMETYPE_TEXT_PLAIN = JavaStaticField("Ljava/lang/String;")
     MIMETYPE_TEXT_URILIST = JavaStaticField("Ljava/lang/String;")
     MIMETYPE_UNKNOWN = JavaStaticField("Ljava/lang/String;")
-    compareMimeTypes = JavaStaticMethod("(Ljava/lang/String;Ljava/lang/String;)Z")
-    getTimestamp = JavaMethod("()J")
-    getLabel = JavaMethod("()Ljava/lang/CharSequence;")
-    hasMimeType = JavaMethod("(Ljava/lang/String;)Z")
-    filterMimeTypes = JavaMethod("(Ljava/lang/String;)[Ljava/lang/String;")
-    getMimeTypeCount = JavaMethod("()I")
-    getMimeType = JavaMethod("(I)Ljava/lang/String;")
-    getExtras = JavaMethod("()Landroid/os/PersistableBundle;")
-    setExtras = JavaMethod("(Landroid/os/PersistableBundle;)V")
-    isStyledText = JavaMethod("()Z")
-    getConfidenceScore = JavaMethod("(Ljava/lang/String;)F")
-    getClassificationStatus = JavaMethod("()I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     toString = JavaMethod("()Ljava/lang/String;")
-    describeContents = JavaMethod("()I")
+    getLabel = JavaMethod("()Ljava/lang/CharSequence;")
+    setExtras = JavaMethod("(Landroid/os/PersistableBundle;)V")
+    getExtras = JavaMethod("()Landroid/os/PersistableBundle;")
+    getTimestamp = JavaMethod("()J")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
+    compareMimeTypes = JavaStaticMethod("(Ljava/lang/String;Ljava/lang/String;)Z")
+    filterMimeTypes = JavaMethod("(Ljava/lang/String;)[Ljava/lang/String;")
+    getClassificationStatus = JavaMethod("()I")
+    getConfidenceScore = JavaMethod("(Ljava/lang/String;)F")
+    getMimeType = JavaMethod("(I)Ljava/lang/String;")
+    getMimeTypeCount = JavaMethod("()I")
+    hasMimeType = JavaMethod("(Ljava/lang/String;)Z")
+    isStyledText = JavaMethod("()Z")

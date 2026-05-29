@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Voice"]
 
@@ -16,14 +16,16 @@ class Voice(JavaClass, metaclass=MetaJavaClass):
     QUALITY_NORMAL = JavaStaticField("I")
     QUALITY_VERY_HIGH = JavaStaticField("I")
     QUALITY_VERY_LOW = JavaStaticField("I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
-    describeContents = JavaMethod("()I")
-    getLocale = JavaMethod("()Ljava/util/Locale;")
-    getQuality = JavaMethod("()I")
-    getLatency = JavaMethod("()I")
-    isNetworkConnectionRequired = JavaMethod("()Z")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getName = JavaMethod("()Ljava/lang/String;")
-    getFeatures = JavaMethod("()Ljava/util/Set;")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
     toString = JavaMethod("()Ljava/lang/String;")
     hashCode = JavaMethod("()I")
-    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    getQuality = JavaMethod("()I")
+    getLatency = JavaMethod("()I")
+    getLocale = JavaMethod("()Ljava/util/Locale;")
+    isNetworkConnectionRequired = JavaMethod("()Z")
+    getFeatures = JavaMethod("()Ljava/util/Set;")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

@@ -1,11 +1,11 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ObjectInput"]
 
-class ObjectInput(JavaInterface, metaclass=MetaJavaClass):
+class ObjectInput(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/io/ObjectInput"
+    close = JavaMethod("()V")
     readObject = JavaMethod("()Ljava/lang/Object;")
-    read = JavaMultipleMethod([("()I", False, False), ("([B)I", False, False), ("([BII)I", False, False)])
+    read = JavaMultipleMethod([("([BII)I", False, False), ("()I", False, False), ("([B)I", False, False)])
     skip = JavaMethod("(J)J")
     available = JavaMethod("()I")
-    close = JavaMethod("()V")

@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["AdResponse"]
 
@@ -11,8 +11,10 @@ class AdResponse(JavaClass, metaclass=MetaJavaClass):
     RESPONSE_TYPE_FINISHED = JavaStaticField("I")
     RESPONSE_TYPE_PLAYING = JavaStaticField("I")
     RESPONSE_TYPE_STOPPED = JavaStaticField("I")
-    getId = JavaMethod("()I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getResponseType = JavaMethod("()I")
     getElapsedTimeMillis = JavaMethod("()J")
-    describeContents = JavaMethod("()I")
+    getId = JavaMethod("()I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

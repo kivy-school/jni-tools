@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["EditingEndedEvent"]
 
@@ -37,32 +37,34 @@ class EditingEndedEvent(JavaClass, metaclass=MetaJavaClass):
     OPERATION_TYPE_VIDEO_TRANSMUX = JavaStaticField("J")
     PROGRESS_PERCENT_UNKNOWN = JavaStaticField("I")
     TIME_SINCE_CREATED_UNKNOWN = JavaStaticField("I")
-    getFinalState = JavaMethod("()I")
-    getFinalProgressPercent = JavaMethod("()F")
-    getErrorCode = JavaMethod("()I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getMetricsBundle = JavaMethod("()Landroid/os/Bundle;")
     getTimeSinceCreatedMillis = JavaMethod("()J")
-    getExporterName = JavaMethod("()Ljava/lang/String;")
+    getFinalState = JavaMethod("()I")
+    getOperationTypes = JavaMethod("()J")
     getMuxerName = JavaMethod("()Ljava/lang/String;")
+    getExporterName = JavaMethod("()Ljava/lang/String;")
+    getFinalProgressPercent = JavaMethod("()F")
     getInputMediaItemInfos = JavaMethod("()Ljava/util/List;")
     getOutputMediaItemInfo = JavaMethod("()Landroid/media/metrics/MediaItemInfo;")
-    getOperationTypes = JavaMethod("()J")
-    getMetricsBundle = JavaMethod("()Landroid/os/Bundle;")
-    toString = JavaMethod("()Ljava/lang/String;")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
     hashCode = JavaMethod("()I")
+    getErrorCode = JavaMethod("()I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
     describeContents = JavaMethod("()I")
 
     class Builder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/metrics/EditingEndedEvent/Builder"
+        __javaclass__ = "android/media/metrics/EditingEndedEvent$Builder"
         __javaconstructor__ = [("(I)V", False)]
-        setFinalProgressPercent = JavaMethod("(F)Landroid/media/metrics/EditingEndedEvent$Builder;")
-        setTimeSinceCreatedMillis = JavaMethod("(J)Landroid/media/metrics/EditingEndedEvent$Builder;")
-        setExporterName = JavaMethod("(Ljava/lang/String;)Landroid/media/metrics/EditingEndedEvent$Builder;")
-        setMuxerName = JavaMethod("(Ljava/lang/String;)Landroid/media/metrics/EditingEndedEvent$Builder;")
         setErrorCode = JavaMethod("(I)Landroid/media/metrics/EditingEndedEvent$Builder;")
-        addInputMediaItemInfo = JavaMethod("(Landroid/media/metrics/MediaItemInfo;)Landroid/media/metrics/EditingEndedEvent$Builder;")
-        setOutputMediaItemInfo = JavaMethod("(Landroid/media/metrics/MediaItemInfo;)Landroid/media/metrics/EditingEndedEvent$Builder;")
-        addOperationType = JavaMethod("(J)Landroid/media/metrics/EditingEndedEvent$Builder;")
+        setTimeSinceCreatedMillis = JavaMethod("(J)Landroid/media/metrics/EditingEndedEvent$Builder;")
         setMetricsBundle = JavaMethod("(Landroid/os/Bundle;)Landroid/media/metrics/EditingEndedEvent$Builder;")
+        addOperationType = JavaMethod("(J)Landroid/media/metrics/EditingEndedEvent$Builder;")
+        setFinalProgressPercent = JavaMethod("(F)Landroid/media/metrics/EditingEndedEvent$Builder;")
+        setMuxerName = JavaMethod("(Ljava/lang/String;)Landroid/media/metrics/EditingEndedEvent$Builder;")
+        setOutputMediaItemInfo = JavaMethod("(Landroid/media/metrics/MediaItemInfo;)Landroid/media/metrics/EditingEndedEvent$Builder;")
+        addInputMediaItemInfo = JavaMethod("(Landroid/media/metrics/MediaItemInfo;)Landroid/media/metrics/EditingEndedEvent$Builder;")
+        setExporterName = JavaMethod("(Ljava/lang/String;)Landroid/media/metrics/EditingEndedEvent$Builder;")
         build = JavaMethod("()Landroid/media/metrics/EditingEndedEvent;")

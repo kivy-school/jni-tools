@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Environment"]
 
@@ -29,15 +29,15 @@ class Environment(JavaClass, metaclass=MetaJavaClass):
     MEDIA_UNKNOWN = JavaStaticField("Ljava/lang/String;")
     MEDIA_UNMOUNTABLE = JavaStaticField("Ljava/lang/String;")
     MEDIA_UNMOUNTED = JavaStaticField("Ljava/lang/String;")
-    getRootDirectory = JavaStaticMethod("()Ljava/io/File;")
-    getStorageDirectory = JavaStaticMethod("()Ljava/io/File;")
     getDataDirectory = JavaStaticMethod("()Ljava/io/File;")
+    getDownloadCacheDirectory = JavaStaticMethod("()Ljava/io/File;")
     getExternalStorageDirectory = JavaStaticMethod("()Ljava/io/File;")
     getExternalStoragePublicDirectory = JavaStaticMethod("(Ljava/lang/String;)Ljava/io/File;")
-    getDownloadCacheDirectory = JavaStaticMethod("()Ljava/io/File;")
     getExternalStorageState = JavaMultipleMethod([("()Ljava/lang/String;", True, False), ("(Ljava/io/File;)Ljava/lang/String;", True, False)])
+    getRootDirectory = JavaStaticMethod("()Ljava/io/File;")
+    getStorageDirectory = JavaStaticMethod("()Ljava/io/File;")
     getStorageState = JavaStaticMethod("(Ljava/io/File;)Ljava/lang/String;")
-    isExternalStorageRemovable = JavaMultipleMethod([("()Z", True, False), ("(Ljava/io/File;)Z", True, False)])
     isExternalStorageEmulated = JavaMultipleMethod([("()Z", True, False), ("(Ljava/io/File;)Z", True, False)])
     isExternalStorageLegacy = JavaMultipleMethod([("()Z", True, False), ("(Ljava/io/File;)Z", True, False)])
-    isExternalStorageManager = JavaMultipleMethod([("()Z", True, False), ("(Ljava/io/File;)Z", True, False)])
+    isExternalStorageManager = JavaMultipleMethod([("(Ljava/io/File;)Z", True, False), ("()Z", True, False)])
+    isExternalStorageRemovable = JavaMultipleMethod([("()Z", True, False), ("(Ljava/io/File;)Z", True, False)])

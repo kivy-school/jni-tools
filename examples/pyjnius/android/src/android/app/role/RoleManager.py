@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["RoleManager"]
 
@@ -14,6 +14,6 @@ class RoleManager(JavaClass, metaclass=MetaJavaClass):
     ROLE_NOTES = JavaStaticField("Ljava/lang/String;")
     ROLE_SMS = JavaStaticField("Ljava/lang/String;")
     ROLE_WALLET = JavaStaticField("Ljava/lang/String;")
-    createRequestRoleIntent = JavaMethod("(Ljava/lang/String;)Landroid/content/Intent;")
     isRoleAvailable = JavaMethod("(Ljava/lang/String;)Z")
     isRoleHeld = JavaMethod("(Ljava/lang/String;)Z")
+    createRequestRoleIntent = JavaMethod("(Ljava/lang/String;)Landroid/content/Intent;")

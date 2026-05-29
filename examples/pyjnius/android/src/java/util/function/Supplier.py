@@ -1,7 +1,7 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Supplier"]
 
-class Supplier(JavaInterface, metaclass=MetaJavaClass):
+class Supplier(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/util/function/Supplier"
     get = JavaMethod("()Ljava/lang/Object;")

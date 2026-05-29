@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["GameState"]
 
@@ -11,9 +11,11 @@ class GameState(JavaClass, metaclass=MetaJavaClass):
     MODE_GAMEPLAY_UNINTERRUPTIBLE = JavaStaticField("I")
     MODE_NONE = JavaStaticField("I")
     MODE_UNKNOWN = JavaStaticField("I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     isLoading = JavaMethod("()Z")
-    getMode = JavaMethod("()I")
     getLabel = JavaMethod("()I")
+    getMode = JavaMethod("()I")
     getQuality = JavaMethod("()I")
-    describeContents = JavaMethod("()I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

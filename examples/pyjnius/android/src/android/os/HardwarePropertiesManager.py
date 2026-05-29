@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["HardwarePropertiesManager"]
 
@@ -13,6 +13,6 @@ class HardwarePropertiesManager(JavaClass, metaclass=MetaJavaClass):
     TEMPERATURE_THROTTLING = JavaStaticField("I")
     TEMPERATURE_THROTTLING_BELOW_VR_MIN = JavaStaticField("I")
     UNDEFINED_TEMPERATURE = JavaStaticField("F")
-    getDeviceTemperatures = JavaMethod("(II)[F")
     getCpuUsages = JavaMethod("()[Landroid/os/CpuUsageInfo;")
     getFanSpeeds = JavaMethod("()[F")
+    getDeviceTemperatures = JavaMethod("(II)[F")

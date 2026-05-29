@@ -1,7 +1,7 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ToIntBiFunction"]
 
-class ToIntBiFunction(JavaInterface, metaclass=MetaJavaClass):
+class ToIntBiFunction(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/util/function/ToIntBiFunction"
     applyAsInt = JavaMethod("(Ljava/lang/Object;Ljava/lang/Object;)I")

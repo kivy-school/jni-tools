@@ -1,23 +1,10 @@
 from typing import Any, ClassVar, overload
 from android.content.pm.PackageManager import PackageManager
+from android.os.Bundle import Bundle
 from android.os.Parcel import Parcel
 
-# Forward declarations for Java types we do not wrap.
-# Bound as empty classes so annotations resolve in the IDE.
-class Creator:
-    """Forward declaration for ``android.os.Parcelable.Creator``.
-
-    This Java type is referenced by the wrapper but is not itself
-    wrapped by pyjnius-wrap. At runtime pyjnius will hand you a
-    live ``autoclass('android.os.Parcelable.Creator')`` proxy; this empty class exists
-    purely so static type checkers and IDEs can resolve the name.
-
-    See: https://developer.android.com/reference/android/os/Parcelable/Creator
-    """
-    ...
-
 class PermissionInfo:
-    CREATOR: ClassVar[Creator]
+    CREATOR: ClassVar[Any]
     FLAG_COSTS_MONEY: ClassVar[int]
     FLAG_HARD_RESTRICTED: ClassVar[int]
     FLAG_IMMUTABLY_RESTRICTED: ClassVar[int]
@@ -41,18 +28,29 @@ class PermissionInfo:
     PROTECTION_NORMAL: ClassVar[int]
     PROTECTION_SIGNATURE: ClassVar[int]
     PROTECTION_SIGNATURE_OR_SYSTEM: ClassVar[int]
+    CONTENTS_FILE_DESCRIPTOR: ClassVar[int]
+    PARCELABLE_WRITE_RETURN_VALUE: ClassVar[int]
     descriptionRes: int
     flags: int
     group: str
     nonLocalizedDescription: str
     protectionLevel: int
+    banner: int
+    icon: int
+    isArchived: bool
+    labelRes: int
+    logo: int
+    metaData: Bundle
+    name: str
+    nonLocalizedLabel: str
+    packageName: str
     @overload
     def __init__(self) -> None: ...
     @overload
-    def __init__(self, arg0: "PermissionInfo") -> None: ...
-    def loadDescription(self, arg0: PackageManager) -> str: ...
+    def __init__(self, p0: "PermissionInfo") -> None: ...
+    def toString(self) -> str: ...
+    def loadDescription(self, p0: PackageManager) -> str: ...
+    def writeToParcel(self, p0: Parcel, p1: int) -> None: ...
+    def describeContents(self) -> int: ...
     def getProtection(self) -> int: ...
     def getProtectionFlags(self) -> int: ...
-    def toString(self) -> str: ...
-    def describeContents(self) -> int: ...
-    def writeToParcel(self, arg0: Parcel, arg1: int) -> None: ...

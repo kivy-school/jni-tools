@@ -32,8 +32,10 @@ class IsolatedService:
     ACCESSIBILITY_SERVICE: ClassVar[str]
     ACCOUNT_SERVICE: ClassVar[str]
     ACTIVITY_SERVICE: ClassVar[str]
+    ADVANCED_PROTECTION_SERVICE: ClassVar[str]
     ALARM_SERVICE: ClassVar[str]
     APPWIDGET_SERVICE: ClassVar[str]
+    APP_FUNCTION_SERVICE: ClassVar[str]
     APP_OPS_SERVICE: ClassVar[str]
     APP_SEARCH_SERVICE: ClassVar[str]
     AUDIO_SERVICE: ClassVar[str]
@@ -92,6 +94,7 @@ class IsolatedService:
     IPSEC_SERVICE: ClassVar[str]
     JOB_SCHEDULER_SERVICE: ClassVar[str]
     KEYGUARD_SERVICE: ClassVar[str]
+    KEYSTORE_SERVICE: ClassVar[str]
     LAUNCHER_APPS_SERVICE: ClassVar[str]
     LAYOUT_INFLATER_SERVICE: ClassVar[str]
     LOCALE_SERVICE: ClassVar[str]
@@ -99,6 +102,7 @@ class IsolatedService:
     MEDIA_COMMUNICATION_SERVICE: ClassVar[str]
     MEDIA_METRICS_SERVICE: ClassVar[str]
     MEDIA_PROJECTION_SERVICE: ClassVar[str]
+    MEDIA_QUALITY_SERVICE: ClassVar[str]
     MEDIA_ROUTER_SERVICE: ClassVar[str]
     MEDIA_SESSION_SERVICE: ClassVar[str]
     MIDI_SERVICE: ClassVar[str]
@@ -125,6 +129,7 @@ class IsolatedService:
     RECEIVER_VISIBLE_TO_INSTANT_APPS: ClassVar[int]
     RESTRICTIONS_SERVICE: ClassVar[str]
     ROLE_SERVICE: ClassVar[str]
+    SATELLITE_SERVICE: ClassVar[str]
     SEARCH_SERVICE: ClassVar[str]
     SECURITY_STATE_SERVICE: ClassVar[str]
     SENSOR_SERVICE: ClassVar[str]
@@ -137,8 +142,10 @@ class IsolatedService:
     TELEPHONY_IMS_SERVICE: ClassVar[str]
     TELEPHONY_SERVICE: ClassVar[str]
     TELEPHONY_SUBSCRIPTION_SERVICE: ClassVar[str]
+    TETHERING_SERVICE: ClassVar[str]
     TEXT_CLASSIFICATION_SERVICE: ClassVar[str]
     TEXT_SERVICES_MANAGER_SERVICE: ClassVar[str]
+    TV_AD_SERVICE: ClassVar[str]
     TV_INPUT_SERVICE: ClassVar[str]
     TV_INTERACTIVE_APP_SERVICE: ClassVar[str]
     UI_MODE_SERVICE: ClassVar[str]
@@ -156,13 +163,13 @@ class IsolatedService:
     WIFI_SERVICE: ClassVar[str]
     WINDOW_SERVICE: ClassVar[str]
     def __init__(self) -> None: ...
-    def onRequest(self, p0: RequestToken) -> IsolatedWorker: ...
     def getRemoteData(self, p0: RequestToken) -> KeyValueStore: ...
-    def getFederatedComputeScheduler(self, p0: RequestToken) -> FederatedComputeScheduler: ...
-    def getLocalData(self, p0: RequestToken) -> MutableKeyValueStore: ...
-    def getLogReader(self, p0: RequestToken) -> LogReader: ...
-    def getEventUrlProvider(self, p0: RequestToken) -> EventUrlProvider: ...
+    def onRequest(self, p0: RequestToken) -> IsolatedWorker: ...
     def getModelManager(self, p0: RequestToken) -> ModelManager: ...
+    def getLocalData(self, p0: RequestToken) -> MutableKeyValueStore: ...
+    def getEventUrlProvider(self, p0: RequestToken) -> EventUrlProvider: ...
+    def getFederatedComputeScheduler(self, p0: RequestToken) -> FederatedComputeScheduler: ...
+    def getLogReader(self, p0: RequestToken) -> LogReader: ...
     def getUserData(self, p0: RequestToken) -> UserData: ...
     def onCreate(self) -> None: ...
     def onBind(self, p0: Intent) -> IBinder: ...

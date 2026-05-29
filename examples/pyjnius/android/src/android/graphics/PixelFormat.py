@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["PixelFormat"]
 
@@ -27,5 +27,5 @@ class PixelFormat(JavaClass, metaclass=MetaJavaClass):
     YCbCr_422_SP = JavaStaticField("I")
     bitsPerPixel = JavaField("I")
     bytesPerPixel = JavaField("I")
-    getPixelFormatInfo = JavaStaticMethod("(ILandroid/graphics/PixelFormat;)V")
     formatHasAlpha = JavaStaticMethod("(I)Z")
+    getPixelFormatInfo = JavaStaticMethod("(ILandroid/graphics/PixelFormat;)V")

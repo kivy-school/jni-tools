@@ -3,6 +3,13 @@ from typing import Any, ClassVar, overload
 class BatteryManager:
     ACTION_CHARGING: ClassVar[str]
     ACTION_DISCHARGING: ClassVar[str]
+    BATTERY_CAPACITY_LEVEL_CRITICAL: ClassVar[int]
+    BATTERY_CAPACITY_LEVEL_FULL: ClassVar[int]
+    BATTERY_CAPACITY_LEVEL_HIGH: ClassVar[int]
+    BATTERY_CAPACITY_LEVEL_LOW: ClassVar[int]
+    BATTERY_CAPACITY_LEVEL_NORMAL: ClassVar[int]
+    BATTERY_CAPACITY_LEVEL_UNKNOWN: ClassVar[int]
+    BATTERY_CAPACITY_LEVEL_UNSUPPORTED: ClassVar[int]
     BATTERY_HEALTH_COLD: ClassVar[int]
     BATTERY_HEALTH_DEAD: ClassVar[int]
     BATTERY_HEALTH_GOOD: ClassVar[int]
@@ -26,6 +33,7 @@ class BatteryManager:
     BATTERY_STATUS_NOT_CHARGING: ClassVar[int]
     BATTERY_STATUS_UNKNOWN: ClassVar[int]
     EXTRA_BATTERY_LOW: ClassVar[str]
+    EXTRA_CAPACITY_LEVEL: ClassVar[str]
     EXTRA_CHARGING_STATUS: ClassVar[str]
     EXTRA_CYCLE_COUNT: ClassVar[str]
     EXTRA_HEALTH: ClassVar[str]
@@ -38,8 +46,8 @@ class BatteryManager:
     EXTRA_TECHNOLOGY: ClassVar[str]
     EXTRA_TEMPERATURE: ClassVar[str]
     EXTRA_VOLTAGE: ClassVar[str]
-    def isCharging(self) -> bool: ...
+    def computeChargeTimeRemaining(self) -> int: ...
     def getIntProperty(self, p0: int) -> int: ...
     def getLongProperty(self, p0: int) -> int: ...
     def getStringProperty(self, p0: int) -> str: ...
-    def computeChargeTimeRemaining(self) -> int: ...
+    def isCharging(self) -> bool: ...

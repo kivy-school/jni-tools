@@ -5,7 +5,11 @@ class FormatStyle:
     LONG: ClassVar["FormatStyle"]
     MEDIUM: ClassVar["FormatStyle"]
     SHORT: ClassVar["FormatStyle"]
+    FULL: ClassVar["FormatStyle"]
+    LONG: ClassVar["FormatStyle"]
+    MEDIUM: ClassVar["FormatStyle"]
+    SHORT: ClassVar["FormatStyle"]
     @staticmethod
-    def values() -> list["FormatStyle"]: ...
+    def values() -> Any: ...
     @staticmethod
-    def valueOf(arg0: str) -> "FormatStyle": ...
+    def valueOf(p0: str) -> "FormatStyle": ...

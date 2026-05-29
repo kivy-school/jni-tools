@@ -4,6 +4,8 @@ from android.hardware.camera2.CaptureRequest import CaptureRequest
 class CaptureResult:
     BLACK_LEVEL_LOCK: ClassVar[Any]
     COLOR_CORRECTION_ABERRATION_MODE: ClassVar[Any]
+    COLOR_CORRECTION_COLOR_TEMPERATURE: ClassVar[Any]
+    COLOR_CORRECTION_COLOR_TINT: ClassVar[Any]
     COLOR_CORRECTION_GAINS: ClassVar[Any]
     COLOR_CORRECTION_MODE: ClassVar[Any]
     COLOR_CORRECTION_TRANSFORM: ClassVar[Any]
@@ -12,6 +14,7 @@ class CaptureResult:
     CONTROL_AE_LOCK: ClassVar[Any]
     CONTROL_AE_MODE: ClassVar[Any]
     CONTROL_AE_PRECAPTURE_TRIGGER: ClassVar[Any]
+    CONTROL_AE_PRIORITY_MODE: ClassVar[Any]
     CONTROL_AE_REGIONS: ClassVar[Any]
     CONTROL_AE_STATE: ClassVar[Any]
     CONTROL_AE_TARGET_FPS_RANGE: ClassVar[Any]
@@ -36,10 +39,12 @@ class CaptureResult:
     CONTROL_SCENE_MODE: ClassVar[Any]
     CONTROL_SETTINGS_OVERRIDE: ClassVar[Any]
     CONTROL_VIDEO_STABILIZATION_MODE: ClassVar[Any]
+    CONTROL_ZOOM_METHOD: ClassVar[Any]
     CONTROL_ZOOM_RATIO: ClassVar[Any]
     DISTORTION_CORRECTION_MODE: ClassVar[Any]
     EDGE_MODE: ClassVar[Any]
     EXTENSION_CURRENT_TYPE: ClassVar[Any]
+    EXTENSION_NIGHT_MODE_INDICATOR: ClassVar[Any]
     EXTENSION_STRENGTH: ClassVar[Any]
     FLASH_MODE: ClassVar[Any]
     FLASH_STATE: ClassVar[Any]
@@ -128,6 +133,7 @@ class CaptureResult:
     COLOR_CORRECTION_ABERRATION_MODE_FAST: ClassVar[int]
     COLOR_CORRECTION_ABERRATION_MODE_HIGH_QUALITY: ClassVar[int]
     COLOR_CORRECTION_ABERRATION_MODE_OFF: ClassVar[int]
+    COLOR_CORRECTION_MODE_CCT: ClassVar[int]
     COLOR_CORRECTION_MODE_FAST: ClassVar[int]
     COLOR_CORRECTION_MODE_HIGH_QUALITY: ClassVar[int]
     COLOR_CORRECTION_MODE_TRANSFORM_MATRIX: ClassVar[int]
@@ -145,6 +151,9 @@ class CaptureResult:
     CONTROL_AE_PRECAPTURE_TRIGGER_CANCEL: ClassVar[int]
     CONTROL_AE_PRECAPTURE_TRIGGER_IDLE: ClassVar[int]
     CONTROL_AE_PRECAPTURE_TRIGGER_START: ClassVar[int]
+    CONTROL_AE_PRIORITY_MODE_OFF: ClassVar[int]
+    CONTROL_AE_PRIORITY_MODE_SENSOR_EXPOSURE_TIME_PRIORITY: ClassVar[int]
+    CONTROL_AE_PRIORITY_MODE_SENSOR_SENSITIVITY_PRIORITY: ClassVar[int]
     CONTROL_AE_STATE_CONVERGED: ClassVar[int]
     CONTROL_AE_STATE_FLASH_REQUIRED: ClassVar[int]
     CONTROL_AE_STATE_INACTIVE: ClassVar[int]
@@ -238,6 +247,8 @@ class CaptureResult:
     CONTROL_VIDEO_STABILIZATION_MODE_OFF: ClassVar[int]
     CONTROL_VIDEO_STABILIZATION_MODE_ON: ClassVar[int]
     CONTROL_VIDEO_STABILIZATION_MODE_PREVIEW_STABILIZATION: ClassVar[int]
+    CONTROL_ZOOM_METHOD_AUTO: ClassVar[int]
+    CONTROL_ZOOM_METHOD_ZOOM_RATIO: ClassVar[int]
     DISTORTION_CORRECTION_MODE_FAST: ClassVar[int]
     DISTORTION_CORRECTION_MODE_HIGH_QUALITY: ClassVar[int]
     DISTORTION_CORRECTION_MODE_OFF: ClassVar[int]
@@ -245,6 +256,9 @@ class CaptureResult:
     EDGE_MODE_HIGH_QUALITY: ClassVar[int]
     EDGE_MODE_OFF: ClassVar[int]
     EDGE_MODE_ZERO_SHUTTER_LAG: ClassVar[int]
+    EXTENSION_NIGHT_MODE_INDICATOR_OFF: ClassVar[int]
+    EXTENSION_NIGHT_MODE_INDICATOR_ON: ClassVar[int]
+    EXTENSION_NIGHT_MODE_INDICATOR_UNKNOWN: ClassVar[int]
     FLASH_MODE_OFF: ClassVar[int]
     FLASH_MODE_SINGLE: ClassVar[int]
     FLASH_MODE_TORCH: ClassVar[int]
@@ -377,12 +391,12 @@ class CaptureResult:
     TONEMAP_MODE_PRESET_CURVE: ClassVar[int]
     TONEMAP_PRESET_CURVE_REC709: ClassVar[int]
     TONEMAP_PRESET_CURVE_SRGB: ClassVar[int]
+    def getCameraId(self) -> str: ...
+    def getFrameNumber(self) -> int: ...
+    def getRequest(self) -> CaptureRequest: ...
+    def getSequenceId(self) -> int: ...
     def get(self, p0: Any) -> Any: ...
     def getKeys(self) -> list: ...
-    def getCameraId(self) -> str: ...
-    def getRequest(self) -> CaptureRequest: ...
-    def getFrameNumber(self) -> int: ...
-    def getSequenceId(self) -> int: ...
 
     class Key:
         def __init__(self, p0: str, p1: type) -> None: ...

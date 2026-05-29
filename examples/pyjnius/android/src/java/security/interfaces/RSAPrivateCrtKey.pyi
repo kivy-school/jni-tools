@@ -3,6 +3,9 @@ from java.math.BigInteger import BigInteger
 
 class RSAPrivateCrtKey:
     serialVersionUID: ClassVar[int]
+    serialVersionUID: ClassVar[int]
+    serialVersionUID: ClassVar[int]
+    serialVersionUID: ClassVar[int]
     def getPublicExponent(self) -> BigInteger: ...
     def getPrimeP(self) -> BigInteger: ...
     def getPrimeQ(self) -> BigInteger: ...

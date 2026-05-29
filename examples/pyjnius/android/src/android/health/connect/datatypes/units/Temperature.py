@@ -1,12 +1,12 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Temperature"]
 
 class Temperature(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/health/connect/datatypes/units/Temperature"
-    fromCelsius = JavaStaticMethod("(D)Landroid/health/connect/datatypes/units/Temperature;")
-    getInCelsius = JavaMethod("()D")
-    compareTo = JavaMethod("(Landroid/health/connect/datatypes/units/Temperature;)I")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
-    hashCode = JavaMethod("()I")
     toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    compareTo = JavaMultipleMethod([("(Ljava/lang/Object;)I", False, False), ("(Landroid/health/connect/datatypes/units/Temperature;)I", False, False)])
+    getInCelsius = JavaMethod("()D")
+    fromCelsius = JavaStaticMethod("(D)Landroid/health/connect/datatypes/units/Temperature;")

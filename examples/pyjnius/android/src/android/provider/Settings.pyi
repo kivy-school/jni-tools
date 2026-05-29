@@ -16,6 +16,7 @@ class Settings:
     ACTION_APPLICATION_SETTINGS: ClassVar[str]
     ACTION_APP_LOCALE_SETTINGS: ClassVar[str]
     ACTION_APP_NOTIFICATION_BUBBLE_SETTINGS: ClassVar[str]
+    ACTION_APP_NOTIFICATION_PROMOTION_SETTINGS: ClassVar[str]
     ACTION_APP_NOTIFICATION_SETTINGS: ClassVar[str]
     ACTION_APP_OPEN_BY_DEFAULT_SETTINGS: ClassVar[str]
     ACTION_APP_SEARCH_SETTINGS: ClassVar[str]
@@ -37,6 +38,7 @@ class Settings:
     ACTION_DISPLAY_SETTINGS: ClassVar[str]
     ACTION_DREAM_SETTINGS: ClassVar[str]
     ACTION_FINGERPRINT_ENROLL: ClassVar[str]
+    ACTION_FIRST_DAY_OF_WEEK_SETTINGS: ClassVar[str]
     ACTION_HARD_KEYBOARD_SETTINGS: ClassVar[str]
     ACTION_HOME_SETTINGS: ClassVar[str]
     ACTION_IGNORE_BACKGROUND_DATA_RESTRICTIONS_SETTINGS: ClassVar[str]
@@ -57,6 +59,7 @@ class Settings:
     ACTION_MANAGE_SUPERVISOR_RESTRICTED_SETTING: ClassVar[str]
     ACTION_MANAGE_UNKNOWN_APP_SOURCES: ClassVar[str]
     ACTION_MANAGE_WRITE_SETTINGS: ClassVar[str]
+    ACTION_MEASUREMENT_SYSTEM_SETTINGS: ClassVar[str]
     ACTION_MEMORY_CARD_SETTINGS: ClassVar[str]
     ACTION_NETWORK_OPERATOR_SETTINGS: ClassVar[str]
     ACTION_NFCSHARING_SETTINGS: ClassVar[str]
@@ -73,6 +76,7 @@ class Settings:
     ACTION_QUICK_ACCESS_WALLET_SETTINGS: ClassVar[str]
     ACTION_QUICK_LAUNCH_SETTINGS: ClassVar[str]
     ACTION_REGIONAL_PREFERENCES_SETTINGS: ClassVar[str]
+    ACTION_REGION_SETTINGS: ClassVar[str]
     ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS: ClassVar[str]
     ACTION_REQUEST_MANAGE_MEDIA: ClassVar[str]
     ACTION_REQUEST_MEDIA_ROUTING_CONTROL: ClassVar[str]
@@ -88,6 +92,7 @@ class Settings:
     ACTION_SOUND_SETTINGS: ClassVar[str]
     ACTION_STORAGE_VOLUME_ACCESS_SETTINGS: ClassVar[str]
     ACTION_SYNC_SETTINGS: ClassVar[str]
+    ACTION_TEMPERATURE_UNIT_SETTINGS: ClassVar[str]
     ACTION_USAGE_ACCESS_SETTINGS: ClassVar[str]
     ACTION_USER_DICTIONARY_SETTINGS: ClassVar[str]
     ACTION_VOICE_CONTROL_AIRPLANE_MODE: ClassVar[str]
@@ -136,207 +141,7 @@ class Settings:
     SUPERVISOR_VERIFICATION_SETTING_UNKNOWN: ClassVar[int]
     def __init__(self) -> None: ...
     @staticmethod
-    def canDrawOverlays(arg0: Context) -> bool: ...
-
-    class Global:
-        ADB_ENABLED: ClassVar[str]
-        AIRPLANE_MODE_ON: ClassVar[str]
-        AIRPLANE_MODE_RADIOS: ClassVar[str]
-        ALWAYS_FINISH_ACTIVITIES: ClassVar[str]
-        ANIMATOR_DURATION_SCALE: ClassVar[str]
-        APPLY_RAMPING_RINGER: ClassVar[str]
-        AUTO_TIME: ClassVar[str]
-        AUTO_TIME_ZONE: ClassVar[str]
-        BLUETOOTH_ON: ClassVar[str]
-        BOOT_COUNT: ClassVar[str]
-        CONTACT_METADATA_SYNC_ENABLED: ClassVar[str]
-        CONTENT_URI: ClassVar[Uri]
-        DATA_ROAMING: ClassVar[str]
-        DEBUG_APP: ClassVar[str]
-        DEVELOPMENT_SETTINGS_ENABLED: ClassVar[str]
-        DEVICE_NAME: ClassVar[str]
-        DEVICE_PROVISIONED: ClassVar[str]
-        HTTP_PROXY: ClassVar[str]
-        INSTALL_NON_MARKET_APPS: ClassVar[str]
-        MODE_RINGER: ClassVar[str]
-        NETWORK_PREFERENCE: ClassVar[str]
-        RADIO_BLUETOOTH: ClassVar[str]
-        RADIO_CELL: ClassVar[str]
-        RADIO_NFC: ClassVar[str]
-        RADIO_WIFI: ClassVar[str]
-        SECURE_FRP_MODE: ClassVar[str]
-        SHOW_PROCESSES: ClassVar[str]
-        STAY_ON_WHILE_PLUGGED_IN: ClassVar[str]
-        TRANSITION_ANIMATION_SCALE: ClassVar[str]
-        USB_MASS_STORAGE_ENABLED: ClassVar[str]
-        USE_GOOGLE_MAIL: ClassVar[str]
-        WAIT_FOR_DEBUGGER: ClassVar[str]
-        WIFI_DEVICE_OWNER_CONFIGS_LOCKDOWN: ClassVar[str]
-        WIFI_MAX_DHCP_RETRY_COUNT: ClassVar[str]
-        WIFI_MOBILE_DATA_TRANSITION_WAKELOCK_TIMEOUT_MS: ClassVar[str]
-        WIFI_NETWORKS_AVAILABLE_NOTIFICATION_ON: ClassVar[str]
-        WIFI_NETWORKS_AVAILABLE_REPEAT_DELAY: ClassVar[str]
-        WIFI_NUM_OPEN_NETWORKS_KEPT: ClassVar[str]
-        WIFI_ON: ClassVar[str]
-        WIFI_SLEEP_POLICY: ClassVar[str]
-        WIFI_SLEEP_POLICY_DEFAULT: ClassVar[int]
-        WIFI_SLEEP_POLICY_NEVER: ClassVar[int]
-        WIFI_SLEEP_POLICY_NEVER_WHILE_PLUGGED: ClassVar[int]
-        WIFI_WATCHDOG_ON: ClassVar[str]
-        WINDOW_ANIMATION_SCALE: ClassVar[str]
-        def __init__(self) -> None: ...
-        @staticmethod
-        def getString(arg0: ContentResolver, arg1: str) -> str: ...
-        @staticmethod
-        def putString(arg0: ContentResolver, arg1: str, arg2: str) -> bool: ...
-        @staticmethod
-        def getUriFor(arg0: str) -> Uri: ...
-        @overload
-        @staticmethod
-        def getInt(arg0: ContentResolver, arg1: str, arg2: int) -> int: ...
-        @overload
-        @staticmethod
-        def getInt(arg0: ContentResolver, arg1: str) -> int: ...
-        @staticmethod
-        def putInt(arg0: ContentResolver, arg1: str, arg2: int) -> bool: ...
-        @overload
-        @staticmethod
-        def getLong(arg0: ContentResolver, arg1: str, arg2: int) -> int: ...
-        @overload
-        @staticmethod
-        def getLong(arg0: ContentResolver, arg1: str) -> int: ...
-        @staticmethod
-        def putLong(arg0: ContentResolver, arg1: str, arg2: int) -> bool: ...
-        @overload
-        @staticmethod
-        def getFloat(arg0: ContentResolver, arg1: str, arg2: float) -> float: ...
-        @overload
-        @staticmethod
-        def getFloat(arg0: ContentResolver, arg1: str) -> float: ...
-        @staticmethod
-        def putFloat(arg0: ContentResolver, arg1: str, arg2: float) -> bool: ...
-
-    class NameValueTable:
-        NAME: ClassVar[str]
-        VALUE: ClassVar[str]
-        def __init__(self) -> None: ...
-        @staticmethod
-        def putString(arg0: ContentResolver, arg1: Uri, arg2: str, arg3: str) -> bool: ...
-        @staticmethod
-        def getUriFor(arg0: Uri, arg1: str) -> Uri: ...
-
-    class Panel:
-        ACTION_INTERNET_CONNECTIVITY: ClassVar[str]
-        ACTION_NFC: ClassVar[str]
-        ACTION_VOLUME: ClassVar[str]
-        ACTION_WIFI: ClassVar[str]
-
-    class Secure:
-        ACCESSIBILITY_DISPLAY_INVERSION_ENABLED: ClassVar[str]
-        ACCESSIBILITY_ENABLED: ClassVar[str]
-        ACCESSIBILITY_SPEAK_PASSWORD: ClassVar[str]
-        ADB_ENABLED: ClassVar[str]
-        ALLOWED_GEOLOCATION_ORIGINS: ClassVar[str]
-        ALLOW_MOCK_LOCATION: ClassVar[str]
-        ANDROID_ID: ClassVar[str]
-        BACKGROUND_DATA: ClassVar[str]
-        BLUETOOTH_ON: ClassVar[str]
-        CONTENT_URI: ClassVar[Uri]
-        DATA_ROAMING: ClassVar[str]
-        DEFAULT_INPUT_METHOD: ClassVar[str]
-        DEVELOPMENT_SETTINGS_ENABLED: ClassVar[str]
-        DEVICE_PROVISIONED: ClassVar[str]
-        ENABLED_ACCESSIBILITY_SERVICES: ClassVar[str]
-        ENABLED_INPUT_METHODS: ClassVar[str]
-        HTTP_PROXY: ClassVar[str]
-        INPUT_METHOD_SELECTOR_VISIBILITY: ClassVar[str]
-        INSTALL_NON_MARKET_APPS: ClassVar[str]
-        LOCATION_MODE: ClassVar[str]
-        LOCATION_MODE_BATTERY_SAVING: ClassVar[int]
-        LOCATION_MODE_HIGH_ACCURACY: ClassVar[int]
-        LOCATION_MODE_OFF: ClassVar[int]
-        LOCATION_MODE_SENSORS_ONLY: ClassVar[int]
-        LOCATION_PROVIDERS_ALLOWED: ClassVar[str]
-        LOCK_PATTERN_ENABLED: ClassVar[str]
-        LOCK_PATTERN_TACTILE_FEEDBACK_ENABLED: ClassVar[str]
-        LOCK_PATTERN_VISIBLE: ClassVar[str]
-        LOGGING_ID: ClassVar[str]
-        NETWORK_PREFERENCE: ClassVar[str]
-        PARENTAL_CONTROL_ENABLED: ClassVar[str]
-        PARENTAL_CONTROL_LAST_UPDATE: ClassVar[str]
-        PARENTAL_CONTROL_REDIRECT_URL: ClassVar[str]
-        RTT_CALLING_MODE: ClassVar[str]
-        SECURE_FRP_MODE: ClassVar[str]
-        SELECTED_INPUT_METHOD_SUBTYPE: ClassVar[str]
-        SETTINGS_CLASSNAME: ClassVar[str]
-        SKIP_FIRST_USE_HINTS: ClassVar[str]
-        TOUCH_EXPLORATION_ENABLED: ClassVar[str]
-        TTS_DEFAULT_COUNTRY: ClassVar[str]
-        TTS_DEFAULT_LANG: ClassVar[str]
-        TTS_DEFAULT_PITCH: ClassVar[str]
-        TTS_DEFAULT_RATE: ClassVar[str]
-        TTS_DEFAULT_SYNTH: ClassVar[str]
-        TTS_DEFAULT_VARIANT: ClassVar[str]
-        TTS_ENABLED_PLUGINS: ClassVar[str]
-        TTS_USE_DEFAULTS: ClassVar[str]
-        USB_MASS_STORAGE_ENABLED: ClassVar[str]
-        USE_GOOGLE_MAIL: ClassVar[str]
-        WIFI_MAX_DHCP_RETRY_COUNT: ClassVar[str]
-        WIFI_MOBILE_DATA_TRANSITION_WAKELOCK_TIMEOUT_MS: ClassVar[str]
-        WIFI_NETWORKS_AVAILABLE_NOTIFICATION_ON: ClassVar[str]
-        WIFI_NETWORKS_AVAILABLE_REPEAT_DELAY: ClassVar[str]
-        WIFI_NUM_OPEN_NETWORKS_KEPT: ClassVar[str]
-        WIFI_ON: ClassVar[str]
-        WIFI_WATCHDOG_ACCEPTABLE_PACKET_LOSS_PERCENTAGE: ClassVar[str]
-        WIFI_WATCHDOG_AP_COUNT: ClassVar[str]
-        WIFI_WATCHDOG_BACKGROUND_CHECK_DELAY_MS: ClassVar[str]
-        WIFI_WATCHDOG_BACKGROUND_CHECK_ENABLED: ClassVar[str]
-        WIFI_WATCHDOG_BACKGROUND_CHECK_TIMEOUT_MS: ClassVar[str]
-        WIFI_WATCHDOG_INITIAL_IGNORED_PING_COUNT: ClassVar[str]
-        WIFI_WATCHDOG_MAX_AP_CHECKS: ClassVar[str]
-        WIFI_WATCHDOG_ON: ClassVar[str]
-        WIFI_WATCHDOG_PING_COUNT: ClassVar[str]
-        WIFI_WATCHDOG_PING_DELAY_MS: ClassVar[str]
-        WIFI_WATCHDOG_PING_TIMEOUT_MS: ClassVar[str]
-        WIFI_WATCHDOG_WATCH_LIST: ClassVar[str]
-        def __init__(self) -> None: ...
-        @staticmethod
-        def getString(arg0: ContentResolver, arg1: str) -> str: ...
-        @staticmethod
-        def putString(arg0: ContentResolver, arg1: str, arg2: str) -> bool: ...
-        @staticmethod
-        def getUriFor(arg0: str) -> Uri: ...
-        @overload
-        @staticmethod
-        def getInt(arg0: ContentResolver, arg1: str, arg2: int) -> int: ...
-        @overload
-        @staticmethod
-        def getInt(arg0: ContentResolver, arg1: str) -> int: ...
-        @staticmethod
-        def putInt(arg0: ContentResolver, arg1: str, arg2: int) -> bool: ...
-        @overload
-        @staticmethod
-        def getLong(arg0: ContentResolver, arg1: str, arg2: int) -> int: ...
-        @overload
-        @staticmethod
-        def getLong(arg0: ContentResolver, arg1: str) -> int: ...
-        @staticmethod
-        def putLong(arg0: ContentResolver, arg1: str, arg2: int) -> bool: ...
-        @overload
-        @staticmethod
-        def getFloat(arg0: ContentResolver, arg1: str, arg2: float) -> float: ...
-        @overload
-        @staticmethod
-        def getFloat(arg0: ContentResolver, arg1: str) -> float: ...
-        @staticmethod
-        def putFloat(arg0: ContentResolver, arg1: str, arg2: float) -> bool: ...
-        @staticmethod
-        def isLocationProviderEnabled(arg0: ContentResolver, arg1: str) -> bool: ...
-        @staticmethod
-        def setLocationProviderEnabled(arg0: ContentResolver, arg1: str, arg2: bool) -> None: ...
-
-    class SettingNotFoundException:
-        def __init__(self, arg0: str) -> None: ...
+    def canDrawOverlays(p0: Context) -> bool: ...
 
     class System:
         ACCELEROMETER_ROTATION: ClassVar[str]
@@ -440,44 +245,256 @@ class Settings:
         WIFI_WATCHDOG_PING_DELAY_MS: ClassVar[str]
         WIFI_WATCHDOG_PING_TIMEOUT_MS: ClassVar[str]
         WINDOW_ANIMATION_SCALE: ClassVar[str]
+        NAME: ClassVar[str]
+        VALUE: ClassVar[str]
+        _COUNT: ClassVar[str]
+        _ID: ClassVar[str]
+        def __init__(self) -> None: ...
+        @overload
+        @staticmethod
+        def getInt(p0: ContentResolver, p1: str, p2: int) -> int: ...
+        @overload
+        @staticmethod
+        def getInt(p0: ContentResolver, p1: str) -> int: ...
+        @staticmethod
+        def putInt(p0: ContentResolver, p1: str, p2: int) -> bool: ...
+        @overload
+        @staticmethod
+        def getLong(p0: ContentResolver, p1: str, p2: int) -> int: ...
+        @overload
+        @staticmethod
+        def getLong(p0: ContentResolver, p1: str) -> int: ...
+        @staticmethod
+        def putLong(p0: ContentResolver, p1: str, p2: int) -> bool: ...
+        @overload
+        @staticmethod
+        def getFloat(p0: ContentResolver, p1: str) -> float: ...
+        @overload
+        @staticmethod
+        def getFloat(p0: ContentResolver, p1: str, p2: float) -> float: ...
+        @staticmethod
+        def putFloat(p0: ContentResolver, p1: str, p2: float) -> bool: ...
+        @staticmethod
+        def getConfiguration(p0: ContentResolver, p1: Configuration) -> None: ...
+        @staticmethod
+        def getString(p0: ContentResolver, p1: str) -> str: ...
+        @staticmethod
+        def putString(p0: ContentResolver, p1: str, p2: str) -> bool: ...
+        @staticmethod
+        def canWrite(p0: Context) -> bool: ...
+        @staticmethod
+        def getShowGTalkServiceStatus(p0: ContentResolver) -> bool: ...
+        @staticmethod
+        def getUriFor(p0: str) -> Uri: ...
+        @staticmethod
+        def putConfiguration(p0: ContentResolver, p1: Configuration) -> bool: ...
+        @staticmethod
+        def setShowGTalkServiceStatus(p0: ContentResolver, p1: bool) -> None: ...
+
+    class SettingNotFoundException:
+        def __init__(self, p0: str) -> None: ...
+
+    class Secure:
+        ACCESSIBILITY_DISPLAY_INVERSION_ENABLED: ClassVar[str]
+        ACCESSIBILITY_ENABLED: ClassVar[str]
+        ACCESSIBILITY_SPEAK_PASSWORD: ClassVar[str]
+        ADB_ENABLED: ClassVar[str]
+        ALLOWED_GEOLOCATION_ORIGINS: ClassVar[str]
+        ALLOW_MOCK_LOCATION: ClassVar[str]
+        ANDROID_ID: ClassVar[str]
+        BACKGROUND_DATA: ClassVar[str]
+        BLUETOOTH_ON: ClassVar[str]
+        CONTENT_URI: ClassVar[Uri]
+        DATA_ROAMING: ClassVar[str]
+        DEFAULT_INPUT_METHOD: ClassVar[str]
+        DEVELOPMENT_SETTINGS_ENABLED: ClassVar[str]
+        DEVICE_PROVISIONED: ClassVar[str]
+        ENABLED_ACCESSIBILITY_SERVICES: ClassVar[str]
+        ENABLED_INPUT_METHODS: ClassVar[str]
+        HTTP_PROXY: ClassVar[str]
+        INPUT_METHOD_SELECTOR_VISIBILITY: ClassVar[str]
+        INSTALL_NON_MARKET_APPS: ClassVar[str]
+        LOCATION_MODE: ClassVar[str]
+        LOCATION_MODE_BATTERY_SAVING: ClassVar[int]
+        LOCATION_MODE_HIGH_ACCURACY: ClassVar[int]
+        LOCATION_MODE_OFF: ClassVar[int]
+        LOCATION_MODE_SENSORS_ONLY: ClassVar[int]
+        LOCATION_PROVIDERS_ALLOWED: ClassVar[str]
+        LOCK_PATTERN_ENABLED: ClassVar[str]
+        LOCK_PATTERN_TACTILE_FEEDBACK_ENABLED: ClassVar[str]
+        LOCK_PATTERN_VISIBLE: ClassVar[str]
+        LOGGING_ID: ClassVar[str]
+        NETWORK_PREFERENCE: ClassVar[str]
+        PARENTAL_CONTROL_ENABLED: ClassVar[str]
+        PARENTAL_CONTROL_LAST_UPDATE: ClassVar[str]
+        PARENTAL_CONTROL_REDIRECT_URL: ClassVar[str]
+        RTT_CALLING_MODE: ClassVar[str]
+        SECURE_FRP_MODE: ClassVar[str]
+        SELECTED_INPUT_METHOD_SUBTYPE: ClassVar[str]
+        SETTINGS_CLASSNAME: ClassVar[str]
+        SKIP_FIRST_USE_HINTS: ClassVar[str]
+        TOUCH_EXPLORATION_ENABLED: ClassVar[str]
+        TTS_DEFAULT_COUNTRY: ClassVar[str]
+        TTS_DEFAULT_LANG: ClassVar[str]
+        TTS_DEFAULT_PITCH: ClassVar[str]
+        TTS_DEFAULT_RATE: ClassVar[str]
+        TTS_DEFAULT_SYNTH: ClassVar[str]
+        TTS_DEFAULT_VARIANT: ClassVar[str]
+        TTS_ENABLED_PLUGINS: ClassVar[str]
+        TTS_USE_DEFAULTS: ClassVar[str]
+        USB_MASS_STORAGE_ENABLED: ClassVar[str]
+        USE_GOOGLE_MAIL: ClassVar[str]
+        WIFI_MAX_DHCP_RETRY_COUNT: ClassVar[str]
+        WIFI_MOBILE_DATA_TRANSITION_WAKELOCK_TIMEOUT_MS: ClassVar[str]
+        WIFI_NETWORKS_AVAILABLE_NOTIFICATION_ON: ClassVar[str]
+        WIFI_NETWORKS_AVAILABLE_REPEAT_DELAY: ClassVar[str]
+        WIFI_NUM_OPEN_NETWORKS_KEPT: ClassVar[str]
+        WIFI_ON: ClassVar[str]
+        WIFI_WATCHDOG_ACCEPTABLE_PACKET_LOSS_PERCENTAGE: ClassVar[str]
+        WIFI_WATCHDOG_AP_COUNT: ClassVar[str]
+        WIFI_WATCHDOG_BACKGROUND_CHECK_DELAY_MS: ClassVar[str]
+        WIFI_WATCHDOG_BACKGROUND_CHECK_ENABLED: ClassVar[str]
+        WIFI_WATCHDOG_BACKGROUND_CHECK_TIMEOUT_MS: ClassVar[str]
+        WIFI_WATCHDOG_INITIAL_IGNORED_PING_COUNT: ClassVar[str]
+        WIFI_WATCHDOG_MAX_AP_CHECKS: ClassVar[str]
+        WIFI_WATCHDOG_ON: ClassVar[str]
+        WIFI_WATCHDOG_PING_COUNT: ClassVar[str]
+        WIFI_WATCHDOG_PING_DELAY_MS: ClassVar[str]
+        WIFI_WATCHDOG_PING_TIMEOUT_MS: ClassVar[str]
+        WIFI_WATCHDOG_WATCH_LIST: ClassVar[str]
+        NAME: ClassVar[str]
+        VALUE: ClassVar[str]
+        _COUNT: ClassVar[str]
+        _ID: ClassVar[str]
         def __init__(self) -> None: ...
         @staticmethod
-        def getString(arg0: ContentResolver, arg1: str) -> str: ...
+        def isLocationProviderEnabled(p0: ContentResolver, p1: str) -> bool: ...
         @staticmethod
-        def putString(arg0: ContentResolver, arg1: str, arg2: str) -> bool: ...
-        @staticmethod
-        def getUriFor(arg0: str) -> Uri: ...
+        def setLocationProviderEnabled(p0: ContentResolver, p1: str, p2: bool) -> None: ...
         @overload
         @staticmethod
-        def getInt(arg0: ContentResolver, arg1: str, arg2: int) -> int: ...
+        def getInt(p0: ContentResolver, p1: str) -> int: ...
         @overload
         @staticmethod
-        def getInt(arg0: ContentResolver, arg1: str) -> int: ...
+        def getInt(p0: ContentResolver, p1: str, p2: int) -> int: ...
         @staticmethod
-        def putInt(arg0: ContentResolver, arg1: str, arg2: int) -> bool: ...
+        def putInt(p0: ContentResolver, p1: str, p2: int) -> bool: ...
         @overload
         @staticmethod
-        def getLong(arg0: ContentResolver, arg1: str, arg2: int) -> int: ...
+        def getLong(p0: ContentResolver, p1: str) -> int: ...
         @overload
         @staticmethod
-        def getLong(arg0: ContentResolver, arg1: str) -> int: ...
+        def getLong(p0: ContentResolver, p1: str, p2: int) -> int: ...
         @staticmethod
-        def putLong(arg0: ContentResolver, arg1: str, arg2: int) -> bool: ...
+        def putLong(p0: ContentResolver, p1: str, p2: int) -> bool: ...
         @overload
         @staticmethod
-        def getFloat(arg0: ContentResolver, arg1: str, arg2: float) -> float: ...
+        def getFloat(p0: ContentResolver, p1: str) -> float: ...
         @overload
         @staticmethod
-        def getFloat(arg0: ContentResolver, arg1: str) -> float: ...
+        def getFloat(p0: ContentResolver, p1: str, p2: float) -> float: ...
         @staticmethod
-        def putFloat(arg0: ContentResolver, arg1: str, arg2: float) -> bool: ...
+        def putFloat(p0: ContentResolver, p1: str, p2: float) -> bool: ...
         @staticmethod
-        def getConfiguration(arg0: ContentResolver, arg1: Configuration) -> None: ...
+        def getString(p0: ContentResolver, p1: str) -> str: ...
         @staticmethod
-        def putConfiguration(arg0: ContentResolver, arg1: Configuration) -> bool: ...
+        def putString(p0: ContentResolver, p1: str, p2: str) -> bool: ...
         @staticmethod
-        def getShowGTalkServiceStatus(arg0: ContentResolver) -> bool: ...
+        def getUriFor(p0: str) -> Uri: ...
+
+    class Panel:
+        ACTION_INTERNET_CONNECTIVITY: ClassVar[str]
+        ACTION_NFC: ClassVar[str]
+        ACTION_VOLUME: ClassVar[str]
+        ACTION_WIFI: ClassVar[str]
+
+    class NameValueTable:
+        NAME: ClassVar[str]
+        VALUE: ClassVar[str]
+        _COUNT: ClassVar[str]
+        _ID: ClassVar[str]
+        def __init__(self) -> None: ...
         @staticmethod
-        def setShowGTalkServiceStatus(arg0: ContentResolver, arg1: bool) -> None: ...
+        def getUriFor(p0: Uri, p1: str) -> Uri: ...
+
+    class Global:
+        ADB_ENABLED: ClassVar[str]
+        AIRPLANE_MODE_ON: ClassVar[str]
+        AIRPLANE_MODE_RADIOS: ClassVar[str]
+        ALWAYS_FINISH_ACTIVITIES: ClassVar[str]
+        ANIMATOR_DURATION_SCALE: ClassVar[str]
+        APPLY_RAMPING_RINGER: ClassVar[str]
+        AUTO_TIME: ClassVar[str]
+        AUTO_TIME_ZONE: ClassVar[str]
+        BLUETOOTH_ON: ClassVar[str]
+        BOOT_COUNT: ClassVar[str]
+        CONTACT_METADATA_SYNC_ENABLED: ClassVar[str]
+        CONTENT_URI: ClassVar[Uri]
+        DATA_ROAMING: ClassVar[str]
+        DEBUG_APP: ClassVar[str]
+        DEVELOPMENT_SETTINGS_ENABLED: ClassVar[str]
+        DEVICE_NAME: ClassVar[str]
+        DEVICE_PROVISIONED: ClassVar[str]
+        HTTP_PROXY: ClassVar[str]
+        INSTALL_NON_MARKET_APPS: ClassVar[str]
+        MODE_RINGER: ClassVar[str]
+        NETWORK_PREFERENCE: ClassVar[str]
+        RADIO_BLUETOOTH: ClassVar[str]
+        RADIO_CELL: ClassVar[str]
+        RADIO_NFC: ClassVar[str]
+        RADIO_WIFI: ClassVar[str]
+        SECURE_FRP_MODE: ClassVar[str]
+        SHOW_PROCESSES: ClassVar[str]
+        STAY_ON_WHILE_PLUGGED_IN: ClassVar[str]
+        TRANSITION_ANIMATION_SCALE: ClassVar[str]
+        USB_MASS_STORAGE_ENABLED: ClassVar[str]
+        USE_GOOGLE_MAIL: ClassVar[str]
+        WAIT_FOR_DEBUGGER: ClassVar[str]
+        WIFI_DEVICE_OWNER_CONFIGS_LOCKDOWN: ClassVar[str]
+        WIFI_MAX_DHCP_RETRY_COUNT: ClassVar[str]
+        WIFI_MOBILE_DATA_TRANSITION_WAKELOCK_TIMEOUT_MS: ClassVar[str]
+        WIFI_NETWORKS_AVAILABLE_NOTIFICATION_ON: ClassVar[str]
+        WIFI_NETWORKS_AVAILABLE_REPEAT_DELAY: ClassVar[str]
+        WIFI_NUM_OPEN_NETWORKS_KEPT: ClassVar[str]
+        WIFI_ON: ClassVar[str]
+        WIFI_SLEEP_POLICY: ClassVar[str]
+        WIFI_SLEEP_POLICY_DEFAULT: ClassVar[int]
+        WIFI_SLEEP_POLICY_NEVER: ClassVar[int]
+        WIFI_SLEEP_POLICY_NEVER_WHILE_PLUGGED: ClassVar[int]
+        WIFI_WATCHDOG_ON: ClassVar[str]
+        WINDOW_ANIMATION_SCALE: ClassVar[str]
+        NAME: ClassVar[str]
+        VALUE: ClassVar[str]
+        _COUNT: ClassVar[str]
+        _ID: ClassVar[str]
+        def __init__(self) -> None: ...
+        @overload
         @staticmethod
-        def canWrite(arg0: Context) -> bool: ...
+        def getInt(p0: ContentResolver, p1: str, p2: int) -> int: ...
+        @overload
+        @staticmethod
+        def getInt(p0: ContentResolver, p1: str) -> int: ...
+        @staticmethod
+        def putInt(p0: ContentResolver, p1: str, p2: int) -> bool: ...
+        @overload
+        @staticmethod
+        def getLong(p0: ContentResolver, p1: str, p2: int) -> int: ...
+        @overload
+        @staticmethod
+        def getLong(p0: ContentResolver, p1: str) -> int: ...
+        @staticmethod
+        def putLong(p0: ContentResolver, p1: str, p2: int) -> bool: ...
+        @overload
+        @staticmethod
+        def getFloat(p0: ContentResolver, p1: str) -> float: ...
+        @overload
+        @staticmethod
+        def getFloat(p0: ContentResolver, p1: str, p2: float) -> float: ...
+        @staticmethod
+        def putFloat(p0: ContentResolver, p1: str, p2: float) -> bool: ...
+        @staticmethod
+        def getString(p0: ContentResolver, p1: str) -> str: ...
+        @staticmethod
+        def putString(p0: ContentResolver, p1: str, p2: str) -> bool: ...
+        @staticmethod
+        def getUriFor(p0: str) -> Uri: ...

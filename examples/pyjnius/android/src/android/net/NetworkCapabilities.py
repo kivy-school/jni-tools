@@ -1,10 +1,10 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["NetworkCapabilities"]
 
 class NetworkCapabilities(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/net/NetworkCapabilities"
-    __javaconstructor__ = [("()V", False), ("(Landroid/net/NetworkCapabilities;)V", False)]
+    __javaconstructor__ = [("(Landroid/net/NetworkCapabilities;)V", False), ("()V", False)]
     CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
     NET_CAPABILITY_CAPTIVE_PORTAL = JavaStaticField("I")
     NET_CAPABILITY_CBS = JavaStaticField("I")
@@ -21,6 +21,7 @@ class NetworkCapabilities(JavaClass, metaclass=MetaJavaClass):
     NET_CAPABILITY_MCX = JavaStaticField("I")
     NET_CAPABILITY_MMS = JavaStaticField("I")
     NET_CAPABILITY_MMTEL = JavaStaticField("I")
+    NET_CAPABILITY_NOT_BANDWIDTH_CONSTRAINED = JavaStaticField("I")
     NET_CAPABILITY_NOT_CONGESTED = JavaStaticField("I")
     NET_CAPABILITY_NOT_METERED = JavaStaticField("I")
     NET_CAPABILITY_NOT_RESTRICTED = JavaStaticField("I")
@@ -52,20 +53,22 @@ class NetworkCapabilities(JavaClass, metaclass=MetaJavaClass):
     TRANSPORT_VPN = JavaStaticField("I")
     TRANSPORT_WIFI = JavaStaticField("I")
     TRANSPORT_WIFI_AWARE = JavaStaticField("I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getEnterpriseIds = JavaMethod("()[I")
-    hasEnterpriseId = JavaMethod("(I)Z")
-    getCapabilities = JavaMethod("()[I")
-    hasCapability = JavaMethod("(I)Z")
-    hasTransport = JavaMethod("(I)Z")
-    getOwnerUid = JavaMethod("()I")
-    getLinkUpstreamBandwidthKbps = JavaMethod("()I")
     getLinkDownstreamBandwidthKbps = JavaMethod("()I")
+    getLinkUpstreamBandwidthKbps = JavaMethod("()I")
     getNetworkSpecifier = JavaMethod("()Landroid/net/NetworkSpecifier;")
-    getTransportInfo = JavaMethod("()Landroid/net/TransportInfo;")
+    getOwnerUid = JavaMethod("()I")
     getSignalStrength = JavaMethod("()I")
-    equals = JavaMethod("(Ljava/lang/Object;)Z")
-    hashCode = JavaMethod("()I")
-    describeContents = JavaMethod("()I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
-    toString = JavaMethod("()Ljava/lang/String;")
     getSubscriptionIds = JavaMethod("()Ljava/util/Set;")
+    getTransportInfo = JavaMethod("()Landroid/net/TransportInfo;")
+    hasCapability = JavaMethod("(I)Z")
+    hasEnterpriseId = JavaMethod("(I)Z")
+    hasTransport = JavaMethod("(I)Z")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    getCapabilities = JavaMethod("()[I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

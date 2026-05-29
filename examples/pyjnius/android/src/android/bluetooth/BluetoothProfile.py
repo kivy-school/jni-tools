@@ -1,8 +1,8 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["BluetoothProfile"]
 
-class BluetoothProfile(JavaInterface, metaclass=MetaJavaClass):
+class BluetoothProfile(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/bluetooth/BluetoothProfile"
     A2DP = JavaStaticField("I")
     CSIP_SET_COORDINATOR = JavaStaticField("I")
@@ -21,11 +21,11 @@ class BluetoothProfile(JavaInterface, metaclass=MetaJavaClass):
     STATE_CONNECTING = JavaStaticField("I")
     STATE_DISCONNECTED = JavaStaticField("I")
     STATE_DISCONNECTING = JavaStaticField("I")
+    getConnectionState = JavaMethod("(Landroid/bluetooth/BluetoothDevice;)I")
     getConnectedDevices = JavaMethod("()Ljava/util/List;")
     getDevicesMatchingConnectionStates = JavaMethod("([I)Ljava/util/List;")
-    getConnectionState = JavaMethod("(Landroid/bluetooth/BluetoothDevice;)I")
 
-    class ServiceListener(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/bluetooth/BluetoothProfile/ServiceListener"
+    class ServiceListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/bluetooth/BluetoothProfile$ServiceListener"
         onServiceConnected = JavaMethod("(ILandroid/bluetooth/BluetoothProfile;)V")
         onServiceDisconnected = JavaMethod("(I)V")

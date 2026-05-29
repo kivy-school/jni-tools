@@ -8,16 +8,16 @@ class ConsoleMessage:
     def message(self) -> str: ...
 
     class MessageLevel:
-        TIP: ClassVar["MessageLevel"]
-        LOG: ClassVar["MessageLevel"]
-        WARNING: ClassVar["MessageLevel"]
-        ERROR: ClassVar["MessageLevel"]
         DEBUG: ClassVar["MessageLevel"]
-        TIP: ClassVar[Any]
-        LOG: ClassVar[Any]
-        WARNING: ClassVar[Any]
-        ERROR: ClassVar[Any]
+        ERROR: ClassVar["MessageLevel"]
+        LOG: ClassVar["MessageLevel"]
+        TIP: ClassVar["MessageLevel"]
+        WARNING: ClassVar["MessageLevel"]
         DEBUG: ClassVar[Any]
+        ERROR: ClassVar[Any]
+        LOG: ClassVar[Any]
+        TIP: ClassVar[Any]
+        WARNING: ClassVar[Any]
         @staticmethod
         def values() -> Any: ...
         @staticmethod

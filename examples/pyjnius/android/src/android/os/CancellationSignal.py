@@ -1,15 +1,15 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["CancellationSignal"]
 
 class CancellationSignal(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/os/CancellationSignal"
     __javaconstructor__ = [("()V", False)]
-    isCanceled = JavaMethod("()Z")
-    throwIfCanceled = JavaMethod("()V")
     cancel = JavaMethod("()V")
+    throwIfCanceled = JavaMethod("()V")
     setOnCancelListener = JavaMethod("(Landroid/os/CancellationSignal$OnCancelListener;)V")
+    isCanceled = JavaMethod("()Z")
 
-    class OnCancelListener(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/os/CancellationSignal/OnCancelListener"
+    class OnCancelListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/os/CancellationSignal$OnCancelListener"
         onCancel = JavaMethod("()V")

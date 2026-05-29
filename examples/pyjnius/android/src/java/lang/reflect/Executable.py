@@ -1,24 +1,30 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Executable"]
 
 class Executable(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/lang/reflect/Executable"
-    getDeclaringClass = JavaMethod("()Ljava/lang/Class;")
+    PUBLIC = JavaStaticField("I")
+    DECLARED = JavaStaticField("I")
     getName = JavaMethod("()Ljava/lang/String;")
     getModifiers = JavaMethod("()I")
     getTypeParameters = JavaMethod("()[Ljava/lang/reflect/TypeVariable;")
-    getParameterTypes = JavaMethod("()[Ljava/lang/Class;")
-    getParameterCount = JavaMethod("()I")
-    getGenericParameterTypes = JavaMethod("()[Ljava/lang/reflect/Type;")
-    getParameters = JavaMethod("()[Ljava/lang/reflect/Parameter;")
-    getExceptionTypes = JavaMethod("()[Ljava/lang/Class;")
-    getGenericExceptionTypes = JavaMethod("()[Ljava/lang/reflect/Type;")
     toGenericString = JavaMethod("()Ljava/lang/String;")
-    isVarArgs = JavaMethod("()Z")
     isSynthetic = JavaMethod("()Z")
-    getParameterAnnotations = JavaMethod("()[[Ljava/lang/annotation/Annotation;")
+    accessFlags = JavaMethod("()Ljava/util/Set;")
+    getDeclaringClass = JavaMethod("()Ljava/lang/Class;")
     getAnnotation = JavaMethod("(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;")
     getAnnotationsByType = JavaMethod("(Ljava/lang/Class;)[Ljava/lang/annotation/Annotation;")
     getDeclaredAnnotations = JavaMethod("()[Ljava/lang/annotation/Annotation;")
-    isAnnotationPresent = JavaMethod("(Ljava/lang/Class;)Z")
+    isVarArgs = JavaMethod("()Z")
+    getAnnotatedParameterTypes = JavaMethod("()[Ljava/lang/reflect/AnnotatedType;")
+    getParameterCount = JavaMethod("()I")
+    getParameterAnnotations = JavaMethod("()[[Ljava/lang/annotation/Annotation;")
+    getGenericParameterTypes = JavaMethod("()[Ljava/lang/reflect/Type;")
+    getGenericExceptionTypes = JavaMethod("()[Ljava/lang/reflect/Type;")
+    getParameterTypes = JavaMethod("()[Ljava/lang/Class;")
+    getExceptionTypes = JavaMethod("()[Ljava/lang/Class;")
+    getAnnotatedReturnType = JavaMethod("()Ljava/lang/reflect/AnnotatedType;")
+    getParameters = JavaMethod("()[Ljava/lang/reflect/Parameter;")
+    getAnnotatedReceiverType = JavaMethod("()Ljava/lang/reflect/AnnotatedType;")
+    getAnnotatedExceptionTypes = JavaMethod("()[Ljava/lang/reflect/AnnotatedType;")

@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ImsReasonInfo"]
 
@@ -181,9 +181,11 @@ class ImsReasonInfo(JavaClass, metaclass=MetaJavaClass):
     EXTRA_CODE_CALL_RETRY_EMERGENCY = JavaStaticField("I")
     EXTRA_CODE_CALL_RETRY_NORMAL = JavaStaticField("I")
     EXTRA_CODE_CALL_RETRY_SILENT_REDIAL = JavaStaticField("I")
-    getCode = JavaMethod("()I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getExtraCode = JavaMethod("()I")
     getExtraMessage = JavaMethod("()Ljava/lang/String;")
     toString = JavaMethod("()Ljava/lang/String;")
-    describeContents = JavaMethod("()I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
+    getCode = JavaMethod("()I")

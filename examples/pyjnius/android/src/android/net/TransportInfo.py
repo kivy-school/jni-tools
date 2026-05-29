@@ -1,6 +1,6 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["TransportInfo"]
 
-class TransportInfo(JavaInterface, metaclass=MetaJavaClass):
+class TransportInfo(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/net/TransportInfo"

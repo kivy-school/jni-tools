@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["NetworkException"]
 
@@ -16,5 +16,5 @@ class NetworkException(JavaClass, metaclass=MetaJavaClass):
     ERROR_OTHER = JavaStaticField("I")
     ERROR_QUIC_PROTOCOL_FAILED = JavaStaticField("I")
     ERROR_TIMED_OUT = JavaStaticField("I")
-    getErrorCode = JavaMethod("()I")
     isImmediatelyRetryable = JavaMethod("()Z")
+    getErrorCode = JavaMethod("()I")

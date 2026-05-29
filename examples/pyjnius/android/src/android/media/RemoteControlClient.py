@@ -1,10 +1,10 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["RemoteControlClient"]
 
 class RemoteControlClient(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/media/RemoteControlClient"
-    __javaconstructor__ = [("(Landroid/app/PendingIntent;)V", False), ("(Landroid/app/PendingIntent;Landroid/os/Looper;)V", False)]
+    __javaconstructor__ = [("(Landroid/app/PendingIntent;Landroid/os/Looper;)V", False), ("(Landroid/app/PendingIntent;)V", False)]
     FLAG_KEY_MEDIA_FAST_FORWARD = JavaStaticField("I")
     FLAG_KEY_MEDIA_NEXT = JavaStaticField("I")
     FLAG_KEY_MEDIA_PAUSE = JavaStaticField("I")
@@ -24,33 +24,36 @@ class RemoteControlClient(JavaClass, metaclass=MetaJavaClass):
     PLAYSTATE_SKIPPING_BACKWARDS = JavaStaticField("I")
     PLAYSTATE_SKIPPING_FORWARDS = JavaStaticField("I")
     PLAYSTATE_STOPPED = JavaStaticField("I")
-    getMediaSession = JavaMethod("()Landroid/media/session/MediaSession;")
+    setPlaybackState = JavaMultipleMethod([("(IJF)V", False, False), ("(I)V", False, False)])
     editMetadata = JavaMethod("(Z)Landroid/media/RemoteControlClient$MetadataEditor;")
-    setPlaybackState = JavaMultipleMethod([("(I)V", False, False), ("(IJF)V", False, False)])
-    setTransportControlFlags = JavaMethod("(I)V")
+    getMediaSession = JavaMethod("()Landroid/media/session/MediaSession;")
     setMetadataUpdateListener = JavaMethod("(Landroid/media/RemoteControlClient$OnMetadataUpdateListener;)V")
-    setPlaybackPositionUpdateListener = JavaMethod("(Landroid/media/RemoteControlClient$OnPlaybackPositionUpdateListener;)V")
     setOnGetPlaybackPositionListener = JavaMethod("(Landroid/media/RemoteControlClient$OnGetPlaybackPositionListener;)V")
+    setPlaybackPositionUpdateListener = JavaMethod("(Landroid/media/RemoteControlClient$OnPlaybackPositionUpdateListener;)V")
+    setTransportControlFlags = JavaMethod("(I)V")
 
-    class MetadataEditor(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/RemoteControlClient/MetadataEditor"
-        BITMAP_KEY_ARTWORK = JavaStaticField("I")
-        clone = JavaMethod("()Ljava/lang/Object;")
-        putString = JavaMethod("(ILjava/lang/String;)Landroid/media/RemoteControlClient$MetadataEditor;")
-        putLong = JavaMethod("(IJ)Landroid/media/RemoteControlClient$MetadataEditor;")
-        putBitmap = JavaMethod("(ILandroid/graphics/Bitmap;)Landroid/media/RemoteControlClient$MetadataEditor;")
-        putObject = JavaMethod("(ILjava/lang/Object;)Landroid/media/RemoteControlClient$MetadataEditor;")
-        clear = JavaMethod("()V")
-        apply = JavaMethod("()V")
+    class OnPlaybackPositionUpdateListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/media/RemoteControlClient$OnPlaybackPositionUpdateListener"
+        onPlaybackPositionUpdate = JavaMethod("(J)V")
 
-    class OnGetPlaybackPositionListener(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/RemoteControlClient/OnGetPlaybackPositionListener"
-        onGetPlaybackPosition = JavaMethod("()J")
-
-    class OnMetadataUpdateListener(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/RemoteControlClient/OnMetadataUpdateListener"
+    class OnMetadataUpdateListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/media/RemoteControlClient$OnMetadataUpdateListener"
         onMetadataUpdate = JavaMethod("(ILjava/lang/Object;)V")
 
-    class OnPlaybackPositionUpdateListener(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/RemoteControlClient/OnPlaybackPositionUpdateListener"
-        onPlaybackPositionUpdate = JavaMethod("(J)V")
+    class OnGetPlaybackPositionListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/media/RemoteControlClient$OnGetPlaybackPositionListener"
+        onGetPlaybackPosition = JavaMethod("()J")
+
+    class MetadataEditor(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/media/RemoteControlClient$MetadataEditor"
+        BITMAP_KEY_ARTWORK = JavaStaticField("I")
+        BITMAP_KEY_ARTWORK = JavaStaticField("I")
+        RATING_KEY_BY_OTHERS = JavaStaticField("I")
+        RATING_KEY_BY_USER = JavaStaticField("I")
+        putBitmap = JavaMultipleMethod([("(ILandroid/graphics/Bitmap;)Landroid/media/RemoteControlClient$MetadataEditor;", False, False), ("(ILandroid/graphics/Bitmap;)Landroid/media/MediaMetadataEditor;", False, False)])
+        putObject = JavaMultipleMethod([("(ILjava/lang/Object;)Landroid/media/MediaMetadataEditor;", False, False), ("(ILjava/lang/Object;)Landroid/media/RemoteControlClient$MetadataEditor;", False, False)])
+        clone = JavaMethod("()Ljava/lang/Object;")
+        putLong = JavaMultipleMethod([("(IJ)Landroid/media/RemoteControlClient$MetadataEditor;", False, False), ("(IJ)Landroid/media/MediaMetadataEditor;", False, False)])
+        clear = JavaMethod("()V")
+        apply = JavaMethod("()V")
+        putString = JavaMultipleMethod([("(ILjava/lang/String;)Landroid/media/RemoteControlClient$MetadataEditor;", False, False), ("(ILjava/lang/String;)Landroid/media/MediaMetadataEditor;", False, False)])

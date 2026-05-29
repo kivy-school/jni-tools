@@ -4,16 +4,16 @@ from java.util.Locale import Locale
 
 class TimeZoneNames:
     @overload
-    def getAvailableMetaZoneIDs(self) -> set: ...
-    @overload
     def getAvailableMetaZoneIDs(self, p0: str) -> set: ...
-    @staticmethod
-    def getTZDBInstance(p0: ULocale) -> "TimeZoneNames": ...
+    @overload
+    def getAvailableMetaZoneIDs(self) -> set: ...
+    def getExemplarLocationName(self, p0: str) -> str: ...
+    def getMetaZoneDisplayName(self, p0: str, p1: Any) -> str: ...
     def getMetaZoneID(self, p0: str, p1: int) -> str: ...
     def getReferenceZoneID(self, p0: str, p1: str) -> str: ...
-    def getMetaZoneDisplayName(self, p0: str, p1: Any) -> str: ...
+    @staticmethod
+    def getTZDBInstance(p0: ULocale) -> "TimeZoneNames": ...
     def getTimeZoneDisplayName(self, p0: str, p1: Any) -> str: ...
-    def getExemplarLocationName(self, p0: str) -> str: ...
     @overload
     @staticmethod
     def getInstance(p0: Locale) -> "TimeZoneNames": ...
@@ -23,20 +23,20 @@ class TimeZoneNames:
     def getDisplayName(self, p0: str, p1: Any, p2: int) -> str: ...
 
     class NameType:
+        EXEMPLAR_LOCATION: ClassVar["NameType"]
+        LONG_DAYLIGHT: ClassVar["NameType"]
         LONG_GENERIC: ClassVar["NameType"]
         LONG_STANDARD: ClassVar["NameType"]
-        LONG_DAYLIGHT: ClassVar["NameType"]
+        SHORT_DAYLIGHT: ClassVar["NameType"]
         SHORT_GENERIC: ClassVar["NameType"]
         SHORT_STANDARD: ClassVar["NameType"]
-        SHORT_DAYLIGHT: ClassVar["NameType"]
-        EXEMPLAR_LOCATION: ClassVar["NameType"]
+        EXEMPLAR_LOCATION: ClassVar[Any]
+        LONG_DAYLIGHT: ClassVar[Any]
         LONG_GENERIC: ClassVar[Any]
         LONG_STANDARD: ClassVar[Any]
-        LONG_DAYLIGHT: ClassVar[Any]
+        SHORT_DAYLIGHT: ClassVar[Any]
         SHORT_GENERIC: ClassVar[Any]
         SHORT_STANDARD: ClassVar[Any]
-        SHORT_DAYLIGHT: ClassVar[Any]
-        EXEMPLAR_LOCATION: ClassVar[Any]
         @staticmethod
         def values() -> Any: ...
         @staticmethod

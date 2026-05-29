@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["InstrumentationInfo"]
 
@@ -16,6 +16,17 @@ class InstrumentationInfo(JavaClass, metaclass=MetaJavaClass):
     splitSourceDirs = JavaField("[Ljava/lang/String;")
     targetPackage = JavaField("Ljava/lang/String;")
     targetProcesses = JavaField("Ljava/lang/String;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    banner = JavaField("I")
+    icon = JavaField("I")
+    isArchived = JavaField("Z")
+    labelRes = JavaField("I")
+    logo = JavaField("I")
+    metaData = JavaField("Landroid/os/Bundle;")
+    name = JavaField("Ljava/lang/String;")
+    nonLocalizedLabel = JavaField("Ljava/lang/CharSequence;")
+    packageName = JavaField("Ljava/lang/String;")
     toString = JavaMethod("()Ljava/lang/String;")
-    describeContents = JavaMethod("()I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

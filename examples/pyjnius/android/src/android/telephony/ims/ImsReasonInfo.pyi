@@ -1,20 +1,6 @@
 from typing import Any, ClassVar, overload
 from android.os.Parcel import Parcel
 
-# Forward declarations for Java types we do not wrap.
-# Bound as empty classes so annotations resolve in the IDE.
-class Creator:
-    """Forward declaration for ``android.os.Parcelable.Creator``.
-
-    This Java type is referenced by the wrapper but is not itself
-    wrapped by pyjnius-wrap. At runtime pyjnius will hand you a
-    live ``autoclass('android.os.Parcelable.Creator')`` proxy; this empty class exists
-    purely so static type checkers and IDEs can resolve the name.
-
-    See: https://developer.android.com/reference/android/os/Parcelable/Creator
-    """
-    ...
-
 class ImsReasonInfo:
     CODE_ACCESS_CLASS_BLOCKED: ClassVar[int]
     CODE_ANSWERED_ELSEWHERE: ClassVar[int]
@@ -187,15 +173,17 @@ class ImsReasonInfo:
     CODE_UT_SS_MODIFIED_TO_SS: ClassVar[int]
     CODE_UT_SS_MODIFIED_TO_USSD: ClassVar[int]
     CODE_WIFI_LOST: ClassVar[int]
-    CREATOR: ClassVar[Creator]
+    CREATOR: ClassVar[Any]
     EXTRA_CODE_CALL_RETRY_BY_SETTINGS: ClassVar[int]
     EXTRA_CODE_CALL_RETRY_EMERGENCY: ClassVar[int]
     EXTRA_CODE_CALL_RETRY_NORMAL: ClassVar[int]
     EXTRA_CODE_CALL_RETRY_SILENT_REDIAL: ClassVar[int]
-    def __init__(self, arg0: int, arg1: int, arg2: str) -> None: ...
-    def getCode(self) -> int: ...
+    CONTENTS_FILE_DESCRIPTOR: ClassVar[int]
+    PARCELABLE_WRITE_RETURN_VALUE: ClassVar[int]
+    def __init__(self, p0: int, p1: int, p2: str) -> None: ...
     def getExtraCode(self) -> int: ...
     def getExtraMessage(self) -> str: ...
     def toString(self) -> str: ...
+    def writeToParcel(self, p0: Parcel, p1: int) -> None: ...
     def describeContents(self) -> int: ...
-    def writeToParcel(self, arg0: Parcel, arg1: int) -> None: ...
+    def getCode(self) -> int: ...

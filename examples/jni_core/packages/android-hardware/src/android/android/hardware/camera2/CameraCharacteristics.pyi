@@ -5,8 +5,11 @@ class CameraCharacteristics:
     AUTOMOTIVE_LENS_FACING: ClassVar[Any]
     AUTOMOTIVE_LOCATION: ClassVar[Any]
     COLOR_CORRECTION_AVAILABLE_ABERRATION_MODES: ClassVar[Any]
+    COLOR_CORRECTION_AVAILABLE_MODES: ClassVar[Any]
+    COLOR_CORRECTION_COLOR_TEMPERATURE_RANGE: ClassVar[Any]
     CONTROL_AE_AVAILABLE_ANTIBANDING_MODES: ClassVar[Any]
     CONTROL_AE_AVAILABLE_MODES: ClassVar[Any]
+    CONTROL_AE_AVAILABLE_PRIORITY_MODES: ClassVar[Any]
     CONTROL_AE_AVAILABLE_TARGET_FPS_RANGES: ClassVar[Any]
     CONTROL_AE_COMPENSATION_RANGE: ClassVar[Any]
     CONTROL_AE_COMPENSATION_STEP: ClassVar[Any]
@@ -153,6 +156,7 @@ class CameraCharacteristics:
     COLOR_CORRECTION_ABERRATION_MODE_FAST: ClassVar[int]
     COLOR_CORRECTION_ABERRATION_MODE_HIGH_QUALITY: ClassVar[int]
     COLOR_CORRECTION_ABERRATION_MODE_OFF: ClassVar[int]
+    COLOR_CORRECTION_MODE_CCT: ClassVar[int]
     COLOR_CORRECTION_MODE_FAST: ClassVar[int]
     COLOR_CORRECTION_MODE_HIGH_QUALITY: ClassVar[int]
     COLOR_CORRECTION_MODE_TRANSFORM_MATRIX: ClassVar[int]
@@ -170,6 +174,9 @@ class CameraCharacteristics:
     CONTROL_AE_PRECAPTURE_TRIGGER_CANCEL: ClassVar[int]
     CONTROL_AE_PRECAPTURE_TRIGGER_IDLE: ClassVar[int]
     CONTROL_AE_PRECAPTURE_TRIGGER_START: ClassVar[int]
+    CONTROL_AE_PRIORITY_MODE_OFF: ClassVar[int]
+    CONTROL_AE_PRIORITY_MODE_SENSOR_EXPOSURE_TIME_PRIORITY: ClassVar[int]
+    CONTROL_AE_PRIORITY_MODE_SENSOR_SENSITIVITY_PRIORITY: ClassVar[int]
     CONTROL_AE_STATE_CONVERGED: ClassVar[int]
     CONTROL_AE_STATE_FLASH_REQUIRED: ClassVar[int]
     CONTROL_AE_STATE_INACTIVE: ClassVar[int]
@@ -263,6 +270,8 @@ class CameraCharacteristics:
     CONTROL_VIDEO_STABILIZATION_MODE_OFF: ClassVar[int]
     CONTROL_VIDEO_STABILIZATION_MODE_ON: ClassVar[int]
     CONTROL_VIDEO_STABILIZATION_MODE_PREVIEW_STABILIZATION: ClassVar[int]
+    CONTROL_ZOOM_METHOD_AUTO: ClassVar[int]
+    CONTROL_ZOOM_METHOD_ZOOM_RATIO: ClassVar[int]
     DISTORTION_CORRECTION_MODE_FAST: ClassVar[int]
     DISTORTION_CORRECTION_MODE_HIGH_QUALITY: ClassVar[int]
     DISTORTION_CORRECTION_MODE_OFF: ClassVar[int]
@@ -270,6 +279,9 @@ class CameraCharacteristics:
     EDGE_MODE_HIGH_QUALITY: ClassVar[int]
     EDGE_MODE_OFF: ClassVar[int]
     EDGE_MODE_ZERO_SHUTTER_LAG: ClassVar[int]
+    EXTENSION_NIGHT_MODE_INDICATOR_OFF: ClassVar[int]
+    EXTENSION_NIGHT_MODE_INDICATOR_ON: ClassVar[int]
+    EXTENSION_NIGHT_MODE_INDICATOR_UNKNOWN: ClassVar[int]
     FLASH_MODE_OFF: ClassVar[int]
     FLASH_MODE_SINGLE: ClassVar[int]
     FLASH_MODE_TORCH: ClassVar[int]
@@ -402,14 +414,14 @@ class CameraCharacteristics:
     TONEMAP_MODE_PRESET_CURVE: ClassVar[int]
     TONEMAP_PRESET_CURVE_REC709: ClassVar[int]
     TONEMAP_PRESET_CURVE_SRGB: ClassVar[int]
-    def getKeysNeedingPermission(self) -> list: ...
-    def getRecommendedStreamConfigurationMap(self, p0: int) -> RecommendedStreamConfigurationMap: ...
-    def getAvailableSessionKeys(self) -> list: ...
-    def getAvailableSessionCharacteristicsKeys(self) -> list: ...
-    def getAvailablePhysicalCameraRequestKeys(self) -> list: ...
     def getAvailableCaptureRequestKeys(self) -> list: ...
     def getAvailableCaptureResultKeys(self) -> list: ...
+    def getAvailablePhysicalCameraRequestKeys(self) -> list: ...
+    def getAvailableSessionCharacteristicsKeys(self) -> list: ...
+    def getAvailableSessionKeys(self) -> list: ...
+    def getKeysNeedingPermission(self) -> list: ...
     def getPhysicalCameraIds(self) -> set: ...
+    def getRecommendedStreamConfigurationMap(self, p0: int) -> RecommendedStreamConfigurationMap: ...
     def get(self, p0: Any) -> Any: ...
     def getKeys(self) -> list: ...
 

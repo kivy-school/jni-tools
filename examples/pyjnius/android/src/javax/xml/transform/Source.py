@@ -1,8 +1,9 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Source"]
 
-class Source(JavaInterface, metaclass=MetaJavaClass):
+class Source(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "javax/xml/transform/Source"
-    setSystemId = JavaMethod("(Ljava/lang/String;)V")
     getSystemId = JavaMethod("()Ljava/lang/String;")
+    isEmpty = JavaMethod("()Z")
+    setSystemId = JavaMethod("(Ljava/lang/String;)V")

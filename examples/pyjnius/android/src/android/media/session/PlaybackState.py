@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["PlaybackState"]
 
@@ -37,46 +37,50 @@ class PlaybackState(JavaClass, metaclass=MetaJavaClass):
     STATE_SKIPPING_TO_PREVIOUS = JavaStaticField("I")
     STATE_SKIPPING_TO_QUEUE_ITEM = JavaStaticField("I")
     STATE_STOPPED = JavaStaticField("I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getErrorMessage = JavaMethod("()Ljava/lang/CharSequence;")
+    getActiveQueueItemId = JavaMethod("()J")
+    getBufferedPosition = JavaMethod("()J")
+    getCustomActions = JavaMethod("()Ljava/util/List;")
+    getLastPositionUpdateTime = JavaMethod("()J")
+    getPlaybackSpeed = JavaMethod("()F")
     toString = JavaMethod("()Ljava/lang/String;")
-    describeContents = JavaMethod("()I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
     getState = JavaMethod("()I")
     getPosition = JavaMethod("()J")
-    getBufferedPosition = JavaMethod("()J")
-    getPlaybackSpeed = JavaMethod("()F")
     getActions = JavaMethod("()J")
-    getCustomActions = JavaMethod("()Ljava/util/List;")
-    getErrorMessage = JavaMethod("()Ljava/lang/CharSequence;")
-    getLastPositionUpdateTime = JavaMethod("()J")
-    getActiveQueueItemId = JavaMethod("()J")
     getExtras = JavaMethod("()Landroid/os/Bundle;")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
     isActive = JavaMethod("()Z")
 
-    class Builder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/session/PlaybackState/Builder"
-        __javaconstructor__ = [("()V", False), ("(Landroid/media/session/PlaybackState;)V", False)]
-        setState = JavaMultipleMethod([("(IJFJ)Landroid/media/session/PlaybackState$Builder;", False, False), ("(IJF)Landroid/media/session/PlaybackState$Builder;", False, False)])
-        setActions = JavaMethod("(J)Landroid/media/session/PlaybackState$Builder;")
-        addCustomAction = JavaMultipleMethod([("(Ljava/lang/String;Ljava/lang/String;I)Landroid/media/session/PlaybackState$Builder;", False, False), ("(Landroid/media/session/PlaybackState$CustomAction;)Landroid/media/session/PlaybackState$Builder;", False, False)])
-        setBufferedPosition = JavaMethod("(J)Landroid/media/session/PlaybackState$Builder;")
-        setActiveQueueItemId = JavaMethod("(J)Landroid/media/session/PlaybackState$Builder;")
-        setErrorMessage = JavaMethod("(Ljava/lang/CharSequence;)Landroid/media/session/PlaybackState$Builder;")
-        setExtras = JavaMethod("(Landroid/os/Bundle;)Landroid/media/session/PlaybackState$Builder;")
-        build = JavaMethod("()Landroid/media/session/PlaybackState;")
-
     class CustomAction(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/session/PlaybackState/CustomAction"
+        __javaclass__ = "android/media/session/PlaybackState$CustomAction"
         CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+        CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+        PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+        getName = JavaMethod("()Ljava/lang/CharSequence;")
+        toString = JavaMethod("()Ljava/lang/String;")
+        getExtras = JavaMethod("()Landroid/os/Bundle;")
+        getAction = JavaMethod("()Ljava/lang/String;")
         writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
         describeContents = JavaMethod("()I")
-        getAction = JavaMethod("()Ljava/lang/String;")
-        getName = JavaMethod("()Ljava/lang/CharSequence;")
         getIcon = JavaMethod("()I")
-        getExtras = JavaMethod("()Landroid/os/Bundle;")
-        toString = JavaMethod("()Ljava/lang/String;")
 
         class Builder(JavaClass, metaclass=MetaJavaClass):
-            __javaclass__ = "android/media/session/PlaybackState/CustomAction/Builder"
+            __javaclass__ = "android/media/session/PlaybackState$CustomAction$Builder"
             __javaconstructor__ = [("(Ljava/lang/String;Ljava/lang/CharSequence;I)V", False)]
             setExtras = JavaMethod("(Landroid/os/Bundle;)Landroid/media/session/PlaybackState$CustomAction$Builder;")
             build = JavaMethod("()Landroid/media/session/PlaybackState$CustomAction;")
+
+    class Builder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/media/session/PlaybackState$Builder"
+        __javaconstructor__ = [("()V", False), ("(Landroid/media/session/PlaybackState;)V", False)]
+        setActions = JavaMethod("(J)Landroid/media/session/PlaybackState$Builder;")
+        addCustomAction = JavaMultipleMethod([("(Landroid/media/session/PlaybackState$CustomAction;)Landroid/media/session/PlaybackState$Builder;", False, False), ("(Ljava/lang/String;Ljava/lang/String;I)Landroid/media/session/PlaybackState$Builder;", False, False)])
+        setActiveQueueItemId = JavaMethod("(J)Landroid/media/session/PlaybackState$Builder;")
+        setBufferedPosition = JavaMethod("(J)Landroid/media/session/PlaybackState$Builder;")
+        setErrorMessage = JavaMethod("(Ljava/lang/CharSequence;)Landroid/media/session/PlaybackState$Builder;")
+        setState = JavaMultipleMethod([("(IJFJ)Landroid/media/session/PlaybackState$Builder;", False, False), ("(IJF)Landroid/media/session/PlaybackState$Builder;", False, False)])
+        setExtras = JavaMethod("(Landroid/os/Bundle;)Landroid/media/session/PlaybackState$Builder;")
+        build = JavaMethod("()Landroid/media/session/PlaybackState;")

@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["RecoverableSecurityException"]
 
@@ -6,7 +6,9 @@ class RecoverableSecurityException(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/app/RecoverableSecurityException"
     __javaconstructor__ = [("(Ljava/lang/Throwable;Ljava/lang/CharSequence;Landroid/app/RemoteAction;)V", False)]
     CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
-    getUserMessage = JavaMethod("()Ljava/lang/CharSequence;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getUserAction = JavaMethod("()Landroid/app/RemoteAction;")
-    describeContents = JavaMethod("()I")
+    getUserMessage = JavaMethod("()Ljava/lang/CharSequence;")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ControlAction"]
 
@@ -15,8 +15,8 @@ class ControlAction(JavaClass, metaclass=MetaJavaClass):
     TYPE_ERROR = JavaStaticField("I")
     TYPE_FLOAT = JavaStaticField("I")
     TYPE_MODE = JavaStaticField("I")
-    isValidResponse = JavaStaticMethod("(I)Z")
-    getActionType = JavaMethod("()I")
     getTemplateId = JavaMethod("()Ljava/lang/String;")
+    getActionType = JavaMethod("()I")
     getChallengeValue = JavaMethod("()Ljava/lang/String;")
+    isValidResponse = JavaStaticMethod("(I)Z")
     getErrorAction = JavaStaticMethod("()Landroid/service/controls/actions/ControlAction;")

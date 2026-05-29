@@ -1,6 +1,6 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ParagraphStyle"]
 
-class ParagraphStyle(JavaInterface, metaclass=MetaJavaClass):
+class ParagraphStyle(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/text/style/ParagraphStyle"

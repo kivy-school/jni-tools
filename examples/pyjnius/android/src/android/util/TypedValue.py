@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["TypedValue"]
 
@@ -53,20 +53,20 @@ class TypedValue(JavaClass, metaclass=MetaJavaClass):
     sourceResourceId = JavaField("I")
     string = JavaField("Ljava/lang/CharSequence;")
     type = JavaField("I")
+    toString = JavaMethod("()Ljava/lang/String;")
     getFloat = JavaMethod("()F")
-    isColorType = JavaMethod("()Z")
-    complexToFloat = JavaStaticMethod("(I)F")
+    applyDimension = JavaStaticMethod("(IFLandroid/util/DisplayMetrics;)F")
+    coerceToString = JavaMultipleMethod([("()Ljava/lang/CharSequence;", False, False), ("(II)Ljava/lang/String;", True, False)])
     complexToDimension = JavaStaticMethod("(ILandroid/util/DisplayMetrics;)F")
     complexToDimensionPixelOffset = JavaStaticMethod("(ILandroid/util/DisplayMetrics;)I")
     complexToDimensionPixelSize = JavaStaticMethod("(ILandroid/util/DisplayMetrics;)I")
-    getComplexUnit = JavaMethod("()I")
-    applyDimension = JavaStaticMethod("(IFLandroid/util/DisplayMetrics;)F")
-    deriveDimension = JavaStaticMethod("(IFLandroid/util/DisplayMetrics;)F")
-    convertPixelsToDimension = JavaStaticMethod("(IFLandroid/util/DisplayMetrics;)F")
-    convertDimensionToPixels = JavaStaticMethod("(IFLandroid/util/DisplayMetrics;)F")
-    getDimension = JavaMethod("(Landroid/util/DisplayMetrics;)F")
+    complexToFloat = JavaStaticMethod("(I)F")
     complexToFraction = JavaStaticMethod("(IFF)F")
+    convertDimensionToPixels = JavaStaticMethod("(IFLandroid/util/DisplayMetrics;)F")
+    convertPixelsToDimension = JavaStaticMethod("(IFLandroid/util/DisplayMetrics;)F")
+    deriveDimension = JavaStaticMethod("(IFLandroid/util/DisplayMetrics;)F")
+    getComplexUnit = JavaMethod("()I")
+    isColorType = JavaMethod("()Z")
+    getDimension = JavaMethod("(Landroid/util/DisplayMetrics;)F")
     getFraction = JavaMethod("(FF)F")
-    coerceToString = JavaMultipleMethod([("()Ljava/lang/CharSequence;", False, False), ("(II)Ljava/lang/String;", True, False)])
     setTo = JavaMethod("(Landroid/util/TypedValue;)V")
-    toString = JavaMethod("()Ljava/lang/String;")

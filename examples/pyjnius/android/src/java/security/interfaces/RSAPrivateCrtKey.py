@@ -1,9 +1,12 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["RSAPrivateCrtKey"]
 
-class RSAPrivateCrtKey(JavaInterface, metaclass=MetaJavaClass):
+class RSAPrivateCrtKey(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/security/interfaces/RSAPrivateCrtKey"
+    serialVersionUID = JavaStaticField("J")
+    serialVersionUID = JavaStaticField("J")
+    serialVersionUID = JavaStaticField("J")
     serialVersionUID = JavaStaticField("J")
     getPublicExponent = JavaMethod("()Ljava/math/BigInteger;")
     getPrimeP = JavaMethod("()Ljava/math/BigInteger;")

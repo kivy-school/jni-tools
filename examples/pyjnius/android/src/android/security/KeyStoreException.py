@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["KeyStoreException"]
 
@@ -24,9 +24,9 @@ class KeyStoreException(JavaClass, metaclass=MetaJavaClass):
     RETRY_NEVER = JavaStaticField("I")
     RETRY_WHEN_CONNECTIVITY_AVAILABLE = JavaStaticField("I")
     RETRY_WITH_EXPONENTIAL_BACKOFF = JavaStaticField("I")
+    getRetryPolicy = JavaMethod("()I")
+    isSystemError = JavaMethod("()Z")
     getNumericErrorCode = JavaMethod("()I")
     isTransientFailure = JavaMethod("()Z")
     requiresUserAuthentication = JavaMethod("()Z")
-    isSystemError = JavaMethod("()Z")
-    getRetryPolicy = JavaMethod("()I")
     toString = JavaMethod("()Ljava/lang/String;")

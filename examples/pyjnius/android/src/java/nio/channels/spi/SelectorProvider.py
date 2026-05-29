@@ -1,14 +1,13 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SelectorProvider"]
 
 class SelectorProvider(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/nio/channels/spi/SelectorProvider"
-    __javaconstructor__ = [("()V", False)]
     provider = JavaStaticMethod("()Ljava/nio/channels/spi/SelectorProvider;")
-    openDatagramChannel = JavaMultipleMethod([("()Ljava/nio/channels/DatagramChannel;", False, False), ("(Ljava/net/ProtocolFamily;)Ljava/nio/channels/DatagramChannel;", False, False)])
-    openPipe = JavaMethod("()Ljava/nio/channels/Pipe;")
-    openSelector = JavaMethod("()Ljava/nio/channels/spi/AbstractSelector;")
-    openServerSocketChannel = JavaMethod("()Ljava/nio/channels/ServerSocketChannel;")
-    openSocketChannel = JavaMethod("()Ljava/nio/channels/SocketChannel;")
     inheritedChannel = JavaMethod("()Ljava/nio/channels/Channel;")
+    openDatagramChannel = JavaMultipleMethod([("(Ljava/net/ProtocolFamily;)Ljava/nio/channels/DatagramChannel;", False, False), ("()Ljava/nio/channels/DatagramChannel;", False, False)])
+    openSocketChannel = JavaMultipleMethod([("(Ljava/net/ProtocolFamily;)Ljava/nio/channels/SocketChannel;", False, False), ("()Ljava/nio/channels/SocketChannel;", False, False)])
+    openServerSocketChannel = JavaMultipleMethod([("()Ljava/nio/channels/ServerSocketChannel;", False, False), ("(Ljava/net/ProtocolFamily;)Ljava/nio/channels/ServerSocketChannel;", False, False)])
+    openSelector = JavaMethod("()Ljava/nio/channels/spi/AbstractSelector;")
+    openPipe = JavaMethod("()Ljava/nio/channels/Pipe;")

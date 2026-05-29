@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ResolveInfo"]
 
@@ -20,16 +20,18 @@ class ResolveInfo(JavaClass, metaclass=MetaJavaClass):
     resolvePackageName = JavaField("Ljava/lang/String;")
     serviceInfo = JavaField("Landroid/content/pm/ServiceInfo;")
     specificIndex = JavaField("I")
-    loadLabel = JavaMethod("(Landroid/content/pm/PackageManager;)Ljava/lang/CharSequence;")
-    loadIcon = JavaMethod("(Landroid/content/pm/PackageManager;)Landroid/graphics/drawable/Drawable;")
-    getIconResource = JavaMethod("()I")
-    dump = JavaMethod("(Landroid/util/Printer;Ljava/lang/String;)V")
-    isCrossProfileIntentForwarderActivity = JavaMethod("()Z")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     toString = JavaMethod("()Ljava/lang/String;")
-    describeContents = JavaMethod("()I")
+    dump = JavaMethod("(Landroid/util/Printer;Ljava/lang/String;)V")
+    getIconResource = JavaMethod("()I")
+    loadIcon = JavaMethod("(Landroid/content/pm/PackageManager;)Landroid/graphics/drawable/Drawable;")
+    loadLabel = JavaMethod("(Landroid/content/pm/PackageManager;)Ljava/lang/CharSequence;")
+    isCrossProfileIntentForwarderActivity = JavaMethod("()Z")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
 
     class DisplayNameComparator(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/content/pm/ResolveInfo/DisplayNameComparator"
+        __javaclass__ = "android/content/pm/ResolveInfo$DisplayNameComparator"
         __javaconstructor__ = [("(Landroid/content/pm/PackageManager;)V", False)]
-        compare = JavaMethod("(Landroid/content/pm/ResolveInfo;Landroid/content/pm/ResolveInfo;)I")
+        compare = JavaMultipleMethod([("(Landroid/content/pm/ResolveInfo;Landroid/content/pm/ResolveInfo;)I", False, False), ("(Ljava/lang/Object;Ljava/lang/Object;)I", False, False)])

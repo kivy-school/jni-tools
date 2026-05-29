@@ -1,12 +1,13 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ForkJoinWorkerThread"]
 
 class ForkJoinWorkerThread(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/util/concurrent/ForkJoinWorkerThread"
-    __javaconstructor__ = [("(Ljava/util/concurrent/ForkJoinPool;)V", False)]
+    MIN_PRIORITY = JavaStaticField("I")
+    NORM_PRIORITY = JavaStaticField("I")
+    MAX_PRIORITY = JavaStaticField("I")
+    run = JavaMethod("()V")
+    getQueuedTaskCount = JavaMethod("()I")
     getPool = JavaMethod("()Ljava/util/concurrent/ForkJoinPool;")
     getPoolIndex = JavaMethod("()I")
-    onStart = JavaMethod("()V")
-    onTermination = JavaMethod("(Ljava/lang/Throwable;)V")
-    run = JavaMethod("()V")

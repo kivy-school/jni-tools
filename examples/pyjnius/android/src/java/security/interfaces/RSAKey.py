@@ -1,8 +1,8 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["RSAKey"]
 
-class RSAKey(JavaInterface, metaclass=MetaJavaClass):
+class RSAKey(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/security/interfaces/RSAKey"
-    getModulus = JavaMethod("()Ljava/math/BigInteger;")
     getParams = JavaMethod("()Ljava/security/spec/AlgorithmParameterSpec;")
+    getModulus = JavaMethod("()Ljava/math/BigInteger;")

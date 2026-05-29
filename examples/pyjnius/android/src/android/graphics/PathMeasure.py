@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["PathMeasure"]
 
@@ -7,11 +7,10 @@ class PathMeasure(JavaClass, metaclass=MetaJavaClass):
     __javaconstructor__ = [("()V", False), ("(Landroid/graphics/Path;Z)V", False)]
     POSITION_MATRIX_FLAG = JavaStaticField("I")
     TANGENT_MATRIX_FLAG = JavaStaticField("I")
-    setPath = JavaMethod("(Landroid/graphics/Path;Z)V")
-    getLength = JavaMethod("()F")
-    getPosTan = JavaMethod("(F[F[F)Z")
-    getMatrix = JavaMethod("(FLandroid/graphics/Matrix;I)Z")
     getSegment = JavaMethod("(FFLandroid/graphics/Path;Z)Z")
-    isClosed = JavaMethod("()Z")
     nextContour = JavaMethod("()Z")
-    finalize = JavaMethod("()V")
+    getPosTan = JavaMethod("(F[F[F)Z")
+    getLength = JavaMethod("()F")
+    getMatrix = JavaMethod("(FLandroid/graphics/Matrix;I)Z")
+    isClosed = JavaMethod("()Z")
+    setPath = JavaMethod("(Landroid/graphics/Path;Z)V")

@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["LightsManager"]
 
@@ -9,6 +9,6 @@ class LightsManager(JavaClass, metaclass=MetaJavaClass):
     openSession = JavaMethod("()Landroid/hardware/lights/LightsManager$LightsSession;")
 
     class LightsSession(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/hardware/lights/LightsManager/LightsSession"
+        __javaclass__ = "android/hardware/lights/LightsManager$LightsSession"
         requestLights = JavaMethod("(Landroid/hardware/lights/LightsRequest;)V")
         close = JavaMethod("()V")

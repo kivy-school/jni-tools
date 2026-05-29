@@ -1,8 +1,8 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["GetWalletCardsCallback"]
 
-class GetWalletCardsCallback(JavaInterface, metaclass=MetaJavaClass):
+class GetWalletCardsCallback(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/service/quickaccesswallet/GetWalletCardsCallback"
-    onSuccess = JavaMethod("(Landroid/service/quickaccesswallet/GetWalletCardsResponse;)V")
     onFailure = JavaMethod("(Landroid/service/quickaccesswallet/GetWalletCardsError;)V")
+    onSuccess = JavaMethod("(Landroid/service/quickaccesswallet/GetWalletCardsResponse;)V")

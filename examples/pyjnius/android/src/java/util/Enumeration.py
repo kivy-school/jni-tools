@@ -1,9 +1,9 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Enumeration"]
 
-class Enumeration(JavaInterface, metaclass=MetaJavaClass):
+class Enumeration(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/util/Enumeration"
+    asIterator = JavaMethod("()Ljava/util/Iterator;")
     hasMoreElements = JavaMethod("()Z")
     nextElement = JavaMethod("()Ljava/lang/Object;")
-    asIterator = JavaMethod("()Ljava/util/Iterator;")

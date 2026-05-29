@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["UiModeManager"]
 
@@ -17,18 +17,18 @@ class UiModeManager(JavaClass, metaclass=MetaJavaClass):
     MODE_NIGHT_YES = JavaStaticField("I")
     enableCarMode = JavaMethod("(I)V")
     disableCarMode = JavaMethod("(I)V")
-    getCurrentModeType = JavaMethod("()I")
-    setNightMode = JavaMethod("(I)V")
-    setApplicationNightMode = JavaMethod("(I)V")
-    getNightMode = JavaMethod("()I")
-    getCustomNightModeStart = JavaMethod("()Ljava/time/LocalTime;")
-    setCustomNightModeStart = JavaMethod("(Ljava/time/LocalTime;)V")
-    getCustomNightModeEnd = JavaMethod("()Ljava/time/LocalTime;")
-    setCustomNightModeEnd = JavaMethod("(Ljava/time/LocalTime;)V")
-    getContrast = JavaMethod("()F")
     addContrastChangeListener = JavaMethod("(Ljava/util/concurrent/Executor;Landroid/app/UiModeManager$ContrastChangeListener;)V")
+    getContrast = JavaMethod("()F")
+    getCurrentModeType = JavaMethod("()I")
+    getCustomNightModeEnd = JavaMethod("()Ljava/time/LocalTime;")
+    getCustomNightModeStart = JavaMethod("()Ljava/time/LocalTime;")
+    getNightMode = JavaMethod("()I")
     removeContrastChangeListener = JavaMethod("(Landroid/app/UiModeManager$ContrastChangeListener;)V")
+    setApplicationNightMode = JavaMethod("(I)V")
+    setCustomNightModeEnd = JavaMethod("(Ljava/time/LocalTime;)V")
+    setCustomNightModeStart = JavaMethod("(Ljava/time/LocalTime;)V")
+    setNightMode = JavaMethod("(I)V")
 
-    class ContrastChangeListener(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/app/UiModeManager/ContrastChangeListener"
+    class ContrastChangeListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/app/UiModeManager$ContrastChangeListener"
         onContrastChanged = JavaMethod("(F)V")

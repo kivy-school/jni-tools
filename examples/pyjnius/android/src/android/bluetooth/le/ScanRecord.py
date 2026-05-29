@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ScanRecord"]
 
@@ -51,13 +51,13 @@ class ScanRecord(JavaClass, metaclass=MetaJavaClass):
     DATA_TYPE_TRANSPORT_DISCOVERY_DATA = JavaStaticField("I")
     DATA_TYPE_TX_POWER_LEVEL = JavaStaticField("I")
     DATA_TYPE_URI = JavaStaticField("I")
-    getAdvertiseFlags = JavaMethod("()I")
-    getServiceUuids = JavaMethod("()Ljava/util/List;")
-    getServiceSolicitationUuids = JavaMethod("()Ljava/util/List;")
     getManufacturerSpecificData = JavaMultipleMethod([("()Landroid/util/SparseArray;", False, False), ("(I)[B", False, False)])
-    getServiceData = JavaMultipleMethod([("()Ljava/util/Map;", False, False), ("(Landroid/os/ParcelUuid;)[B", False, False)])
+    getServiceSolicitationUuids = JavaMethod("()Ljava/util/List;")
+    getServiceUuids = JavaMethod("()Ljava/util/List;")
+    getServiceData = JavaMultipleMethod([("(Landroid/os/ParcelUuid;)[B", False, False), ("()Ljava/util/Map;", False, False)])
     getTxPowerLevel = JavaMethod("()I")
-    getDeviceName = JavaMethod("()Ljava/lang/String;")
+    getAdvertiseFlags = JavaMethod("()I")
     getAdvertisingDataMap = JavaMethod("()Ljava/util/Map;")
-    getBytes = JavaMethod("()[B")
     toString = JavaMethod("()Ljava/lang/String;")
+    getBytes = JavaMethod("()[B")
+    getDeviceName = JavaMethod("()Ljava/lang/String;")

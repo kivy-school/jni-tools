@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ExtractedTextRequest"]
 
@@ -10,5 +10,7 @@ class ExtractedTextRequest(JavaClass, metaclass=MetaJavaClass):
     hintMaxChars = JavaField("I")
     hintMaxLines = JavaField("I")
     token = JavaField("I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
     describeContents = JavaMethod("()I")

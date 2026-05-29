@@ -1,22 +1,22 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["InputMethodSession"]
 
-class InputMethodSession(JavaInterface, metaclass=MetaJavaClass):
+class InputMethodSession(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/view/inputmethod/InputMethodSession"
-    finishInput = JavaMethod("()V")
+    displayCompletions = JavaMethod("([Landroid/view/inputmethod/CompletionInfo;)V")
+    toggleSoftInput = JavaMethod("(II)V")
+    updateCursor = JavaMethod("(Landroid/graphics/Rect;)V")
+    updateCursorAnchorInfo = JavaMethod("(Landroid/view/inputmethod/CursorAnchorInfo;)V")
+    updateExtractedText = JavaMethod("(ILandroid/view/inputmethod/ExtractedText;)V")
     updateSelection = JavaMethod("(IIIIII)V")
     viewClicked = JavaMethod("(Z)V")
-    updateCursor = JavaMethod("(Landroid/graphics/Rect;)V")
-    displayCompletions = JavaMethod("([Landroid/view/inputmethod/CompletionInfo;)V")
-    updateExtractedText = JavaMethod("(ILandroid/view/inputmethod/ExtractedText;)V")
+    finishInput = JavaMethod("()V")
+    appPrivateCommand = JavaMethod("(Ljava/lang/String;Landroid/os/Bundle;)V")
+    dispatchGenericMotionEvent = JavaMethod("(ILandroid/view/MotionEvent;Landroid/view/inputmethod/InputMethodSession$EventCallback;)V")
     dispatchKeyEvent = JavaMethod("(ILandroid/view/KeyEvent;Landroid/view/inputmethod/InputMethodSession$EventCallback;)V")
     dispatchTrackballEvent = JavaMethod("(ILandroid/view/MotionEvent;Landroid/view/inputmethod/InputMethodSession$EventCallback;)V")
-    dispatchGenericMotionEvent = JavaMethod("(ILandroid/view/MotionEvent;Landroid/view/inputmethod/InputMethodSession$EventCallback;)V")
-    appPrivateCommand = JavaMethod("(Ljava/lang/String;Landroid/os/Bundle;)V")
-    toggleSoftInput = JavaMethod("(II)V")
-    updateCursorAnchorInfo = JavaMethod("(Landroid/view/inputmethod/CursorAnchorInfo;)V")
 
-    class EventCallback(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/view/inputmethod/InputMethodSession/EventCallback"
+    class EventCallback(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/view/inputmethod/InputMethodSession$EventCallback"
         finishedEvent = JavaMethod("(IZ)V")

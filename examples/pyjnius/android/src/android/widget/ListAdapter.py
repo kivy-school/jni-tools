@@ -1,8 +1,10 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ListAdapter"]
 
-class ListAdapter(JavaInterface, metaclass=MetaJavaClass):
+class ListAdapter(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/widget/ListAdapter"
-    areAllItemsEnabled = JavaMethod("()Z")
+    IGNORE_ITEM_VIEW_TYPE = JavaStaticField("I")
+    NO_SELECTION = JavaStaticField("I")
     isEnabled = JavaMethod("(I)Z")
+    areAllItemsEnabled = JavaMethod("()Z")

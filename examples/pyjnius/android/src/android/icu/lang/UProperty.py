@@ -1,8 +1,8 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["UProperty"]
 
-class UProperty(JavaInterface, metaclass=MetaJavaClass):
+class UProperty(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/icu/lang/UProperty"
     AGE = JavaStaticField("I")
     ALPHABETIC = JavaStaticField("I")
@@ -55,6 +55,9 @@ class UProperty(JavaInterface, metaclass=MetaJavaClass):
     IDEOGRAPHIC = JavaStaticField("I")
     IDS_BINARY_OPERATOR = JavaStaticField("I")
     IDS_TRINARY_OPERATOR = JavaStaticField("I")
+    IDS_UNARY_OPERATOR = JavaStaticField("I")
+    ID_COMPAT_MATH_CONTINUE = JavaStaticField("I")
+    ID_COMPAT_MATH_START = JavaStaticField("I")
     ID_CONTINUE = JavaStaticField("I")
     ID_START = JavaStaticField("I")
     INDIC_POSITIONAL_CATEGORY = JavaStaticField("I")
@@ -123,7 +126,7 @@ class UProperty(JavaInterface, metaclass=MetaJavaClass):
     XID_CONTINUE = JavaStaticField("I")
     XID_START = JavaStaticField("I")
 
-    class NameChoice(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/icu/lang/UProperty/NameChoice"
+    class NameChoice(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/icu/lang/UProperty$NameChoice"
         LONG = JavaStaticField("I")
         SHORT = JavaStaticField("I")

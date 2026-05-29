@@ -1,20 +1,20 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["OptionalInt"]
 
 class OptionalInt(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/util/OptionalInt"
-    empty = JavaStaticMethod("()Ljava/util/OptionalInt;")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
     of = JavaStaticMethod("(I)Ljava/util/OptionalInt;")
-    getAsInt = JavaMethod("()I")
-    isPresent = JavaMethod("()Z")
     isEmpty = JavaMethod("()Z")
+    stream = JavaMethod("()Ljava/util/stream/IntStream;")
+    empty = JavaStaticMethod("()Ljava/util/OptionalInt;")
+    orElse = JavaMethod("(I)I")
+    isPresent = JavaMethod("()Z")
+    orElseThrow = JavaMultipleMethod([("(Ljava/util/function/Supplier;)I", False, False), ("()I", False, False)])
+    getAsInt = JavaMethod("()I")
     ifPresent = JavaMethod("(Ljava/util/function/IntConsumer;)V")
     ifPresentOrElse = JavaMethod("(Ljava/util/function/IntConsumer;Ljava/lang/Runnable;)V")
-    stream = JavaMethod("()Ljava/util/stream/IntStream;")
-    orElse = JavaMethod("(I)I")
     orElseGet = JavaMethod("(Ljava/util/function/IntSupplier;)I")
-    orElseThrow = JavaMultipleMethod([("()I", False, False), ("(Ljava/util/function/Supplier;)I", False, False)])
-    equals = JavaMethod("(Ljava/lang/Object;)Z")
-    hashCode = JavaMethod("()I")
-    toString = JavaMethod("()Ljava/lang/String;")

@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["PowerManager"]
 
@@ -33,44 +33,49 @@ class PowerManager(JavaClass, metaclass=MetaJavaClass):
     THERMAL_STATUS_NONE = JavaStaticField("I")
     THERMAL_STATUS_SEVERE = JavaStaticField("I")
     THERMAL_STATUS_SHUTDOWN = JavaStaticField("I")
-    newWakeLock = JavaMethod("(ILjava/lang/String;)Landroid/os/PowerManager$WakeLock;")
-    isWakeLockLevelSupported = JavaMethod("(I)Z")
-    isScreenOn = JavaMethod("()Z")
     isInteractive = JavaMethod("()Z")
-    isRebootingUserspaceSupported = JavaMethod("()Z")
-    reboot = JavaMethod("(Ljava/lang/String;)V")
-    isPowerSaveMode = JavaMethod("()Z")
+    getThermalHeadroom = JavaMethod("(I)F")
+    addThermalHeadroomListener = JavaMultipleMethod([("(Ljava/util/concurrent/Executor;Landroid/os/PowerManager$OnThermalHeadroomChangedListener;)V", False, False), ("(Landroid/os/PowerManager$OnThermalHeadroomChangedListener;)V", False, False)])
+    addThermalStatusListener = JavaMultipleMethod([("(Ljava/util/concurrent/Executor;Landroid/os/PowerManager$OnThermalStatusChangedListener;)V", False, False), ("(Landroid/os/PowerManager$OnThermalStatusChangedListener;)V", False, False)])
     getBatteryDischargePrediction = JavaMethod("()Ljava/time/Duration;")
-    isBatteryDischargePredictionPersonalized = JavaMethod("()Z")
+    getCurrentThermalStatus = JavaMethod("()I")
     getLocationPowerSaveMode = JavaMethod("()I")
+    getThermalHeadroomThresholds = JavaMethod("()Ljava/util/Map;")
+    isAllowedInLowPowerStandby = JavaMultipleMethod([("(Ljava/lang/String;)Z", False, False), ("(I)Z", False, False)])
+    isBatteryDischargePredictionPersonalized = JavaMethod("()Z")
     isDeviceIdleMode = JavaMethod("()Z")
     isDeviceLightIdleMode = JavaMethod("()Z")
-    isLowPowerStandbyEnabled = JavaMethod("()Z")
     isExemptFromLowPowerStandby = JavaMethod("()Z")
-    isAllowedInLowPowerStandby = JavaMultipleMethod([("(I)Z", False, False), ("(Ljava/lang/String;)Z", False, False)])
     isIgnoringBatteryOptimizations = JavaMethod("(Ljava/lang/String;)Z")
+    isLowPowerStandbyEnabled = JavaMethod("()Z")
+    isPowerSaveMode = JavaMethod("()Z")
+    isRebootingUserspaceSupported = JavaMethod("()Z")
+    isScreenOn = JavaMethod("()Z")
     isSustainedPerformanceModeSupported = JavaMethod("()Z")
-    getCurrentThermalStatus = JavaMethod("()I")
-    addThermalStatusListener = JavaMultipleMethod([("(Landroid/os/PowerManager$OnThermalStatusChangedListener;)V", False, False), ("(Ljava/util/concurrent/Executor;Landroid/os/PowerManager$OnThermalStatusChangedListener;)V", False, False)])
+    isWakeLockLevelSupported = JavaMethod("(I)Z")
+    newWakeLock = JavaMethod("(ILjava/lang/String;)Landroid/os/PowerManager$WakeLock;")
+    removeThermalHeadroomListener = JavaMethod("(Landroid/os/PowerManager$OnThermalHeadroomChangedListener;)V")
     removeThermalStatusListener = JavaMethod("(Landroid/os/PowerManager$OnThermalStatusChangedListener;)V")
-    getThermalHeadroom = JavaMethod("(I)F")
-    getThermalHeadroomThresholds = JavaMethod("()Ljava/util/Map;")
+    reboot = JavaMethod("(Ljava/lang/String;)V")
 
-    class OnThermalStatusChangedListener(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/os/PowerManager/OnThermalStatusChangedListener"
-        onThermalStatusChanged = JavaMethod("(I)V")
+    class WakeLockStateListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/os/PowerManager$WakeLockStateListener"
+        onStateChanged = JavaMethod("(Z)V")
 
     class WakeLock(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/os/PowerManager/WakeLock"
-        finalize = JavaMethod("()V")
-        setReferenceCounted = JavaMethod("(Z)V")
-        acquire = JavaMultipleMethod([("()V", False, False), ("(J)V", False, False)])
-        release = JavaMultipleMethod([("()V", False, False), ("(I)V", False, False)])
+        __javaclass__ = "android/os/PowerManager$WakeLock"
+        setStateListener = JavaMethod("(Ljava/util/concurrent/Executor;Landroid/os/PowerManager$WakeLockStateListener;)V")
         isHeld = JavaMethod("()Z")
+        setReferenceCounted = JavaMethod("(Z)V")
         setWorkSource = JavaMethod("(Landroid/os/WorkSource;)V")
         toString = JavaMethod("()Ljava/lang/String;")
-        setStateListener = JavaMethod("(Ljava/util/concurrent/Executor;Landroid/os/PowerManager$WakeLockStateListener;)V")
+        release = JavaMultipleMethod([("()V", False, False), ("(I)V", False, False)])
+        acquire = JavaMultipleMethod([("()V", False, False), ("(J)V", False, False)])
 
-    class WakeLockStateListener(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/os/PowerManager/WakeLockStateListener"
-        onStateChanged = JavaMethod("(Z)V")
+    class OnThermalStatusChangedListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/os/PowerManager$OnThermalStatusChangedListener"
+        onThermalStatusChanged = JavaMethod("(I)V")
+
+    class OnThermalHeadroomChangedListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/os/PowerManager$OnThermalHeadroomChangedListener"
+        onThermalHeadroomChanged = JavaMethod("(FFILjava/util/Map;)V")

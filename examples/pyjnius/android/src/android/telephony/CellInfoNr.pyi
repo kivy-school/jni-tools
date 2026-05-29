@@ -3,25 +3,20 @@ from android.os.Parcel import Parcel
 from android.telephony.CellIdentity import CellIdentity
 from android.telephony.CellSignalStrength import CellSignalStrength
 
-# Forward declarations for Java types we do not wrap.
-# Bound as empty classes so annotations resolve in the IDE.
-class Creator:
-    """Forward declaration for ``android.os.Parcelable.Creator``.
-
-    This Java type is referenced by the wrapper but is not itself
-    wrapped by pyjnius-wrap. At runtime pyjnius will hand you a
-    live ``autoclass('android.os.Parcelable.Creator')`` proxy; this empty class exists
-    purely so static type checkers and IDEs can resolve the name.
-
-    See: https://developer.android.com/reference/android/os/Parcelable/Creator
-    """
-    ...
-
 class CellInfoNr:
-    CREATOR: ClassVar[Creator]
+    CREATOR: ClassVar[Any]
+    CONNECTION_NONE: ClassVar[int]
+    CONNECTION_PRIMARY_SERVING: ClassVar[int]
+    CONNECTION_SECONDARY_SERVING: ClassVar[int]
+    CONNECTION_UNKNOWN: ClassVar[int]
+    CREATOR: ClassVar[Any]
+    UNAVAILABLE: ClassVar[int]
+    UNAVAILABLE_LONG: ClassVar[int]
+    CONTENTS_FILE_DESCRIPTOR: ClassVar[int]
+    PARCELABLE_WRITE_RETURN_VALUE: ClassVar[int]
     def getCellIdentity(self) -> CellIdentity: ...
     def getCellSignalStrength(self) -> CellSignalStrength: ...
-    def hashCode(self) -> int: ...
-    def equals(self, arg0: Any) -> bool: ...
+    def equals(self, p0: Any) -> bool: ...
     def toString(self) -> str: ...
-    def writeToParcel(self, arg0: Parcel, arg1: int) -> None: ...
+    def hashCode(self) -> int: ...
+    def writeToParcel(self, p0: Parcel, p1: int) -> None: ...

@@ -1,11 +1,11 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["RowSetInternal"]
 
-class RowSetInternal(JavaInterface, metaclass=MetaJavaClass):
+class RowSetInternal(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "javax/sql/RowSetInternal"
-    getParams = JavaMethod("()[Ljava/lang/Object;")
     getConnection = JavaMethod("()Ljava/sql/Connection;")
+    getOriginalRow = JavaMethod("()Ljava/sql/ResultSet;")
     setMetaData = JavaMethod("(Ljavax/sql/RowSetMetaData;)V")
     getOriginal = JavaMethod("()Ljava/sql/ResultSet;")
-    getOriginalRow = JavaMethod("()Ljava/sql/ResultSet;")
+    getParams = JavaMethod("()[Ljava/lang/Object;")

@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["BluetoothLeAudioCodecConfig"]
 
@@ -34,32 +34,35 @@ class BluetoothLeAudioCodecConfig(JavaClass, metaclass=MetaJavaClass):
     SAMPLE_RATE_NONE = JavaStaticField("I")
     SOURCE_CODEC_TYPE_INVALID = JavaStaticField("I")
     SOURCE_CODEC_TYPE_LC3 = JavaStaticField("I")
-    describeContents = JavaMethod("()I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
-    toString = JavaMethod("()Ljava/lang/String;")
-    getCodecType = JavaMethod("()I")
-    getCodecName = JavaMethod("()Ljava/lang/String;")
-    getCodecPriority = JavaMethod("()I")
-    getSampleRate = JavaMethod("()I")
+    SOURCE_CODEC_TYPE_OPUS = JavaStaticField("I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getBitsPerSample = JavaMethod("()I")
+    getCodecPriority = JavaMethod("()I")
+    getCodecType = JavaMethod("()I")
+    getSampleRate = JavaMethod("()I")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
     getChannelCount = JavaMethod("()I")
     getFrameDuration = JavaMethod("()I")
-    getOctetsPerFrame = JavaMethod("()I")
-    getMinOctetsPerFrame = JavaMethod("()I")
     getMaxOctetsPerFrame = JavaMethod("()I")
-    equals = JavaMethod("(Ljava/lang/Object;)Z")
-    hashCode = JavaMethod("()I")
+    getMinOctetsPerFrame = JavaMethod("()I")
+    getOctetsPerFrame = JavaMethod("()I")
+    getCodecName = JavaMethod("()Ljava/lang/String;")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
 
     class Builder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/bluetooth/BluetoothLeAudioCodecConfig/Builder"
+        __javaclass__ = "android/bluetooth/BluetoothLeAudioCodecConfig$Builder"
         __javaconstructor__ = [("()V", False), ("(Landroid/bluetooth/BluetoothLeAudioCodecConfig;)V", False)]
-        setCodecType = JavaMethod("(I)Landroid/bluetooth/BluetoothLeAudioCodecConfig$Builder;")
-        setCodecPriority = JavaMethod("(I)Landroid/bluetooth/BluetoothLeAudioCodecConfig$Builder;")
-        setSampleRate = JavaMethod("(I)Landroid/bluetooth/BluetoothLeAudioCodecConfig$Builder;")
         setBitsPerSample = JavaMethod("(I)Landroid/bluetooth/BluetoothLeAudioCodecConfig$Builder;")
-        setChannelCount = JavaMethod("(I)Landroid/bluetooth/BluetoothLeAudioCodecConfig$Builder;")
+        setCodecPriority = JavaMethod("(I)Landroid/bluetooth/BluetoothLeAudioCodecConfig$Builder;")
+        setCodecType = JavaMethod("(I)Landroid/bluetooth/BluetoothLeAudioCodecConfig$Builder;")
+        setSampleRate = JavaMethod("(I)Landroid/bluetooth/BluetoothLeAudioCodecConfig$Builder;")
         setFrameDuration = JavaMethod("(I)Landroid/bluetooth/BluetoothLeAudioCodecConfig$Builder;")
         setOctetsPerFrame = JavaMethod("(I)Landroid/bluetooth/BluetoothLeAudioCodecConfig$Builder;")
-        setMinOctetsPerFrame = JavaMethod("(I)Landroid/bluetooth/BluetoothLeAudioCodecConfig$Builder;")
+        setChannelCount = JavaMethod("(I)Landroid/bluetooth/BluetoothLeAudioCodecConfig$Builder;")
         setMaxOctetsPerFrame = JavaMethod("(I)Landroid/bluetooth/BluetoothLeAudioCodecConfig$Builder;")
+        setMinOctetsPerFrame = JavaMethod("(I)Landroid/bluetooth/BluetoothLeAudioCodecConfig$Builder;")
         build = JavaMethod("()Landroid/bluetooth/BluetoothLeAudioCodecConfig;")

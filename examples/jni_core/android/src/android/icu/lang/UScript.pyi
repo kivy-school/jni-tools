@@ -9,6 +9,7 @@ class UScript:
     AHOM: ClassVar[int]
     ANATOLIAN_HIEROGLYPHS: ClassVar[int]
     ARABIC: ClassVar[int]
+    ARABIC_NASTALIQ: ClassVar[int]
     ARMENIAN: ClassVar[int]
     AVESTAN: ClassVar[int]
     BALINESE: ClassVar[int]
@@ -50,6 +51,7 @@ class UScript:
     ELYMAIC: ClassVar[int]
     ESTRANGELO_SYRIAC: ClassVar[int]
     ETHIOPIC: ClassVar[int]
+    GARAY: ClassVar[int]
     GEORGIAN: ClassVar[int]
     GLAGOLITIC: ClassVar[int]
     GOTHIC: ClassVar[int]
@@ -58,6 +60,7 @@ class UScript:
     GUJARATI: ClassVar[int]
     GUNJALA_GONDI: ClassVar[int]
     GURMUKHI: ClassVar[int]
+    GURUNG_KHEMA: ClassVar[int]
     HAN: ClassVar[int]
     HANGUL: ClassVar[int]
     HANIFI_ROHINGYA: ClassVar[int]
@@ -89,6 +92,7 @@ class UScript:
     KHOJKI: ClassVar[int]
     KHUDAWADI: ClassVar[int]
     KHUTSURI: ClassVar[int]
+    KIRAT_RAI: ClassVar[int]
     KOREAN: ClassVar[int]
     KPELLE: ClassVar[int]
     LANNA: ClassVar[int]
@@ -147,6 +151,7 @@ class UScript:
     OLD_SOUTH_ARABIAN: ClassVar[int]
     OLD_UYGHUR: ClassVar[int]
     OL_CHIKI: ClassVar[int]
+    OL_ONAL: ClassVar[int]
     ORIYA: ClassVar[int]
     ORKHON: ClassVar[int]
     OSAGE: ClassVar[int]
@@ -175,6 +180,7 @@ class UScript:
     SORA_SOMPENG: ClassVar[int]
     SOYOMBO: ClassVar[int]
     SUNDANESE: ClassVar[int]
+    SUNUWAR: ClassVar[int]
     SYLOTI_NAGRI: ClassVar[int]
     SYMBOLS: ClassVar[int]
     SYMBOLS_EMOJI: ClassVar[int]
@@ -194,8 +200,10 @@ class UScript:
     TIBETAN: ClassVar[int]
     TIFINAGH: ClassVar[int]
     TIRHUTA: ClassVar[int]
+    TODHRI: ClassVar[int]
     TOTO: ClassVar[int]
     TRADITIONAL_HAN: ClassVar[int]
+    TULU_TIGALARI: ClassVar[int]
     UCAS: ClassVar[int]
     UGARITIC: ClassVar[int]
     UNKNOWN: ClassVar[int]
@@ -210,51 +218,51 @@ class UScript:
     YEZIDI: ClassVar[int]
     YI: ClassVar[int]
     ZANABAZAR_SQUARE: ClassVar[int]
-    @overload
     @staticmethod
-    def getCode(p0: ULocale) -> Any: ...
-    @overload
+    def isRightToLeft(p0: int) -> bool: ...
     @staticmethod
-    def getCode(p0: Locale) -> Any: ...
-    @overload
-    @staticmethod
-    def getCode(p0: str) -> Any: ...
+    def breaksBetweenLetters(p0: int) -> bool: ...
     @staticmethod
     def getCodeFromName(p0: str) -> int: ...
     @staticmethod
-    def hasScript(p0: int, p1: int) -> bool: ...
+    def getSampleString(p0: int) -> str: ...
     @staticmethod
     def getScriptExtensions(p0: int, p1: BitSet) -> int: ...
     @staticmethod
     def getShortName(p0: int) -> str: ...
     @staticmethod
-    def getSampleString(p0: int) -> str: ...
-    @staticmethod
-    def breaksBetweenLetters(p0: int) -> bool: ...
+    def hasScript(p0: int, p1: int) -> bool: ...
     @staticmethod
     def isCased(p0: int) -> bool: ...
     @staticmethod
     def getName(p0: int) -> str: ...
+    @overload
     @staticmethod
-    def getScript(p0: int) -> int: ...
+    def getCode(p0: str) -> Any: ...
+    @overload
+    @staticmethod
+    def getCode(p0: Locale) -> Any: ...
+    @overload
+    @staticmethod
+    def getCode(p0: ULocale) -> Any: ...
     @staticmethod
     def getUsage(p0: int) -> Any: ...
     @staticmethod
-    def isRightToLeft(p0: int) -> bool: ...
+    def getScript(p0: int) -> int: ...
 
     class ScriptUsage:
-        NOT_ENCODED: ClassVar["ScriptUsage"]
-        UNKNOWN: ClassVar["ScriptUsage"]
+        ASPIRATIONAL: ClassVar["ScriptUsage"]
         EXCLUDED: ClassVar["ScriptUsage"]
         LIMITED_USE: ClassVar["ScriptUsage"]
-        ASPIRATIONAL: ClassVar["ScriptUsage"]
+        NOT_ENCODED: ClassVar["ScriptUsage"]
         RECOMMENDED: ClassVar["ScriptUsage"]
-        NOT_ENCODED: ClassVar[Any]
-        UNKNOWN: ClassVar[Any]
+        UNKNOWN: ClassVar["ScriptUsage"]
+        ASPIRATIONAL: ClassVar[Any]
         EXCLUDED: ClassVar[Any]
         LIMITED_USE: ClassVar[Any]
-        ASPIRATIONAL: ClassVar[Any]
+        NOT_ENCODED: ClassVar[Any]
         RECOMMENDED: ClassVar[Any]
+        UNKNOWN: ClassVar[Any]
         @staticmethod
         def values() -> Any: ...
         @staticmethod

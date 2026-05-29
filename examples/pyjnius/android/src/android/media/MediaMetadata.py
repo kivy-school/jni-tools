@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["MediaMetadata"]
 
@@ -34,28 +34,30 @@ class MediaMetadata(JavaClass, metaclass=MetaJavaClass):
     METADATA_KEY_USER_RATING = JavaStaticField("Ljava/lang/String;")
     METADATA_KEY_WRITER = JavaStaticField("Ljava/lang/String;")
     METADATA_KEY_YEAR = JavaStaticField("Ljava/lang/String;")
-    containsKey = JavaMethod("(Ljava/lang/String;)Z")
-    getText = JavaMethod("(Ljava/lang/String;)Ljava/lang/CharSequence;")
-    getString = JavaMethod("(Ljava/lang/String;)Ljava/lang/String;")
-    getLong = JavaMethod("(Ljava/lang/String;)J")
-    getRating = JavaMethod("(Ljava/lang/String;)Landroid/media/Rating;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getBitmap = JavaMethod("(Ljava/lang/String;)Landroid/graphics/Bitmap;")
     getBitmapDimensionLimit = JavaMethod("()I")
-    describeContents = JavaMethod("()I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
     size = JavaMethod("()I")
-    keySet = JavaMethod("()Ljava/util/Set;")
-    getDescription = JavaMethod("()Landroid/media/MediaDescription;")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
     hashCode = JavaMethod("()I")
+    getLong = JavaMethod("(Ljava/lang/String;)J")
+    keySet = JavaMethod("()Ljava/util/Set;")
+    containsKey = JavaMethod("(Ljava/lang/String;)Z")
+    getRating = JavaMethod("(Ljava/lang/String;)Landroid/media/Rating;")
+    getString = JavaMethod("(Ljava/lang/String;)Ljava/lang/String;")
+    getDescription = JavaMethod("()Landroid/media/MediaDescription;")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
+    getText = JavaMethod("(Ljava/lang/String;)Ljava/lang/CharSequence;")
 
     class Builder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/MediaMetadata/Builder"
+        __javaclass__ = "android/media/MediaMetadata$Builder"
         __javaconstructor__ = [("()V", False), ("(Landroid/media/MediaMetadata;)V", False)]
-        putText = JavaMethod("(Ljava/lang/String;Ljava/lang/CharSequence;)Landroid/media/MediaMetadata$Builder;")
-        putString = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)Landroid/media/MediaMetadata$Builder;")
-        putLong = JavaMethod("(Ljava/lang/String;J)Landroid/media/MediaMetadata$Builder;")
-        putRating = JavaMethod("(Ljava/lang/String;Landroid/media/Rating;)Landroid/media/MediaMetadata$Builder;")
         putBitmap = JavaMethod("(Ljava/lang/String;Landroid/graphics/Bitmap;)Landroid/media/MediaMetadata$Builder;")
         setBitmapDimensionLimit = JavaMethod("(I)Landroid/media/MediaMetadata$Builder;")
+        putRating = JavaMethod("(Ljava/lang/String;Landroid/media/Rating;)Landroid/media/MediaMetadata$Builder;")
+        putText = JavaMethod("(Ljava/lang/String;Ljava/lang/CharSequence;)Landroid/media/MediaMetadata$Builder;")
+        putLong = JavaMethod("(Ljava/lang/String;J)Landroid/media/MediaMetadata$Builder;")
+        putString = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)Landroid/media/MediaMetadata$Builder;")
         build = JavaMethod("()Landroid/media/MediaMetadata;")

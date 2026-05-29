@@ -18,26 +18,74 @@ class CopticCalendar:
     PAONA: ClassVar[int]
     TOBA: ClassVar[int]
     TOUT: ClassVar[int]
+    AM: ClassVar[int]
+    AM_PM: ClassVar[int]
+    APRIL: ClassVar[int]
+    AUGUST: ClassVar[int]
+    DATE: ClassVar[int]
+    DAY_OF_MONTH: ClassVar[int]
+    DAY_OF_WEEK: ClassVar[int]
+    DAY_OF_WEEK_IN_MONTH: ClassVar[int]
+    DAY_OF_YEAR: ClassVar[int]
+    DECEMBER: ClassVar[int]
+    DOW_LOCAL: ClassVar[int]
+    DST_OFFSET: ClassVar[int]
+    ERA: ClassVar[int]
+    EXTENDED_YEAR: ClassVar[int]
+    FEBRUARY: ClassVar[int]
+    FRIDAY: ClassVar[int]
+    HOUR: ClassVar[int]
+    HOUR_OF_DAY: ClassVar[int]
+    IS_LEAP_MONTH: ClassVar[int]
+    JANUARY: ClassVar[int]
+    JULIAN_DAY: ClassVar[int]
+    JULY: ClassVar[int]
+    JUNE: ClassVar[int]
+    MARCH: ClassVar[int]
+    MAY: ClassVar[int]
+    MILLISECOND: ClassVar[int]
+    MILLISECONDS_IN_DAY: ClassVar[int]
+    MINUTE: ClassVar[int]
+    MONDAY: ClassVar[int]
+    MONTH: ClassVar[int]
+    NOVEMBER: ClassVar[int]
+    OCTOBER: ClassVar[int]
+    ORDINAL_MONTH: ClassVar[int]
+    PM: ClassVar[int]
+    SATURDAY: ClassVar[int]
+    SECOND: ClassVar[int]
+    SEPTEMBER: ClassVar[int]
+    SUNDAY: ClassVar[int]
+    THURSDAY: ClassVar[int]
+    TUESDAY: ClassVar[int]
+    UNDECIMBER: ClassVar[int]
+    WALLTIME_FIRST: ClassVar[int]
+    WALLTIME_LAST: ClassVar[int]
+    WALLTIME_NEXT_VALID: ClassVar[int]
+    WEDNESDAY: ClassVar[int]
+    WEEK_OF_MONTH: ClassVar[int]
+    WEEK_OF_YEAR: ClassVar[int]
+    YEAR: ClassVar[int]
+    YEAR_WOY: ClassVar[int]
+    ZONE_OFFSET: ClassVar[int]
     @overload
     def __init__(self) -> None: ...
     @overload
-    def __init__(self, arg0: TimeZone) -> None: ...
+    def __init__(self, p0: Locale) -> None: ...
     @overload
-    def __init__(self, arg0: Locale) -> None: ...
+    def __init__(self, p0: ULocale) -> None: ...
     @overload
-    def __init__(self, arg0: ULocale) -> None: ...
+    def __init__(self, p0: TimeZone, p1: Locale) -> None: ...
     @overload
-    def __init__(self, arg0: TimeZone, arg1: Locale) -> None: ...
+    def __init__(self, p0: TimeZone, p1: ULocale) -> None: ...
     @overload
-    def __init__(self, arg0: TimeZone, arg1: ULocale) -> None: ...
+    def __init__(self, p0: TimeZone) -> None: ...
     @overload
-    def __init__(self, arg0: int, arg1: int, arg2: int) -> None: ...
+    def __init__(self, p0: Date) -> None: ...
     @overload
-    def __init__(self, arg0: Date) -> None: ...
+    def __init__(self, p0: int, p1: int, p2: int, p3: int, p4: int, p5: int) -> None: ...
     @overload
-    def __init__(self, arg0: int, arg1: int, arg2: int, arg3: int, arg4: int, arg5: int) -> None: ...
+    def __init__(self, p0: int, p1: int, p2: int) -> None: ...
+    def getTemporalMonthCode(self) -> str: ...
+    def setTemporalMonthCode(self, p0: str) -> None: ...
     def getType(self) -> str: ...
-    def handleGetExtendedYear(self) -> int: ...
-    def handleComputeFields(self, arg0: int) -> None: ...
-    def handleComputeMonthStart(self, arg0: int, arg1: int, arg2: bool) -> int: ...
-    def handleGetLimit(self, arg0: int, arg1: int) -> int: ...

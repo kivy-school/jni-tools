@@ -2,13 +2,16 @@ from typing import Any, ClassVar, overload
 from android.graphics.Path import Path
 
 class PathDashPathEffect:
-    def __init__(self, arg0: Path, arg1: float, arg2: float, arg3: "Style") -> None: ...
+    def __init__(self, p0: Path, p1: float, p2: float, p3: Any) -> None: ...
 
     class Style:
-        TRANSLATE: ClassVar["Style"]
-        ROTATE: ClassVar["Style"]
         MORPH: ClassVar["Style"]
+        ROTATE: ClassVar["Style"]
+        TRANSLATE: ClassVar["Style"]
+        MORPH: ClassVar[Any]
+        ROTATE: ClassVar[Any]
+        TRANSLATE: ClassVar[Any]
         @staticmethod
-        def values() -> list["Style"]: ...
+        def values() -> Any: ...
         @staticmethod
-        def valueOf(arg0: str) -> "Style": ...
+        def valueOf(p0: str) -> Any: ...

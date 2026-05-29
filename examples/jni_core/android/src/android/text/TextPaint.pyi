@@ -31,6 +31,7 @@ class TextPaint:
     TEXT_RUN_FLAG_LEFT_EDGE: ClassVar[int]
     TEXT_RUN_FLAG_RIGHT_EDGE: ClassVar[int]
     UNDERLINE_TEXT_FLAG: ClassVar[int]
+    VERTICAL_TEXT_FLAG: ClassVar[int]
     baselineShift: int
     bgColor: int
     density: float
@@ -39,9 +40,9 @@ class TextPaint:
     underlineColor: int
     underlineThickness: float
     @overload
-    def __init__(self, p0: Paint) -> None: ...
-    @overload
     def __init__(self, p0: int) -> None: ...
+    @overload
+    def __init__(self, p0: Paint) -> None: ...
     @overload
     def __init__(self) -> None: ...
     def set(self, p0: "TextPaint") -> None: ...

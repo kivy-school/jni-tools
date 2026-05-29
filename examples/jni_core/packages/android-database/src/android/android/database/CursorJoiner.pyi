@@ -13,12 +13,12 @@ class CursorJoiner:
     def next(self) -> Any: ...
 
     class Result:
-        RIGHT: ClassVar["Result"]
-        LEFT: ClassVar["Result"]
         BOTH: ClassVar["Result"]
-        RIGHT: ClassVar[Any]
-        LEFT: ClassVar[Any]
+        LEFT: ClassVar["Result"]
+        RIGHT: ClassVar["Result"]
         BOTH: ClassVar[Any]
+        LEFT: ClassVar[Any]
+        RIGHT: ClassVar[Any]
         @staticmethod
         def values() -> Any: ...
         @staticmethod

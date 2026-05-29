@@ -1,10 +1,9 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["DateTimePatternGenerator"]
 
 class DateTimePatternGenerator(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/icu/text/DateTimePatternGenerator"
-    __javaconstructor__ = [("()V", False)]
     DAY = JavaStaticField("I")
     DAYPERIOD = JavaStaticField("I")
     DAY_OF_WEEK_IN_MONTH = JavaStaticField("I")
@@ -24,43 +23,46 @@ class DateTimePatternGenerator(JavaClass, metaclass=MetaJavaClass):
     WEEK_OF_YEAR = JavaStaticField("I")
     YEAR = JavaStaticField("I")
     ZONE = JavaStaticField("I")
-    getEmptyInstance = JavaStaticMethod("()Landroid/icu/text/DateTimePatternGenerator;")
-    getInstance = JavaMultipleMethod([("()Landroid/icu/text/DateTimePatternGenerator;", True, False), ("(Landroid/icu/util/ULocale;)Landroid/icu/text/DateTimePatternGenerator;", True, False), ("(Ljava/util/Locale;)Landroid/icu/text/DateTimePatternGenerator;", True, False)])
-    getBestPattern = JavaMultipleMethod([("(Ljava/lang/String;)Ljava/lang/String;", False, False), ("(Ljava/lang/String;I)Ljava/lang/String;", False, False)])
+    cloneAsThawed = JavaMultipleMethod([("()Ljava/lang/Object;", False, False), ("()Landroid/icu/text/DateTimePatternGenerator;", False, False)])
     addPattern = JavaMethod("(Ljava/lang/String;ZLandroid/icu/text/DateTimePatternGenerator$PatternInfo;)Landroid/icu/text/DateTimePatternGenerator;")
-    getSkeleton = JavaMethod("(Ljava/lang/String;)Ljava/lang/String;")
-    getBaseSkeleton = JavaMethod("(Ljava/lang/String;)Ljava/lang/String;")
-    getSkeletons = JavaMethod("(Ljava/util/Map;)Ljava/util/Map;")
-    getBaseSkeletons = JavaMethod("(Ljava/util/Set;)Ljava/util/Set;")
-    replaceFieldTypes = JavaMultipleMethod([("(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", False, False), ("(Ljava/lang/String;Ljava/lang/String;I)Ljava/lang/String;", False, False)])
-    setDateTimeFormat = JavaMultipleMethod([("(Ljava/lang/String;)V", False, False), ("(ILjava/lang/String;)V", False, False)])
-    getDateTimeFormat = JavaMultipleMethod([("()Ljava/lang/String;", False, False), ("(I)Ljava/lang/String;", False, False)])
-    setDecimal = JavaMethod("(Ljava/lang/String;)V")
-    getDecimal = JavaMethod("()Ljava/lang/String;")
-    setAppendItemFormat = JavaMethod("(ILjava/lang/String;)V")
     getAppendItemFormat = JavaMethod("(I)Ljava/lang/String;")
-    setAppendItemName = JavaMethod("(ILjava/lang/String;)V")
     getAppendItemName = JavaMethod("(I)Ljava/lang/String;")
+    getBaseSkeleton = JavaMethod("(Ljava/lang/String;)Ljava/lang/String;")
+    getBaseSkeletons = JavaMethod("(Ljava/util/Set;)Ljava/util/Set;")
+    getBestPattern = JavaMultipleMethod([("(Ljava/lang/String;)Ljava/lang/String;", False, False), ("(Ljava/lang/String;I)Ljava/lang/String;", False, False)])
+    getDecimal = JavaMethod("()Ljava/lang/String;")
     getDefaultHourCycle = JavaMethod("()Landroid/icu/text/DateFormat$HourCycle;")
+    getEmptyInstance = JavaStaticMethod("()Landroid/icu/text/DateTimePatternGenerator;")
     getFieldDisplayName = JavaMethod("(ILandroid/icu/text/DateTimePatternGenerator$DisplayWidth;)Ljava/lang/String;")
-    isFrozen = JavaMethod("()Z")
-    freeze = JavaMethod("()Landroid/icu/text/DateTimePatternGenerator;")
-    cloneAsThawed = JavaMethod("()Landroid/icu/text/DateTimePatternGenerator;")
+    getSkeleton = JavaMethod("(Ljava/lang/String;)Ljava/lang/String;")
+    getSkeletons = JavaMethod("(Ljava/util/Map;)Ljava/util/Map;")
+    replaceFieldTypes = JavaMultipleMethod([("(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", False, False), ("(Ljava/lang/String;Ljava/lang/String;I)Ljava/lang/String;", False, False)])
+    setAppendItemFormat = JavaMethod("(ILjava/lang/String;)V")
+    setAppendItemName = JavaMethod("(ILjava/lang/String;)V")
+    setDateTimeFormat = JavaMultipleMethod([("(ILjava/lang/String;)V", False, False), ("(Ljava/lang/String;)V", False, False)])
+    setDecimal = JavaMethod("(Ljava/lang/String;)V")
+    getDateTimeFormat = JavaMultipleMethod([("()Ljava/lang/String;", False, False), ("(I)Ljava/lang/String;", False, False)])
     clone = JavaMethod("()Ljava/lang/Object;")
-
-    class DisplayWidth(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/icu/text/DateTimePatternGenerator/DisplayWidth"
-        values = JavaStaticMethod("()[Landroid/icu/text/DateTimePatternGenerator$DisplayWidth;")
-        valueOf = JavaStaticMethod("(Ljava/lang/String;)Landroid/icu/text/DateTimePatternGenerator$DisplayWidth;")
-        WIDE = JavaStaticField("Landroid/icu/text/DateTimePatternGenerator/DisplayWidth;")
-        ABBREVIATED = JavaStaticField("Landroid/icu/text/DateTimePatternGenerator/DisplayWidth;")
-        NARROW = JavaStaticField("Landroid/icu/text/DateTimePatternGenerator/DisplayWidth;")
+    getInstance = JavaMultipleMethod([("(Ljava/util/Locale;)Landroid/icu/text/DateTimePatternGenerator;", True, False), ("()Landroid/icu/text/DateTimePatternGenerator;", True, False), ("(Landroid/icu/util/ULocale;)Landroid/icu/text/DateTimePatternGenerator;", True, False)])
+    isFrozen = JavaMethod("()Z")
+    freeze = JavaMultipleMethod([("()Ljava/lang/Object;", False, False), ("()Landroid/icu/text/DateTimePatternGenerator;", False, False)])
 
     class PatternInfo(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/icu/text/DateTimePatternGenerator/PatternInfo"
+        __javaclass__ = "android/icu/text/DateTimePatternGenerator$PatternInfo"
         __javaconstructor__ = [("()V", False)]
         BASE_CONFLICT = JavaStaticField("I")
         CONFLICT = JavaStaticField("I")
         OK = JavaStaticField("I")
         conflictingPattern = JavaField("Ljava/lang/String;")
         status = JavaField("I")
+
+    class DisplayWidth(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/icu/text/DateTimePatternGenerator$DisplayWidth"
+        ABBREVIATED = JavaStaticField("Landroid/icu/text/DateTimePatternGenerator$DisplayWidth;")
+        NARROW = JavaStaticField("Landroid/icu/text/DateTimePatternGenerator$DisplayWidth;")
+        WIDE = JavaStaticField("Landroid/icu/text/DateTimePatternGenerator$DisplayWidth;")
+        values = JavaStaticMethod("()[Landroid/icu/text/DateTimePatternGenerator$DisplayWidth;")
+        valueOf = JavaStaticMethod("(Ljava/lang/String;)Landroid/icu/text/DateTimePatternGenerator$DisplayWidth;")
+        ABBREVIATED = JavaStaticField("Landroid/icu/text/DateTimePatternGenerator$DisplayWidth;")
+        NARROW = JavaStaticField("Landroid/icu/text/DateTimePatternGenerator$DisplayWidth;")
+        WIDE = JavaStaticField("Landroid/icu/text/DateTimePatternGenerator$DisplayWidth;")

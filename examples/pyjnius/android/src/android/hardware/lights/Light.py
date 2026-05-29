@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Light"]
 
@@ -12,14 +12,16 @@ class Light(JavaClass, metaclass=MetaJavaClass):
     LIGHT_TYPE_KEYBOARD_BACKLIGHT = JavaStaticField("I")
     LIGHT_TYPE_MICROPHONE = JavaStaticField("I")
     LIGHT_TYPE_PLAYER_ID = JavaStaticField("I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
-    describeContents = JavaMethod("()I")
-    equals = JavaMethod("(Ljava/lang/Object;)Z")
-    hashCode = JavaMethod("()I")
-    toString = JavaMethod("()Ljava/lang/String;")
-    getId = JavaMethod("()I")
-    getName = JavaMethod("()Ljava/lang/String;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getOrdinal = JavaMethod("()I")
-    getType = JavaMethod("()I")
     hasBrightnessControl = JavaMethod("()Z")
     hasRgbControl = JavaMethod("()Z")
+    getName = JavaMethod("()Ljava/lang/String;")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    getId = JavaMethod("()I")
+    getType = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

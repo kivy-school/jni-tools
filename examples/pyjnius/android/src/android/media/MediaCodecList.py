@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["MediaCodecList"]
 
@@ -7,8 +7,8 @@ class MediaCodecList(JavaClass, metaclass=MetaJavaClass):
     __javaconstructor__ = [("(I)V", False)]
     ALL_CODECS = JavaStaticField("I")
     REGULAR_CODECS = JavaStaticField("I")
-    getCodecCount = JavaStaticMethod("()I")
     getCodecInfoAt = JavaStaticMethod("(I)Landroid/media/MediaCodecInfo;")
+    getCodecCount = JavaStaticMethod("()I")
     getCodecInfos = JavaMethod("()[Landroid/media/MediaCodecInfo;")
     findDecoderForFormat = JavaMethod("(Landroid/media/MediaFormat;)Ljava/lang/String;")
     findEncoderForFormat = JavaMethod("(Landroid/media/MediaFormat;)Ljava/lang/String;")

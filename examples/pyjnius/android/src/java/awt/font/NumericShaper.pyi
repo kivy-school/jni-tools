@@ -1,56 +1,56 @@
 from typing import Any, ClassVar, overload
 
 class NumericShaper:
-    ALL_RANGES: ClassVar[int]
-    ARABIC: ClassVar[int]
-    BENGALI: ClassVar[int]
-    DEVANAGARI: ClassVar[int]
-    EASTERN_ARABIC: ClassVar[int]
-    ETHIOPIC: ClassVar[int]
     EUROPEAN: ClassVar[int]
-    GUJARATI: ClassVar[int]
+    ARABIC: ClassVar[int]
+    EASTERN_ARABIC: ClassVar[int]
+    DEVANAGARI: ClassVar[int]
+    BENGALI: ClassVar[int]
     GURMUKHI: ClassVar[int]
-    KANNADA: ClassVar[int]
-    KHMER: ClassVar[int]
-    LAO: ClassVar[int]
-    MALAYALAM: ClassVar[int]
-    MONGOLIAN: ClassVar[int]
-    MYANMAR: ClassVar[int]
+    GUJARATI: ClassVar[int]
     ORIYA: ClassVar[int]
     TAMIL: ClassVar[int]
     TELUGU: ClassVar[int]
+    KANNADA: ClassVar[int]
+    MALAYALAM: ClassVar[int]
     THAI: ClassVar[int]
+    LAO: ClassVar[int]
     TIBETAN: ClassVar[int]
+    MYANMAR: ClassVar[int]
+    ETHIOPIC: ClassVar[int]
+    KHMER: ClassVar[int]
+    MONGOLIAN: ClassVar[int]
+    ALL_RANGES: ClassVar[int]
     @overload
-    @staticmethod
-    def getShaper(arg0: int) -> "NumericShaper": ...
+    def shape(self, p0: Any, p1: int, p2: int) -> None: ...
     @overload
-    @staticmethod
-    def getShaper(arg0: "Range") -> "NumericShaper": ...
+    def shape(self, p0: Any, p1: int, p2: int, p3: Any) -> None: ...
     @overload
-    @staticmethod
-    def getContextualShaper(arg0: int) -> "NumericShaper": ...
-    @overload
-    @staticmethod
-    def getContextualShaper(arg0: set) -> "NumericShaper": ...
-    @overload
-    @staticmethod
-    def getContextualShaper(arg0: int, arg1: int) -> "NumericShaper": ...
-    @overload
-    @staticmethod
-    def getContextualShaper(arg0: set, arg1: "Range") -> "NumericShaper": ...
-    @overload
-    def shape(self, arg0: list[str], arg1: int, arg2: int) -> None: ...
-    @overload
-    def shape(self, arg0: list[str], arg1: int, arg2: int, arg3: int) -> None: ...
-    @overload
-    def shape(self, arg0: list[str], arg1: int, arg2: int, arg3: "Range") -> None: ...
-    def isContextual(self) -> bool: ...
-    def getRanges(self) -> int: ...
-    def getRangeSet(self) -> set: ...
-    def hashCode(self) -> int: ...
-    def equals(self, arg0: Any) -> bool: ...
+    def shape(self, p0: Any, p1: int, p2: int, p3: int) -> None: ...
+    def equals(self, p0: Any) -> bool: ...
     def toString(self) -> str: ...
+    def hashCode(self) -> int: ...
+    def getRanges(self) -> int: ...
+    def isContextual(self) -> bool: ...
+    @overload
+    @staticmethod
+    def getShaper(p0: Any) -> "NumericShaper": ...
+    @overload
+    @staticmethod
+    def getShaper(p0: int) -> "NumericShaper": ...
+    @overload
+    @staticmethod
+    def getContextualShaper(p0: set, p1: Any) -> "NumericShaper": ...
+    @overload
+    @staticmethod
+    def getContextualShaper(p0: int, p1: int) -> "NumericShaper": ...
+    @overload
+    @staticmethod
+    def getContextualShaper(p0: set) -> "NumericShaper": ...
+    @overload
+    @staticmethod
+    def getContextualShaper(p0: int) -> "NumericShaper": ...
+    def getRangeSet(self) -> set: ...
 
     class Range:
         EUROPEAN: ClassVar["Range"]
@@ -88,7 +88,46 @@ class NumericShaper:
         TAI_THAM_THAM: ClassVar["Range"]
         JAVANESE: ClassVar["Range"]
         MEETEI_MAYEK: ClassVar["Range"]
+        SINHALA: ClassVar["Range"]
+        MYANMAR_TAI_LAING: ClassVar["Range"]
+        EUROPEAN: ClassVar[Any]
+        ARABIC: ClassVar[Any]
+        EASTERN_ARABIC: ClassVar[Any]
+        DEVANAGARI: ClassVar[Any]
+        BENGALI: ClassVar[Any]
+        GURMUKHI: ClassVar[Any]
+        GUJARATI: ClassVar[Any]
+        ORIYA: ClassVar[Any]
+        TAMIL: ClassVar[Any]
+        TELUGU: ClassVar[Any]
+        KANNADA: ClassVar[Any]
+        MALAYALAM: ClassVar[Any]
+        THAI: ClassVar[Any]
+        LAO: ClassVar[Any]
+        TIBETAN: ClassVar[Any]
+        MYANMAR: ClassVar[Any]
+        ETHIOPIC: ClassVar[Any]
+        KHMER: ClassVar[Any]
+        MONGOLIAN: ClassVar[Any]
+        NKO: ClassVar[Any]
+        MYANMAR_SHAN: ClassVar[Any]
+        LIMBU: ClassVar[Any]
+        NEW_TAI_LUE: ClassVar[Any]
+        BALINESE: ClassVar[Any]
+        SUNDANESE: ClassVar[Any]
+        LEPCHA: ClassVar[Any]
+        OL_CHIKI: ClassVar[Any]
+        VAI: ClassVar[Any]
+        SAURASHTRA: ClassVar[Any]
+        KAYAH_LI: ClassVar[Any]
+        CHAM: ClassVar[Any]
+        TAI_THAM_HORA: ClassVar[Any]
+        TAI_THAM_THAM: ClassVar[Any]
+        JAVANESE: ClassVar[Any]
+        MEETEI_MAYEK: ClassVar[Any]
+        SINHALA: ClassVar[Any]
+        MYANMAR_TAI_LAING: ClassVar[Any]
         @staticmethod
-        def values() -> list["Range"]: ...
+        def values() -> Any: ...
         @staticmethod
-        def valueOf(arg0: str) -> "Range": ...
+        def valueOf(p0: str) -> Any: ...

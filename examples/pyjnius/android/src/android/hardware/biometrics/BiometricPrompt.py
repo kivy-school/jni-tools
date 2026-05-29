@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["BiometricPrompt"]
 
@@ -15,8 +15,10 @@ class BiometricPrompt(JavaClass, metaclass=MetaJavaClass):
     BIOMETRIC_ERROR_CANCELED = JavaStaticField("I")
     BIOMETRIC_ERROR_HW_NOT_PRESENT = JavaStaticField("I")
     BIOMETRIC_ERROR_HW_UNAVAILABLE = JavaStaticField("I")
+    BIOMETRIC_ERROR_IDENTITY_CHECK_NOT_ACTIVE = JavaStaticField("I")
     BIOMETRIC_ERROR_LOCKOUT = JavaStaticField("I")
     BIOMETRIC_ERROR_LOCKOUT_PERMANENT = JavaStaticField("I")
+    BIOMETRIC_ERROR_NOT_ENABLED_FOR_APPS = JavaStaticField("I")
     BIOMETRIC_ERROR_NO_BIOMETRICS = JavaStaticField("I")
     BIOMETRIC_ERROR_NO_DEVICE_CREDENTIAL = JavaStaticField("I")
     BIOMETRIC_ERROR_NO_SPACE = JavaStaticField("I")
@@ -28,51 +30,51 @@ class BiometricPrompt(JavaClass, metaclass=MetaJavaClass):
     BIOMETRIC_NO_AUTHENTICATION = JavaStaticField("J")
     getLogoRes = JavaMethod("()I")
     getLogoBitmap = JavaMethod("()Landroid/graphics/Bitmap;")
-    getLogoDescription = JavaMethod("()Ljava/lang/String;")
-    getTitle = JavaMethod("()Ljava/lang/CharSequence;")
-    getSubtitle = JavaMethod("()Ljava/lang/CharSequence;")
-    getDescription = JavaMethod("()Ljava/lang/CharSequence;")
-    getContentView = JavaMethod("()Landroid/hardware/biometrics/PromptContentView;")
+    getAllowedAuthenticators = JavaMethod("()I")
     getNegativeButtonText = JavaMethod("()Ljava/lang/CharSequence;")
     isConfirmationRequired = JavaMethod("()Z")
-    getAllowedAuthenticators = JavaMethod("()I")
     authenticate = JavaMultipleMethod([("(Landroid/hardware/biometrics/BiometricPrompt$CryptoObject;Landroid/os/CancellationSignal;Ljava/util/concurrent/Executor;Landroid/hardware/biometrics/BiometricPrompt$AuthenticationCallback;)V", False, False), ("(Landroid/os/CancellationSignal;Ljava/util/concurrent/Executor;Landroid/hardware/biometrics/BiometricPrompt$AuthenticationCallback;)V", False, False)])
+    getLogoDescription = JavaMethod("()Ljava/lang/String;")
+    getSubtitle = JavaMethod("()Ljava/lang/CharSequence;")
+    getTitle = JavaMethod("()Ljava/lang/CharSequence;")
+    getDescription = JavaMethod("()Ljava/lang/CharSequence;")
+    getContentView = JavaMethod("()Landroid/hardware/biometrics/PromptContentView;")
 
-    class AuthenticationCallback(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/hardware/biometrics/BiometricPrompt/AuthenticationCallback"
-        __javaconstructor__ = [("()V", False)]
-        onAuthenticationError = JavaMethod("(ILjava/lang/CharSequence;)V")
-        onAuthenticationHelp = JavaMethod("(ILjava/lang/CharSequence;)V")
-        onAuthenticationSucceeded = JavaMethod("(Landroid/hardware/biometrics/BiometricPrompt$AuthenticationResult;)V")
-        onAuthenticationFailed = JavaMethod("()V")
+    class CryptoObject(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/hardware/biometrics/BiometricPrompt$CryptoObject"
+        __javaconstructor__ = [("(Landroid/security/identity/IdentityCredential;)V", False), ("(Landroid/security/identity/PresentationSession;)V", False), ("(Ljava/security/Signature;)V", False), ("(Ljavax/crypto/Cipher;)V", False), ("(Ljavax/crypto/Mac;)V", False), ("(J)V", False)]
+        getCipher = JavaMethod("()Ljavax/crypto/Cipher;")
+        getMac = JavaMethod("()Ljavax/crypto/Mac;")
+        getOperationHandle = JavaMethod("()J")
+        getIdentityCredential = JavaMethod("()Landroid/security/identity/IdentityCredential;")
+        getPresentationSession = JavaMethod("()Landroid/security/identity/PresentationSession;")
+        getSignature = JavaMethod("()Ljava/security/Signature;")
+
+    class Builder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/hardware/biometrics/BiometricPrompt$Builder"
+        __javaconstructor__ = [("(Landroid/content/Context;)V", False)]
+        setAllowedAuthenticators = JavaMethod("(I)Landroid/hardware/biometrics/BiometricPrompt$Builder;")
+        setConfirmationRequired = JavaMethod("(Z)Landroid/hardware/biometrics/BiometricPrompt$Builder;")
+        setDeviceCredentialAllowed = JavaMethod("(Z)Landroid/hardware/biometrics/BiometricPrompt$Builder;")
+        setLogoBitmap = JavaMethod("(Landroid/graphics/Bitmap;)Landroid/hardware/biometrics/BiometricPrompt$Builder;")
+        setLogoRes = JavaMethod("(I)Landroid/hardware/biometrics/BiometricPrompt$Builder;")
+        setNegativeButton = JavaMethod("(Ljava/lang/CharSequence;Ljava/util/concurrent/Executor;Landroid/content/DialogInterface$OnClickListener;)Landroid/hardware/biometrics/BiometricPrompt$Builder;")
+        setLogoDescription = JavaMethod("(Ljava/lang/String;)Landroid/hardware/biometrics/BiometricPrompt$Builder;")
+        setSubtitle = JavaMethod("(Ljava/lang/CharSequence;)Landroid/hardware/biometrics/BiometricPrompt$Builder;")
+        setTitle = JavaMethod("(Ljava/lang/CharSequence;)Landroid/hardware/biometrics/BiometricPrompt$Builder;")
+        setDescription = JavaMethod("(Ljava/lang/CharSequence;)Landroid/hardware/biometrics/BiometricPrompt$Builder;")
+        build = JavaMethod("()Landroid/hardware/biometrics/BiometricPrompt;")
+        setContentView = JavaMethod("(Landroid/hardware/biometrics/PromptContentView;)Landroid/hardware/biometrics/BiometricPrompt$Builder;")
 
     class AuthenticationResult(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/hardware/biometrics/BiometricPrompt/AuthenticationResult"
+        __javaclass__ = "android/hardware/biometrics/BiometricPrompt$AuthenticationResult"
         getCryptoObject = JavaMethod("()Landroid/hardware/biometrics/BiometricPrompt$CryptoObject;")
         getAuthenticationType = JavaMethod("()I")
 
-    class Builder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/hardware/biometrics/BiometricPrompt/Builder"
-        __javaconstructor__ = [("(Landroid/content/Context;)V", False)]
-        setLogoRes = JavaMethod("(I)Landroid/hardware/biometrics/BiometricPrompt$Builder;")
-        setLogoBitmap = JavaMethod("(Landroid/graphics/Bitmap;)Landroid/hardware/biometrics/BiometricPrompt$Builder;")
-        setLogoDescription = JavaMethod("(Ljava/lang/String;)Landroid/hardware/biometrics/BiometricPrompt$Builder;")
-        setTitle = JavaMethod("(Ljava/lang/CharSequence;)Landroid/hardware/biometrics/BiometricPrompt$Builder;")
-        setSubtitle = JavaMethod("(Ljava/lang/CharSequence;)Landroid/hardware/biometrics/BiometricPrompt$Builder;")
-        setDescription = JavaMethod("(Ljava/lang/CharSequence;)Landroid/hardware/biometrics/BiometricPrompt$Builder;")
-        setContentView = JavaMethod("(Landroid/hardware/biometrics/PromptContentView;)Landroid/hardware/biometrics/BiometricPrompt$Builder;")
-        setNegativeButton = JavaMethod("(Ljava/lang/CharSequence;Ljava/util/concurrent/Executor;Landroid/content/DialogInterface$OnClickListener;)Landroid/hardware/biometrics/BiometricPrompt$Builder;")
-        setConfirmationRequired = JavaMethod("(Z)Landroid/hardware/biometrics/BiometricPrompt$Builder;")
-        setDeviceCredentialAllowed = JavaMethod("(Z)Landroid/hardware/biometrics/BiometricPrompt$Builder;")
-        setAllowedAuthenticators = JavaMethod("(I)Landroid/hardware/biometrics/BiometricPrompt$Builder;")
-        build = JavaMethod("()Landroid/hardware/biometrics/BiometricPrompt;")
-
-    class CryptoObject(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/hardware/biometrics/BiometricPrompt/CryptoObject"
-        __javaconstructor__ = [("(Ljava/security/Signature;)V", False), ("(Ljavax/crypto/Cipher;)V", False), ("(Ljavax/crypto/Mac;)V", False), ("(Landroid/security/identity/IdentityCredential;)V", False), ("(Landroid/security/identity/PresentationSession;)V", False), ("(J)V", False)]
-        getSignature = JavaMethod("()Ljava/security/Signature;")
-        getCipher = JavaMethod("()Ljavax/crypto/Cipher;")
-        getMac = JavaMethod("()Ljavax/crypto/Mac;")
-        getIdentityCredential = JavaMethod("()Landroid/security/identity/IdentityCredential;")
-        getPresentationSession = JavaMethod("()Landroid/security/identity/PresentationSession;")
-        getOperationHandle = JavaMethod("()J")
+    class AuthenticationCallback(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/hardware/biometrics/BiometricPrompt$AuthenticationCallback"
+        __javaconstructor__ = [("()V", False)]
+        onAuthenticationError = JavaMethod("(ILjava/lang/CharSequence;)V")
+        onAuthenticationFailed = JavaMethod("()V")
+        onAuthenticationHelp = JavaMethod("(ILjava/lang/CharSequence;)V")
+        onAuthenticationSucceeded = JavaMethod("(Landroid/hardware/biometrics/BiometricPrompt$AuthenticationResult;)V")

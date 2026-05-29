@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ColorSpaceProfiles"]
 
@@ -7,6 +7,6 @@ class ColorSpaceProfiles(JavaClass, metaclass=MetaJavaClass):
     __javaconstructor__ = [("([J)V", False)]
     UNSPECIFIED = JavaStaticField("I")
     getSupportedColorSpaces = JavaMethod("(I)Ljava/util/Set;")
-    getSupportedImageFormatsForColorSpace = JavaMethod("(Landroid/graphics/ColorSpace$Named;)Ljava/util/Set;")
-    getSupportedDynamicRangeProfiles = JavaMethod("(Landroid/graphics/ColorSpace$Named;I)Ljava/util/Set;")
     getSupportedColorSpacesForDynamicRange = JavaMethod("(IJ)Ljava/util/Set;")
+    getSupportedDynamicRangeProfiles = JavaMethod("(Landroid/graphics/ColorSpace$Named;I)Ljava/util/Set;")
+    getSupportedImageFormatsForColorSpace = JavaMethod("(Landroid/graphics/ColorSpace$Named;)Ljava/util/Set;")

@@ -9,70 +9,97 @@ class NumberFormatter:
     def with_() -> UnlocalizedNumberFormatter: ...
     @overload
     @staticmethod
-    def withLocale(arg0: Locale) -> LocalizedNumberFormatter: ...
+    def withLocale(p0: Locale) -> LocalizedNumberFormatter: ...
     @overload
     @staticmethod
-    def withLocale(arg0: ULocale) -> LocalizedNumberFormatter: ...
+    def withLocale(p0: ULocale) -> LocalizedNumberFormatter: ...
 
-    class DecimalSeparatorDisplay:
-        AUTO: ClassVar["DecimalSeparatorDisplay"]
-        ALWAYS: ClassVar["DecimalSeparatorDisplay"]
+    class UnitWidth:
+        FORMAL: ClassVar["UnitWidth"]
+        FULL_NAME: ClassVar["UnitWidth"]
+        HIDDEN: ClassVar["UnitWidth"]
+        ISO_CODE: ClassVar["UnitWidth"]
+        NARROW: ClassVar["UnitWidth"]
+        SHORT: ClassVar["UnitWidth"]
+        VARIANT: ClassVar["UnitWidth"]
+        FORMAL: ClassVar[Any]
+        FULL_NAME: ClassVar[Any]
+        HIDDEN: ClassVar[Any]
+        ISO_CODE: ClassVar[Any]
+        NARROW: ClassVar[Any]
+        SHORT: ClassVar[Any]
+        VARIANT: ClassVar[Any]
         @staticmethod
-        def values() -> list["DecimalSeparatorDisplay"]: ...
+        def values() -> Any: ...
         @staticmethod
-        def valueOf(arg0: str) -> "DecimalSeparatorDisplay": ...
-
-    class GroupingStrategy:
-        OFF: ClassVar["GroupingStrategy"]
-        MIN2: ClassVar["GroupingStrategy"]
-        AUTO: ClassVar["GroupingStrategy"]
-        ON_ALIGNED: ClassVar["GroupingStrategy"]
-        THOUSANDS: ClassVar["GroupingStrategy"]
-        @staticmethod
-        def values() -> list["GroupingStrategy"]: ...
-        @staticmethod
-        def valueOf(arg0: str) -> "GroupingStrategy": ...
-
-    class RoundingPriority:
-        RELAXED: ClassVar["RoundingPriority"]
-        STRICT: ClassVar["RoundingPriority"]
-        @staticmethod
-        def values() -> list["RoundingPriority"]: ...
-        @staticmethod
-        def valueOf(arg0: str) -> "RoundingPriority": ...
-
-    class SignDisplay:
-        AUTO: ClassVar["SignDisplay"]
-        ALWAYS: ClassVar["SignDisplay"]
-        NEVER: ClassVar["SignDisplay"]
-        ACCOUNTING: ClassVar["SignDisplay"]
-        ACCOUNTING_ALWAYS: ClassVar["SignDisplay"]
-        EXCEPT_ZERO: ClassVar["SignDisplay"]
-        ACCOUNTING_EXCEPT_ZERO: ClassVar["SignDisplay"]
-        NEGATIVE: ClassVar["SignDisplay"]
-        ACCOUNTING_NEGATIVE: ClassVar["SignDisplay"]
-        @staticmethod
-        def values() -> list["SignDisplay"]: ...
-        @staticmethod
-        def valueOf(arg0: str) -> "SignDisplay": ...
+        def valueOf(p0: str) -> Any: ...
 
     class TrailingZeroDisplay:
         AUTO: ClassVar["TrailingZeroDisplay"]
         HIDE_IF_WHOLE: ClassVar["TrailingZeroDisplay"]
+        AUTO: ClassVar[Any]
+        HIDE_IF_WHOLE: ClassVar[Any]
         @staticmethod
-        def values() -> list["TrailingZeroDisplay"]: ...
+        def values() -> Any: ...
         @staticmethod
-        def valueOf(arg0: str) -> "TrailingZeroDisplay": ...
+        def valueOf(p0: str) -> Any: ...
 
-    class UnitWidth:
-        NARROW: ClassVar["UnitWidth"]
-        SHORT: ClassVar["UnitWidth"]
-        FULL_NAME: ClassVar["UnitWidth"]
-        ISO_CODE: ClassVar["UnitWidth"]
-        FORMAL: ClassVar["UnitWidth"]
-        VARIANT: ClassVar["UnitWidth"]
-        HIDDEN: ClassVar["UnitWidth"]
+    class SignDisplay:
+        ACCOUNTING: ClassVar["SignDisplay"]
+        ACCOUNTING_ALWAYS: ClassVar["SignDisplay"]
+        ACCOUNTING_EXCEPT_ZERO: ClassVar["SignDisplay"]
+        ACCOUNTING_NEGATIVE: ClassVar["SignDisplay"]
+        ALWAYS: ClassVar["SignDisplay"]
+        AUTO: ClassVar["SignDisplay"]
+        EXCEPT_ZERO: ClassVar["SignDisplay"]
+        NEGATIVE: ClassVar["SignDisplay"]
+        NEVER: ClassVar["SignDisplay"]
+        ACCOUNTING: ClassVar[Any]
+        ACCOUNTING_ALWAYS: ClassVar[Any]
+        ACCOUNTING_EXCEPT_ZERO: ClassVar[Any]
+        ACCOUNTING_NEGATIVE: ClassVar[Any]
+        ALWAYS: ClassVar[Any]
+        AUTO: ClassVar[Any]
+        EXCEPT_ZERO: ClassVar[Any]
+        NEGATIVE: ClassVar[Any]
+        NEVER: ClassVar[Any]
         @staticmethod
-        def values() -> list["UnitWidth"]: ...
+        def values() -> Any: ...
         @staticmethod
-        def valueOf(arg0: str) -> "UnitWidth": ...
+        def valueOf(p0: str) -> Any: ...
+
+    class RoundingPriority:
+        RELAXED: ClassVar["RoundingPriority"]
+        STRICT: ClassVar["RoundingPriority"]
+        RELAXED: ClassVar[Any]
+        STRICT: ClassVar[Any]
+        @staticmethod
+        def values() -> Any: ...
+        @staticmethod
+        def valueOf(p0: str) -> Any: ...
+
+    class GroupingStrategy:
+        AUTO: ClassVar["GroupingStrategy"]
+        MIN2: ClassVar["GroupingStrategy"]
+        OFF: ClassVar["GroupingStrategy"]
+        ON_ALIGNED: ClassVar["GroupingStrategy"]
+        THOUSANDS: ClassVar["GroupingStrategy"]
+        AUTO: ClassVar[Any]
+        MIN2: ClassVar[Any]
+        OFF: ClassVar[Any]
+        ON_ALIGNED: ClassVar[Any]
+        THOUSANDS: ClassVar[Any]
+        @staticmethod
+        def values() -> Any: ...
+        @staticmethod
+        def valueOf(p0: str) -> Any: ...
+
+    class DecimalSeparatorDisplay:
+        ALWAYS: ClassVar["DecimalSeparatorDisplay"]
+        AUTO: ClassVar["DecimalSeparatorDisplay"]
+        ALWAYS: ClassVar[Any]
+        AUTO: ClassVar[Any]
+        @staticmethod
+        def values() -> Any: ...
+        @staticmethod
+        def valueOf(p0: str) -> Any: ...

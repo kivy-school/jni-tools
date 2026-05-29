@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["UriRelativeFilter"]
 
@@ -8,10 +8,10 @@ class UriRelativeFilter(JavaClass, metaclass=MetaJavaClass):
     FRAGMENT = JavaStaticField("I")
     PATH = JavaStaticField("I")
     QUERY = JavaStaticField("I")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
     getUriPart = JavaMethod("()I")
     getPatternType = JavaMethod("()I")
-    getFilter = JavaMethod("()Ljava/lang/String;")
     matchData = JavaMethod("(Landroid/net/Uri;)Z")
-    toString = JavaMethod("()Ljava/lang/String;")
-    equals = JavaMethod("(Ljava/lang/Object;)Z")
-    hashCode = JavaMethod("()I")
+    getFilter = JavaMethod("()Ljava/lang/String;")

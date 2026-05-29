@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SearchRecentSuggestions"]
 
@@ -13,4 +13,3 @@ class SearchRecentSuggestions(JavaClass, metaclass=MetaJavaClass):
     QUERIES_PROJECTION_QUERY_INDEX = JavaStaticField("I")
     saveRecentQuery = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)V")
     clearHistory = JavaMethod("()V")
-    truncateHistory = JavaMethod("(Landroid/content/ContentResolver;I)V")

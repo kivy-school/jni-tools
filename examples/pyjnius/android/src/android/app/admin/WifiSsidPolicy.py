@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["WifiSsidPolicy"]
 
@@ -8,9 +8,11 @@ class WifiSsidPolicy(JavaClass, metaclass=MetaJavaClass):
     CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
     WIFI_SSID_POLICY_TYPE_ALLOWLIST = JavaStaticField("I")
     WIFI_SSID_POLICY_TYPE_DENYLIST = JavaStaticField("I")
-    getSsids = JavaMethod("()Ljava/util/Set;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getPolicyType = JavaMethod("()I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    getSsids = JavaMethod("()Ljava/util/Set;")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
     hashCode = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
     describeContents = JavaMethod("()I")

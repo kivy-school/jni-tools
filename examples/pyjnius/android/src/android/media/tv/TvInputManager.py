@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["TvInputManager"]
 
@@ -24,6 +24,24 @@ class TvInputManager(JavaClass, metaclass=MetaJavaClass):
     RECORDING_ERROR_INSUFFICIENT_SPACE = JavaStaticField("I")
     RECORDING_ERROR_RESOURCE_BUSY = JavaStaticField("I")
     RECORDING_ERROR_UNKNOWN = JavaStaticField("I")
+    SESSION_DATA_KEY_AD_BUFFER = JavaStaticField("Ljava/lang/String;")
+    SESSION_DATA_KEY_AD_RESPONSE = JavaStaticField("Ljava/lang/String;")
+    SESSION_DATA_KEY_BROADCAST_INFO_RESPONSE = JavaStaticField("Ljava/lang/String;")
+    SESSION_DATA_KEY_CHANNEL_URI = JavaStaticField("Ljava/lang/String;")
+    SESSION_DATA_KEY_TRACKS = JavaStaticField("Ljava/lang/String;")
+    SESSION_DATA_KEY_TRACK_ID = JavaStaticField("Ljava/lang/String;")
+    SESSION_DATA_KEY_TRACK_TYPE = JavaStaticField("Ljava/lang/String;")
+    SESSION_DATA_KEY_TV_MESSAGE_TYPE = JavaStaticField("Ljava/lang/String;")
+    SESSION_DATA_KEY_VIDEO_UNAVAILABLE_REASON = JavaStaticField("Ljava/lang/String;")
+    SESSION_DATA_TYPE_AD_BUFFER_CONSUMED = JavaStaticField("Ljava/lang/String;")
+    SESSION_DATA_TYPE_AD_RESPONSE = JavaStaticField("Ljava/lang/String;")
+    SESSION_DATA_TYPE_BROADCAST_INFO_RESPONSE = JavaStaticField("Ljava/lang/String;")
+    SESSION_DATA_TYPE_TRACKS_CHANGED = JavaStaticField("Ljava/lang/String;")
+    SESSION_DATA_TYPE_TRACK_SELECTED = JavaStaticField("Ljava/lang/String;")
+    SESSION_DATA_TYPE_TUNED = JavaStaticField("Ljava/lang/String;")
+    SESSION_DATA_TYPE_TV_MESSAGE = JavaStaticField("Ljava/lang/String;")
+    SESSION_DATA_TYPE_VIDEO_AVAILABLE = JavaStaticField("Ljava/lang/String;")
+    SESSION_DATA_TYPE_VIDEO_UNAVAILABLE = JavaStaticField("Ljava/lang/String;")
     SIGNAL_STRENGTH_LOST = JavaStaticField("I")
     SIGNAL_STRENGTH_STRONG = JavaStaticField("I")
     SIGNAL_STRENGTH_WEAK = JavaStaticField("I")
@@ -61,24 +79,25 @@ class TvInputManager(JavaClass, metaclass=MetaJavaClass):
     VIDEO_UNAVAILABLE_REASON_CAS_UNKNOWN = JavaStaticField("I")
     VIDEO_UNAVAILABLE_REASON_INSUFFICIENT_RESOURCE = JavaStaticField("I")
     VIDEO_UNAVAILABLE_REASON_NOT_CONNECTED = JavaStaticField("I")
+    VIDEO_UNAVAILABLE_REASON_STOPPED = JavaStaticField("I")
     VIDEO_UNAVAILABLE_REASON_TUNING = JavaStaticField("I")
     VIDEO_UNAVAILABLE_REASON_UNKNOWN = JavaStaticField("I")
     VIDEO_UNAVAILABLE_REASON_WEAK_SIGNAL = JavaStaticField("I")
-    getTvInputList = JavaMethod("()Ljava/util/List;")
-    getTvInputInfo = JavaMethod("(Ljava/lang/String;)Landroid/media/tv/TvInputInfo;")
-    updateTvInputInfo = JavaMethod("(Landroid/media/tv/TvInputInfo;)V")
+    getBlockedRatings = JavaMethod("()Ljava/util/List;")
     getInputState = JavaMethod("(Ljava/lang/String;)I")
-    registerCallback = JavaMethod("(Landroid/media/tv/TvInputManager$TvInputCallback;Landroid/os/Handler;)V")
-    unregisterCallback = JavaMethod("(Landroid/media/tv/TvInputManager$TvInputCallback;)V")
+    getTvInputInfo = JavaMethod("(Ljava/lang/String;)Landroid/media/tv/TvInputInfo;")
+    getTvInputList = JavaMethod("()Ljava/util/List;")
     isParentalControlsEnabled = JavaMethod("()Z")
     isRatingBlocked = JavaMethod("(Landroid/media/tv/TvContentRating;)Z")
-    getBlockedRatings = JavaMethod("()Ljava/util/List;")
+    updateTvInputInfo = JavaMethod("(Landroid/media/tv/TvInputInfo;)V")
+    registerCallback = JavaMethod("(Landroid/media/tv/TvInputManager$TvInputCallback;Landroid/os/Handler;)V")
+    unregisterCallback = JavaMethod("(Landroid/media/tv/TvInputManager$TvInputCallback;)V")
 
     class TvInputCallback(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/tv/TvInputManager/TvInputCallback"
+        __javaclass__ = "android/media/tv/TvInputManager$TvInputCallback"
         __javaconstructor__ = [("()V", False)]
-        onInputStateChanged = JavaMethod("(Ljava/lang/String;I)V")
         onInputAdded = JavaMethod("(Ljava/lang/String;)V")
-        onInputRemoved = JavaMethod("(Ljava/lang/String;)V")
         onInputUpdated = JavaMethod("(Ljava/lang/String;)V")
+        onInputRemoved = JavaMethod("(Ljava/lang/String;)V")
+        onInputStateChanged = JavaMethod("(Ljava/lang/String;I)V")
         onTvInputInfoUpdated = JavaMethod("(Landroid/media/tv/TvInputInfo;)V")

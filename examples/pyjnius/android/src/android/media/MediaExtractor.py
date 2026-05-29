@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["MediaExtractor"]
 
@@ -11,40 +11,39 @@ class MediaExtractor(JavaClass, metaclass=MetaJavaClass):
     SEEK_TO_CLOSEST_SYNC = JavaStaticField("I")
     SEEK_TO_NEXT_SYNC = JavaStaticField("I")
     SEEK_TO_PREVIOUS_SYNC = JavaStaticField("I")
-    setDataSource = JavaMultipleMethod([("(Landroid/media/MediaDataSource;)V", False, False), ("(Landroid/content/Context;Landroid/net/Uri;Ljava/util/Map;)V", False, False), ("(Ljava/lang/String;Ljava/util/Map;)V", False, False), ("(Ljava/lang/String;)V", False, False), ("(Landroid/content/res/AssetFileDescriptor;)V", False, False), ("(Ljava/io/FileDescriptor;)V", False, False), ("(Ljava/io/FileDescriptor;JJ)V", False, False)])
-    setMediaCas = JavaMethod("(Landroid/media/MediaCas;)V")
-    getCasInfo = JavaMethod("(I)Landroid/media/MediaExtractor$CasInfo;")
-    finalize = JavaMethod("()V")
-    release = JavaMethod("()V")
-    getTrackCount = JavaMethod("()I")
-    getDrmInitData = JavaMethod("()Landroid/media/DrmInitData;")
-    getAudioPresentations = JavaMethod("(I)Ljava/util/List;")
-    getPsshInfo = JavaMethod("()Ljava/util/Map;")
-    getTrackFormat = JavaMethod("(I)Landroid/media/MediaFormat;")
-    selectTrack = JavaMethod("(I)V")
-    unselectTrack = JavaMethod("(I)V")
-    seekTo = JavaMethod("(JI)V")
-    advance = JavaMethod("()Z")
-    readSampleData = JavaMethod("(Ljava/nio/ByteBuffer;I)I")
-    getSampleTrackIndex = JavaMethod("()I")
-    getSampleTime = JavaMethod("()J")
-    getSampleSize = JavaMethod("()J")
-    getSampleFlags = JavaMethod("()I")
-    getSampleCryptoInfo = JavaMethod("(Landroid/media/MediaCodec$CryptoInfo;)Z")
-    getCachedDuration = JavaMethod("()J")
-    hasCacheReachedEndOfStream = JavaMethod("()Z")
-    setLogSessionId = JavaMethod("(Landroid/media/metrics/LogSessionId;)V")
-    getLogSessionId = JavaMethod("()Landroid/media/metrics/LogSessionId;")
     getMetrics = JavaMethod("()Landroid/os/PersistableBundle;")
-
-    class CasInfo(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/MediaExtractor/CasInfo"
-        getSystemId = JavaMethod("()I")
-        getPrivateData = JavaMethod("()[B")
-        getSession = JavaMethod("()Landroid/media/MediaCas$Session;")
+    getLogSessionId = JavaMethod("()Landroid/media/metrics/LogSessionId;")
+    setLogSessionId = JavaMethod("(Landroid/media/metrics/LogSessionId;)V")
+    selectTrack = JavaMethod("(I)V")
+    setDataSource = JavaMultipleMethod([("(Ljava/io/FileDescriptor;)V", False, False), ("(Ljava/io/FileDescriptor;JJ)V", False, False), ("(Ljava/lang/String;)V", False, False), ("(Ljava/lang/String;Ljava/util/Map;)V", False, False), ("(Landroid/content/res/AssetFileDescriptor;)V", False, False), ("(Landroid/media/MediaDataSource;)V", False, False), ("(Landroid/content/Context;Landroid/net/Uri;Ljava/util/Map;)V", False, False)])
+    getCachedDuration = JavaMethod("()J")
+    getCasInfo = JavaMethod("(I)Landroid/media/MediaExtractor$CasInfo;")
+    getSampleCryptoInfo = JavaMethod("(Landroid/media/MediaCodec$CryptoInfo;)Z")
+    getSampleTime = JavaMethod("()J")
+    getSampleTrackIndex = JavaMethod("()I")
+    getTrackCount = JavaMethod("()I")
+    getTrackFormat = JavaMethod("(I)Landroid/media/MediaFormat;")
+    hasCacheReachedEndOfStream = JavaMethod("()Z")
+    getSampleFlags = JavaMethod("()I")
+    getDrmInitData = JavaMethod("()Landroid/media/DrmInitData;")
+    getPsshInfo = JavaMethod("()Ljava/util/Map;")
+    getAudioPresentations = JavaMethod("(I)Ljava/util/List;")
+    getSampleSize = JavaMethod("()J")
+    readSampleData = JavaMethod("(Ljava/nio/ByteBuffer;I)I")
+    setMediaCas = JavaMethod("(Landroid/media/MediaCas;)V")
+    unselectTrack = JavaMethod("(I)V")
+    release = JavaMethod("()V")
+    advance = JavaMethod("()Z")
+    seekTo = JavaMethod("(JI)V")
 
     class MetricsConstants(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/MediaExtractor/MetricsConstants"
+        __javaclass__ = "android/media/MediaExtractor$MetricsConstants"
         FORMAT = JavaStaticField("Ljava/lang/String;")
         MIME_TYPE = JavaStaticField("Ljava/lang/String;")
         TRACKS = JavaStaticField("Ljava/lang/String;")
+
+    class CasInfo(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/media/MediaExtractor$CasInfo"
+        getSession = JavaMethod("()Landroid/media/MediaCas$Session;")
+        getSystemId = JavaMethod("()I")
+        getPrivateData = JavaMethod("()[B")

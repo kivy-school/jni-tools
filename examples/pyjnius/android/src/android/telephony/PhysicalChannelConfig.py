@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["PhysicalChannelConfig"]
 
@@ -14,18 +14,20 @@ class PhysicalChannelConfig(JavaClass, metaclass=MetaJavaClass):
     FREQUENCY_UNKNOWN = JavaStaticField("I")
     PHYSICAL_CELL_ID_MAXIMUM_VALUE = JavaStaticField("I")
     PHYSICAL_CELL_ID_UNKNOWN = JavaStaticField("I")
-    describeContents = JavaMethod("()I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getNetworkType = JavaMethod("()I")
+    getBand = JavaMethod("()I")
     getCellBandwidthDownlinkKhz = JavaMethod("()I")
     getCellBandwidthUplinkKhz = JavaMethod("()I")
-    getDownlinkChannelNumber = JavaMethod("()I")
-    getUplinkChannelNumber = JavaMethod("()I")
-    getBand = JavaMethod("()I")
-    getDownlinkFrequencyKhz = JavaMethod("()I")
-    getUplinkFrequencyKhz = JavaMethod("()I")
-    getPhysicalCellId = JavaMethod("()I")
-    getNetworkType = JavaMethod("()I")
     getConnectionStatus = JavaMethod("()I")
+    getDownlinkChannelNumber = JavaMethod("()I")
+    getDownlinkFrequencyKhz = JavaMethod("()I")
+    getPhysicalCellId = JavaMethod("()I")
+    getUplinkChannelNumber = JavaMethod("()I")
+    getUplinkFrequencyKhz = JavaMethod("()I")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
-    hashCode = JavaMethod("()I")
     toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

@@ -3,4 +3,6 @@ from android.view.View import View
 from android.view.ViewGroup import ViewGroup
 
 class SpinnerAdapter:
-    def getDropDownView(self, arg0: int, arg1: View, arg2: ViewGroup) -> View: ...
+    IGNORE_ITEM_VIEW_TYPE: ClassVar[int]
+    NO_SELECTION: ClassVar[int]
+    def getDropDownView(self, p0: int, p1: View, p2: ViewGroup) -> View: ...

@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["BarringInfo"]
 
@@ -15,27 +15,31 @@ class BarringInfo(JavaClass, metaclass=MetaJavaClass):
     BARRING_SERVICE_TYPE_PS_SERVICE = JavaStaticField("I")
     BARRING_SERVICE_TYPE_SMS = JavaStaticField("I")
     CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getBarringServiceInfo = JavaMethod("(I)Landroid/telephony/BarringInfo$BarringServiceInfo;")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
-    describeContents = JavaMethod("()I")
-    hashCode = JavaMethod("()I")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
     toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
 
     class BarringServiceInfo(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/telephony/BarringInfo/BarringServiceInfo"
+        __javaclass__ = "android/telephony/BarringInfo$BarringServiceInfo"
         BARRING_TYPE_CONDITIONAL = JavaStaticField("I")
         BARRING_TYPE_NONE = JavaStaticField("I")
         BARRING_TYPE_UNCONDITIONAL = JavaStaticField("I")
         BARRING_TYPE_UNKNOWN = JavaStaticField("I")
         CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
-        getBarringType = JavaMethod("()I")
+        CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+        PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+        getConditionalBarringTimeSeconds = JavaMethod("()I")
         isConditionallyBarred = JavaMethod("()Z")
         getConditionalBarringFactor = JavaMethod("()I")
-        getConditionalBarringTimeSeconds = JavaMethod("()I")
         isBarred = JavaMethod("()Z")
-        hashCode = JavaMethod("()I")
+        getBarringType = JavaMethod("()I")
         equals = JavaMethod("(Ljava/lang/Object;)Z")
         toString = JavaMethod("()Ljava/lang/String;")
+        hashCode = JavaMethod("()I")
         writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
         describeContents = JavaMethod("()I")

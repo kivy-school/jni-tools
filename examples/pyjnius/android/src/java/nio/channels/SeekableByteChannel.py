@@ -1,11 +1,11 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SeekableByteChannel"]
 
-class SeekableByteChannel(JavaInterface, metaclass=MetaJavaClass):
+class SeekableByteChannel(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/nio/channels/SeekableByteChannel"
-    read = JavaMethod("(Ljava/nio/ByteBuffer;)I")
-    write = JavaMethod("(Ljava/nio/ByteBuffer;)I")
-    position = JavaMultipleMethod([("()J", False, False), ("(J)Ljava/nio/channels/SeekableByteChannel;", False, False)])
     size = JavaMethod("()J")
+    position = JavaMultipleMethod([("(J)Ljava/nio/channels/SeekableByteChannel;", False, False), ("()J", False, False)])
+    write = JavaMethod("(Ljava/nio/ByteBuffer;)I")
+    read = JavaMethod("(Ljava/nio/ByteBuffer;)I")
     truncate = JavaMethod("(J)Ljava/nio/channels/SeekableByteChannel;")

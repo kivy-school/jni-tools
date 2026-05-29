@@ -1,10 +1,10 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["DisconnectCause"]
 
 class DisconnectCause(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/telecom/DisconnectCause"
-    __javaconstructor__ = [("(I)V", False), ("(ILjava/lang/String;)V", False), ("(ILjava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/String;)V", False), ("(ILjava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/String;I)V", False)]
+    __javaconstructor__ = [("(ILjava/lang/String;)V", False), ("(ILjava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/String;I)V", False), ("(ILjava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/String;)V", False), ("(I)V", False)]
     ANSWERED_ELSEWHERE = JavaStaticField("I")
     BUSY = JavaStaticField("I")
     CALL_PULLED = JavaStaticField("I")
@@ -23,13 +23,15 @@ class DisconnectCause(JavaClass, metaclass=MetaJavaClass):
     REMOTE = JavaStaticField("I")
     RESTRICTED = JavaStaticField("I")
     UNKNOWN = JavaStaticField("I")
-    getCode = JavaMethod("()I")
-    getLabel = JavaMethod("()Ljava/lang/CharSequence;")
-    getDescription = JavaMethod("()Ljava/lang/CharSequence;")
-    getReason = JavaMethod("()Ljava/lang/String;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getTone = JavaMethod("()I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
-    describeContents = JavaMethod("()I")
-    hashCode = JavaMethod("()I")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
     toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    getLabel = JavaMethod("()Ljava/lang/CharSequence;")
+    getDescription = JavaMethod("()Ljava/lang/CharSequence;")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
+    getCode = JavaMethod("()I")
+    getReason = JavaMethod("()Ljava/lang/String;")

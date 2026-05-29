@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["AppWidgetProviderInfo"]
 
@@ -12,6 +12,7 @@ class AppWidgetProviderInfo(JavaClass, metaclass=MetaJavaClass):
     RESIZE_VERTICAL = JavaStaticField("I")
     WIDGET_CATEGORY_HOME_SCREEN = JavaStaticField("I")
     WIDGET_CATEGORY_KEYGUARD = JavaStaticField("I")
+    WIDGET_CATEGORY_NOT_KEYGUARD = JavaStaticField("I")
     WIDGET_CATEGORY_SEARCHBOX = JavaStaticField("I")
     WIDGET_FEATURE_CONFIGURATION_OPTIONAL = JavaStaticField("I")
     WIDGET_FEATURE_HIDE_FROM_PICKER = JavaStaticField("I")
@@ -39,13 +40,15 @@ class AppWidgetProviderInfo(JavaClass, metaclass=MetaJavaClass):
     updatePeriodMillis = JavaField("I")
     widgetCategory = JavaField("I")
     widgetFeatures = JavaField("I")
-    loadLabel = JavaMethod("(Landroid/content/pm/PackageManager;)Ljava/lang/String;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    toString = JavaMethod("()Ljava/lang/String;")
+    clone = JavaMultipleMethod([("()Landroid/appwidget/AppWidgetProviderInfo;", False, False), ("()Ljava/lang/Object;", False, False)])
     loadIcon = JavaMethod("(Landroid/content/Context;I)Landroid/graphics/drawable/Drawable;")
+    loadLabel = JavaMethod("(Landroid/content/pm/PackageManager;)Ljava/lang/String;")
+    getProfile = JavaMethod("()Landroid/os/UserHandle;")
     loadPreviewImage = JavaMethod("(Landroid/content/Context;I)Landroid/graphics/drawable/Drawable;")
     loadDescription = JavaMethod("(Landroid/content/Context;)Ljava/lang/CharSequence;")
-    getProfile = JavaMethod("()Landroid/os/UserHandle;")
     getActivityInfo = JavaMethod("()Landroid/content/pm/ActivityInfo;")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
-    clone = JavaMethod("()Landroid/appwidget/AppWidgetProviderInfo;")
     describeContents = JavaMethod("()I")
-    toString = JavaMethod("()Ljava/lang/String;")

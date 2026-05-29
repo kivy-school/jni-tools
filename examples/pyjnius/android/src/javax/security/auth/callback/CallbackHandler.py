@@ -1,7 +1,7 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["CallbackHandler"]
 
-class CallbackHandler(JavaInterface, metaclass=MetaJavaClass):
+class CallbackHandler(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "javax/security/auth/callback/CallbackHandler"
     handle = JavaMethod("([Ljavax/security/auth/callback/Callback;)V")

@@ -1,8 +1,8 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Destroyable"]
 
-class Destroyable(JavaInterface, metaclass=MetaJavaClass):
+class Destroyable(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "javax/security/auth/Destroyable"
-    destroy = JavaMethod("()V")
     isDestroyed = JavaMethod("()Z")
+    destroy = JavaMethod("()V")

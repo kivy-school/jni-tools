@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["BlackLevelPattern"]
 
@@ -7,7 +7,7 @@ class BlackLevelPattern(JavaClass, metaclass=MetaJavaClass):
     __javaconstructor__ = [("([I)V", False)]
     COUNT = JavaStaticField("I")
     getOffsetForIndex = JavaMethod("(II)I")
-    copyTo = JavaMethod("([II)V")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
-    hashCode = JavaMethod("()I")
     toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    copyTo = JavaMethod("([II)V")

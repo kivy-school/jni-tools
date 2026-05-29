@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SocketKeepalive"]
 
@@ -14,14 +14,14 @@ class SocketKeepalive(JavaClass, metaclass=MetaJavaClass):
     ERROR_INVALID_SOCKET = JavaStaticField("I")
     ERROR_SOCKET_NOT_IDLE = JavaStaticField("I")
     ERROR_UNSUPPORTED = JavaStaticField("I")
+    close = JavaMethod("()V")
     start = JavaMethod("(I)V")
     stop = JavaMethod("()V")
-    close = JavaMethod("()V")
 
     class Callback(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/net/SocketKeepalive/Callback"
+        __javaclass__ = "android/net/SocketKeepalive$Callback"
         __javaconstructor__ = [("()V", False)]
+        onDataReceived = JavaMethod("()V")
+        onError = JavaMethod("(I)V")
         onStarted = JavaMethod("()V")
         onStopped = JavaMethod("()V")
-        onError = JavaMethod("(I)V")
-        onDataReceived = JavaMethod("()V")

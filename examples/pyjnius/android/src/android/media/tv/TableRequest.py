@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["TableRequest"]
 
@@ -16,8 +16,15 @@ class TableRequest(JavaClass, metaclass=MetaJavaClass):
     TABLE_NAME_SIT = JavaStaticField("I")
     TABLE_NAME_TDT = JavaStaticField("I")
     TABLE_NAME_TOT = JavaStaticField("I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    REQUEST_OPTION_AUTO_UPDATE = JavaStaticField("I")
+    REQUEST_OPTION_ONESHOT = JavaStaticField("I")
+    REQUEST_OPTION_ONEWAY = JavaStaticField("I")
+    REQUEST_OPTION_REPEAT = JavaStaticField("I")
     getTableId = JavaMethod("()I")
     getTableName = JavaMethod("()I")
-    getVersion = JavaMethod("()I")
-    describeContents = JavaMethod("()I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
+    getVersion = JavaMethod("()I")

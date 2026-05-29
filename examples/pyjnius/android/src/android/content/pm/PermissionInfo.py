@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["PermissionInfo"]
 
@@ -34,9 +34,20 @@ class PermissionInfo(JavaClass, metaclass=MetaJavaClass):
     group = JavaField("Ljava/lang/String;")
     nonLocalizedDescription = JavaField("Ljava/lang/CharSequence;")
     protectionLevel = JavaField("I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    banner = JavaField("I")
+    icon = JavaField("I")
+    isArchived = JavaField("Z")
+    labelRes = JavaField("I")
+    logo = JavaField("I")
+    metaData = JavaField("Landroid/os/Bundle;")
+    name = JavaField("Ljava/lang/String;")
+    nonLocalizedLabel = JavaField("Ljava/lang/CharSequence;")
+    packageName = JavaField("Ljava/lang/String;")
+    toString = JavaMethod("()Ljava/lang/String;")
     loadDescription = JavaMethod("(Landroid/content/pm/PackageManager;)Ljava/lang/CharSequence;")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
     getProtection = JavaMethod("()I")
     getProtectionFlags = JavaMethod("()I")
-    toString = JavaMethod("()Ljava/lang/String;")
-    describeContents = JavaMethod("()I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")

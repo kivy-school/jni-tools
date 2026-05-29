@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["RemoveCustomAudienceOverrideRequest"]
 
@@ -9,7 +9,7 @@ class RemoveCustomAudienceOverrideRequest(JavaClass, metaclass=MetaJavaClass):
     getName = JavaMethod("()Ljava/lang/String;")
 
     class Builder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/adservices/customaudience/RemoveCustomAudienceOverrideRequest/Builder"
+        __javaclass__ = "android/adservices/customaudience/RemoveCustomAudienceOverrideRequest$Builder"
         __javaconstructor__ = [("()V", False)]
         setBuyer = JavaMethod("(Landroid/adservices/common/AdTechIdentifier;)Landroid/adservices/customaudience/RemoveCustomAudienceOverrideRequest$Builder;")
         setName = JavaMethod("(Ljava/lang/String;)Landroid/adservices/customaudience/RemoveCustomAudienceOverrideRequest$Builder;")

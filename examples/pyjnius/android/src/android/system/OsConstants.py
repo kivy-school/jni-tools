@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["OsConstants"]
 
@@ -517,15 +517,15 @@ class OsConstants(JavaClass, metaclass=MetaJavaClass):
     S_ISCHR = JavaStaticMethod("(I)Z")
     S_ISDIR = JavaStaticMethod("(I)Z")
     S_ISFIFO = JavaStaticMethod("(I)Z")
-    S_ISREG = JavaStaticMethod("(I)Z")
     S_ISLNK = JavaStaticMethod("(I)Z")
+    S_ISREG = JavaStaticMethod("(I)Z")
     S_ISSOCK = JavaStaticMethod("(I)Z")
-    WEXITSTATUS = JavaStaticMethod("(I)I")
     WCOREDUMP = JavaStaticMethod("(I)Z")
-    WTERMSIG = JavaStaticMethod("(I)I")
-    WSTOPSIG = JavaStaticMethod("(I)I")
+    WEXITSTATUS = JavaStaticMethod("(I)I")
     WIFEXITED = JavaStaticMethod("(I)Z")
-    WIFSTOPPED = JavaStaticMethod("(I)Z")
     WIFSIGNALED = JavaStaticMethod("(I)Z")
-    gaiName = JavaStaticMethod("(I)Ljava/lang/String;")
+    WIFSTOPPED = JavaStaticMethod("(I)Z")
+    WSTOPSIG = JavaStaticMethod("(I)I")
+    WTERMSIG = JavaStaticMethod("(I)I")
     errnoName = JavaStaticMethod("(I)Ljava/lang/String;")
+    gaiName = JavaStaticMethod("(I)Ljava/lang/String;")

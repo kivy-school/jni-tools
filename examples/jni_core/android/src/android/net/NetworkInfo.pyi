@@ -6,36 +6,36 @@ class NetworkInfo:
     CONTENTS_FILE_DESCRIPTOR: ClassVar[int]
     PARCELABLE_WRITE_RETURN_VALUE: ClassVar[int]
     def __init__(self, p0: int, p1: int, p2: str, p3: str) -> None: ...
+    def isAvailable(self) -> bool: ...
+    def isConnected(self) -> bool: ...
     def isRoaming(self) -> bool: ...
-    def getSubtype(self) -> int: ...
+    def setDetailedState(self, p0: Any, p1: str, p2: str) -> None: ...
+    def getDetailedState(self) -> Any: ...
+    def getExtraInfo(self) -> str: ...
     def getSubtypeName(self) -> str: ...
+    def getSubtype(self) -> int: ...
     def isConnectedOrConnecting(self) -> bool: ...
     def isFailover(self) -> bool: ...
-    def getDetailedState(self) -> Any: ...
-    def setDetailedState(self, p0: Any, p1: str, p2: str) -> None: ...
-    def getExtraInfo(self) -> str: ...
-    def isConnected(self) -> bool: ...
-    def isAvailable(self) -> bool: ...
     def toString(self) -> str: ...
     def getTypeName(self) -> str: ...
     def getState(self) -> Any: ...
     def getType(self) -> int: ...
-    def describeContents(self) -> int: ...
     def writeToParcel(self, p0: Parcel, p1: int) -> None: ...
+    def describeContents(self) -> int: ...
     def getReason(self) -> str: ...
 
     class State:
-        CONNECTING: ClassVar["State"]
         CONNECTED: ClassVar["State"]
-        SUSPENDED: ClassVar["State"]
-        DISCONNECTING: ClassVar["State"]
+        CONNECTING: ClassVar["State"]
         DISCONNECTED: ClassVar["State"]
+        DISCONNECTING: ClassVar["State"]
+        SUSPENDED: ClassVar["State"]
         UNKNOWN: ClassVar["State"]
-        CONNECTING: ClassVar[Any]
         CONNECTED: ClassVar[Any]
-        SUSPENDED: ClassVar[Any]
-        DISCONNECTING: ClassVar[Any]
+        CONNECTING: ClassVar[Any]
         DISCONNECTED: ClassVar[Any]
+        DISCONNECTING: ClassVar[Any]
+        SUSPENDED: ClassVar[Any]
         UNKNOWN: ClassVar[Any]
         @staticmethod
         def values() -> Any: ...
@@ -43,32 +43,32 @@ class NetworkInfo:
         def valueOf(p0: str) -> Any: ...
 
     class DetailedState:
-        IDLE: ClassVar["DetailedState"]
-        SCANNING: ClassVar["DetailedState"]
-        CONNECTING: ClassVar["DetailedState"]
         AUTHENTICATING: ClassVar["DetailedState"]
-        OBTAINING_IPADDR: ClassVar["DetailedState"]
-        CONNECTED: ClassVar["DetailedState"]
-        SUSPENDED: ClassVar["DetailedState"]
-        DISCONNECTING: ClassVar["DetailedState"]
-        DISCONNECTED: ClassVar["DetailedState"]
-        FAILED: ClassVar["DetailedState"]
         BLOCKED: ClassVar["DetailedState"]
-        VERIFYING_POOR_LINK: ClassVar["DetailedState"]
         CAPTIVE_PORTAL_CHECK: ClassVar["DetailedState"]
-        IDLE: ClassVar[Any]
-        SCANNING: ClassVar[Any]
-        CONNECTING: ClassVar[Any]
+        CONNECTED: ClassVar["DetailedState"]
+        CONNECTING: ClassVar["DetailedState"]
+        DISCONNECTED: ClassVar["DetailedState"]
+        DISCONNECTING: ClassVar["DetailedState"]
+        FAILED: ClassVar["DetailedState"]
+        IDLE: ClassVar["DetailedState"]
+        OBTAINING_IPADDR: ClassVar["DetailedState"]
+        SCANNING: ClassVar["DetailedState"]
+        SUSPENDED: ClassVar["DetailedState"]
+        VERIFYING_POOR_LINK: ClassVar["DetailedState"]
         AUTHENTICATING: ClassVar[Any]
-        OBTAINING_IPADDR: ClassVar[Any]
-        CONNECTED: ClassVar[Any]
-        SUSPENDED: ClassVar[Any]
-        DISCONNECTING: ClassVar[Any]
-        DISCONNECTED: ClassVar[Any]
-        FAILED: ClassVar[Any]
         BLOCKED: ClassVar[Any]
-        VERIFYING_POOR_LINK: ClassVar[Any]
         CAPTIVE_PORTAL_CHECK: ClassVar[Any]
+        CONNECTED: ClassVar[Any]
+        CONNECTING: ClassVar[Any]
+        DISCONNECTED: ClassVar[Any]
+        DISCONNECTING: ClassVar[Any]
+        FAILED: ClassVar[Any]
+        IDLE: ClassVar[Any]
+        OBTAINING_IPADDR: ClassVar[Any]
+        SCANNING: ClassVar[Any]
+        SUSPENDED: ClassVar[Any]
+        VERIFYING_POOR_LINK: ClassVar[Any]
         @staticmethod
         def values() -> Any: ...
         @staticmethod

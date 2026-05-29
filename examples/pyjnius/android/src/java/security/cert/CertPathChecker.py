@@ -1,8 +1,8 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["CertPathChecker"]
 
-class CertPathChecker(JavaInterface, metaclass=MetaJavaClass):
+class CertPathChecker(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/security/cert/CertPathChecker"
     init = JavaMethod("(Z)V")
     isForwardCheckingSupported = JavaMethod("()Z")

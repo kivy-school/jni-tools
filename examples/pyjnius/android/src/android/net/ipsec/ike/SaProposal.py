@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SaProposal"]
 
@@ -35,10 +35,10 @@ class SaProposal(JavaClass, metaclass=MetaJavaClass):
     PSEUDORANDOM_FUNCTION_SHA2_256 = JavaStaticField("I")
     PSEUDORANDOM_FUNCTION_SHA2_384 = JavaStaticField("I")
     PSEUDORANDOM_FUNCTION_SHA2_512 = JavaStaticField("I")
+    getDhGroups = JavaMethod("()Ljava/util/List;")
     getEncryptionAlgorithms = JavaMethod("()Ljava/util/List;")
     getIntegrityAlgorithms = JavaMethod("()Ljava/util/List;")
-    getDhGroups = JavaMethod("()Ljava/util/List;")
+    getSupportedDhGroups = JavaStaticMethod("()Ljava/util/Set;")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
     toString = JavaMethod("()Ljava/lang/String;")
     hashCode = JavaMethod("()I")
-    equals = JavaMethod("(Ljava/lang/Object;)Z")
-    getSupportedDhGroups = JavaStaticMethod("()Ljava/util/Set;")

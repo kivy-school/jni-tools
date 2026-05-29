@@ -1,12 +1,13 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["DOMSource"]
 
 class DOMSource(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "javax/xml/transform/dom/DOMSource"
-    __javaconstructor__ = [("()V", False), ("(Lorg/w3c/dom/Node;)V", False), ("(Lorg/w3c/dom/Node;Ljava/lang/String;)V", False)]
+    __javaconstructor__ = [("(Lorg/w3c/dom/Node;Ljava/lang/String;)V", False), ("(Lorg/w3c/dom/Node;)V", False), ("()V", False)]
     FEATURE = JavaStaticField("Ljava/lang/String;")
-    setNode = JavaMethod("(Lorg/w3c/dom/Node;)V")
+    getSystemId = JavaMethod("()Ljava/lang/String;")
+    isEmpty = JavaMethod("()Z")
     getNode = JavaMethod("()Lorg/w3c/dom/Node;")
     setSystemId = JavaMethod("(Ljava/lang/String;)V")
-    getSystemId = JavaMethod("()Ljava/lang/String;")
+    setNode = JavaMethod("(Lorg/w3c/dom/Node;)V")

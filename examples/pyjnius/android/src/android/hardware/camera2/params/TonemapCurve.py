@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["TonemapCurve"]
 
@@ -11,9 +11,9 @@ class TonemapCurve(JavaClass, metaclass=MetaJavaClass):
     LEVEL_BLACK = JavaStaticField("F")
     LEVEL_WHITE = JavaStaticField("F")
     POINT_SIZE = JavaStaticField("I")
-    getPointCount = JavaMethod("(I)I")
-    getPoint = JavaMethod("(II)Landroid/graphics/PointF;")
     copyColorCurve = JavaMethod("(I[FI)V")
+    getPoint = JavaMethod("(II)Landroid/graphics/PointF;")
+    getPointCount = JavaMethod("(I)I")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
-    hashCode = JavaMethod("()I")
     toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")

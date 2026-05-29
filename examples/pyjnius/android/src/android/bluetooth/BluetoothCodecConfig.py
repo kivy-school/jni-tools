@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["BluetoothCodecConfig"]
 
@@ -30,34 +30,36 @@ class BluetoothCodecConfig(JavaClass, metaclass=MetaJavaClass):
     SOURCE_CODEC_TYPE_LDAC = JavaStaticField("I")
     SOURCE_CODEC_TYPE_OPUS = JavaStaticField("I")
     SOURCE_CODEC_TYPE_SBC = JavaStaticField("I")
-    equals = JavaMethod("(Ljava/lang/Object;)Z")
-    hashCode = JavaMethod("()I")
-    toString = JavaMethod("()Ljava/lang/String;")
-    describeContents = JavaMethod("()I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
-    getCodecType = JavaMethod("()I")
-    getExtendedCodecType = JavaMethod("()Landroid/bluetooth/BluetoothCodecType;")
-    isMandatoryCodec = JavaMethod("()Z")
-    getCodecPriority = JavaMethod("()I")
-    getSampleRate = JavaMethod("()I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getBitsPerSample = JavaMethod("()I")
     getChannelMode = JavaMethod("()I")
+    getCodecPriority = JavaMethod("()I")
     getCodecSpecific1 = JavaMethod("()J")
     getCodecSpecific2 = JavaMethod("()J")
     getCodecSpecific3 = JavaMethod("()J")
     getCodecSpecific4 = JavaMethod("()J")
+    getCodecType = JavaMethod("()I")
+    getExtendedCodecType = JavaMethod("()Landroid/bluetooth/BluetoothCodecType;")
+    getSampleRate = JavaMethod("()I")
+    isMandatoryCodec = JavaMethod("()Z")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
 
     class Builder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/bluetooth/BluetoothCodecConfig/Builder"
+        __javaclass__ = "android/bluetooth/BluetoothCodecConfig$Builder"
         __javaconstructor__ = [("()V", False)]
-        setCodecType = JavaMethod("(I)Landroid/bluetooth/BluetoothCodecConfig$Builder;")
-        setExtendedCodecType = JavaMethod("(Landroid/bluetooth/BluetoothCodecType;)Landroid/bluetooth/BluetoothCodecConfig$Builder;")
-        setCodecPriority = JavaMethod("(I)Landroid/bluetooth/BluetoothCodecConfig$Builder;")
-        setSampleRate = JavaMethod("(I)Landroid/bluetooth/BluetoothCodecConfig$Builder;")
         setBitsPerSample = JavaMethod("(I)Landroid/bluetooth/BluetoothCodecConfig$Builder;")
+        setCodecSpecific2 = JavaMethod("(J)Landroid/bluetooth/BluetoothCodecConfig$Builder;")
         setChannelMode = JavaMethod("(I)Landroid/bluetooth/BluetoothCodecConfig$Builder;")
         setCodecSpecific1 = JavaMethod("(J)Landroid/bluetooth/BluetoothCodecConfig$Builder;")
-        setCodecSpecific2 = JavaMethod("(J)Landroid/bluetooth/BluetoothCodecConfig$Builder;")
+        setCodecPriority = JavaMethod("(I)Landroid/bluetooth/BluetoothCodecConfig$Builder;")
         setCodecSpecific3 = JavaMethod("(J)Landroid/bluetooth/BluetoothCodecConfig$Builder;")
         setCodecSpecific4 = JavaMethod("(J)Landroid/bluetooth/BluetoothCodecConfig$Builder;")
+        setCodecType = JavaMethod("(I)Landroid/bluetooth/BluetoothCodecConfig$Builder;")
+        setExtendedCodecType = JavaMethod("(Landroid/bluetooth/BluetoothCodecType;)Landroid/bluetooth/BluetoothCodecConfig$Builder;")
+        setSampleRate = JavaMethod("(I)Landroid/bluetooth/BluetoothCodecConfig$Builder;")
         build = JavaMethod("()Landroid/bluetooth/BluetoothCodecConfig;")

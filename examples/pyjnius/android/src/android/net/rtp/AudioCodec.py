@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["AudioCodec"]
 
@@ -12,5 +12,5 @@ class AudioCodec(JavaClass, metaclass=MetaJavaClass):
     fmtp = JavaField("Ljava/lang/String;")
     rtpmap = JavaField("Ljava/lang/String;")
     type = JavaField("I")
-    getCodecs = JavaStaticMethod("()[Landroid/net/rtp/AudioCodec;")
     getCodec = JavaStaticMethod("(ILjava/lang/String;Ljava/lang/String;)Landroid/net/rtp/AudioCodec;")
+    getCodecs = JavaStaticMethod("()[Landroid/net/rtp/AudioCodec;")

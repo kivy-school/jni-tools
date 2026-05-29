@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["PackageInfo"]
 
@@ -40,10 +40,12 @@ class PackageInfo(JavaClass, metaclass=MetaJavaClass):
     splitRevisionCodes = JavaField("[I")
     versionCode = JavaField("I")
     versionName = JavaField("Ljava/lang/String;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    toString = JavaMethod("()Ljava/lang/String;")
+    getApexPackageName = JavaMethod("()Ljava/lang/String;")
+    getArchiveTimeMillis = JavaMethod("()J")
     getLongVersionCode = JavaMethod("()J")
     setLongVersionCode = JavaMethod("(J)V")
-    getArchiveTimeMillis = JavaMethod("()J")
-    getApexPackageName = JavaMethod("()Ljava/lang/String;")
-    toString = JavaMethod("()Ljava/lang/String;")
-    describeContents = JavaMethod("()I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["LineBreaker"]
 
@@ -15,35 +15,35 @@ class LineBreaker(JavaClass, metaclass=MetaJavaClass):
     JUSTIFICATION_MODE_NONE = JavaStaticField("I")
     computeLineBreaks = JavaMethod("(Landroid/graphics/text/MeasuredText;Landroid/graphics/text/LineBreaker$ParagraphConstraints;I)Landroid/graphics/text/LineBreaker$Result;")
 
-    class Builder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/graphics/text/LineBreaker/Builder"
+    class Result(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/graphics/text/LineBreaker$Result"
+        getEndLineHyphenEdit = JavaMethod("(I)I")
+        getLineBreakOffset = JavaMethod("(I)I")
+        getStartLineHyphenEdit = JavaMethod("(I)I")
+        hasLineTab = JavaMethod("(I)Z")
+        getLineCount = JavaMethod("()I")
+        getLineAscent = JavaMethod("(I)F")
+        getLineDescent = JavaMethod("(I)F")
+        getLineWidth = JavaMethod("(I)F")
+
+    class ParagraphConstraints(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/graphics/text/LineBreaker$ParagraphConstraints"
         __javaconstructor__ = [("()V", False)]
+        getFirstWidth = JavaMethod("()F")
+        getTabStops = JavaMethod("()[F")
+        getFirstWidthLineCount = JavaMethod("()I")
+        setTabStops = JavaMethod("([FF)V")
+        getDefaultTabStop = JavaMethod("()F")
+        getWidth = JavaMethod("()F")
+        setIndent = JavaMethod("(FI)V")
+        setWidth = JavaMethod("(F)V")
+
+    class Builder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/graphics/text/LineBreaker$Builder"
+        __javaconstructor__ = [("()V", False)]
+        setIndents = JavaMethod("([I)Landroid/graphics/text/LineBreaker$Builder;")
+        build = JavaMethod("()Landroid/graphics/text/LineBreaker;")
         setBreakStrategy = JavaMethod("(I)Landroid/graphics/text/LineBreaker$Builder;")
         setHyphenationFrequency = JavaMethod("(I)Landroid/graphics/text/LineBreaker$Builder;")
         setJustificationMode = JavaMethod("(I)Landroid/graphics/text/LineBreaker$Builder;")
-        setIndents = JavaMethod("([I)Landroid/graphics/text/LineBreaker$Builder;")
         setUseBoundsForWidth = JavaMethod("(Z)Landroid/graphics/text/LineBreaker$Builder;")
-        build = JavaMethod("()Landroid/graphics/text/LineBreaker;")
-
-    class ParagraphConstraints(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/graphics/text/LineBreaker/ParagraphConstraints"
-        __javaconstructor__ = [("()V", False)]
-        setWidth = JavaMethod("(F)V")
-        setIndent = JavaMethod("(FI)V")
-        setTabStops = JavaMethod("([FF)V")
-        getWidth = JavaMethod("()F")
-        getFirstWidth = JavaMethod("()F")
-        getFirstWidthLineCount = JavaMethod("()I")
-        getTabStops = JavaMethod("()[F")
-        getDefaultTabStop = JavaMethod("()F")
-
-    class Result(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/graphics/text/LineBreaker/Result"
-        getLineCount = JavaMethod("()I")
-        getLineBreakOffset = JavaMethod("(I)I")
-        getLineWidth = JavaMethod("(I)F")
-        getLineAscent = JavaMethod("(I)F")
-        getLineDescent = JavaMethod("(I)F")
-        hasLineTab = JavaMethod("(I)Z")
-        getStartLineHyphenEdit = JavaMethod("(I)I")
-        getEndLineHyphenEdit = JavaMethod("(I)I")

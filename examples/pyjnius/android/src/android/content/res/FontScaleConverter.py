@@ -1,10 +1,10 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["FontScaleConverter"]
 
-class FontScaleConverter(JavaInterface, metaclass=MetaJavaClass):
+class FontScaleConverter(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/content/res/FontScaleConverter"
-    convertSpToDp = JavaMethod("(F)F")
     convertDpToSp = JavaMethod("(F)F")
-    isNonLinearFontScalingActive = JavaStaticMethod("(F)Z")
+    convertSpToDp = JavaMethod("(F)F")
     forScale = JavaStaticMethod("(F)Landroid/content/res/FontScaleConverter;")
+    isNonLinearFontScalingActive = JavaStaticMethod("(F)Z")

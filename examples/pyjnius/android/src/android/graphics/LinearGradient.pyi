@@ -1,25 +1,11 @@
 from typing import Any, ClassVar, overload
 
-# Forward declarations for Java types we do not wrap.
-# Bound as empty classes so annotations resolve in the IDE.
-class TileMode:
-    """Forward declaration for ``android.graphics.Shader.TileMode``.
-
-    This Java type is referenced by the wrapper but is not itself
-    wrapped by pyjnius-wrap. At runtime pyjnius will hand you a
-    live ``autoclass('android.graphics.Shader.TileMode')`` proxy; this empty class exists
-    purely so static type checkers and IDEs can resolve the name.
-
-    See: https://developer.android.com/reference/android/graphics/Shader/TileMode
-    """
-    ...
-
 class LinearGradient:
     @overload
-    def __init__(self, arg0: float, arg1: float, arg2: float, arg3: float, arg4: list[int], arg5: list[float], arg6: TileMode) -> None: ...
+    def __init__(self, p0: float, p1: float, p2: float, p3: float, p4: Any, p5: Any, p6: Any) -> None: ...
     @overload
-    def __init__(self, arg0: float, arg1: float, arg2: float, arg3: float, arg4: list[int], arg5: list[float], arg6: TileMode) -> None: ...
+    def __init__(self, p0: float, p1: float, p2: float, p3: float, p4: int, p5: int, p6: Any) -> None: ...
     @overload
-    def __init__(self, arg0: float, arg1: float, arg2: float, arg3: float, arg4: int, arg5: int, arg6: TileMode) -> None: ...
+    def __init__(self, p0: float, p1: float, p2: float, p3: float, p4: Any, p5: Any, p6: Any) -> None: ...
     @overload
-    def __init__(self, arg0: float, arg1: float, arg2: float, arg3: float, arg4: int, arg5: int, arg6: TileMode) -> None: ...
+    def __init__(self, p0: float, p1: float, p2: float, p3: float, p4: int, p5: int, p6: Any) -> None: ...

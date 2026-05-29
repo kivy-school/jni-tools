@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["InputDevice"]
 
@@ -41,47 +41,49 @@ class InputDevice(JavaClass, metaclass=MetaJavaClass):
     SOURCE_TOUCH_NAVIGATION = JavaStaticField("I")
     SOURCE_TRACKBALL = JavaStaticField("I")
     SOURCE_UNKNOWN = JavaStaticField("I")
-    getDevice = JavaStaticMethod("(I)Landroid/view/InputDevice;")
-    getDeviceIds = JavaStaticMethod("()[I")
-    getId = JavaMethod("()I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getBatteryState = JavaMethod("()Landroid/hardware/BatteryState;")
     getControllerNumber = JavaMethod("()I")
-    getVendorId = JavaMethod("()I")
-    getProductId = JavaMethod("()I")
-    getDescriptor = JavaMethod("()Ljava/lang/String;")
-    isVirtual = JavaMethod("()Z")
-    isExternal = JavaMethod("()Z")
-    getName = JavaMethod("()Ljava/lang/String;")
-    getSources = JavaMethod("()I")
-    supportsSource = JavaMethod("(I)Z")
-    getKeyboardType = JavaMethod("()I")
-    getKeyCharacterMap = JavaMethod("()Landroid/view/KeyCharacterMap;")
-    hasKeys = JavaMethod("([I)[Z", varargs=True)
+    getDeviceIds = JavaStaticMethod("()[I")
     getKeyCodeForKeyLocation = JavaMethod("(I)I")
+    getKeyboardType = JavaMethod("()I")
+    getLightsManager = JavaMethod("()Landroid/hardware/lights/LightsManager;")
     getMotionRange = JavaMultipleMethod([("(I)Landroid/view/InputDevice$MotionRange;", False, False), ("(II)Landroid/view/InputDevice$MotionRange;", False, False)])
     getMotionRanges = JavaMethod("()Ljava/util/List;")
+    getSensorManager = JavaMethod("()Landroid/hardware/SensorManager;")
+    getSources = JavaMethod("()I")
     getVibrator = JavaMethod("()Landroid/os/Vibrator;")
     getVibratorManager = JavaMethod("()Landroid/os/VibratorManager;")
-    getBatteryState = JavaMethod("()Landroid/hardware/BatteryState;")
-    getLightsManager = JavaMethod("()Landroid/hardware/lights/LightsManager;")
-    getSensorManager = JavaMethod("()Landroid/hardware/SensorManager;")
-    isEnabled = JavaMethod("()Z")
+    hasKeys = JavaMethod("([I)[Z", varargs=True)
     hasMicrophone = JavaMethod("()Z")
+    isExternal = JavaMethod("()Z")
+    supportsSource = JavaMethod("(I)Z")
+    getName = JavaMethod("()Ljava/lang/String;")
+    toString = JavaMethod("()Ljava/lang/String;")
+    getDescriptor = JavaMethod("()Ljava/lang/String;")
+    isEnabled = JavaMethod("()Z")
+    isVirtual = JavaMethod("()Z")
+    getId = JavaMethod("()I")
+    getVendorId = JavaMethod("()I")
+    getProductId = JavaMethod("()I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
     describeContents = JavaMethod("()I")
-    toString = JavaMethod("()Ljava/lang/String;")
-
-    class MotionRange(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/view/InputDevice/MotionRange"
-        getAxis = JavaMethod("()I")
-        getSource = JavaMethod("()I")
-        isFromSource = JavaMethod("(I)Z")
-        getMin = JavaMethod("()F")
-        getMax = JavaMethod("()F")
-        getRange = JavaMethod("()F")
-        getFlat = JavaMethod("()F")
-        getFuzz = JavaMethod("()F")
-        getResolution = JavaMethod("()F")
+    getKeyCharacterMap = JavaMethod("()Landroid/view/KeyCharacterMap;")
+    getDevice = JavaStaticMethod("(I)Landroid/view/InputDevice;")
 
     class ViewBehavior(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/view/InputDevice/ViewBehavior"
+        __javaclass__ = "android/view/InputDevice$ViewBehavior"
         shouldSmoothScroll = JavaMethod("(II)Z")
+
+    class MotionRange(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/view/InputDevice$MotionRange"
+        getFuzz = JavaMethod("()F")
+        getFlat = JavaMethod("()F")
+        getAxis = JavaMethod("()I")
+        getRange = JavaMethod("()F")
+        getMax = JavaMethod("()F")
+        getMin = JavaMethod("()F")
+        getResolution = JavaMethod("()F")
+        getSource = JavaMethod("()I")
+        isFromSource = JavaMethod("(I)Z")

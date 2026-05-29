@@ -38,10 +38,10 @@ class Telephony:
         _ID: ClassVar[str]
         @overload
         @staticmethod
-        def getOrCreateThreadId(p0: Context, p1: str) -> int: ...
+        def getOrCreateThreadId(p0: Context, p1: set) -> int: ...
         @overload
         @staticmethod
-        def getOrCreateThreadId(p0: Context, p1: set) -> int: ...
+        def getOrCreateThreadId(p0: Context, p1: str) -> int: ...
 
     class TextBasedSmsColumns:
         ADDRESS: ClassVar[str]
@@ -328,9 +328,9 @@ class Telephony:
         VOICE_OPERATOR_NUMERIC: ClassVar[str]
         VOICE_REG_STATE: ClassVar[str]
         @staticmethod
-        def getUriForSubscriptionIdAndField(p0: int, p1: str) -> Uri: ...
-        @staticmethod
         def getUriForSubscriptionId(p0: int) -> Uri: ...
+        @staticmethod
+        def getUriForSubscriptionIdAndField(p0: int, p1: str) -> Uri: ...
 
     class MmsSms:
         CONTENT_CONVERSATIONS_URI: ClassVar[Uri]

@@ -5,19 +5,39 @@ from java.text.ParsePosition import ParsePosition
 from java.util.Locale import Locale
 
 class CompactDecimalFormat:
+    MINIMUM_GROUPING_DIGITS_AUTO: ClassVar[int]
+    MINIMUM_GROUPING_DIGITS_MIN2: ClassVar[int]
+    PAD_AFTER_PREFIX: ClassVar[int]
+    PAD_AFTER_SUFFIX: ClassVar[int]
+    PAD_BEFORE_PREFIX: ClassVar[int]
+    PAD_BEFORE_SUFFIX: ClassVar[int]
+    ACCOUNTINGCURRENCYSTYLE: ClassVar[int]
+    CASHCURRENCYSTYLE: ClassVar[int]
+    CURRENCYSTYLE: ClassVar[int]
+    FRACTION_FIELD: ClassVar[int]
+    INTEGERSTYLE: ClassVar[int]
+    INTEGER_FIELD: ClassVar[int]
+    ISOCURRENCYSTYLE: ClassVar[int]
+    NUMBERSTYLE: ClassVar[int]
+    PERCENTSTYLE: ClassVar[int]
+    PLURALCURRENCYSTYLE: ClassVar[int]
+    SCIENTIFICSTYLE: ClassVar[int]
+    STANDARDCURRENCYSTYLE: ClassVar[int]
+    def parseCurrency(self, p0: str, p1: ParsePosition) -> CurrencyAmount: ...
     @overload
     @staticmethod
-    def getInstance(arg0: ULocale, arg1: "CompactStyle") -> "CompactDecimalFormat": ...
+    def getInstance(p0: ULocale, p1: Any) -> "CompactDecimalFormat": ...
     @overload
     @staticmethod
-    def getInstance(arg0: Locale, arg1: "CompactStyle") -> "CompactDecimalFormat": ...
-    def parse(self, arg0: str, arg1: ParsePosition) -> float: ...
-    def parseCurrency(self, arg0: str, arg1: ParsePosition) -> CurrencyAmount: ...
+    def getInstance(p0: Locale, p1: Any) -> "CompactDecimalFormat": ...
+    def parse(self, p0: str, p1: ParsePosition) -> float: ...
 
     class CompactStyle:
-        SHORT: ClassVar["CompactStyle"]
         LONG: ClassVar["CompactStyle"]
+        SHORT: ClassVar["CompactStyle"]
+        LONG: ClassVar[Any]
+        SHORT: ClassVar[Any]
         @staticmethod
-        def values() -> list["CompactStyle"]: ...
+        def values() -> Any: ...
         @staticmethod
-        def valueOf(arg0: str) -> "CompactStyle": ...
+        def valueOf(p0: str) -> Any: ...

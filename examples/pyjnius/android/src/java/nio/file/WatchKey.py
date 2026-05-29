@@ -1,11 +1,11 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["WatchKey"]
 
-class WatchKey(JavaInterface, metaclass=MetaJavaClass):
+class WatchKey(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/nio/file/WatchKey"
-    isValid = JavaMethod("()Z")
-    pollEvents = JavaMethod("()Ljava/util/List;")
     reset = JavaMethod("()Z")
     cancel = JavaMethod("()V")
+    isValid = JavaMethod("()Z")
+    pollEvents = JavaMethod("()Ljava/util/List;")
     watchable = JavaMethod("()Ljava/nio/file/Watchable;")

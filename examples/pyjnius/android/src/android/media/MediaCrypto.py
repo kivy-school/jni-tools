@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["MediaCrypto"]
 
@@ -8,5 +8,4 @@ class MediaCrypto(JavaClass, metaclass=MetaJavaClass):
     isCryptoSchemeSupported = JavaStaticMethod("(Ljava/util/UUID;)Z")
     requiresSecureDecoderComponent = JavaMethod("(Ljava/lang/String;)Z")
     setMediaDrmSession = JavaMethod("([B)V")
-    finalize = JavaMethod("()V")
     release = JavaMethod("()V")

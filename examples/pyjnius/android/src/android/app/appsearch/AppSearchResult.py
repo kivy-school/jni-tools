@@ -1,9 +1,10 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["AppSearchResult"]
 
 class AppSearchResult(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/app/appsearch/AppSearchResult"
+    RESULT_ALREADY_EXISTS = JavaStaticField("I")
     RESULT_DENIED = JavaStaticField("I")
     RESULT_INTERNAL_ERROR = JavaStaticField("I")
     RESULT_INVALID_ARGUMENT = JavaStaticField("I")
@@ -15,12 +16,12 @@ class AppSearchResult(JavaClass, metaclass=MetaJavaClass):
     RESULT_RATE_LIMITED = JavaStaticField("I")
     RESULT_SECURITY_ERROR = JavaStaticField("I")
     RESULT_UNKNOWN_ERROR = JavaStaticField("I")
-    isSuccess = JavaMethod("()Z")
     getResultCode = JavaMethod("()I")
-    getResultValue = JavaMethod("()Ljava/lang/Object;")
     getErrorMessage = JavaMethod("()Ljava/lang/String;")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
-    hashCode = JavaMethod("()I")
     toString = JavaMethod("()Ljava/lang/String;")
-    newSuccessfulResult = JavaStaticMethod("(Ljava/lang/Object;)Landroid/app/appsearch/AppSearchResult;")
+    hashCode = JavaMethod("()I")
     newFailedResult = JavaStaticMethod("(ILjava/lang/String;)Landroid/app/appsearch/AppSearchResult;")
+    isSuccess = JavaMethod("()Z")
+    newSuccessfulResult = JavaStaticMethod("(Ljava/lang/Object;)Landroid/app/appsearch/AppSearchResult;")
+    getResultValue = JavaMethod("()Ljava/lang/Object;")

@@ -1,9 +1,9 @@
 from typing import Any, ClassVar, overload
 
 class DriverPropertyInfo:
-    choices: list[str]
-    description: str
     name: str
+    description: str
     required: bool
     value: str
-    def __init__(self, arg0: str, arg1: str) -> None: ...
+    choices: Any
+    def __init__(self, p0: str, p1: str) -> None: ...

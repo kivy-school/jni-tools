@@ -1,7 +1,7 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["OnBackInvokedCallback"]
 
-class OnBackInvokedCallback(JavaInterface, metaclass=MetaJavaClass):
+class OnBackInvokedCallback(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/window/OnBackInvokedCallback"
     onBackInvoked = JavaMethod("()V")

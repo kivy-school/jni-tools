@@ -1,8 +1,8 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["TemporalAmount"]
 
-class TemporalAmount(JavaInterface, metaclass=MetaJavaClass):
+class TemporalAmount(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/time/temporal/TemporalAmount"
     get = JavaMethod("(Ljava/time/temporal/TemporalUnit;)J")
     getUnits = JavaMethod("()Ljava/util/List;")

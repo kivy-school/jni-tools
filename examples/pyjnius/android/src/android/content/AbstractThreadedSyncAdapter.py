@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["AbstractThreadedSyncAdapter"]
 
@@ -8,7 +8,7 @@ class AbstractThreadedSyncAdapter(JavaClass, metaclass=MetaJavaClass):
     LOG_SYNC_DETAILS = JavaStaticField("I")
     getContext = JavaMethod("()Landroid/content/Context;")
     getSyncAdapterBinder = JavaMethod("()Landroid/os/IBinder;")
-    onUnsyncableAccount = JavaMethod("()Z")
     onPerformSync = JavaMethod("(Landroid/accounts/Account;Landroid/os/Bundle;Ljava/lang/String;Landroid/content/ContentProviderClient;Landroid/content/SyncResult;)V")
+    onSyncCanceled = JavaMultipleMethod([("(Ljava/lang/Thread;)V", False, False), ("()V", False, False)])
     onSecurityException = JavaMethod("(Landroid/accounts/Account;Landroid/os/Bundle;Ljava/lang/String;Landroid/content/SyncResult;)V")
-    onSyncCanceled = JavaMultipleMethod([("()V", False, False), ("(Ljava/lang/Thread;)V", False, False)])
+    onUnsyncableAccount = JavaMethod("()Z")

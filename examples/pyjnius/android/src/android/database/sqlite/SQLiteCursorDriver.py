@@ -1,11 +1,11 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SQLiteCursorDriver"]
 
-class SQLiteCursorDriver(JavaInterface, metaclass=MetaJavaClass):
+class SQLiteCursorDriver(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/database/sqlite/SQLiteCursorDriver"
-    query = JavaMethod("(Landroid/database/sqlite/SQLiteDatabase$CursorFactory;[Ljava/lang/String;)Landroid/database/Cursor;")
+    cursorClosed = JavaMethod("()V")
     cursorDeactivated = JavaMethod("()V")
     cursorRequeried = JavaMethod("(Landroid/database/Cursor;)V")
-    cursorClosed = JavaMethod("()V")
     setBindArguments = JavaMethod("([Ljava/lang/String;)V")
+    query = JavaMethod("(Landroid/database/sqlite/SQLiteDatabase$CursorFactory;[Ljava/lang/String;)Landroid/database/Cursor;")

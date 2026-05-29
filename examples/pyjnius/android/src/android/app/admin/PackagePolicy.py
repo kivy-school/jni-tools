@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["PackagePolicy"]
 
@@ -9,9 +9,11 @@ class PackagePolicy(JavaClass, metaclass=MetaJavaClass):
     PACKAGE_POLICY_ALLOWLIST = JavaStaticField("I")
     PACKAGE_POLICY_ALLOWLIST_AND_SYSTEM = JavaStaticField("I")
     PACKAGE_POLICY_BLOCKLIST = JavaStaticField("I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getPolicyType = JavaMethod("()I")
-    getPackageNames = JavaMethod("()Ljava/util/Set;")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
     hashCode = JavaMethod("()I")
+    getPackageNames = JavaMethod("()Ljava/util/Set;")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
     describeContents = JavaMethod("()I")

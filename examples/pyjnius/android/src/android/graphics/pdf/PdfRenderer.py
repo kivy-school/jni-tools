@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["PdfRenderer"]
 
@@ -11,32 +11,30 @@ class PdfRenderer(JavaClass, metaclass=MetaJavaClass):
     PDF_FORM_TYPE_NONE = JavaStaticField("I")
     PDF_FORM_TYPE_XFA_FOREGROUND = JavaStaticField("I")
     PDF_FORM_TYPE_XFA_FULL = JavaStaticField("I")
-    close = JavaMethod("()V")
-    getPageCount = JavaMethod("()I")
     shouldScaleForPrinting = JavaMethod("()Z")
-    getDocumentLinearizationType = JavaMethod("()I")
     openPage = JavaMethod("(I)Landroid/graphics/pdf/PdfRenderer$Page;")
     getPdfFormType = JavaMethod("()I")
+    getPageCount = JavaMethod("()I")
+    getDocumentLinearizationType = JavaMethod("()I")
+    close = JavaMethod("()V")
     write = JavaMethod("(Landroid/os/ParcelFileDescriptor;Z)V")
-    finalize = JavaMethod("()V")
 
     class Page(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/graphics/pdf/PdfRenderer/Page"
+        __javaclass__ = "android/graphics/pdf/PdfRenderer$Page"
         RENDER_MODE_FOR_DISPLAY = JavaStaticField("I")
         RENDER_MODE_FOR_PRINT = JavaStaticField("I")
-        getIndex = JavaMethod("()I")
-        getWidth = JavaMethod("()I")
-        getHeight = JavaMethod("()I")
-        render = JavaMultipleMethod([("(Landroid/graphics/Bitmap;Landroid/graphics/Rect;Landroid/graphics/Matrix;I)V", False, False), ("(Landroid/graphics/Bitmap;Landroid/graphics/Rect;Landroid/graphics/Matrix;Landroid/graphics/pdf/RenderParams;)V", False, False)])
-        getTextContents = JavaMethod("()Ljava/util/List;")
-        getImageContents = JavaMethod("()Ljava/util/List;")
         searchText = JavaMethod("(Ljava/lang/String;)Ljava/util/List;")
+        getImageContents = JavaMethod("()Ljava/util/List;")
         selectContent = JavaMethod("(Landroid/graphics/pdf/models/selection/SelectionBoundary;Landroid/graphics/pdf/models/selection/SelectionBoundary;)Landroid/graphics/pdf/models/selection/PageSelection;")
-        getLinkContents = JavaMethod("()Ljava/util/List;")
         getGotoLinks = JavaMethod("()Ljava/util/List;")
-        getFormWidgetInfos = JavaMultipleMethod([("()Ljava/util/List;", False, False), ("([I)Ljava/util/List;", False, False)])
+        getFormWidgetInfos = JavaMultipleMethod([("([I)Ljava/util/List;", False, False), ("()Ljava/util/List;", False, False)])
+        getLinkContents = JavaMethod("()Ljava/util/List;")
         getFormWidgetInfoAtIndex = JavaMethod("(I)Landroid/graphics/pdf/models/FormWidgetInfo;")
-        getFormWidgetInfoAtPosition = JavaMethod("(II)Landroid/graphics/pdf/models/FormWidgetInfo;")
+        render = JavaMultipleMethod([("(Landroid/graphics/Bitmap;Landroid/graphics/Rect;Landroid/graphics/Matrix;Landroid/graphics/pdf/RenderParams;)V", False, False), ("(Landroid/graphics/Bitmap;Landroid/graphics/Rect;Landroid/graphics/Matrix;I)V", False, False)])
+        getTextContents = JavaMethod("()Ljava/util/List;")
         applyEdit = JavaMethod("(Landroid/graphics/pdf/models/FormEditRecord;)Ljava/util/List;")
+        getFormWidgetInfoAtPosition = JavaMethod("(II)Landroid/graphics/pdf/models/FormWidgetInfo;")
         close = JavaMethod("()V")
-        finalize = JavaMethod("()V")
+        getHeight = JavaMethod("()I")
+        getWidth = JavaMethod("()I")
+        getIndex = JavaMethod("()I")

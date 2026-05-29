@@ -5,7 +5,11 @@ class FileVisitResult:
     TERMINATE: ClassVar["FileVisitResult"]
     SKIP_SUBTREE: ClassVar["FileVisitResult"]
     SKIP_SIBLINGS: ClassVar["FileVisitResult"]
+    CONTINUE: ClassVar["FileVisitResult"]
+    TERMINATE: ClassVar["FileVisitResult"]
+    SKIP_SUBTREE: ClassVar["FileVisitResult"]
+    SKIP_SIBLINGS: ClassVar["FileVisitResult"]
     @staticmethod
-    def values() -> list["FileVisitResult"]: ...
+    def values() -> Any: ...
     @staticmethod
-    def valueOf(arg0: str) -> "FileVisitResult": ...
+    def valueOf(p0: str) -> "FileVisitResult": ...

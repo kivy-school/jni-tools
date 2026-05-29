@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["GnssNavigationMessage"]
 
@@ -25,21 +25,23 @@ class GnssNavigationMessage(JavaClass, metaclass=MetaJavaClass):
     TYPE_QZS_L1CA = JavaStaticField("I")
     TYPE_SBS = JavaStaticField("I")
     TYPE_UNKNOWN = JavaStaticField("I")
-    getType = JavaMethod("()I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getStatus = JavaMethod("()I")
     getSvid = JavaMethod("()I")
+    toString = JavaMethod("()Ljava/lang/String;")
+    getType = JavaMethod("()I")
     getMessageId = JavaMethod("()I")
     getSubmessageId = JavaMethod("()I")
     getData = JavaMethod("()[B")
-    getStatus = JavaMethod("()I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
     describeContents = JavaMethod("()I")
-    toString = JavaMethod("()Ljava/lang/String;")
 
     class Callback(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/location/GnssNavigationMessage/Callback"
+        __javaclass__ = "android/location/GnssNavigationMessage$Callback"
         __javaconstructor__ = [("()V", False)]
         STATUS_LOCATION_DISABLED = JavaStaticField("I")
         STATUS_NOT_SUPPORTED = JavaStaticField("I")
         STATUS_READY = JavaStaticField("I")
-        onGnssNavigationMessageReceived = JavaMethod("(Landroid/location/GnssNavigationMessage;)V")
         onStatusChanged = JavaMethod("(I)V")
+        onGnssNavigationMessageReceived = JavaMethod("(Landroid/location/GnssNavigationMessage;)V")

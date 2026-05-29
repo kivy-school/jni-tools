@@ -1,15 +1,15 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["NfcV"]
 
 class NfcV(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/nfc/tech/NfcV"
-    get = JavaStaticMethod("(Landroid/nfc/Tag;)Landroid/nfc/tech/NfcV;")
+    connect = JavaMethod("()V")
     getResponseFlags = JavaMethod("()B")
     getDsfId = JavaMethod("()B")
-    transceive = JavaMethod("([B)[B")
     getMaxTransceiveLength = JavaMethod("()I")
     isConnected = JavaMethod("()Z")
-    getTag = JavaMethod("()Landroid/nfc/Tag;")
+    transceive = JavaMethod("([B)[B")
+    get = JavaStaticMethod("(Landroid/nfc/Tag;)Landroid/nfc/tech/NfcV;")
     close = JavaMethod("()V")
-    connect = JavaMethod("()V")
+    getTag = JavaMethod("()Landroid/nfc/Tag;")

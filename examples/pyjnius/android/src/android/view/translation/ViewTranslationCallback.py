@@ -1,8 +1,8 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ViewTranslationCallback"]
 
-class ViewTranslationCallback(JavaInterface, metaclass=MetaJavaClass):
+class ViewTranslationCallback(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/view/translation/ViewTranslationCallback"
     onShowTranslation = JavaMethod("(Landroid/view/View;)Z")
     onHideTranslation = JavaMethod("(Landroid/view/View;)Z")

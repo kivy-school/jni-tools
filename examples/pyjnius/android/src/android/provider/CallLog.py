@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["CallLog"]
 
@@ -8,8 +8,19 @@ class CallLog(JavaClass, metaclass=MetaJavaClass):
     AUTHORITY = JavaStaticField("Ljava/lang/String;")
     CONTENT_URI = JavaStaticField("Landroid/net/Uri;")
 
+    class Locations(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/provider/CallLog$Locations"
+        AUTHORITY = JavaStaticField("Ljava/lang/String;")
+        CONTENT_ITEM_TYPE = JavaStaticField("Ljava/lang/String;")
+        CONTENT_TYPE = JavaStaticField("Ljava/lang/String;")
+        CONTENT_URI = JavaStaticField("Landroid/net/Uri;")
+        LATITUDE = JavaStaticField("Ljava/lang/String;")
+        LONGITUDE = JavaStaticField("Ljava/lang/String;")
+        _COUNT = JavaStaticField("Ljava/lang/String;")
+        _ID = JavaStaticField("Ljava/lang/String;")
+
     class Calls(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/provider/CallLog/Calls"
+        __javaclass__ = "android/provider/CallLog$Calls"
         __javaconstructor__ = [("()V", False)]
         ANSWERED_EXTERNALLY_TYPE = JavaStaticField("I")
         ASSERTED_DISPLAY_NAME = JavaStaticField("Ljava/lang/String;")
@@ -97,13 +108,6 @@ class CallLog(JavaClass, metaclass=MetaJavaClass):
         VIA_NUMBER = JavaStaticField("Ljava/lang/String;")
         VOICEMAIL_TYPE = JavaStaticField("I")
         VOICEMAIL_URI = JavaStaticField("Ljava/lang/String;")
+        _COUNT = JavaStaticField("Ljava/lang/String;")
+        _ID = JavaStaticField("Ljava/lang/String;")
         getLastOutgoingCall = JavaStaticMethod("(Landroid/content/Context;)Ljava/lang/String;")
-
-    class Locations(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/provider/CallLog/Locations"
-        AUTHORITY = JavaStaticField("Ljava/lang/String;")
-        CONTENT_ITEM_TYPE = JavaStaticField("Ljava/lang/String;")
-        CONTENT_TYPE = JavaStaticField("Ljava/lang/String;")
-        CONTENT_URI = JavaStaticField("Landroid/net/Uri;")
-        LATITUDE = JavaStaticField("Ljava/lang/String;")
-        LONGITUDE = JavaStaticField("Ljava/lang/String;")

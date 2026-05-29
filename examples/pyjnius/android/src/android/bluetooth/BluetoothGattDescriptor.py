@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["BluetoothGattDescriptor"]
 
@@ -17,10 +17,12 @@ class BluetoothGattDescriptor(JavaClass, metaclass=MetaJavaClass):
     PERMISSION_WRITE_ENCRYPTED_MITM = JavaStaticField("I")
     PERMISSION_WRITE_SIGNED = JavaStaticField("I")
     PERMISSION_WRITE_SIGNED_MITM = JavaStaticField("I")
-    describeContents = JavaMethod("()I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getCharacteristic = JavaMethod("()Landroid/bluetooth/BluetoothGattCharacteristic;")
-    getUuid = JavaMethod("()Ljava/util/UUID;")
-    getPermissions = JavaMethod("()I")
     getValue = JavaMethod("()[B")
+    getPermissions = JavaMethod("()I")
     setValue = JavaMethod("([B)Z")
+    getUuid = JavaMethod("()Ljava/util/UUID;")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

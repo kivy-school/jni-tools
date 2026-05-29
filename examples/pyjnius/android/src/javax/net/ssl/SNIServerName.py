@@ -1,12 +1,11 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SNIServerName"]
 
 class SNIServerName(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "javax/net/ssl/SNIServerName"
-    __javaconstructor__ = [("(I[B)V", False)]
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
     getType = JavaMethod("()I")
     getEncoded = JavaMethod("()[B")
-    equals = JavaMethod("(Ljava/lang/Object;)Z")
-    hashCode = JavaMethod("()I")
-    toString = JavaMethod("()Ljava/lang/String;")

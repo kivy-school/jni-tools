@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["FingerprintGestureController"]
 
@@ -13,7 +13,7 @@ class FingerprintGestureController(JavaClass, metaclass=MetaJavaClass):
     unregisterFingerprintGestureCallback = JavaMethod("(Landroid/accessibilityservice/FingerprintGestureController$FingerprintGestureCallback;)V")
 
     class FingerprintGestureCallback(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/accessibilityservice/FingerprintGestureController/FingerprintGestureCallback"
+        __javaclass__ = "android/accessibilityservice/FingerprintGestureController$FingerprintGestureCallback"
         __javaconstructor__ = [("()V", False)]
-        onGestureDetectionAvailabilityChanged = JavaMethod("(Z)V")
         onGestureDetected = JavaMethod("(I)V")
+        onGestureDetectionAvailabilityChanged = JavaMethod("(Z)V")

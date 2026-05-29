@@ -1,10 +1,10 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["StructStat"]
 
 class StructStat(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/system/StructStat"
-    __javaconstructor__ = [("(JJIJIIJJJJJJJ)V", False), ("(JJIJIIJJLandroid/system/StructTimespec;Landroid/system/StructTimespec;Landroid/system/StructTimespec;JJ)V", False)]
+    __javaconstructor__ = [("(JJIJIIJJLandroid/system/StructTimespec;Landroid/system/StructTimespec;Landroid/system/StructTimespec;JJ)V", False), ("(JJIJIIJJJJJJJ)V", False)]
     st_atim = JavaField("Landroid/system/StructTimespec;")
     st_atime = JavaField("J")
     st_blksize = JavaField("J")

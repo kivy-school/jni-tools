@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Gravity"]
 
@@ -32,8 +32,8 @@ class Gravity(JavaClass, metaclass=MetaJavaClass):
     START = JavaStaticField("I")
     TOP = JavaStaticField("I")
     VERTICAL_GRAVITY_MASK = JavaStaticField("I")
-    apply = JavaMultipleMethod([("(IIILandroid/graphics/Rect;Landroid/graphics/Rect;)V", True, False), ("(IIILandroid/graphics/Rect;Landroid/graphics/Rect;I)V", True, False), ("(IIILandroid/graphics/Rect;IILandroid/graphics/Rect;)V", True, False), ("(IIILandroid/graphics/Rect;IILandroid/graphics/Rect;I)V", True, False)])
-    applyDisplay = JavaMultipleMethod([("(ILandroid/graphics/Rect;Landroid/graphics/Rect;)V", True, False), ("(ILandroid/graphics/Rect;Landroid/graphics/Rect;I)V", True, False)])
-    isVertical = JavaStaticMethod("(I)Z")
-    isHorizontal = JavaStaticMethod("(I)Z")
+    apply = JavaMultipleMethod([("(IIILandroid/graphics/Rect;IILandroid/graphics/Rect;I)V", True, False), ("(IIILandroid/graphics/Rect;IILandroid/graphics/Rect;)V", True, False), ("(IIILandroid/graphics/Rect;Landroid/graphics/Rect;I)V", True, False), ("(IIILandroid/graphics/Rect;Landroid/graphics/Rect;)V", True, False)])
+    applyDisplay = JavaMultipleMethod([("(ILandroid/graphics/Rect;Landroid/graphics/Rect;I)V", True, False), ("(ILandroid/graphics/Rect;Landroid/graphics/Rect;)V", True, False)])
     getAbsoluteGravity = JavaStaticMethod("(II)I")
+    isHorizontal = JavaStaticMethod("(I)Z")
+    isVertical = JavaStaticMethod("(I)Z")

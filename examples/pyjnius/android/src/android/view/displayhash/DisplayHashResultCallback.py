@@ -1,8 +1,8 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["DisplayHashResultCallback"]
 
-class DisplayHashResultCallback(JavaInterface, metaclass=MetaJavaClass):
+class DisplayHashResultCallback(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/view/displayhash/DisplayHashResultCallback"
     DISPLAY_HASH_ERROR_INVALID_BOUNDS = JavaStaticField("I")
     DISPLAY_HASH_ERROR_INVALID_HASH_ALGORITHM = JavaStaticField("I")
@@ -10,5 +10,5 @@ class DisplayHashResultCallback(JavaInterface, metaclass=MetaJavaClass):
     DISPLAY_HASH_ERROR_NOT_VISIBLE_ON_SCREEN = JavaStaticField("I")
     DISPLAY_HASH_ERROR_TOO_MANY_REQUESTS = JavaStaticField("I")
     DISPLAY_HASH_ERROR_UNKNOWN = JavaStaticField("I")
-    onDisplayHashResult = JavaMethod("(Landroid/view/displayhash/DisplayHash;)V")
     onDisplayHashError = JavaMethod("(I)V")
+    onDisplayHashResult = JavaMethod("(Landroid/view/displayhash/DisplayHash;)V")

@@ -1,10 +1,10 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ExifInterface"]
 
 class ExifInterface(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/media/ExifInterface"
-    __javaconstructor__ = [("(Ljava/io/File;)V", False), ("(Ljava/lang/String;)V", False), ("(Ljava/io/FileDescriptor;)V", False), ("(Ljava/io/InputStream;)V", False), ("(Ljava/io/InputStream;I)V", False)]
+    __javaconstructor__ = [("(Ljava/io/InputStream;)V", False), ("(Ljava/io/InputStream;I)V", False), ("(Ljava/io/FileDescriptor;)V", False), ("(Ljava/io/File;)V", False), ("(Ljava/lang/String;)V", False)]
     ORIENTATION_FLIP_HORIZONTAL = JavaStaticField("I")
     ORIENTATION_FLIP_VERTICAL = JavaStaticField("I")
     ORIENTATION_NORMAL = JavaStaticField("I")
@@ -161,24 +161,24 @@ class ExifInterface(JavaClass, metaclass=MetaJavaClass):
     TAG_Y_RESOLUTION = JavaStaticField("Ljava/lang/String;")
     WHITEBALANCE_AUTO = JavaStaticField("I")
     WHITEBALANCE_MANUAL = JavaStaticField("I")
-    isSupportedMimeType = JavaStaticMethod("(Ljava/lang/String;)Z")
-    getAttribute = JavaMethod("(Ljava/lang/String;)Ljava/lang/String;")
-    getAttributeInt = JavaMethod("(Ljava/lang/String;I)I")
-    getAttributeDouble = JavaMethod("(Ljava/lang/String;D)D")
-    setAttribute = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)V")
-    saveAttributes = JavaMethod("()V")
-    hasThumbnail = JavaMethod("()Z")
-    hasAttribute = JavaMethod("(Ljava/lang/String;)Z")
-    getThumbnail = JavaMethod("()[B")
-    getThumbnailBytes = JavaMethod("()[B")
-    getThumbnailBitmap = JavaMethod("()Landroid/graphics/Bitmap;")
-    isThumbnailCompressed = JavaMethod("()Z")
-    getThumbnailRange = JavaMethod("()[J")
-    getAttributeRange = JavaMethod("(Ljava/lang/String;)[J")
     getAttributeBytes = JavaMethod("(Ljava/lang/String;)[B")
-    getLatLong = JavaMethod("([F)Z")
-    getAltitude = JavaMethod("(D)D")
+    getAttributeDouble = JavaMethod("(Ljava/lang/String;D)D")
+    getAttributeInt = JavaMethod("(Ljava/lang/String;I)I")
+    getAttributeRange = JavaMethod("(Ljava/lang/String;)[J")
     getDateTime = JavaMethod("()J")
     getDateTimeDigitized = JavaMethod("()J")
     getDateTimeOriginal = JavaMethod("()J")
     getGpsDateTime = JavaMethod("()J")
+    getLatLong = JavaMethod("([F)Z")
+    getThumbnailBitmap = JavaMethod("()Landroid/graphics/Bitmap;")
+    getThumbnailBytes = JavaMethod("()[B")
+    getThumbnailRange = JavaMethod("()[J")
+    hasAttribute = JavaMethod("(Ljava/lang/String;)Z")
+    hasThumbnail = JavaMethod("()Z")
+    isSupportedMimeType = JavaStaticMethod("(Ljava/lang/String;)Z")
+    isThumbnailCompressed = JavaMethod("()Z")
+    saveAttributes = JavaMethod("()V")
+    getAltitude = JavaMethod("(D)D")
+    setAttribute = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)V")
+    getThumbnail = JavaMethod("()[B")
+    getAttribute = JavaMethod("(Ljava/lang/String;)Ljava/lang/String;")

@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ActivityInfo"]
 
@@ -8,6 +8,7 @@ class ActivityInfo(JavaClass, metaclass=MetaJavaClass):
     COLOR_MODE_DEFAULT = JavaStaticField("I")
     COLOR_MODE_HDR = JavaStaticField("I")
     COLOR_MODE_WIDE_COLOR_GAMUT = JavaStaticField("I")
+    CONFIG_ASSETS_PATHS = JavaStaticField("I")
     CONFIG_COLOR_MODE = JavaStaticField("I")
     CONFIG_DENSITY = JavaStaticField("I")
     CONFIG_FONT_SCALE = JavaStaticField("I")
@@ -21,6 +22,7 @@ class ActivityInfo(JavaClass, metaclass=MetaJavaClass):
     CONFIG_MNC = JavaStaticField("I")
     CONFIG_NAVIGATION = JavaStaticField("I")
     CONFIG_ORIENTATION = JavaStaticField("I")
+    CONFIG_RESOURCES_UNUSED = JavaStaticField("I")
     CONFIG_SCREEN_LAYOUT = JavaStaticField("I")
     CONFIG_SCREEN_SIZE = JavaStaticField("I")
     CONFIG_SMALLEST_SCREEN_SIZE = JavaStaticField("I")
@@ -91,15 +93,34 @@ class ActivityInfo(JavaClass, metaclass=MetaJavaClass):
     theme = JavaField("I")
     uiOptions = JavaField("I")
     windowLayout = JavaField("Landroid/content/pm/ActivityInfo$WindowLayout;")
-    getThemeResource = JavaMethod("()I")
-    getKnownActivityEmbeddingCerts = JavaMethod("()Ljava/util/Set;")
-    dump = JavaMethod("(Landroid/util/Printer;Ljava/lang/String;)V")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    applicationInfo = JavaField("Landroid/content/pm/ApplicationInfo;")
+    attributionTags = JavaField("[Ljava/lang/String;")
+    descriptionRes = JavaField("I")
+    directBootAware = JavaField("Z")
+    enabled = JavaField("Z")
+    exported = JavaField("Z")
+    processName = JavaField("Ljava/lang/String;")
+    splitName = JavaField("Ljava/lang/String;")
+    banner = JavaField("I")
+    icon = JavaField("I")
+    isArchived = JavaField("Z")
+    labelRes = JavaField("I")
+    logo = JavaField("I")
+    metaData = JavaField("Landroid/os/Bundle;")
+    name = JavaField("Ljava/lang/String;")
+    nonLocalizedLabel = JavaField("Ljava/lang/CharSequence;")
+    packageName = JavaField("Ljava/lang/String;")
     toString = JavaMethod("()Ljava/lang/String;")
-    describeContents = JavaMethod("()I")
+    dump = JavaMethod("(Landroid/util/Printer;Ljava/lang/String;)V")
+    getKnownActivityEmbeddingCerts = JavaMethod("()Ljava/util/Set;")
+    getThemeResource = JavaMethod("()I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
 
     class WindowLayout(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/content/pm/ActivityInfo/WindowLayout"
+        __javaclass__ = "android/content/pm/ActivityInfo$WindowLayout"
         __javaconstructor__ = [("(IFIFIII)V", False)]
         gravity = JavaField("I")
         height = JavaField("I")

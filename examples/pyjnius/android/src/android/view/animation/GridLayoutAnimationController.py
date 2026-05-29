@@ -1,10 +1,10 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["GridLayoutAnimationController"]
 
 class GridLayoutAnimationController(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/view/animation/GridLayoutAnimationController"
-    __javaconstructor__ = [("(Landroid/content/Context;Landroid/util/AttributeSet;)V", False), ("(Landroid/view/animation/Animation;)V", False), ("(Landroid/view/animation/Animation;FF)V", False)]
+    __javaconstructor__ = [("(Landroid/view/animation/Animation;FF)V", False), ("(Landroid/view/animation/Animation;)V", False), ("(Landroid/content/Context;Landroid/util/AttributeSet;)V", False)]
     DIRECTION_BOTTOM_TO_TOP = JavaStaticField("I")
     DIRECTION_HORIZONTAL_MASK = JavaStaticField("I")
     DIRECTION_LEFT_TO_RIGHT = JavaStaticField("I")
@@ -14,21 +14,25 @@ class GridLayoutAnimationController(JavaClass, metaclass=MetaJavaClass):
     PRIORITY_COLUMN = JavaStaticField("I")
     PRIORITY_NONE = JavaStaticField("I")
     PRIORITY_ROW = JavaStaticField("I")
-    getColumnDelay = JavaMethod("()F")
+    ORDER_NORMAL = JavaStaticField("I")
+    ORDER_RANDOM = JavaStaticField("I")
+    ORDER_REVERSE = JavaStaticField("I")
+    getDirection = JavaMethod("()I")
+    willOverlap = JavaMethod("()Z")
+    setRowDelay = JavaMethod("(F)V")
+    setDirection = JavaMethod("(I)V")
     setColumnDelay = JavaMethod("(F)V")
     getRowDelay = JavaMethod("()F")
-    setRowDelay = JavaMethod("(F)V")
-    getDirection = JavaMethod("()I")
-    setDirection = JavaMethod("(I)V")
+    getColumnDelay = JavaMethod("()F")
     getDirectionPriority = JavaMethod("()I")
     setDirectionPriority = JavaMethod("(I)V")
-    willOverlap = JavaMethod("()Z")
-    getDelayForView = JavaMethod("(Landroid/view/View;)J")
 
     class AnimationParameters(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/view/animation/GridLayoutAnimationController/AnimationParameters"
+        __javaclass__ = "android/view/animation/GridLayoutAnimationController$AnimationParameters"
         __javaconstructor__ = [("()V", False)]
         column = JavaField("I")
         columnsCount = JavaField("I")
         row = JavaField("I")
         rowsCount = JavaField("I")
+        count = JavaField("I")
+        index = JavaField("I")

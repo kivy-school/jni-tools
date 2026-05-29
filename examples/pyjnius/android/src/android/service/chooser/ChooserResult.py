@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ChooserResult"]
 
@@ -9,10 +9,12 @@ class ChooserResult(JavaClass, metaclass=MetaJavaClass):
     CHOOSER_RESULT_SELECTED_COMPONENT = JavaStaticField("I")
     CHOOSER_RESULT_UNKNOWN = JavaStaticField("I")
     CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
-    getType = JavaMethod("()I")
-    getSelectedComponent = JavaMethod("()Landroid/content/ComponentName;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     isShortcut = JavaMethod("()Z")
-    describeContents = JavaMethod("()I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    getSelectedComponent = JavaMethod("()Landroid/content/ComponentName;")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
     hashCode = JavaMethod("()I")
+    getType = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

@@ -1,6 +1,6 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ManagerFactoryParameters"]
 
-class ManagerFactoryParameters(JavaInterface, metaclass=MetaJavaClass):
+class ManagerFactoryParameters(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "javax/net/ssl/ManagerFactoryParameters"

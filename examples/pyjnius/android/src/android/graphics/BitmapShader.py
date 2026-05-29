@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["BitmapShader"]
 
@@ -8,8 +8,8 @@ class BitmapShader(JavaClass, metaclass=MetaJavaClass):
     FILTER_MODE_DEFAULT = JavaStaticField("I")
     FILTER_MODE_LINEAR = JavaStaticField("I")
     FILTER_MODE_NEAREST = JavaStaticField("I")
-    getFilterMode = JavaMethod("()I")
     setFilterMode = JavaMethod("(I)V")
     setMaxAnisotropy = JavaMethod("(I)V")
     setOverrideGainmap = JavaMethod("(Landroid/graphics/Gainmap;)V")
+    getFilterMode = JavaMethod("()I")
     getMaxAnisotropy = JavaMethod("()I")

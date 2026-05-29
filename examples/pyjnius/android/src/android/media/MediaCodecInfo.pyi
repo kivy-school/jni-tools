@@ -3,111 +3,85 @@ from android.media.MediaFormat import MediaFormat
 from android.util.Range import Range
 
 class MediaCodecInfo:
+    SECURITY_MODEL_MEMORY_SAFE: ClassVar[int]
+    SECURITY_MODEL_SANDBOXED: ClassVar[int]
+    def isEncoder(self) -> bool: ...
+    def isAlias(self) -> bool: ...
+    def getSupportedTypes(self) -> Any: ...
+    def getSecurityModel(self) -> int: ...
+    def isSoftwareOnly(self) -> bool: ...
+    def getCapabilitiesForType(self, p0: str) -> Any: ...
+    def isVendor(self) -> bool: ...
     def getName(self) -> str: ...
     def getCanonicalName(self) -> str: ...
-    def isAlias(self) -> bool: ...
-    def isEncoder(self) -> bool: ...
-    def isVendor(self) -> bool: ...
-    def isSoftwareOnly(self) -> bool: ...
     def isHardwareAccelerated(self) -> bool: ...
-    def getSupportedTypes(self) -> list[str]: ...
-    def getCapabilitiesForType(self, arg0: str) -> "CodecCapabilities": ...
 
-    class AudioCapabilities:
+    class VideoCapabilities:
+        def getSupportedFrameRates(self) -> Range: ...
+        def getSupportedFrameRatesFor(self, p0: int, p1: int) -> Range: ...
+        def getSupportedHeights(self) -> Range: ...
+        def getSupportedHeightsFor(self, p0: int) -> Range: ...
+        def getSupportedPerformancePoints(self) -> list: ...
+        def getSupportedWidthsFor(self, p0: int) -> Range: ...
+        def getWidthAlignment(self) -> int: ...
+        def isSizeSupported(self, p0: int, p1: int) -> bool: ...
+        def areSizeAndRateSupported(self, p0: int, p1: int, p2: float) -> bool: ...
+        def getAchievableFrameRatesFor(self, p0: int, p1: int) -> Range: ...
         def getBitrateRange(self) -> Range: ...
-        def getSupportedSampleRates(self) -> list[int]: ...
-        def getSupportedSampleRateRanges(self) -> list[Range]: ...
-        def getMaxInputChannelCount(self) -> int: ...
-        def getMinInputChannelCount(self) -> int: ...
-        def getInputChannelCountRanges(self) -> list[Range]: ...
-        def isSampleRateSupported(self, arg0: int) -> bool: ...
+        def getHeightAlignment(self) -> int: ...
+        def getSupportedWidths(self) -> Range: ...
 
-    class CodecCapabilities:
-        COLOR_Format12bitRGB444: ClassVar[int]
-        COLOR_Format16bitARGB1555: ClassVar[int]
-        COLOR_Format16bitARGB4444: ClassVar[int]
-        COLOR_Format16bitBGR565: ClassVar[int]
-        COLOR_Format16bitRGB565: ClassVar[int]
-        COLOR_Format18BitBGR666: ClassVar[int]
-        COLOR_Format18bitARGB1665: ClassVar[int]
-        COLOR_Format18bitRGB666: ClassVar[int]
-        COLOR_Format19bitARGB1666: ClassVar[int]
-        COLOR_Format24BitABGR6666: ClassVar[int]
-        COLOR_Format24BitARGB6666: ClassVar[int]
-        COLOR_Format24bitARGB1887: ClassVar[int]
-        COLOR_Format24bitBGR888: ClassVar[int]
-        COLOR_Format24bitRGB888: ClassVar[int]
-        COLOR_Format25bitARGB1888: ClassVar[int]
-        COLOR_Format32bitABGR2101010: ClassVar[int]
-        COLOR_Format32bitABGR8888: ClassVar[int]
-        COLOR_Format32bitARGB8888: ClassVar[int]
-        COLOR_Format32bitBGRA8888: ClassVar[int]
-        COLOR_Format64bitABGRFloat: ClassVar[int]
-        COLOR_Format8bitRGB332: ClassVar[int]
-        COLOR_FormatCbYCrY: ClassVar[int]
-        COLOR_FormatCrYCbY: ClassVar[int]
-        COLOR_FormatL16: ClassVar[int]
-        COLOR_FormatL2: ClassVar[int]
-        COLOR_FormatL24: ClassVar[int]
-        COLOR_FormatL32: ClassVar[int]
-        COLOR_FormatL4: ClassVar[int]
-        COLOR_FormatL8: ClassVar[int]
-        COLOR_FormatMonochrome: ClassVar[int]
-        COLOR_FormatRGBAFlexible: ClassVar[int]
-        COLOR_FormatRGBFlexible: ClassVar[int]
-        COLOR_FormatRawBayer10bit: ClassVar[int]
-        COLOR_FormatRawBayer8bit: ClassVar[int]
-        COLOR_FormatRawBayer8bitcompressed: ClassVar[int]
-        COLOR_FormatSurface: ClassVar[int]
-        COLOR_FormatYCbYCr: ClassVar[int]
-        COLOR_FormatYCrYCb: ClassVar[int]
-        COLOR_FormatYUV411PackedPlanar: ClassVar[int]
-        COLOR_FormatYUV411Planar: ClassVar[int]
-        COLOR_FormatYUV420Flexible: ClassVar[int]
-        COLOR_FormatYUV420PackedPlanar: ClassVar[int]
-        COLOR_FormatYUV420PackedSemiPlanar: ClassVar[int]
-        COLOR_FormatYUV420Planar: ClassVar[int]
-        COLOR_FormatYUV420SemiPlanar: ClassVar[int]
-        COLOR_FormatYUV422Flexible: ClassVar[int]
-        COLOR_FormatYUV422PackedPlanar: ClassVar[int]
-        COLOR_FormatYUV422PackedSemiPlanar: ClassVar[int]
-        COLOR_FormatYUV422Planar: ClassVar[int]
-        COLOR_FormatYUV422SemiPlanar: ClassVar[int]
-        COLOR_FormatYUV444Flexible: ClassVar[int]
-        COLOR_FormatYUV444Interleaved: ClassVar[int]
-        COLOR_FormatYUVP010: ClassVar[int]
-        COLOR_QCOM_FormatYUV420SemiPlanar: ClassVar[int]
-        COLOR_TI_FormatYUV420PackedSemiPlanar: ClassVar[int]
-        FEATURE_AdaptivePlayback: ClassVar[str]
-        FEATURE_DetachedSurface: ClassVar[str]
-        FEATURE_DynamicColorAspects: ClassVar[str]
-        FEATURE_DynamicTimestamp: ClassVar[str]
-        FEATURE_EncodingStatistics: ClassVar[str]
-        FEATURE_FrameParsing: ClassVar[str]
-        FEATURE_HdrEditing: ClassVar[str]
-        FEATURE_HlgEditing: ClassVar[str]
-        FEATURE_IntraRefresh: ClassVar[str]
-        FEATURE_LowLatency: ClassVar[str]
-        FEATURE_MultipleFrames: ClassVar[str]
-        FEATURE_PartialFrame: ClassVar[str]
-        FEATURE_QpBounds: ClassVar[str]
-        FEATURE_Roi: ClassVar[str]
-        FEATURE_SecurePlayback: ClassVar[str]
-        FEATURE_TunneledPlayback: ClassVar[str]
-        colorFormats: list[int]
-        profileLevels: list["CodecProfileLevel"]
-        def __init__(self) -> None: ...
-        def isFeatureSupported(self, arg0: str) -> bool: ...
-        def isFeatureRequired(self, arg0: str) -> bool: ...
-        def isFormatSupported(self, arg0: MediaFormat) -> bool: ...
-        def getDefaultFormat(self) -> MediaFormat: ...
-        def getMimeType(self) -> str: ...
-        def getMaxSupportedInstances(self) -> int: ...
-        def getAudioCapabilities(self) -> "AudioCapabilities": ...
-        def getEncoderCapabilities(self) -> "EncoderCapabilities": ...
-        def getVideoCapabilities(self) -> "VideoCapabilities": ...
-        @staticmethod
-        def createFromProfileLevel(arg0: str, arg1: int, arg2: int) -> "CodecCapabilities": ...
+        class PerformancePoint:
+            FHD_100: ClassVar[Any]
+            FHD_120: ClassVar[Any]
+            FHD_200: ClassVar[Any]
+            FHD_24: ClassVar[Any]
+            FHD_240: ClassVar[Any]
+            FHD_25: ClassVar[Any]
+            FHD_30: ClassVar[Any]
+            FHD_50: ClassVar[Any]
+            FHD_60: ClassVar[Any]
+            HD_100: ClassVar[Any]
+            HD_120: ClassVar[Any]
+            HD_200: ClassVar[Any]
+            HD_24: ClassVar[Any]
+            HD_240: ClassVar[Any]
+            HD_25: ClassVar[Any]
+            HD_30: ClassVar[Any]
+            HD_50: ClassVar[Any]
+            HD_60: ClassVar[Any]
+            SD_24: ClassVar[Any]
+            SD_25: ClassVar[Any]
+            SD_30: ClassVar[Any]
+            SD_48: ClassVar[Any]
+            SD_50: ClassVar[Any]
+            SD_60: ClassVar[Any]
+            UHD_100: ClassVar[Any]
+            UHD_120: ClassVar[Any]
+            UHD_200: ClassVar[Any]
+            UHD_24: ClassVar[Any]
+            UHD_240: ClassVar[Any]
+            UHD_25: ClassVar[Any]
+            UHD_30: ClassVar[Any]
+            UHD_50: ClassVar[Any]
+            UHD_60: ClassVar[Any]
+            def __init__(self, p0: int, p1: int, p2: int) -> None: ...
+            @overload
+            def covers(self, p0: MediaFormat) -> bool: ...
+            @overload
+            def covers(self, p0: Any) -> bool: ...
+            def equals(self, p0: Any) -> bool: ...
+            def toString(self) -> str: ...
+            def hashCode(self) -> int: ...
+
+    class EncoderCapabilities:
+        BITRATE_MODE_CBR: ClassVar[int]
+        BITRATE_MODE_CBR_FD: ClassVar[int]
+        BITRATE_MODE_CQ: ClassVar[int]
+        BITRATE_MODE_VBR: ClassVar[int]
+        def getComplexityRange(self) -> Range: ...
+        def getQualityRange(self) -> Range: ...
+        def isBitrateModeSupported(self, p0: int) -> bool: ...
 
     class CodecProfileLevel:
         AACObjectELD: ClassVar[int]
@@ -132,6 +106,65 @@ class MediaCodecInfo:
         AC4Profile11: ClassVar[int]
         AC4Profile21: ClassVar[int]
         AC4Profile22: ClassVar[int]
+        APVLevel11Band0: ClassVar[int]
+        APVLevel11Band1: ClassVar[int]
+        APVLevel11Band2: ClassVar[int]
+        APVLevel11Band3: ClassVar[int]
+        APVLevel1Band0: ClassVar[int]
+        APVLevel1Band1: ClassVar[int]
+        APVLevel1Band2: ClassVar[int]
+        APVLevel1Band3: ClassVar[int]
+        APVLevel21Band0: ClassVar[int]
+        APVLevel21Band1: ClassVar[int]
+        APVLevel21Band2: ClassVar[int]
+        APVLevel21Band3: ClassVar[int]
+        APVLevel2Band0: ClassVar[int]
+        APVLevel2Band1: ClassVar[int]
+        APVLevel2Band2: ClassVar[int]
+        APVLevel2Band3: ClassVar[int]
+        APVLevel31Band0: ClassVar[int]
+        APVLevel31Band1: ClassVar[int]
+        APVLevel31Band2: ClassVar[int]
+        APVLevel31Band3: ClassVar[int]
+        APVLevel3Band0: ClassVar[int]
+        APVLevel3Band1: ClassVar[int]
+        APVLevel3Band2: ClassVar[int]
+        APVLevel3Band3: ClassVar[int]
+        APVLevel41Band0: ClassVar[int]
+        APVLevel41Band1: ClassVar[int]
+        APVLevel41Band2: ClassVar[int]
+        APVLevel41Band3: ClassVar[int]
+        APVLevel4Band0: ClassVar[int]
+        APVLevel4Band1: ClassVar[int]
+        APVLevel4Band2: ClassVar[int]
+        APVLevel4Band3: ClassVar[int]
+        APVLevel51Band0: ClassVar[int]
+        APVLevel51Band1: ClassVar[int]
+        APVLevel51Band2: ClassVar[int]
+        APVLevel51Band3: ClassVar[int]
+        APVLevel5Band0: ClassVar[int]
+        APVLevel5Band1: ClassVar[int]
+        APVLevel5Band2: ClassVar[int]
+        APVLevel5Band3: ClassVar[int]
+        APVLevel61Band0: ClassVar[int]
+        APVLevel61Band1: ClassVar[int]
+        APVLevel61Band2: ClassVar[int]
+        APVLevel61Band3: ClassVar[int]
+        APVLevel6Band0: ClassVar[int]
+        APVLevel6Band1: ClassVar[int]
+        APVLevel6Band2: ClassVar[int]
+        APVLevel6Band3: ClassVar[int]
+        APVLevel71Band0: ClassVar[int]
+        APVLevel71Band1: ClassVar[int]
+        APVLevel71Band2: ClassVar[int]
+        APVLevel71Band3: ClassVar[int]
+        APVLevel7Band0: ClassVar[int]
+        APVLevel7Band1: ClassVar[int]
+        APVLevel7Band2: ClassVar[int]
+        APVLevel7Band3: ClassVar[int]
+        APVProfile422_10: ClassVar[int]
+        APVProfile422_10HDR10: ClassVar[int]
+        APVProfile422_10HDR10Plus: ClassVar[int]
         AV1Level2: ClassVar[int]
         AV1Level21: ClassVar[int]
         AV1Level22: ClassVar[int]
@@ -265,6 +298,18 @@ class MediaCodecInfo:
         HEVCProfileMain10HDR10: ClassVar[int]
         HEVCProfileMain10HDR10Plus: ClassVar[int]
         HEVCProfileMainStill: ClassVar[int]
+        IAMFProfileBaseAac: ClassVar[int]
+        IAMFProfileBaseEnhancedAac: ClassVar[int]
+        IAMFProfileBaseEnhancedFlac: ClassVar[int]
+        IAMFProfileBaseEnhancedOpus: ClassVar[int]
+        IAMFProfileBaseEnhancedPcm: ClassVar[int]
+        IAMFProfileBaseFlac: ClassVar[int]
+        IAMFProfileBaseOpus: ClassVar[int]
+        IAMFProfileBasePcm: ClassVar[int]
+        IAMFProfileSimpleAac: ClassVar[int]
+        IAMFProfileSimpleFlac: ClassVar[int]
+        IAMFProfileSimpleOpus: ClassVar[int]
+        IAMFProfileSimplePcm: ClassVar[int]
         MPEG2LevelH14: ClassVar[int]
         MPEG2LevelHL: ClassVar[int]
         MPEG2LevelHP: ClassVar[int]
@@ -332,72 +377,102 @@ class MediaCodecInfo:
         level: int
         profile: int
         def __init__(self) -> None: ...
-        def equals(self, arg0: Any) -> bool: ...
+        def equals(self, p0: Any) -> bool: ...
         def hashCode(self) -> int: ...
 
-    class EncoderCapabilities:
-        BITRATE_MODE_CBR: ClassVar[int]
-        BITRATE_MODE_CBR_FD: ClassVar[int]
-        BITRATE_MODE_CQ: ClassVar[int]
-        BITRATE_MODE_VBR: ClassVar[int]
-        def getQualityRange(self) -> Range: ...
-        def getComplexityRange(self) -> Range: ...
-        def isBitrateModeSupported(self, arg0: int) -> bool: ...
+    class CodecCapabilities:
+        COLOR_Format12bitRGB444: ClassVar[int]
+        COLOR_Format16bitARGB1555: ClassVar[int]
+        COLOR_Format16bitARGB4444: ClassVar[int]
+        COLOR_Format16bitBGR565: ClassVar[int]
+        COLOR_Format16bitRGB565: ClassVar[int]
+        COLOR_Format18BitBGR666: ClassVar[int]
+        COLOR_Format18bitARGB1665: ClassVar[int]
+        COLOR_Format18bitRGB666: ClassVar[int]
+        COLOR_Format19bitARGB1666: ClassVar[int]
+        COLOR_Format24BitABGR6666: ClassVar[int]
+        COLOR_Format24BitARGB6666: ClassVar[int]
+        COLOR_Format24bitARGB1887: ClassVar[int]
+        COLOR_Format24bitBGR888: ClassVar[int]
+        COLOR_Format24bitRGB888: ClassVar[int]
+        COLOR_Format25bitARGB1888: ClassVar[int]
+        COLOR_Format32bitABGR2101010: ClassVar[int]
+        COLOR_Format32bitABGR8888: ClassVar[int]
+        COLOR_Format32bitARGB8888: ClassVar[int]
+        COLOR_Format32bitBGRA8888: ClassVar[int]
+        COLOR_Format64bitABGRFloat: ClassVar[int]
+        COLOR_Format8bitRGB332: ClassVar[int]
+        COLOR_FormatCbYCrY: ClassVar[int]
+        COLOR_FormatCrYCbY: ClassVar[int]
+        COLOR_FormatL16: ClassVar[int]
+        COLOR_FormatL2: ClassVar[int]
+        COLOR_FormatL24: ClassVar[int]
+        COLOR_FormatL32: ClassVar[int]
+        COLOR_FormatL4: ClassVar[int]
+        COLOR_FormatL8: ClassVar[int]
+        COLOR_FormatMonochrome: ClassVar[int]
+        COLOR_FormatRGBAFlexible: ClassVar[int]
+        COLOR_FormatRGBFlexible: ClassVar[int]
+        COLOR_FormatRawBayer10bit: ClassVar[int]
+        COLOR_FormatRawBayer8bit: ClassVar[int]
+        COLOR_FormatRawBayer8bitcompressed: ClassVar[int]
+        COLOR_FormatSurface: ClassVar[int]
+        COLOR_FormatYCbYCr: ClassVar[int]
+        COLOR_FormatYCrYCb: ClassVar[int]
+        COLOR_FormatYUV411PackedPlanar: ClassVar[int]
+        COLOR_FormatYUV411Planar: ClassVar[int]
+        COLOR_FormatYUV420Flexible: ClassVar[int]
+        COLOR_FormatYUV420PackedPlanar: ClassVar[int]
+        COLOR_FormatYUV420PackedSemiPlanar: ClassVar[int]
+        COLOR_FormatYUV420Planar: ClassVar[int]
+        COLOR_FormatYUV420SemiPlanar: ClassVar[int]
+        COLOR_FormatYUV422Flexible: ClassVar[int]
+        COLOR_FormatYUV422PackedPlanar: ClassVar[int]
+        COLOR_FormatYUV422PackedSemiPlanar: ClassVar[int]
+        COLOR_FormatYUV422Planar: ClassVar[int]
+        COLOR_FormatYUV422SemiPlanar: ClassVar[int]
+        COLOR_FormatYUV444Flexible: ClassVar[int]
+        COLOR_FormatYUV444Interleaved: ClassVar[int]
+        COLOR_FormatYUVP010: ClassVar[int]
+        COLOR_FormatYUVP210: ClassVar[int]
+        COLOR_QCOM_FormatYUV420SemiPlanar: ClassVar[int]
+        COLOR_TI_FormatYUV420PackedSemiPlanar: ClassVar[int]
+        FEATURE_AdaptivePlayback: ClassVar[str]
+        FEATURE_DetachedSurface: ClassVar[str]
+        FEATURE_DynamicColorAspects: ClassVar[str]
+        FEATURE_DynamicTimestamp: ClassVar[str]
+        FEATURE_EncodingStatistics: ClassVar[str]
+        FEATURE_FrameParsing: ClassVar[str]
+        FEATURE_HdrEditing: ClassVar[str]
+        FEATURE_HlgEditing: ClassVar[str]
+        FEATURE_IntraRefresh: ClassVar[str]
+        FEATURE_LowLatency: ClassVar[str]
+        FEATURE_MultipleFrames: ClassVar[str]
+        FEATURE_PartialFrame: ClassVar[str]
+        FEATURE_QpBounds: ClassVar[str]
+        FEATURE_Roi: ClassVar[str]
+        FEATURE_SecurePlayback: ClassVar[str]
+        FEATURE_TunneledPlayback: ClassVar[str]
+        colorFormats: Any
+        profileLevels: Any
+        def __init__(self) -> None: ...
+        @staticmethod
+        def createFromProfileLevel(p0: str, p1: int, p2: int) -> Any: ...
+        def getAudioCapabilities(self) -> Any: ...
+        def getDefaultFormat(self) -> MediaFormat: ...
+        def getEncoderCapabilities(self) -> Any: ...
+        def getMaxSupportedInstances(self) -> int: ...
+        def getVideoCapabilities(self) -> Any: ...
+        def isFeatureRequired(self, p0: str) -> bool: ...
+        def isFeatureSupported(self, p0: str) -> bool: ...
+        def isFormatSupported(self, p0: MediaFormat) -> bool: ...
+        def getMimeType(self) -> str: ...
 
-    class VideoCapabilities:
+    class AudioCapabilities:
+        def getInputChannelCountRanges(self) -> Any: ...
+        def getMaxInputChannelCount(self) -> int: ...
+        def getMinInputChannelCount(self) -> int: ...
+        def getSupportedSampleRateRanges(self) -> Any: ...
+        def getSupportedSampleRates(self) -> Any: ...
+        def isSampleRateSupported(self, p0: int) -> bool: ...
         def getBitrateRange(self) -> Range: ...
-        def getSupportedWidths(self) -> Range: ...
-        def getSupportedHeights(self) -> Range: ...
-        def getWidthAlignment(self) -> int: ...
-        def getHeightAlignment(self) -> int: ...
-        def getSupportedFrameRates(self) -> Range: ...
-        def getSupportedWidthsFor(self, arg0: int) -> Range: ...
-        def getSupportedHeightsFor(self, arg0: int) -> Range: ...
-        def getSupportedFrameRatesFor(self, arg0: int, arg1: int) -> Range: ...
-        def getAchievableFrameRatesFor(self, arg0: int, arg1: int) -> Range: ...
-        def getSupportedPerformancePoints(self) -> list: ...
-        def areSizeAndRateSupported(self, arg0: int, arg1: int, arg2: float) -> bool: ...
-        def isSizeSupported(self, arg0: int, arg1: int) -> bool: ...
-
-        class PerformancePoint:
-            FHD_100: ClassVar["PerformancePoint"]
-            FHD_120: ClassVar["PerformancePoint"]
-            FHD_200: ClassVar["PerformancePoint"]
-            FHD_24: ClassVar["PerformancePoint"]
-            FHD_240: ClassVar["PerformancePoint"]
-            FHD_25: ClassVar["PerformancePoint"]
-            FHD_30: ClassVar["PerformancePoint"]
-            FHD_50: ClassVar["PerformancePoint"]
-            FHD_60: ClassVar["PerformancePoint"]
-            HD_100: ClassVar["PerformancePoint"]
-            HD_120: ClassVar["PerformancePoint"]
-            HD_200: ClassVar["PerformancePoint"]
-            HD_24: ClassVar["PerformancePoint"]
-            HD_240: ClassVar["PerformancePoint"]
-            HD_25: ClassVar["PerformancePoint"]
-            HD_30: ClassVar["PerformancePoint"]
-            HD_50: ClassVar["PerformancePoint"]
-            HD_60: ClassVar["PerformancePoint"]
-            SD_24: ClassVar["PerformancePoint"]
-            SD_25: ClassVar["PerformancePoint"]
-            SD_30: ClassVar["PerformancePoint"]
-            SD_48: ClassVar["PerformancePoint"]
-            SD_50: ClassVar["PerformancePoint"]
-            SD_60: ClassVar["PerformancePoint"]
-            UHD_100: ClassVar["PerformancePoint"]
-            UHD_120: ClassVar["PerformancePoint"]
-            UHD_200: ClassVar["PerformancePoint"]
-            UHD_24: ClassVar["PerformancePoint"]
-            UHD_240: ClassVar["PerformancePoint"]
-            UHD_25: ClassVar["PerformancePoint"]
-            UHD_30: ClassVar["PerformancePoint"]
-            UHD_50: ClassVar["PerformancePoint"]
-            UHD_60: ClassVar["PerformancePoint"]
-            def __init__(self, arg0: int, arg1: int, arg2: int) -> None: ...
-            def toString(self) -> str: ...
-            def hashCode(self) -> int: ...
-            @overload
-            def covers(self, arg0: MediaFormat) -> bool: ...
-            @overload
-            def covers(self, arg0: "PerformancePoint") -> bool: ...
-            def equals(self, arg0: Any) -> bool: ...

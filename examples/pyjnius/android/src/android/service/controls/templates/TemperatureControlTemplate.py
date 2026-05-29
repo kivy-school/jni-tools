@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["TemperatureControlTemplate"]
 
@@ -16,8 +16,16 @@ class TemperatureControlTemplate(JavaClass, metaclass=MetaJavaClass):
     MODE_HEAT_COOL = JavaStaticField("I")
     MODE_OFF = JavaStaticField("I")
     MODE_UNKNOWN = JavaStaticField("I")
-    getTemplate = JavaMethod("()Landroid/service/controls/templates/ControlTemplate;")
+    TYPE_ERROR = JavaStaticField("I")
+    TYPE_NO_TEMPLATE = JavaStaticField("I")
+    TYPE_RANGE = JavaStaticField("I")
+    TYPE_STATELESS = JavaStaticField("I")
+    TYPE_TEMPERATURE = JavaStaticField("I")
+    TYPE_THUMBNAIL = JavaStaticField("I")
+    TYPE_TOGGLE = JavaStaticField("I")
+    TYPE_TOGGLE_RANGE = JavaStaticField("I")
     getCurrentMode = JavaMethod("()I")
     getCurrentActiveMode = JavaMethod("()I")
     getModes = JavaMethod("()I")
+    getTemplate = JavaMethod("()Landroid/service/controls/templates/ControlTemplate;")
     getTemplateType = JavaMethod("()I")

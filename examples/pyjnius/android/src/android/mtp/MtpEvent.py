@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["MtpEvent"]
 
@@ -22,13 +22,13 @@ class MtpEvent(JavaClass, metaclass=MetaJavaClass):
     EVENT_STORE_REMOVED = JavaStaticField("I")
     EVENT_UNDEFINED = JavaStaticField("I")
     EVENT_UNREPORTED_STATUS = JavaStaticField("I")
+    getStorageId = JavaMethod("()I")
+    getObjectHandle = JavaMethod("()I")
+    getDevicePropCode = JavaMethod("()I")
     getEventCode = JavaMethod("()I")
+    getObjectFormatCode = JavaMethod("()I")
+    getObjectPropCode = JavaMethod("()I")
     getParameter1 = JavaMethod("()I")
     getParameter2 = JavaMethod("()I")
     getParameter3 = JavaMethod("()I")
-    getObjectHandle = JavaMethod("()I")
-    getStorageId = JavaMethod("()I")
-    getDevicePropCode = JavaMethod("()I")
     getTransactionId = JavaMethod("()I")
-    getObjectPropCode = JavaMethod("()I")
-    getObjectFormatCode = JavaMethod("()I")

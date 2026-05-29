@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SecurityLog"]
 
@@ -34,6 +34,8 @@ class SecurityLog(JavaClass, metaclass=MetaJavaClass):
     TAG_MAX_SCREEN_LOCK_TIMEOUT_SET = JavaStaticField("I")
     TAG_MEDIA_MOUNT = JavaStaticField("I")
     TAG_MEDIA_UNMOUNT = JavaStaticField("I")
+    TAG_NFC_DISABLED = JavaStaticField("I")
+    TAG_NFC_ENABLED = JavaStaticField("I")
     TAG_OS_SHUTDOWN = JavaStaticField("I")
     TAG_OS_STARTUP = JavaStaticField("I")
     TAG_PACKAGE_INSTALLED = JavaStaticField("I")
@@ -54,14 +56,16 @@ class SecurityLog(JavaClass, metaclass=MetaJavaClass):
     TAG_WIPE_FAILURE = JavaStaticField("I")
 
     class SecurityEvent(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/app/admin/SecurityLog/SecurityEvent"
+        __javaclass__ = "android/app/admin/SecurityLog$SecurityEvent"
         CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+        CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+        PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
         getTimeNanos = JavaMethod("()J")
-        getTag = JavaMethod("()I")
-        getData = JavaMethod("()Ljava/lang/Object;")
-        getId = JavaMethod("()J")
-        getLogLevel = JavaMethod("()I")
-        describeContents = JavaMethod("()I")
-        writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
         equals = JavaMethod("(Ljava/lang/Object;)Z")
         hashCode = JavaMethod("()I")
+        getId = JavaMethod("()J")
+        getTag = JavaMethod("()I")
+        getLogLevel = JavaMethod("()I")
+        getData = JavaMethod("()Ljava/lang/Object;")
+        writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+        describeContents = JavaMethod("()I")

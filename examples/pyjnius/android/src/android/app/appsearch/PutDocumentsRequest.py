@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["PutDocumentsRequest"]
 
@@ -8,8 +8,8 @@ class PutDocumentsRequest(JavaClass, metaclass=MetaJavaClass):
     getTakenActionGenericDocuments = JavaMethod("()Ljava/util/List;")
 
     class Builder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/app/appsearch/PutDocumentsRequest/Builder"
+        __javaclass__ = "android/app/appsearch/PutDocumentsRequest$Builder"
         __javaconstructor__ = [("()V", False)]
-        addGenericDocuments = JavaMultipleMethod([("([Landroid/app/appsearch/GenericDocument;)Landroid/app/appsearch/PutDocumentsRequest$Builder;", False, True), ("(Ljava/util/Collection;)Landroid/app/appsearch/PutDocumentsRequest$Builder;", False, False)])
-        addTakenActionGenericDocuments = JavaMultipleMethod([("([Landroid/app/appsearch/GenericDocument;)Landroid/app/appsearch/PutDocumentsRequest$Builder;", False, True), ("(Ljava/util/Collection;)Landroid/app/appsearch/PutDocumentsRequest$Builder;", False, False)])
+        addGenericDocuments = JavaMultipleMethod([("(Ljava/util/Collection;)Landroid/app/appsearch/PutDocumentsRequest$Builder;", False, False), ("([Landroid/app/appsearch/GenericDocument;)Landroid/app/appsearch/PutDocumentsRequest$Builder;", False, True)])
+        addTakenActionGenericDocuments = JavaMultipleMethod([("(Ljava/util/Collection;)Landroid/app/appsearch/PutDocumentsRequest$Builder;", False, False), ("([Landroid/app/appsearch/GenericDocument;)Landroid/app/appsearch/PutDocumentsRequest$Builder;", False, True)])
         build = JavaMethod("()Landroid/app/appsearch/PutDocumentsRequest;")

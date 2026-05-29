@@ -1,22 +1,21 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["DataOutputStream"]
 
 class DataOutputStream(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/io/DataOutputStream"
     __javaconstructor__ = [("(Ljava/io/OutputStream;)V", False)]
-    written = JavaField("I")
-    write = JavaMultipleMethod([("(I)V", False, False), ("([BII)V", False, False)])
+    size = JavaMethod("()I")
     flush = JavaMethod("()V")
-    writeBoolean = JavaMethod("(Z)V")
+    write = JavaMultipleMethod([("(I)V", False, False), ("([BII)V", False, False)])
+    writeInt = JavaMethod("(I)V")
+    writeUTF = JavaMethod("(Ljava/lang/String;)V")
+    writeBytes = JavaMethod("(Ljava/lang/String;)V")
+    writeChar = JavaMethod("(I)V")
+    writeFloat = JavaMethod("(F)V")
+    writeLong = JavaMethod("(J)V")
     writeByte = JavaMethod("(I)V")
     writeShort = JavaMethod("(I)V")
-    writeChar = JavaMethod("(I)V")
-    writeInt = JavaMethod("(I)V")
-    writeLong = JavaMethod("(J)V")
-    writeFloat = JavaMethod("(F)V")
+    writeBoolean = JavaMethod("(Z)V")
     writeDouble = JavaMethod("(D)V")
-    writeBytes = JavaMethod("(Ljava/lang/String;)V")
     writeChars = JavaMethod("(Ljava/lang/String;)V")
-    writeUTF = JavaMethod("(Ljava/lang/String;)V")
-    size = JavaMethod("()I")

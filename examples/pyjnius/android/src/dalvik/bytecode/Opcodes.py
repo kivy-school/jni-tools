@@ -1,8 +1,8 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Opcodes"]
 
-class Opcodes(JavaInterface, metaclass=MetaJavaClass):
+class Opcodes(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "dalvik/bytecode/Opcodes"
     OP_ADD_DOUBLE = JavaStaticField("I")
     OP_ADD_DOUBLE_2ADDR = JavaStaticField("I")

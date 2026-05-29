@@ -1,8 +1,8 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Spanned"]
 
-class Spanned(JavaInterface, metaclass=MetaJavaClass):
+class Spanned(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/text/Spanned"
     SPAN_COMPOSING = JavaStaticField("I")
     SPAN_EXCLUSIVE_EXCLUSIVE = JavaStaticField("I")
@@ -20,8 +20,8 @@ class Spanned(JavaInterface, metaclass=MetaJavaClass):
     SPAN_PRIORITY_SHIFT = JavaStaticField("I")
     SPAN_USER = JavaStaticField("I")
     SPAN_USER_SHIFT = JavaStaticField("I")
-    getSpans = JavaMethod("(IILjava/lang/Class;)[Ljava/lang/Object;")
-    getSpanStart = JavaMethod("(Ljava/lang/Object;)I")
     getSpanEnd = JavaMethod("(Ljava/lang/Object;)I")
     getSpanFlags = JavaMethod("(Ljava/lang/Object;)I")
+    getSpanStart = JavaMethod("(Ljava/lang/Object;)I")
     nextSpanTransition = JavaMethod("(IILjava/lang/Class;)I")
+    getSpans = JavaMethod("(IILjava/lang/Class;)[Ljava/lang/Object;")

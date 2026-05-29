@@ -1,23 +1,23 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SparseBooleanArray"]
 
 class SparseBooleanArray(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/util/SparseBooleanArray"
     __javaconstructor__ = [("()V", False), ("(I)V", False)]
-    clone = JavaMethod("()Landroid/util/SparseBooleanArray;")
-    get = JavaMultipleMethod([("(I)Z", False, False), ("(IZ)Z", False, False)])
-    delete = JavaMethod("(I)V")
-    removeAt = JavaMethod("(I)V")
-    put = JavaMethod("(IZ)V")
     size = JavaMethod("()I")
-    keyAt = JavaMethod("(I)I")
-    valueAt = JavaMethod("(I)Z")
-    setValueAt = JavaMethod("(IZ)V")
-    indexOfKey = JavaMethod("(I)I")
-    indexOfValue = JavaMethod("(Z)I")
-    clear = JavaMethod("()V")
-    append = JavaMethod("(IZ)V")
-    hashCode = JavaMethod("()I")
+    put = JavaMethod("(IZ)V")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
     toString = JavaMethod("()Ljava/lang/String;")
+    append = JavaMethod("(IZ)V")
+    hashCode = JavaMethod("()I")
+    clone = JavaMultipleMethod([("()Ljava/lang/Object;", False, False), ("()Landroid/util/SparseBooleanArray;", False, False)])
+    clear = JavaMethod("()V")
+    get = JavaMultipleMethod([("(IZ)Z", False, False), ("(I)Z", False, False)])
+    delete = JavaMethod("(I)V")
+    setValueAt = JavaMethod("(IZ)V")
+    keyAt = JavaMethod("(I)I")
+    valueAt = JavaMethod("(I)Z")
+    indexOfKey = JavaMethod("(I)I")
+    removeAt = JavaMethod("(I)V")
+    indexOfValue = JavaMethod("(Z)I")

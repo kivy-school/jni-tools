@@ -1,13 +1,13 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["MultiResolutionStreamConfigurationMap"]
 
 class MultiResolutionStreamConfigurationMap(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/hardware/camera2/params/MultiResolutionStreamConfigurationMap"
-    getOutputFormats = JavaMethod("()[I")
-    getInputFormats = JavaMethod("()[I")
-    getOutputInfo = JavaMethod("(I)Ljava/util/Collection;")
     getInputInfo = JavaMethod("(I)Ljava/util/Collection;")
+    getOutputInfo = JavaMethod("(I)Ljava/util/Collection;")
+    getInputFormats = JavaMethod("()[I")
+    getOutputFormats = JavaMethod("()[I")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
-    hashCode = JavaMethod("()I")
     toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")

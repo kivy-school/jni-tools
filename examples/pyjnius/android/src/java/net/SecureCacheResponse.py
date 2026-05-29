@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SecureCacheResponse"]
 
@@ -10,3 +10,4 @@ class SecureCacheResponse(JavaClass, metaclass=MetaJavaClass):
     getServerCertificateChain = JavaMethod("()Ljava/util/List;")
     getPeerPrincipal = JavaMethod("()Ljava/security/Principal;")
     getLocalPrincipal = JavaMethod("()Ljava/security/Principal;")
+    getSSLSession = JavaMethod("()Ljava/util/Optional;")

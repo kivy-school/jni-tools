@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["EncryptedTopic"]
 
@@ -9,5 +9,5 @@ class EncryptedTopic(JavaClass, metaclass=MetaJavaClass):
     getKeyIdentifier = JavaMethod("()Ljava/lang/String;")
     getEncapsulatedKey = JavaMethod("()[B")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
-    hashCode = JavaMethod("()I")
     toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")

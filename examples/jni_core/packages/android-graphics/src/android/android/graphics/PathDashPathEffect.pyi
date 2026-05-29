@@ -5,12 +5,12 @@ class PathDashPathEffect:
     def __init__(self, p0: Path, p1: float, p2: float, p3: Any) -> None: ...
 
     class Style:
-        TRANSLATE: ClassVar["Style"]
-        ROTATE: ClassVar["Style"]
         MORPH: ClassVar["Style"]
-        TRANSLATE: ClassVar[Any]
-        ROTATE: ClassVar[Any]
+        ROTATE: ClassVar["Style"]
+        TRANSLATE: ClassVar["Style"]
         MORPH: ClassVar[Any]
+        ROTATE: ClassVar[Any]
+        TRANSLATE: ClassVar[Any]
         @staticmethod
         def values() -> Any: ...
         @staticmethod

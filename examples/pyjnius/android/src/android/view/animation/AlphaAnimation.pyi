@@ -1,13 +1,21 @@
 from typing import Any, ClassVar, overload
 from android.content.Context import Context
 from android.util.AttributeSet import AttributeSet
-from android.view.animation.Transformation import Transformation
 
 class AlphaAnimation:
+    ABSOLUTE: ClassVar[int]
+    INFINITE: ClassVar[int]
+    RELATIVE_TO_PARENT: ClassVar[int]
+    RELATIVE_TO_SELF: ClassVar[int]
+    RESTART: ClassVar[int]
+    REVERSE: ClassVar[int]
+    START_ON_FIRST_FRAME: ClassVar[int]
+    ZORDER_BOTTOM: ClassVar[int]
+    ZORDER_NORMAL: ClassVar[int]
+    ZORDER_TOP: ClassVar[int]
     @overload
-    def __init__(self, arg0: Context, arg1: AttributeSet) -> None: ...
+    def __init__(self, p0: Context, p1: AttributeSet) -> None: ...
     @overload
-    def __init__(self, arg0: float, arg1: float) -> None: ...
-    def applyTransformation(self, arg0: float, arg1: Transformation) -> None: ...
-    def willChangeTransformationMatrix(self) -> bool: ...
+    def __init__(self, p0: float, p1: float) -> None: ...
     def willChangeBounds(self) -> bool: ...
+    def willChangeTransformationMatrix(self) -> bool: ...

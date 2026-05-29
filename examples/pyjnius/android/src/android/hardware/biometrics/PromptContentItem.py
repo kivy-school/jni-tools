@@ -1,6 +1,6 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["PromptContentItem"]
 
-class PromptContentItem(JavaInterface, metaclass=MetaJavaClass):
+class PromptContentItem(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/hardware/biometrics/PromptContentItem"

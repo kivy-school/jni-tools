@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SpeechRecognizer"]
 
@@ -35,14 +35,14 @@ class SpeechRecognizer(JavaClass, metaclass=MetaJavaClass):
     RESULTS_ALTERNATIVES = JavaStaticField("Ljava/lang/String;")
     RESULTS_RECOGNITION = JavaStaticField("Ljava/lang/String;")
     TOP_LOCALE_ALTERNATIVES = JavaStaticField("Ljava/lang/String;")
-    isRecognitionAvailable = JavaStaticMethod("(Landroid/content/Context;)Z")
-    isOnDeviceRecognitionAvailable = JavaStaticMethod("(Landroid/content/Context;)Z")
-    createSpeechRecognizer = JavaMultipleMethod([("(Landroid/content/Context;)Landroid/speech/SpeechRecognizer;", True, False), ("(Landroid/content/Context;Landroid/content/ComponentName;)Landroid/speech/SpeechRecognizer;", True, False)])
-    createOnDeviceSpeechRecognizer = JavaStaticMethod("(Landroid/content/Context;)Landroid/speech/SpeechRecognizer;")
-    setRecognitionListener = JavaMethod("(Landroid/speech/RecognitionListener;)V")
+    destroy = JavaMethod("()V")
+    cancel = JavaMethod("()V")
     startListening = JavaMethod("(Landroid/content/Intent;)V")
     stopListening = JavaMethod("()V")
-    cancel = JavaMethod("()V")
     checkRecognitionSupport = JavaMethod("(Landroid/content/Intent;Ljava/util/concurrent/Executor;Landroid/speech/RecognitionSupportCallback;)V")
+    createOnDeviceSpeechRecognizer = JavaStaticMethod("(Landroid/content/Context;)Landroid/speech/SpeechRecognizer;")
+    createSpeechRecognizer = JavaMultipleMethod([("(Landroid/content/Context;Landroid/content/ComponentName;)Landroid/speech/SpeechRecognizer;", True, False), ("(Landroid/content/Context;)Landroid/speech/SpeechRecognizer;", True, False)])
+    isOnDeviceRecognitionAvailable = JavaStaticMethod("(Landroid/content/Context;)Z")
+    isRecognitionAvailable = JavaStaticMethod("(Landroid/content/Context;)Z")
+    setRecognitionListener = JavaMethod("(Landroid/speech/RecognitionListener;)V")
     triggerModelDownload = JavaMultipleMethod([("(Landroid/content/Intent;)V", False, False), ("(Landroid/content/Intent;Ljava/util/concurrent/Executor;Landroid/speech/ModelDownloadListener;)V", False, False)])
-    destroy = JavaMethod("()V")

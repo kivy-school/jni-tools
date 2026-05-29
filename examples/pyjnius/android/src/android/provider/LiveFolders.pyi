@@ -14,3 +14,5 @@ class LiveFolders:
     ICON_RESOURCE: ClassVar[str]
     INTENT: ClassVar[str]
     NAME: ClassVar[str]
+    _COUNT: ClassVar[str]
+    _ID: ClassVar[str]

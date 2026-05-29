@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["VpnManager"]
 
@@ -23,9 +23,9 @@ class VpnManager(JavaClass, metaclass=MetaJavaClass):
     EXTRA_UNDERLYING_NETWORK = JavaStaticField("Ljava/lang/String;")
     EXTRA_UNDERLYING_NETWORK_CAPABILITIES = JavaStaticField("Ljava/lang/String;")
     EXTRA_VPN_PROFILE_STATE = JavaStaticField("Ljava/lang/String;")
-    provisionVpnProfile = JavaMethod("(Landroid/net/PlatformVpnProfile;)Landroid/content/Intent;")
     deleteProvisionedVpnProfile = JavaMethod("()V")
-    startProvisionedVpnProfileSession = JavaMethod("()Ljava/lang/String;")
-    startProvisionedVpnProfile = JavaMethod("()V")
-    stopProvisionedVpnProfile = JavaMethod("()V")
     getProvisionedVpnProfileState = JavaMethod("()Landroid/net/VpnProfileState;")
+    provisionVpnProfile = JavaMethod("(Landroid/net/PlatformVpnProfile;)Landroid/content/Intent;")
+    startProvisionedVpnProfile = JavaMethod("()V")
+    startProvisionedVpnProfileSession = JavaMethod("()Ljava/lang/String;")
+    stopProvisionedVpnProfile = JavaMethod("()V")

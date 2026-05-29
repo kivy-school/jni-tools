@@ -1,10 +1,11 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["HealthPermissions"]
 
 class HealthPermissions(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/health/connect/HealthPermissions"
     READ_ACTIVE_CALORIES_BURNED = JavaStaticField("Ljava/lang/String;")
+    READ_ACTIVITY_INTENSITY = JavaStaticField("Ljava/lang/String;")
     READ_BASAL_BODY_TEMPERATURE = JavaStaticField("Ljava/lang/String;")
     READ_BASAL_METABOLIC_RATE = JavaStaticField("Ljava/lang/String;")
     READ_BLOOD_GLUCOSE = JavaStaticField("Ljava/lang/String;")
@@ -27,7 +28,20 @@ class HealthPermissions(JavaClass, metaclass=MetaJavaClass):
     READ_HYDRATION = JavaStaticField("Ljava/lang/String;")
     READ_INTERMENSTRUAL_BLEEDING = JavaStaticField("Ljava/lang/String;")
     READ_LEAN_BODY_MASS = JavaStaticField("Ljava/lang/String;")
+    READ_MEDICAL_DATA_ALLERGIES_INTOLERANCES = JavaStaticField("Ljava/lang/String;")
+    READ_MEDICAL_DATA_CONDITIONS = JavaStaticField("Ljava/lang/String;")
+    READ_MEDICAL_DATA_LABORATORY_RESULTS = JavaStaticField("Ljava/lang/String;")
+    READ_MEDICAL_DATA_MEDICATIONS = JavaStaticField("Ljava/lang/String;")
+    READ_MEDICAL_DATA_PERSONAL_DETAILS = JavaStaticField("Ljava/lang/String;")
+    READ_MEDICAL_DATA_PRACTITIONER_DETAILS = JavaStaticField("Ljava/lang/String;")
+    READ_MEDICAL_DATA_PREGNANCY = JavaStaticField("Ljava/lang/String;")
+    READ_MEDICAL_DATA_PROCEDURES = JavaStaticField("Ljava/lang/String;")
+    READ_MEDICAL_DATA_SOCIAL_HISTORY = JavaStaticField("Ljava/lang/String;")
+    READ_MEDICAL_DATA_VACCINES = JavaStaticField("Ljava/lang/String;")
+    READ_MEDICAL_DATA_VISITS = JavaStaticField("Ljava/lang/String;")
+    READ_MEDICAL_DATA_VITAL_SIGNS = JavaStaticField("Ljava/lang/String;")
     READ_MENSTRUATION = JavaStaticField("Ljava/lang/String;")
+    READ_MINDFULNESS = JavaStaticField("Ljava/lang/String;")
     READ_NUTRITION = JavaStaticField("Ljava/lang/String;")
     READ_OVULATION_TEST = JavaStaticField("Ljava/lang/String;")
     READ_OXYGEN_SATURATION = JavaStaticField("Ljava/lang/String;")
@@ -45,6 +59,7 @@ class HealthPermissions(JavaClass, metaclass=MetaJavaClass):
     READ_WEIGHT = JavaStaticField("Ljava/lang/String;")
     READ_WHEELCHAIR_PUSHES = JavaStaticField("Ljava/lang/String;")
     WRITE_ACTIVE_CALORIES_BURNED = JavaStaticField("Ljava/lang/String;")
+    WRITE_ACTIVITY_INTENSITY = JavaStaticField("Ljava/lang/String;")
     WRITE_BASAL_BODY_TEMPERATURE = JavaStaticField("Ljava/lang/String;")
     WRITE_BASAL_METABOLIC_RATE = JavaStaticField("Ljava/lang/String;")
     WRITE_BLOOD_GLUCOSE = JavaStaticField("Ljava/lang/String;")
@@ -65,7 +80,9 @@ class HealthPermissions(JavaClass, metaclass=MetaJavaClass):
     WRITE_HYDRATION = JavaStaticField("Ljava/lang/String;")
     WRITE_INTERMENSTRUAL_BLEEDING = JavaStaticField("Ljava/lang/String;")
     WRITE_LEAN_BODY_MASS = JavaStaticField("Ljava/lang/String;")
+    WRITE_MEDICAL_DATA = JavaStaticField("Ljava/lang/String;")
     WRITE_MENSTRUATION = JavaStaticField("Ljava/lang/String;")
+    WRITE_MINDFULNESS = JavaStaticField("Ljava/lang/String;")
     WRITE_NUTRITION = JavaStaticField("Ljava/lang/String;")
     WRITE_OVULATION_TEST = JavaStaticField("Ljava/lang/String;")
     WRITE_OXYGEN_SATURATION = JavaStaticField("Ljava/lang/String;")

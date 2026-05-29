@@ -6,6 +6,18 @@ from android.service.carrier.MessagePdu import MessagePdu
 
 class CarrierMessagingService:
     DOWNLOAD_STATUS_ERROR: ClassVar[int]
+    DOWNLOAD_STATUS_MMS_ERROR_CONFIGURATION_ERROR: ClassVar[int]
+    DOWNLOAD_STATUS_MMS_ERROR_DATA_DISABLED: ClassVar[int]
+    DOWNLOAD_STATUS_MMS_ERROR_HTTP_FAILURE: ClassVar[int]
+    DOWNLOAD_STATUS_MMS_ERROR_INACTIVE_SUBSCRIPTION: ClassVar[int]
+    DOWNLOAD_STATUS_MMS_ERROR_INVALID_APN: ClassVar[int]
+    DOWNLOAD_STATUS_MMS_ERROR_INVALID_SUBSCRIPTION_ID: ClassVar[int]
+    DOWNLOAD_STATUS_MMS_ERROR_IO_ERROR: ClassVar[int]
+    DOWNLOAD_STATUS_MMS_ERROR_MMS_DISABLED_BY_CARRIER: ClassVar[int]
+    DOWNLOAD_STATUS_MMS_ERROR_NO_DATA_NETWORK: ClassVar[int]
+    DOWNLOAD_STATUS_MMS_ERROR_RETRY: ClassVar[int]
+    DOWNLOAD_STATUS_MMS_ERROR_UNABLE_CONNECT_MMS: ClassVar[int]
+    DOWNLOAD_STATUS_MMS_ERROR_UNSPECIFIED: ClassVar[int]
     DOWNLOAD_STATUS_OK: ClassVar[int]
     DOWNLOAD_STATUS_RETRY_ON_CARRIER_NETWORK: ClassVar[int]
     RECEIVE_OPTIONS_DEFAULT: ClassVar[int]
@@ -13,7 +25,38 @@ class CarrierMessagingService:
     RECEIVE_OPTIONS_SKIP_NOTIFY_WHEN_CREDENTIAL_PROTECTED_STORAGE_UNAVAILABLE: ClassVar[int]
     SEND_FLAG_REQUEST_DELIVERY_STATUS: ClassVar[int]
     SEND_STATUS_ERROR: ClassVar[int]
+    SEND_STATUS_MMS_ERROR_CONFIGURATION_ERROR: ClassVar[int]
+    SEND_STATUS_MMS_ERROR_DATA_DISABLED: ClassVar[int]
+    SEND_STATUS_MMS_ERROR_HTTP_FAILURE: ClassVar[int]
+    SEND_STATUS_MMS_ERROR_INACTIVE_SUBSCRIPTION: ClassVar[int]
+    SEND_STATUS_MMS_ERROR_INVALID_APN: ClassVar[int]
+    SEND_STATUS_MMS_ERROR_INVALID_SUBSCRIPTION_ID: ClassVar[int]
+    SEND_STATUS_MMS_ERROR_IO_ERROR: ClassVar[int]
+    SEND_STATUS_MMS_ERROR_MMS_DISABLED_BY_CARRIER: ClassVar[int]
+    SEND_STATUS_MMS_ERROR_NO_DATA_NETWORK: ClassVar[int]
+    SEND_STATUS_MMS_ERROR_RETRY: ClassVar[int]
+    SEND_STATUS_MMS_ERROR_UNABLE_CONNECT_MMS: ClassVar[int]
+    SEND_STATUS_MMS_ERROR_UNSPECIFIED: ClassVar[int]
     SEND_STATUS_OK: ClassVar[int]
+    SEND_STATUS_RESULT_CANCELLED: ClassVar[int]
+    SEND_STATUS_RESULT_ENCODING_ERROR: ClassVar[int]
+    SEND_STATUS_RESULT_ERROR_FDN_CHECK_FAILURE: ClassVar[int]
+    SEND_STATUS_RESULT_ERROR_GENERIC_FAILURE: ClassVar[int]
+    SEND_STATUS_RESULT_ERROR_LIMIT_EXCEEDED: ClassVar[int]
+    SEND_STATUS_RESULT_ERROR_NO_SERVICE: ClassVar[int]
+    SEND_STATUS_RESULT_ERROR_NULL_PDU: ClassVar[int]
+    SEND_STATUS_RESULT_ERROR_SHORT_CODE_NEVER_ALLOWED: ClassVar[int]
+    SEND_STATUS_RESULT_ERROR_SHORT_CODE_NOT_ALLOWED: ClassVar[int]
+    SEND_STATUS_RESULT_INVALID_ARGUMENTS: ClassVar[int]
+    SEND_STATUS_RESULT_INVALID_SMSC_ADDRESS: ClassVar[int]
+    SEND_STATUS_RESULT_INVALID_SMS_FORMAT: ClassVar[int]
+    SEND_STATUS_RESULT_INVALID_STATE: ClassVar[int]
+    SEND_STATUS_RESULT_NETWORK_ERROR: ClassVar[int]
+    SEND_STATUS_RESULT_NETWORK_REJECT: ClassVar[int]
+    SEND_STATUS_RESULT_OPERATION_NOT_ALLOWED: ClassVar[int]
+    SEND_STATUS_RESULT_REQUEST_NOT_SUPPORTED: ClassVar[int]
+    SEND_STATUS_RESULT_SMS_BLOCKED_DURING_EMERGENCY: ClassVar[int]
+    SEND_STATUS_RESULT_SMS_SEND_RETRY_FAILED: ClassVar[int]
     SEND_STATUS_RETRY_ON_CARRIER_NETWORK: ClassVar[int]
     SERVICE_INTERFACE: ClassVar[str]
     START_CONTINUATION_MASK: ClassVar[int]
@@ -36,8 +79,10 @@ class CarrierMessagingService:
     ACCESSIBILITY_SERVICE: ClassVar[str]
     ACCOUNT_SERVICE: ClassVar[str]
     ACTIVITY_SERVICE: ClassVar[str]
+    ADVANCED_PROTECTION_SERVICE: ClassVar[str]
     ALARM_SERVICE: ClassVar[str]
     APPWIDGET_SERVICE: ClassVar[str]
+    APP_FUNCTION_SERVICE: ClassVar[str]
     APP_OPS_SERVICE: ClassVar[str]
     APP_SEARCH_SERVICE: ClassVar[str]
     AUDIO_SERVICE: ClassVar[str]
@@ -96,6 +141,7 @@ class CarrierMessagingService:
     IPSEC_SERVICE: ClassVar[str]
     JOB_SCHEDULER_SERVICE: ClassVar[str]
     KEYGUARD_SERVICE: ClassVar[str]
+    KEYSTORE_SERVICE: ClassVar[str]
     LAUNCHER_APPS_SERVICE: ClassVar[str]
     LAYOUT_INFLATER_SERVICE: ClassVar[str]
     LOCALE_SERVICE: ClassVar[str]
@@ -103,6 +149,7 @@ class CarrierMessagingService:
     MEDIA_COMMUNICATION_SERVICE: ClassVar[str]
     MEDIA_METRICS_SERVICE: ClassVar[str]
     MEDIA_PROJECTION_SERVICE: ClassVar[str]
+    MEDIA_QUALITY_SERVICE: ClassVar[str]
     MEDIA_ROUTER_SERVICE: ClassVar[str]
     MEDIA_SESSION_SERVICE: ClassVar[str]
     MIDI_SERVICE: ClassVar[str]
@@ -129,6 +176,7 @@ class CarrierMessagingService:
     RECEIVER_VISIBLE_TO_INSTANT_APPS: ClassVar[int]
     RESTRICTIONS_SERVICE: ClassVar[str]
     ROLE_SERVICE: ClassVar[str]
+    SATELLITE_SERVICE: ClassVar[str]
     SEARCH_SERVICE: ClassVar[str]
     SECURITY_STATE_SERVICE: ClassVar[str]
     SENSOR_SERVICE: ClassVar[str]
@@ -141,8 +189,10 @@ class CarrierMessagingService:
     TELEPHONY_IMS_SERVICE: ClassVar[str]
     TELEPHONY_SERVICE: ClassVar[str]
     TELEPHONY_SUBSCRIPTION_SERVICE: ClassVar[str]
+    TETHERING_SERVICE: ClassVar[str]
     TEXT_CLASSIFICATION_SERVICE: ClassVar[str]
     TEXT_SERVICES_MANAGER_SERVICE: ClassVar[str]
+    TV_AD_SERVICE: ClassVar[str]
     TV_INPUT_SERVICE: ClassVar[str]
     TV_INTERACTIVE_APP_SERVICE: ClassVar[str]
     UI_MODE_SERVICE: ClassVar[str]
@@ -161,27 +211,27 @@ class CarrierMessagingService:
     WINDOW_SERVICE: ClassVar[str]
     def __init__(self) -> None: ...
     def onFilterSms(self, p0: MessagePdu, p1: str, p2: int, p3: int, p4: Any) -> None: ...
+    def onDownloadMms(self, p0: Uri, p1: int, p2: Uri, p3: Any) -> None: ...
     def onReceiveTextSms(self, p0: MessagePdu, p1: str, p2: int, p3: int, p4: Any) -> None: ...
-    @overload
-    def onSendTextSms(self, p0: str, p1: int, p2: str, p3: Any) -> None: ...
-    @overload
-    def onSendTextSms(self, p0: str, p1: int, p2: str, p3: int, p4: Any) -> None: ...
     @overload
     def onSendDataSms(self, p0: Any, p1: int, p2: str, p3: int, p4: Any) -> None: ...
     @overload
     def onSendDataSms(self, p0: Any, p1: int, p2: str, p3: int, p4: int, p5: Any) -> None: ...
+    def onSendMms(self, p0: Uri, p1: int, p2: Uri, p3: Any) -> None: ...
+    @overload
+    def onSendMultipartTextSms(self, p0: list, p1: int, p2: str, p3: Any) -> None: ...
     @overload
     def onSendMultipartTextSms(self, p0: list, p1: int, p2: str, p3: int, p4: Any) -> None: ...
     @overload
-    def onSendMultipartTextSms(self, p0: list, p1: int, p2: str, p3: Any) -> None: ...
-    def onSendMms(self, p0: Uri, p1: int, p2: Uri, p3: Any) -> None: ...
-    def onDownloadMms(self, p0: Uri, p1: int, p2: Uri, p3: Any) -> None: ...
+    def onSendTextSms(self, p0: str, p1: int, p2: str, p3: Any) -> None: ...
+    @overload
+    def onSendTextSms(self, p0: str, p1: int, p2: str, p3: int, p4: Any) -> None: ...
     def onBind(self, p0: Intent) -> IBinder: ...
 
     class SendSmsResult:
         def __init__(self, p0: int, p1: int) -> None: ...
-        def getSendStatus(self) -> int: ...
         def getMessageRef(self) -> int: ...
+        def getSendStatus(self) -> int: ...
 
     class SendMultipartSmsResult:
         def __init__(self, p0: int, p1: Any) -> None: ...

@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["PollingFrame"]
 
@@ -11,11 +11,13 @@ class PollingFrame(JavaClass, metaclass=MetaJavaClass):
     POLLING_LOOP_TYPE_OFF = JavaStaticField("I")
     POLLING_LOOP_TYPE_ON = JavaStaticField("I")
     POLLING_LOOP_TYPE_UNKNOWN = JavaStaticField("I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getVendorSpecificGain = JavaMethod("()I")
+    getTriggeredAutoTransact = JavaMethod("()Z")
+    toString = JavaMethod("()Ljava/lang/String;")
     getType = JavaMethod("()I")
     getData = JavaMethod("()[B")
-    getVendorSpecificGain = JavaMethod("()I")
     getTimestamp = JavaMethod("()J")
-    getTriggeredAutoTransact = JavaMethod("()Z")
-    describeContents = JavaMethod("()I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
-    toString = JavaMethod("()Ljava/lang/String;")
+    describeContents = JavaMethod("()I")

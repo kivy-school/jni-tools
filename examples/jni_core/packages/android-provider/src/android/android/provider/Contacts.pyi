@@ -97,6 +97,16 @@ class Contacts:
         PERSON_ID: ClassVar[str]
         _COUNT: ClassVar[str]
         _ID: ClassVar[str]
+        CUSTOM_RINGTONE: ClassVar[str]
+        DISPLAY_NAME: ClassVar[str]
+        LAST_TIME_CONTACTED: ClassVar[str]
+        NAME: ClassVar[str]
+        NOTES: ClassVar[str]
+        PHONETIC_NAME: ClassVar[str]
+        PHOTO_VERSION: ClassVar[str]
+        SEND_TO_VOICEMAIL: ClassVar[str]
+        STARRED: ClassVar[str]
+        TIMES_CONTACTED: ClassVar[str]
         ISPRIMARY: ClassVar[str]
         LABEL: ClassVar[str]
         NUMBER: ClassVar[str]
@@ -110,22 +120,12 @@ class Contacts:
         TYPE_OTHER: ClassVar[int]
         TYPE_PAGER: ClassVar[int]
         TYPE_WORK: ClassVar[int]
-        CUSTOM_RINGTONE: ClassVar[str]
-        DISPLAY_NAME: ClassVar[str]
-        LAST_TIME_CONTACTED: ClassVar[str]
-        NAME: ClassVar[str]
-        NOTES: ClassVar[str]
-        PHONETIC_NAME: ClassVar[str]
-        PHOTO_VERSION: ClassVar[str]
-        SEND_TO_VOICEMAIL: ClassVar[str]
-        STARRED: ClassVar[str]
-        TIMES_CONTACTED: ClassVar[str]
-        @overload
-        @staticmethod
-        def getDisplayLabel(p0: Context, p1: int, p2: str, p3: Any) -> str: ...
         @overload
         @staticmethod
         def getDisplayLabel(p0: Context, p1: int, p2: str) -> str: ...
+        @overload
+        @staticmethod
+        def getDisplayLabel(p0: Context, p1: int, p2: str, p3: Any) -> str: ...
 
     class PeopleColumns:
         CUSTOM_RINGTONE: ClassVar[str]
@@ -186,32 +186,42 @@ class Contacts:
         PRESENCE_CUSTOM_STATUS: ClassVar[str]
         PRESENCE_STATUS: ClassVar[str]
         PRIORITY: ClassVar[str]
-        @staticmethod
-        def markAsContacted(p0: ContentResolver, p1: int) -> None: ...
-        @staticmethod
-        def addToMyContactsGroup(p0: ContentResolver, p1: int) -> Uri: ...
-        @overload
-        @staticmethod
-        def addToGroup(p0: ContentResolver, p1: int, p2: str) -> Uri: ...
         @overload
         @staticmethod
         def addToGroup(p0: ContentResolver, p1: int, p2: int) -> Uri: ...
+        @overload
+        @staticmethod
+        def addToGroup(p0: ContentResolver, p1: int, p2: str) -> Uri: ...
+        @staticmethod
+        def addToMyContactsGroup(p0: ContentResolver, p1: int) -> Uri: ...
         @staticmethod
         def createPersonInMyContactsGroup(p0: ContentResolver, p1: ContentValues) -> Uri: ...
+        @staticmethod
+        def loadContactPhoto(p0: Context, p1: Uri, p2: int, p3: Any) -> Bitmap: ...
+        @staticmethod
+        def markAsContacted(p0: ContentResolver, p1: int) -> None: ...
+        @staticmethod
+        def openContactPhotoInputStream(p0: ContentResolver, p1: Uri) -> InputStream: ...
         @staticmethod
         def queryGroups(p0: ContentResolver, p1: int) -> Cursor: ...
         @staticmethod
         def setPhotoData(p0: ContentResolver, p1: Uri, p2: Any) -> None: ...
-        @staticmethod
-        def openContactPhotoInputStream(p0: ContentResolver, p1: Uri) -> InputStream: ...
-        @staticmethod
-        def loadContactPhoto(p0: Context, p1: Uri, p2: int, p3: Any) -> Bitmap: ...
 
         class Phones:
             CONTENT_DIRECTORY: ClassVar[str]
             DEFAULT_SORT_ORDER: ClassVar[str]
             _COUNT: ClassVar[str]
             _ID: ClassVar[str]
+            CUSTOM_RINGTONE: ClassVar[str]
+            DISPLAY_NAME: ClassVar[str]
+            LAST_TIME_CONTACTED: ClassVar[str]
+            NAME: ClassVar[str]
+            NOTES: ClassVar[str]
+            PHONETIC_NAME: ClassVar[str]
+            PHOTO_VERSION: ClassVar[str]
+            SEND_TO_VOICEMAIL: ClassVar[str]
+            STARRED: ClassVar[str]
+            TIMES_CONTACTED: ClassVar[str]
             ISPRIMARY: ClassVar[str]
             LABEL: ClassVar[str]
             NUMBER: ClassVar[str]
@@ -225,16 +235,6 @@ class Contacts:
             TYPE_OTHER: ClassVar[int]
             TYPE_PAGER: ClassVar[int]
             TYPE_WORK: ClassVar[int]
-            CUSTOM_RINGTONE: ClassVar[str]
-            DISPLAY_NAME: ClassVar[str]
-            LAST_TIME_CONTACTED: ClassVar[str]
-            NAME: ClassVar[str]
-            NOTES: ClassVar[str]
-            PHONETIC_NAME: ClassVar[str]
-            PHOTO_VERSION: ClassVar[str]
-            SEND_TO_VOICEMAIL: ClassVar[str]
-            STARRED: ClassVar[str]
-            TIMES_CONTACTED: ClassVar[str]
 
         class Extensions:
             CONTENT_DIRECTORY: ClassVar[str]
@@ -464,12 +464,12 @@ class Contacts:
         SEND_TO_VOICEMAIL: ClassVar[str]
         STARRED: ClassVar[str]
         TIMES_CONTACTED: ClassVar[str]
+        def addPostalLocation(self, p0: Context, p1: int, p2: float, p3: float) -> None: ...
         @staticmethod
-        def encodePredefinedImProtocol(p0: int) -> str: ...
+        def decodeImProtocol(p0: str) -> Any: ...
         @staticmethod
         def encodeCustomImProtocol(p0: str) -> str: ...
         @staticmethod
-        def decodeImProtocol(p0: str) -> Any: ...
-        def addPostalLocation(self, p0: Context, p1: int, p2: float, p3: float) -> None: ...
+        def encodePredefinedImProtocol(p0: int) -> str: ...
         @staticmethod
         def getDisplayLabel(p0: Context, p1: int, p2: int, p3: str) -> str: ...

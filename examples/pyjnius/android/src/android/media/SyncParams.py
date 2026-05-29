@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SyncParams"]
 
@@ -12,12 +12,12 @@ class SyncParams(JavaClass, metaclass=MetaJavaClass):
     SYNC_SOURCE_DEFAULT = JavaStaticField("I")
     SYNC_SOURCE_SYSTEM_CLOCK = JavaStaticField("I")
     SYNC_SOURCE_VSYNC = JavaStaticField("I")
-    allowDefaults = JavaMethod("()Landroid/media/SyncParams;")
-    setAudioAdjustMode = JavaMethod("(I)Landroid/media/SyncParams;")
-    getAudioAdjustMode = JavaMethod("()I")
-    setSyncSource = JavaMethod("(I)Landroid/media/SyncParams;")
-    getSyncSource = JavaMethod("()I")
-    setTolerance = JavaMethod("(F)Landroid/media/SyncParams;")
-    getTolerance = JavaMethod("()F")
-    setFrameRate = JavaMethod("(F)Landroid/media/SyncParams;")
     getFrameRate = JavaMethod("()F")
+    getAudioAdjustMode = JavaMethod("()I")
+    getSyncSource = JavaMethod("()I")
+    getTolerance = JavaMethod("()F")
+    setAudioAdjustMode = JavaMethod("(I)Landroid/media/SyncParams;")
+    setSyncSource = JavaMethod("(I)Landroid/media/SyncParams;")
+    setTolerance = JavaMethod("(F)Landroid/media/SyncParams;")
+    allowDefaults = JavaMethod("()Landroid/media/SyncParams;")
+    setFrameRate = JavaMethod("(F)Landroid/media/SyncParams;")

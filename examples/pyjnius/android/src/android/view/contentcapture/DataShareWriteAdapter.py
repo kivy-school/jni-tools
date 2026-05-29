@@ -1,9 +1,9 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["DataShareWriteAdapter"]
 
-class DataShareWriteAdapter(JavaInterface, metaclass=MetaJavaClass):
+class DataShareWriteAdapter(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/view/contentcapture/DataShareWriteAdapter"
-    onWrite = JavaMethod("(Landroid/os/ParcelFileDescriptor;)V")
     onRejected = JavaMethod("()V")
     onError = JavaMethod("(I)V")
+    onWrite = JavaMethod("(Landroid/os/ParcelFileDescriptor;)V")

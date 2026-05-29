@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["AdvertisingSetParameters"]
 
@@ -16,31 +16,33 @@ class AdvertisingSetParameters(JavaClass, metaclass=MetaJavaClass):
     TX_POWER_MEDIUM = JavaStaticField("I")
     TX_POWER_MIN = JavaStaticField("I")
     TX_POWER_ULTRA_LOW = JavaStaticField("I")
-    isConnectable = JavaMethod("()Z")
-    isDiscoverable = JavaMethod("()Z")
-    isScannable = JavaMethod("()Z")
-    isLegacy = JavaMethod("()Z")
-    isAnonymous = JavaMethod("()Z")
-    includeTxPower = JavaMethod("()Z")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getInterval = JavaMethod("()I")
     getPrimaryPhy = JavaMethod("()I")
     getSecondaryPhy = JavaMethod("()I")
-    getInterval = JavaMethod("()I")
+    isConnectable = JavaMethod("()Z")
+    isLegacy = JavaMethod("()Z")
     getTxPowerLevel = JavaMethod("()I")
+    isDiscoverable = JavaMethod("()Z")
+    includeTxPower = JavaMethod("()Z")
+    isAnonymous = JavaMethod("()Z")
+    isScannable = JavaMethod("()Z")
     toString = JavaMethod("()Ljava/lang/String;")
-    describeContents = JavaMethod("()I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
 
     class Builder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/bluetooth/le/AdvertisingSetParameters/Builder"
+        __javaclass__ = "android/bluetooth/le/AdvertisingSetParameters$Builder"
         __javaconstructor__ = [("()V", False)]
-        setConnectable = JavaMethod("(Z)Landroid/bluetooth/le/AdvertisingSetParameters$Builder;")
-        setDiscoverable = JavaMethod("(Z)Landroid/bluetooth/le/AdvertisingSetParameters$Builder;")
-        setScannable = JavaMethod("(Z)Landroid/bluetooth/le/AdvertisingSetParameters$Builder;")
-        setLegacyMode = JavaMethod("(Z)Landroid/bluetooth/le/AdvertisingSetParameters$Builder;")
+        setInterval = JavaMethod("(I)Landroid/bluetooth/le/AdvertisingSetParameters$Builder;")
         setAnonymous = JavaMethod("(Z)Landroid/bluetooth/le/AdvertisingSetParameters$Builder;")
         setIncludeTxPower = JavaMethod("(Z)Landroid/bluetooth/le/AdvertisingSetParameters$Builder;")
+        setLegacyMode = JavaMethod("(Z)Landroid/bluetooth/le/AdvertisingSetParameters$Builder;")
         setPrimaryPhy = JavaMethod("(I)Landroid/bluetooth/le/AdvertisingSetParameters$Builder;")
+        setScannable = JavaMethod("(Z)Landroid/bluetooth/le/AdvertisingSetParameters$Builder;")
         setSecondaryPhy = JavaMethod("(I)Landroid/bluetooth/le/AdvertisingSetParameters$Builder;")
-        setInterval = JavaMethod("(I)Landroid/bluetooth/le/AdvertisingSetParameters$Builder;")
+        setConnectable = JavaMethod("(Z)Landroid/bluetooth/le/AdvertisingSetParameters$Builder;")
+        setDiscoverable = JavaMethod("(Z)Landroid/bluetooth/le/AdvertisingSetParameters$Builder;")
         setTxPowerLevel = JavaMethod("(I)Landroid/bluetooth/le/AdvertisingSetParameters$Builder;")
         build = JavaMethod("()Landroid/bluetooth/le/AdvertisingSetParameters;")

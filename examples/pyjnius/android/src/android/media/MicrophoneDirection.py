@@ -1,8 +1,8 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["MicrophoneDirection"]
 
-class MicrophoneDirection(JavaInterface, metaclass=MetaJavaClass):
+class MicrophoneDirection(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/media/MicrophoneDirection"
     MIC_DIRECTION_AWAY_FROM_USER = JavaStaticField("I")
     MIC_DIRECTION_EXTERNAL = JavaStaticField("I")

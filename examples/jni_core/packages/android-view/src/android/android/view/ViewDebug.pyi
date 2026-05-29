@@ -6,35 +6,35 @@ class ViewDebug:
     TRACE_RECYCLER: ClassVar[bool]
     def __init__(self) -> None: ...
     @staticmethod
-    def startHierarchyTracing(p0: str, p1: View) -> None: ...
-    @staticmethod
-    def stopHierarchyTracing() -> None: ...
-    @staticmethod
     def dumpCapturedView(p0: str, p1: Any) -> None: ...
     @staticmethod
+    def startHierarchyTracing(p0: str, p1: View) -> None: ...
+    @staticmethod
     def startRecyclerTracing(p0: str, p1: View) -> None: ...
+    @staticmethod
+    def stopHierarchyTracing() -> None: ...
     @staticmethod
     def stopRecyclerTracing() -> None: ...
     @overload
     @staticmethod
-    def trace(p0: View, p1: Any, p2: Any) -> None: ...
+    def trace(p0: View, p1: Any) -> None: ...
     @overload
     @staticmethod
-    def trace(p0: View, p1: Any) -> None: ...
+    def trace(p0: View, p1: Any, p2: Any) -> None: ...
 
     class RecyclerTraceType:
-        NEW_VIEW: ClassVar["RecyclerTraceType"]
         BIND_VIEW: ClassVar["RecyclerTraceType"]
+        MOVE_FROM_ACTIVE_TO_SCRAP_HEAP: ClassVar["RecyclerTraceType"]
+        MOVE_TO_SCRAP_HEAP: ClassVar["RecyclerTraceType"]
+        NEW_VIEW: ClassVar["RecyclerTraceType"]
         RECYCLE_FROM_ACTIVE_HEAP: ClassVar["RecyclerTraceType"]
         RECYCLE_FROM_SCRAP_HEAP: ClassVar["RecyclerTraceType"]
-        MOVE_TO_SCRAP_HEAP: ClassVar["RecyclerTraceType"]
-        MOVE_FROM_ACTIVE_TO_SCRAP_HEAP: ClassVar["RecyclerTraceType"]
-        NEW_VIEW: ClassVar[Any]
         BIND_VIEW: ClassVar[Any]
+        MOVE_FROM_ACTIVE_TO_SCRAP_HEAP: ClassVar[Any]
+        MOVE_TO_SCRAP_HEAP: ClassVar[Any]
+        NEW_VIEW: ClassVar[Any]
         RECYCLE_FROM_ACTIVE_HEAP: ClassVar[Any]
         RECYCLE_FROM_SCRAP_HEAP: ClassVar[Any]
-        MOVE_TO_SCRAP_HEAP: ClassVar[Any]
-        MOVE_FROM_ACTIVE_TO_SCRAP_HEAP: ClassVar[Any]
         @staticmethod
         def values() -> Any: ...
         @staticmethod
@@ -45,22 +45,22 @@ class ViewDebug:
         def to(self) -> str: ...
 
     class HierarchyTraceType:
+        BUILD_CACHE: ClassVar["HierarchyTraceType"]
+        DRAW: ClassVar["HierarchyTraceType"]
         INVALIDATE: ClassVar["HierarchyTraceType"]
         INVALIDATE_CHILD: ClassVar["HierarchyTraceType"]
         INVALIDATE_CHILD_IN_PARENT: ClassVar["HierarchyTraceType"]
-        REQUEST_LAYOUT: ClassVar["HierarchyTraceType"]
         ON_LAYOUT: ClassVar["HierarchyTraceType"]
         ON_MEASURE: ClassVar["HierarchyTraceType"]
-        DRAW: ClassVar["HierarchyTraceType"]
-        BUILD_CACHE: ClassVar["HierarchyTraceType"]
+        REQUEST_LAYOUT: ClassVar["HierarchyTraceType"]
+        BUILD_CACHE: ClassVar[Any]
+        DRAW: ClassVar[Any]
         INVALIDATE: ClassVar[Any]
         INVALIDATE_CHILD: ClassVar[Any]
         INVALIDATE_CHILD_IN_PARENT: ClassVar[Any]
-        REQUEST_LAYOUT: ClassVar[Any]
         ON_LAYOUT: ClassVar[Any]
         ON_MEASURE: ClassVar[Any]
-        DRAW: ClassVar[Any]
-        BUILD_CACHE: ClassVar[Any]
+        REQUEST_LAYOUT: ClassVar[Any]
         @staticmethod
         def values() -> Any: ...
         @staticmethod
@@ -74,12 +74,12 @@ class ViewDebug:
 
     class ExportedProperty:
         def indexMapping(self) -> Any: ...
-        def resolveId(self) -> bool: ...
         def hasAdjacentMapping(self) -> bool: ...
-        def formatToHexString(self) -> bool: ...
+        def resolveId(self) -> bool: ...
         def prefix(self) -> str: ...
-        def category(self) -> str: ...
+        def formatToHexString(self) -> bool: ...
         def deepExport(self) -> bool: ...
+        def category(self) -> str: ...
         def mapping(self) -> Any: ...
         def flagMapping(self) -> Any: ...
 

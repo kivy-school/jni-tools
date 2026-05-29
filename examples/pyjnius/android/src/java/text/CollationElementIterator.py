@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["CollationElementIterator"]
 
@@ -7,11 +7,11 @@ class CollationElementIterator(JavaClass, metaclass=MetaJavaClass):
     NULLORDER = JavaStaticField("I")
     reset = JavaMethod("()V")
     next = JavaMethod("()I")
-    previous = JavaMethod("()I")
+    getOffset = JavaMethod("()I")
+    setOffset = JavaMethod("(I)V")
+    getMaxExpansion = JavaMethod("(I)I")
     primaryOrder = JavaStaticMethod("(I)I")
     secondaryOrder = JavaStaticMethod("(I)S")
     tertiaryOrder = JavaStaticMethod("(I)S")
-    setOffset = JavaMethod("(I)V")
-    getOffset = JavaMethod("()I")
-    getMaxExpansion = JavaMethod("(I)I")
-    setText = JavaMultipleMethod([("(Ljava/lang/String;)V", False, False), ("(Ljava/text/CharacterIterator;)V", False, False)])
+    setText = JavaMultipleMethod([("(Ljava/text/CharacterIterator;)V", False, False), ("(Ljava/lang/String;)V", False, False)])
+    previous = JavaMethod("()I")

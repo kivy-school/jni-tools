@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["AudioFormat"]
 
@@ -88,6 +88,18 @@ class AudioFormat(JavaClass, metaclass=MetaJavaClass):
     ENCODING_DTS_UHD_P2 = JavaStaticField("I")
     ENCODING_E_AC3 = JavaStaticField("I")
     ENCODING_E_AC3_JOC = JavaStaticField("I")
+    ENCODING_IAMF_BASE_ENHANCED_PROFILE_AAC = JavaStaticField("I")
+    ENCODING_IAMF_BASE_ENHANCED_PROFILE_FLAC = JavaStaticField("I")
+    ENCODING_IAMF_BASE_ENHANCED_PROFILE_OPUS = JavaStaticField("I")
+    ENCODING_IAMF_BASE_ENHANCED_PROFILE_PCM = JavaStaticField("I")
+    ENCODING_IAMF_BASE_PROFILE_AAC = JavaStaticField("I")
+    ENCODING_IAMF_BASE_PROFILE_FLAC = JavaStaticField("I")
+    ENCODING_IAMF_BASE_PROFILE_OPUS = JavaStaticField("I")
+    ENCODING_IAMF_BASE_PROFILE_PCM = JavaStaticField("I")
+    ENCODING_IAMF_SIMPLE_PROFILE_AAC = JavaStaticField("I")
+    ENCODING_IAMF_SIMPLE_PROFILE_FLAC = JavaStaticField("I")
+    ENCODING_IAMF_SIMPLE_PROFILE_OPUS = JavaStaticField("I")
+    ENCODING_IAMF_SIMPLE_PROFILE_PCM = JavaStaticField("I")
     ENCODING_IEC61937 = JavaStaticField("I")
     ENCODING_INVALID = JavaStaticField("I")
     ENCODING_MP3 = JavaStaticField("I")
@@ -102,23 +114,25 @@ class AudioFormat(JavaClass, metaclass=MetaJavaClass):
     ENCODING_PCM_8BIT = JavaStaticField("I")
     ENCODING_PCM_FLOAT = JavaStaticField("I")
     SAMPLE_RATE_UNSPECIFIED = JavaStaticField("I")
-    getEncoding = JavaMethod("()I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getSampleRate = JavaMethod("()I")
-    getChannelMask = JavaMethod("()I")
     getChannelIndexMask = JavaMethod("()I")
-    getChannelCount = JavaMethod("()I")
+    getChannelMask = JavaMethod("()I")
     getFrameSizeInBytes = JavaMethod("()I")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
-    hashCode = JavaMethod("()I")
-    describeContents = JavaMethod("()I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
     toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    getChannelCount = JavaMethod("()I")
+    getEncoding = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
 
     class Builder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/AudioFormat/Builder"
+        __javaclass__ = "android/media/AudioFormat$Builder"
         __javaconstructor__ = [("()V", False), ("(Landroid/media/AudioFormat;)V", False)]
-        build = JavaMethod("()Landroid/media/AudioFormat;")
-        setEncoding = JavaMethod("(I)Landroid/media/AudioFormat$Builder;")
+        setSampleRate = JavaMethod("(I)Landroid/media/AudioFormat$Builder;")
         setChannelMask = JavaMethod("(I)Landroid/media/AudioFormat$Builder;")
         setChannelIndexMask = JavaMethod("(I)Landroid/media/AudioFormat$Builder;")
-        setSampleRate = JavaMethod("(I)Landroid/media/AudioFormat$Builder;")
+        setEncoding = JavaMethod("(I)Landroid/media/AudioFormat$Builder;")
+        build = JavaMethod("()Landroid/media/AudioFormat;")

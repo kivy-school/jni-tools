@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SmsManager"]
 
@@ -156,28 +156,28 @@ class SmsManager(JavaClass, metaclass=MetaJavaClass):
     STATUS_ON_ICC_SENT = JavaStaticField("I")
     STATUS_ON_ICC_UNREAD = JavaStaticField("I")
     STATUS_ON_ICC_UNSENT = JavaStaticField("I")
-    sendTextMessage = JavaMultipleMethod([("(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Landroid/app/PendingIntent;Landroid/app/PendingIntent;)V", False, False), ("(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Landroid/app/PendingIntent;Landroid/app/PendingIntent;J)V", False, False)])
-    sendTextMessageWithoutPersisting = JavaMethod("(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Landroid/app/PendingIntent;Landroid/app/PendingIntent;)V")
-    injectSmsPdu = JavaMethod("([BLjava/lang/String;Landroid/app/PendingIntent;)V")
-    divideMessage = JavaMethod("(Ljava/lang/String;)Ljava/util/ArrayList;")
-    sendMultipartTextMessage = JavaMultipleMethod([("(Ljava/lang/String;Ljava/lang/String;Ljava/util/ArrayList;Ljava/util/ArrayList;Ljava/util/ArrayList;)V", False, False), ("(Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/util/List;J)V", False, False), ("(Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;)V", False, False)])
-    sendDataMessage = JavaMethod("(Ljava/lang/String;Ljava/lang/String;S[BLandroid/app/PendingIntent;Landroid/app/PendingIntent;)V")
-    getDefault = JavaStaticMethod("()Landroid/telephony/SmsManager;")
-    getSmsManagerForSubscriptionId = JavaStaticMethod("(I)Landroid/telephony/SmsManager;")
-    createForSubscriptionId = JavaMethod("(I)Landroid/telephony/SmsManager;")
     getSubscriptionId = JavaMethod("()I")
-    getDefaultSmsSubscriptionId = JavaStaticMethod("()I")
-    getSmsCapacityOnIcc = JavaMethod("()I")
-    sendMultimediaMessage = JavaMultipleMethod([("(Landroid/content/Context;Landroid/net/Uri;Ljava/lang/String;Landroid/os/Bundle;Landroid/app/PendingIntent;)V", False, False), ("(Landroid/content/Context;Landroid/net/Uri;Ljava/lang/String;Landroid/os/Bundle;Landroid/app/PendingIntent;J)V", False, False)])
-    downloadMultimediaMessage = JavaMultipleMethod([("(Landroid/content/Context;Ljava/lang/String;Landroid/net/Uri;Landroid/os/Bundle;Landroid/app/PendingIntent;)V", False, False), ("(Landroid/content/Context;Ljava/lang/String;Landroid/net/Uri;Landroid/os/Bundle;Landroid/app/PendingIntent;J)V", False, False)])
-    getCarrierConfigValues = JavaMethod("()Landroid/os/Bundle;")
     createAppSpecificSmsToken = JavaMethod("(Landroid/app/PendingIntent;)Ljava/lang/String;")
-    getSmsMessagesForFinancialApp = JavaMethod("(Landroid/os/Bundle;Ljava/util/concurrent/Executor;Landroid/telephony/SmsManager$FinancialSmsCallback;)V")
     createAppSpecificSmsTokenWithPackageInfo = JavaMethod("(Ljava/lang/String;Landroid/app/PendingIntent;)Ljava/lang/String;")
+    downloadMultimediaMessage = JavaMultipleMethod([("(Landroid/content/Context;Ljava/lang/String;Landroid/net/Uri;Landroid/os/Bundle;Landroid/app/PendingIntent;J)V", False, False), ("(Landroid/content/Context;Ljava/lang/String;Landroid/net/Uri;Landroid/os/Bundle;Landroid/app/PendingIntent;)V", False, False)])
+    getCarrierConfigValues = JavaMethod("()Landroid/os/Bundle;")
+    getSmsCapacityOnIcc = JavaMethod("()I")
+    getSmsManagerForSubscriptionId = JavaStaticMethod("(I)Landroid/telephony/SmsManager;")
+    getSmsMessagesForFinancialApp = JavaMethod("(Landroid/os/Bundle;Ljava/util/concurrent/Executor;Landroid/telephony/SmsManager$FinancialSmsCallback;)V")
     getSmscAddress = JavaMethod("()Ljava/lang/String;")
+    injectSmsPdu = JavaMethod("([BLjava/lang/String;Landroid/app/PendingIntent;)V")
+    sendMultimediaMessage = JavaMultipleMethod([("(Landroid/content/Context;Landroid/net/Uri;Ljava/lang/String;Landroid/os/Bundle;Landroid/app/PendingIntent;J)V", False, False), ("(Landroid/content/Context;Landroid/net/Uri;Ljava/lang/String;Landroid/os/Bundle;Landroid/app/PendingIntent;)V", False, False)])
+    sendTextMessageWithoutPersisting = JavaMethod("(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Landroid/app/PendingIntent;Landroid/app/PendingIntent;)V")
     setSmscAddress = JavaMethod("(Ljava/lang/String;)Z")
+    createForSubscriptionId = JavaMethod("(I)Landroid/telephony/SmsManager;")
+    sendDataMessage = JavaMethod("(Ljava/lang/String;Ljava/lang/String;S[BLandroid/app/PendingIntent;Landroid/app/PendingIntent;)V")
+    sendTextMessage = JavaMultipleMethod([("(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Landroid/app/PendingIntent;Landroid/app/PendingIntent;)V", False, False), ("(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Landroid/app/PendingIntent;Landroid/app/PendingIntent;J)V", False, False)])
+    divideMessage = JavaMethod("(Ljava/lang/String;)Ljava/util/ArrayList;")
+    sendMultipartTextMessage = JavaMultipleMethod([("(Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/util/List;J)V", False, False), ("(Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;)V", False, False), ("(Ljava/lang/String;Ljava/lang/String;Ljava/util/ArrayList;Ljava/util/ArrayList;Ljava/util/ArrayList;)V", False, False)])
+    getDefault = JavaStaticMethod("()Landroid/telephony/SmsManager;")
+    getDefaultSmsSubscriptionId = JavaStaticMethod("()I")
 
     class FinancialSmsCallback(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/telephony/SmsManager/FinancialSmsCallback"
+        __javaclass__ = "android/telephony/SmsManager$FinancialSmsCallback"
         __javaconstructor__ = [("()V", False)]
         onFinancialSmsMessages = JavaMethod("(Landroid/database/CursorWindow;)V")

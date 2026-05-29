@@ -2,16 +2,22 @@ from typing import Any, ClassVar, overload
 from android.app.PendingIntent import PendingIntent
 from android.content.ContentResolver import ContentResolver
 from android.content.Context import Context
+from android.content.res.AssetFileDescriptor import AssetFileDescriptor
 from android.database.Cursor import Cursor
 from android.graphics.Bitmap import Bitmap
 from android.net.Uri import Uri
+from android.os.Bundle import Bundle
+from android.os.CancellationSignal import CancellationSignal
 from android.os.ParcelFileDescriptor import ParcelFileDescriptor
 from android.util.Size import Size
 
 class MediaStore:
     ACCESS_MEDIA_OWNER_PACKAGE_NAME_PERMISSION: ClassVar[str]
+    ACCESS_OEM_METADATA_PERMISSION: ClassVar[str]
     ACTION_IMAGE_CAPTURE: ClassVar[str]
     ACTION_IMAGE_CAPTURE_SECURE: ClassVar[str]
+    ACTION_MOTION_PHOTO_CAPTURE: ClassVar[str]
+    ACTION_MOTION_PHOTO_CAPTURE_SECURE: ClassVar[str]
     ACTION_PICK_IMAGES: ClassVar[str]
     ACTION_PICK_IMAGES_SETTINGS: ClassVar[str]
     ACTION_REVIEW: ClassVar[str]
@@ -34,6 +40,7 @@ class MediaStore:
     EXTRA_MEDIA_RADIO_CHANNEL: ClassVar[str]
     EXTRA_MEDIA_TITLE: ClassVar[str]
     EXTRA_OUTPUT: ClassVar[str]
+    EXTRA_PICKER_PRE_SELECTION_URIS: ClassVar[str]
     EXTRA_PICK_IMAGES_ACCENT_COLOR: ClassVar[str]
     EXTRA_PICK_IMAGES_IN_ORDER: ClassVar[str]
     EXTRA_PICK_IMAGES_LAUNCH_TAB: ClassVar[str]
@@ -65,6 +72,7 @@ class MediaStore:
     QUERY_ARG_MATCH_FAVORITE: ClassVar[str]
     QUERY_ARG_MATCH_PENDING: ClassVar[str]
     QUERY_ARG_MATCH_TRASHED: ClassVar[str]
+    QUERY_ARG_MEDIA_STANDARD_SORT_ORDER: ClassVar[str]
     QUERY_ARG_RELATED_URI: ClassVar[str]
     UNKNOWN_STRING: ClassVar[str]
     VOLUME_EXTERNAL: ClassVar[str]
@@ -72,39 +80,31 @@ class MediaStore:
     VOLUME_INTERNAL: ClassVar[str]
     def __init__(self) -> None: ...
     @staticmethod
-    def getPickImagesMaxLimit() -> int: ...
-    @staticmethod
-    def setIncludePending(p0: Uri) -> Uri: ...
-    @staticmethod
-    def setRequireOriginal(p0: Uri) -> Uri: ...
-    @staticmethod
-    def getRequireOriginal(p0: Uri) -> bool: ...
-    @staticmethod
-    def getOriginalMediaFormatFileDescriptor(p0: Context, p1: ParcelFileDescriptor) -> ParcelFileDescriptor: ...
-    @staticmethod
-    def createWriteRequest(p0: ContentResolver, p1: list) -> PendingIntent: ...
-    @staticmethod
-    def createTrashRequest(p0: ContentResolver, p1: list, p2: bool) -> PendingIntent: ...
-    @staticmethod
-    def createFavoriteRequest(p0: ContentResolver, p1: list, p2: bool) -> PendingIntent: ...
+    def canManageMedia(p0: Context) -> bool: ...
     @staticmethod
     def createDeleteRequest(p0: ContentResolver, p1: list) -> PendingIntent: ...
     @staticmethod
-    def getExternalVolumeNames(p0: Context) -> set: ...
+    def createFavoriteRequest(p0: ContentResolver, p1: list, p2: bool) -> PendingIntent: ...
     @staticmethod
-    def getRecentExternalVolumeNames(p0: Context) -> set: ...
+    def createTrashRequest(p0: ContentResolver, p1: list, p2: bool) -> PendingIntent: ...
     @staticmethod
-    def getVolumeName(p0: Uri) -> str: ...
-    @staticmethod
-    def getMediaScannerUri() -> Uri: ...
-    @staticmethod
-    def getGeneration(p0: Context, p1: str) -> int: ...
+    def createWriteRequest(p0: ContentResolver, p1: list) -> PendingIntent: ...
     @staticmethod
     def getDocumentUri(p0: Context, p1: Uri) -> Uri: ...
     @staticmethod
+    def getExternalVolumeNames(p0: Context) -> set: ...
+    @staticmethod
+    def getGeneration(p0: Context, p1: str) -> int: ...
+    @staticmethod
+    def getMediaScannerUri() -> Uri: ...
+    @staticmethod
     def getMediaUri(p0: Context, p1: Uri) -> Uri: ...
     @staticmethod
-    def isCurrentSystemGallery(p0: ContentResolver, p1: int, p2: str) -> bool: ...
+    def getOriginalMediaFormatFileDescriptor(p0: Context, p1: ParcelFileDescriptor) -> ParcelFileDescriptor: ...
+    @staticmethod
+    def getPickImagesMaxLimit() -> int: ...
+    @staticmethod
+    def getRecentExternalVolumeNames(p0: Context) -> set: ...
     @overload
     @staticmethod
     def getRedactedUri(p0: ContentResolver, p1: Uri) -> Uri: ...
@@ -112,19 +112,35 @@ class MediaStore:
     @staticmethod
     def getRedactedUri(p0: ContentResolver, p1: list) -> list: ...
     @staticmethod
-    def canManageMedia(p0: Context) -> bool: ...
+    def getRequireOriginal(p0: Uri) -> bool: ...
+    @staticmethod
+    def getVolumeName(p0: Uri) -> str: ...
     @staticmethod
     def isCurrentCloudMediaProviderAuthority(p0: ContentResolver, p1: str) -> bool: ...
     @staticmethod
+    def isCurrentSystemGallery(p0: ContentResolver, p1: int, p2: str) -> bool: ...
+    @staticmethod
     def isSupportedCloudMediaProviderAuthority(p0: ContentResolver, p1: str) -> bool: ...
     @staticmethod
+    def markIsFavoriteStatus(p0: ContentResolver, p1: list, p2: bool) -> None: ...
+    @staticmethod
     def notifyCloudMediaChangedEvent(p0: ContentResolver, p1: str, p2: str) -> None: ...
+    @staticmethod
+    def setIncludePending(p0: Uri) -> Uri: ...
+    @staticmethod
+    def setRequireOriginal(p0: Uri) -> Uri: ...
     @overload
     @staticmethod
     def getVersion(p0: Context) -> str: ...
     @overload
     @staticmethod
     def getVersion(p0: Context, p1: str) -> str: ...
+    @staticmethod
+    def openAssetFileDescriptor(p0: ContentResolver, p1: Uri, p2: str, p3: CancellationSignal) -> AssetFileDescriptor: ...
+    @staticmethod
+    def openFileDescriptor(p0: ContentResolver, p1: Uri, p2: str, p3: CancellationSignal) -> ParcelFileDescriptor: ...
+    @staticmethod
+    def openTypedAssetFileDescriptor(p0: ContentResolver, p1: Uri, p2: str, p3: Bundle, p4: CancellationSignal) -> AssetFileDescriptor: ...
 
     class Video:
         DEFAULT_SORT_ORDER: ClassVar[str]
@@ -169,6 +185,7 @@ class MediaStore:
             GENERATION_MODIFIED: ClassVar[str]
             GENRE: ClassVar[str]
             HEIGHT: ClassVar[str]
+            INFERRED_DATE: ClassVar[str]
             INSTANCE_ID: ClassVar[str]
             IS_DOWNLOAD: ClassVar[str]
             IS_DRM: ClassVar[str]
@@ -177,6 +194,7 @@ class MediaStore:
             IS_TRASHED: ClassVar[str]
             MIME_TYPE: ClassVar[str]
             NUM_TRACKS: ClassVar[str]
+            OEM_METADATA: ClassVar[str]
             ORIENTATION: ClassVar[str]
             ORIGINAL_DOCUMENT_ID: ClassVar[str]
             OWNER_PACKAGE_NAME: ClassVar[str]
@@ -207,22 +225,22 @@ class MediaStore:
             _COUNT: ClassVar[str]
             _ID: ClassVar[str]
             def __init__(self) -> None: ...
+            @staticmethod
+            def getContentUri(p0: str) -> Uri: ...
             @overload
             @staticmethod
             def cancelThumbnailRequest(p0: ContentResolver, p1: int, p2: int) -> None: ...
             @overload
             @staticmethod
             def cancelThumbnailRequest(p0: ContentResolver, p1: int) -> None: ...
+            @staticmethod
+            def getKindSize(p0: int) -> Size: ...
             @overload
             @staticmethod
             def getThumbnail(p0: ContentResolver, p1: int, p2: int, p3: int, p4: Any) -> Bitmap: ...
             @overload
             @staticmethod
             def getThumbnail(p0: ContentResolver, p1: int, p2: int, p3: Any) -> Bitmap: ...
-            @staticmethod
-            def getKindSize(p0: int) -> Size: ...
-            @staticmethod
-            def getContentUri(p0: str) -> Uri: ...
 
         class Media:
             CONTENT_TYPE: ClassVar[str]
@@ -265,6 +283,7 @@ class MediaStore:
             GENERATION_MODIFIED: ClassVar[str]
             GENRE: ClassVar[str]
             HEIGHT: ClassVar[str]
+            INFERRED_DATE: ClassVar[str]
             INSTANCE_ID: ClassVar[str]
             IS_DOWNLOAD: ClassVar[str]
             IS_DRM: ClassVar[str]
@@ -273,6 +292,7 @@ class MediaStore:
             IS_TRASHED: ClassVar[str]
             MIME_TYPE: ClassVar[str]
             NUM_TRACKS: ClassVar[str]
+            OEM_METADATA: ClassVar[str]
             ORIENTATION: ClassVar[str]
             ORIGINAL_DOCUMENT_ID: ClassVar[str]
             OWNER_PACKAGE_NAME: ClassVar[str]
@@ -331,6 +351,7 @@ class MediaStore:
         GENERATION_MODIFIED: ClassVar[str]
         GENRE: ClassVar[str]
         HEIGHT: ClassVar[str]
+        INFERRED_DATE: ClassVar[str]
         INSTANCE_ID: ClassVar[str]
         IS_DOWNLOAD: ClassVar[str]
         IS_DRM: ClassVar[str]
@@ -339,6 +360,7 @@ class MediaStore:
         IS_TRASHED: ClassVar[str]
         MIME_TYPE: ClassVar[str]
         NUM_TRACKS: ClassVar[str]
+        OEM_METADATA: ClassVar[str]
         ORIENTATION: ClassVar[str]
         ORIGINAL_DOCUMENT_ID: ClassVar[str]
         OWNER_PACKAGE_NAME: ClassVar[str]
@@ -373,26 +395,26 @@ class MediaStore:
             _COUNT: ClassVar[str]
             _ID: ClassVar[str]
             def __init__(self) -> None: ...
-            @overload
             @staticmethod
-            def cancelThumbnailRequest(p0: ContentResolver, p1: int, p2: int) -> None: ...
+            def getContentUri(p0: str) -> Uri: ...
+            @staticmethod
+            def queryMiniThumbnail(p0: ContentResolver, p1: int, p2: int, p3: Any) -> Cursor: ...
+            @staticmethod
+            def queryMiniThumbnails(p0: ContentResolver, p1: Uri, p2: int, p3: Any) -> Cursor: ...
             @overload
             @staticmethod
             def cancelThumbnailRequest(p0: ContentResolver, p1: int) -> None: ...
+            @overload
+            @staticmethod
+            def cancelThumbnailRequest(p0: ContentResolver, p1: int, p2: int) -> None: ...
+            @staticmethod
+            def getKindSize(p0: int) -> Size: ...
             @overload
             @staticmethod
             def getThumbnail(p0: ContentResolver, p1: int, p2: int, p3: int, p4: Any) -> Bitmap: ...
             @overload
             @staticmethod
             def getThumbnail(p0: ContentResolver, p1: int, p2: int, p3: Any) -> Bitmap: ...
-            @staticmethod
-            def getKindSize(p0: int) -> Size: ...
-            @staticmethod
-            def getContentUri(p0: str) -> Uri: ...
-            @staticmethod
-            def queryMiniThumbnails(p0: ContentResolver, p1: Uri, p2: int, p3: Any) -> Cursor: ...
-            @staticmethod
-            def queryMiniThumbnail(p0: ContentResolver, p1: int, p2: int, p3: Any) -> Cursor: ...
             @staticmethod
             def query(p0: ContentResolver, p1: Uri, p2: Any) -> Cursor: ...
 
@@ -435,6 +457,7 @@ class MediaStore:
             GENERATION_MODIFIED: ClassVar[str]
             GENRE: ClassVar[str]
             HEIGHT: ClassVar[str]
+            INFERRED_DATE: ClassVar[str]
             INSTANCE_ID: ClassVar[str]
             IS_DOWNLOAD: ClassVar[str]
             IS_DRM: ClassVar[str]
@@ -443,6 +466,7 @@ class MediaStore:
             IS_TRASHED: ClassVar[str]
             MIME_TYPE: ClassVar[str]
             NUM_TRACKS: ClassVar[str]
+            OEM_METADATA: ClassVar[str]
             ORIENTATION: ClassVar[str]
             ORIGINAL_DOCUMENT_ID: ClassVar[str]
             OWNER_PACKAGE_NAME: ClassVar[str]
@@ -474,10 +498,10 @@ class MediaStore:
             def insertImage(p0: ContentResolver, p1: str, p2: str, p3: str) -> str: ...
             @overload
             @staticmethod
-            def query(p0: ContentResolver, p1: Uri, p2: Any, p3: str, p4: Any, p5: str) -> Cursor: ...
+            def query(p0: ContentResolver, p1: Uri, p2: Any) -> Cursor: ...
             @overload
             @staticmethod
-            def query(p0: ContentResolver, p1: Uri, p2: Any) -> Cursor: ...
+            def query(p0: ContentResolver, p1: Uri, p2: Any, p3: str, p4: Any, p5: str) -> Cursor: ...
             @overload
             @staticmethod
             def query(p0: ContentResolver, p1: Uri, p2: Any, p3: str, p4: str) -> Cursor: ...
@@ -517,6 +541,7 @@ class MediaStore:
             GENERATION_MODIFIED: ClassVar[str]
             GENRE: ClassVar[str]
             HEIGHT: ClassVar[str]
+            INFERRED_DATE: ClassVar[str]
             INSTANCE_ID: ClassVar[str]
             IS_DOWNLOAD: ClassVar[str]
             IS_DRM: ClassVar[str]
@@ -525,6 +550,7 @@ class MediaStore:
             IS_TRASHED: ClassVar[str]
             MIME_TYPE: ClassVar[str]
             NUM_TRACKS: ClassVar[str]
+            OEM_METADATA: ClassVar[str]
             ORIENTATION: ClassVar[str]
             ORIGINAL_DOCUMENT_ID: ClassVar[str]
             OWNER_PACKAGE_NAME: ClassVar[str]
@@ -584,6 +610,7 @@ class MediaStore:
             GENERATION_MODIFIED: ClassVar[str]
             GENRE: ClassVar[str]
             HEIGHT: ClassVar[str]
+            INFERRED_DATE: ClassVar[str]
             INSTANCE_ID: ClassVar[str]
             IS_DOWNLOAD: ClassVar[str]
             IS_DRM: ClassVar[str]
@@ -592,6 +619,7 @@ class MediaStore:
             IS_TRASHED: ClassVar[str]
             MIME_TYPE: ClassVar[str]
             NUM_TRACKS: ClassVar[str]
+            OEM_METADATA: ClassVar[str]
             ORIENTATION: ClassVar[str]
             ORIGINAL_DOCUMENT_ID: ClassVar[str]
             OWNER_PACKAGE_NAME: ClassVar[str]
@@ -637,6 +665,7 @@ class MediaStore:
         GENERATION_MODIFIED: ClassVar[str]
         GENRE: ClassVar[str]
         HEIGHT: ClassVar[str]
+        INFERRED_DATE: ClassVar[str]
         INSTANCE_ID: ClassVar[str]
         IS_DOWNLOAD: ClassVar[str]
         IS_DRM: ClassVar[str]
@@ -645,6 +674,7 @@ class MediaStore:
         IS_TRASHED: ClassVar[str]
         MIME_TYPE: ClassVar[str]
         NUM_TRACKS: ClassVar[str]
+        OEM_METADATA: ClassVar[str]
         ORIENTATION: ClassVar[str]
         ORIGINAL_DOCUMENT_ID: ClassVar[str]
         OWNER_PACKAGE_NAME: ClassVar[str]
@@ -693,6 +723,7 @@ class MediaStore:
         GENERATION_MODIFIED: ClassVar[str]
         GENRE: ClassVar[str]
         HEIGHT: ClassVar[str]
+        INFERRED_DATE: ClassVar[str]
         INSTANCE_ID: ClassVar[str]
         IS_DOWNLOAD: ClassVar[str]
         IS_DRM: ClassVar[str]
@@ -701,6 +732,7 @@ class MediaStore:
         IS_TRASHED: ClassVar[str]
         MIME_TYPE: ClassVar[str]
         NUM_TRACKS: ClassVar[str]
+        OEM_METADATA: ClassVar[str]
         ORIENTATION: ClassVar[str]
         ORIGINAL_DOCUMENT_ID: ClassVar[str]
         OWNER_PACKAGE_NAME: ClassVar[str]
@@ -753,6 +785,7 @@ class MediaStore:
             GENERATION_MODIFIED: ClassVar[str]
             GENRE: ClassVar[str]
             HEIGHT: ClassVar[str]
+            INFERRED_DATE: ClassVar[str]
             INSTANCE_ID: ClassVar[str]
             IS_DOWNLOAD: ClassVar[str]
             IS_DRM: ClassVar[str]
@@ -761,6 +794,7 @@ class MediaStore:
             IS_TRASHED: ClassVar[str]
             MIME_TYPE: ClassVar[str]
             NUM_TRACKS: ClassVar[str]
+            OEM_METADATA: ClassVar[str]
             ORIENTATION: ClassVar[str]
             ORIGINAL_DOCUMENT_ID: ClassVar[str]
             OWNER_PACKAGE_NAME: ClassVar[str]
@@ -812,6 +846,7 @@ class MediaStore:
             GENERATION_MODIFIED: ClassVar[str]
             GENRE: ClassVar[str]
             HEIGHT: ClassVar[str]
+            INFERRED_DATE: ClassVar[str]
             INSTANCE_ID: ClassVar[str]
             IS_DOWNLOAD: ClassVar[str]
             IS_DRM: ClassVar[str]
@@ -820,6 +855,7 @@ class MediaStore:
             IS_TRASHED: ClassVar[str]
             MIME_TYPE: ClassVar[str]
             NUM_TRACKS: ClassVar[str]
+            OEM_METADATA: ClassVar[str]
             ORIENTATION: ClassVar[str]
             ORIGINAL_DOCUMENT_ID: ClassVar[str]
             OWNER_PACKAGE_NAME: ClassVar[str]
@@ -847,6 +883,7 @@ class MediaStore:
                 ALBUM_KEY: ClassVar[str]
                 ARTIST_ID: ClassVar[str]
                 ARTIST_KEY: ClassVar[str]
+                BITS_PER_SAMPLE: ClassVar[str]
                 BOOKMARK: ClassVar[str]
                 GENRE: ClassVar[str]
                 GENRE_ID: ClassVar[str]
@@ -858,6 +895,7 @@ class MediaStore:
                 IS_PODCAST: ClassVar[str]
                 IS_RECORDING: ClassVar[str]
                 IS_RINGTONE: ClassVar[str]
+                SAMPLERATE: ClassVar[str]
                 TITLE_KEY: ClassVar[str]
                 TITLE_RESOURCE_URI: ClassVar[str]
                 TRACK: ClassVar[str]
@@ -886,6 +924,7 @@ class MediaStore:
                 GENERATION_MODIFIED: ClassVar[str]
                 GENRE: ClassVar[str]
                 HEIGHT: ClassVar[str]
+                INFERRED_DATE: ClassVar[str]
                 INSTANCE_ID: ClassVar[str]
                 IS_DOWNLOAD: ClassVar[str]
                 IS_DRM: ClassVar[str]
@@ -894,6 +933,7 @@ class MediaStore:
                 IS_TRASHED: ClassVar[str]
                 MIME_TYPE: ClassVar[str]
                 NUM_TRACKS: ClassVar[str]
+                OEM_METADATA: ClassVar[str]
                 ORIENTATION: ClassVar[str]
                 ORIGINAL_DOCUMENT_ID: ClassVar[str]
                 OWNER_PACKAGE_NAME: ClassVar[str]
@@ -926,6 +966,7 @@ class MediaStore:
             ALBUM_KEY: ClassVar[str]
             ARTIST_ID: ClassVar[str]
             ARTIST_KEY: ClassVar[str]
+            BITS_PER_SAMPLE: ClassVar[str]
             BOOKMARK: ClassVar[str]
             GENRE: ClassVar[str]
             GENRE_ID: ClassVar[str]
@@ -937,6 +978,7 @@ class MediaStore:
             IS_PODCAST: ClassVar[str]
             IS_RECORDING: ClassVar[str]
             IS_RINGTONE: ClassVar[str]
+            SAMPLERATE: ClassVar[str]
             TITLE_KEY: ClassVar[str]
             TITLE_RESOURCE_URI: ClassVar[str]
             TRACK: ClassVar[str]
@@ -965,6 +1007,7 @@ class MediaStore:
             GENERATION_MODIFIED: ClassVar[str]
             GENRE: ClassVar[str]
             HEIGHT: ClassVar[str]
+            INFERRED_DATE: ClassVar[str]
             INSTANCE_ID: ClassVar[str]
             IS_DOWNLOAD: ClassVar[str]
             IS_DRM: ClassVar[str]
@@ -973,6 +1016,7 @@ class MediaStore:
             IS_TRASHED: ClassVar[str]
             MIME_TYPE: ClassVar[str]
             NUM_TRACKS: ClassVar[str]
+            OEM_METADATA: ClassVar[str]
             ORIENTATION: ClassVar[str]
             ORIGINAL_DOCUMENT_ID: ClassVar[str]
             OWNER_PACKAGE_NAME: ClassVar[str]
@@ -988,14 +1032,14 @@ class MediaStore:
             _COUNT: ClassVar[str]
             _ID: ClassVar[str]
             def __init__(self) -> None: ...
-            @staticmethod
-            def getContentUriForPath(p0: str) -> Uri: ...
-            @overload
-            @staticmethod
-            def getContentUri(p0: str) -> Uri: ...
             @overload
             @staticmethod
             def getContentUri(p0: str, p1: int) -> Uri: ...
+            @overload
+            @staticmethod
+            def getContentUri(p0: str) -> Uri: ...
+            @staticmethod
+            def getContentUriForPath(p0: str) -> Uri: ...
 
         class GenresColumns:
             NAME: ClassVar[str]
@@ -1024,6 +1068,7 @@ class MediaStore:
                 ALBUM_KEY: ClassVar[str]
                 ARTIST_ID: ClassVar[str]
                 ARTIST_KEY: ClassVar[str]
+                BITS_PER_SAMPLE: ClassVar[str]
                 BOOKMARK: ClassVar[str]
                 GENRE: ClassVar[str]
                 GENRE_ID: ClassVar[str]
@@ -1035,6 +1080,7 @@ class MediaStore:
                 IS_PODCAST: ClassVar[str]
                 IS_RECORDING: ClassVar[str]
                 IS_RINGTONE: ClassVar[str]
+                SAMPLERATE: ClassVar[str]
                 TITLE_KEY: ClassVar[str]
                 TITLE_RESOURCE_URI: ClassVar[str]
                 TRACK: ClassVar[str]
@@ -1063,6 +1109,7 @@ class MediaStore:
                 GENERATION_MODIFIED: ClassVar[str]
                 GENRE: ClassVar[str]
                 HEIGHT: ClassVar[str]
+                INFERRED_DATE: ClassVar[str]
                 INSTANCE_ID: ClassVar[str]
                 IS_DOWNLOAD: ClassVar[str]
                 IS_DRM: ClassVar[str]
@@ -1071,6 +1118,7 @@ class MediaStore:
                 IS_TRASHED: ClassVar[str]
                 MIME_TYPE: ClassVar[str]
                 NUM_TRACKS: ClassVar[str]
+                OEM_METADATA: ClassVar[str]
                 ORIENTATION: ClassVar[str]
                 ORIGINAL_DOCUMENT_ID: ClassVar[str]
                 OWNER_PACKAGE_NAME: ClassVar[str]
@@ -1094,6 +1142,7 @@ class MediaStore:
             ALBUM_KEY: ClassVar[str]
             ARTIST_ID: ClassVar[str]
             ARTIST_KEY: ClassVar[str]
+            BITS_PER_SAMPLE: ClassVar[str]
             BOOKMARK: ClassVar[str]
             GENRE: ClassVar[str]
             GENRE_ID: ClassVar[str]
@@ -1105,6 +1154,7 @@ class MediaStore:
             IS_PODCAST: ClassVar[str]
             IS_RECORDING: ClassVar[str]
             IS_RINGTONE: ClassVar[str]
+            SAMPLERATE: ClassVar[str]
             TITLE_KEY: ClassVar[str]
             TITLE_RESOURCE_URI: ClassVar[str]
             TRACK: ClassVar[str]
@@ -1133,6 +1183,7 @@ class MediaStore:
             GENERATION_MODIFIED: ClassVar[str]
             GENRE: ClassVar[str]
             HEIGHT: ClassVar[str]
+            INFERRED_DATE: ClassVar[str]
             INSTANCE_ID: ClassVar[str]
             IS_DOWNLOAD: ClassVar[str]
             IS_DRM: ClassVar[str]
@@ -1141,6 +1192,7 @@ class MediaStore:
             IS_TRASHED: ClassVar[str]
             MIME_TYPE: ClassVar[str]
             NUM_TRACKS: ClassVar[str]
+            OEM_METADATA: ClassVar[str]
             ORIENTATION: ClassVar[str]
             ORIGINAL_DOCUMENT_ID: ClassVar[str]
             OWNER_PACKAGE_NAME: ClassVar[str]

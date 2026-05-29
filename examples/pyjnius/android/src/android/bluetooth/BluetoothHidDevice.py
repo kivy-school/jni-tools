@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["BluetoothHidDevice"]
 
@@ -27,24 +27,41 @@ class BluetoothHidDevice(JavaClass, metaclass=MetaJavaClass):
     SUBCLASS2_REMOTE_CONTROL = JavaStaticField("B")
     SUBCLASS2_SENSING_DEVICE = JavaStaticField("B")
     SUBCLASS2_UNCATEGORIZED = JavaStaticField("B")
+    A2DP = JavaStaticField("I")
+    CSIP_SET_COORDINATOR = JavaStaticField("I")
+    EXTRA_PREVIOUS_STATE = JavaStaticField("Ljava/lang/String;")
+    EXTRA_STATE = JavaStaticField("Ljava/lang/String;")
+    GATT = JavaStaticField("I")
+    GATT_SERVER = JavaStaticField("I")
+    HAP_CLIENT = JavaStaticField("I")
+    HEADSET = JavaStaticField("I")
+    HEALTH = JavaStaticField("I")
+    HEARING_AID = JavaStaticField("I")
+    HID_DEVICE = JavaStaticField("I")
+    LE_AUDIO = JavaStaticField("I")
+    SAP = JavaStaticField("I")
+    STATE_CONNECTED = JavaStaticField("I")
+    STATE_CONNECTING = JavaStaticField("I")
+    STATE_DISCONNECTED = JavaStaticField("I")
+    STATE_DISCONNECTING = JavaStaticField("I")
+    connect = JavaMethod("(Landroid/bluetooth/BluetoothDevice;)Z")
+    getConnectionState = JavaMethod("(Landroid/bluetooth/BluetoothDevice;)I")
     getConnectedDevices = JavaMethod("()Ljava/util/List;")
     getDevicesMatchingConnectionStates = JavaMethod("([I)Ljava/util/List;")
-    getConnectionState = JavaMethod("(Landroid/bluetooth/BluetoothDevice;)I")
+    disconnect = JavaMethod("(Landroid/bluetooth/BluetoothDevice;)Z")
     registerApp = JavaMethod("(Landroid/bluetooth/BluetoothHidDeviceAppSdpSettings;Landroid/bluetooth/BluetoothHidDeviceAppQosSettings;Landroid/bluetooth/BluetoothHidDeviceAppQosSettings;Ljava/util/concurrent/Executor;Landroid/bluetooth/BluetoothHidDevice$Callback;)Z")
-    unregisterApp = JavaMethod("()Z")
-    sendReport = JavaMethod("(Landroid/bluetooth/BluetoothDevice;I[B)Z")
     replyReport = JavaMethod("(Landroid/bluetooth/BluetoothDevice;BB[B)Z")
     reportError = JavaMethod("(Landroid/bluetooth/BluetoothDevice;B)Z")
-    connect = JavaMethod("(Landroid/bluetooth/BluetoothDevice;)Z")
-    disconnect = JavaMethod("(Landroid/bluetooth/BluetoothDevice;)Z")
+    sendReport = JavaMethod("(Landroid/bluetooth/BluetoothDevice;I[B)Z")
+    unregisterApp = JavaMethod("()Z")
 
     class Callback(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/bluetooth/BluetoothHidDevice/Callback"
+        __javaclass__ = "android/bluetooth/BluetoothHidDevice$Callback"
         __javaconstructor__ = [("()V", False)]
         onAppStatusChanged = JavaMethod("(Landroid/bluetooth/BluetoothDevice;Z)V")
-        onConnectionStateChanged = JavaMethod("(Landroid/bluetooth/BluetoothDevice;I)V")
-        onGetReport = JavaMethod("(Landroid/bluetooth/BluetoothDevice;BBI)V")
-        onSetReport = JavaMethod("(Landroid/bluetooth/BluetoothDevice;BB[B)V")
-        onSetProtocol = JavaMethod("(Landroid/bluetooth/BluetoothDevice;B)V")
-        onInterruptData = JavaMethod("(Landroid/bluetooth/BluetoothDevice;B[B)V")
         onVirtualCableUnplug = JavaMethod("(Landroid/bluetooth/BluetoothDevice;)V")
+        onInterruptData = JavaMethod("(Landroid/bluetooth/BluetoothDevice;B[B)V")
+        onGetReport = JavaMethod("(Landroid/bluetooth/BluetoothDevice;BBI)V")
+        onSetProtocol = JavaMethod("(Landroid/bluetooth/BluetoothDevice;B)V")
+        onSetReport = JavaMethod("(Landroid/bluetooth/BluetoothDevice;BB[B)V")
+        onConnectionStateChanged = JavaMethod("(Landroid/bluetooth/BluetoothDevice;I)V")

@@ -1,11 +1,9 @@
 from typing import Any, ClassVar, overload
-from android.system.StructCmsghdr import StructCmsghdr
 from java.net.SocketAddress import SocketAddress
-from java.nio.ByteBuffer import ByteBuffer
 
 class StructMsghdr:
-    msg_control: list[StructCmsghdr]
+    msg_control: Any
     msg_flags: int
-    msg_iov: list[ByteBuffer]
+    msg_iov: Any
     msg_name: SocketAddress
-    def __init__(self, arg0: SocketAddress, arg1: list[ByteBuffer], arg2: list[StructCmsghdr], arg3: int) -> None: ...
+    def __init__(self, p0: SocketAddress, p1: Any, p2: Any, p3: int) -> None: ...

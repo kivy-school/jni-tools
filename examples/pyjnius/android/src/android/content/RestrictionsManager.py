@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["RestrictionsManager"]
 
@@ -34,11 +34,11 @@ class RestrictionsManager(JavaClass, metaclass=MetaJavaClass):
     RESULT_ERROR_NETWORK = JavaStaticField("I")
     RESULT_NO_RESPONSE = JavaStaticField("I")
     RESULT_UNKNOWN_REQUEST = JavaStaticField("I")
+    convertRestrictionsToBundle = JavaStaticMethod("(Ljava/util/List;)Landroid/os/Bundle;")
+    createLocalApprovalIntent = JavaMethod("()Landroid/content/Intent;")
     getApplicationRestrictions = JavaMethod("()Landroid/os/Bundle;")
     getApplicationRestrictionsPerAdmin = JavaMethod("()Ljava/util/List;")
-    hasRestrictionsProvider = JavaMethod("()Z")
-    requestPermission = JavaMethod("(Ljava/lang/String;Ljava/lang/String;Landroid/os/PersistableBundle;)V")
-    createLocalApprovalIntent = JavaMethod("()Landroid/content/Intent;")
-    notifyPermissionResponse = JavaMethod("(Ljava/lang/String;Landroid/os/PersistableBundle;)V")
     getManifestRestrictions = JavaMethod("(Ljava/lang/String;)Ljava/util/List;")
-    convertRestrictionsToBundle = JavaStaticMethod("(Ljava/util/List;)Landroid/os/Bundle;")
+    hasRestrictionsProvider = JavaMethod("()Z")
+    notifyPermissionResponse = JavaMethod("(Ljava/lang/String;Landroid/os/PersistableBundle;)V")
+    requestPermission = JavaMethod("(Ljava/lang/String;Ljava/lang/String;Landroid/os/PersistableBundle;)V")

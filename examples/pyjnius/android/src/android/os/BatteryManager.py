@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["BatteryManager"]
 
@@ -6,6 +6,13 @@ class BatteryManager(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/os/BatteryManager"
     ACTION_CHARGING = JavaStaticField("Ljava/lang/String;")
     ACTION_DISCHARGING = JavaStaticField("Ljava/lang/String;")
+    BATTERY_CAPACITY_LEVEL_CRITICAL = JavaStaticField("I")
+    BATTERY_CAPACITY_LEVEL_FULL = JavaStaticField("I")
+    BATTERY_CAPACITY_LEVEL_HIGH = JavaStaticField("I")
+    BATTERY_CAPACITY_LEVEL_LOW = JavaStaticField("I")
+    BATTERY_CAPACITY_LEVEL_NORMAL = JavaStaticField("I")
+    BATTERY_CAPACITY_LEVEL_UNKNOWN = JavaStaticField("I")
+    BATTERY_CAPACITY_LEVEL_UNSUPPORTED = JavaStaticField("I")
     BATTERY_HEALTH_COLD = JavaStaticField("I")
     BATTERY_HEALTH_DEAD = JavaStaticField("I")
     BATTERY_HEALTH_GOOD = JavaStaticField("I")
@@ -29,6 +36,7 @@ class BatteryManager(JavaClass, metaclass=MetaJavaClass):
     BATTERY_STATUS_NOT_CHARGING = JavaStaticField("I")
     BATTERY_STATUS_UNKNOWN = JavaStaticField("I")
     EXTRA_BATTERY_LOW = JavaStaticField("Ljava/lang/String;")
+    EXTRA_CAPACITY_LEVEL = JavaStaticField("Ljava/lang/String;")
     EXTRA_CHARGING_STATUS = JavaStaticField("Ljava/lang/String;")
     EXTRA_CYCLE_COUNT = JavaStaticField("Ljava/lang/String;")
     EXTRA_HEALTH = JavaStaticField("Ljava/lang/String;")
@@ -41,8 +49,8 @@ class BatteryManager(JavaClass, metaclass=MetaJavaClass):
     EXTRA_TECHNOLOGY = JavaStaticField("Ljava/lang/String;")
     EXTRA_TEMPERATURE = JavaStaticField("Ljava/lang/String;")
     EXTRA_VOLTAGE = JavaStaticField("Ljava/lang/String;")
-    isCharging = JavaMethod("()Z")
+    computeChargeTimeRemaining = JavaMethod("()J")
     getIntProperty = JavaMethod("(I)I")
     getLongProperty = JavaMethod("(I)J")
     getStringProperty = JavaMethod("(I)Ljava/lang/String;")
-    computeChargeTimeRemaining = JavaMethod("()J")
+    isCharging = JavaMethod("()Z")

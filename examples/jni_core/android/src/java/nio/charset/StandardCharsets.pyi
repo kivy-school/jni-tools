@@ -8,3 +8,6 @@ class StandardCharsets:
     UTF_16BE: ClassVar[Charset]
     UTF_16LE: ClassVar[Charset]
     UTF_16: ClassVar[Charset]
+    UTF_32BE: ClassVar[Charset]
+    UTF_32LE: ClassVar[Charset]
+    UTF_32: ClassVar[Charset]

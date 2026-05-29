@@ -5,7 +5,7 @@ from java.time.temporal.TemporalUnit import TemporalUnit
 class IsoFields:
     DAY_OF_QUARTER: ClassVar[TemporalField]
     QUARTER_OF_YEAR: ClassVar[TemporalField]
-    QUARTER_YEARS: ClassVar[TemporalUnit]
+    WEEK_OF_WEEK_BASED_YEAR: ClassVar[TemporalField]
     WEEK_BASED_YEAR: ClassVar[TemporalField]
     WEEK_BASED_YEARS: ClassVar[TemporalUnit]
-    WEEK_OF_WEEK_BASED_YEAR: ClassVar[TemporalField]
+    QUARTER_YEARS: ClassVar[TemporalUnit]

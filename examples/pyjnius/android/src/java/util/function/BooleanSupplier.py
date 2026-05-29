@@ -1,7 +1,7 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["BooleanSupplier"]
 
-class BooleanSupplier(JavaInterface, metaclass=MetaJavaClass):
+class BooleanSupplier(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/util/function/BooleanSupplier"
     getAsBoolean = JavaMethod("()Z")

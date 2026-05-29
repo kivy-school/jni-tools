@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SensorManager"]
 
@@ -62,30 +62,30 @@ class SensorManager(JavaClass, metaclass=MetaJavaClass):
     SENSOR_TEMPERATURE = JavaStaticField("I")
     SENSOR_TRICORDER = JavaStaticField("I")
     STANDARD_GRAVITY = JavaStaticField("F")
-    getSensors = JavaMethod("()I")
-    getSensorList = JavaMethod("(I)Ljava/util/List;")
-    getDynamicSensorList = JavaMethod("(I)Ljava/util/List;")
-    getDefaultSensor = JavaMultipleMethod([("(I)Landroid/hardware/Sensor;", False, False), ("(IZ)Landroid/hardware/Sensor;", False, False)])
-    registerListener = JavaMultipleMethod([("(Landroid/hardware/SensorListener;I)Z", False, False), ("(Landroid/hardware/SensorListener;II)Z", False, False), ("(Landroid/hardware/SensorEventListener;Landroid/hardware/Sensor;I)Z", False, False), ("(Landroid/hardware/SensorEventListener;Landroid/hardware/Sensor;II)Z", False, False), ("(Landroid/hardware/SensorEventListener;Landroid/hardware/Sensor;ILandroid/os/Handler;)Z", False, False), ("(Landroid/hardware/SensorEventListener;Landroid/hardware/Sensor;IILandroid/os/Handler;)Z", False, False)])
-    unregisterListener = JavaMultipleMethod([("(Landroid/hardware/SensorListener;)V", False, False), ("(Landroid/hardware/SensorListener;I)V", False, False), ("(Landroid/hardware/SensorEventListener;Landroid/hardware/Sensor;)V", False, False), ("(Landroid/hardware/SensorEventListener;)V", False, False)])
     flush = JavaMethod("(Landroid/hardware/SensorEventListener;)Z")
-    createDirectChannel = JavaMultipleMethod([("(Landroid/os/MemoryFile;)Landroid/hardware/SensorDirectChannel;", False, False), ("(Landroid/hardware/HardwareBuffer;)Landroid/hardware/SensorDirectChannel;", False, False)])
-    registerDynamicSensorCallback = JavaMultipleMethod([("(Landroid/hardware/SensorManager$DynamicSensorCallback;)V", False, False), ("(Landroid/hardware/SensorManager$DynamicSensorCallback;Landroid/os/Handler;)V", False, False)])
-    unregisterDynamicSensorCallback = JavaMethod("(Landroid/hardware/SensorManager$DynamicSensorCallback;)V")
-    isDynamicSensorDiscoverySupported = JavaMethod("()Z")
-    getRotationMatrix = JavaStaticMethod("([F[F[F[F)Z")
-    getInclination = JavaStaticMethod("([F)F")
-    remapCoordinateSystem = JavaStaticMethod("([FII[F)Z")
     getOrientation = JavaStaticMethod("([F[F)[F")
     getAltitude = JavaStaticMethod("(FF)F")
-    getAngleChange = JavaStaticMethod("([F[F[F)V")
-    getRotationMatrixFromVector = JavaStaticMethod("([F[F)V")
-    getQuaternionFromVector = JavaStaticMethod("([F[F)V")
-    requestTriggerSensor = JavaMethod("(Landroid/hardware/TriggerEventListener;Landroid/hardware/Sensor;)Z")
+    registerListener = JavaMultipleMethod([("(Landroid/hardware/SensorEventListener;Landroid/hardware/Sensor;IILandroid/os/Handler;)Z", False, False), ("(Landroid/hardware/SensorEventListener;Landroid/hardware/Sensor;II)Z", False, False), ("(Landroid/hardware/SensorEventListener;Landroid/hardware/Sensor;ILandroid/os/Handler;)Z", False, False), ("(Landroid/hardware/SensorEventListener;Landroid/hardware/Sensor;I)Z", False, False), ("(Landroid/hardware/SensorListener;I)Z", False, False), ("(Landroid/hardware/SensorListener;II)Z", False, False)])
+    unregisterListener = JavaMultipleMethod([("(Landroid/hardware/SensorListener;)V", False, False), ("(Landroid/hardware/SensorListener;I)V", False, False), ("(Landroid/hardware/SensorEventListener;Landroid/hardware/Sensor;)V", False, False), ("(Landroid/hardware/SensorEventListener;)V", False, False)])
+    getInclination = JavaStaticMethod("([F)F")
     cancelTriggerSensor = JavaMethod("(Landroid/hardware/TriggerEventListener;Landroid/hardware/Sensor;)Z")
+    createDirectChannel = JavaMultipleMethod([("(Landroid/hardware/HardwareBuffer;)Landroid/hardware/SensorDirectChannel;", False, False), ("(Landroid/os/MemoryFile;)Landroid/hardware/SensorDirectChannel;", False, False)])
+    getAngleChange = JavaStaticMethod("([F[F[F)V")
+    getDefaultSensor = JavaMultipleMethod([("(I)Landroid/hardware/Sensor;", False, False), ("(IZ)Landroid/hardware/Sensor;", False, False)])
+    getDynamicSensorList = JavaMethod("(I)Ljava/util/List;")
+    getQuaternionFromVector = JavaStaticMethod("([F[F)V")
+    getRotationMatrix = JavaStaticMethod("([F[F[F[F)Z")
+    getRotationMatrixFromVector = JavaStaticMethod("([F[F)V")
+    getSensorList = JavaMethod("(I)Ljava/util/List;")
+    getSensors = JavaMethod("()I")
+    isDynamicSensorDiscoverySupported = JavaMethod("()Z")
+    registerDynamicSensorCallback = JavaMultipleMethod([("(Landroid/hardware/SensorManager$DynamicSensorCallback;Landroid/os/Handler;)V", False, False), ("(Landroid/hardware/SensorManager$DynamicSensorCallback;)V", False, False)])
+    remapCoordinateSystem = JavaStaticMethod("([FII[F)Z")
+    requestTriggerSensor = JavaMethod("(Landroid/hardware/TriggerEventListener;Landroid/hardware/Sensor;)Z")
+    unregisterDynamicSensorCallback = JavaMethod("(Landroid/hardware/SensorManager$DynamicSensorCallback;)V")
 
     class DynamicSensorCallback(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/hardware/SensorManager/DynamicSensorCallback"
+        __javaclass__ = "android/hardware/SensorManager$DynamicSensorCallback"
         __javaconstructor__ = [("()V", False)]
         onDynamicSensorConnected = JavaMethod("(Landroid/hardware/Sensor;)V")
         onDynamicSensorDisconnected = JavaMethod("(Landroid/hardware/Sensor;)V")

@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["DataSpace"]
 
@@ -16,6 +16,7 @@ class DataSpace(JavaClass, metaclass=MetaJavaClass):
     DATASPACE_DISPLAY_P3 = JavaStaticField("I")
     DATASPACE_DYNAMIC_DEPTH = JavaStaticField("I")
     DATASPACE_HEIF = JavaStaticField("I")
+    DATASPACE_HEIF_ULTRAHDR = JavaStaticField("I")
     DATASPACE_JFIF = JavaStaticField("I")
     DATASPACE_JPEG_R = JavaStaticField("I")
     DATASPACE_SCRGB = JavaStaticField("I")
@@ -48,7 +49,7 @@ class DataSpace(JavaClass, metaclass=MetaJavaClass):
     TRANSFER_SRGB = JavaStaticField("I")
     TRANSFER_ST2084 = JavaStaticField("I")
     TRANSFER_UNSPECIFIED = JavaStaticField("I")
-    pack = JavaStaticMethod("(III)I")
+    getRange = JavaStaticMethod("(I)I")
     getStandard = JavaStaticMethod("(I)I")
     getTransfer = JavaStaticMethod("(I)I")
-    getRange = JavaStaticMethod("(I)I")
+    pack = JavaStaticMethod("(III)I")

@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ParcelFileDescriptor"]
 
@@ -14,46 +14,47 @@ class ParcelFileDescriptor(JavaClass, metaclass=MetaJavaClass):
     MODE_WORLD_READABLE = JavaStaticField("I")
     MODE_WORLD_WRITEABLE = JavaStaticField("I")
     MODE_WRITE_ONLY = JavaStaticField("I")
-    open = JavaMultipleMethod([("(Ljava/io/File;I)Landroid/os/ParcelFileDescriptor;", True, False), ("(Ljava/io/File;ILandroid/os/Handler;Landroid/os/ParcelFileDescriptor$OnCloseListener;)Landroid/os/ParcelFileDescriptor;", True, False)])
-    wrap = JavaStaticMethod("(Landroid/os/ParcelFileDescriptor;Landroid/os/Handler;Landroid/os/ParcelFileDescriptor$OnCloseListener;)Landroid/os/ParcelFileDescriptor;")
-    dup = JavaMultipleMethod([("(Ljava/io/FileDescriptor;)Landroid/os/ParcelFileDescriptor;", True, False), ("()Landroid/os/ParcelFileDescriptor;", False, False)])
-    fromFd = JavaStaticMethod("(I)Landroid/os/ParcelFileDescriptor;")
-    adoptFd = JavaStaticMethod("(I)Landroid/os/ParcelFileDescriptor;")
-    fromSocket = JavaStaticMethod("(Ljava/net/Socket;)Landroid/os/ParcelFileDescriptor;")
-    fromDatagramSocket = JavaStaticMethod("(Ljava/net/DatagramSocket;)Landroid/os/ParcelFileDescriptor;")
-    createPipe = JavaStaticMethod("()[Landroid/os/ParcelFileDescriptor;")
-    createReliablePipe = JavaStaticMethod("()[Landroid/os/ParcelFileDescriptor;")
-    createSocketPair = JavaStaticMethod("()[Landroid/os/ParcelFileDescriptor;")
-    createReliableSocketPair = JavaStaticMethod("()[Landroid/os/ParcelFileDescriptor;")
-    parseMode = JavaStaticMethod("(Ljava/lang/String;)I")
-    getFileDescriptor = JavaMethod("()Ljava/io/FileDescriptor;")
-    getStatSize = JavaMethod("()J")
-    getFd = JavaMethod("()I")
-    detachFd = JavaMethod("()I")
-    close = JavaMethod("()V")
-    closeWithError = JavaMethod("(Ljava/lang/String;)V")
-    canDetectErrors = JavaMethod("()Z")
-    checkError = JavaMethod("()V")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     toString = JavaMethod("()Ljava/lang/String;")
-    finalize = JavaMethod("()V")
-    describeContents = JavaMethod("()I")
+    wrap = JavaStaticMethod("(Landroid/os/ParcelFileDescriptor;Landroid/os/Handler;Landroid/os/ParcelFileDescriptor$OnCloseListener;)Landroid/os/ParcelFileDescriptor;")
+    close = JavaMethod("()V")
+    open = JavaMultipleMethod([("(Ljava/io/File;ILandroid/os/Handler;Landroid/os/ParcelFileDescriptor$OnCloseListener;)Landroid/os/ParcelFileDescriptor;", True, False), ("(Ljava/io/File;I)Landroid/os/ParcelFileDescriptor;", True, False)])
+    checkError = JavaMethod("()V")
+    dup = JavaMultipleMethod([("()Landroid/os/ParcelFileDescriptor;", False, False), ("(Ljava/io/FileDescriptor;)Landroid/os/ParcelFileDescriptor;", True, False)])
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
+    closeWithError = JavaMethod("(Ljava/lang/String;)V")
+    adoptFd = JavaStaticMethod("(I)Landroid/os/ParcelFileDescriptor;")
+    createReliablePipe = JavaStaticMethod("()[Landroid/os/ParcelFileDescriptor;")
+    canDetectErrors = JavaMethod("()Z")
+    createPipe = JavaStaticMethod("()[Landroid/os/ParcelFileDescriptor;")
+    detachFd = JavaMethod("()I")
+    createSocketPair = JavaStaticMethod("()[Landroid/os/ParcelFileDescriptor;")
+    fromDatagramSocket = JavaStaticMethod("(Ljava/net/DatagramSocket;)Landroid/os/ParcelFileDescriptor;")
+    parseMode = JavaStaticMethod("(Ljava/lang/String;)I")
+    fromFd = JavaStaticMethod("(I)Landroid/os/ParcelFileDescriptor;")
+    fromSocket = JavaStaticMethod("(Ljava/net/Socket;)Landroid/os/ParcelFileDescriptor;")
+    getStatSize = JavaMethod("()J")
+    getFileDescriptor = JavaMethod("()Ljava/io/FileDescriptor;")
+    getFd = JavaMethod("()I")
+    createReliableSocketPair = JavaStaticMethod("()[Landroid/os/ParcelFileDescriptor;")
 
-    class AutoCloseInputStream(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/os/ParcelFileDescriptor/AutoCloseInputStream"
-        __javaconstructor__ = [("(Landroid/os/ParcelFileDescriptor;)V", False)]
-        close = JavaMethod("()V")
-        read = JavaMultipleMethod([("()I", False, False), ("([B)I", False, False), ("([BII)I", False, False)])
-
-    class AutoCloseOutputStream(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/os/ParcelFileDescriptor/AutoCloseOutputStream"
-        __javaconstructor__ = [("(Landroid/os/ParcelFileDescriptor;)V", False)]
-        close = JavaMethod("()V")
+    class OnCloseListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/os/ParcelFileDescriptor$OnCloseListener"
+        onClose = JavaMethod("(Ljava/io/IOException;)V")
 
     class FileDescriptorDetachedException(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/os/ParcelFileDescriptor/FileDescriptorDetachedException"
+        __javaclass__ = "android/os/ParcelFileDescriptor$FileDescriptorDetachedException"
         __javaconstructor__ = [("()V", False)]
 
-    class OnCloseListener(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/os/ParcelFileDescriptor/OnCloseListener"
-        onClose = JavaMethod("(Ljava/io/IOException;)V")
+    class AutoCloseOutputStream(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/os/ParcelFileDescriptor$AutoCloseOutputStream"
+        __javaconstructor__ = [("(Landroid/os/ParcelFileDescriptor;)V", False)]
+        close = JavaMethod("()V")
+
+    class AutoCloseInputStream(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/os/ParcelFileDescriptor$AutoCloseInputStream"
+        __javaconstructor__ = [("(Landroid/os/ParcelFileDescriptor;)V", False)]
+        close = JavaMethod("()V")
+        read = JavaMultipleMethod([("([B)I", False, False), ("([BII)I", False, False), ("()I", False, False)])

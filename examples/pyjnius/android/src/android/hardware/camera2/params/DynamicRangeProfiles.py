@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["DynamicRangeProfiles"]
 
@@ -18,6 +18,6 @@ class DynamicRangeProfiles(JavaClass, metaclass=MetaJavaClass):
     HLG10 = JavaStaticField("J")
     PUBLIC_MAX = JavaStaticField("J")
     STANDARD = JavaStaticField("J")
-    getSupportedProfiles = JavaMethod("()Ljava/util/Set;")
     getProfileCaptureRequestConstraints = JavaMethod("(J)Ljava/util/Set;")
+    getSupportedProfiles = JavaMethod("()Ljava/util/Set;")
     isExtraLatencyPresent = JavaMethod("(J)Z")

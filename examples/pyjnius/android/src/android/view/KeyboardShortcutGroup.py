@@ -1,13 +1,15 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["KeyboardShortcutGroup"]
 
 class KeyboardShortcutGroup(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/view/KeyboardShortcutGroup"
-    __javaconstructor__ = [("(Ljava/lang/CharSequence;Ljava/util/List;)V", False), ("(Ljava/lang/CharSequence;)V", False)]
+    __javaconstructor__ = [("(Ljava/lang/CharSequence;)V", False), ("(Ljava/lang/CharSequence;Ljava/util/List;)V", False)]
     CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
-    getLabel = JavaMethod("()Ljava/lang/CharSequence;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getItems = JavaMethod("()Ljava/util/List;")
-    addItem = JavaMethod("(Landroid/view/KeyboardShortcutInfo;)V")
-    describeContents = JavaMethod("()I")
+    getLabel = JavaMethod("()Ljava/lang/CharSequence;")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
+    addItem = JavaMethod("(Landroid/view/KeyboardShortcutInfo;)V")

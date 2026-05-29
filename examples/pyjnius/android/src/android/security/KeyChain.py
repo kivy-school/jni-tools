@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["KeyChain"]
 
@@ -15,13 +15,13 @@ class KeyChain(JavaClass, metaclass=MetaJavaClass):
     EXTRA_NAME = JavaStaticField("Ljava/lang/String;")
     EXTRA_PKCS12 = JavaStaticField("Ljava/lang/String;")
     KEY_ALIAS_SELECTION_DENIED = JavaStaticField("Ljava/lang/String;")
+    choosePrivateKeyAlias = JavaMultipleMethod([("(Landroid/app/Activity;Landroid/security/KeyChainAliasCallback;[Ljava/lang/String;[Ljava/security/Principal;Ljava/lang/String;ILjava/lang/String;)V", True, False), ("(Landroid/app/Activity;Landroid/security/KeyChainAliasCallback;[Ljava/lang/String;[Ljava/security/Principal;Landroid/net/Uri;Ljava/lang/String;)V", True, False)])
     createInstallIntent = JavaStaticMethod("()Landroid/content/Intent;")
     createManageCredentialsIntent = JavaStaticMethod("(Landroid/security/AppUriAuthenticationPolicy;)Landroid/content/Intent;")
-    choosePrivateKeyAlias = JavaMultipleMethod([("(Landroid/app/Activity;Landroid/security/KeyChainAliasCallback;[Ljava/lang/String;[Ljava/security/Principal;Ljava/lang/String;ILjava/lang/String;)V", True, False), ("(Landroid/app/Activity;Landroid/security/KeyChainAliasCallback;[Ljava/lang/String;[Ljava/security/Principal;Landroid/net/Uri;Ljava/lang/String;)V", True, False)])
-    isCredentialManagementApp = JavaStaticMethod("(Landroid/content/Context;)Z")
     getCredentialManagementAppPolicy = JavaStaticMethod("(Landroid/content/Context;)Landroid/security/AppUriAuthenticationPolicy;")
-    removeCredentialManagementApp = JavaStaticMethod("(Landroid/content/Context;)Z")
     getPrivateKey = JavaStaticMethod("(Landroid/content/Context;Ljava/lang/String;)Ljava/security/PrivateKey;")
-    getCertificateChain = JavaStaticMethod("(Landroid/content/Context;Ljava/lang/String;)[Ljava/security/cert/X509Certificate;")
-    isKeyAlgorithmSupported = JavaStaticMethod("(Ljava/lang/String;)Z")
     isBoundKeyAlgorithm = JavaStaticMethod("(Ljava/lang/String;)Z")
+    isCredentialManagementApp = JavaStaticMethod("(Landroid/content/Context;)Z")
+    isKeyAlgorithmSupported = JavaStaticMethod("(Ljava/lang/String;)Z")
+    removeCredentialManagementApp = JavaStaticMethod("(Landroid/content/Context;)Z")
+    getCertificateChain = JavaStaticMethod("(Landroid/content/Context;Ljava/lang/String;)[Ljava/security/cert/X509Certificate;")

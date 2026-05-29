@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["PlaybackErrorEvent"]
 
@@ -41,22 +41,24 @@ class PlaybackErrorEvent(JavaClass, metaclass=MetaJavaClass):
     ERROR_PLAYER_REMOTE = JavaStaticField("I")
     ERROR_RUNTIME = JavaStaticField("I")
     ERROR_UNKNOWN = JavaStaticField("I")
-    getErrorCode = JavaMethod("()I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getSubErrorCode = JavaMethod("()I")
-    getTimeSinceCreatedMillis = JavaMethod("()J")
     getMetricsBundle = JavaMethod("()Landroid/os/Bundle;")
-    toString = JavaMethod("()Ljava/lang/String;")
+    getTimeSinceCreatedMillis = JavaMethod("()J")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
     hashCode = JavaMethod("()I")
+    getErrorCode = JavaMethod("()I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
     describeContents = JavaMethod("()I")
 
     class Builder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/metrics/PlaybackErrorEvent/Builder"
+        __javaclass__ = "android/media/metrics/PlaybackErrorEvent$Builder"
         __javaconstructor__ = [("()V", False)]
-        setException = JavaMethod("(Ljava/lang/Exception;)Landroid/media/metrics/PlaybackErrorEvent$Builder;")
         setErrorCode = JavaMethod("(I)Landroid/media/metrics/PlaybackErrorEvent$Builder;")
         setSubErrorCode = JavaMethod("(I)Landroid/media/metrics/PlaybackErrorEvent$Builder;")
         setTimeSinceCreatedMillis = JavaMethod("(J)Landroid/media/metrics/PlaybackErrorEvent$Builder;")
         setMetricsBundle = JavaMethod("(Landroid/os/Bundle;)Landroid/media/metrics/PlaybackErrorEvent$Builder;")
+        setException = JavaMethod("(Ljava/lang/Exception;)Landroid/media/metrics/PlaybackErrorEvent$Builder;")
         build = JavaMethod("()Landroid/media/metrics/PlaybackErrorEvent;")

@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ApplicationInfo"]
 
@@ -92,24 +92,35 @@ class ApplicationInfo(JavaClass, metaclass=MetaJavaClass):
     theme = JavaField("I")
     uiOptions = JavaField("I")
     uid = JavaField("I")
-    getCategoryTitle = JavaStaticMethod("(Landroid/content/Context;I)Ljava/lang/CharSequence;")
-    dump = JavaMethod("(Landroid/util/Printer;Ljava/lang/String;)V")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    banner = JavaField("I")
+    icon = JavaField("I")
+    isArchived = JavaField("Z")
+    labelRes = JavaField("I")
+    logo = JavaField("I")
+    metaData = JavaField("Landroid/os/Bundle;")
+    name = JavaField("Ljava/lang/String;")
+    nonLocalizedLabel = JavaField("Ljava/lang/CharSequence;")
+    packageName = JavaField("Ljava/lang/String;")
     toString = JavaMethod("()Ljava/lang/String;")
-    describeContents = JavaMethod("()I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
-    loadDescription = JavaMethod("(Landroid/content/pm/PackageManager;)Ljava/lang/CharSequence;")
-    getRequestRawExternalStorageAccess = JavaMethod("()I")
-    isVirtualPreload = JavaMethod("()Z")
-    isProfileableByShell = JavaMethod("()Z")
-    isProfileable = JavaMethod("()Z")
+    dump = JavaMethod("(Landroid/util/Printer;Ljava/lang/String;)V")
+    getKnownActivityEmbeddingCerts = JavaMethod("()Ljava/util/Set;")
     areAttributionsUserVisible = JavaMethod("()Z")
-    isResourceOverlay = JavaMethod("()Z")
+    getCategoryTitle = JavaStaticMethod("(Landroid/content/Context;I)Ljava/lang/CharSequence;")
     getGwpAsanMode = JavaMethod("()I")
     getMemtagMode = JavaMethod("()I")
     getNativeHeapZeroInitialized = JavaMethod("()I")
-    getKnownActivityEmbeddingCerts = JavaMethod("()Ljava/util/Set;")
+    getRequestRawExternalStorageAccess = JavaMethod("()I")
+    isProfileable = JavaMethod("()Z")
+    isProfileableByShell = JavaMethod("()Z")
+    isResourceOverlay = JavaMethod("()Z")
+    isVirtualPreload = JavaMethod("()Z")
+    loadDescription = JavaMethod("(Landroid/content/pm/PackageManager;)Ljava/lang/CharSequence;")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
 
     class DisplayNameComparator(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/content/pm/ApplicationInfo/DisplayNameComparator"
+        __javaclass__ = "android/content/pm/ApplicationInfo$DisplayNameComparator"
         __javaconstructor__ = [("(Landroid/content/pm/PackageManager;)V", False)]
-        compare = JavaMethod("(Landroid/content/pm/ApplicationInfo;Landroid/content/pm/ApplicationInfo;)I")
+        compare = JavaMultipleMethod([("(Landroid/content/pm/ApplicationInfo;Landroid/content/pm/ApplicationInfo;)I", False, False), ("(Ljava/lang/Object;Ljava/lang/Object;)I", False, False)])

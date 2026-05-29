@@ -1,34 +1,35 @@
 from typing import Any, ClassVar, overload
 from android.os.Parcel import Parcel
 
-# Forward declarations for Java types we do not wrap.
-# Bound as empty classes so annotations resolve in the IDE.
-class Creator:
-    """Forward declaration for ``android.os.Parcelable.Creator``.
-
-    This Java type is referenced by the wrapper but is not itself
-    wrapped by pyjnius-wrap. At runtime pyjnius will hand you a
-    live ``autoclass('android.os.Parcelable.Creator')`` proxy; this empty class exists
-    purely so static type checkers and IDEs can resolve the name.
-
-    See: https://developer.android.com/reference/android/os/Parcelable/Creator
-    """
-    ...
-
 class BluetoothClass:
-    CREATOR: ClassVar[Creator]
+    CREATOR: ClassVar[Any]
     PROFILE_A2DP: ClassVar[int]
     PROFILE_HEADSET: ClassVar[int]
     PROFILE_HID: ClassVar[int]
-    def equals(self, arg0: Any) -> bool: ...
-    def hashCode(self) -> int: ...
-    def toString(self) -> str: ...
-    def describeContents(self) -> int: ...
-    def writeToParcel(self, arg0: Parcel, arg1: int) -> None: ...
-    def hasService(self, arg0: int) -> bool: ...
+    CONTENTS_FILE_DESCRIPTOR: ClassVar[int]
+    PARCELABLE_WRITE_RETURN_VALUE: ClassVar[int]
+    def doesClassMatch(self, p0: int) -> bool: ...
     def getMajorDeviceClass(self) -> int: ...
+    def hasService(self, p0: int) -> bool: ...
+    def equals(self, p0: Any) -> bool: ...
+    def toString(self) -> str: ...
+    def hashCode(self) -> int: ...
     def getDeviceClass(self) -> int: ...
-    def doesClassMatch(self, arg0: int) -> bool: ...
+    def writeToParcel(self, p0: Parcel, p1: int) -> None: ...
+    def describeContents(self) -> int: ...
+
+    class Service:
+        AUDIO: ClassVar[int]
+        CAPTURE: ClassVar[int]
+        INFORMATION: ClassVar[int]
+        LE_AUDIO: ClassVar[int]
+        LIMITED_DISCOVERABILITY: ClassVar[int]
+        NETWORKING: ClassVar[int]
+        OBJECT_TRANSFER: ClassVar[int]
+        POSITIONING: ClassVar[int]
+        RENDER: ClassVar[int]
+        TELEPHONY: ClassVar[int]
+        def __init__(self) -> None: ...
 
     class Device:
         AUDIO_VIDEO_CAMCORDER: ClassVar[int]
@@ -100,16 +101,3 @@ class BluetoothClass:
             UNCATEGORIZED: ClassVar[int]
             WEARABLE: ClassVar[int]
             def __init__(self) -> None: ...
-
-    class Service:
-        AUDIO: ClassVar[int]
-        CAPTURE: ClassVar[int]
-        INFORMATION: ClassVar[int]
-        LE_AUDIO: ClassVar[int]
-        LIMITED_DISCOVERABILITY: ClassVar[int]
-        NETWORKING: ClassVar[int]
-        OBJECT_TRANSFER: ClassVar[int]
-        POSITIONING: ClassVar[int]
-        RENDER: ClassVar[int]
-        TELEPHONY: ClassVar[int]
-        def __init__(self) -> None: ...

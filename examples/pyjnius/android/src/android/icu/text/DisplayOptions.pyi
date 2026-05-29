@@ -1,51 +1,96 @@
 from typing import Any, ClassVar, overload
 
 class DisplayOptions:
+    def copyToBuilder(self) -> Any: ...
+    def getCapitalization(self) -> Any: ...
+    def getNounClass(self) -> Any: ...
+    def getGrammaticalCase(self) -> Any: ...
+    def getDisplayLength(self) -> Any: ...
+    def getNameStyle(self) -> Any: ...
+    def getPluralCategory(self) -> Any: ...
+    def getSubstituteHandling(self) -> Any: ...
     @staticmethod
-    def builder() -> "Builder": ...
-    def copyToBuilder(self) -> "Builder": ...
-    def getGrammaticalCase(self) -> "GrammaticalCase": ...
-    def getNounClass(self) -> "NounClass": ...
-    def getPluralCategory(self) -> "PluralCategory": ...
-    def getCapitalization(self) -> "Capitalization": ...
-    def getNameStyle(self) -> "NameStyle": ...
-    def getDisplayLength(self) -> "DisplayLength": ...
-    def getSubstituteHandling(self) -> "SubstituteHandling": ...
+    def builder() -> Any: ...
 
-    class Builder:
-        def setGrammaticalCase(self, arg0: "GrammaticalCase") -> "Builder": ...
-        def setNounClass(self, arg0: "NounClass") -> "Builder": ...
-        def setPluralCategory(self, arg0: "PluralCategory") -> "Builder": ...
-        def setCapitalization(self, arg0: "Capitalization") -> "Builder": ...
-        def setNameStyle(self, arg0: "NameStyle") -> "Builder": ...
-        def setDisplayLength(self, arg0: "DisplayLength") -> "Builder": ...
-        def setSubstituteHandling(self, arg0: "SubstituteHandling") -> "Builder": ...
-        def build(self) -> "DisplayOptions": ...
-
-    class Capitalization:
-        UNDEFINED: ClassVar["Capitalization"]
-        BEGINNING_OF_SENTENCE: ClassVar["Capitalization"]
-        MIDDLE_OF_SENTENCE: ClassVar["Capitalization"]
-        STANDALONE: ClassVar["Capitalization"]
-        UI_LIST_OR_MENU: ClassVar["Capitalization"]
+    class SubstituteHandling:
+        NO_SUBSTITUTE: ClassVar["SubstituteHandling"]
+        SUBSTITUTE: ClassVar["SubstituteHandling"]
+        UNDEFINED: ClassVar["SubstituteHandling"]
+        NO_SUBSTITUTE: ClassVar[Any]
+        SUBSTITUTE: ClassVar[Any]
+        UNDEFINED: ClassVar[Any]
         VALUES: ClassVar[list]
         @staticmethod
-        def values() -> list["Capitalization"]: ...
+        def values() -> Any: ...
         @staticmethod
-        def valueOf(arg0: str) -> "Capitalization": ...
+        def valueOf(p0: str) -> Any: ...
 
-    class DisplayLength:
-        UNDEFINED: ClassVar["DisplayLength"]
-        LENGTH_FULL: ClassVar["DisplayLength"]
-        LENGTH_SHORT: ClassVar["DisplayLength"]
+    class PluralCategory:
+        FEW: ClassVar["PluralCategory"]
+        MANY: ClassVar["PluralCategory"]
+        ONE: ClassVar["PluralCategory"]
+        OTHER: ClassVar["PluralCategory"]
+        TWO: ClassVar["PluralCategory"]
+        UNDEFINED: ClassVar["PluralCategory"]
+        ZERO: ClassVar["PluralCategory"]
+        FEW: ClassVar[Any]
+        MANY: ClassVar[Any]
+        ONE: ClassVar[Any]
+        OTHER: ClassVar[Any]
+        TWO: ClassVar[Any]
+        UNDEFINED: ClassVar[Any]
+        ZERO: ClassVar[Any]
         VALUES: ClassVar[list]
         @staticmethod
-        def values() -> list["DisplayLength"]: ...
+        def fromIdentifier(p0: str) -> Any: ...
         @staticmethod
-        def valueOf(arg0: str) -> "DisplayLength": ...
+        def values() -> Any: ...
+        @staticmethod
+        def valueOf(p0: str) -> Any: ...
+        def getIdentifier(self) -> str: ...
+
+    class NounClass:
+        ANIMATE: ClassVar["NounClass"]
+        COMMON: ClassVar["NounClass"]
+        FEMININE: ClassVar["NounClass"]
+        INANIMATE: ClassVar["NounClass"]
+        MASCULINE: ClassVar["NounClass"]
+        NEUTER: ClassVar["NounClass"]
+        OTHER: ClassVar["NounClass"]
+        PERSONAL: ClassVar["NounClass"]
+        UNDEFINED: ClassVar["NounClass"]
+        ANIMATE: ClassVar[Any]
+        COMMON: ClassVar[Any]
+        FEMININE: ClassVar[Any]
+        INANIMATE: ClassVar[Any]
+        MASCULINE: ClassVar[Any]
+        NEUTER: ClassVar[Any]
+        OTHER: ClassVar[Any]
+        PERSONAL: ClassVar[Any]
+        UNDEFINED: ClassVar[Any]
+        VALUES: ClassVar[list]
+        @staticmethod
+        def fromIdentifier(p0: str) -> Any: ...
+        @staticmethod
+        def values() -> Any: ...
+        @staticmethod
+        def valueOf(p0: str) -> Any: ...
+        def getIdentifier(self) -> str: ...
+
+    class NameStyle:
+        DIALECT_NAMES: ClassVar["NameStyle"]
+        STANDARD_NAMES: ClassVar["NameStyle"]
+        UNDEFINED: ClassVar["NameStyle"]
+        DIALECT_NAMES: ClassVar[Any]
+        STANDARD_NAMES: ClassVar[Any]
+        UNDEFINED: ClassVar[Any]
+        VALUES: ClassVar[list]
+        @staticmethod
+        def values() -> Any: ...
+        @staticmethod
+        def valueOf(p0: str) -> Any: ...
 
     class GrammaticalCase:
-        UNDEFINED: ClassVar["GrammaticalCase"]
         ABLATIVE: ClassVar["GrammaticalCase"]
         ACCUSATIVE: ClassVar["GrammaticalCase"]
         COMITATIVE: ClassVar["GrammaticalCase"]
@@ -59,68 +104,68 @@ class DisplayOptions:
         OBLIQUE: ClassVar["GrammaticalCase"]
         PREPOSITIONAL: ClassVar["GrammaticalCase"]
         SOCIATIVE: ClassVar["GrammaticalCase"]
+        UNDEFINED: ClassVar["GrammaticalCase"]
         VOCATIVE: ClassVar["GrammaticalCase"]
+        ABLATIVE: ClassVar[Any]
+        ACCUSATIVE: ClassVar[Any]
+        COMITATIVE: ClassVar[Any]
+        DATIVE: ClassVar[Any]
+        ERGATIVE: ClassVar[Any]
+        GENITIVE: ClassVar[Any]
+        INSTRUMENTAL: ClassVar[Any]
+        LOCATIVE: ClassVar[Any]
+        LOCATIVE_COPULATIVE: ClassVar[Any]
+        NOMINATIVE: ClassVar[Any]
+        OBLIQUE: ClassVar[Any]
+        PREPOSITIONAL: ClassVar[Any]
+        SOCIATIVE: ClassVar[Any]
+        UNDEFINED: ClassVar[Any]
+        VOCATIVE: ClassVar[Any]
         VALUES: ClassVar[list]
         @staticmethod
-        def values() -> list["GrammaticalCase"]: ...
+        def fromIdentifier(p0: str) -> Any: ...
         @staticmethod
-        def valueOf(arg0: str) -> "GrammaticalCase": ...
+        def values() -> Any: ...
+        @staticmethod
+        def valueOf(p0: str) -> Any: ...
         def getIdentifier(self) -> str: ...
-        @staticmethod
-        def fromIdentifier(arg0: str) -> "GrammaticalCase": ...
 
-    class NameStyle:
-        UNDEFINED: ClassVar["NameStyle"]
-        STANDARD_NAMES: ClassVar["NameStyle"]
-        DIALECT_NAMES: ClassVar["NameStyle"]
+    class DisplayLength:
+        LENGTH_FULL: ClassVar["DisplayLength"]
+        LENGTH_SHORT: ClassVar["DisplayLength"]
+        UNDEFINED: ClassVar["DisplayLength"]
+        LENGTH_FULL: ClassVar[Any]
+        LENGTH_SHORT: ClassVar[Any]
+        UNDEFINED: ClassVar[Any]
         VALUES: ClassVar[list]
         @staticmethod
-        def values() -> list["NameStyle"]: ...
+        def values() -> Any: ...
         @staticmethod
-        def valueOf(arg0: str) -> "NameStyle": ...
+        def valueOf(p0: str) -> Any: ...
 
-    class NounClass:
-        UNDEFINED: ClassVar["NounClass"]
-        OTHER: ClassVar["NounClass"]
-        NEUTER: ClassVar["NounClass"]
-        FEMININE: ClassVar["NounClass"]
-        MASCULINE: ClassVar["NounClass"]
-        ANIMATE: ClassVar["NounClass"]
-        INANIMATE: ClassVar["NounClass"]
-        PERSONAL: ClassVar["NounClass"]
-        COMMON: ClassVar["NounClass"]
+    class Capitalization:
+        BEGINNING_OF_SENTENCE: ClassVar["Capitalization"]
+        MIDDLE_OF_SENTENCE: ClassVar["Capitalization"]
+        STANDALONE: ClassVar["Capitalization"]
+        UI_LIST_OR_MENU: ClassVar["Capitalization"]
+        UNDEFINED: ClassVar["Capitalization"]
+        BEGINNING_OF_SENTENCE: ClassVar[Any]
+        MIDDLE_OF_SENTENCE: ClassVar[Any]
+        STANDALONE: ClassVar[Any]
+        UI_LIST_OR_MENU: ClassVar[Any]
+        UNDEFINED: ClassVar[Any]
         VALUES: ClassVar[list]
         @staticmethod
-        def values() -> list["NounClass"]: ...
+        def values() -> Any: ...
         @staticmethod
-        def valueOf(arg0: str) -> "NounClass": ...
-        def getIdentifier(self) -> str: ...
-        @staticmethod
-        def fromIdentifier(arg0: str) -> "NounClass": ...
+        def valueOf(p0: str) -> Any: ...
 
-    class PluralCategory:
-        UNDEFINED: ClassVar["PluralCategory"]
-        ZERO: ClassVar["PluralCategory"]
-        ONE: ClassVar["PluralCategory"]
-        TWO: ClassVar["PluralCategory"]
-        FEW: ClassVar["PluralCategory"]
-        MANY: ClassVar["PluralCategory"]
-        OTHER: ClassVar["PluralCategory"]
-        VALUES: ClassVar[list]
-        @staticmethod
-        def values() -> list["PluralCategory"]: ...
-        @staticmethod
-        def valueOf(arg0: str) -> "PluralCategory": ...
-        def getIdentifier(self) -> str: ...
-        @staticmethod
-        def fromIdentifier(arg0: str) -> "PluralCategory": ...
-
-    class SubstituteHandling:
-        UNDEFINED: ClassVar["SubstituteHandling"]
-        SUBSTITUTE: ClassVar["SubstituteHandling"]
-        NO_SUBSTITUTE: ClassVar["SubstituteHandling"]
-        VALUES: ClassVar[list]
-        @staticmethod
-        def values() -> list["SubstituteHandling"]: ...
-        @staticmethod
-        def valueOf(arg0: str) -> "SubstituteHandling": ...
+    class Builder:
+        def setCapitalization(self, p0: Any) -> Any: ...
+        def setDisplayLength(self, p0: Any) -> Any: ...
+        def setGrammaticalCase(self, p0: Any) -> Any: ...
+        def setNameStyle(self, p0: Any) -> Any: ...
+        def setNounClass(self, p0: Any) -> Any: ...
+        def setPluralCategory(self, p0: Any) -> Any: ...
+        def setSubstituteHandling(self, p0: Any) -> Any: ...
+        def build(self) -> "DisplayOptions": ...

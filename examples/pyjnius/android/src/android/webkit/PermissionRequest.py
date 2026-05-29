@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["PermissionRequest"]
 
@@ -9,7 +9,7 @@ class PermissionRequest(JavaClass, metaclass=MetaJavaClass):
     RESOURCE_MIDI_SYSEX = JavaStaticField("Ljava/lang/String;")
     RESOURCE_PROTECTED_MEDIA_ID = JavaStaticField("Ljava/lang/String;")
     RESOURCE_VIDEO_CAPTURE = JavaStaticField("Ljava/lang/String;")
-    getOrigin = JavaMethod("()Landroid/net/Uri;")
     getResources = JavaMethod("()[Ljava/lang/String;")
     grant = JavaMethod("([Ljava/lang/String;)V")
+    getOrigin = JavaMethod("()Landroid/net/Uri;")
     deny = JavaMethod("()V")

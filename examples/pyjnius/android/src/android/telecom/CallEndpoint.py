@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["CallEndpoint"]
 
@@ -12,11 +12,13 @@ class CallEndpoint(JavaClass, metaclass=MetaJavaClass):
     TYPE_STREAMING = JavaStaticField("I")
     TYPE_UNKNOWN = JavaStaticField("I")
     TYPE_WIRED_HEADSET = JavaStaticField("I")
-    equals = JavaMethod("(Ljava/lang/Object;)Z")
-    hashCode = JavaMethod("()I")
-    toString = JavaMethod("()Ljava/lang/String;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getEndpointName = JavaMethod("()Ljava/lang/CharSequence;")
     getEndpointType = JavaMethod("()I")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
     getIdentifier = JavaMethod("()Landroid/os/ParcelUuid;")
-    describeContents = JavaMethod("()I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

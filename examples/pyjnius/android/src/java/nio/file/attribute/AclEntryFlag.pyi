@@ -5,7 +5,11 @@ class AclEntryFlag:
     DIRECTORY_INHERIT: ClassVar["AclEntryFlag"]
     NO_PROPAGATE_INHERIT: ClassVar["AclEntryFlag"]
     INHERIT_ONLY: ClassVar["AclEntryFlag"]
+    FILE_INHERIT: ClassVar["AclEntryFlag"]
+    DIRECTORY_INHERIT: ClassVar["AclEntryFlag"]
+    NO_PROPAGATE_INHERIT: ClassVar["AclEntryFlag"]
+    INHERIT_ONLY: ClassVar["AclEntryFlag"]
     @staticmethod
-    def values() -> list["AclEntryFlag"]: ...
+    def values() -> Any: ...
     @staticmethod
-    def valueOf(arg0: str) -> "AclEntryFlag": ...
+    def valueOf(p0: str) -> "AclEntryFlag": ...

@@ -33,10 +33,10 @@ class CompactDecimalFormat:
     def parse(self, p0: str, p1: ParsePosition) -> float: ...
 
     class CompactStyle:
-        SHORT: ClassVar["CompactStyle"]
         LONG: ClassVar["CompactStyle"]
-        SHORT: ClassVar[Any]
+        SHORT: ClassVar["CompactStyle"]
         LONG: ClassVar[Any]
+        SHORT: ClassVar[Any]
         @staticmethod
         def values() -> Any: ...
         @staticmethod

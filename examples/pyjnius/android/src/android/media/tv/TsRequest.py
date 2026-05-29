@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["TsRequest"]
 
@@ -6,6 +6,13 @@ class TsRequest(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/media/tv/TsRequest"
     __javaconstructor__ = [("(III)V", False)]
     CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    REQUEST_OPTION_AUTO_UPDATE = JavaStaticField("I")
+    REQUEST_OPTION_ONESHOT = JavaStaticField("I")
+    REQUEST_OPTION_ONEWAY = JavaStaticField("I")
+    REQUEST_OPTION_REPEAT = JavaStaticField("I")
     getTsPid = JavaMethod("()I")
-    describeContents = JavaMethod("()I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

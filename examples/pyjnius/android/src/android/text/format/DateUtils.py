@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["DateUtils"]
 
@@ -49,13 +49,13 @@ class DateUtils(JavaClass, metaclass=MetaJavaClass):
     YEAR_IN_MILLIS = JavaStaticField("J")
     sameMonthTable = JavaStaticField("[I")
     sameYearTable = JavaStaticField("[I")
-    getDayOfWeekString = JavaStaticMethod("(II)Ljava/lang/String;")
-    getAMPMString = JavaStaticMethod("(I)Ljava/lang/String;")
-    getMonthString = JavaStaticMethod("(II)Ljava/lang/String;")
-    getRelativeTimeSpanString = JavaMultipleMethod([("(J)Ljava/lang/CharSequence;", True, False), ("(JJJ)Ljava/lang/CharSequence;", True, False), ("(JJJI)Ljava/lang/CharSequence;", True, False), ("(Landroid/content/Context;JZ)Ljava/lang/CharSequence;", True, False), ("(Landroid/content/Context;J)Ljava/lang/CharSequence;", True, False)])
-    getRelativeDateTimeString = JavaStaticMethod("(Landroid/content/Context;JJJI)Ljava/lang/CharSequence;")
-    formatElapsedTime = JavaMultipleMethod([("(J)Ljava/lang/String;", True, False), ("(Ljava/lang/StringBuilder;J)Ljava/lang/String;", True, False)])
-    formatSameDayTime = JavaStaticMethod("(JJII)Ljava/lang/CharSequence;")
-    isToday = JavaStaticMethod("(J)Z")
-    formatDateRange = JavaMultipleMethod([("(Landroid/content/Context;JJI)Ljava/lang/String;", True, False), ("(Landroid/content/Context;Ljava/util/Formatter;JJI)Ljava/util/Formatter;", True, False), ("(Landroid/content/Context;Ljava/util/Formatter;JJILjava/lang/String;)Ljava/util/Formatter;", True, False)])
+    formatDateRange = JavaMultipleMethod([("(Landroid/content/Context;Ljava/util/Formatter;JJILjava/lang/String;)Ljava/util/Formatter;", True, False), ("(Landroid/content/Context;Ljava/util/Formatter;JJI)Ljava/util/Formatter;", True, False), ("(Landroid/content/Context;JJI)Ljava/lang/String;", True, False)])
     formatDateTime = JavaStaticMethod("(Landroid/content/Context;JI)Ljava/lang/String;")
+    formatElapsedTime = JavaMultipleMethod([("(Ljava/lang/StringBuilder;J)Ljava/lang/String;", True, False), ("(J)Ljava/lang/String;", True, False)])
+    formatSameDayTime = JavaStaticMethod("(JJII)Ljava/lang/CharSequence;")
+    getAMPMString = JavaStaticMethod("(I)Ljava/lang/String;")
+    getDayOfWeekString = JavaStaticMethod("(II)Ljava/lang/String;")
+    getMonthString = JavaStaticMethod("(II)Ljava/lang/String;")
+    getRelativeDateTimeString = JavaStaticMethod("(Landroid/content/Context;JJJI)Ljava/lang/CharSequence;")
+    getRelativeTimeSpanString = JavaMultipleMethod([("(J)Ljava/lang/CharSequence;", True, False), ("(JJJI)Ljava/lang/CharSequence;", True, False), ("(JJJ)Ljava/lang/CharSequence;", True, False), ("(Landroid/content/Context;J)Ljava/lang/CharSequence;", True, False), ("(Landroid/content/Context;JZ)Ljava/lang/CharSequence;", True, False)])
+    isToday = JavaStaticMethod("(J)Z")

@@ -2,17 +2,17 @@ from typing import Any, ClassVar, overload
 
 class MediaCasException:
 
-    class DeniedByServerException:
-        ...
-
-    class InsufficientResourceException:
-        ...
-
-    class NotProvisionedException:
+    class UnsupportedCasException:
         ...
 
     class ResourceBusyException:
         ...
 
-    class UnsupportedCasException:
+    class NotProvisionedException:
+        ...
+
+    class InsufficientResourceException:
+        ...
+
+    class DeniedByServerException:
         ...

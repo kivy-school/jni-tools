@@ -1,8 +1,8 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["CertSelector"]
 
-class CertSelector(JavaInterface, metaclass=MetaJavaClass):
+class CertSelector(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/security/cert/CertSelector"
-    match = JavaMethod("(Ljava/security/cert/Certificate;)Z")
     clone = JavaMethod("()Ljava/lang/Object;")
+    match = JavaMethod("(Ljava/security/cert/Certificate;)Z")

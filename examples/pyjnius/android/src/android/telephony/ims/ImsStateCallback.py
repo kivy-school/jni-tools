@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ImsStateCallback"]
 
@@ -11,6 +11,6 @@ class ImsStateCallback(JavaClass, metaclass=MetaJavaClass):
     REASON_SUBSCRIPTION_INACTIVE = JavaStaticField("I")
     REASON_UNKNOWN_PERMANENT_ERROR = JavaStaticField("I")
     REASON_UNKNOWN_TEMPORARY_ERROR = JavaStaticField("I")
-    onUnavailable = JavaMethod("(I)V")
     onAvailable = JavaMethod("()V")
+    onUnavailable = JavaMethod("(I)V")
     onError = JavaMethod("()V")

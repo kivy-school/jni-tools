@@ -6,6 +6,7 @@ class FrameMetrics:
     DEADLINE: ClassVar[int]
     DRAW_DURATION: ClassVar[int]
     FIRST_DRAW_FRAME: ClassVar[int]
+    FRAME_TIMELINE_VSYNC_ID: ClassVar[int]
     GPU_DURATION: ClassVar[int]
     INPUT_HANDLING_DURATION: ClassVar[int]
     INTENDED_VSYNC_TIMESTAMP: ClassVar[int]
@@ -15,5 +16,5 @@ class FrameMetrics:
     TOTAL_DURATION: ClassVar[int]
     UNKNOWN_DELAY_DURATION: ClassVar[int]
     VSYNC_TIMESTAMP: ClassVar[int]
-    def __init__(self, arg0: "FrameMetrics") -> None: ...
-    def getMetric(self, arg0: int) -> int: ...
+    def __init__(self, p0: "FrameMetrics") -> None: ...
+    def getMetric(self, p0: int) -> int: ...

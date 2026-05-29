@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["FrameMetrics"]
 
@@ -10,6 +10,7 @@ class FrameMetrics(JavaClass, metaclass=MetaJavaClass):
     DEADLINE = JavaStaticField("I")
     DRAW_DURATION = JavaStaticField("I")
     FIRST_DRAW_FRAME = JavaStaticField("I")
+    FRAME_TIMELINE_VSYNC_ID = JavaStaticField("I")
     GPU_DURATION = JavaStaticField("I")
     INPUT_HANDLING_DURATION = JavaStaticField("I")
     INTENDED_VSYNC_TIMESTAMP = JavaStaticField("I")

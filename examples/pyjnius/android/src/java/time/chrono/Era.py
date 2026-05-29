@@ -1,14 +1,14 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Era"]
 
-class Era(JavaInterface, metaclass=MetaJavaClass):
+class Era(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/time/chrono/Era"
-    getValue = JavaMethod("()I")
-    isSupported = JavaMethod("(Ljava/time/temporal/TemporalField;)Z")
-    range = JavaMethod("(Ljava/time/temporal/TemporalField;)Ljava/time/temporal/ValueRange;")
-    get = JavaMethod("(Ljava/time/temporal/TemporalField;)I")
     getLong = JavaMethod("(Ljava/time/temporal/TemporalField;)J")
+    getValue = JavaMethod("()I")
+    get = JavaMethod("(Ljava/time/temporal/TemporalField;)I")
+    isSupported = JavaMethod("(Ljava/time/temporal/TemporalField;)Z")
     query = JavaMethod("(Ljava/time/temporal/TemporalQuery;)Ljava/lang/Object;")
-    adjustInto = JavaMethod("(Ljava/time/temporal/Temporal;)Ljava/time/temporal/Temporal;")
     getDisplayName = JavaMethod("(Ljava/time/format/TextStyle;Ljava/util/Locale;)Ljava/lang/String;")
+    range = JavaMethod("(Ljava/time/temporal/TemporalField;)Ljava/time/temporal/ValueRange;")
+    adjustInto = JavaMethod("(Ljava/time/temporal/Temporal;)Ljava/time/temporal/Temporal;")

@@ -6,6 +6,22 @@ class SimPhonebookContract:
     AUTHORITY: ClassVar[str]
     AUTHORITY_URI: ClassVar[Uri]
 
+    class SimRecords:
+        CONTENT_ITEM_TYPE: ClassVar[str]
+        CONTENT_TYPE: ClassVar[str]
+        ELEMENTARY_FILE_TYPE: ClassVar[str]
+        ERROR_NAME_UNSUPPORTED: ClassVar[int]
+        NAME: ClassVar[str]
+        PHONE_NUMBER: ClassVar[str]
+        RECORD_NUMBER: ClassVar[str]
+        SUBSCRIPTION_ID: ClassVar[str]
+        @staticmethod
+        def getContentUri(p0: int, p1: int) -> Uri: ...
+        @staticmethod
+        def getEncodedNameLength(p0: ContentResolver, p1: str) -> int: ...
+        @staticmethod
+        def getItemUri(p0: int, p1: int, p2: int) -> Uri: ...
+
     class ElementaryFiles:
         CONTENT_ITEM_TYPE: ClassVar[str]
         CONTENT_TYPE: ClassVar[str]
@@ -22,20 +38,4 @@ class SimPhonebookContract:
         SLOT_INDEX: ClassVar[str]
         SUBSCRIPTION_ID: ClassVar[str]
         @staticmethod
-        def getItemUri(arg0: int, arg1: int) -> Uri: ...
-
-    class SimRecords:
-        CONTENT_ITEM_TYPE: ClassVar[str]
-        CONTENT_TYPE: ClassVar[str]
-        ELEMENTARY_FILE_TYPE: ClassVar[str]
-        ERROR_NAME_UNSUPPORTED: ClassVar[int]
-        NAME: ClassVar[str]
-        PHONE_NUMBER: ClassVar[str]
-        RECORD_NUMBER: ClassVar[str]
-        SUBSCRIPTION_ID: ClassVar[str]
-        @staticmethod
-        def getContentUri(arg0: int, arg1: int) -> Uri: ...
-        @staticmethod
-        def getItemUri(arg0: int, arg1: int, arg2: int) -> Uri: ...
-        @staticmethod
-        def getEncodedNameLength(arg0: ContentResolver, arg1: str) -> int: ...
+        def getItemUri(p0: int, p1: int) -> Uri: ...

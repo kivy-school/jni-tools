@@ -18,41 +18,41 @@ class IDNA:
 
     class Info:
         def __init__(self) -> None: ...
-        def hasErrors(self) -> bool: ...
-        def getErrors(self) -> set: ...
         def isTransitionalDifferent(self) -> bool: ...
+        def getErrors(self) -> set: ...
+        def hasErrors(self) -> bool: ...
 
     class Error:
-        EMPTY_LABEL: ClassVar["Error"]
-        LABEL_TOO_LONG: ClassVar["Error"]
-        DOMAIN_NAME_TOO_LONG: ClassVar["Error"]
-        LEADING_HYPHEN: ClassVar["Error"]
-        TRAILING_HYPHEN: ClassVar["Error"]
-        HYPHEN_3_4: ClassVar["Error"]
-        LEADING_COMBINING_MARK: ClassVar["Error"]
-        DISALLOWED: ClassVar["Error"]
-        PUNYCODE: ClassVar["Error"]
-        LABEL_HAS_DOT: ClassVar["Error"]
-        INVALID_ACE_LABEL: ClassVar["Error"]
         BIDI: ClassVar["Error"]
         CONTEXTJ: ClassVar["Error"]
-        CONTEXTO_PUNCTUATION: ClassVar["Error"]
         CONTEXTO_DIGITS: ClassVar["Error"]
-        EMPTY_LABEL: ClassVar[Any]
-        LABEL_TOO_LONG: ClassVar[Any]
-        DOMAIN_NAME_TOO_LONG: ClassVar[Any]
-        LEADING_HYPHEN: ClassVar[Any]
-        TRAILING_HYPHEN: ClassVar[Any]
-        HYPHEN_3_4: ClassVar[Any]
-        LEADING_COMBINING_MARK: ClassVar[Any]
-        DISALLOWED: ClassVar[Any]
-        PUNYCODE: ClassVar[Any]
-        LABEL_HAS_DOT: ClassVar[Any]
-        INVALID_ACE_LABEL: ClassVar[Any]
+        CONTEXTO_PUNCTUATION: ClassVar["Error"]
+        DISALLOWED: ClassVar["Error"]
+        DOMAIN_NAME_TOO_LONG: ClassVar["Error"]
+        EMPTY_LABEL: ClassVar["Error"]
+        HYPHEN_3_4: ClassVar["Error"]
+        INVALID_ACE_LABEL: ClassVar["Error"]
+        LABEL_HAS_DOT: ClassVar["Error"]
+        LABEL_TOO_LONG: ClassVar["Error"]
+        LEADING_COMBINING_MARK: ClassVar["Error"]
+        LEADING_HYPHEN: ClassVar["Error"]
+        PUNYCODE: ClassVar["Error"]
+        TRAILING_HYPHEN: ClassVar["Error"]
         BIDI: ClassVar[Any]
         CONTEXTJ: ClassVar[Any]
-        CONTEXTO_PUNCTUATION: ClassVar[Any]
         CONTEXTO_DIGITS: ClassVar[Any]
+        CONTEXTO_PUNCTUATION: ClassVar[Any]
+        DISALLOWED: ClassVar[Any]
+        DOMAIN_NAME_TOO_LONG: ClassVar[Any]
+        EMPTY_LABEL: ClassVar[Any]
+        HYPHEN_3_4: ClassVar[Any]
+        INVALID_ACE_LABEL: ClassVar[Any]
+        LABEL_HAS_DOT: ClassVar[Any]
+        LABEL_TOO_LONG: ClassVar[Any]
+        LEADING_COMBINING_MARK: ClassVar[Any]
+        LEADING_HYPHEN: ClassVar[Any]
+        PUNYCODE: ClassVar[Any]
+        TRAILING_HYPHEN: ClassVar[Any]
         @staticmethod
         def values() -> Any: ...
         @staticmethod

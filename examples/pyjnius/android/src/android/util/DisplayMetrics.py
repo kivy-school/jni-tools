@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["DisplayMetrics"]
 
@@ -38,8 +38,8 @@ class DisplayMetrics(JavaClass, metaclass=MetaJavaClass):
     widthPixels = JavaField("I")
     xdpi = JavaField("F")
     ydpi = JavaField("F")
+    equals = JavaMultipleMethod([("(Landroid/util/DisplayMetrics;)Z", False, False), ("(Ljava/lang/Object;)Z", False, False)])
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
     setTo = JavaMethod("(Landroid/util/DisplayMetrics;)V")
     setToDefaults = JavaMethod("()V")
-    equals = JavaMultipleMethod([("(Ljava/lang/Object;)Z", False, False), ("(Landroid/util/DisplayMetrics;)Z", False, False)])
-    hashCode = JavaMethod("()I")
-    toString = JavaMethod("()Ljava/lang/String;")

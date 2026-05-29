@@ -40,3 +40,5 @@ class Types:
     REF_CURSOR: ClassVar[int]
     TIME_WITH_TIMEZONE: ClassVar[int]
     TIMESTAMP_WITH_TIMEZONE: ClassVar[int]
+    DECFLOAT: ClassVar[int]
+    JSON: ClassVar[int]

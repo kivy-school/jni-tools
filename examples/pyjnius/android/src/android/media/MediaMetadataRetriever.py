@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["MediaMetadataRetriever"]
 
@@ -49,22 +49,21 @@ class MediaMetadataRetriever(JavaClass, metaclass=MetaJavaClass):
     OPTION_CLOSEST_SYNC = JavaStaticField("I")
     OPTION_NEXT_SYNC = JavaStaticField("I")
     OPTION_PREVIOUS_SYNC = JavaStaticField("I")
-    setDataSource = JavaMultipleMethod([("(Ljava/lang/String;)V", False, False), ("(Ljava/lang/String;Ljava/util/Map;)V", False, False), ("(Ljava/io/FileDescriptor;JJ)V", False, False), ("(Ljava/io/FileDescriptor;)V", False, False), ("(Landroid/content/Context;Landroid/net/Uri;)V", False, False), ("(Landroid/media/MediaDataSource;)V", False, False)])
     extractMetadata = JavaMethod("(I)Ljava/lang/String;")
-    getFrameAtTime = JavaMultipleMethod([("(JI)Landroid/graphics/Bitmap;", False, False), ("(JILandroid/media/MediaMetadataRetriever$BitmapParams;)Landroid/graphics/Bitmap;", False, False), ("(J)Landroid/graphics/Bitmap;", False, False), ("()Landroid/graphics/Bitmap;", False, False)])
-    getScaledFrameAtTime = JavaMultipleMethod([("(JIII)Landroid/graphics/Bitmap;", False, False), ("(JIIILandroid/media/MediaMetadataRetriever$BitmapParams;)Landroid/graphics/Bitmap;", False, False)])
     getFrameAtIndex = JavaMultipleMethod([("(ILandroid/media/MediaMetadataRetriever$BitmapParams;)Landroid/graphics/Bitmap;", False, False), ("(I)Landroid/graphics/Bitmap;", False, False)])
-    getFramesAtIndex = JavaMultipleMethod([("(IILandroid/media/MediaMetadataRetriever$BitmapParams;)Ljava/util/List;", False, False), ("(II)Ljava/util/List;", False, False)])
+    getEmbeddedPicture = JavaMethod("()[B")
+    getFrameAtTime = JavaMultipleMethod([("()Landroid/graphics/Bitmap;", False, False), ("(J)Landroid/graphics/Bitmap;", False, False), ("(JI)Landroid/graphics/Bitmap;", False, False), ("(JILandroid/media/MediaMetadataRetriever$BitmapParams;)Landroid/graphics/Bitmap;", False, False)])
+    getFramesAtIndex = JavaMultipleMethod([("(II)Ljava/util/List;", False, False), ("(IILandroid/media/MediaMetadataRetriever$BitmapParams;)Ljava/util/List;", False, False)])
     getImageAtIndex = JavaMultipleMethod([("(ILandroid/media/MediaMetadataRetriever$BitmapParams;)Landroid/graphics/Bitmap;", False, False), ("(I)Landroid/graphics/Bitmap;", False, False)])
     getPrimaryImage = JavaMultipleMethod([("(Landroid/media/MediaMetadataRetriever$BitmapParams;)Landroid/graphics/Bitmap;", False, False), ("()Landroid/graphics/Bitmap;", False, False)])
-    getEmbeddedPicture = JavaMethod("()[B")
+    getScaledFrameAtTime = JavaMultipleMethod([("(JIIILandroid/media/MediaMetadataRetriever$BitmapParams;)Landroid/graphics/Bitmap;", False, False), ("(JIII)Landroid/graphics/Bitmap;", False, False)])
+    setDataSource = JavaMultipleMethod([("(Landroid/content/Context;Landroid/net/Uri;)V", False, False), ("(Landroid/media/MediaDataSource;)V", False, False), ("(Ljava/lang/String;)V", False, False), ("(Ljava/io/FileDescriptor;JJ)V", False, False), ("(Ljava/io/FileDescriptor;)V", False, False), ("(Ljava/lang/String;Ljava/util/Map;)V", False, False)])
     close = JavaMethod("()V")
     release = JavaMethod("()V")
-    finalize = JavaMethod("()V")
 
     class BitmapParams(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/MediaMetadataRetriever/BitmapParams"
+        __javaclass__ = "android/media/MediaMetadataRetriever$BitmapParams"
         __javaconstructor__ = [("()V", False)]
+        getActualConfig = JavaMethod("()Landroid/graphics/Bitmap$Config;")
         setPreferredConfig = JavaMethod("(Landroid/graphics/Bitmap$Config;)V")
         getPreferredConfig = JavaMethod("()Landroid/graphics/Bitmap$Config;")
-        getActualConfig = JavaMethod("()Landroid/graphics/Bitmap$Config;")

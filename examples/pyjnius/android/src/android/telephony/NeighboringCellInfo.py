@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["NeighboringCellInfo"]
 
@@ -8,13 +8,15 @@ class NeighboringCellInfo(JavaClass, metaclass=MetaJavaClass):
     CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
     UNKNOWN_CID = JavaStaticField("I")
     UNKNOWN_RSSI = JavaStaticField("I")
-    getRssi = JavaMethod("()I")
-    getLac = JavaMethod("()I")
-    getCid = JavaMethod("()I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getPsc = JavaMethod("()I")
-    getNetworkType = JavaMethod("()I")
     setCid = JavaMethod("(I)V")
     setRssi = JavaMethod("(I)V")
+    getLac = JavaMethod("()I")
+    getCid = JavaMethod("()I")
+    getNetworkType = JavaMethod("()I")
     toString = JavaMethod("()Ljava/lang/String;")
-    describeContents = JavaMethod("()I")
+    getRssi = JavaMethod("()I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

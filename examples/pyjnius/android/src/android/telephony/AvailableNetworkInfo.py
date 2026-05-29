@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["AvailableNetworkInfo"]
 
@@ -9,21 +9,23 @@ class AvailableNetworkInfo(JavaClass, metaclass=MetaJavaClass):
     PRIORITY_HIGH = JavaStaticField("I")
     PRIORITY_LOW = JavaStaticField("I")
     PRIORITY_MED = JavaStaticField("I")
-    getSubId = JavaMethod("()I")
-    getPriority = JavaMethod("()I")
-    getMccMncs = JavaMethod("()Ljava/util/List;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getBands = JavaMethod("()Ljava/util/List;")
+    getSubId = JavaMethod("()I")
+    getMccMncs = JavaMethod("()Ljava/util/List;")
     getRadioAccessSpecifiers = JavaMethod("()Ljava/util/List;")
-    describeContents = JavaMethod("()I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
-    hashCode = JavaMethod("()I")
     toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    getPriority = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
 
     class Builder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/telephony/AvailableNetworkInfo/Builder"
+        __javaclass__ = "android/telephony/AvailableNetworkInfo$Builder"
         __javaconstructor__ = [("(I)V", False)]
-        setPriority = JavaMethod("(I)Landroid/telephony/AvailableNetworkInfo$Builder;")
         setMccMncs = JavaMethod("(Ljava/util/List;)Landroid/telephony/AvailableNetworkInfo$Builder;")
         setRadioAccessSpecifiers = JavaMethod("(Ljava/util/List;)Landroid/telephony/AvailableNetworkInfo$Builder;")
+        setPriority = JavaMethod("(I)Landroid/telephony/AvailableNetworkInfo$Builder;")
         build = JavaMethod("()Landroid/telephony/AvailableNetworkInfo;")

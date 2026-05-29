@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["DragEvent"]
 
@@ -11,13 +11,15 @@ class DragEvent(JavaClass, metaclass=MetaJavaClass):
     ACTION_DRAG_STARTED = JavaStaticField("I")
     ACTION_DROP = JavaStaticField("I")
     CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
-    getAction = JavaMethod("()I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    toString = JavaMethod("()Ljava/lang/String;")
     getX = JavaMethod("()F")
     getY = JavaMethod("()F")
     getClipData = JavaMethod("()Landroid/content/ClipData;")
-    getClipDescription = JavaMethod("()Landroid/content/ClipDescription;")
+    getAction = JavaMethod("()I")
     getLocalState = JavaMethod("()Ljava/lang/Object;")
     getResult = JavaMethod("()Z")
-    toString = JavaMethod("()Ljava/lang/String;")
-    describeContents = JavaMethod("()I")
+    getClipDescription = JavaMethod("()Landroid/content/ClipDescription;")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

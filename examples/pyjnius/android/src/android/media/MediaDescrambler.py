@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["MediaDescrambler"]
 
@@ -10,8 +10,7 @@ class MediaDescrambler(JavaClass, metaclass=MetaJavaClass):
     SCRAMBLE_CONTROL_RESERVED = JavaStaticField("B")
     SCRAMBLE_CONTROL_UNSCRAMBLED = JavaStaticField("B")
     SCRAMBLE_FLAG_PES_HEADER = JavaStaticField("B")
-    requiresSecureDecoderComponent = JavaMethod("(Ljava/lang/String;)Z")
-    setMediaCasSession = JavaMethod("(Landroid/media/MediaCas$Session;)V")
     descramble = JavaMethod("(Ljava/nio/ByteBuffer;Ljava/nio/ByteBuffer;Landroid/media/MediaCodec$CryptoInfo;)I")
+    setMediaCasSession = JavaMethod("(Landroid/media/MediaCas$Session;)V")
+    requiresSecureDecoderComponent = JavaMethod("(Ljava/lang/String;)Z")
     close = JavaMethod("()V")
-    finalize = JavaMethod("()V")

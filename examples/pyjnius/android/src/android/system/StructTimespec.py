@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["StructTimespec"]
 
@@ -7,7 +7,7 @@ class StructTimespec(JavaClass, metaclass=MetaJavaClass):
     __javaconstructor__ = [("(JJ)V", False)]
     tv_nsec = JavaField("J")
     tv_sec = JavaField("J")
-    compareTo = JavaMethod("(Landroid/system/StructTimespec;)I")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
-    hashCode = JavaMethod("()I")
     toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    compareTo = JavaMultipleMethod([("(Landroid/system/StructTimespec;)I", False, False), ("(Ljava/lang/Object;)I", False, False)])

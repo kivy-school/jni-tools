@@ -1,6 +1,6 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["EventListener"]
 
-class EventListener(JavaInterface, metaclass=MetaJavaClass):
+class EventListener(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/util/EventListener"

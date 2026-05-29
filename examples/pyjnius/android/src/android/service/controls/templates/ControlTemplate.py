@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ControlTemplate"]
 
@@ -13,6 +13,6 @@ class ControlTemplate(JavaClass, metaclass=MetaJavaClass):
     TYPE_TOGGLE = JavaStaticField("I")
     TYPE_TOGGLE_RANGE = JavaStaticField("I")
     getTemplateId = JavaMethod("()Ljava/lang/String;")
-    getTemplateType = JavaMethod("()I")
     getErrorTemplate = JavaStaticMethod("()Landroid/service/controls/templates/ControlTemplate;")
     getNoTemplateObject = JavaStaticMethod("()Landroid/service/controls/templates/ControlTemplate;")
+    getTemplateType = JavaMethod("()I")

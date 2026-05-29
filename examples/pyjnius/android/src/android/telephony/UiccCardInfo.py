@@ -1,21 +1,23 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["UiccCardInfo"]
 
 class UiccCardInfo(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/telephony/UiccCardInfo"
     CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
-    describeContents = JavaMethod("()I")
-    isEuicc = JavaMethod("()Z")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getPorts = JavaMethod("()Ljava/util/Collection;")
     getCardId = JavaMethod("()I")
     getEid = JavaMethod("()Ljava/lang/String;")
-    getIccId = JavaMethod("()Ljava/lang/String;")
-    getSlotIndex = JavaMethod("()I")
-    getPhysicalSlotIndex = JavaMethod("()I")
+    isEuicc = JavaMethod("()Z")
     isRemovable = JavaMethod("()Z")
+    getPhysicalSlotIndex = JavaMethod("()I")
     isMultipleEnabledProfilesSupported = JavaMethod("()Z")
-    getPorts = JavaMethod("()Ljava/util/Collection;")
+    getIccId = JavaMethod("()Ljava/lang/String;")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
-    hashCode = JavaMethod("()I")
     toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    getSlotIndex = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

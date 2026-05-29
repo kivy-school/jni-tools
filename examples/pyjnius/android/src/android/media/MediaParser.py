@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["MediaParser"]
 
@@ -41,59 +41,59 @@ class MediaParser(JavaClass, metaclass=MetaJavaClass):
     SAMPLE_FLAG_HAS_SUPPLEMENTAL_DATA = JavaStaticField("I")
     SAMPLE_FLAG_KEY_FRAME = JavaStaticField("I")
     SAMPLE_FLAG_LAST_SAMPLE = JavaStaticField("I")
+    getLogSessionId = JavaMethod("()Landroid/media/metrics/LogSessionId;")
+    setLogSessionId = JavaMethod("(Landroid/media/metrics/LogSessionId;)V")
     createByName = JavaStaticMethod("(Ljava/lang/String;Landroid/media/MediaParser$OutputConsumer;)Landroid/media/MediaParser;")
-    create = JavaStaticMethod("(Landroid/media/MediaParser$OutputConsumer;[Ljava/lang/String;)Landroid/media/MediaParser;", varargs=True)
+    getParserName = JavaMethod("()Ljava/lang/String;")
     getParserNames = JavaStaticMethod("(Landroid/media/MediaFormat;)Ljava/util/List;")
     setParameter = JavaMethod("(Ljava/lang/String;Ljava/lang/Object;)Landroid/media/MediaParser;")
     supportsParameter = JavaMethod("(Ljava/lang/String;)Z")
-    getParserName = JavaMethod("()Ljava/lang/String;")
+    create = JavaStaticMethod("(Landroid/media/MediaParser$OutputConsumer;[Ljava/lang/String;)Landroid/media/MediaParser;", varargs=True)
+    release = JavaMethod("()V")
     advance = JavaMethod("(Landroid/media/MediaParser$SeekableInputReader;)Z")
     seek = JavaMethod("(Landroid/media/MediaParser$SeekPoint;)V")
-    release = JavaMethod("()V")
-    setLogSessionId = JavaMethod("(Landroid/media/metrics/LogSessionId;)V")
-    getLogSessionId = JavaMethod("()Landroid/media/metrics/LogSessionId;")
 
-    class InputReader(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/MediaParser/InputReader"
-        read = JavaMethod("([BII)I")
-        getPosition = JavaMethod("()J")
-        getLength = JavaMethod("()J")
-
-    class OutputConsumer(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/MediaParser/OutputConsumer"
-        onSeekMapFound = JavaMethod("(Landroid/media/MediaParser$SeekMap;)V")
-        onTrackCountFound = JavaMethod("(I)V")
-        onTrackDataFound = JavaMethod("(ILandroid/media/MediaParser$TrackData;)V")
-        onSampleDataFound = JavaMethod("(ILandroid/media/MediaParser$InputReader;)V")
-        onSampleCompleted = JavaMethod("(IJIIILandroid/media/MediaCodec$CryptoInfo;)V")
-
-    class ParsingException(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/MediaParser/ParsingException"
-
-    class SeekMap(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/MediaParser/SeekMap"
-        UNKNOWN_DURATION = JavaStaticField("I")
-        isSeekable = JavaMethod("()Z")
-        getDurationMicros = JavaMethod("()J")
-        getSeekPoints = JavaMethod("(J)Landroid/util/Pair;")
-
-    class SeekPoint(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/MediaParser/SeekPoint"
-        START = JavaStaticField("Landroid/media/MediaParser$SeekPoint;")
-        position = JavaField("J")
-        timeMicros = JavaField("J")
-        toString = JavaMethod("()Ljava/lang/String;")
-        equals = JavaMethod("(Ljava/lang/Object;)Z")
-        hashCode = JavaMethod("()I")
-
-    class SeekableInputReader(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/MediaParser/SeekableInputReader"
-        seekToPosition = JavaMethod("(J)V")
+    class UnrecognizedInputFormatException(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/media/MediaParser$UnrecognizedInputFormatException"
 
     class TrackData(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/MediaParser/TrackData"
+        __javaclass__ = "android/media/MediaParser$TrackData"
         drmInitData = JavaField("Landroid/media/DrmInitData;")
         mediaFormat = JavaField("Landroid/media/MediaFormat;")
 
-    class UnrecognizedInputFormatException(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/MediaParser/UnrecognizedInputFormatException"
+    class SeekableInputReader(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/media/MediaParser$SeekableInputReader"
+        seekToPosition = JavaMethod("(J)V")
+
+    class SeekPoint(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/media/MediaParser$SeekPoint"
+        START = JavaStaticField("Landroid/media/MediaParser$SeekPoint;")
+        position = JavaField("J")
+        timeMicros = JavaField("J")
+        equals = JavaMethod("(Ljava/lang/Object;)Z")
+        toString = JavaMethod("()Ljava/lang/String;")
+        hashCode = JavaMethod("()I")
+
+    class SeekMap(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/media/MediaParser$SeekMap"
+        UNKNOWN_DURATION = JavaStaticField("I")
+        getSeekPoints = JavaMethod("(J)Landroid/util/Pair;")
+        isSeekable = JavaMethod("()Z")
+        getDurationMicros = JavaMethod("()J")
+
+    class ParsingException(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/media/MediaParser$ParsingException"
+
+    class OutputConsumer(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/media/MediaParser$OutputConsumer"
+        onTrackCountFound = JavaMethod("(I)V")
+        onTrackDataFound = JavaMethod("(ILandroid/media/MediaParser$TrackData;)V")
+        onSeekMapFound = JavaMethod("(Landroid/media/MediaParser$SeekMap;)V")
+        onSampleCompleted = JavaMethod("(IJIIILandroid/media/MediaCodec$CryptoInfo;)V")
+        onSampleDataFound = JavaMethod("(ILandroid/media/MediaParser$InputReader;)V")
+
+    class InputReader(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/media/MediaParser$InputReader"
+        getLength = JavaMethod("()J")
+        read = JavaMethod("([BII)I")
+        getPosition = JavaMethod("()J")

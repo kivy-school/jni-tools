@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["TvInteractiveAppServiceInfo"]
 
@@ -11,9 +11,11 @@ class TvInteractiveAppServiceInfo(JavaClass, metaclass=MetaJavaClass):
     INTERACTIVE_APP_TYPE_HBBTV = JavaStaticField("I")
     INTERACTIVE_APP_TYPE_OTHER = JavaStaticField("I")
     INTERACTIVE_APP_TYPE_TARGETED_AD = JavaStaticField("I")
-    describeContents = JavaMethod("()I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
-    getId = JavaMethod("()Ljava/lang/String;")
-    getServiceInfo = JavaMethod("()Landroid/content/pm/ServiceInfo;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getSupportedTypes = JavaMethod("()I")
     getCustomSupportedTypes = JavaMethod("()Ljava/util/List;")
+    getId = JavaMethod("()Ljava/lang/String;")
+    getServiceInfo = JavaMethod("()Landroid/content/pm/ServiceInfo;")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

@@ -1,10 +1,10 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Keyboard"]
 
 class Keyboard(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/inputmethodservice/Keyboard"
-    __javaconstructor__ = [("(Landroid/content/Context;I)V", False), ("(Landroid/content/Context;IIII)V", False), ("(Landroid/content/Context;II)V", False), ("(Landroid/content/Context;ILjava/lang/CharSequence;II)V", False)]
+    __javaconstructor__ = [("(Landroid/content/Context;ILjava/lang/CharSequence;II)V", False), ("(Landroid/content/Context;IIII)V", False), ("(Landroid/content/Context;II)V", False), ("(Landroid/content/Context;I)V", False)]
     EDGE_BOTTOM = JavaStaticField("I")
     EDGE_LEFT = JavaStaticField("I")
     EDGE_RIGHT = JavaStaticField("I")
@@ -15,27 +15,27 @@ class Keyboard(JavaClass, metaclass=MetaJavaClass):
     KEYCODE_DONE = JavaStaticField("I")
     KEYCODE_MODE_CHANGE = JavaStaticField("I")
     KEYCODE_SHIFT = JavaStaticField("I")
-    getKeys = JavaMethod("()Ljava/util/List;")
-    getModifierKeys = JavaMethod("()Ljava/util/List;")
-    getHorizontalGap = JavaMethod("()I")
-    setHorizontalGap = JavaMethod("(I)V")
-    getVerticalGap = JavaMethod("()I")
-    setVerticalGap = JavaMethod("(I)V")
-    getKeyHeight = JavaMethod("()I")
-    setKeyHeight = JavaMethod("(I)V")
-    getKeyWidth = JavaMethod("()I")
-    setKeyWidth = JavaMethod("(I)V")
     getHeight = JavaMethod("()I")
     getMinWidth = JavaMethod("()I")
-    setShifted = JavaMethod("(Z)Z")
-    isShifted = JavaMethod("()Z")
-    getShiftKeyIndex = JavaMethod("()I")
+    getKeys = JavaMethod("()Ljava/util/List;")
+    getModifierKeys = JavaMethod("()Ljava/util/List;")
     getNearestKeys = JavaMethod("(II)[I")
-    createRowFromXml = JavaMethod("(Landroid/content/res/Resources;Landroid/content/res/XmlResourceParser;)Landroid/inputmethodservice/Keyboard$Row;")
-    createKeyFromXml = JavaMethod("(Landroid/content/res/Resources;Landroid/inputmethodservice/Keyboard$Row;IILandroid/content/res/XmlResourceParser;)Landroid/inputmethodservice/Keyboard$Key;")
+    getShiftKeyIndex = JavaMethod("()I")
+    isShifted = JavaMethod("()Z")
+    setShifted = JavaMethod("(Z)Z")
+
+    class Row(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/inputmethodservice/Keyboard$Row"
+        __javaconstructor__ = [("(Landroid/content/res/Resources;Landroid/inputmethodservice/Keyboard;Landroid/content/res/XmlResourceParser;)V", False), ("(Landroid/inputmethodservice/Keyboard;)V", False)]
+        defaultHeight = JavaField("I")
+        defaultHorizontalGap = JavaField("I")
+        defaultWidth = JavaField("I")
+        mode = JavaField("I")
+        rowEdgeFlags = JavaField("I")
+        verticalGap = JavaField("I")
 
     class Key(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/inputmethodservice/Keyboard/Key"
+        __javaclass__ = "android/inputmethodservice/Keyboard$Key"
         __javaconstructor__ = [("(Landroid/inputmethodservice/Keyboard$Row;)V", False), ("(Landroid/content/res/Resources;Landroid/inputmethodservice/Keyboard$Row;IILandroid/content/res/XmlResourceParser;)V", False)]
         codes = JavaField("[I")
         edgeFlags = JavaField("I")
@@ -55,18 +55,8 @@ class Keyboard(JavaClass, metaclass=MetaJavaClass):
         width = JavaField("I")
         x = JavaField("I")
         y = JavaField("I")
-        onPressed = JavaMethod("()V")
         onReleased = JavaMethod("(Z)V")
+        onPressed = JavaMethod("()V")
         isInside = JavaMethod("(II)Z")
-        squaredDistanceFrom = JavaMethod("(II)I")
         getCurrentDrawableState = JavaMethod("()[I")
-
-    class Row(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/inputmethodservice/Keyboard/Row"
-        __javaconstructor__ = [("(Landroid/inputmethodservice/Keyboard;)V", False), ("(Landroid/content/res/Resources;Landroid/inputmethodservice/Keyboard;Landroid/content/res/XmlResourceParser;)V", False)]
-        defaultHeight = JavaField("I")
-        defaultHorizontalGap = JavaField("I")
-        defaultWidth = JavaField("I")
-        mode = JavaField("I")
-        rowEdgeFlags = JavaField("I")
-        verticalGap = JavaField("I")
+        squaredDistanceFrom = JavaMethod("(II)I")

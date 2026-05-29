@@ -13,6 +13,7 @@ class DataSpace:
     DATASPACE_DISPLAY_P3: ClassVar[int]
     DATASPACE_DYNAMIC_DEPTH: ClassVar[int]
     DATASPACE_HEIF: ClassVar[int]
+    DATASPACE_HEIF_ULTRAHDR: ClassVar[int]
     DATASPACE_JFIF: ClassVar[int]
     DATASPACE_JPEG_R: ClassVar[int]
     DATASPACE_SCRGB: ClassVar[int]
@@ -46,10 +47,10 @@ class DataSpace:
     TRANSFER_ST2084: ClassVar[int]
     TRANSFER_UNSPECIFIED: ClassVar[int]
     @staticmethod
-    def pack(p0: int, p1: int, p2: int) -> int: ...
+    def getRange(p0: int) -> int: ...
     @staticmethod
     def getStandard(p0: int) -> int: ...
     @staticmethod
     def getTransfer(p0: int) -> int: ...
     @staticmethod
-    def getRange(p0: int) -> int: ...
+    def pack(p0: int, p1: int, p2: int) -> int: ...

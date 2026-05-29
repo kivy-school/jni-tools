@@ -1,7 +1,7 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SweepGradient"]
 
 class SweepGradient(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/graphics/SweepGradient"
-    __javaconstructor__ = [("(FF[I[F)V", False), ("(FF[J[F)V", False), ("(FFII)V", False), ("(FFJJ)V", False)]
+    __javaconstructor__ = [("(FF[J[F)V", False), ("(FFJJ)V", False), ("(FF[I[F)V", False), ("(FFII)V", False)]

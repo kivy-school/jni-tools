@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["PhoneAccountSuggestion"]
 
@@ -11,10 +11,12 @@ class PhoneAccountSuggestion(JavaClass, metaclass=MetaJavaClass):
     REASON_NONE = JavaStaticField("I")
     REASON_OTHER = JavaStaticField("I")
     REASON_USER_SET = JavaStaticField("I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getPhoneAccountHandle = JavaMethod("()Landroid/telecom/PhoneAccountHandle;")
-    getReason = JavaMethod("()I")
     shouldAutoSelect = JavaMethod("()Z")
-    describeContents = JavaMethod("()I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
     hashCode = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
+    getReason = JavaMethod("()I")

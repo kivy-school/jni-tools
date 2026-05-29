@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["DevicePolicyIdentifiers"]
 
@@ -7,6 +7,7 @@ class DevicePolicyIdentifiers(JavaClass, metaclass=MetaJavaClass):
     ACCOUNT_MANAGEMENT_DISABLED_POLICY = JavaStaticField("Ljava/lang/String;")
     APPLICATION_HIDDEN_POLICY = JavaStaticField("Ljava/lang/String;")
     APPLICATION_RESTRICTIONS_POLICY = JavaStaticField("Ljava/lang/String;")
+    APP_FUNCTIONS_POLICY = JavaStaticField("Ljava/lang/String;")
     AUTO_TIMEZONE_POLICY = JavaStaticField("Ljava/lang/String;")
     AUTO_TIME_POLICY = JavaStaticField("Ljava/lang/String;")
     BACKUP_SERVICE_POLICY = JavaStaticField("Ljava/lang/String;")

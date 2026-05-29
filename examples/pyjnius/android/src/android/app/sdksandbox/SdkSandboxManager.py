@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SdkSandboxManager"]
 
@@ -20,21 +20,21 @@ class SdkSandboxManager(JavaClass, metaclass=MetaJavaClass):
     SDK_SANDBOX_SERVICE = JavaStaticField("Ljava/lang/String;")
     SDK_SANDBOX_STATE_DISABLED = JavaStaticField("I")
     SDK_SANDBOX_STATE_ENABLED_PROCESS_ISOLATION = JavaStaticField("I")
-    getSdkSandboxState = JavaStaticMethod("()I")
-    addSdkSandboxProcessDeathCallback = JavaMethod("(Ljava/util/concurrent/Executor;Landroid/app/sdksandbox/SdkSandboxManager$SdkSandboxProcessDeathCallback;)V")
-    removeSdkSandboxProcessDeathCallback = JavaMethod("(Landroid/app/sdksandbox/SdkSandboxManager$SdkSandboxProcessDeathCallback;)V")
-    registerAppOwnedSdkSandboxInterface = JavaMethod("(Landroid/app/sdksandbox/AppOwnedSdkSandboxInterface;)V")
-    unregisterAppOwnedSdkSandboxInterface = JavaMethod("(Ljava/lang/String;)V")
-    getAppOwnedSdkSandboxInterfaces = JavaMethod("()Ljava/util/List;")
-    loadSdk = JavaMethod("(Ljava/lang/String;Landroid/os/Bundle;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V")
-    getSandboxedSdks = JavaMethod("()Ljava/util/List;")
-    unloadSdk = JavaMethod("(Ljava/lang/String;)V")
     requestSurfacePackage = JavaMethod("(Ljava/lang/String;Landroid/os/Bundle;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V")
-    startSdkSandboxActivity = JavaMethod("(Landroid/app/Activity;Landroid/os/IBinder;)V")
+    addSdkSandboxProcessDeathCallback = JavaMethod("(Ljava/util/concurrent/Executor;Landroid/app/sdksandbox/SdkSandboxManager$SdkSandboxProcessDeathCallback;)V")
     addSyncedSharedPreferencesKeys = JavaMethod("(Ljava/util/Set;)V")
-    removeSyncedSharedPreferencesKeys = JavaMethod("(Ljava/util/Set;)V")
+    getAppOwnedSdkSandboxInterfaces = JavaMethod("()Ljava/util/List;")
+    getSandboxedSdks = JavaMethod("()Ljava/util/List;")
+    getSdkSandboxState = JavaStaticMethod("()I")
     getSyncedSharedPreferencesKeys = JavaMethod("()Ljava/util/Set;")
+    loadSdk = JavaMethod("(Ljava/lang/String;Landroid/os/Bundle;Ljava/util/concurrent/Executor;Landroid/os/OutcomeReceiver;)V")
+    registerAppOwnedSdkSandboxInterface = JavaMethod("(Landroid/app/sdksandbox/AppOwnedSdkSandboxInterface;)V")
+    removeSdkSandboxProcessDeathCallback = JavaMethod("(Landroid/app/sdksandbox/SdkSandboxManager$SdkSandboxProcessDeathCallback;)V")
+    removeSyncedSharedPreferencesKeys = JavaMethod("(Ljava/util/Set;)V")
+    startSdkSandboxActivity = JavaMethod("(Landroid/app/Activity;Landroid/os/IBinder;)V")
+    unloadSdk = JavaMethod("(Ljava/lang/String;)V")
+    unregisterAppOwnedSdkSandboxInterface = JavaMethod("(Ljava/lang/String;)V")
 
-    class SdkSandboxProcessDeathCallback(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/app/sdksandbox/SdkSandboxManager/SdkSandboxProcessDeathCallback"
+    class SdkSandboxProcessDeathCallback(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/app/sdksandbox/SdkSandboxManager$SdkSandboxProcessDeathCallback"
         onSdkSandboxDied = JavaMethod("()V")

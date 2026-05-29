@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["TaskInfo"]
 
@@ -12,5 +12,5 @@ class TaskInfo(JavaClass, metaclass=MetaJavaClass):
     taskDescription = JavaField("Landroid/app/ActivityManager$TaskDescription;")
     taskId = JavaField("I")
     topActivity = JavaField("Landroid/content/ComponentName;")
-    isVisible = JavaMethod("()Z")
     toString = JavaMethod("()Ljava/lang/String;")
+    isVisible = JavaMethod("()Z")

@@ -27,8 +27,10 @@ class ExpandableListActivity:
     ACCESSIBILITY_SERVICE: ClassVar[str]
     ACCOUNT_SERVICE: ClassVar[str]
     ACTIVITY_SERVICE: ClassVar[str]
+    ADVANCED_PROTECTION_SERVICE: ClassVar[str]
     ALARM_SERVICE: ClassVar[str]
     APPWIDGET_SERVICE: ClassVar[str]
+    APP_FUNCTION_SERVICE: ClassVar[str]
     APP_OPS_SERVICE: ClassVar[str]
     APP_SEARCH_SERVICE: ClassVar[str]
     AUDIO_SERVICE: ClassVar[str]
@@ -87,6 +89,7 @@ class ExpandableListActivity:
     IPSEC_SERVICE: ClassVar[str]
     JOB_SCHEDULER_SERVICE: ClassVar[str]
     KEYGUARD_SERVICE: ClassVar[str]
+    KEYSTORE_SERVICE: ClassVar[str]
     LAUNCHER_APPS_SERVICE: ClassVar[str]
     LAYOUT_INFLATER_SERVICE: ClassVar[str]
     LOCALE_SERVICE: ClassVar[str]
@@ -94,6 +97,7 @@ class ExpandableListActivity:
     MEDIA_COMMUNICATION_SERVICE: ClassVar[str]
     MEDIA_METRICS_SERVICE: ClassVar[str]
     MEDIA_PROJECTION_SERVICE: ClassVar[str]
+    MEDIA_QUALITY_SERVICE: ClassVar[str]
     MEDIA_ROUTER_SERVICE: ClassVar[str]
     MEDIA_SESSION_SERVICE: ClassVar[str]
     MIDI_SERVICE: ClassVar[str]
@@ -120,6 +124,7 @@ class ExpandableListActivity:
     RECEIVER_VISIBLE_TO_INSTANT_APPS: ClassVar[int]
     RESTRICTIONS_SERVICE: ClassVar[str]
     ROLE_SERVICE: ClassVar[str]
+    SATELLITE_SERVICE: ClassVar[str]
     SEARCH_SERVICE: ClassVar[str]
     SECURITY_STATE_SERVICE: ClassVar[str]
     SENSOR_SERVICE: ClassVar[str]
@@ -132,8 +137,10 @@ class ExpandableListActivity:
     TELEPHONY_IMS_SERVICE: ClassVar[str]
     TELEPHONY_SERVICE: ClassVar[str]
     TELEPHONY_SUBSCRIPTION_SERVICE: ClassVar[str]
+    TETHERING_SERVICE: ClassVar[str]
     TEXT_CLASSIFICATION_SERVICE: ClassVar[str]
     TEXT_SERVICES_MANAGER_SERVICE: ClassVar[str]
+    TV_AD_SERVICE: ClassVar[str]
     TV_INPUT_SERVICE: ClassVar[str]
     TV_INTERACTIVE_APP_SERVICE: ClassVar[str]
     UI_MODE_SERVICE: ClassVar[str]
@@ -153,13 +160,13 @@ class ExpandableListActivity:
     def __init__(self) -> None: ...
     def getExpandableListView(self) -> ExpandableListView: ...
     def setListAdapter(self, p0: ExpandableListAdapter) -> None: ...
-    def onCreateContextMenu(self, p0: ContextMenu, p1: View, p2: Any) -> None: ...
-    def onChildClick(self, p0: ExpandableListView, p1: View, p2: int, p3: int, p4: int) -> bool: ...
-    def onContentChanged(self) -> None: ...
-    def onGroupCollapse(self, p0: int) -> None: ...
-    def onGroupExpand(self, p0: int) -> None: ...
     def getExpandableListAdapter(self) -> ExpandableListAdapter: ...
     def getSelectedPosition(self) -> int: ...
     def getSelectedId(self) -> int: ...
-    def setSelectedGroup(self, p0: int) -> None: ...
     def setSelectedChild(self, p0: int, p1: int, p2: bool) -> bool: ...
+    def setSelectedGroup(self, p0: int) -> None: ...
+    def onContentChanged(self) -> None: ...
+    def onCreateContextMenu(self, p0: ContextMenu, p1: View, p2: Any) -> None: ...
+    def onGroupCollapse(self, p0: int) -> None: ...
+    def onChildClick(self, p0: ExpandableListView, p1: View, p2: int, p3: int, p4: int) -> bool: ...
+    def onGroupExpand(self, p0: int) -> None: ...

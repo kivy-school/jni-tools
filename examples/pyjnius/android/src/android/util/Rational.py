@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Rational"]
 
@@ -9,19 +9,19 @@ class Rational(JavaClass, metaclass=MetaJavaClass):
     NaN = JavaStaticField("Landroid/util/Rational;")
     POSITIVE_INFINITY = JavaStaticField("Landroid/util/Rational;")
     ZERO = JavaStaticField("Landroid/util/Rational;")
-    getNumerator = JavaMethod("()I")
-    getDenominator = JavaMethod("()I")
-    isNaN = JavaMethod("()Z")
-    isInfinite = JavaMethod("()Z")
-    isFinite = JavaMethod("()Z")
-    isZero = JavaMethod("()Z")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
     toString = JavaMethod("()Ljava/lang/String;")
     hashCode = JavaMethod("()I")
-    doubleValue = JavaMethod("()D")
-    floatValue = JavaMethod("()F")
+    isInfinite = JavaMethod("()Z")
+    isFinite = JavaMethod("()Z")
+    compareTo = JavaMultipleMethod([("(Landroid/util/Rational;)I", False, False), ("(Ljava/lang/Object;)I", False, False)])
+    shortValue = JavaMethod("()S")
     intValue = JavaMethod("()I")
     longValue = JavaMethod("()J")
-    shortValue = JavaMethod("()S")
-    compareTo = JavaMethod("(Landroid/util/Rational;)I")
+    floatValue = JavaMethod("()F")
+    doubleValue = JavaMethod("()D")
+    isNaN = JavaMethod("()Z")
+    getDenominator = JavaMethod("()I")
+    getNumerator = JavaMethod("()I")
     parseRational = JavaStaticMethod("(Ljava/lang/String;)Landroid/util/Rational;")
+    isZero = JavaMethod("()Z")

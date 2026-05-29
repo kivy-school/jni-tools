@@ -23,6 +23,8 @@ class WifiConfiguration:
     SECURITY_TYPE_WAPI_CERT: ClassVar[int]
     SECURITY_TYPE_WAPI_PSK: ClassVar[int]
     SECURITY_TYPE_WEP: ClassVar[int]
+    CONTENTS_FILE_DESCRIPTOR: ClassVar[int]
+    PARCELABLE_WRITE_RETURN_VALUE: ClassVar[int]
     BSSID: str
     FQDN: str
     SSID: str
@@ -40,51 +42,50 @@ class WifiConfiguration:
     preSharedKey: str
     priority: int
     providerFriendlyName: str
-    roamingConsortiumIds: list[int]
+    roamingConsortiumIds: Any
     status: int
-    wepKeys: list[str]
+    wepKeys: Any
     wepTxKeyIndex: int
     @overload
-    def __init__(self) -> None: ...
+    def __init__(self, p0: "WifiConfiguration") -> None: ...
     @overload
-    def __init__(self, arg0: "WifiConfiguration") -> None: ...
-    def setSecurityParams(self, arg0: int) -> None: ...
-    def setMacRandomizationSetting(self, arg0: int) -> None: ...
+    def __init__(self) -> None: ...
+    def getHttpProxy(self) -> ProxyInfo: ...
+    def isDppConfigurator(self) -> bool: ...
+    def setSecurityParams(self, p0: int) -> None: ...
+    def setIpConfiguration(self, p0: IpConfiguration) -> None: ...
+    def isPasspoint(self) -> bool: ...
     def getMacRandomizationSetting(self) -> int: ...
     def getRandomizedMacAddress(self) -> MacAddress: ...
-    def isDppConfigurator(self) -> bool: ...
-    def isPasspoint(self) -> bool: ...
+    def setMacRandomizationSetting(self, p0: int) -> None: ...
     def toString(self) -> str: ...
     def getKey(self) -> str: ...
-    def setIpConfiguration(self, arg0: IpConfiguration) -> None: ...
-    def getHttpProxy(self) -> ProxyInfo: ...
-    def setHttpProxy(self, arg0: ProxyInfo) -> None: ...
+    def writeToParcel(self, p0: Parcel, p1: int) -> None: ...
     def describeContents(self) -> int: ...
-    def writeToParcel(self, arg0: Parcel, arg1: int) -> None: ...
+    def setHttpProxy(self, p0: ProxyInfo) -> None: ...
 
-    class AuthAlgorithm:
-        LEAP: ClassVar[int]
-        OPEN: ClassVar[int]
-        SAE: ClassVar[int]
-        SHARED: ClassVar[int]
-        strings: ClassVar[list[str]]
+    class Status:
+        CURRENT: ClassVar[int]
+        DISABLED: ClassVar[int]
+        ENABLED: ClassVar[int]
+        strings: ClassVar[Any]
+
+    class Protocol:
+        RSN: ClassVar[int]
+        WAPI: ClassVar[int]
+        WPA: ClassVar[int]
+        strings: ClassVar[Any]
         varName: ClassVar[str]
 
-    class GroupCipher:
+    class PairwiseCipher:
         CCMP: ClassVar[int]
         GCMP_128: ClassVar[int]
         GCMP_256: ClassVar[int]
+        NONE: ClassVar[int]
         SMS4: ClassVar[int]
         TKIP: ClassVar[int]
-        WEP104: ClassVar[int]
-        WEP40: ClassVar[int]
-        strings: ClassVar[list[str]]
+        strings: ClassVar[Any]
         varName: ClassVar[str]
-
-    class GroupMgmtCipher:
-        BIP_CMAC_256: ClassVar[int]
-        BIP_GMAC_128: ClassVar[int]
-        BIP_GMAC_256: ClassVar[int]
 
     class KeyMgmt:
         DPP: ClassVar[int]
@@ -105,28 +106,29 @@ class WifiConfiguration:
         WPA_EAP_SHA256: ClassVar[int]
         WPA_PSK: ClassVar[int]
         WPA_PSK_SHA256: ClassVar[int]
-        strings: ClassVar[list[str]]
+        strings: ClassVar[Any]
         varName: ClassVar[str]
 
-    class PairwiseCipher:
+    class GroupMgmtCipher:
+        BIP_CMAC_256: ClassVar[int]
+        BIP_GMAC_128: ClassVar[int]
+        BIP_GMAC_256: ClassVar[int]
+
+    class GroupCipher:
         CCMP: ClassVar[int]
         GCMP_128: ClassVar[int]
         GCMP_256: ClassVar[int]
-        NONE: ClassVar[int]
         SMS4: ClassVar[int]
         TKIP: ClassVar[int]
-        strings: ClassVar[list[str]]
+        WEP104: ClassVar[int]
+        WEP40: ClassVar[int]
+        strings: ClassVar[Any]
         varName: ClassVar[str]
 
-    class Protocol:
-        RSN: ClassVar[int]
-        WAPI: ClassVar[int]
-        WPA: ClassVar[int]
-        strings: ClassVar[list[str]]
+    class AuthAlgorithm:
+        LEAP: ClassVar[int]
+        OPEN: ClassVar[int]
+        SAE: ClassVar[int]
+        SHARED: ClassVar[int]
+        strings: ClassVar[Any]
         varName: ClassVar[str]
-
-    class Status:
-        CURRENT: ClassVar[int]
-        DISABLED: ClassVar[int]
-        ENABLED: ClassVar[int]
-        strings: ClassVar[list[str]]

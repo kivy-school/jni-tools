@@ -9,8 +9,8 @@ class SensorAdditionalInfo:
     TYPE_SENSOR_PLACEMENT: ClassVar[int]
     TYPE_UNTRACKED_DELAY: ClassVar[int]
     TYPE_VEC3_CALIBRATION: ClassVar[int]
-    floatValues: list[float]
-    intValues: list[int]
+    floatValues: Any
+    intValues: Any
     sensor: Sensor
     serial: int
     type: int

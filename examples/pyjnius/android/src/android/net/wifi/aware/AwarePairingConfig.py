@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["AwarePairingConfig"]
 
@@ -14,20 +14,24 @@ class AwarePairingConfig(JavaClass, metaclass=MetaJavaClass):
     PAIRING_BOOTSTRAPPING_PIN_CODE_KEYPAD = JavaStaticField("I")
     PAIRING_BOOTSTRAPPING_QR_DISPLAY = JavaStaticField("I")
     PAIRING_BOOTSTRAPPING_QR_SCAN = JavaStaticField("I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getBootstrappingMethods = JavaMethod("()I")
+    getSupportedCipherSuites = JavaMethod("()I")
     isPairingCacheEnabled = JavaMethod("()Z")
     isPairingSetupEnabled = JavaMethod("()Z")
     isPairingVerificationEnabled = JavaMethod("()Z")
-    getBootstrappingMethods = JavaMethod("()I")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
     hashCode = JavaMethod("()I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
     describeContents = JavaMethod("()I")
 
     class Builder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/net/wifi/aware/AwarePairingConfig/Builder"
+        __javaclass__ = "android/net/wifi/aware/AwarePairingConfig$Builder"
         __javaconstructor__ = [("()V", False)]
         setPairingSetupEnabled = JavaMethod("(Z)Landroid/net/wifi/aware/AwarePairingConfig$Builder;")
         setPairingVerificationEnabled = JavaMethod("(Z)Landroid/net/wifi/aware/AwarePairingConfig$Builder;")
-        setPairingCacheEnabled = JavaMethod("(Z)Landroid/net/wifi/aware/AwarePairingConfig$Builder;")
+        setSupportedCipherSuites = JavaMethod("(I)Landroid/net/wifi/aware/AwarePairingConfig$Builder;")
         setBootstrappingMethods = JavaMethod("(I)Landroid/net/wifi/aware/AwarePairingConfig$Builder;")
+        setPairingCacheEnabled = JavaMethod("(Z)Landroid/net/wifi/aware/AwarePairingConfig$Builder;")
         build = JavaMethod("()Landroid/net/wifi/aware/AwarePairingConfig;")

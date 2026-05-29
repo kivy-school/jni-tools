@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["VoicemailContract"]
 
@@ -12,8 +12,39 @@ class VoicemailContract(JavaClass, metaclass=MetaJavaClass):
     EXTRA_SELF_CHANGE = JavaStaticField("Ljava/lang/String;")
     PARAM_KEY_SOURCE_PACKAGE = JavaStaticField("Ljava/lang/String;")
 
+    class Voicemails(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/provider/VoicemailContract$Voicemails"
+        ARCHIVED = JavaStaticField("Ljava/lang/String;")
+        BACKED_UP = JavaStaticField("Ljava/lang/String;")
+        CONTENT_URI = JavaStaticField("Landroid/net/Uri;")
+        DATE = JavaStaticField("Ljava/lang/String;")
+        DELETED = JavaStaticField("Ljava/lang/String;")
+        DIRTY = JavaStaticField("Ljava/lang/String;")
+        DIRTY_RETAIN = JavaStaticField("I")
+        DIR_TYPE = JavaStaticField("Ljava/lang/String;")
+        DURATION = JavaStaticField("Ljava/lang/String;")
+        HAS_CONTENT = JavaStaticField("Ljava/lang/String;")
+        IS_OMTP_VOICEMAIL = JavaStaticField("Ljava/lang/String;")
+        IS_READ = JavaStaticField("Ljava/lang/String;")
+        ITEM_TYPE = JavaStaticField("Ljava/lang/String;")
+        LAST_MODIFIED = JavaStaticField("Ljava/lang/String;")
+        MIME_TYPE = JavaStaticField("Ljava/lang/String;")
+        NEW = JavaStaticField("Ljava/lang/String;")
+        NUMBER = JavaStaticField("Ljava/lang/String;")
+        PHONE_ACCOUNT_COMPONENT_NAME = JavaStaticField("Ljava/lang/String;")
+        PHONE_ACCOUNT_ID = JavaStaticField("Ljava/lang/String;")
+        RESTORED = JavaStaticField("Ljava/lang/String;")
+        SOURCE_DATA = JavaStaticField("Ljava/lang/String;")
+        SOURCE_PACKAGE = JavaStaticField("Ljava/lang/String;")
+        TRANSCRIPTION = JavaStaticField("Ljava/lang/String;")
+        _COUNT = JavaStaticField("Ljava/lang/String;")
+        _ID = JavaStaticField("Ljava/lang/String;")
+        DISPLAY_NAME = JavaStaticField("Ljava/lang/String;")
+        SIZE = JavaStaticField("Ljava/lang/String;")
+        buildSourceUri = JavaStaticMethod("(Ljava/lang/String;)Landroid/net/Uri;")
+
     class Status(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/provider/VoicemailContract/Status"
+        __javaclass__ = "android/provider/VoicemailContract$Status"
         CONFIGURATION_STATE = JavaStaticField("Ljava/lang/String;")
         CONFIGURATION_STATE_CAN_BE_CONFIGURED = JavaStaticField("I")
         CONFIGURATION_STATE_CONFIGURING = JavaStaticField("I")
@@ -45,31 +76,6 @@ class VoicemailContract(JavaClass, metaclass=MetaJavaClass):
         SOURCE_PACKAGE = JavaStaticField("Ljava/lang/String;")
         SOURCE_TYPE = JavaStaticField("Ljava/lang/String;")
         VOICEMAIL_ACCESS_URI = JavaStaticField("Ljava/lang/String;")
-        buildSourceUri = JavaStaticMethod("(Ljava/lang/String;)Landroid/net/Uri;")
-
-    class Voicemails(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/provider/VoicemailContract/Voicemails"
-        ARCHIVED = JavaStaticField("Ljava/lang/String;")
-        BACKED_UP = JavaStaticField("Ljava/lang/String;")
-        CONTENT_URI = JavaStaticField("Landroid/net/Uri;")
-        DATE = JavaStaticField("Ljava/lang/String;")
-        DELETED = JavaStaticField("Ljava/lang/String;")
-        DIRTY = JavaStaticField("Ljava/lang/String;")
-        DIRTY_RETAIN = JavaStaticField("I")
-        DIR_TYPE = JavaStaticField("Ljava/lang/String;")
-        DURATION = JavaStaticField("Ljava/lang/String;")
-        HAS_CONTENT = JavaStaticField("Ljava/lang/String;")
-        IS_OMTP_VOICEMAIL = JavaStaticField("Ljava/lang/String;")
-        IS_READ = JavaStaticField("Ljava/lang/String;")
-        ITEM_TYPE = JavaStaticField("Ljava/lang/String;")
-        LAST_MODIFIED = JavaStaticField("Ljava/lang/String;")
-        MIME_TYPE = JavaStaticField("Ljava/lang/String;")
-        NEW = JavaStaticField("Ljava/lang/String;")
-        NUMBER = JavaStaticField("Ljava/lang/String;")
-        PHONE_ACCOUNT_COMPONENT_NAME = JavaStaticField("Ljava/lang/String;")
-        PHONE_ACCOUNT_ID = JavaStaticField("Ljava/lang/String;")
-        RESTORED = JavaStaticField("Ljava/lang/String;")
-        SOURCE_DATA = JavaStaticField("Ljava/lang/String;")
-        SOURCE_PACKAGE = JavaStaticField("Ljava/lang/String;")
-        TRANSCRIPTION = JavaStaticField("Ljava/lang/String;")
+        _COUNT = JavaStaticField("Ljava/lang/String;")
+        _ID = JavaStaticField("Ljava/lang/String;")
         buildSourceUri = JavaStaticMethod("(Ljava/lang/String;)Landroid/net/Uri;")

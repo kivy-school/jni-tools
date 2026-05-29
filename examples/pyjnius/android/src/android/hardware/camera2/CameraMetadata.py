@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["CameraMetadata"]
 
@@ -33,6 +33,7 @@ class CameraMetadata(JavaClass, metaclass=MetaJavaClass):
     COLOR_CORRECTION_ABERRATION_MODE_FAST = JavaStaticField("I")
     COLOR_CORRECTION_ABERRATION_MODE_HIGH_QUALITY = JavaStaticField("I")
     COLOR_CORRECTION_ABERRATION_MODE_OFF = JavaStaticField("I")
+    COLOR_CORRECTION_MODE_CCT = JavaStaticField("I")
     COLOR_CORRECTION_MODE_FAST = JavaStaticField("I")
     COLOR_CORRECTION_MODE_HIGH_QUALITY = JavaStaticField("I")
     COLOR_CORRECTION_MODE_TRANSFORM_MATRIX = JavaStaticField("I")
@@ -50,6 +51,9 @@ class CameraMetadata(JavaClass, metaclass=MetaJavaClass):
     CONTROL_AE_PRECAPTURE_TRIGGER_CANCEL = JavaStaticField("I")
     CONTROL_AE_PRECAPTURE_TRIGGER_IDLE = JavaStaticField("I")
     CONTROL_AE_PRECAPTURE_TRIGGER_START = JavaStaticField("I")
+    CONTROL_AE_PRIORITY_MODE_OFF = JavaStaticField("I")
+    CONTROL_AE_PRIORITY_MODE_SENSOR_EXPOSURE_TIME_PRIORITY = JavaStaticField("I")
+    CONTROL_AE_PRIORITY_MODE_SENSOR_SENSITIVITY_PRIORITY = JavaStaticField("I")
     CONTROL_AE_STATE_CONVERGED = JavaStaticField("I")
     CONTROL_AE_STATE_FLASH_REQUIRED = JavaStaticField("I")
     CONTROL_AE_STATE_INACTIVE = JavaStaticField("I")
@@ -143,6 +147,8 @@ class CameraMetadata(JavaClass, metaclass=MetaJavaClass):
     CONTROL_VIDEO_STABILIZATION_MODE_OFF = JavaStaticField("I")
     CONTROL_VIDEO_STABILIZATION_MODE_ON = JavaStaticField("I")
     CONTROL_VIDEO_STABILIZATION_MODE_PREVIEW_STABILIZATION = JavaStaticField("I")
+    CONTROL_ZOOM_METHOD_AUTO = JavaStaticField("I")
+    CONTROL_ZOOM_METHOD_ZOOM_RATIO = JavaStaticField("I")
     DISTORTION_CORRECTION_MODE_FAST = JavaStaticField("I")
     DISTORTION_CORRECTION_MODE_HIGH_QUALITY = JavaStaticField("I")
     DISTORTION_CORRECTION_MODE_OFF = JavaStaticField("I")
@@ -150,6 +156,9 @@ class CameraMetadata(JavaClass, metaclass=MetaJavaClass):
     EDGE_MODE_HIGH_QUALITY = JavaStaticField("I")
     EDGE_MODE_OFF = JavaStaticField("I")
     EDGE_MODE_ZERO_SHUTTER_LAG = JavaStaticField("I")
+    EXTENSION_NIGHT_MODE_INDICATOR_OFF = JavaStaticField("I")
+    EXTENSION_NIGHT_MODE_INDICATOR_ON = JavaStaticField("I")
+    EXTENSION_NIGHT_MODE_INDICATOR_UNKNOWN = JavaStaticField("I")
     FLASH_MODE_OFF = JavaStaticField("I")
     FLASH_MODE_SINGLE = JavaStaticField("I")
     FLASH_MODE_TORCH = JavaStaticField("I")

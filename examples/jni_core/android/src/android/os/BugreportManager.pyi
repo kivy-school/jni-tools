@@ -3,8 +3,8 @@ from android.os.ParcelFileDescriptor import ParcelFileDescriptor
 from java.util.concurrent.Executor import Executor
 
 class BugreportManager:
-    def startConnectivityBugreport(self, p0: ParcelFileDescriptor, p1: Executor, p2: Any) -> None: ...
     def cancelBugreport(self) -> None: ...
+    def startConnectivityBugreport(self, p0: ParcelFileDescriptor, p1: Executor, p2: Any) -> None: ...
 
     class BugreportCallback:
         BUGREPORT_ERROR_ANOTHER_REPORT_IN_PROGRESS: ClassVar[int]

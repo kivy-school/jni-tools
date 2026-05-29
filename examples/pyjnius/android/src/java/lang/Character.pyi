@@ -1,636 +1,685 @@
 from typing import Any, ClassVar, overload
+from java.util.Optional import Optional
 
 class Character:
-    BYTES: ClassVar[int]
-    COMBINING_SPACING_MARK: ClassVar[int]
-    CONNECTOR_PUNCTUATION: ClassVar[int]
-    CONTROL: ClassVar[int]
-    CURRENCY_SYMBOL: ClassVar[int]
-    DASH_PUNCTUATION: ClassVar[int]
-    DECIMAL_DIGIT_NUMBER: ClassVar[int]
-    DIRECTIONALITY_ARABIC_NUMBER: ClassVar[int]
-    DIRECTIONALITY_BOUNDARY_NEUTRAL: ClassVar[int]
-    DIRECTIONALITY_COMMON_NUMBER_SEPARATOR: ClassVar[int]
-    DIRECTIONALITY_EUROPEAN_NUMBER: ClassVar[int]
-    DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR: ClassVar[int]
-    DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR: ClassVar[int]
-    DIRECTIONALITY_FIRST_STRONG_ISOLATE: ClassVar[int]
-    DIRECTIONALITY_LEFT_TO_RIGHT: ClassVar[int]
-    DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING: ClassVar[int]
-    DIRECTIONALITY_LEFT_TO_RIGHT_ISOLATE: ClassVar[int]
-    DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE: ClassVar[int]
-    DIRECTIONALITY_NONSPACING_MARK: ClassVar[int]
-    DIRECTIONALITY_OTHER_NEUTRALS: ClassVar[int]
-    DIRECTIONALITY_PARAGRAPH_SEPARATOR: ClassVar[int]
-    DIRECTIONALITY_POP_DIRECTIONAL_FORMAT: ClassVar[int]
-    DIRECTIONALITY_POP_DIRECTIONAL_ISOLATE: ClassVar[int]
-    DIRECTIONALITY_RIGHT_TO_LEFT: ClassVar[int]
-    DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC: ClassVar[int]
-    DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING: ClassVar[int]
-    DIRECTIONALITY_RIGHT_TO_LEFT_ISOLATE: ClassVar[int]
-    DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE: ClassVar[int]
-    DIRECTIONALITY_SEGMENT_SEPARATOR: ClassVar[int]
-    DIRECTIONALITY_UNDEFINED: ClassVar[int]
-    DIRECTIONALITY_WHITESPACE: ClassVar[int]
-    ENCLOSING_MARK: ClassVar[int]
-    END_PUNCTUATION: ClassVar[int]
-    FINAL_QUOTE_PUNCTUATION: ClassVar[int]
-    FORMAT: ClassVar[int]
-    INITIAL_QUOTE_PUNCTUATION: ClassVar[int]
-    LETTER_NUMBER: ClassVar[int]
-    LINE_SEPARATOR: ClassVar[int]
-    LOWERCASE_LETTER: ClassVar[int]
-    MATH_SYMBOL: ClassVar[int]
-    MAX_CODE_POINT: ClassVar[int]
-    MAX_HIGH_SURROGATE: ClassVar[str]
-    MAX_LOW_SURROGATE: ClassVar[str]
-    MAX_RADIX: ClassVar[int]
-    MAX_SURROGATE: ClassVar[str]
-    MAX_VALUE: ClassVar[str]
-    MIN_CODE_POINT: ClassVar[int]
-    MIN_HIGH_SURROGATE: ClassVar[str]
-    MIN_LOW_SURROGATE: ClassVar[str]
     MIN_RADIX: ClassVar[int]
-    MIN_SUPPLEMENTARY_CODE_POINT: ClassVar[int]
-    MIN_SURROGATE: ClassVar[str]
+    MAX_RADIX: ClassVar[int]
     MIN_VALUE: ClassVar[str]
-    MODIFIER_LETTER: ClassVar[int]
-    MODIFIER_SYMBOL: ClassVar[int]
-    NON_SPACING_MARK: ClassVar[int]
-    OTHER_LETTER: ClassVar[int]
-    OTHER_NUMBER: ClassVar[int]
-    OTHER_PUNCTUATION: ClassVar[int]
-    OTHER_SYMBOL: ClassVar[int]
-    PARAGRAPH_SEPARATOR: ClassVar[int]
-    PRIVATE_USE: ClassVar[int]
-    SIZE: ClassVar[int]
-    SPACE_SEPARATOR: ClassVar[int]
-    START_PUNCTUATION: ClassVar[int]
-    SURROGATE: ClassVar[int]
-    TITLECASE_LETTER: ClassVar[int]
+    MAX_VALUE: ClassVar[str]
     TYPE: ClassVar[type]
     UNASSIGNED: ClassVar[int]
     UPPERCASE_LETTER: ClassVar[int]
-    def __init__(self, arg0: str) -> None: ...
+    LOWERCASE_LETTER: ClassVar[int]
+    TITLECASE_LETTER: ClassVar[int]
+    MODIFIER_LETTER: ClassVar[int]
+    OTHER_LETTER: ClassVar[int]
+    NON_SPACING_MARK: ClassVar[int]
+    ENCLOSING_MARK: ClassVar[int]
+    COMBINING_SPACING_MARK: ClassVar[int]
+    DECIMAL_DIGIT_NUMBER: ClassVar[int]
+    LETTER_NUMBER: ClassVar[int]
+    OTHER_NUMBER: ClassVar[int]
+    SPACE_SEPARATOR: ClassVar[int]
+    LINE_SEPARATOR: ClassVar[int]
+    PARAGRAPH_SEPARATOR: ClassVar[int]
+    CONTROL: ClassVar[int]
+    FORMAT: ClassVar[int]
+    PRIVATE_USE: ClassVar[int]
+    SURROGATE: ClassVar[int]
+    DASH_PUNCTUATION: ClassVar[int]
+    START_PUNCTUATION: ClassVar[int]
+    END_PUNCTUATION: ClassVar[int]
+    CONNECTOR_PUNCTUATION: ClassVar[int]
+    OTHER_PUNCTUATION: ClassVar[int]
+    MATH_SYMBOL: ClassVar[int]
+    CURRENCY_SYMBOL: ClassVar[int]
+    MODIFIER_SYMBOL: ClassVar[int]
+    OTHER_SYMBOL: ClassVar[int]
+    INITIAL_QUOTE_PUNCTUATION: ClassVar[int]
+    FINAL_QUOTE_PUNCTUATION: ClassVar[int]
+    DIRECTIONALITY_UNDEFINED: ClassVar[int]
+    DIRECTIONALITY_LEFT_TO_RIGHT: ClassVar[int]
+    DIRECTIONALITY_RIGHT_TO_LEFT: ClassVar[int]
+    DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC: ClassVar[int]
+    DIRECTIONALITY_EUROPEAN_NUMBER: ClassVar[int]
+    DIRECTIONALITY_EUROPEAN_NUMBER_SEPARATOR: ClassVar[int]
+    DIRECTIONALITY_EUROPEAN_NUMBER_TERMINATOR: ClassVar[int]
+    DIRECTIONALITY_ARABIC_NUMBER: ClassVar[int]
+    DIRECTIONALITY_COMMON_NUMBER_SEPARATOR: ClassVar[int]
+    DIRECTIONALITY_NONSPACING_MARK: ClassVar[int]
+    DIRECTIONALITY_BOUNDARY_NEUTRAL: ClassVar[int]
+    DIRECTIONALITY_PARAGRAPH_SEPARATOR: ClassVar[int]
+    DIRECTIONALITY_SEGMENT_SEPARATOR: ClassVar[int]
+    DIRECTIONALITY_WHITESPACE: ClassVar[int]
+    DIRECTIONALITY_OTHER_NEUTRALS: ClassVar[int]
+    DIRECTIONALITY_LEFT_TO_RIGHT_EMBEDDING: ClassVar[int]
+    DIRECTIONALITY_LEFT_TO_RIGHT_OVERRIDE: ClassVar[int]
+    DIRECTIONALITY_RIGHT_TO_LEFT_EMBEDDING: ClassVar[int]
+    DIRECTIONALITY_RIGHT_TO_LEFT_OVERRIDE: ClassVar[int]
+    DIRECTIONALITY_POP_DIRECTIONAL_FORMAT: ClassVar[int]
+    DIRECTIONALITY_LEFT_TO_RIGHT_ISOLATE: ClassVar[int]
+    DIRECTIONALITY_RIGHT_TO_LEFT_ISOLATE: ClassVar[int]
+    DIRECTIONALITY_FIRST_STRONG_ISOLATE: ClassVar[int]
+    DIRECTIONALITY_POP_DIRECTIONAL_ISOLATE: ClassVar[int]
+    MIN_HIGH_SURROGATE: ClassVar[str]
+    MAX_HIGH_SURROGATE: ClassVar[str]
+    MIN_LOW_SURROGATE: ClassVar[str]
+    MAX_LOW_SURROGATE: ClassVar[str]
+    MIN_SURROGATE: ClassVar[str]
+    MAX_SURROGATE: ClassVar[str]
+    MIN_SUPPLEMENTARY_CODE_POINT: ClassVar[int]
+    MIN_CODE_POINT: ClassVar[int]
+    MAX_CODE_POINT: ClassVar[int]
+    SIZE: ClassVar[int]
+    BYTES: ClassVar[int]
+    def __init__(self, p0: str) -> None: ...
     @staticmethod
-    def valueOf(arg0: str) -> str: ...
-    def charValue(self) -> str: ...
-    @overload
-    def hashCode(self) -> int: ...
+    def getName(p0: int) -> str: ...
     @overload
     @staticmethod
-    def hashCode(arg0: str) -> int: ...
-    def equals(self, arg0: Any) -> bool: ...
+    def isJavaIdentifierStart(p0: str) -> bool: ...
+    @overload
+    @staticmethod
+    def isJavaIdentifierStart(p0: int) -> bool: ...
+    @overload
+    @staticmethod
+    def isJavaIdentifierPart(p0: str) -> bool: ...
+    @overload
+    @staticmethod
+    def isJavaIdentifierPart(p0: int) -> bool: ...
+    def equals(self, p0: Any) -> bool: ...
     @overload
     def toString(self) -> str: ...
     @overload
     @staticmethod
-    def toString(arg0: str) -> str: ...
+    def toString(p0: int) -> str: ...
     @overload
     @staticmethod
-    def toString(arg0: int) -> str: ...
-    @staticmethod
-    def isValidCodePoint(arg0: int) -> bool: ...
-    @staticmethod
-    def isBmpCodePoint(arg0: int) -> bool: ...
-    @staticmethod
-    def isSupplementaryCodePoint(arg0: int) -> bool: ...
-    @staticmethod
-    def isHighSurrogate(arg0: str) -> bool: ...
-    @staticmethod
-    def isLowSurrogate(arg0: str) -> bool: ...
-    @staticmethod
-    def isSurrogate(arg0: str) -> bool: ...
-    @staticmethod
-    def isSurrogatePair(arg0: str, arg1: str) -> bool: ...
-    @staticmethod
-    def charCount(arg0: int) -> int: ...
-    @staticmethod
-    def toCodePoint(arg0: str, arg1: str) -> int: ...
+    def toString(p0: str) -> str: ...
+    @overload
+    def hashCode(self) -> int: ...
     @overload
     @staticmethod
-    def codePointAt(arg0: str, arg1: int) -> int: ...
+    def hashCode(p0: str) -> int: ...
+    @staticmethod
+    def reverseBytes(p0: str) -> str: ...
+    @overload
+    def compareTo(self, p0: str) -> int: ...
+    @overload
+    def compareTo(self, p0: Any) -> int: ...
     @overload
     @staticmethod
-    def codePointAt(arg0: list[str], arg1: int) -> int: ...
+    def isDigit(p0: str) -> bool: ...
     @overload
     @staticmethod
-    def codePointAt(arg0: list[str], arg1: int, arg2: int) -> int: ...
+    def isDigit(p0: int) -> bool: ...
     @overload
     @staticmethod
-    def codePointBefore(arg0: str, arg1: int) -> int: ...
+    def isLowerCase(p0: str) -> bool: ...
     @overload
     @staticmethod
-    def codePointBefore(arg0: list[str], arg1: int) -> int: ...
+    def isLowerCase(p0: int) -> bool: ...
     @overload
     @staticmethod
-    def codePointBefore(arg0: list[str], arg1: int, arg2: int) -> int: ...
-    @staticmethod
-    def highSurrogate(arg0: int) -> str: ...
-    @staticmethod
-    def lowSurrogate(arg0: int) -> str: ...
+    def isUpperCase(p0: int) -> bool: ...
     @overload
     @staticmethod
-    def toChars(arg0: int, arg1: list[str], arg2: int) -> int: ...
+    def isUpperCase(p0: str) -> bool: ...
     @overload
     @staticmethod
-    def toChars(arg0: int) -> list[str]: ...
+    def isWhitespace(p0: str) -> bool: ...
     @overload
     @staticmethod
-    def codePointCount(arg0: str, arg1: int, arg2: int) -> int: ...
+    def isWhitespace(p0: int) -> bool: ...
+    @staticmethod
+    def compare(p0: str, p1: str) -> int: ...
+    def charValue(self) -> str: ...
+    @staticmethod
+    def valueOf(p0: str) -> str: ...
     @overload
     @staticmethod
-    def codePointCount(arg0: list[str], arg1: int, arg2: int) -> int: ...
+    def toChars(p0: int) -> Any: ...
     @overload
     @staticmethod
-    def offsetByCodePoints(arg0: str, arg1: int, arg2: int) -> int: ...
+    def toChars(p0: int, p1: Any, p2: int) -> int: ...
+    @staticmethod
+    def isHighSurrogate(p0: str) -> bool: ...
+    @staticmethod
+    def isLowSurrogate(p0: str) -> bool: ...
+    @staticmethod
+    def isSurrogate(p0: str) -> bool: ...
+    @staticmethod
+    def isSupplementaryCodePoint(p0: int) -> bool: ...
+    @staticmethod
+    def highSurrogate(p0: int) -> str: ...
+    @staticmethod
+    def lowSurrogate(p0: int) -> str: ...
+    @staticmethod
+    def toCodePoint(p0: str, p1: str) -> int: ...
     @overload
     @staticmethod
-    def offsetByCodePoints(arg0: list[str], arg1: int, arg2: int, arg3: int, arg4: int) -> int: ...
+    def codePointAt(p0: str, p1: int) -> int: ...
     @overload
     @staticmethod
-    def isLowerCase(arg0: str) -> bool: ...
+    def codePointAt(p0: Any, p1: int, p2: int) -> int: ...
     @overload
     @staticmethod
-    def isLowerCase(arg0: int) -> bool: ...
+    def codePointAt(p0: Any, p1: int) -> int: ...
     @overload
     @staticmethod
-    def isUpperCase(arg0: str) -> bool: ...
+    def codePointBefore(p0: str, p1: int) -> int: ...
     @overload
     @staticmethod
-    def isUpperCase(arg0: int) -> bool: ...
+    def codePointBefore(p0: Any, p1: int) -> int: ...
     @overload
     @staticmethod
-    def isTitleCase(arg0: str) -> bool: ...
+    def codePointBefore(p0: Any, p1: int, p2: int) -> int: ...
     @overload
     @staticmethod
-    def isTitleCase(arg0: int) -> bool: ...
+    def codePointCount(p0: str, p1: int, p2: int) -> int: ...
     @overload
     @staticmethod
-    def isDigit(arg0: str) -> bool: ...
+    def codePointCount(p0: Any, p1: int, p2: int) -> int: ...
     @overload
     @staticmethod
-    def isDigit(arg0: int) -> bool: ...
+    def offsetByCodePoints(p0: Any, p1: int, p2: int, p3: int, p4: int) -> int: ...
     @overload
     @staticmethod
-    def isDefined(arg0: str) -> bool: ...
+    def offsetByCodePoints(p0: str, p1: int, p2: int) -> int: ...
     @overload
     @staticmethod
-    def isDefined(arg0: int) -> bool: ...
+    def toLowerCase(p0: str) -> str: ...
     @overload
     @staticmethod
-    def isLetter(arg0: str) -> bool: ...
+    def toLowerCase(p0: int) -> int: ...
     @overload
     @staticmethod
-    def isLetter(arg0: int) -> bool: ...
+    def toUpperCase(p0: int) -> int: ...
     @overload
     @staticmethod
-    def isLetterOrDigit(arg0: str) -> bool: ...
+    def toUpperCase(p0: str) -> str: ...
+    @staticmethod
+    def isBmpCodePoint(p0: int) -> bool: ...
+    def describeConstable(self) -> Optional: ...
     @overload
     @staticmethod
-    def isLetterOrDigit(arg0: int) -> bool: ...
-    @staticmethod
-    def isJavaLetter(arg0: str) -> bool: ...
-    @staticmethod
-    def isJavaLetterOrDigit(arg0: str) -> bool: ...
-    @staticmethod
-    def isAlphabetic(arg0: int) -> bool: ...
-    @staticmethod
-    def isIdeographic(arg0: int) -> bool: ...
+    def getType(p0: str) -> int: ...
     @overload
     @staticmethod
-    def isJavaIdentifierStart(arg0: str) -> bool: ...
+    def getType(p0: int) -> int: ...
     @overload
     @staticmethod
-    def isJavaIdentifierStart(arg0: int) -> bool: ...
+    def isLetter(p0: str) -> bool: ...
     @overload
     @staticmethod
-    def isJavaIdentifierPart(arg0: str) -> bool: ...
+    def isLetter(p0: int) -> bool: ...
     @overload
     @staticmethod
-    def isJavaIdentifierPart(arg0: int) -> bool: ...
+    def isLetterOrDigit(p0: int) -> bool: ...
     @overload
     @staticmethod
-    def isUnicodeIdentifierStart(arg0: str) -> bool: ...
+    def isLetterOrDigit(p0: str) -> bool: ...
+    @staticmethod
+    def isValidCodePoint(p0: int) -> bool: ...
     @overload
     @staticmethod
-    def isUnicodeIdentifierStart(arg0: int) -> bool: ...
+    def isTitleCase(p0: int) -> bool: ...
     @overload
     @staticmethod
-    def isUnicodeIdentifierPart(arg0: str) -> bool: ...
+    def isTitleCase(p0: str) -> bool: ...
     @overload
     @staticmethod
-    def isUnicodeIdentifierPart(arg0: int) -> bool: ...
+    def isDefined(p0: str) -> bool: ...
     @overload
     @staticmethod
-    def isIdentifierIgnorable(arg0: str) -> bool: ...
+    def isDefined(p0: int) -> bool: ...
+    @staticmethod
+    def isIdeographic(p0: int) -> bool: ...
     @overload
     @staticmethod
-    def isIdentifierIgnorable(arg0: int) -> bool: ...
+    def isUnicodeIdentifierStart(p0: int) -> bool: ...
     @overload
     @staticmethod
-    def toLowerCase(arg0: str) -> str: ...
+    def isUnicodeIdentifierStart(p0: str) -> bool: ...
     @overload
     @staticmethod
-    def toLowerCase(arg0: int) -> int: ...
+    def isUnicodeIdentifierPart(p0: int) -> bool: ...
     @overload
     @staticmethod
-    def toUpperCase(arg0: str) -> str: ...
+    def isUnicodeIdentifierPart(p0: str) -> bool: ...
     @overload
     @staticmethod
-    def toUpperCase(arg0: int) -> int: ...
+    def isIdentifierIgnorable(p0: int) -> bool: ...
     @overload
     @staticmethod
-    def toTitleCase(arg0: str) -> str: ...
+    def isIdentifierIgnorable(p0: str) -> bool: ...
+    @staticmethod
+    def isEmoji(p0: int) -> bool: ...
+    @staticmethod
+    def isEmojiPresentation(p0: int) -> bool: ...
+    @staticmethod
+    def isEmojiModifier(p0: int) -> bool: ...
+    @staticmethod
+    def isEmojiModifierBase(p0: int) -> bool: ...
+    @staticmethod
+    def isEmojiComponent(p0: int) -> bool: ...
+    @staticmethod
+    def isExtendedPictographic(p0: int) -> bool: ...
     @overload
     @staticmethod
-    def toTitleCase(arg0: int) -> int: ...
+    def toTitleCase(p0: str) -> str: ...
     @overload
     @staticmethod
-    def digit(arg0: str, arg1: int) -> int: ...
+    def toTitleCase(p0: int) -> int: ...
     @overload
     @staticmethod
-    def digit(arg0: int, arg1: int) -> int: ...
+    def digit(p0: str, p1: int) -> int: ...
     @overload
     @staticmethod
-    def getNumericValue(arg0: str) -> int: ...
+    def digit(p0: int, p1: int) -> int: ...
     @overload
     @staticmethod
-    def getNumericValue(arg0: int) -> int: ...
-    @staticmethod
-    def isSpace(arg0: str) -> bool: ...
+    def getNumericValue(p0: int) -> int: ...
     @overload
     @staticmethod
-    def isSpaceChar(arg0: str) -> bool: ...
+    def getNumericValue(p0: str) -> int: ...
     @overload
     @staticmethod
-    def isSpaceChar(arg0: int) -> bool: ...
+    def isSpaceChar(p0: str) -> bool: ...
     @overload
     @staticmethod
-    def isWhitespace(arg0: str) -> bool: ...
+    def isSpaceChar(p0: int) -> bool: ...
     @overload
     @staticmethod
-    def isWhitespace(arg0: int) -> bool: ...
+    def isISOControl(p0: int) -> bool: ...
     @overload
     @staticmethod
-    def isISOControl(arg0: str) -> bool: ...
+    def isISOControl(p0: str) -> bool: ...
     @overload
     @staticmethod
-    def isISOControl(arg0: int) -> bool: ...
+    def getDirectionality(p0: str) -> int: ...
     @overload
     @staticmethod
-    def getType(arg0: str) -> int: ...
+    def getDirectionality(p0: int) -> int: ...
     @overload
     @staticmethod
-    def getType(arg0: int) -> int: ...
-    @staticmethod
-    def forDigit(arg0: int, arg1: int) -> str: ...
+    def isMirrored(p0: str) -> bool: ...
     @overload
     @staticmethod
-    def getDirectionality(arg0: str) -> int: ...
-    @overload
+    def isMirrored(p0: int) -> bool: ...
     @staticmethod
-    def getDirectionality(arg0: int) -> int: ...
-    @overload
+    def isSurrogatePair(p0: str, p1: str) -> bool: ...
     @staticmethod
-    def isMirrored(arg0: str) -> bool: ...
-    @overload
+    def charCount(p0: int) -> int: ...
     @staticmethod
-    def isMirrored(arg0: int) -> bool: ...
-    def compareTo(self, arg0: str) -> int: ...
+    def isJavaLetter(p0: str) -> bool: ...
     @staticmethod
-    def compare(arg0: str, arg1: str) -> int: ...
+    def isJavaLetterOrDigit(p0: str) -> bool: ...
     @staticmethod
-    def reverseBytes(arg0: str) -> str: ...
+    def isAlphabetic(p0: int) -> bool: ...
     @staticmethod
-    def getName(arg0: int) -> str: ...
+    def isSpace(p0: str) -> bool: ...
     @staticmethod
-    def codePointOf(arg0: str) -> int: ...
-
-    class Subset:
-        def __init__(self, arg0: str) -> None: ...
-        def equals(self, arg0: Any) -> bool: ...
-        def hashCode(self) -> int: ...
-        def toString(self) -> str: ...
+    def forDigit(p0: int, p1: int) -> str: ...
+    @staticmethod
+    def codePointOf(p0: str) -> int: ...
 
     class UnicodeBlock:
-        ADLAM: ClassVar["UnicodeBlock"]
-        AEGEAN_NUMBERS: ClassVar["UnicodeBlock"]
-        AHOM: ClassVar["UnicodeBlock"]
-        ALCHEMICAL_SYMBOLS: ClassVar["UnicodeBlock"]
-        ALPHABETIC_PRESENTATION_FORMS: ClassVar["UnicodeBlock"]
-        ANATOLIAN_HIEROGLYPHS: ClassVar["UnicodeBlock"]
-        ANCIENT_GREEK_MUSICAL_NOTATION: ClassVar["UnicodeBlock"]
-        ANCIENT_GREEK_NUMBERS: ClassVar["UnicodeBlock"]
-        ANCIENT_SYMBOLS: ClassVar["UnicodeBlock"]
-        ARABIC: ClassVar["UnicodeBlock"]
-        ARABIC_EXTENDED_A: ClassVar["UnicodeBlock"]
-        ARABIC_MATHEMATICAL_ALPHABETIC_SYMBOLS: ClassVar["UnicodeBlock"]
-        ARABIC_PRESENTATION_FORMS_A: ClassVar["UnicodeBlock"]
-        ARABIC_PRESENTATION_FORMS_B: ClassVar["UnicodeBlock"]
-        ARABIC_SUPPLEMENT: ClassVar["UnicodeBlock"]
-        ARMENIAN: ClassVar["UnicodeBlock"]
-        ARROWS: ClassVar["UnicodeBlock"]
-        AVESTAN: ClassVar["UnicodeBlock"]
-        BALINESE: ClassVar["UnicodeBlock"]
-        BAMUM: ClassVar["UnicodeBlock"]
-        BAMUM_SUPPLEMENT: ClassVar["UnicodeBlock"]
-        BASIC_LATIN: ClassVar["UnicodeBlock"]
-        BASSA_VAH: ClassVar["UnicodeBlock"]
-        BATAK: ClassVar["UnicodeBlock"]
-        BENGALI: ClassVar["UnicodeBlock"]
-        BHAIKSUKI: ClassVar["UnicodeBlock"]
-        BLOCK_ELEMENTS: ClassVar["UnicodeBlock"]
-        BOPOMOFO: ClassVar["UnicodeBlock"]
-        BOPOMOFO_EXTENDED: ClassVar["UnicodeBlock"]
-        BOX_DRAWING: ClassVar["UnicodeBlock"]
-        BRAHMI: ClassVar["UnicodeBlock"]
-        BRAILLE_PATTERNS: ClassVar["UnicodeBlock"]
-        BUGINESE: ClassVar["UnicodeBlock"]
-        BUHID: ClassVar["UnicodeBlock"]
-        BYZANTINE_MUSICAL_SYMBOLS: ClassVar["UnicodeBlock"]
-        CARIAN: ClassVar["UnicodeBlock"]
-        CAUCASIAN_ALBANIAN: ClassVar["UnicodeBlock"]
-        CHAKMA: ClassVar["UnicodeBlock"]
-        CHAM: ClassVar["UnicodeBlock"]
-        CHEROKEE: ClassVar["UnicodeBlock"]
-        CHEROKEE_SUPPLEMENT: ClassVar["UnicodeBlock"]
-        CHESS_SYMBOLS: ClassVar["UnicodeBlock"]
-        CHORASMIAN: ClassVar["UnicodeBlock"]
-        CJK_COMPATIBILITY: ClassVar["UnicodeBlock"]
-        CJK_COMPATIBILITY_FORMS: ClassVar["UnicodeBlock"]
-        CJK_COMPATIBILITY_IDEOGRAPHS: ClassVar["UnicodeBlock"]
-        CJK_COMPATIBILITY_IDEOGRAPHS_SUPPLEMENT: ClassVar["UnicodeBlock"]
-        CJK_RADICALS_SUPPLEMENT: ClassVar["UnicodeBlock"]
-        CJK_STROKES: ClassVar["UnicodeBlock"]
-        CJK_SYMBOLS_AND_PUNCTUATION: ClassVar["UnicodeBlock"]
-        CJK_UNIFIED_IDEOGRAPHS: ClassVar["UnicodeBlock"]
-        CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A: ClassVar["UnicodeBlock"]
-        CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B: ClassVar["UnicodeBlock"]
-        CJK_UNIFIED_IDEOGRAPHS_EXTENSION_C: ClassVar["UnicodeBlock"]
-        CJK_UNIFIED_IDEOGRAPHS_EXTENSION_D: ClassVar["UnicodeBlock"]
-        CJK_UNIFIED_IDEOGRAPHS_EXTENSION_E: ClassVar["UnicodeBlock"]
-        CJK_UNIFIED_IDEOGRAPHS_EXTENSION_F: ClassVar["UnicodeBlock"]
-        CJK_UNIFIED_IDEOGRAPHS_EXTENSION_G: ClassVar["UnicodeBlock"]
-        COMBINING_DIACRITICAL_MARKS: ClassVar["UnicodeBlock"]
-        COMBINING_DIACRITICAL_MARKS_EXTENDED: ClassVar["UnicodeBlock"]
-        COMBINING_DIACRITICAL_MARKS_SUPPLEMENT: ClassVar["UnicodeBlock"]
-        COMBINING_HALF_MARKS: ClassVar["UnicodeBlock"]
-        COMBINING_MARKS_FOR_SYMBOLS: ClassVar["UnicodeBlock"]
-        COMMON_INDIC_NUMBER_FORMS: ClassVar["UnicodeBlock"]
-        CONTROL_PICTURES: ClassVar["UnicodeBlock"]
-        COPTIC: ClassVar["UnicodeBlock"]
-        COPTIC_EPACT_NUMBERS: ClassVar["UnicodeBlock"]
-        COUNTING_ROD_NUMERALS: ClassVar["UnicodeBlock"]
-        CUNEIFORM: ClassVar["UnicodeBlock"]
-        CUNEIFORM_NUMBERS_AND_PUNCTUATION: ClassVar["UnicodeBlock"]
-        CURRENCY_SYMBOLS: ClassVar["UnicodeBlock"]
-        CYPRIOT_SYLLABARY: ClassVar["UnicodeBlock"]
-        CYRILLIC: ClassVar["UnicodeBlock"]
-        CYRILLIC_EXTENDED_A: ClassVar["UnicodeBlock"]
-        CYRILLIC_EXTENDED_B: ClassVar["UnicodeBlock"]
-        CYRILLIC_EXTENDED_C: ClassVar["UnicodeBlock"]
-        CYRILLIC_SUPPLEMENTARY: ClassVar["UnicodeBlock"]
-        DESERET: ClassVar["UnicodeBlock"]
-        DEVANAGARI: ClassVar["UnicodeBlock"]
-        DEVANAGARI_EXTENDED: ClassVar["UnicodeBlock"]
-        DINGBATS: ClassVar["UnicodeBlock"]
-        DIVES_AKURU: ClassVar["UnicodeBlock"]
-        DOGRA: ClassVar["UnicodeBlock"]
-        DOMINO_TILES: ClassVar["UnicodeBlock"]
-        DUPLOYAN: ClassVar["UnicodeBlock"]
-        EARLY_DYNASTIC_CUNEIFORM: ClassVar["UnicodeBlock"]
-        EGYPTIAN_HIEROGLYPHS: ClassVar["UnicodeBlock"]
-        EGYPTIAN_HIEROGLYPH_FORMAT_CONTROLS: ClassVar["UnicodeBlock"]
-        ELBASAN: ClassVar["UnicodeBlock"]
-        ELYMAIC: ClassVar["UnicodeBlock"]
-        EMOTICONS: ClassVar["UnicodeBlock"]
-        ENCLOSED_ALPHANUMERICS: ClassVar["UnicodeBlock"]
-        ENCLOSED_ALPHANUMERIC_SUPPLEMENT: ClassVar["UnicodeBlock"]
-        ENCLOSED_CJK_LETTERS_AND_MONTHS: ClassVar["UnicodeBlock"]
-        ENCLOSED_IDEOGRAPHIC_SUPPLEMENT: ClassVar["UnicodeBlock"]
-        ETHIOPIC: ClassVar["UnicodeBlock"]
-        ETHIOPIC_EXTENDED: ClassVar["UnicodeBlock"]
-        ETHIOPIC_EXTENDED_A: ClassVar["UnicodeBlock"]
-        ETHIOPIC_SUPPLEMENT: ClassVar["UnicodeBlock"]
-        GENERAL_PUNCTUATION: ClassVar["UnicodeBlock"]
-        GEOMETRIC_SHAPES: ClassVar["UnicodeBlock"]
-        GEOMETRIC_SHAPES_EXTENDED: ClassVar["UnicodeBlock"]
-        GEORGIAN: ClassVar["UnicodeBlock"]
-        GEORGIAN_EXTENDED: ClassVar["UnicodeBlock"]
-        GEORGIAN_SUPPLEMENT: ClassVar["UnicodeBlock"]
-        GLAGOLITIC: ClassVar["UnicodeBlock"]
-        GLAGOLITIC_SUPPLEMENT: ClassVar["UnicodeBlock"]
-        GOTHIC: ClassVar["UnicodeBlock"]
-        GRANTHA: ClassVar["UnicodeBlock"]
-        GREEK: ClassVar["UnicodeBlock"]
-        GREEK_EXTENDED: ClassVar["UnicodeBlock"]
-        GUJARATI: ClassVar["UnicodeBlock"]
-        GUNJALA_GONDI: ClassVar["UnicodeBlock"]
-        GURMUKHI: ClassVar["UnicodeBlock"]
-        HALFWIDTH_AND_FULLWIDTH_FORMS: ClassVar["UnicodeBlock"]
-        HANGUL_COMPATIBILITY_JAMO: ClassVar["UnicodeBlock"]
-        HANGUL_JAMO: ClassVar["UnicodeBlock"]
-        HANGUL_JAMO_EXTENDED_A: ClassVar["UnicodeBlock"]
-        HANGUL_JAMO_EXTENDED_B: ClassVar["UnicodeBlock"]
-        HANGUL_SYLLABLES: ClassVar["UnicodeBlock"]
-        HANIFI_ROHINGYA: ClassVar["UnicodeBlock"]
-        HANUNOO: ClassVar["UnicodeBlock"]
-        HATRAN: ClassVar["UnicodeBlock"]
-        HEBREW: ClassVar["UnicodeBlock"]
-        HIGH_PRIVATE_USE_SURROGATES: ClassVar["UnicodeBlock"]
-        HIGH_SURROGATES: ClassVar["UnicodeBlock"]
-        HIRAGANA: ClassVar["UnicodeBlock"]
-        IDEOGRAPHIC_DESCRIPTION_CHARACTERS: ClassVar["UnicodeBlock"]
-        IDEOGRAPHIC_SYMBOLS_AND_PUNCTUATION: ClassVar["UnicodeBlock"]
-        IMPERIAL_ARAMAIC: ClassVar["UnicodeBlock"]
-        INDIC_SIYAQ_NUMBERS: ClassVar["UnicodeBlock"]
-        INSCRIPTIONAL_PAHLAVI: ClassVar["UnicodeBlock"]
-        INSCRIPTIONAL_PARTHIAN: ClassVar["UnicodeBlock"]
-        IPA_EXTENSIONS: ClassVar["UnicodeBlock"]
-        JAVANESE: ClassVar["UnicodeBlock"]
-        KAITHI: ClassVar["UnicodeBlock"]
-        KANA_EXTENDED_A: ClassVar["UnicodeBlock"]
-        KANA_SUPPLEMENT: ClassVar["UnicodeBlock"]
-        KANBUN: ClassVar["UnicodeBlock"]
-        KANGXI_RADICALS: ClassVar["UnicodeBlock"]
-        KANNADA: ClassVar["UnicodeBlock"]
-        KATAKANA: ClassVar["UnicodeBlock"]
-        KATAKANA_PHONETIC_EXTENSIONS: ClassVar["UnicodeBlock"]
-        KAYAH_LI: ClassVar["UnicodeBlock"]
-        KHAROSHTHI: ClassVar["UnicodeBlock"]
-        KHITAN_SMALL_SCRIPT: ClassVar["UnicodeBlock"]
-        KHMER: ClassVar["UnicodeBlock"]
-        KHMER_SYMBOLS: ClassVar["UnicodeBlock"]
-        KHOJKI: ClassVar["UnicodeBlock"]
-        KHUDAWADI: ClassVar["UnicodeBlock"]
-        LAO: ClassVar["UnicodeBlock"]
-        LATIN_1_SUPPLEMENT: ClassVar["UnicodeBlock"]
-        LATIN_EXTENDED_A: ClassVar["UnicodeBlock"]
-        LATIN_EXTENDED_ADDITIONAL: ClassVar["UnicodeBlock"]
-        LATIN_EXTENDED_B: ClassVar["UnicodeBlock"]
-        LATIN_EXTENDED_C: ClassVar["UnicodeBlock"]
-        LATIN_EXTENDED_D: ClassVar["UnicodeBlock"]
-        LATIN_EXTENDED_E: ClassVar["UnicodeBlock"]
-        LEPCHA: ClassVar["UnicodeBlock"]
-        LETTERLIKE_SYMBOLS: ClassVar["UnicodeBlock"]
-        LIMBU: ClassVar["UnicodeBlock"]
-        LINEAR_A: ClassVar["UnicodeBlock"]
-        LINEAR_B_IDEOGRAMS: ClassVar["UnicodeBlock"]
-        LINEAR_B_SYLLABARY: ClassVar["UnicodeBlock"]
-        LISU: ClassVar["UnicodeBlock"]
-        LISU_SUPPLEMENT: ClassVar["UnicodeBlock"]
-        LOW_SURROGATES: ClassVar["UnicodeBlock"]
-        LYCIAN: ClassVar["UnicodeBlock"]
-        LYDIAN: ClassVar["UnicodeBlock"]
-        MAHAJANI: ClassVar["UnicodeBlock"]
-        MAHJONG_TILES: ClassVar["UnicodeBlock"]
-        MAKASAR: ClassVar["UnicodeBlock"]
-        MALAYALAM: ClassVar["UnicodeBlock"]
-        MANDAIC: ClassVar["UnicodeBlock"]
-        MANICHAEAN: ClassVar["UnicodeBlock"]
-        MARCHEN: ClassVar["UnicodeBlock"]
-        MASARAM_GONDI: ClassVar["UnicodeBlock"]
-        MATHEMATICAL_ALPHANUMERIC_SYMBOLS: ClassVar["UnicodeBlock"]
-        MATHEMATICAL_OPERATORS: ClassVar["UnicodeBlock"]
-        MAYAN_NUMERALS: ClassVar["UnicodeBlock"]
-        MEDEFAIDRIN: ClassVar["UnicodeBlock"]
-        MEETEI_MAYEK: ClassVar["UnicodeBlock"]
-        MEETEI_MAYEK_EXTENSIONS: ClassVar["UnicodeBlock"]
-        MENDE_KIKAKUI: ClassVar["UnicodeBlock"]
-        MEROITIC_CURSIVE: ClassVar["UnicodeBlock"]
-        MEROITIC_HIEROGLYPHS: ClassVar["UnicodeBlock"]
-        MIAO: ClassVar["UnicodeBlock"]
-        MISCELLANEOUS_MATHEMATICAL_SYMBOLS_A: ClassVar["UnicodeBlock"]
-        MISCELLANEOUS_MATHEMATICAL_SYMBOLS_B: ClassVar["UnicodeBlock"]
-        MISCELLANEOUS_SYMBOLS: ClassVar["UnicodeBlock"]
-        MISCELLANEOUS_SYMBOLS_AND_ARROWS: ClassVar["UnicodeBlock"]
-        MISCELLANEOUS_SYMBOLS_AND_PICTOGRAPHS: ClassVar["UnicodeBlock"]
-        MISCELLANEOUS_TECHNICAL: ClassVar["UnicodeBlock"]
-        MODI: ClassVar["UnicodeBlock"]
-        MODIFIER_TONE_LETTERS: ClassVar["UnicodeBlock"]
-        MONGOLIAN: ClassVar["UnicodeBlock"]
-        MONGOLIAN_SUPPLEMENT: ClassVar["UnicodeBlock"]
-        MRO: ClassVar["UnicodeBlock"]
-        MULTANI: ClassVar["UnicodeBlock"]
-        MUSICAL_SYMBOLS: ClassVar["UnicodeBlock"]
-        MYANMAR: ClassVar["UnicodeBlock"]
-        MYANMAR_EXTENDED_A: ClassVar["UnicodeBlock"]
-        MYANMAR_EXTENDED_B: ClassVar["UnicodeBlock"]
-        NABATAEAN: ClassVar["UnicodeBlock"]
-        NANDINAGARI: ClassVar["UnicodeBlock"]
-        NEWA: ClassVar["UnicodeBlock"]
-        NEW_TAI_LUE: ClassVar["UnicodeBlock"]
-        NKO: ClassVar["UnicodeBlock"]
-        NUMBER_FORMS: ClassVar["UnicodeBlock"]
-        NUSHU: ClassVar["UnicodeBlock"]
-        NYIAKENG_PUACHUE_HMONG: ClassVar["UnicodeBlock"]
-        OGHAM: ClassVar["UnicodeBlock"]
-        OLD_HUNGARIAN: ClassVar["UnicodeBlock"]
-        OLD_ITALIC: ClassVar["UnicodeBlock"]
-        OLD_NORTH_ARABIAN: ClassVar["UnicodeBlock"]
-        OLD_PERMIC: ClassVar["UnicodeBlock"]
-        OLD_PERSIAN: ClassVar["UnicodeBlock"]
-        OLD_SOGDIAN: ClassVar["UnicodeBlock"]
-        OLD_SOUTH_ARABIAN: ClassVar["UnicodeBlock"]
-        OLD_TURKIC: ClassVar["UnicodeBlock"]
-        OL_CHIKI: ClassVar["UnicodeBlock"]
-        OPTICAL_CHARACTER_RECOGNITION: ClassVar["UnicodeBlock"]
-        ORIYA: ClassVar["UnicodeBlock"]
-        ORNAMENTAL_DINGBATS: ClassVar["UnicodeBlock"]
-        OSAGE: ClassVar["UnicodeBlock"]
-        OSMANYA: ClassVar["UnicodeBlock"]
-        OTTOMAN_SIYAQ_NUMBERS: ClassVar["UnicodeBlock"]
-        PAHAWH_HMONG: ClassVar["UnicodeBlock"]
-        PALMYRENE: ClassVar["UnicodeBlock"]
-        PAU_CIN_HAU: ClassVar["UnicodeBlock"]
-        PHAGS_PA: ClassVar["UnicodeBlock"]
-        PHAISTOS_DISC: ClassVar["UnicodeBlock"]
-        PHOENICIAN: ClassVar["UnicodeBlock"]
-        PHONETIC_EXTENSIONS: ClassVar["UnicodeBlock"]
-        PHONETIC_EXTENSIONS_SUPPLEMENT: ClassVar["UnicodeBlock"]
-        PLAYING_CARDS: ClassVar["UnicodeBlock"]
-        PRIVATE_USE_AREA: ClassVar["UnicodeBlock"]
-        PSALTER_PAHLAVI: ClassVar["UnicodeBlock"]
-        REJANG: ClassVar["UnicodeBlock"]
-        RUMI_NUMERAL_SYMBOLS: ClassVar["UnicodeBlock"]
-        RUNIC: ClassVar["UnicodeBlock"]
-        SAMARITAN: ClassVar["UnicodeBlock"]
-        SAURASHTRA: ClassVar["UnicodeBlock"]
-        SHARADA: ClassVar["UnicodeBlock"]
-        SHAVIAN: ClassVar["UnicodeBlock"]
-        SHORTHAND_FORMAT_CONTROLS: ClassVar["UnicodeBlock"]
-        SIDDHAM: ClassVar["UnicodeBlock"]
-        SINHALA: ClassVar["UnicodeBlock"]
-        SINHALA_ARCHAIC_NUMBERS: ClassVar["UnicodeBlock"]
-        SMALL_FORM_VARIANTS: ClassVar["UnicodeBlock"]
-        SMALL_KANA_EXTENSION: ClassVar["UnicodeBlock"]
-        SOGDIAN: ClassVar["UnicodeBlock"]
-        SORA_SOMPENG: ClassVar["UnicodeBlock"]
-        SOYOMBO: ClassVar["UnicodeBlock"]
-        SPACING_MODIFIER_LETTERS: ClassVar["UnicodeBlock"]
-        SPECIALS: ClassVar["UnicodeBlock"]
-        SUNDANESE: ClassVar["UnicodeBlock"]
-        SUNDANESE_SUPPLEMENT: ClassVar["UnicodeBlock"]
-        SUPERSCRIPTS_AND_SUBSCRIPTS: ClassVar["UnicodeBlock"]
-        SUPPLEMENTAL_ARROWS_A: ClassVar["UnicodeBlock"]
-        SUPPLEMENTAL_ARROWS_B: ClassVar["UnicodeBlock"]
-        SUPPLEMENTAL_ARROWS_C: ClassVar["UnicodeBlock"]
-        SUPPLEMENTAL_MATHEMATICAL_OPERATORS: ClassVar["UnicodeBlock"]
-        SUPPLEMENTAL_PUNCTUATION: ClassVar["UnicodeBlock"]
-        SUPPLEMENTAL_SYMBOLS_AND_PICTOGRAPHS: ClassVar["UnicodeBlock"]
-        SUPPLEMENTARY_PRIVATE_USE_AREA_A: ClassVar["UnicodeBlock"]
-        SUPPLEMENTARY_PRIVATE_USE_AREA_B: ClassVar["UnicodeBlock"]
-        SURROGATES_AREA: ClassVar["UnicodeBlock"]
-        SUTTON_SIGNWRITING: ClassVar["UnicodeBlock"]
-        SYLOTI_NAGRI: ClassVar["UnicodeBlock"]
-        SYMBOLS_AND_PICTOGRAPHS_EXTENDED_A: ClassVar["UnicodeBlock"]
-        SYMBOLS_FOR_LEGACY_COMPUTING: ClassVar["UnicodeBlock"]
-        SYRIAC: ClassVar["UnicodeBlock"]
-        SYRIAC_SUPPLEMENT: ClassVar["UnicodeBlock"]
-        TAGALOG: ClassVar["UnicodeBlock"]
-        TAGBANWA: ClassVar["UnicodeBlock"]
-        TAGS: ClassVar["UnicodeBlock"]
-        TAI_LE: ClassVar["UnicodeBlock"]
-        TAI_THAM: ClassVar["UnicodeBlock"]
-        TAI_VIET: ClassVar["UnicodeBlock"]
-        TAI_XUAN_JING_SYMBOLS: ClassVar["UnicodeBlock"]
-        TAKRI: ClassVar["UnicodeBlock"]
-        TAMIL: ClassVar["UnicodeBlock"]
-        TAMIL_SUPPLEMENT: ClassVar["UnicodeBlock"]
-        TANGUT: ClassVar["UnicodeBlock"]
-        TANGUT_COMPONENTS: ClassVar["UnicodeBlock"]
-        TANGUT_SUPPLEMENT: ClassVar["UnicodeBlock"]
-        TELUGU: ClassVar["UnicodeBlock"]
-        THAANA: ClassVar["UnicodeBlock"]
-        THAI: ClassVar["UnicodeBlock"]
-        TIBETAN: ClassVar["UnicodeBlock"]
-        TIFINAGH: ClassVar["UnicodeBlock"]
-        TIRHUTA: ClassVar["UnicodeBlock"]
-        TRANSPORT_AND_MAP_SYMBOLS: ClassVar["UnicodeBlock"]
-        UGARITIC: ClassVar["UnicodeBlock"]
-        UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS: ClassVar["UnicodeBlock"]
-        UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS_EXTENDED: ClassVar["UnicodeBlock"]
-        VAI: ClassVar["UnicodeBlock"]
-        VARIATION_SELECTORS: ClassVar["UnicodeBlock"]
-        VARIATION_SELECTORS_SUPPLEMENT: ClassVar["UnicodeBlock"]
-        VEDIC_EXTENSIONS: ClassVar["UnicodeBlock"]
-        VERTICAL_FORMS: ClassVar["UnicodeBlock"]
-        WANCHO: ClassVar["UnicodeBlock"]
-        WARANG_CITI: ClassVar["UnicodeBlock"]
-        YEZIDI: ClassVar["UnicodeBlock"]
-        YIJING_HEXAGRAM_SYMBOLS: ClassVar["UnicodeBlock"]
-        YI_RADICALS: ClassVar["UnicodeBlock"]
-        YI_SYLLABLES: ClassVar["UnicodeBlock"]
-        ZANABAZAR_SQUARE: ClassVar["UnicodeBlock"]
+        BASIC_LATIN: ClassVar[Any]
+        LATIN_1_SUPPLEMENT: ClassVar[Any]
+        LATIN_EXTENDED_A: ClassVar[Any]
+        LATIN_EXTENDED_B: ClassVar[Any]
+        IPA_EXTENSIONS: ClassVar[Any]
+        SPACING_MODIFIER_LETTERS: ClassVar[Any]
+        COMBINING_DIACRITICAL_MARKS: ClassVar[Any]
+        GREEK: ClassVar[Any]
+        CYRILLIC: ClassVar[Any]
+        ARMENIAN: ClassVar[Any]
+        HEBREW: ClassVar[Any]
+        ARABIC: ClassVar[Any]
+        DEVANAGARI: ClassVar[Any]
+        BENGALI: ClassVar[Any]
+        GURMUKHI: ClassVar[Any]
+        GUJARATI: ClassVar[Any]
+        ORIYA: ClassVar[Any]
+        TAMIL: ClassVar[Any]
+        TELUGU: ClassVar[Any]
+        KANNADA: ClassVar[Any]
+        MALAYALAM: ClassVar[Any]
+        THAI: ClassVar[Any]
+        LAO: ClassVar[Any]
+        TIBETAN: ClassVar[Any]
+        GEORGIAN: ClassVar[Any]
+        HANGUL_JAMO: ClassVar[Any]
+        LATIN_EXTENDED_ADDITIONAL: ClassVar[Any]
+        GREEK_EXTENDED: ClassVar[Any]
+        GENERAL_PUNCTUATION: ClassVar[Any]
+        SUPERSCRIPTS_AND_SUBSCRIPTS: ClassVar[Any]
+        CURRENCY_SYMBOLS: ClassVar[Any]
+        COMBINING_MARKS_FOR_SYMBOLS: ClassVar[Any]
+        LETTERLIKE_SYMBOLS: ClassVar[Any]
+        NUMBER_FORMS: ClassVar[Any]
+        ARROWS: ClassVar[Any]
+        MATHEMATICAL_OPERATORS: ClassVar[Any]
+        MISCELLANEOUS_TECHNICAL: ClassVar[Any]
+        CONTROL_PICTURES: ClassVar[Any]
+        OPTICAL_CHARACTER_RECOGNITION: ClassVar[Any]
+        ENCLOSED_ALPHANUMERICS: ClassVar[Any]
+        BOX_DRAWING: ClassVar[Any]
+        BLOCK_ELEMENTS: ClassVar[Any]
+        GEOMETRIC_SHAPES: ClassVar[Any]
+        MISCELLANEOUS_SYMBOLS: ClassVar[Any]
+        DINGBATS: ClassVar[Any]
+        CJK_SYMBOLS_AND_PUNCTUATION: ClassVar[Any]
+        HIRAGANA: ClassVar[Any]
+        KATAKANA: ClassVar[Any]
+        BOPOMOFO: ClassVar[Any]
+        HANGUL_COMPATIBILITY_JAMO: ClassVar[Any]
+        KANBUN: ClassVar[Any]
+        ENCLOSED_CJK_LETTERS_AND_MONTHS: ClassVar[Any]
+        CJK_COMPATIBILITY: ClassVar[Any]
+        CJK_UNIFIED_IDEOGRAPHS: ClassVar[Any]
+        HANGUL_SYLLABLES: ClassVar[Any]
+        PRIVATE_USE_AREA: ClassVar[Any]
+        CJK_COMPATIBILITY_IDEOGRAPHS: ClassVar[Any]
+        ALPHABETIC_PRESENTATION_FORMS: ClassVar[Any]
+        ARABIC_PRESENTATION_FORMS_A: ClassVar[Any]
+        COMBINING_HALF_MARKS: ClassVar[Any]
+        CJK_COMPATIBILITY_FORMS: ClassVar[Any]
+        SMALL_FORM_VARIANTS: ClassVar[Any]
+        ARABIC_PRESENTATION_FORMS_B: ClassVar[Any]
+        HALFWIDTH_AND_FULLWIDTH_FORMS: ClassVar[Any]
+        SPECIALS: ClassVar[Any]
+        SURROGATES_AREA: ClassVar[Any]
+        SYRIAC: ClassVar[Any]
+        THAANA: ClassVar[Any]
+        SINHALA: ClassVar[Any]
+        MYANMAR: ClassVar[Any]
+        ETHIOPIC: ClassVar[Any]
+        CHEROKEE: ClassVar[Any]
+        UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS: ClassVar[Any]
+        OGHAM: ClassVar[Any]
+        RUNIC: ClassVar[Any]
+        KHMER: ClassVar[Any]
+        MONGOLIAN: ClassVar[Any]
+        BRAILLE_PATTERNS: ClassVar[Any]
+        CJK_RADICALS_SUPPLEMENT: ClassVar[Any]
+        KANGXI_RADICALS: ClassVar[Any]
+        IDEOGRAPHIC_DESCRIPTION_CHARACTERS: ClassVar[Any]
+        BOPOMOFO_EXTENDED: ClassVar[Any]
+        CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A: ClassVar[Any]
+        YI_SYLLABLES: ClassVar[Any]
+        YI_RADICALS: ClassVar[Any]
+        CYRILLIC_SUPPLEMENTARY: ClassVar[Any]
+        TAGALOG: ClassVar[Any]
+        HANUNOO: ClassVar[Any]
+        BUHID: ClassVar[Any]
+        TAGBANWA: ClassVar[Any]
+        LIMBU: ClassVar[Any]
+        TAI_LE: ClassVar[Any]
+        KHMER_SYMBOLS: ClassVar[Any]
+        PHONETIC_EXTENSIONS: ClassVar[Any]
+        MISCELLANEOUS_MATHEMATICAL_SYMBOLS_A: ClassVar[Any]
+        SUPPLEMENTAL_ARROWS_A: ClassVar[Any]
+        SUPPLEMENTAL_ARROWS_B: ClassVar[Any]
+        MISCELLANEOUS_MATHEMATICAL_SYMBOLS_B: ClassVar[Any]
+        SUPPLEMENTAL_MATHEMATICAL_OPERATORS: ClassVar[Any]
+        MISCELLANEOUS_SYMBOLS_AND_ARROWS: ClassVar[Any]
+        KATAKANA_PHONETIC_EXTENSIONS: ClassVar[Any]
+        YIJING_HEXAGRAM_SYMBOLS: ClassVar[Any]
+        VARIATION_SELECTORS: ClassVar[Any]
+        LINEAR_B_SYLLABARY: ClassVar[Any]
+        LINEAR_B_IDEOGRAMS: ClassVar[Any]
+        AEGEAN_NUMBERS: ClassVar[Any]
+        OLD_ITALIC: ClassVar[Any]
+        GOTHIC: ClassVar[Any]
+        UGARITIC: ClassVar[Any]
+        DESERET: ClassVar[Any]
+        SHAVIAN: ClassVar[Any]
+        OSMANYA: ClassVar[Any]
+        CYPRIOT_SYLLABARY: ClassVar[Any]
+        BYZANTINE_MUSICAL_SYMBOLS: ClassVar[Any]
+        MUSICAL_SYMBOLS: ClassVar[Any]
+        TAI_XUAN_JING_SYMBOLS: ClassVar[Any]
+        MATHEMATICAL_ALPHANUMERIC_SYMBOLS: ClassVar[Any]
+        CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B: ClassVar[Any]
+        CJK_COMPATIBILITY_IDEOGRAPHS_SUPPLEMENT: ClassVar[Any]
+        TAGS: ClassVar[Any]
+        VARIATION_SELECTORS_SUPPLEMENT: ClassVar[Any]
+        SUPPLEMENTARY_PRIVATE_USE_AREA_A: ClassVar[Any]
+        SUPPLEMENTARY_PRIVATE_USE_AREA_B: ClassVar[Any]
+        HIGH_SURROGATES: ClassVar[Any]
+        HIGH_PRIVATE_USE_SURROGATES: ClassVar[Any]
+        LOW_SURROGATES: ClassVar[Any]
+        ARABIC_SUPPLEMENT: ClassVar[Any]
+        NKO: ClassVar[Any]
+        SAMARITAN: ClassVar[Any]
+        MANDAIC: ClassVar[Any]
+        ETHIOPIC_SUPPLEMENT: ClassVar[Any]
+        UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS_EXTENDED: ClassVar[Any]
+        NEW_TAI_LUE: ClassVar[Any]
+        BUGINESE: ClassVar[Any]
+        TAI_THAM: ClassVar[Any]
+        BALINESE: ClassVar[Any]
+        SUNDANESE: ClassVar[Any]
+        BATAK: ClassVar[Any]
+        LEPCHA: ClassVar[Any]
+        OL_CHIKI: ClassVar[Any]
+        VEDIC_EXTENSIONS: ClassVar[Any]
+        PHONETIC_EXTENSIONS_SUPPLEMENT: ClassVar[Any]
+        COMBINING_DIACRITICAL_MARKS_SUPPLEMENT: ClassVar[Any]
+        GLAGOLITIC: ClassVar[Any]
+        LATIN_EXTENDED_C: ClassVar[Any]
+        COPTIC: ClassVar[Any]
+        GEORGIAN_SUPPLEMENT: ClassVar[Any]
+        TIFINAGH: ClassVar[Any]
+        ETHIOPIC_EXTENDED: ClassVar[Any]
+        CYRILLIC_EXTENDED_A: ClassVar[Any]
+        SUPPLEMENTAL_PUNCTUATION: ClassVar[Any]
+        CJK_STROKES: ClassVar[Any]
+        LISU: ClassVar[Any]
+        VAI: ClassVar[Any]
+        CYRILLIC_EXTENDED_B: ClassVar[Any]
+        BAMUM: ClassVar[Any]
+        MODIFIER_TONE_LETTERS: ClassVar[Any]
+        LATIN_EXTENDED_D: ClassVar[Any]
+        SYLOTI_NAGRI: ClassVar[Any]
+        COMMON_INDIC_NUMBER_FORMS: ClassVar[Any]
+        PHAGS_PA: ClassVar[Any]
+        SAURASHTRA: ClassVar[Any]
+        DEVANAGARI_EXTENDED: ClassVar[Any]
+        KAYAH_LI: ClassVar[Any]
+        REJANG: ClassVar[Any]
+        HANGUL_JAMO_EXTENDED_A: ClassVar[Any]
+        JAVANESE: ClassVar[Any]
+        CHAM: ClassVar[Any]
+        MYANMAR_EXTENDED_A: ClassVar[Any]
+        TAI_VIET: ClassVar[Any]
+        ETHIOPIC_EXTENDED_A: ClassVar[Any]
+        MEETEI_MAYEK: ClassVar[Any]
+        HANGUL_JAMO_EXTENDED_B: ClassVar[Any]
+        VERTICAL_FORMS: ClassVar[Any]
+        ANCIENT_GREEK_NUMBERS: ClassVar[Any]
+        ANCIENT_SYMBOLS: ClassVar[Any]
+        PHAISTOS_DISC: ClassVar[Any]
+        LYCIAN: ClassVar[Any]
+        CARIAN: ClassVar[Any]
+        OLD_PERSIAN: ClassVar[Any]
+        IMPERIAL_ARAMAIC: ClassVar[Any]
+        PHOENICIAN: ClassVar[Any]
+        LYDIAN: ClassVar[Any]
+        KHAROSHTHI: ClassVar[Any]
+        OLD_SOUTH_ARABIAN: ClassVar[Any]
+        AVESTAN: ClassVar[Any]
+        INSCRIPTIONAL_PARTHIAN: ClassVar[Any]
+        INSCRIPTIONAL_PAHLAVI: ClassVar[Any]
+        OLD_TURKIC: ClassVar[Any]
+        RUMI_NUMERAL_SYMBOLS: ClassVar[Any]
+        BRAHMI: ClassVar[Any]
+        KAITHI: ClassVar[Any]
+        CUNEIFORM: ClassVar[Any]
+        CUNEIFORM_NUMBERS_AND_PUNCTUATION: ClassVar[Any]
+        EGYPTIAN_HIEROGLYPHS: ClassVar[Any]
+        BAMUM_SUPPLEMENT: ClassVar[Any]
+        KANA_SUPPLEMENT: ClassVar[Any]
+        ANCIENT_GREEK_MUSICAL_NOTATION: ClassVar[Any]
+        COUNTING_ROD_NUMERALS: ClassVar[Any]
+        MAHJONG_TILES: ClassVar[Any]
+        DOMINO_TILES: ClassVar[Any]
+        PLAYING_CARDS: ClassVar[Any]
+        ENCLOSED_ALPHANUMERIC_SUPPLEMENT: ClassVar[Any]
+        ENCLOSED_IDEOGRAPHIC_SUPPLEMENT: ClassVar[Any]
+        MISCELLANEOUS_SYMBOLS_AND_PICTOGRAPHS: ClassVar[Any]
+        EMOTICONS: ClassVar[Any]
+        TRANSPORT_AND_MAP_SYMBOLS: ClassVar[Any]
+        ALCHEMICAL_SYMBOLS: ClassVar[Any]
+        CJK_UNIFIED_IDEOGRAPHS_EXTENSION_C: ClassVar[Any]
+        CJK_UNIFIED_IDEOGRAPHS_EXTENSION_D: ClassVar[Any]
+        ARABIC_EXTENDED_A: ClassVar[Any]
+        SUNDANESE_SUPPLEMENT: ClassVar[Any]
+        MEETEI_MAYEK_EXTENSIONS: ClassVar[Any]
+        MEROITIC_HIEROGLYPHS: ClassVar[Any]
+        MEROITIC_CURSIVE: ClassVar[Any]
+        SORA_SOMPENG: ClassVar[Any]
+        CHAKMA: ClassVar[Any]
+        SHARADA: ClassVar[Any]
+        TAKRI: ClassVar[Any]
+        MIAO: ClassVar[Any]
+        ARABIC_MATHEMATICAL_ALPHABETIC_SYMBOLS: ClassVar[Any]
+        COMBINING_DIACRITICAL_MARKS_EXTENDED: ClassVar[Any]
+        MYANMAR_EXTENDED_B: ClassVar[Any]
+        LATIN_EXTENDED_E: ClassVar[Any]
+        COPTIC_EPACT_NUMBERS: ClassVar[Any]
+        OLD_PERMIC: ClassVar[Any]
+        ELBASAN: ClassVar[Any]
+        CAUCASIAN_ALBANIAN: ClassVar[Any]
+        LINEAR_A: ClassVar[Any]
+        PALMYRENE: ClassVar[Any]
+        NABATAEAN: ClassVar[Any]
+        OLD_NORTH_ARABIAN: ClassVar[Any]
+        MANICHAEAN: ClassVar[Any]
+        PSALTER_PAHLAVI: ClassVar[Any]
+        MAHAJANI: ClassVar[Any]
+        SINHALA_ARCHAIC_NUMBERS: ClassVar[Any]
+        KHOJKI: ClassVar[Any]
+        KHUDAWADI: ClassVar[Any]
+        GRANTHA: ClassVar[Any]
+        TIRHUTA: ClassVar[Any]
+        SIDDHAM: ClassVar[Any]
+        MODI: ClassVar[Any]
+        WARANG_CITI: ClassVar[Any]
+        PAU_CIN_HAU: ClassVar[Any]
+        MRO: ClassVar[Any]
+        BASSA_VAH: ClassVar[Any]
+        PAHAWH_HMONG: ClassVar[Any]
+        DUPLOYAN: ClassVar[Any]
+        SHORTHAND_FORMAT_CONTROLS: ClassVar[Any]
+        MENDE_KIKAKUI: ClassVar[Any]
+        ORNAMENTAL_DINGBATS: ClassVar[Any]
+        GEOMETRIC_SHAPES_EXTENDED: ClassVar[Any]
+        SUPPLEMENTAL_ARROWS_C: ClassVar[Any]
+        CHEROKEE_SUPPLEMENT: ClassVar[Any]
+        HATRAN: ClassVar[Any]
+        OLD_HUNGARIAN: ClassVar[Any]
+        MULTANI: ClassVar[Any]
+        AHOM: ClassVar[Any]
+        EARLY_DYNASTIC_CUNEIFORM: ClassVar[Any]
+        ANATOLIAN_HIEROGLYPHS: ClassVar[Any]
+        SUTTON_SIGNWRITING: ClassVar[Any]
+        SUPPLEMENTAL_SYMBOLS_AND_PICTOGRAPHS: ClassVar[Any]
+        CJK_UNIFIED_IDEOGRAPHS_EXTENSION_E: ClassVar[Any]
+        SYRIAC_SUPPLEMENT: ClassVar[Any]
+        CYRILLIC_EXTENDED_C: ClassVar[Any]
+        OSAGE: ClassVar[Any]
+        NEWA: ClassVar[Any]
+        MONGOLIAN_SUPPLEMENT: ClassVar[Any]
+        MARCHEN: ClassVar[Any]
+        IDEOGRAPHIC_SYMBOLS_AND_PUNCTUATION: ClassVar[Any]
+        TANGUT: ClassVar[Any]
+        TANGUT_COMPONENTS: ClassVar[Any]
+        KANA_EXTENDED_A: ClassVar[Any]
+        GLAGOLITIC_SUPPLEMENT: ClassVar[Any]
+        ADLAM: ClassVar[Any]
+        MASARAM_GONDI: ClassVar[Any]
+        ZANABAZAR_SQUARE: ClassVar[Any]
+        NUSHU: ClassVar[Any]
+        SOYOMBO: ClassVar[Any]
+        BHAIKSUKI: ClassVar[Any]
+        CJK_UNIFIED_IDEOGRAPHS_EXTENSION_F: ClassVar[Any]
+        GEORGIAN_EXTENDED: ClassVar[Any]
+        HANIFI_ROHINGYA: ClassVar[Any]
+        OLD_SOGDIAN: ClassVar[Any]
+        SOGDIAN: ClassVar[Any]
+        DOGRA: ClassVar[Any]
+        GUNJALA_GONDI: ClassVar[Any]
+        MAKASAR: ClassVar[Any]
+        MEDEFAIDRIN: ClassVar[Any]
+        MAYAN_NUMERALS: ClassVar[Any]
+        INDIC_SIYAQ_NUMBERS: ClassVar[Any]
+        CHESS_SYMBOLS: ClassVar[Any]
+        ELYMAIC: ClassVar[Any]
+        NANDINAGARI: ClassVar[Any]
+        TAMIL_SUPPLEMENT: ClassVar[Any]
+        EGYPTIAN_HIEROGLYPH_FORMAT_CONTROLS: ClassVar[Any]
+        SMALL_KANA_EXTENSION: ClassVar[Any]
+        NYIAKENG_PUACHUE_HMONG: ClassVar[Any]
+        WANCHO: ClassVar[Any]
+        OTTOMAN_SIYAQ_NUMBERS: ClassVar[Any]
+        SYMBOLS_AND_PICTOGRAPHS_EXTENDED_A: ClassVar[Any]
+        YEZIDI: ClassVar[Any]
+        CHORASMIAN: ClassVar[Any]
+        DIVES_AKURU: ClassVar[Any]
+        LISU_SUPPLEMENT: ClassVar[Any]
+        KHITAN_SMALL_SCRIPT: ClassVar[Any]
+        TANGUT_SUPPLEMENT: ClassVar[Any]
+        SYMBOLS_FOR_LEGACY_COMPUTING: ClassVar[Any]
+        CJK_UNIFIED_IDEOGRAPHS_EXTENSION_G: ClassVar[Any]
+        ARABIC_EXTENDED_B: ClassVar[Any]
+        VITHKUQI: ClassVar[Any]
+        LATIN_EXTENDED_F: ClassVar[Any]
+        OLD_UYGHUR: ClassVar[Any]
+        UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS_EXTENDED_A: ClassVar[Any]
+        CYPRO_MINOAN: ClassVar[Any]
+        TANGSA: ClassVar[Any]
+        KANA_EXTENDED_B: ClassVar[Any]
+        ZNAMENNY_MUSICAL_NOTATION: ClassVar[Any]
+        LATIN_EXTENDED_G: ClassVar[Any]
+        TOTO: ClassVar[Any]
+        ETHIOPIC_EXTENDED_B: ClassVar[Any]
+        ARABIC_EXTENDED_C: ClassVar[Any]
+        DEVANAGARI_EXTENDED_A: ClassVar[Any]
+        KAWI: ClassVar[Any]
+        KAKTOVIK_NUMERALS: ClassVar[Any]
+        CYRILLIC_EXTENDED_D: ClassVar[Any]
+        NAG_MUNDARI: ClassVar[Any]
+        CJK_UNIFIED_IDEOGRAPHS_EXTENSION_H: ClassVar[Any]
+        CJK_UNIFIED_IDEOGRAPHS_EXTENSION_I: ClassVar[Any]
+        TODHRI: ClassVar[Any]
+        GARAY: ClassVar[Any]
+        TULU_TIGALARI: ClassVar[Any]
+        MYANMAR_EXTENDED_C: ClassVar[Any]
+        SUNUWAR: ClassVar[Any]
+        EGYPTIAN_HIEROGLYPHS_EXTENDED_A: ClassVar[Any]
+        GURUNG_KHEMA: ClassVar[Any]
+        KIRAT_RAI: ClassVar[Any]
+        SYMBOLS_FOR_LEGACY_COMPUTING_SUPPLEMENT: ClassVar[Any]
+        OL_ONAL: ClassVar[Any]
+        SIDETIC: ClassVar[Any]
+        SHARADA_SUPPLEMENT: ClassVar[Any]
+        TOLONG_SIKI: ClassVar[Any]
+        BERIA_ERFE: ClassVar[Any]
+        TANGUT_COMPONENTS_SUPPLEMENT: ClassVar[Any]
+        MISCELLANEOUS_SYMBOLS_SUPPLEMENT: ClassVar[Any]
+        TAI_YO: ClassVar[Any]
+        CJK_UNIFIED_IDEOGRAPHS_EXTENSION_J: ClassVar[Any]
+        @staticmethod
+        def forName(p0: str) -> Any: ...
         @overload
         @staticmethod
-        def of(arg0: str) -> "UnicodeBlock": ...
+        def of(p0: int) -> Any: ...
         @overload
         @staticmethod
-        def of(arg0: int) -> "UnicodeBlock": ...
-        @staticmethod
-        def forName(arg0: str) -> "UnicodeBlock": ...
+        def of(p0: str) -> Any: ...
 
     class UnicodeScript:
         COMMON: ClassVar["UnicodeScript"]
@@ -789,12 +838,210 @@ class Character:
         CHORASMIAN: ClassVar["UnicodeScript"]
         DIVES_AKURU: ClassVar["UnicodeScript"]
         KHITAN_SMALL_SCRIPT: ClassVar["UnicodeScript"]
+        VITHKUQI: ClassVar["UnicodeScript"]
+        OLD_UYGHUR: ClassVar["UnicodeScript"]
+        CYPRO_MINOAN: ClassVar["UnicodeScript"]
+        TANGSA: ClassVar["UnicodeScript"]
+        TOTO: ClassVar["UnicodeScript"]
+        KAWI: ClassVar["UnicodeScript"]
+        NAG_MUNDARI: ClassVar["UnicodeScript"]
+        TODHRI: ClassVar["UnicodeScript"]
+        GARAY: ClassVar["UnicodeScript"]
+        TULU_TIGALARI: ClassVar["UnicodeScript"]
+        SUNUWAR: ClassVar["UnicodeScript"]
+        GURUNG_KHEMA: ClassVar["UnicodeScript"]
+        KIRAT_RAI: ClassVar["UnicodeScript"]
+        OL_ONAL: ClassVar["UnicodeScript"]
+        SIDETIC: ClassVar["UnicodeScript"]
+        TOLONG_SIKI: ClassVar["UnicodeScript"]
+        BERIA_ERFE: ClassVar["UnicodeScript"]
+        TAI_YO: ClassVar["UnicodeScript"]
         UNKNOWN: ClassVar["UnicodeScript"]
+        COMMON: ClassVar[Any]
+        LATIN: ClassVar[Any]
+        GREEK: ClassVar[Any]
+        CYRILLIC: ClassVar[Any]
+        ARMENIAN: ClassVar[Any]
+        HEBREW: ClassVar[Any]
+        ARABIC: ClassVar[Any]
+        SYRIAC: ClassVar[Any]
+        THAANA: ClassVar[Any]
+        DEVANAGARI: ClassVar[Any]
+        BENGALI: ClassVar[Any]
+        GURMUKHI: ClassVar[Any]
+        GUJARATI: ClassVar[Any]
+        ORIYA: ClassVar[Any]
+        TAMIL: ClassVar[Any]
+        TELUGU: ClassVar[Any]
+        KANNADA: ClassVar[Any]
+        MALAYALAM: ClassVar[Any]
+        SINHALA: ClassVar[Any]
+        THAI: ClassVar[Any]
+        LAO: ClassVar[Any]
+        TIBETAN: ClassVar[Any]
+        MYANMAR: ClassVar[Any]
+        GEORGIAN: ClassVar[Any]
+        HANGUL: ClassVar[Any]
+        ETHIOPIC: ClassVar[Any]
+        CHEROKEE: ClassVar[Any]
+        CANADIAN_ABORIGINAL: ClassVar[Any]
+        OGHAM: ClassVar[Any]
+        RUNIC: ClassVar[Any]
+        KHMER: ClassVar[Any]
+        MONGOLIAN: ClassVar[Any]
+        HIRAGANA: ClassVar[Any]
+        KATAKANA: ClassVar[Any]
+        BOPOMOFO: ClassVar[Any]
+        HAN: ClassVar[Any]
+        YI: ClassVar[Any]
+        OLD_ITALIC: ClassVar[Any]
+        GOTHIC: ClassVar[Any]
+        DESERET: ClassVar[Any]
+        INHERITED: ClassVar[Any]
+        TAGALOG: ClassVar[Any]
+        HANUNOO: ClassVar[Any]
+        BUHID: ClassVar[Any]
+        TAGBANWA: ClassVar[Any]
+        LIMBU: ClassVar[Any]
+        TAI_LE: ClassVar[Any]
+        LINEAR_B: ClassVar[Any]
+        UGARITIC: ClassVar[Any]
+        SHAVIAN: ClassVar[Any]
+        OSMANYA: ClassVar[Any]
+        CYPRIOT: ClassVar[Any]
+        BRAILLE: ClassVar[Any]
+        BUGINESE: ClassVar[Any]
+        COPTIC: ClassVar[Any]
+        NEW_TAI_LUE: ClassVar[Any]
+        GLAGOLITIC: ClassVar[Any]
+        TIFINAGH: ClassVar[Any]
+        SYLOTI_NAGRI: ClassVar[Any]
+        OLD_PERSIAN: ClassVar[Any]
+        KHAROSHTHI: ClassVar[Any]
+        BALINESE: ClassVar[Any]
+        CUNEIFORM: ClassVar[Any]
+        PHOENICIAN: ClassVar[Any]
+        PHAGS_PA: ClassVar[Any]
+        NKO: ClassVar[Any]
+        SUNDANESE: ClassVar[Any]
+        BATAK: ClassVar[Any]
+        LEPCHA: ClassVar[Any]
+        OL_CHIKI: ClassVar[Any]
+        VAI: ClassVar[Any]
+        SAURASHTRA: ClassVar[Any]
+        KAYAH_LI: ClassVar[Any]
+        REJANG: ClassVar[Any]
+        LYCIAN: ClassVar[Any]
+        CARIAN: ClassVar[Any]
+        LYDIAN: ClassVar[Any]
+        CHAM: ClassVar[Any]
+        TAI_THAM: ClassVar[Any]
+        TAI_VIET: ClassVar[Any]
+        AVESTAN: ClassVar[Any]
+        EGYPTIAN_HIEROGLYPHS: ClassVar[Any]
+        SAMARITAN: ClassVar[Any]
+        MANDAIC: ClassVar[Any]
+        LISU: ClassVar[Any]
+        BAMUM: ClassVar[Any]
+        JAVANESE: ClassVar[Any]
+        MEETEI_MAYEK: ClassVar[Any]
+        IMPERIAL_ARAMAIC: ClassVar[Any]
+        OLD_SOUTH_ARABIAN: ClassVar[Any]
+        INSCRIPTIONAL_PARTHIAN: ClassVar[Any]
+        INSCRIPTIONAL_PAHLAVI: ClassVar[Any]
+        OLD_TURKIC: ClassVar[Any]
+        BRAHMI: ClassVar[Any]
+        KAITHI: ClassVar[Any]
+        MEROITIC_HIEROGLYPHS: ClassVar[Any]
+        MEROITIC_CURSIVE: ClassVar[Any]
+        SORA_SOMPENG: ClassVar[Any]
+        CHAKMA: ClassVar[Any]
+        SHARADA: ClassVar[Any]
+        TAKRI: ClassVar[Any]
+        MIAO: ClassVar[Any]
+        CAUCASIAN_ALBANIAN: ClassVar[Any]
+        BASSA_VAH: ClassVar[Any]
+        DUPLOYAN: ClassVar[Any]
+        ELBASAN: ClassVar[Any]
+        GRANTHA: ClassVar[Any]
+        PAHAWH_HMONG: ClassVar[Any]
+        KHOJKI: ClassVar[Any]
+        LINEAR_A: ClassVar[Any]
+        MAHAJANI: ClassVar[Any]
+        MANICHAEAN: ClassVar[Any]
+        MENDE_KIKAKUI: ClassVar[Any]
+        MODI: ClassVar[Any]
+        MRO: ClassVar[Any]
+        OLD_NORTH_ARABIAN: ClassVar[Any]
+        NABATAEAN: ClassVar[Any]
+        PALMYRENE: ClassVar[Any]
+        PAU_CIN_HAU: ClassVar[Any]
+        OLD_PERMIC: ClassVar[Any]
+        PSALTER_PAHLAVI: ClassVar[Any]
+        SIDDHAM: ClassVar[Any]
+        KHUDAWADI: ClassVar[Any]
+        TIRHUTA: ClassVar[Any]
+        WARANG_CITI: ClassVar[Any]
+        AHOM: ClassVar[Any]
+        ANATOLIAN_HIEROGLYPHS: ClassVar[Any]
+        HATRAN: ClassVar[Any]
+        MULTANI: ClassVar[Any]
+        OLD_HUNGARIAN: ClassVar[Any]
+        SIGNWRITING: ClassVar[Any]
+        ADLAM: ClassVar[Any]
+        BHAIKSUKI: ClassVar[Any]
+        MARCHEN: ClassVar[Any]
+        NEWA: ClassVar[Any]
+        OSAGE: ClassVar[Any]
+        TANGUT: ClassVar[Any]
+        MASARAM_GONDI: ClassVar[Any]
+        NUSHU: ClassVar[Any]
+        SOYOMBO: ClassVar[Any]
+        ZANABAZAR_SQUARE: ClassVar[Any]
+        HANIFI_ROHINGYA: ClassVar[Any]
+        OLD_SOGDIAN: ClassVar[Any]
+        SOGDIAN: ClassVar[Any]
+        DOGRA: ClassVar[Any]
+        GUNJALA_GONDI: ClassVar[Any]
+        MAKASAR: ClassVar[Any]
+        MEDEFAIDRIN: ClassVar[Any]
+        ELYMAIC: ClassVar[Any]
+        NANDINAGARI: ClassVar[Any]
+        NYIAKENG_PUACHUE_HMONG: ClassVar[Any]
+        WANCHO: ClassVar[Any]
+        YEZIDI: ClassVar[Any]
+        CHORASMIAN: ClassVar[Any]
+        DIVES_AKURU: ClassVar[Any]
+        KHITAN_SMALL_SCRIPT: ClassVar[Any]
+        VITHKUQI: ClassVar[Any]
+        OLD_UYGHUR: ClassVar[Any]
+        CYPRO_MINOAN: ClassVar[Any]
+        TANGSA: ClassVar[Any]
+        TOTO: ClassVar[Any]
+        KAWI: ClassVar[Any]
+        NAG_MUNDARI: ClassVar[Any]
+        TODHRI: ClassVar[Any]
+        GARAY: ClassVar[Any]
+        TULU_TIGALARI: ClassVar[Any]
+        SUNUWAR: ClassVar[Any]
+        GURUNG_KHEMA: ClassVar[Any]
+        KIRAT_RAI: ClassVar[Any]
+        OL_ONAL: ClassVar[Any]
+        SIDETIC: ClassVar[Any]
+        TOLONG_SIKI: ClassVar[Any]
+        BERIA_ERFE: ClassVar[Any]
+        TAI_YO: ClassVar[Any]
+        UNKNOWN: ClassVar[Any]
         @staticmethod
-        def values() -> list["UnicodeScript"]: ...
+        def forName(p0: str) -> Any: ...
         @staticmethod
-        def valueOf(arg0: str) -> "UnicodeScript": ...
+        def values() -> Any: ...
         @staticmethod
-        def of(arg0: int) -> "UnicodeScript": ...
+        def valueOf(p0: str) -> Any: ...
         @staticmethod
-        def forName(arg0: str) -> "UnicodeScript": ...
+        def of(p0: int) -> Any: ...
+
+    class Subset:
+        def equals(self, p0: Any) -> bool: ...
+        def toString(self) -> str: ...
+        def hashCode(self) -> int: ...

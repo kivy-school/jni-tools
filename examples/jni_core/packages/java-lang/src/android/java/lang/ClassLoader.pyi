@@ -11,7 +11,7 @@ class Module:
     """Forward declaration for ``java.lang.Module``.
 
     This Java type is referenced by the wrapper but is not itself
-    wrapped by pyjnius-wrap. At runtime pyjnius will hand you a
+    wrapped by jni-wrap. At runtime pyjnius will hand you a
     live ``autoclass('java.lang.Module')`` proxy; this empty class exists
     purely so static type checkers and IDEs can resolve the name.
 

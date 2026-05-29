@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ApplicationErrorReport"]
 
@@ -21,34 +21,25 @@ class ApplicationErrorReport(JavaClass, metaclass=MetaJavaClass):
     systemApp = JavaField("Z")
     time = JavaField("J")
     type = JavaField("I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getErrorReportReceiver = JavaStaticMethod("(Landroid/content/Context;Ljava/lang/String;I)Landroid/content/ComponentName;")
+    dump = JavaMethod("(Landroid/util/Printer;Ljava/lang/String;)V")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
     readFromParcel = JavaMethod("(Landroid/os/Parcel;)V")
     describeContents = JavaMethod("()I")
-    dump = JavaMethod("(Landroid/util/Printer;Ljava/lang/String;)V")
 
-    class AnrInfo(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/app/ApplicationErrorReport/AnrInfo"
+    class RunningServiceInfo(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/app/ApplicationErrorReport$RunningServiceInfo"
         __javaconstructor__ = [("()V", False), ("(Landroid/os/Parcel;)V", False)]
-        activity = JavaField("Ljava/lang/String;")
-        cause = JavaField("Ljava/lang/String;")
-        info = JavaField("Ljava/lang/String;")
-        writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+        durationMillis = JavaField("J")
+        serviceDetails = JavaField("Ljava/lang/String;")
         dump = JavaMethod("(Landroid/util/Printer;Ljava/lang/String;)V")
-
-    class BatteryInfo(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/app/ApplicationErrorReport/BatteryInfo"
-        __javaconstructor__ = [("()V", False), ("(Landroid/os/Parcel;)V", False)]
-        checkinDetails = JavaField("Ljava/lang/String;")
-        durationMicros = JavaField("J")
-        usageDetails = JavaField("Ljava/lang/String;")
-        usagePercent = JavaField("I")
         writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
-        dump = JavaMethod("(Landroid/util/Printer;Ljava/lang/String;)V")
 
     class CrashInfo(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/app/ApplicationErrorReport/CrashInfo"
-        __javaconstructor__ = [("()V", False), ("(Ljava/lang/Throwable;)V", False), ("(Landroid/os/Parcel;)V", False)]
+        __javaclass__ = "android/app/ApplicationErrorReport$CrashInfo"
+        __javaconstructor__ = [("(Ljava/lang/Throwable;)V", False), ("(Landroid/os/Parcel;)V", False), ("()V", False)]
         exceptionClassName = JavaField("Ljava/lang/String;")
         exceptionMessage = JavaField("Ljava/lang/String;")
         stackTrace = JavaField("Ljava/lang/String;")
@@ -56,13 +47,24 @@ class ApplicationErrorReport(JavaClass, metaclass=MetaJavaClass):
         throwFileName = JavaField("Ljava/lang/String;")
         throwLineNumber = JavaField("I")
         throwMethodName = JavaField("Ljava/lang/String;")
-        writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
         dump = JavaMethod("(Landroid/util/Printer;Ljava/lang/String;)V")
+        writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
 
-    class RunningServiceInfo(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/app/ApplicationErrorReport/RunningServiceInfo"
+    class BatteryInfo(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/app/ApplicationErrorReport$BatteryInfo"
         __javaconstructor__ = [("()V", False), ("(Landroid/os/Parcel;)V", False)]
-        durationMillis = JavaField("J")
-        serviceDetails = JavaField("Ljava/lang/String;")
-        writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+        checkinDetails = JavaField("Ljava/lang/String;")
+        durationMicros = JavaField("J")
+        usageDetails = JavaField("Ljava/lang/String;")
+        usagePercent = JavaField("I")
         dump = JavaMethod("(Landroid/util/Printer;Ljava/lang/String;)V")
+        writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+
+    class AnrInfo(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/app/ApplicationErrorReport$AnrInfo"
+        __javaconstructor__ = [("()V", False), ("(Landroid/os/Parcel;)V", False)]
+        activity = JavaField("Ljava/lang/String;")
+        cause = JavaField("Ljava/lang/String;")
+        info = JavaField("Ljava/lang/String;")
+        dump = JavaMethod("(Landroid/util/Printer;Ljava/lang/String;)V")
+        writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")

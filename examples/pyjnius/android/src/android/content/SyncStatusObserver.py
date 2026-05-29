@@ -1,7 +1,7 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SyncStatusObserver"]
 
-class SyncStatusObserver(JavaInterface, metaclass=MetaJavaClass):
+class SyncStatusObserver(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/content/SyncStatusObserver"
     onStatusChanged = JavaMethod("(I)V")

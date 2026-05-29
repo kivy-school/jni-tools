@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["TvInputInfo"]
 
@@ -16,32 +16,34 @@ class TvInputInfo(JavaClass, metaclass=MetaJavaClass):
     TYPE_SVIDEO = JavaStaticField("I")
     TYPE_TUNER = JavaStaticField("I")
     TYPE_VGA = JavaStaticField("I")
-    getId = JavaMethod("()Ljava/lang/String;")
-    getParentId = JavaMethod("()Ljava/lang/String;")
-    getServiceInfo = JavaMethod("()Landroid/content/pm/ServiceInfo;")
-    createSetupIntent = JavaMethod("()Landroid/content/Intent;")
-    createSettingsIntent = JavaMethod("()Landroid/content/Intent;")
-    getType = JavaMethod("()I")
-    getTunerCount = JavaMethod("()I")
-    canRecord = JavaMethod("()Z")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     canPauseRecording = JavaMethod("()Z")
-    getExtras = JavaMethod("()Landroid/os/Bundle;")
+    canRecord = JavaMethod("()Z")
+    createSettingsIntent = JavaMethod("()Landroid/content/Intent;")
+    createSetupIntent = JavaMethod("()Landroid/content/Intent;")
+    getParentId = JavaMethod("()Ljava/lang/String;")
+    getTunerCount = JavaMethod("()I")
     isPassthroughInput = JavaMethod("()Z")
-    isHidden = JavaMethod("(Landroid/content/Context;)Z")
-    loadLabel = JavaMethod("(Landroid/content/Context;)Ljava/lang/CharSequence;")
     loadCustomLabel = JavaMethod("(Landroid/content/Context;)Ljava/lang/CharSequence;")
-    loadIcon = JavaMethod("(Landroid/content/Context;)Landroid/graphics/drawable/Drawable;")
-    describeContents = JavaMethod("()I")
-    hashCode = JavaMethod("()I")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
     toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    isHidden = JavaMethod("(Landroid/content/Context;)Z")
+    getId = JavaMethod("()Ljava/lang/String;")
+    getType = JavaMethod("()I")
+    loadIcon = JavaMethod("(Landroid/content/Context;)Landroid/graphics/drawable/Drawable;")
+    loadLabel = JavaMethod("(Landroid/content/Context;)Ljava/lang/CharSequence;")
+    getServiceInfo = JavaMethod("()Landroid/content/pm/ServiceInfo;")
+    getExtras = JavaMethod("()Landroid/os/Bundle;")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
 
     class Builder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/tv/TvInputInfo/Builder"
+        __javaclass__ = "android/media/tv/TvInputInfo$Builder"
         __javaconstructor__ = [("(Landroid/content/Context;Landroid/content/ComponentName;)V", False)]
-        setTunerCount = JavaMethod("(I)Landroid/media/tv/TvInputInfo$Builder;")
         setCanRecord = JavaMethod("(Z)Landroid/media/tv/TvInputInfo$Builder;")
         setCanPauseRecording = JavaMethod("(Z)Landroid/media/tv/TvInputInfo$Builder;")
+        setTunerCount = JavaMethod("(I)Landroid/media/tv/TvInputInfo$Builder;")
         setExtras = JavaMethod("(Landroid/os/Bundle;)Landroid/media/tv/TvInputInfo$Builder;")
         build = JavaMethod("()Landroid/media/tv/TvInputInfo;")

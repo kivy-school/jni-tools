@@ -6,7 +6,12 @@ class SignStyle:
     NEVER: ClassVar["SignStyle"]
     NOT_NEGATIVE: ClassVar["SignStyle"]
     EXCEEDS_PAD: ClassVar["SignStyle"]
+    NORMAL: ClassVar["SignStyle"]
+    ALWAYS: ClassVar["SignStyle"]
+    NEVER: ClassVar["SignStyle"]
+    NOT_NEGATIVE: ClassVar["SignStyle"]
+    EXCEEDS_PAD: ClassVar["SignStyle"]
     @staticmethod
-    def values() -> list["SignStyle"]: ...
+    def values() -> Any: ...
     @staticmethod
-    def valueOf(arg0: str) -> "SignStyle": ...
+    def valueOf(p0: str) -> "SignStyle": ...

@@ -1,14 +1,16 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SentenceSuggestionsInfo"]
 
 class SentenceSuggestionsInfo(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/view/textservice/SentenceSuggestionsInfo"
-    __javaconstructor__ = [("([Landroid/view/textservice/SuggestionsInfo;[I[I)V", False), ("(Landroid/os/Parcel;)V", False)]
+    __javaconstructor__ = [("(Landroid/os/Parcel;)V", False), ("([Landroid/view/textservice/SuggestionsInfo;[I[I)V", False)]
     CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
-    describeContents = JavaMethod("()I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getLengthAt = JavaMethod("(I)I")
+    getOffsetAt = JavaMethod("(I)I")
     getSuggestionsCount = JavaMethod("()I")
     getSuggestionsInfoAt = JavaMethod("(I)Landroid/view/textservice/SuggestionsInfo;")
-    getOffsetAt = JavaMethod("(I)I")
-    getLengthAt = JavaMethod("(I)I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

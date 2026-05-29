@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ToneGenerator"]
 
@@ -110,4 +110,3 @@ class ToneGenerator(JavaClass, metaclass=MetaJavaClass):
     stopTone = JavaMethod("()V")
     release = JavaMethod("()V")
     getAudioSessionId = JavaMethod("()I")
-    finalize = JavaMethod("()V")

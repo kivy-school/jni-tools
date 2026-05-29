@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["BluetoothClass"]
 
@@ -8,18 +8,34 @@ class BluetoothClass(JavaClass, metaclass=MetaJavaClass):
     PROFILE_A2DP = JavaStaticField("I")
     PROFILE_HEADSET = JavaStaticField("I")
     PROFILE_HID = JavaStaticField("I")
-    equals = JavaMethod("(Ljava/lang/Object;)Z")
-    hashCode = JavaMethod("()I")
-    toString = JavaMethod("()Ljava/lang/String;")
-    describeContents = JavaMethod("()I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
-    hasService = JavaMethod("(I)Z")
-    getMajorDeviceClass = JavaMethod("()I")
-    getDeviceClass = JavaMethod("()I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     doesClassMatch = JavaMethod("(I)Z")
+    getMajorDeviceClass = JavaMethod("()I")
+    hasService = JavaMethod("(I)Z")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    getDeviceClass = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
+
+    class Service(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/bluetooth/BluetoothClass$Service"
+        __javaconstructor__ = [("()V", False)]
+        AUDIO = JavaStaticField("I")
+        CAPTURE = JavaStaticField("I")
+        INFORMATION = JavaStaticField("I")
+        LE_AUDIO = JavaStaticField("I")
+        LIMITED_DISCOVERABILITY = JavaStaticField("I")
+        NETWORKING = JavaStaticField("I")
+        OBJECT_TRANSFER = JavaStaticField("I")
+        POSITIONING = JavaStaticField("I")
+        RENDER = JavaStaticField("I")
+        TELEPHONY = JavaStaticField("I")
 
     class Device(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/bluetooth/BluetoothClass/Device"
+        __javaclass__ = "android/bluetooth/BluetoothClass$Device"
         __javaconstructor__ = [("()V", False)]
         AUDIO_VIDEO_CAMCORDER = JavaStaticField("I")
         AUDIO_VIDEO_CAR_AUDIO = JavaStaticField("I")
@@ -77,7 +93,7 @@ class BluetoothClass(JavaClass, metaclass=MetaJavaClass):
         WEARABLE_WRIST_WATCH = JavaStaticField("I")
 
         class Major(JavaClass, metaclass=MetaJavaClass):
-            __javaclass__ = "android/bluetooth/BluetoothClass/Device/Major"
+            __javaclass__ = "android/bluetooth/BluetoothClass$Device$Major"
             __javaconstructor__ = [("()V", False)]
             AUDIO_VIDEO = JavaStaticField("I")
             COMPUTER = JavaStaticField("I")
@@ -90,17 +106,3 @@ class BluetoothClass(JavaClass, metaclass=MetaJavaClass):
             TOY = JavaStaticField("I")
             UNCATEGORIZED = JavaStaticField("I")
             WEARABLE = JavaStaticField("I")
-
-    class Service(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/bluetooth/BluetoothClass/Service"
-        __javaconstructor__ = [("()V", False)]
-        AUDIO = JavaStaticField("I")
-        CAPTURE = JavaStaticField("I")
-        INFORMATION = JavaStaticField("I")
-        LE_AUDIO = JavaStaticField("I")
-        LIMITED_DISCOVERABILITY = JavaStaticField("I")
-        NETWORKING = JavaStaticField("I")
-        OBJECT_TRANSFER = JavaStaticField("I")
-        POSITIONING = JavaStaticField("I")
-        RENDER = JavaStaticField("I")
-        TELEPHONY = JavaStaticField("I")

@@ -1,8 +1,8 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["PluginStub"]
 
-class PluginStub(JavaInterface, metaclass=MetaJavaClass):
+class PluginStub(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/webkit/PluginStub"
-    getEmbeddedView = JavaMethod("(ILandroid/content/Context;)Landroid/view/View;")
     getFullScreenView = JavaMethod("(ILandroid/content/Context;)Landroid/view/View;")
+    getEmbeddedView = JavaMethod("(ILandroid/content/Context;)Landroid/view/View;")

@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SuggestionSpan"]
 
@@ -15,15 +15,17 @@ class SuggestionSpan(JavaClass, metaclass=MetaJavaClass):
     SUGGESTION_SPAN_PICKED_AFTER = JavaStaticField("Ljava/lang/String;")
     SUGGESTION_SPAN_PICKED_BEFORE = JavaStaticField("Ljava/lang/String;")
     SUGGESTION_SPAN_PICKED_HASHCODE = JavaStaticField("Ljava/lang/String;")
-    getSuggestions = JavaMethod("()[Ljava/lang/String;")
-    getLocale = JavaMethod("()Ljava/lang/String;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getUnderlineColor = JavaMethod("()I")
     getLocaleObject = JavaMethod("()Ljava/util/Locale;")
-    getFlags = JavaMethod("()I")
-    setFlags = JavaMethod("(I)V")
-    describeContents = JavaMethod("()I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
-    getSpanTypeId = JavaMethod("()I")
+    getSuggestions = JavaMethod("()[Ljava/lang/String;")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
     hashCode = JavaMethod("()I")
+    getLocale = JavaMethod("()Ljava/lang/String;")
     updateDrawState = JavaMethod("(Landroid/text/TextPaint;)V")
-    getUnderlineColor = JavaMethod("()I")
+    setFlags = JavaMethod("(I)V")
+    getFlags = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
+    getSpanTypeId = JavaMethod("()I")

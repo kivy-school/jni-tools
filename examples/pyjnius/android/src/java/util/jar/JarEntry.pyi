@@ -1,57 +1,57 @@
 from typing import Any, ClassVar, overload
-from java.security.CodeSigner import CodeSigner
-from java.security.cert.Certificate import Certificate
 from java.util.jar.Attributes import Attributes
 from java.util.zip.ZipEntry import ZipEntry
 
 class JarEntry:
-    CENATT: ClassVar[int]
-    CENATX: ClassVar[int]
-    CENCOM: ClassVar[int]
-    CENCRC: ClassVar[int]
-    CENDSK: ClassVar[int]
-    CENEXT: ClassVar[int]
-    CENFLG: ClassVar[int]
-    CENHDR: ClassVar[int]
-    CENHOW: ClassVar[int]
-    CENLEN: ClassVar[int]
-    CENNAM: ClassVar[int]
-    CENOFF: ClassVar[int]
-    CENSIG: ClassVar[int]
-    CENSIZ: ClassVar[int]
-    CENTIM: ClassVar[int]
-    CENVEM: ClassVar[int]
-    CENVER: ClassVar[int]
-    ENDCOM: ClassVar[int]
-    ENDHDR: ClassVar[int]
-    ENDOFF: ClassVar[int]
-    ENDSIG: ClassVar[int]
-    ENDSIZ: ClassVar[int]
-    ENDSUB: ClassVar[int]
-    ENDTOT: ClassVar[int]
-    EXTCRC: ClassVar[int]
-    EXTHDR: ClassVar[int]
-    EXTLEN: ClassVar[int]
+    STORED: ClassVar[int]
+    DEFLATED: ClassVar[int]
+    LOCSIG: ClassVar[int]
     EXTSIG: ClassVar[int]
-    EXTSIZ: ClassVar[int]
-    LOCCRC: ClassVar[int]
-    LOCEXT: ClassVar[int]
-    LOCFLG: ClassVar[int]
+    CENSIG: ClassVar[int]
+    ENDSIG: ClassVar[int]
     LOCHDR: ClassVar[int]
+    EXTHDR: ClassVar[int]
+    CENHDR: ClassVar[int]
+    ENDHDR: ClassVar[int]
+    LOCVER: ClassVar[int]
+    LOCFLG: ClassVar[int]
     LOCHOW: ClassVar[int]
+    LOCTIM: ClassVar[int]
+    LOCCRC: ClassVar[int]
+    LOCSIZ: ClassVar[int]
     LOCLEN: ClassVar[int]
     LOCNAM: ClassVar[int]
-    LOCSIG: ClassVar[int]
-    LOCSIZ: ClassVar[int]
-    LOCTIM: ClassVar[int]
-    LOCVER: ClassVar[int]
+    LOCEXT: ClassVar[int]
+    EXTCRC: ClassVar[int]
+    EXTSIZ: ClassVar[int]
+    EXTLEN: ClassVar[int]
+    CENVEM: ClassVar[int]
+    CENVER: ClassVar[int]
+    CENFLG: ClassVar[int]
+    CENHOW: ClassVar[int]
+    CENTIM: ClassVar[int]
+    CENCRC: ClassVar[int]
+    CENSIZ: ClassVar[int]
+    CENLEN: ClassVar[int]
+    CENNAM: ClassVar[int]
+    CENEXT: ClassVar[int]
+    CENCOM: ClassVar[int]
+    CENDSK: ClassVar[int]
+    CENATT: ClassVar[int]
+    CENATX: ClassVar[int]
+    CENOFF: ClassVar[int]
+    ENDSUB: ClassVar[int]
+    ENDTOT: ClassVar[int]
+    ENDSIZ: ClassVar[int]
+    ENDOFF: ClassVar[int]
+    ENDCOM: ClassVar[int]
     @overload
-    def __init__(self, arg0: str) -> None: ...
+    def __init__(self, p0: "JarEntry") -> None: ...
     @overload
-    def __init__(self, arg0: ZipEntry) -> None: ...
+    def __init__(self, p0: ZipEntry) -> None: ...
     @overload
-    def __init__(self, arg0: "JarEntry") -> None: ...
-    def getAttributes(self) -> Attributes: ...
-    def getCertificates(self) -> list[Certificate]: ...
-    def getCodeSigners(self) -> list[CodeSigner]: ...
+    def __init__(self, p0: str) -> None: ...
+    def getCertificates(self) -> Any: ...
+    def getCodeSigners(self) -> Any: ...
     def getRealName(self) -> str: ...
+    def getAttributes(self) -> Attributes: ...

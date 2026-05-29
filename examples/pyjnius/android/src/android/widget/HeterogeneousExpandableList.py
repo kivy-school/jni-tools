@@ -1,10 +1,10 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["HeterogeneousExpandableList"]
 
-class HeterogeneousExpandableList(JavaInterface, metaclass=MetaJavaClass):
+class HeterogeneousExpandableList(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/widget/HeterogeneousExpandableList"
-    getGroupType = JavaMethod("(I)I")
-    getChildType = JavaMethod("(II)I")
-    getGroupTypeCount = JavaMethod("()I")
     getChildTypeCount = JavaMethod("()I")
+    getChildType = JavaMethod("(II)I")
+    getGroupType = JavaMethod("(I)I")
+    getGroupTypeCount = JavaMethod("()I")

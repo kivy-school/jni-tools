@@ -1,36 +1,34 @@
 from typing import Any, ClassVar, overload
+from android.os.Bundle import Bundle
 from android.os.Parcel import Parcel
 
-# Forward declarations for Java types we do not wrap.
-# Bound as empty classes so annotations resolve in the IDE.
-class Creator:
-    """Forward declaration for ``android.os.Parcelable.Creator``.
-
-    This Java type is referenced by the wrapper but is not itself
-    wrapped by pyjnius-wrap. At runtime pyjnius will hand you a
-    live ``autoclass('android.os.Parcelable.Creator')`` proxy; this empty class exists
-    purely so static type checkers and IDEs can resolve the name.
-
-    See: https://developer.android.com/reference/android/os/Parcelable/Creator
-    """
-    ...
-
 class InstrumentationInfo:
-    CREATOR: ClassVar[Creator]
+    CREATOR: ClassVar[Any]
+    CONTENTS_FILE_DESCRIPTOR: ClassVar[int]
+    PARCELABLE_WRITE_RETURN_VALUE: ClassVar[int]
     dataDir: str
     functionalTest: bool
     handleProfiling: bool
     publicSourceDir: str
     sourceDir: str
-    splitNames: list[str]
-    splitPublicSourceDirs: list[str]
-    splitSourceDirs: list[str]
+    splitNames: Any
+    splitPublicSourceDirs: Any
+    splitSourceDirs: Any
     targetPackage: str
     targetProcesses: str
+    banner: int
+    icon: int
+    isArchived: bool
+    labelRes: int
+    logo: int
+    metaData: Bundle
+    name: str
+    nonLocalizedLabel: str
+    packageName: str
     @overload
     def __init__(self) -> None: ...
     @overload
-    def __init__(self, arg0: "InstrumentationInfo") -> None: ...
+    def __init__(self, p0: "InstrumentationInfo") -> None: ...
     def toString(self) -> str: ...
+    def writeToParcel(self, p0: Parcel, p1: int) -> None: ...
     def describeContents(self) -> int: ...
-    def writeToParcel(self, arg0: Parcel, arg1: int) -> None: ...

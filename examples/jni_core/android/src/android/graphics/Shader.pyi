@@ -8,13 +8,13 @@ class Shader:
 
     class TileMode:
         CLAMP: ClassVar["TileMode"]
-        REPEAT: ClassVar["TileMode"]
-        MIRROR: ClassVar["TileMode"]
         DECAL: ClassVar["TileMode"]
+        MIRROR: ClassVar["TileMode"]
+        REPEAT: ClassVar["TileMode"]
         CLAMP: ClassVar[Any]
-        REPEAT: ClassVar[Any]
-        MIRROR: ClassVar[Any]
         DECAL: ClassVar[Any]
+        MIRROR: ClassVar[Any]
+        REPEAT: ClassVar[Any]
         @staticmethod
         def values() -> Any: ...
         @staticmethod

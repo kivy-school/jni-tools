@@ -1,12 +1,12 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["DOMLocator"]
 
-class DOMLocator(JavaInterface, metaclass=MetaJavaClass):
+class DOMLocator(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "org/w3c/dom/DOMLocator"
-    getLineNumber = JavaMethod("()I")
+    getUri = JavaMethod("()Ljava/lang/String;")
     getColumnNumber = JavaMethod("()I")
     getByteOffset = JavaMethod("()I")
     getUtf16Offset = JavaMethod("()I")
     getRelatedNode = JavaMethod("()Lorg/w3c/dom/Node;")
-    getUri = JavaMethod("()Ljava/lang/String;")
+    getLineNumber = JavaMethod("()I")

@@ -9,13 +9,13 @@ from org.xmlpull.v1.XmlSerializer import XmlSerializer
 class Xml:
     FEATURE_RELAXED: ClassVar[str]
     @staticmethod
-    def newPullParser() -> XmlPullParser: ...
-    @staticmethod
-    def newSerializer() -> XmlSerializer: ...
+    def asAttributeSet(p0: XmlPullParser) -> AttributeSet: ...
     @staticmethod
     def findEncodingByName(p0: str) -> Any: ...
     @staticmethod
-    def asAttributeSet(p0: XmlPullParser) -> AttributeSet: ...
+    def newPullParser() -> XmlPullParser: ...
+    @staticmethod
+    def newSerializer() -> XmlSerializer: ...
     @overload
     @staticmethod
     def parse(p0: InputStream, p1: Any, p2: ContentHandler) -> None: ...
@@ -27,14 +27,14 @@ class Xml:
     def parse(p0: Reader, p1: ContentHandler) -> None: ...
 
     class Encoding:
-        US_ASCII: ClassVar["Encoding"]
-        UTF_8: ClassVar["Encoding"]
-        UTF_16: ClassVar["Encoding"]
         ISO_8859_1: ClassVar["Encoding"]
-        US_ASCII: ClassVar[Any]
-        UTF_8: ClassVar[Any]
-        UTF_16: ClassVar[Any]
+        US_ASCII: ClassVar["Encoding"]
+        UTF_16: ClassVar["Encoding"]
+        UTF_8: ClassVar["Encoding"]
         ISO_8859_1: ClassVar[Any]
+        US_ASCII: ClassVar[Any]
+        UTF_16: ClassVar[Any]
+        UTF_8: ClassVar[Any]
         @staticmethod
         def values() -> Any: ...
         @staticmethod

@@ -1,8 +1,8 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Menu"]
 
-class Menu(JavaInterface, metaclass=MetaJavaClass):
+class Menu(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/view/Menu"
     CATEGORY_ALTERNATIVE = JavaStaticField("I")
     CATEGORY_CONTAINER = JavaStaticField("I")
@@ -14,22 +14,22 @@ class Menu(JavaInterface, metaclass=MetaJavaClass):
     FLAG_PERFORM_NO_CLOSE = JavaStaticField("I")
     NONE = JavaStaticField("I")
     SUPPORTED_MODIFIERS_MASK = JavaStaticField("I")
-    add = JavaMultipleMethod([("(Ljava/lang/CharSequence;)Landroid/view/MenuItem;", False, False), ("(I)Landroid/view/MenuItem;", False, False), ("(IIILjava/lang/CharSequence;)Landroid/view/MenuItem;", False, False), ("(IIII)Landroid/view/MenuItem;", False, False)])
-    addSubMenu = JavaMultipleMethod([("(Ljava/lang/CharSequence;)Landroid/view/SubMenu;", False, False), ("(I)Landroid/view/SubMenu;", False, False), ("(IIILjava/lang/CharSequence;)Landroid/view/SubMenu;", False, False), ("(IIII)Landroid/view/SubMenu;", False, False)])
-    addIntentOptions = JavaMethod("(IIILandroid/content/ComponentName;[Landroid/content/Intent;Landroid/content/Intent;I[Landroid/view/MenuItem;)I")
-    removeItem = JavaMethod("(I)V")
-    removeGroup = JavaMethod("(I)V")
-    clear = JavaMethod("()V")
-    setGroupCheckable = JavaMethod("(IZZ)V")
-    setGroupVisible = JavaMethod("(IZ)V")
-    setGroupEnabled = JavaMethod("(IZ)V")
-    hasVisibleItems = JavaMethod("()Z")
-    findItem = JavaMethod("(I)Landroid/view/MenuItem;")
     size = JavaMethod("()I")
-    getItem = JavaMethod("(I)Landroid/view/MenuItem;")
+    clear = JavaMethod("()V")
+    add = JavaMultipleMethod([("(I)Landroid/view/MenuItem;", False, False), ("(Ljava/lang/CharSequence;)Landroid/view/MenuItem;", False, False), ("(IIILjava/lang/CharSequence;)Landroid/view/MenuItem;", False, False), ("(IIII)Landroid/view/MenuItem;", False, False)])
     close = JavaMethod("()V")
-    performShortcut = JavaMethod("(ILandroid/view/KeyEvent;I)Z")
+    addIntentOptions = JavaMethod("(IIILandroid/content/ComponentName;[Landroid/content/Intent;Landroid/content/Intent;I[Landroid/view/MenuItem;)I")
+    addSubMenu = JavaMultipleMethod([("(I)Landroid/view/SubMenu;", False, False), ("(IIII)Landroid/view/SubMenu;", False, False), ("(IIILjava/lang/CharSequence;)Landroid/view/SubMenu;", False, False), ("(Ljava/lang/CharSequence;)Landroid/view/SubMenu;", False, False)])
+    findItem = JavaMethod("(I)Landroid/view/MenuItem;")
+    hasVisibleItems = JavaMethod("()Z")
     isShortcutKey = JavaMethod("(ILandroid/view/KeyEvent;)Z")
     performIdentifierAction = JavaMethod("(II)Z")
-    setQwertyMode = JavaMethod("(Z)V")
+    performShortcut = JavaMethod("(ILandroid/view/KeyEvent;I)Z")
+    removeGroup = JavaMethod("(I)V")
+    removeItem = JavaMethod("(I)V")
+    setGroupCheckable = JavaMethod("(IZZ)V")
     setGroupDividerEnabled = JavaMethod("(Z)V")
+    setGroupEnabled = JavaMethod("(IZ)V")
+    setGroupVisible = JavaMethod("(IZ)V")
+    setQwertyMode = JavaMethod("(Z)V")
+    getItem = JavaMethod("(I)Landroid/view/MenuItem;")

@@ -9,36 +9,47 @@ class NumberRangeFormatter:
     def with_() -> UnlocalizedNumberRangeFormatter: ...
     @overload
     @staticmethod
-    def withLocale(arg0: Locale) -> LocalizedNumberRangeFormatter: ...
+    def withLocale(p0: Locale) -> LocalizedNumberRangeFormatter: ...
     @overload
     @staticmethod
-    def withLocale(arg0: ULocale) -> LocalizedNumberRangeFormatter: ...
+    def withLocale(p0: ULocale) -> LocalizedNumberRangeFormatter: ...
+
+    class RangeIdentityResult:
+        EQUAL_AFTER_ROUNDING: ClassVar["RangeIdentityResult"]
+        EQUAL_BEFORE_ROUNDING: ClassVar["RangeIdentityResult"]
+        NOT_EQUAL: ClassVar["RangeIdentityResult"]
+        EQUAL_AFTER_ROUNDING: ClassVar[Any]
+        EQUAL_BEFORE_ROUNDING: ClassVar[Any]
+        NOT_EQUAL: ClassVar[Any]
+        @staticmethod
+        def values() -> Any: ...
+        @staticmethod
+        def valueOf(p0: str) -> Any: ...
+
+    class RangeIdentityFallback:
+        APPROXIMATELY: ClassVar["RangeIdentityFallback"]
+        APPROXIMATELY_OR_SINGLE_VALUE: ClassVar["RangeIdentityFallback"]
+        RANGE: ClassVar["RangeIdentityFallback"]
+        SINGLE_VALUE: ClassVar["RangeIdentityFallback"]
+        APPROXIMATELY: ClassVar[Any]
+        APPROXIMATELY_OR_SINGLE_VALUE: ClassVar[Any]
+        RANGE: ClassVar[Any]
+        SINGLE_VALUE: ClassVar[Any]
+        @staticmethod
+        def values() -> Any: ...
+        @staticmethod
+        def valueOf(p0: str) -> Any: ...
 
     class RangeCollapse:
+        ALL: ClassVar["RangeCollapse"]
         AUTO: ClassVar["RangeCollapse"]
         NONE: ClassVar["RangeCollapse"]
         UNIT: ClassVar["RangeCollapse"]
-        ALL: ClassVar["RangeCollapse"]
+        ALL: ClassVar[Any]
+        AUTO: ClassVar[Any]
+        NONE: ClassVar[Any]
+        UNIT: ClassVar[Any]
         @staticmethod
-        def values() -> list["RangeCollapse"]: ...
+        def values() -> Any: ...
         @staticmethod
-        def valueOf(arg0: str) -> "RangeCollapse": ...
-
-    class RangeIdentityFallback:
-        SINGLE_VALUE: ClassVar["RangeIdentityFallback"]
-        APPROXIMATELY_OR_SINGLE_VALUE: ClassVar["RangeIdentityFallback"]
-        APPROXIMATELY: ClassVar["RangeIdentityFallback"]
-        RANGE: ClassVar["RangeIdentityFallback"]
-        @staticmethod
-        def values() -> list["RangeIdentityFallback"]: ...
-        @staticmethod
-        def valueOf(arg0: str) -> "RangeIdentityFallback": ...
-
-    class RangeIdentityResult:
-        EQUAL_BEFORE_ROUNDING: ClassVar["RangeIdentityResult"]
-        EQUAL_AFTER_ROUNDING: ClassVar["RangeIdentityResult"]
-        NOT_EQUAL: ClassVar["RangeIdentityResult"]
-        @staticmethod
-        def values() -> list["RangeIdentityResult"]: ...
-        @staticmethod
-        def valueOf(arg0: str) -> "RangeIdentityResult": ...
+        def valueOf(p0: str) -> Any: ...

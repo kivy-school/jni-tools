@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["VideoProfile"]
 
@@ -15,26 +15,30 @@ class VideoProfile(JavaClass, metaclass=MetaJavaClass):
     STATE_PAUSED = JavaStaticField("I")
     STATE_RX_ENABLED = JavaStaticField("I")
     STATE_TX_ENABLED = JavaStaticField("I")
-    getVideoState = JavaMethod("()I")
-    getQuality = JavaMethod("()I")
-    describeContents = JavaMethod("()I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
-    toString = JavaMethod("()Ljava/lang/String;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     videoStateToString = JavaStaticMethod("(I)Ljava/lang/String;")
     isAudioOnly = JavaStaticMethod("(I)Z")
-    isVideo = JavaStaticMethod("(I)Z")
-    isTransmissionEnabled = JavaStaticMethod("(I)Z")
     isReceptionEnabled = JavaStaticMethod("(I)Z")
     isBidirectional = JavaStaticMethod("(I)Z")
+    isTransmissionEnabled = JavaStaticMethod("(I)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    getVideoState = JavaMethod("()I")
+    getQuality = JavaMethod("()I")
     isPaused = JavaStaticMethod("(I)Z")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
+    isVideo = JavaStaticMethod("(I)Z")
 
     class CameraCapabilities(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/telecom/VideoProfile/CameraCapabilities"
+        __javaclass__ = "android/telecom/VideoProfile$CameraCapabilities"
         __javaconstructor__ = [("(II)V", False), ("(IIZF)V", False)]
         CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
-        describeContents = JavaMethod("()I")
-        writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
-        getWidth = JavaMethod("()I")
+        CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+        PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
         getHeight = JavaMethod("()I")
-        isZoomSupported = JavaMethod("()Z")
+        getWidth = JavaMethod("()I")
         getMaxZoom = JavaMethod("()F")
+        isZoomSupported = JavaMethod("()Z")
+        writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+        describeContents = JavaMethod("()I")

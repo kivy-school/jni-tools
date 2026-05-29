@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["EGL15"]
 
@@ -51,13 +51,13 @@ class EGL15(JavaClass, metaclass=MetaJavaClass):
     EGL_SYNC_TYPE = JavaStaticField("I")
     EGL_TIMEOUT_EXPIRED = JavaStaticField("I")
     EGL_UNSIGNALED = JavaStaticField("I")
-    eglCreateSync = JavaStaticMethod("(Landroid/opengl/EGLDisplay;I[JI)Landroid/opengl/EGLSync;")
-    eglGetSyncAttrib = JavaStaticMethod("(Landroid/opengl/EGLDisplay;Landroid/opengl/EGLSync;I[JI)Z")
-    eglDestroySync = JavaStaticMethod("(Landroid/opengl/EGLDisplay;Landroid/opengl/EGLSync;)Z")
-    eglClientWaitSync = JavaStaticMethod("(Landroid/opengl/EGLDisplay;Landroid/opengl/EGLSync;IJ)I")
-    eglGetPlatformDisplay = JavaStaticMethod("(IJ[JI)Landroid/opengl/EGLDisplay;")
-    eglCreatePlatformWindowSurface = JavaStaticMethod("(Landroid/opengl/EGLDisplay;Landroid/opengl/EGLConfig;Ljava/nio/Buffer;[JI)Landroid/opengl/EGLSurface;")
-    eglCreatePlatformPixmapSurface = JavaStaticMethod("(Landroid/opengl/EGLDisplay;Landroid/opengl/EGLConfig;Ljava/nio/Buffer;[JI)Landroid/opengl/EGLSurface;")
-    eglWaitSync = JavaStaticMethod("(Landroid/opengl/EGLDisplay;Landroid/opengl/EGLSync;I)Z")
-    eglCreateImage = JavaStaticMethod("(Landroid/opengl/EGLDisplay;Landroid/opengl/EGLContext;IJ[JI)Landroid/opengl/EGLImage;")
     eglDestroyImage = JavaStaticMethod("(Landroid/opengl/EGLDisplay;Landroid/opengl/EGLImage;)Z")
+    eglWaitSync = JavaStaticMethod("(Landroid/opengl/EGLDisplay;Landroid/opengl/EGLSync;I)Z")
+    eglGetSyncAttrib = JavaStaticMethod("(Landroid/opengl/EGLDisplay;Landroid/opengl/EGLSync;I[JI)Z")
+    eglCreateImage = JavaStaticMethod("(Landroid/opengl/EGLDisplay;Landroid/opengl/EGLContext;IJ[JI)Landroid/opengl/EGLImage;")
+    eglCreateSync = JavaStaticMethod("(Landroid/opengl/EGLDisplay;I[JI)Landroid/opengl/EGLSync;")
+    eglClientWaitSync = JavaStaticMethod("(Landroid/opengl/EGLDisplay;Landroid/opengl/EGLSync;IJ)I")
+    eglDestroySync = JavaStaticMethod("(Landroid/opengl/EGLDisplay;Landroid/opengl/EGLSync;)Z")
+    eglCreatePlatformPixmapSurface = JavaStaticMethod("(Landroid/opengl/EGLDisplay;Landroid/opengl/EGLConfig;Ljava/nio/Buffer;[JI)Landroid/opengl/EGLSurface;")
+    eglCreatePlatformWindowSurface = JavaStaticMethod("(Landroid/opengl/EGLDisplay;Landroid/opengl/EGLConfig;Ljava/nio/Buffer;[JI)Landroid/opengl/EGLSurface;")
+    eglGetPlatformDisplay = JavaStaticMethod("(IJ[JI)Landroid/opengl/EGLDisplay;")

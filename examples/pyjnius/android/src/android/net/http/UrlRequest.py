@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["UrlRequest"]
 
@@ -9,46 +9,28 @@ class UrlRequest(JavaClass, metaclass=MetaJavaClass):
     REQUEST_PRIORITY_LOW = JavaStaticField("I")
     REQUEST_PRIORITY_LOWEST = JavaStaticField("I")
     REQUEST_PRIORITY_MEDIUM = JavaStaticField("I")
-    getHttpMethod = JavaMethod("()Ljava/lang/String;")
-    getHeaders = JavaMethod("()Landroid/net/http/HeaderBlock;")
-    isCacheDisabled = JavaMethod("()Z")
-    isDirectExecutorAllowed = JavaMethod("()Z")
-    getPriority = JavaMethod("()I")
-    hasTrafficStatsTag = JavaMethod("()Z")
-    getTrafficStatsTag = JavaMethod("()I")
-    hasTrafficStatsUid = JavaMethod("()Z")
-    getTrafficStatsUid = JavaMethod("()I")
-    start = JavaMethod("()V")
-    followRedirect = JavaMethod("()V")
-    read = JavaMethod("(Ljava/nio/ByteBuffer;)V")
-    cancel = JavaMethod("()V")
-    isDone = JavaMethod("()Z")
     getStatus = JavaMethod("(Landroid/net/http/UrlRequest$StatusListener;)V")
+    hasTrafficStatsUid = JavaMethod("()Z")
+    isCacheDisabled = JavaMethod("()Z")
+    hasTrafficStatsTag = JavaMethod("()Z")
+    getTrafficStatsUid = JavaMethod("()I")
+    getTrafficStatsTag = JavaMethod("()I")
+    isDirectExecutorAllowed = JavaMethod("()Z")
+    getHttpMethod = JavaMethod("()Ljava/lang/String;")
+    followRedirect = JavaMethod("()V")
+    getHeaders = JavaMethod("()Landroid/net/http/HeaderBlock;")
+    start = JavaMethod("()V")
+    getPriority = JavaMethod("()I")
+    isDone = JavaMethod("()Z")
+    cancel = JavaMethod("()V")
+    read = JavaMethod("(Ljava/nio/ByteBuffer;)V")
 
-    class Builder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/net/http/UrlRequest/Builder"
-        setHttpMethod = JavaMethod("(Ljava/lang/String;)Landroid/net/http/UrlRequest$Builder;")
-        addHeader = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)Landroid/net/http/UrlRequest$Builder;")
-        setCacheDisabled = JavaMethod("(Z)Landroid/net/http/UrlRequest$Builder;")
-        setPriority = JavaMethod("(I)Landroid/net/http/UrlRequest$Builder;")
-        setUploadDataProvider = JavaMethod("(Landroid/net/http/UploadDataProvider;Ljava/util/concurrent/Executor;)Landroid/net/http/UrlRequest$Builder;")
-        setDirectExecutorAllowed = JavaMethod("(Z)Landroid/net/http/UrlRequest$Builder;")
-        bindToNetwork = JavaMethod("(Landroid/net/Network;)Landroid/net/http/UrlRequest$Builder;")
-        setTrafficStatsTag = JavaMethod("(I)Landroid/net/http/UrlRequest$Builder;")
-        setTrafficStatsUid = JavaMethod("(I)Landroid/net/http/UrlRequest$Builder;")
-        build = JavaMethod("()Landroid/net/http/UrlRequest;")
-
-    class Callback(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/net/http/UrlRequest/Callback"
-        onRedirectReceived = JavaMethod("(Landroid/net/http/UrlRequest;Landroid/net/http/UrlResponseInfo;Ljava/lang/String;)V")
-        onResponseStarted = JavaMethod("(Landroid/net/http/UrlRequest;Landroid/net/http/UrlResponseInfo;)V")
-        onReadCompleted = JavaMethod("(Landroid/net/http/UrlRequest;Landroid/net/http/UrlResponseInfo;Ljava/nio/ByteBuffer;)V")
-        onSucceeded = JavaMethod("(Landroid/net/http/UrlRequest;Landroid/net/http/UrlResponseInfo;)V")
-        onFailed = JavaMethod("(Landroid/net/http/UrlRequest;Landroid/net/http/UrlResponseInfo;Landroid/net/http/HttpException;)V")
-        onCanceled = JavaMethod("(Landroid/net/http/UrlRequest;Landroid/net/http/UrlResponseInfo;)V")
+    class StatusListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/net/http/UrlRequest$StatusListener"
+        onStatus = JavaMethod("(I)V")
 
     class Status(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/net/http/UrlRequest/Status"
+        __javaclass__ = "android/net/http/UrlRequest$Status"
         CONNECTING = JavaStaticField("I")
         DOWNLOADING_PAC_FILE = JavaStaticField("I")
         ESTABLISHING_PROXY_TUNNEL = JavaStaticField("I")
@@ -66,6 +48,24 @@ class UrlRequest(JavaClass, metaclass=MetaJavaClass):
         WAITING_FOR_RESPONSE = JavaStaticField("I")
         WAITING_FOR_STALLED_SOCKET_POOL = JavaStaticField("I")
 
-    class StatusListener(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/net/http/UrlRequest/StatusListener"
-        onStatus = JavaMethod("(I)V")
+    class Callback(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/net/http/UrlRequest$Callback"
+        onFailed = JavaMethod("(Landroid/net/http/UrlRequest;Landroid/net/http/UrlResponseInfo;Landroid/net/http/HttpException;)V")
+        onSucceeded = JavaMethod("(Landroid/net/http/UrlRequest;Landroid/net/http/UrlResponseInfo;)V")
+        onReadCompleted = JavaMethod("(Landroid/net/http/UrlRequest;Landroid/net/http/UrlResponseInfo;Ljava/nio/ByteBuffer;)V")
+        onRedirectReceived = JavaMethod("(Landroid/net/http/UrlRequest;Landroid/net/http/UrlResponseInfo;Ljava/lang/String;)V")
+        onResponseStarted = JavaMethod("(Landroid/net/http/UrlRequest;Landroid/net/http/UrlResponseInfo;)V")
+        onCanceled = JavaMethod("(Landroid/net/http/UrlRequest;Landroid/net/http/UrlResponseInfo;)V")
+
+    class Builder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/net/http/UrlRequest$Builder"
+        bindToNetwork = JavaMethod("(Landroid/net/Network;)Landroid/net/http/UrlRequest$Builder;")
+        addHeader = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)Landroid/net/http/UrlRequest$Builder;")
+        setHttpMethod = JavaMethod("(Ljava/lang/String;)Landroid/net/http/UrlRequest$Builder;")
+        setTrafficStatsTag = JavaMethod("(I)Landroid/net/http/UrlRequest$Builder;")
+        setTrafficStatsUid = JavaMethod("(I)Landroid/net/http/UrlRequest$Builder;")
+        setDirectExecutorAllowed = JavaMethod("(Z)Landroid/net/http/UrlRequest$Builder;")
+        setUploadDataProvider = JavaMethod("(Landroid/net/http/UploadDataProvider;Ljava/util/concurrent/Executor;)Landroid/net/http/UrlRequest$Builder;")
+        setCacheDisabled = JavaMethod("(Z)Landroid/net/http/UrlRequest$Builder;")
+        setPriority = JavaMethod("(I)Landroid/net/http/UrlRequest$Builder;")
+        build = JavaMethod("()Landroid/net/http/UrlRequest;")

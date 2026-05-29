@@ -1,14 +1,14 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Base64InputStream"]
 
 class Base64InputStream(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/util/Base64InputStream"
     __javaconstructor__ = [("(Ljava/io/InputStream;I)V", False)]
-    markSupported = JavaMethod("()Z")
-    mark = JavaMethod("(I)V")
     reset = JavaMethod("()V")
     close = JavaMethod("()V")
-    available = JavaMethod("()I")
+    mark = JavaMethod("(I)V")
+    read = JavaMultipleMethod([("([BII)I", False, False), ("()I", False, False)])
     skip = JavaMethod("(J)J")
-    read = JavaMultipleMethod([("()I", False, False), ("([BII)I", False, False)])
+    available = JavaMethod("()I")
+    markSupported = JavaMethod("()Z")

@@ -1,12 +1,14 @@
 from typing import Any, ClassVar, overload
-from android.text.Spannable import Spannable
-from android.view.KeyEvent import KeyEvent
 
 class DialerKeyListener:
-    CHARACTERS: ClassVar[list[str]]
+    CHARACTERS: ClassVar[Any]
+    META_ALT_LOCKED: ClassVar[int]
+    META_ALT_ON: ClassVar[int]
+    META_CAP_LOCKED: ClassVar[int]
+    META_SHIFT_ON: ClassVar[int]
+    META_SYM_LOCKED: ClassVar[int]
+    META_SYM_ON: ClassVar[int]
     def __init__(self) -> None: ...
-    def getAcceptedChars(self) -> list[str]: ...
     @staticmethod
     def getInstance() -> "DialerKeyListener": ...
     def getInputType(self) -> int: ...
-    def lookup(self, arg0: KeyEvent, arg1: Spannable) -> int: ...

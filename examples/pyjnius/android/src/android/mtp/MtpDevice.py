@@ -1,29 +1,28 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["MtpDevice"]
 
 class MtpDevice(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/mtp/MtpDevice"
     __javaconstructor__ = [("(Landroid/hardware/usb/UsbDevice;)V", False)]
-    open = JavaMethod("(Landroid/hardware/usb/UsbDeviceConnection;)Z")
-    close = JavaMethod("()V")
-    finalize = JavaMethod("()V")
-    getDeviceName = JavaMethod("()Ljava/lang/String;")
-    getDeviceId = JavaMethod("()I")
-    toString = JavaMethod("()Ljava/lang/String;")
-    getDeviceInfo = JavaMethod("()Landroid/mtp/MtpDeviceInfo;")
-    getStorageIds = JavaMethod("()[I")
-    getObjectHandles = JavaMethod("(III)[I")
-    getObject = JavaMethod("(II)[B")
-    getPartialObject = JavaMethod("(IJJ[B)J")
-    getPartialObject64 = JavaMethod("(IJJ[B)J")
-    getThumbnail = JavaMethod("(I)[B")
     getStorageInfo = JavaMethod("(I)Landroid/mtp/MtpStorageInfo;")
-    getObjectInfo = JavaMethod("(I)Landroid/mtp/MtpObjectInfo;")
-    deleteObject = JavaMethod("(I)Z")
-    getParent = JavaMethod("(I)J")
-    getStorageId = JavaMethod("(I)J")
-    importFile = JavaMultipleMethod([("(ILjava/lang/String;)Z", False, False), ("(ILandroid/os/ParcelFileDescriptor;)Z", False, False)])
-    sendObject = JavaMethod("(IJLandroid/os/ParcelFileDescriptor;)Z")
     sendObjectInfo = JavaMethod("(Landroid/mtp/MtpObjectInfo;)Landroid/mtp/MtpObjectInfo;")
     readEvent = JavaMethod("(Landroid/os/CancellationSignal;)Landroid/mtp/MtpEvent;")
+    getStorageId = JavaMethod("(I)J")
+    getPartialObject64 = JavaMethod("(IJJ[B)J")
+    sendObject = JavaMethod("(IJLandroid/os/ParcelFileDescriptor;)Z")
+    getPartialObject = JavaMethod("(IJJ[B)J")
+    getObject = JavaMethod("(II)[B")
+    getDeviceInfo = JavaMethod("()Landroid/mtp/MtpDeviceInfo;")
+    getObjectHandles = JavaMethod("(III)[I")
+    getObjectInfo = JavaMethod("(I)Landroid/mtp/MtpObjectInfo;")
+    deleteObject = JavaMethod("(I)Z")
+    importFile = JavaMultipleMethod([("(ILjava/lang/String;)Z", False, False), ("(ILandroid/os/ParcelFileDescriptor;)Z", False, False)])
+    getStorageIds = JavaMethod("()[I")
+    toString = JavaMethod("()Ljava/lang/String;")
+    close = JavaMethod("()V")
+    getParent = JavaMethod("(I)J")
+    open = JavaMethod("(Landroid/hardware/usb/UsbDeviceConnection;)Z")
+    getDeviceName = JavaMethod("()Ljava/lang/String;")
+    getDeviceId = JavaMethod("()I")
+    getThumbnail = JavaMethod("(I)[B")

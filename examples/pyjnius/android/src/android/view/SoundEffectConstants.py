@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SoundEffectConstants"]
 
@@ -13,5 +13,5 @@ class SoundEffectConstants(JavaClass, metaclass=MetaJavaClass):
     NAVIGATION_REPEAT_UP = JavaStaticField("I")
     NAVIGATION_RIGHT = JavaStaticField("I")
     NAVIGATION_UP = JavaStaticField("I")
-    getContantForFocusDirection = JavaStaticMethod("(I)I")
     getConstantForFocusDirection = JavaStaticMethod("(IZ)I")
+    getContantForFocusDirection = JavaStaticMethod("(I)I")

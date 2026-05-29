@@ -1,17 +1,17 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["CharacterIterator"]
 
-class CharacterIterator(JavaInterface, metaclass=MetaJavaClass):
+class CharacterIterator(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/text/CharacterIterator"
     DONE = JavaStaticField("C")
-    first = JavaMethod("()C")
-    last = JavaMethod("()C")
-    current = JavaMethod("()C")
+    getEndIndex = JavaMethod("()I")
+    clone = JavaMethod("()Ljava/lang/Object;")
     next = JavaMethod("()C")
-    previous = JavaMethod("()C")
+    last = JavaMethod("()C")
+    first = JavaMethod("()C")
+    current = JavaMethod("()C")
     setIndex = JavaMethod("(I)C")
     getBeginIndex = JavaMethod("()I")
-    getEndIndex = JavaMethod("()I")
     getIndex = JavaMethod("()I")
-    clone = JavaMethod("()Ljava/lang/Object;")
+    previous = JavaMethod("()C")

@@ -1,10 +1,10 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["BluetoothSocketException"]
 
 class BluetoothSocketException(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/bluetooth/BluetoothSocketException"
-    __javaconstructor__ = [("(ILjava/lang/String;)V", False), ("(I)V", False)]
+    __javaconstructor__ = [("(I)V", False), ("(ILjava/lang/String;)V", False)]
     BLUETOOTH_OFF_FAILURE = JavaStaticField("I")
     L2CAP_ACL_FAILURE = JavaStaticField("I")
     L2CAP_CLIENT_SECURITY_FAILURE = JavaStaticField("I")

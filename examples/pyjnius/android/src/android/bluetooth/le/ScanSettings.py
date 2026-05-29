@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ScanSettings"]
 
@@ -20,23 +20,25 @@ class ScanSettings(JavaClass, metaclass=MetaJavaClass):
     SCAN_MODE_LOW_LATENCY = JavaStaticField("I")
     SCAN_MODE_LOW_POWER = JavaStaticField("I")
     SCAN_MODE_OPPORTUNISTIC = JavaStaticField("I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getScanMode = JavaMethod("()I")
-    getCallbackType = JavaMethod("()I")
-    getScanResultType = JavaMethod("()I")
     getLegacy = JavaMethod("()Z")
     getPhy = JavaMethod("()I")
+    getCallbackType = JavaMethod("()I")
+    getScanResultType = JavaMethod("()I")
     getReportDelayMillis = JavaMethod("()J")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
     describeContents = JavaMethod("()I")
 
     class Builder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/bluetooth/le/ScanSettings/Builder"
+        __javaclass__ = "android/bluetooth/le/ScanSettings$Builder"
         __javaconstructor__ = [("()V", False)]
+        setMatchMode = JavaMethod("(I)Landroid/bluetooth/le/ScanSettings$Builder;")
+        setNumOfMatches = JavaMethod("(I)Landroid/bluetooth/le/ScanSettings$Builder;")
+        setPhy = JavaMethod("(I)Landroid/bluetooth/le/ScanSettings$Builder;")
+        setReportDelay = JavaMethod("(J)Landroid/bluetooth/le/ScanSettings$Builder;")
+        setLegacy = JavaMethod("(Z)Landroid/bluetooth/le/ScanSettings$Builder;")
         setScanMode = JavaMethod("(I)Landroid/bluetooth/le/ScanSettings$Builder;")
         setCallbackType = JavaMethod("(I)Landroid/bluetooth/le/ScanSettings$Builder;")
-        setReportDelay = JavaMethod("(J)Landroid/bluetooth/le/ScanSettings$Builder;")
-        setNumOfMatches = JavaMethod("(I)Landroid/bluetooth/le/ScanSettings$Builder;")
-        setMatchMode = JavaMethod("(I)Landroid/bluetooth/le/ScanSettings$Builder;")
-        setLegacy = JavaMethod("(Z)Landroid/bluetooth/le/ScanSettings$Builder;")
-        setPhy = JavaMethod("(I)Landroid/bluetooth/le/ScanSettings$Builder;")
         build = JavaMethod("()Landroid/bluetooth/le/ScanSettings;")

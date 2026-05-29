@@ -1,39 +1,40 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["AnimatorSet"]
 
 class AnimatorSet(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/animation/AnimatorSet"
     __javaconstructor__ = [("()V", False)]
-    playTogether = JavaMultipleMethod([("([Landroid/animation/Animator;)V", False, True), ("(Ljava/util/Collection;)V", False, False)])
-    playSequentially = JavaMultipleMethod([("([Landroid/animation/Animator;)V", False, True), ("(Ljava/util/List;)V", False, False)])
-    getChildAnimations = JavaMethod("()Ljava/util/ArrayList;")
-    setTarget = JavaMethod("(Ljava/lang/Object;)V")
-    setInterpolator = JavaMethod("(Landroid/animation/TimeInterpolator;)V")
-    getInterpolator = JavaMethod("()Landroid/animation/TimeInterpolator;")
-    play = JavaMethod("(Landroid/animation/Animator;)Landroid/animation/AnimatorSet$Builder;")
-    cancel = JavaMethod("()V")
+    DURATION_INFINITE = JavaStaticField("J")
+    toString = JavaMethod("()Ljava/lang/String;")
+    clone = JavaMultipleMethod([("()Landroid/animation/Animator;", False, False), ("()Ljava/lang/Object;", False, False), ("()Landroid/animation/AnimatorSet;", False, False)])
+    reverse = JavaMethod("()V")
     end = JavaMethod("()V")
-    isRunning = JavaMethod("()Z")
+    start = JavaMethod("()V")
+    cancel = JavaMethod("()V")
     isStarted = JavaMethod("()Z")
-    getStartDelay = JavaMethod("()J")
-    setStartDelay = JavaMethod("(J)V")
+    setTarget = JavaMethod("(Ljava/lang/Object;)V")
     getDuration = JavaMethod("()J")
-    setDuration = JavaMethod("(J)Landroid/animation/AnimatorSet;")
-    setupStartValues = JavaMethod("()V")
-    setupEndValues = JavaMethod("()V")
     pause = JavaMethod("()V")
     resume = JavaMethod("()V")
-    start = JavaMethod("()V")
-    setCurrentPlayTime = JavaMethod("(J)V")
     getCurrentPlayTime = JavaMethod("()J")
-    clone = JavaMethod("()Landroid/animation/AnimatorSet;")
-    reverse = JavaMethod("()V")
-    toString = JavaMethod("()Ljava/lang/String;")
+    setupEndValues = JavaMethod("()V")
+    setupStartValues = JavaMethod("()V")
     getTotalDuration = JavaMethod("()J")
+    isRunning = JavaMethod("()Z")
+    setCurrentPlayTime = JavaMethod("(J)V")
+    getChildAnimations = JavaMethod("()Ljava/util/ArrayList;")
+    playSequentially = JavaMultipleMethod([("([Landroid/animation/Animator;)V", False, True), ("(Ljava/util/List;)V", False, False)])
+    playTogether = JavaMultipleMethod([("([Landroid/animation/Animator;)V", False, True), ("(Ljava/util/Collection;)V", False, False)])
+    play = JavaMethod("(Landroid/animation/Animator;)Landroid/animation/AnimatorSet$Builder;")
+    getInterpolator = JavaMethod("()Landroid/animation/TimeInterpolator;")
+    getStartDelay = JavaMethod("()J")
+    setDuration = JavaMultipleMethod([("(J)Landroid/animation/Animator;", False, False), ("(J)Landroid/animation/AnimatorSet;", False, False)])
+    setInterpolator = JavaMethod("(Landroid/animation/TimeInterpolator;)V")
+    setStartDelay = JavaMethod("(J)V")
 
     class Builder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/animation/AnimatorSet/Builder"
+        __javaclass__ = "android/animation/AnimatorSet$Builder"
         with = JavaMethod("(Landroid/animation/Animator;)Landroid/animation/AnimatorSet$Builder;")
         before = JavaMethod("(Landroid/animation/Animator;)Landroid/animation/AnimatorSet$Builder;")
         after = JavaMultipleMethod([("(Landroid/animation/Animator;)Landroid/animation/AnimatorSet$Builder;", False, False), ("(J)Landroid/animation/AnimatorSet$Builder;", False, False)])

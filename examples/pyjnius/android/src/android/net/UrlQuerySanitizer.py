@@ -1,44 +1,49 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["UrlQuerySanitizer"]
 
 class UrlQuerySanitizer(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/net/UrlQuerySanitizer"
-    __javaconstructor__ = [("()V", False), ("(Ljava/lang/String;)V", False)]
-    getUnregisteredParameterValueSanitizer = JavaMethod("()Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
-    setUnregisteredParameterValueSanitizer = JavaMethod("(Landroid/net/UrlQuerySanitizer$ValueSanitizer;)V")
-    getAllIllegal = JavaStaticMethod("()Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
+    __javaconstructor__ = [("(Ljava/lang/String;)V", False), ("()V", False)]
+    getAllButNulAndAngleBracketsLegal = JavaStaticMethod("()Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
     getAllButNulLegal = JavaStaticMethod("()Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
     getAllButWhitespaceLegal = JavaStaticMethod("()Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
+    getAllIllegal = JavaStaticMethod("()Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
+    getAllowUnregisteredParamaters = JavaMethod("()Z")
+    getAmpAndSpaceLegal = JavaStaticMethod("()Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
+    getAmpLegal = JavaStaticMethod("()Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
+    getEffectiveValueSanitizer = JavaMethod("(Ljava/lang/String;)Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
+    getParameterList = JavaMethod("()Ljava/util/List;")
+    getParameterSet = JavaMethod("()Ljava/util/Set;")
+    getPreferFirstRepeatedParameter = JavaMethod("()Z")
+    getSpaceLegal = JavaStaticMethod("()Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
+    getUnregisteredParameterValueSanitizer = JavaMethod("()Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
     getUrlLegal = JavaStaticMethod("()Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
     getUrlAndSpaceLegal = JavaStaticMethod("()Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
-    getAmpLegal = JavaStaticMethod("()Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
-    getAmpAndSpaceLegal = JavaStaticMethod("()Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
-    getSpaceLegal = JavaStaticMethod("()Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
-    getAllButNulAndAngleBracketsLegal = JavaStaticMethod("()Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
-    parseUrl = JavaMethod("(Ljava/lang/String;)V")
-    parseQuery = JavaMethod("(Ljava/lang/String;)V")
-    getParameterSet = JavaMethod("()Ljava/util/Set;")
-    getParameterList = JavaMethod("()Ljava/util/List;")
+    getValueSanitizer = JavaMethod("(Ljava/lang/String;)Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
     hasParameter = JavaMethod("(Ljava/lang/String;)Z")
-    getValue = JavaMethod("(Ljava/lang/String;)Ljava/lang/String;")
+    parseQuery = JavaMethod("(Ljava/lang/String;)V")
+    parseUrl = JavaMethod("(Ljava/lang/String;)V")
     registerParameter = JavaMethod("(Ljava/lang/String;Landroid/net/UrlQuerySanitizer$ValueSanitizer;)V")
     registerParameters = JavaMethod("([Ljava/lang/String;Landroid/net/UrlQuerySanitizer$ValueSanitizer;)V")
     setAllowUnregisteredParamaters = JavaMethod("(Z)V")
-    getAllowUnregisteredParamaters = JavaMethod("()Z")
     setPreferFirstRepeatedParameter = JavaMethod("(Z)V")
-    getPreferFirstRepeatedParameter = JavaMethod("()Z")
-    parseEntry = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)V")
-    addSanitizedEntry = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)V")
-    getValueSanitizer = JavaMethod("(Ljava/lang/String;)Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
-    getEffectiveValueSanitizer = JavaMethod("(Ljava/lang/String;)Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
+    setUnregisteredParameterValueSanitizer = JavaMethod("(Landroid/net/UrlQuerySanitizer$ValueSanitizer;)V")
+    getValue = JavaMethod("(Ljava/lang/String;)Ljava/lang/String;")
     unescape = JavaMethod("(Ljava/lang/String;)Ljava/lang/String;")
-    isHexDigit = JavaMethod("(C)Z")
-    decodeHexDigit = JavaMethod("(C)I")
-    clear = JavaMethod("()V")
+
+    class ValueSanitizer(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/net/UrlQuerySanitizer$ValueSanitizer"
+        sanitize = JavaMethod("(Ljava/lang/String;)Ljava/lang/String;")
+
+    class ParameterValuePair(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/net/UrlQuerySanitizer$ParameterValuePair"
+        __javaconstructor__ = [("(Landroid/net/UrlQuerySanitizer;Ljava/lang/String;Ljava/lang/String;)V", False)]
+        mParameter = JavaField("Ljava/lang/String;")
+        mValue = JavaField("Ljava/lang/String;")
 
     class IllegalCharacterValueSanitizer(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/net/UrlQuerySanitizer/IllegalCharacterValueSanitizer"
+        __javaclass__ = "android/net/UrlQuerySanitizer$IllegalCharacterValueSanitizer"
         __javaconstructor__ = [("(I)V", False)]
         ALL_BUT_NUL_AND_ANGLE_BRACKETS_LEGAL = JavaStaticField("I")
         ALL_BUT_NUL_LEGAL = JavaStaticField("I")
@@ -62,14 +67,4 @@ class UrlQuerySanitizer(JavaClass, metaclass=MetaJavaClass):
         SQUOTE_OK = JavaStaticField("I")
         URL_AND_SPACE_LEGAL = JavaStaticField("I")
         URL_LEGAL = JavaStaticField("I")
-        sanitize = JavaMethod("(Ljava/lang/String;)Ljava/lang/String;")
-
-    class ParameterValuePair(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/net/UrlQuerySanitizer/ParameterValuePair"
-        __javaconstructor__ = [("(Landroid/net/UrlQuerySanitizer;Ljava/lang/String;Ljava/lang/String;)V", False)]
-        mParameter = JavaField("Ljava/lang/String;")
-        mValue = JavaField("Ljava/lang/String;")
-
-    class ValueSanitizer(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/net/UrlQuerySanitizer/ValueSanitizer"
         sanitize = JavaMethod("(Ljava/lang/String;)Ljava/lang/String;")

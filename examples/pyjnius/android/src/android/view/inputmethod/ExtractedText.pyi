@@ -1,24 +1,12 @@
 from typing import Any, ClassVar, overload
 from android.os.Parcel import Parcel
 
-# Forward declarations for Java types we do not wrap.
-# Bound as empty classes so annotations resolve in the IDE.
-class Creator:
-    """Forward declaration for ``android.os.Parcelable.Creator``.
-
-    This Java type is referenced by the wrapper but is not itself
-    wrapped by pyjnius-wrap. At runtime pyjnius will hand you a
-    live ``autoclass('android.os.Parcelable.Creator')`` proxy; this empty class exists
-    purely so static type checkers and IDEs can resolve the name.
-
-    See: https://developer.android.com/reference/android/os/Parcelable/Creator
-    """
-    ...
-
 class ExtractedText:
-    CREATOR: ClassVar[Creator]
+    CREATOR: ClassVar[Any]
     FLAG_SELECTING: ClassVar[int]
     FLAG_SINGLE_LINE: ClassVar[int]
+    CONTENTS_FILE_DESCRIPTOR: ClassVar[int]
+    PARCELABLE_WRITE_RETURN_VALUE: ClassVar[int]
     flags: int
     hint: str
     partialEndOffset: int
@@ -28,5 +16,5 @@ class ExtractedText:
     startOffset: int
     text: str
     def __init__(self) -> None: ...
-    def writeToParcel(self, arg0: Parcel, arg1: int) -> None: ...
+    def writeToParcel(self, p0: Parcel, p1: int) -> None: ...
     def describeContents(self) -> int: ...

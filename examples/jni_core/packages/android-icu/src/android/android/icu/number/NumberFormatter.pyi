@@ -7,28 +7,28 @@ from java.util.Locale import Locale
 class NumberFormatter:
     @overload
     @staticmethod
-    def withLocale(p0: ULocale) -> LocalizedNumberFormatter: ...
+    def withLocale(p0: Locale) -> LocalizedNumberFormatter: ...
     @overload
     @staticmethod
-    def withLocale(p0: Locale) -> LocalizedNumberFormatter: ...
+    def withLocale(p0: ULocale) -> LocalizedNumberFormatter: ...
     @staticmethod
     def with_() -> UnlocalizedNumberFormatter: ...
 
     class UnitWidth:
+        FORMAL: ClassVar["UnitWidth"]
+        FULL_NAME: ClassVar["UnitWidth"]
+        HIDDEN: ClassVar["UnitWidth"]
+        ISO_CODE: ClassVar["UnitWidth"]
         NARROW: ClassVar["UnitWidth"]
         SHORT: ClassVar["UnitWidth"]
-        FULL_NAME: ClassVar["UnitWidth"]
-        ISO_CODE: ClassVar["UnitWidth"]
-        FORMAL: ClassVar["UnitWidth"]
         VARIANT: ClassVar["UnitWidth"]
-        HIDDEN: ClassVar["UnitWidth"]
+        FORMAL: ClassVar[Any]
+        FULL_NAME: ClassVar[Any]
+        HIDDEN: ClassVar[Any]
+        ISO_CODE: ClassVar[Any]
         NARROW: ClassVar[Any]
         SHORT: ClassVar[Any]
-        FULL_NAME: ClassVar[Any]
-        ISO_CODE: ClassVar[Any]
-        FORMAL: ClassVar[Any]
         VARIANT: ClassVar[Any]
-        HIDDEN: ClassVar[Any]
         @staticmethod
         def values() -> Any: ...
         @staticmethod
@@ -45,24 +45,24 @@ class NumberFormatter:
         def valueOf(p0: str) -> Any: ...
 
     class SignDisplay:
-        AUTO: ClassVar["SignDisplay"]
-        ALWAYS: ClassVar["SignDisplay"]
-        NEVER: ClassVar["SignDisplay"]
         ACCOUNTING: ClassVar["SignDisplay"]
         ACCOUNTING_ALWAYS: ClassVar["SignDisplay"]
-        EXCEPT_ZERO: ClassVar["SignDisplay"]
         ACCOUNTING_EXCEPT_ZERO: ClassVar["SignDisplay"]
-        NEGATIVE: ClassVar["SignDisplay"]
         ACCOUNTING_NEGATIVE: ClassVar["SignDisplay"]
-        AUTO: ClassVar[Any]
-        ALWAYS: ClassVar[Any]
-        NEVER: ClassVar[Any]
+        ALWAYS: ClassVar["SignDisplay"]
+        AUTO: ClassVar["SignDisplay"]
+        EXCEPT_ZERO: ClassVar["SignDisplay"]
+        NEGATIVE: ClassVar["SignDisplay"]
+        NEVER: ClassVar["SignDisplay"]
         ACCOUNTING: ClassVar[Any]
         ACCOUNTING_ALWAYS: ClassVar[Any]
-        EXCEPT_ZERO: ClassVar[Any]
         ACCOUNTING_EXCEPT_ZERO: ClassVar[Any]
-        NEGATIVE: ClassVar[Any]
         ACCOUNTING_NEGATIVE: ClassVar[Any]
+        ALWAYS: ClassVar[Any]
+        AUTO: ClassVar[Any]
+        EXCEPT_ZERO: ClassVar[Any]
+        NEGATIVE: ClassVar[Any]
+        NEVER: ClassVar[Any]
         @staticmethod
         def values() -> Any: ...
         @staticmethod
@@ -79,14 +79,14 @@ class NumberFormatter:
         def valueOf(p0: str) -> Any: ...
 
     class GroupingStrategy:
-        OFF: ClassVar["GroupingStrategy"]
-        MIN2: ClassVar["GroupingStrategy"]
         AUTO: ClassVar["GroupingStrategy"]
+        MIN2: ClassVar["GroupingStrategy"]
+        OFF: ClassVar["GroupingStrategy"]
         ON_ALIGNED: ClassVar["GroupingStrategy"]
         THOUSANDS: ClassVar["GroupingStrategy"]
-        OFF: ClassVar[Any]
-        MIN2: ClassVar[Any]
         AUTO: ClassVar[Any]
+        MIN2: ClassVar[Any]
+        OFF: ClassVar[Any]
         ON_ALIGNED: ClassVar[Any]
         THOUSANDS: ClassVar[Any]
         @staticmethod
@@ -95,10 +95,10 @@ class NumberFormatter:
         def valueOf(p0: str) -> Any: ...
 
     class DecimalSeparatorDisplay:
-        AUTO: ClassVar["DecimalSeparatorDisplay"]
         ALWAYS: ClassVar["DecimalSeparatorDisplay"]
-        AUTO: ClassVar[Any]
+        AUTO: ClassVar["DecimalSeparatorDisplay"]
         ALWAYS: ClassVar[Any]
+        AUTO: ClassVar[Any]
         @staticmethod
         def values() -> Any: ...
         @staticmethod

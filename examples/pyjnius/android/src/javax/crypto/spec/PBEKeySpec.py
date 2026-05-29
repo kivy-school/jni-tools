@@ -1,12 +1,12 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["PBEKeySpec"]
 
 class PBEKeySpec(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "javax/crypto/spec/PBEKeySpec"
-    __javaconstructor__ = [("([C)V", False), ("([C[BII)V", False), ("([C[BI)V", False)]
-    clearPassword = JavaMethod("()V")
+    __javaconstructor__ = [("([C)V", False), ("([C[BI)V", False), ("([C[BII)V", False)]
     getPassword = JavaMethod("()[C")
-    getSalt = JavaMethod("()[B")
+    clearPassword = JavaMethod("()V")
     getIterationCount = JavaMethod("()I")
+    getSalt = JavaMethod("()[B")
     getKeyLength = JavaMethod("()I")

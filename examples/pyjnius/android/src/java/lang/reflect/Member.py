@@ -1,12 +1,13 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Member"]
 
-class Member(JavaInterface, metaclass=MetaJavaClass):
+class Member(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/lang/reflect/Member"
-    DECLARED = JavaStaticField("I")
     PUBLIC = JavaStaticField("I")
-    getDeclaringClass = JavaMethod("()Ljava/lang/Class;")
+    DECLARED = JavaStaticField("I")
     getName = JavaMethod("()Ljava/lang/String;")
     getModifiers = JavaMethod("()I")
     isSynthetic = JavaMethod("()Z")
+    accessFlags = JavaMethod("()Ljava/util/Set;")
+    getDeclaringClass = JavaMethod("()Ljava/lang/Class;")

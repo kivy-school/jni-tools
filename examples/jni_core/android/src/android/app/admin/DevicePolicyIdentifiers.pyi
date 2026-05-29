@@ -4,6 +4,7 @@ class DevicePolicyIdentifiers:
     ACCOUNT_MANAGEMENT_DISABLED_POLICY: ClassVar[str]
     APPLICATION_HIDDEN_POLICY: ClassVar[str]
     APPLICATION_RESTRICTIONS_POLICY: ClassVar[str]
+    APP_FUNCTIONS_POLICY: ClassVar[str]
     AUTO_TIMEZONE_POLICY: ClassVar[str]
     AUTO_TIME_POLICY: ClassVar[str]
     BACKUP_SERVICE_POLICY: ClassVar[str]

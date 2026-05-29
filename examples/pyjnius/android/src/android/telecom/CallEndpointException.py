@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["CallEndpointException"]
 
@@ -10,6 +10,8 @@ class CallEndpointException(JavaClass, metaclass=MetaJavaClass):
     ERROR_ENDPOINT_DOES_NOT_EXIST = JavaStaticField("I")
     ERROR_REQUEST_TIME_OUT = JavaStaticField("I")
     ERROR_UNSPECIFIED = JavaStaticField("I")
-    describeContents = JavaMethod("()I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
     getCode = JavaMethod("()I")

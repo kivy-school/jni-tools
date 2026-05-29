@@ -1,24 +1,26 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["AutofillValue"]
 
 class AutofillValue(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/view/autofill/AutofillValue"
     CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
-    getTextValue = JavaMethod("()Ljava/lang/CharSequence;")
-    isText = JavaMethod("()Z")
-    getToggleValue = JavaMethod("()Z")
-    isToggle = JavaMethod("()Z")
-    getListValue = JavaMethod("()I")
-    isList = JavaMethod("()Z")
-    getDateValue = JavaMethod("()J")
-    isDate = JavaMethod("()Z")
-    hashCode = JavaMethod("()I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
     toString = JavaMethod("()Ljava/lang/String;")
-    describeContents = JavaMethod("()I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    hashCode = JavaMethod("()I")
+    forDate = JavaStaticMethod("(J)Landroid/view/autofill/AutofillValue;")
     forText = JavaStaticMethod("(Ljava/lang/CharSequence;)Landroid/view/autofill/AutofillValue;")
     forToggle = JavaStaticMethod("(Z)Landroid/view/autofill/AutofillValue;")
+    getListValue = JavaMethod("()I")
+    getTextValue = JavaMethod("()Ljava/lang/CharSequence;")
+    getToggleValue = JavaMethod("()Z")
+    isDate = JavaMethod("()Z")
+    isList = JavaMethod("()Z")
+    isText = JavaMethod("()Z")
+    isToggle = JavaMethod("()Z")
     forList = JavaStaticMethod("(I)Landroid/view/autofill/AutofillValue;")
-    forDate = JavaStaticMethod("(J)Landroid/view/autofill/AutofillValue;")
+    getDateValue = JavaMethod("()J")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

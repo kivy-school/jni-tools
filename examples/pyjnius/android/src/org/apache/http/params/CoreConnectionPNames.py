@@ -1,8 +1,8 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["CoreConnectionPNames"]
 
-class CoreConnectionPNames(JavaInterface, metaclass=MetaJavaClass):
+class CoreConnectionPNames(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "org/apache/http/params/CoreConnectionPNames"
     CONNECTION_TIMEOUT = JavaStaticField("Ljava/lang/String;")
     MAX_HEADER_COUNT = JavaStaticField("Ljava/lang/String;")

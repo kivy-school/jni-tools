@@ -1,17 +1,19 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["TransportDiscoveryData"]
 
 class TransportDiscoveryData(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/bluetooth/le/TransportDiscoveryData"
-    __javaconstructor__ = [("(ILjava/util/List;)V", False), ("([B)V", False)]
+    __javaconstructor__ = [("([B)V", False), ("(ILjava/util/List;)V", False)]
     CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
-    describeContents = JavaMethod("()I")
-    equals = JavaMethod("(Ljava/lang/Object;)Z")
-    hashCode = JavaMethod("()I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    totalBytes = JavaMethod("()I")
     getTransportDataType = JavaMethod("()I")
     getTransportBlocks = JavaMethod("()Ljava/util/List;")
-    toByteArray = JavaMethod("()[B")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
     toString = JavaMethod("()Ljava/lang/String;")
-    totalBytes = JavaMethod("()I")
+    hashCode = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
+    toByteArray = JavaMethod("()[B")

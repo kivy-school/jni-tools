@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["DrmErrorEvent"]
 
@@ -13,3 +13,7 @@ class DrmErrorEvent(JavaClass, metaclass=MetaJavaClass):
     TYPE_REMOVE_ALL_RIGHTS_FAILED = JavaStaticField("I")
     TYPE_RIGHTS_NOT_INSTALLED = JavaStaticField("I")
     TYPE_RIGHTS_RENEWAL_NOT_ALLOWED = JavaStaticField("I")
+    DRM_INFO_OBJECT = JavaStaticField("Ljava/lang/String;")
+    DRM_INFO_STATUS_OBJECT = JavaStaticField("Ljava/lang/String;")
+    TYPE_ALL_RIGHTS_REMOVED = JavaStaticField("I")
+    TYPE_DRM_INFO_PROCESSED = JavaStaticField("I")

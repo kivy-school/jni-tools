@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["AudioDescriptor"]
 
@@ -9,11 +9,13 @@ class AudioDescriptor(JavaClass, metaclass=MetaJavaClass):
     STANDARD_NONE = JavaStaticField("I")
     STANDARD_SADB = JavaStaticField("I")
     STANDARD_VSADB = JavaStaticField("I")
-    getStandard = JavaMethod("()I")
-    getDescriptor = JavaMethod("()[B")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getEncapsulationType = JavaMethod("()I")
-    hashCode = JavaMethod("()I")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
     toString = JavaMethod("()Ljava/lang/String;")
-    describeContents = JavaMethod("()I")
+    hashCode = JavaMethod("()I")
+    getDescriptor = JavaMethod("()[B")
+    getStandard = JavaMethod("()I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

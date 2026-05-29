@@ -1,7 +1,7 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["RunnableFuture"]
 
-class RunnableFuture(JavaInterface, metaclass=MetaJavaClass):
+class RunnableFuture(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/util/concurrent/RunnableFuture"
     run = JavaMethod("()V")

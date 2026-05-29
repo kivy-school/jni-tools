@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["AndroidCharacter"]
 
@@ -11,8 +11,8 @@ class AndroidCharacter(JavaClass, metaclass=MetaJavaClass):
     EAST_ASIAN_WIDTH_NARROW = JavaStaticField("I")
     EAST_ASIAN_WIDTH_NEUTRAL = JavaStaticField("I")
     EAST_ASIAN_WIDTH_WIDE = JavaStaticField("I")
-    getDirectionalities = JavaStaticMethod("([C[BI)V")
     getEastAsianWidth = JavaStaticMethod("(C)I")
-    getEastAsianWidths = JavaStaticMethod("([CII[B)V")
-    mirror = JavaStaticMethod("([CII)Z")
     getMirror = JavaStaticMethod("(C)C")
+    getEastAsianWidths = JavaStaticMethod("([CII[B)V")
+    getDirectionalities = JavaStaticMethod("([C[BI)V")
+    mirror = JavaStaticMethod("([CII)Z")

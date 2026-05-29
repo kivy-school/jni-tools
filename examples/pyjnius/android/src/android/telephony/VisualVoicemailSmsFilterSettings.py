@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["VisualVoicemailSmsFilterSettings"]
 
@@ -10,14 +10,16 @@ class VisualVoicemailSmsFilterSettings(JavaClass, metaclass=MetaJavaClass):
     clientPrefix = JavaField("Ljava/lang/String;")
     destinationPort = JavaField("I")
     originatingNumbers = JavaField("Ljava/util/List;")
-    describeContents = JavaMethod("()I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     toString = JavaMethod("()Ljava/lang/String;")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
 
     class Builder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/telephony/VisualVoicemailSmsFilterSettings/Builder"
+        __javaclass__ = "android/telephony/VisualVoicemailSmsFilterSettings$Builder"
         __javaconstructor__ = [("()V", False)]
-        build = JavaMethod("()Landroid/telephony/VisualVoicemailSmsFilterSettings;")
+        setDestinationPort = JavaMethod("(I)Landroid/telephony/VisualVoicemailSmsFilterSettings$Builder;")
         setClientPrefix = JavaMethod("(Ljava/lang/String;)Landroid/telephony/VisualVoicemailSmsFilterSettings$Builder;")
         setOriginatingNumbers = JavaMethod("(Ljava/util/List;)Landroid/telephony/VisualVoicemailSmsFilterSettings$Builder;")
-        setDestinationPort = JavaMethod("(I)Landroid/telephony/VisualVoicemailSmsFilterSettings$Builder;")
+        build = JavaMethod("()Landroid/telephony/VisualVoicemailSmsFilterSettings;")

@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["PlaybackStateEvent"]
 
@@ -20,18 +20,20 @@ class PlaybackStateEvent(JavaClass, metaclass=MetaJavaClass):
     STATE_STOPPED = JavaStaticField("I")
     STATE_SUPPRESSED = JavaStaticField("I")
     STATE_SUPPRESSED_BUFFERING = JavaStaticField("I")
-    getState = JavaMethod("()I")
-    getTimeSinceCreatedMillis = JavaMethod("()J")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getMetricsBundle = JavaMethod("()Landroid/os/Bundle;")
+    getTimeSinceCreatedMillis = JavaMethod("()J")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
     hashCode = JavaMethod("()I")
+    getState = JavaMethod("()I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
     describeContents = JavaMethod("()I")
 
     class Builder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/metrics/PlaybackStateEvent/Builder"
+        __javaclass__ = "android/media/metrics/PlaybackStateEvent$Builder"
         __javaconstructor__ = [("()V", False)]
-        setState = JavaMethod("(I)Landroid/media/metrics/PlaybackStateEvent$Builder;")
         setTimeSinceCreatedMillis = JavaMethod("(J)Landroid/media/metrics/PlaybackStateEvent$Builder;")
         setMetricsBundle = JavaMethod("(Landroid/os/Bundle;)Landroid/media/metrics/PlaybackStateEvent$Builder;")
+        setState = JavaMethod("(I)Landroid/media/metrics/PlaybackStateEvent$Builder;")
         build = JavaMethod("()Landroid/media/metrics/PlaybackStateEvent;")

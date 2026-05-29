@@ -9,6 +9,7 @@ class MeasureUnit:
     ARC_SECOND: ClassVar["MeasureUnit"]
     ASTRONOMICAL_UNIT: ClassVar["MeasureUnit"]
     ATMOSPHERE: ClassVar["MeasureUnit"]
+    BEAUFORT: ClassVar["MeasureUnit"]
     BIT: ClassVar["MeasureUnit"]
     BUSHEL: ClassVar["MeasureUnit"]
     BYTE: ClassVar["MeasureUnit"]
@@ -45,6 +46,7 @@ class MeasureUnit:
     FURLONG: ClassVar["MeasureUnit"]
     GALLON: ClassVar["MeasureUnit"]
     GALLON_IMPERIAL: ClassVar["MeasureUnit"]
+    GASOLINE_ENERGY_DENSITY: ClassVar["MeasureUnit"]
     GENERIC_TEMPERATURE: ClassVar["MeasureUnit"]
     GIGABIT: ClassVar["MeasureUnit"]
     GIGABYTE: ClassVar["MeasureUnit"]
@@ -158,9 +160,8 @@ class MeasureUnit:
     YARD: ClassVar["MeasureUnit"]
     YEAR: ClassVar[TimeUnit]
     def getSubtype(self) -> str: ...
-    def splitToSingleUnits(self) -> list: ...
     @staticmethod
-    def getAvailableTypes() -> set: ...
+    def forIdentifier(p0: str) -> "MeasureUnit": ...
     @overload
     @staticmethod
     def getAvailable() -> set: ...
@@ -168,93 +169,94 @@ class MeasureUnit:
     @staticmethod
     def getAvailable(p0: str) -> set: ...
     @staticmethod
-    def forIdentifier(p0: str) -> "MeasureUnit": ...
+    def getAvailableTypes() -> set: ...
     def getComplexity(self) -> Any: ...
     def getDimensionality(self) -> int: ...
-    def withDimensionality(self, p0: int) -> "MeasureUnit": ...
     def reciprocal(self) -> "MeasureUnit": ...
-    def getPrefix(self) -> Any: ...
+    def splitToSingleUnits(self) -> list: ...
+    def withDimensionality(self, p0: int) -> "MeasureUnit": ...
     def equals(self, p0: Any) -> bool: ...
     def toString(self) -> str: ...
     def hashCode(self) -> int: ...
     def getType(self) -> str: ...
     def product(self, p0: "MeasureUnit") -> "MeasureUnit": ...
     def getIdentifier(self) -> str: ...
+    def getPrefix(self) -> Any: ...
     def withPrefix(self, p0: Any) -> "MeasureUnit": ...
 
     class MeasurePrefix:
-        YOTTA: ClassVar["MeasurePrefix"]
-        ZETTA: ClassVar["MeasurePrefix"]
-        EXA: ClassVar["MeasurePrefix"]
-        PETA: ClassVar["MeasurePrefix"]
-        TERA: ClassVar["MeasurePrefix"]
-        GIGA: ClassVar["MeasurePrefix"]
-        MEGA: ClassVar["MeasurePrefix"]
-        KILO: ClassVar["MeasurePrefix"]
-        HECTO: ClassVar["MeasurePrefix"]
-        DEKA: ClassVar["MeasurePrefix"]
-        ONE: ClassVar["MeasurePrefix"]
-        DECI: ClassVar["MeasurePrefix"]
-        CENTI: ClassVar["MeasurePrefix"]
-        MILLI: ClassVar["MeasurePrefix"]
-        MICRO: ClassVar["MeasurePrefix"]
-        NANO: ClassVar["MeasurePrefix"]
-        PICO: ClassVar["MeasurePrefix"]
-        FEMTO: ClassVar["MeasurePrefix"]
         ATTO: ClassVar["MeasurePrefix"]
-        ZEPTO: ClassVar["MeasurePrefix"]
-        YOCTO: ClassVar["MeasurePrefix"]
-        KIBI: ClassVar["MeasurePrefix"]
-        MEBI: ClassVar["MeasurePrefix"]
-        GIBI: ClassVar["MeasurePrefix"]
-        TEBI: ClassVar["MeasurePrefix"]
-        PEBI: ClassVar["MeasurePrefix"]
+        CENTI: ClassVar["MeasurePrefix"]
+        DECI: ClassVar["MeasurePrefix"]
+        DEKA: ClassVar["MeasurePrefix"]
+        EXA: ClassVar["MeasurePrefix"]
         EXBI: ClassVar["MeasurePrefix"]
-        ZEBI: ClassVar["MeasurePrefix"]
+        FEMTO: ClassVar["MeasurePrefix"]
+        GIBI: ClassVar["MeasurePrefix"]
+        GIGA: ClassVar["MeasurePrefix"]
+        HECTO: ClassVar["MeasurePrefix"]
+        KIBI: ClassVar["MeasurePrefix"]
+        KILO: ClassVar["MeasurePrefix"]
+        MEBI: ClassVar["MeasurePrefix"]
+        MEGA: ClassVar["MeasurePrefix"]
+        MICRO: ClassVar["MeasurePrefix"]
+        MILLI: ClassVar["MeasurePrefix"]
+        NANO: ClassVar["MeasurePrefix"]
+        ONE: ClassVar["MeasurePrefix"]
+        PEBI: ClassVar["MeasurePrefix"]
+        PETA: ClassVar["MeasurePrefix"]
+        PICO: ClassVar["MeasurePrefix"]
+        TEBI: ClassVar["MeasurePrefix"]
+        TERA: ClassVar["MeasurePrefix"]
         YOBI: ClassVar["MeasurePrefix"]
-        YOTTA: ClassVar[Any]
-        ZETTA: ClassVar[Any]
-        EXA: ClassVar[Any]
-        PETA: ClassVar[Any]
-        TERA: ClassVar[Any]
-        GIGA: ClassVar[Any]
-        MEGA: ClassVar[Any]
-        KILO: ClassVar[Any]
-        HECTO: ClassVar[Any]
-        DEKA: ClassVar[Any]
-        ONE: ClassVar[Any]
-        DECI: ClassVar[Any]
-        CENTI: ClassVar[Any]
-        MILLI: ClassVar[Any]
-        MICRO: ClassVar[Any]
-        NANO: ClassVar[Any]
-        PICO: ClassVar[Any]
-        FEMTO: ClassVar[Any]
+        YOCTO: ClassVar["MeasurePrefix"]
+        YOTTA: ClassVar["MeasurePrefix"]
+        ZEBI: ClassVar["MeasurePrefix"]
+        ZEPTO: ClassVar["MeasurePrefix"]
+        ZETTA: ClassVar["MeasurePrefix"]
         ATTO: ClassVar[Any]
-        ZEPTO: ClassVar[Any]
-        YOCTO: ClassVar[Any]
-        KIBI: ClassVar[Any]
-        MEBI: ClassVar[Any]
-        GIBI: ClassVar[Any]
-        TEBI: ClassVar[Any]
-        PEBI: ClassVar[Any]
+        CENTI: ClassVar[Any]
+        DECI: ClassVar[Any]
+        DEKA: ClassVar[Any]
+        EXA: ClassVar[Any]
         EXBI: ClassVar[Any]
-        ZEBI: ClassVar[Any]
+        FEMTO: ClassVar[Any]
+        GIBI: ClassVar[Any]
+        GIGA: ClassVar[Any]
+        HECTO: ClassVar[Any]
+        KIBI: ClassVar[Any]
+        KILO: ClassVar[Any]
+        MEBI: ClassVar[Any]
+        MEGA: ClassVar[Any]
+        MICRO: ClassVar[Any]
+        MILLI: ClassVar[Any]
+        NANO: ClassVar[Any]
+        ONE: ClassVar[Any]
+        PEBI: ClassVar[Any]
+        PETA: ClassVar[Any]
+        PICO: ClassVar[Any]
+        TEBI: ClassVar[Any]
+        TERA: ClassVar[Any]
         YOBI: ClassVar[Any]
+        YOCTO: ClassVar[Any]
+        YOTTA: ClassVar[Any]
+        ZEBI: ClassVar[Any]
+        ZEPTO: ClassVar[Any]
+        ZETTA: ClassVar[Any]
         @staticmethod
         def values() -> Any: ...
         @staticmethod
         def valueOf(p0: str) -> Any: ...
-        def getPower(self) -> int: ...
         def getBase(self) -> int: ...
+        def getPower(self) -> int: ...
 
     class Complexity:
-        SINGLE: ClassVar["Complexity"]
         COMPOUND: ClassVar["Complexity"]
         MIXED: ClassVar["Complexity"]
-        SINGLE: ClassVar[Any]
+        SINGLE: ClassVar["Complexity"]
         COMPOUND: ClassVar[Any]
         MIXED: ClassVar[Any]
+        SINGLE: ClassVar[Any]
         @staticmethod
         def values() -> Any: ...
         @staticmethod

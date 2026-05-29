@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["TvInteractiveAppManager"]
 
@@ -34,18 +34,18 @@ class TvInteractiveAppManager(JavaClass, metaclass=MetaJavaClass):
     TELETEXT_APP_STATE_ERROR = JavaStaticField("I")
     TELETEXT_APP_STATE_HIDE = JavaStaticField("I")
     TELETEXT_APP_STATE_SHOW = JavaStaticField("I")
-    getTvInteractiveAppServiceList = JavaMethod("()Ljava/util/List;")
-    getAppLinkInfoList = JavaMethod("()Ljava/util/List;")
-    registerAppLinkInfo = JavaMethod("(Ljava/lang/String;Landroid/media/tv/interactive/AppLinkInfo;)V")
-    unregisterAppLinkInfo = JavaMethod("(Ljava/lang/String;Landroid/media/tv/interactive/AppLinkInfo;)V")
     sendAppLinkCommand = JavaMethod("(Ljava/lang/String;Landroid/os/Bundle;)V")
     registerCallback = JavaMethod("(Ljava/util/concurrent/Executor;Landroid/media/tv/interactive/TvInteractiveAppManager$TvInteractiveAppCallback;)V")
     unregisterCallback = JavaMethod("(Landroid/media/tv/interactive/TvInteractiveAppManager$TvInteractiveAppCallback;)V")
+    getAppLinkInfoList = JavaMethod("()Ljava/util/List;")
+    getTvInteractiveAppServiceList = JavaMethod("()Ljava/util/List;")
+    registerAppLinkInfo = JavaMethod("(Ljava/lang/String;Landroid/media/tv/interactive/AppLinkInfo;)V")
+    unregisterAppLinkInfo = JavaMethod("(Ljava/lang/String;Landroid/media/tv/interactive/AppLinkInfo;)V")
 
     class TvInteractiveAppCallback(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/tv/interactive/TvInteractiveAppManager/TvInteractiveAppCallback"
+        __javaclass__ = "android/media/tv/interactive/TvInteractiveAppManager$TvInteractiveAppCallback"
         __javaconstructor__ = [("()V", False)]
-        onInteractiveAppServiceAdded = JavaMethod("(Ljava/lang/String;)V")
         onInteractiveAppServiceRemoved = JavaMethod("(Ljava/lang/String;)V")
         onInteractiveAppServiceUpdated = JavaMethod("(Ljava/lang/String;)V")
         onTvInteractiveAppServiceStateChanged = JavaMethod("(Ljava/lang/String;III)V")
+        onInteractiveAppServiceAdded = JavaMethod("(Ljava/lang/String;)V")

@@ -5,7 +5,11 @@ class AclEntryType:
     DENY: ClassVar["AclEntryType"]
     AUDIT: ClassVar["AclEntryType"]
     ALARM: ClassVar["AclEntryType"]
+    ALLOW: ClassVar["AclEntryType"]
+    DENY: ClassVar["AclEntryType"]
+    AUDIT: ClassVar["AclEntryType"]
+    ALARM: ClassVar["AclEntryType"]
     @staticmethod
-    def values() -> list["AclEntryType"]: ...
+    def values() -> Any: ...
     @staticmethod
-    def valueOf(arg0: str) -> "AclEntryType": ...
+    def valueOf(p0: str) -> "AclEntryType": ...

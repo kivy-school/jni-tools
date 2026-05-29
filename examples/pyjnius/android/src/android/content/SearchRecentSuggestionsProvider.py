@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SearchRecentSuggestionsProvider"]
 
@@ -7,10 +7,16 @@ class SearchRecentSuggestionsProvider(JavaClass, metaclass=MetaJavaClass):
     __javaconstructor__ = [("()V", False)]
     DATABASE_MODE_2LINES = JavaStaticField("I")
     DATABASE_MODE_QUERIES = JavaStaticField("I")
-    setupSuggestions = JavaMethod("(Ljava/lang/String;I)V")
-    delete = JavaMethod("(Landroid/net/Uri;Ljava/lang/String;[Ljava/lang/String;)I")
-    getType = JavaMethod("(Landroid/net/Uri;)Ljava/lang/String;")
-    insert = JavaMethod("(Landroid/net/Uri;Landroid/content/ContentValues;)Landroid/net/Uri;")
-    onCreate = JavaMethod("()Z")
-    query = JavaMethod("(Landroid/net/Uri;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;")
+    TRIM_MEMORY_BACKGROUND = JavaStaticField("I")
+    TRIM_MEMORY_COMPLETE = JavaStaticField("I")
+    TRIM_MEMORY_MODERATE = JavaStaticField("I")
+    TRIM_MEMORY_RUNNING_CRITICAL = JavaStaticField("I")
+    TRIM_MEMORY_RUNNING_LOW = JavaStaticField("I")
+    TRIM_MEMORY_RUNNING_MODERATE = JavaStaticField("I")
+    TRIM_MEMORY_UI_HIDDEN = JavaStaticField("I")
     update = JavaMethod("(Landroid/net/Uri;Landroid/content/ContentValues;Ljava/lang/String;[Ljava/lang/String;)I")
+    insert = JavaMethod("(Landroid/net/Uri;Landroid/content/ContentValues;)Landroid/net/Uri;")
+    getType = JavaMethod("(Landroid/net/Uri;)Ljava/lang/String;")
+    delete = JavaMethod("(Landroid/net/Uri;Ljava/lang/String;[Ljava/lang/String;)I")
+    query = JavaMethod("(Landroid/net/Uri;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;")
+    onCreate = JavaMethod("()Z")

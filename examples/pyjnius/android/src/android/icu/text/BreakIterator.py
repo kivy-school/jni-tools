@@ -1,10 +1,9 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["BreakIterator"]
 
 class BreakIterator(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/icu/text/BreakIterator"
-    __javaconstructor__ = [("()V", False)]
     DONE = JavaStaticField("I")
     KIND_CHARACTER = JavaStaticField("I")
     KIND_LINE = JavaStaticField("I")
@@ -21,22 +20,22 @@ class BreakIterator(JavaClass, metaclass=MetaJavaClass):
     WORD_NONE_LIMIT = JavaStaticField("I")
     WORD_NUMBER = JavaStaticField("I")
     WORD_NUMBER_LIMIT = JavaStaticField("I")
-    clone = JavaMethod("()Ljava/lang/Object;")
-    first = JavaMethod("()I")
-    last = JavaMethod("()I")
-    next = JavaMultipleMethod([("(I)I", False, False), ("()I", False, False)])
-    previous = JavaMethod("()I")
-    following = JavaMethod("(I)I")
-    preceding = JavaMethod("(I)I")
-    isBoundary = JavaMethod("(I)Z")
-    current = JavaMethod("()I")
+    getCharacterInstance = JavaMultipleMethod([("()Landroid/icu/text/BreakIterator;", True, False), ("(Ljava/util/Locale;)Landroid/icu/text/BreakIterator;", True, False), ("(Landroid/icu/util/ULocale;)Landroid/icu/text/BreakIterator;", True, False)])
+    getLineInstance = JavaMultipleMethod([("(Ljava/util/Locale;)Landroid/icu/text/BreakIterator;", True, False), ("()Landroid/icu/text/BreakIterator;", True, False), ("(Landroid/icu/util/ULocale;)Landroid/icu/text/BreakIterator;", True, False)])
     getRuleStatus = JavaMethod("()I")
     getRuleStatusVec = JavaMethod("([I)I")
-    getText = JavaMethod("()Ljava/text/CharacterIterator;")
-    setText = JavaMultipleMethod([("(Ljava/lang/String;)V", False, False), ("(Ljava/lang/CharSequence;)V", False, False), ("(Ljava/text/CharacterIterator;)V", False, False)])
-    getWordInstance = JavaMultipleMethod([("()Landroid/icu/text/BreakIterator;", True, False), ("(Ljava/util/Locale;)Landroid/icu/text/BreakIterator;", True, False), ("(Landroid/icu/util/ULocale;)Landroid/icu/text/BreakIterator;", True, False)])
-    getLineInstance = JavaMultipleMethod([("()Landroid/icu/text/BreakIterator;", True, False), ("(Ljava/util/Locale;)Landroid/icu/text/BreakIterator;", True, False), ("(Landroid/icu/util/ULocale;)Landroid/icu/text/BreakIterator;", True, False)])
-    getCharacterInstance = JavaMultipleMethod([("()Landroid/icu/text/BreakIterator;", True, False), ("(Ljava/util/Locale;)Landroid/icu/text/BreakIterator;", True, False), ("(Landroid/icu/util/ULocale;)Landroid/icu/text/BreakIterator;", True, False)])
-    getSentenceInstance = JavaMultipleMethod([("()Landroid/icu/text/BreakIterator;", True, False), ("(Ljava/util/Locale;)Landroid/icu/text/BreakIterator;", True, False), ("(Landroid/icu/util/ULocale;)Landroid/icu/text/BreakIterator;", True, False)])
-    getTitleInstance = JavaMultipleMethod([("()Landroid/icu/text/BreakIterator;", True, False), ("(Ljava/util/Locale;)Landroid/icu/text/BreakIterator;", True, False), ("(Landroid/icu/util/ULocale;)Landroid/icu/text/BreakIterator;", True, False)])
+    getSentenceInstance = JavaMultipleMethod([("(Ljava/util/Locale;)Landroid/icu/text/BreakIterator;", True, False), ("(Landroid/icu/util/ULocale;)Landroid/icu/text/BreakIterator;", True, False), ("()Landroid/icu/text/BreakIterator;", True, False)])
+    getTitleInstance = JavaMultipleMethod([("(Ljava/util/Locale;)Landroid/icu/text/BreakIterator;", True, False), ("()Landroid/icu/text/BreakIterator;", True, False), ("(Landroid/icu/util/ULocale;)Landroid/icu/text/BreakIterator;", True, False)])
+    getWordInstance = JavaMultipleMethod([("()Landroid/icu/text/BreakIterator;", True, False), ("(Landroid/icu/util/ULocale;)Landroid/icu/text/BreakIterator;", True, False), ("(Ljava/util/Locale;)Landroid/icu/text/BreakIterator;", True, False)])
+    isBoundary = JavaMethod("(I)Z")
+    preceding = JavaMethod("(I)I")
+    following = JavaMethod("(I)I")
+    clone = JavaMethod("()Ljava/lang/Object;")
+    next = JavaMultipleMethod([("(I)I", False, False), ("()I", False, False)])
+    last = JavaMethod("()I")
+    first = JavaMethod("()I")
+    current = JavaMethod("()I")
     getAvailableLocales = JavaStaticMethod("()[Ljava/util/Locale;")
+    getText = JavaMethod("()Ljava/text/CharacterIterator;")
+    setText = JavaMultipleMethod([("(Ljava/text/CharacterIterator;)V", False, False), ("(Ljava/lang/String;)V", False, False), ("(Ljava/lang/CharSequence;)V", False, False)])
+    previous = JavaMethod("()I")

@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["DeviceAdminInfo"]
 
@@ -18,19 +18,21 @@ class DeviceAdminInfo(JavaClass, metaclass=MetaJavaClass):
     USES_POLICY_RESET_PASSWORD = JavaStaticField("I")
     USES_POLICY_WATCH_LOGIN = JavaStaticField("I")
     USES_POLICY_WIPE_DATA = JavaStaticField("I")
-    getPackageName = JavaMethod("()Ljava/lang/String;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getTagForPolicy = JavaMethod("(I)Ljava/lang/String;")
     getReceiverName = JavaMethod("()Ljava/lang/String;")
-    getActivityInfo = JavaMethod("()Landroid/content/pm/ActivityInfo;")
-    getComponent = JavaMethod("()Landroid/content/ComponentName;")
-    loadLabel = JavaMethod("(Landroid/content/pm/PackageManager;)Ljava/lang/CharSequence;")
-    loadDescription = JavaMethod("(Landroid/content/pm/PackageManager;)Ljava/lang/CharSequence;")
+    getHeadlessDeviceOwnerMode = JavaMethod("()I")
+    supportsTransferOwnership = JavaMethod("()Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    getPackageName = JavaMethod("()Ljava/lang/String;")
+    dump = JavaMethod("(Landroid/util/Printer;Ljava/lang/String;)V")
     loadIcon = JavaMethod("(Landroid/content/pm/PackageManager;)Landroid/graphics/drawable/Drawable;")
+    loadLabel = JavaMethod("(Landroid/content/pm/PackageManager;)Ljava/lang/CharSequence;")
     isVisible = JavaMethod("()Z")
     usesPolicy = JavaMethod("(I)Z")
-    getTagForPolicy = JavaMethod("(I)Ljava/lang/String;")
-    supportsTransferOwnership = JavaMethod("()Z")
-    getHeadlessDeviceOwnerMode = JavaMethod("()I")
-    dump = JavaMethod("(Landroid/util/Printer;Ljava/lang/String;)V")
-    toString = JavaMethod("()Ljava/lang/String;")
+    loadDescription = JavaMethod("(Landroid/content/pm/PackageManager;)Ljava/lang/CharSequence;")
+    getActivityInfo = JavaMethod("()Landroid/content/pm/ActivityInfo;")
+    getComponent = JavaMethod("()Landroid/content/ComponentName;")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
     describeContents = JavaMethod("()I")

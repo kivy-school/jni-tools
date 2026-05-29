@@ -1,18 +1,18 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["RecognitionListener"]
 
-class RecognitionListener(JavaInterface, metaclass=MetaJavaClass):
+class RecognitionListener(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/speech/RecognitionListener"
-    onReadyForSpeech = JavaMethod("(Landroid/os/Bundle;)V")
-    onBeginningOfSpeech = JavaMethod("()V")
-    onRmsChanged = JavaMethod("(F)V")
-    onBufferReceived = JavaMethod("([B)V")
-    onEndOfSpeech = JavaMethod("()V")
     onError = JavaMethod("(I)V")
-    onResults = JavaMethod("(Landroid/os/Bundle;)V")
+    onReadyForSpeech = JavaMethod("(Landroid/os/Bundle;)V")
     onPartialResults = JavaMethod("(Landroid/os/Bundle;)V")
+    onRmsChanged = JavaMethod("(F)V")
+    onResults = JavaMethod("(Landroid/os/Bundle;)V")
     onSegmentResults = JavaMethod("(Landroid/os/Bundle;)V")
+    onBufferReceived = JavaMethod("([B)V")
+    onEvent = JavaMethod("(ILandroid/os/Bundle;)V")
+    onEndOfSpeech = JavaMethod("()V")
     onEndOfSegmentedSession = JavaMethod("()V")
     onLanguageDetection = JavaMethod("(Landroid/os/Bundle;)V")
-    onEvent = JavaMethod("(ILandroid/os/Bundle;)V")
+    onBeginningOfSpeech = JavaMethod("()V")

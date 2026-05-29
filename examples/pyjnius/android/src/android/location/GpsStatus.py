@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["GpsStatus"]
 
@@ -9,14 +9,14 @@ class GpsStatus(JavaClass, metaclass=MetaJavaClass):
     GPS_EVENT_STARTED = JavaStaticField("I")
     GPS_EVENT_STOPPED = JavaStaticField("I")
     create = JavaStaticMethod("(Landroid/location/GnssStatus;I)Landroid/location/GpsStatus;")
-    getTimeToFirstFix = JavaMethod("()I")
-    getSatellites = JavaMethod("()Ljava/lang/Iterable;")
     getMaxSatellites = JavaMethod("()I")
+    getSatellites = JavaMethod("()Ljava/lang/Iterable;")
+    getTimeToFirstFix = JavaMethod("()I")
 
-    class Listener(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/location/GpsStatus/Listener"
-        onGpsStatusChanged = JavaMethod("(I)V")
-
-    class NmeaListener(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/location/GpsStatus/NmeaListener"
+    class NmeaListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/location/GpsStatus$NmeaListener"
         onNmeaReceived = JavaMethod("(JLjava/lang/String;)V")
+
+    class Listener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/location/GpsStatus$Listener"
+        onGpsStatusChanged = JavaMethod("(I)V")

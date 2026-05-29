@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["PlaybackParams"]
 
@@ -9,12 +9,14 @@ class PlaybackParams(JavaClass, metaclass=MetaJavaClass):
     AUDIO_FALLBACK_MODE_FAIL = JavaStaticField("I")
     AUDIO_FALLBACK_MODE_MUTE = JavaStaticField("I")
     CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     allowDefaults = JavaMethod("()Landroid/media/PlaybackParams;")
-    setAudioFallbackMode = JavaMethod("(I)Landroid/media/PlaybackParams;")
     getAudioFallbackMode = JavaMethod("()I")
-    setPitch = JavaMethod("(F)Landroid/media/PlaybackParams;")
-    getPitch = JavaMethod("()F")
+    setAudioFallbackMode = JavaMethod("(I)Landroid/media/PlaybackParams;")
     setSpeed = JavaMethod("(F)Landroid/media/PlaybackParams;")
     getSpeed = JavaMethod("()F")
-    describeContents = JavaMethod("()I")
+    setPitch = JavaMethod("(F)Landroid/media/PlaybackParams;")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
+    getPitch = JavaMethod("()F")

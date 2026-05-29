@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["AlarmManager"]
 
@@ -15,30 +15,32 @@ class AlarmManager(JavaClass, metaclass=MetaJavaClass):
     INTERVAL_HOUR = JavaStaticField("J")
     RTC = JavaStaticField("I")
     RTC_WAKEUP = JavaStaticField("I")
-    set = JavaMultipleMethod([("(IJLandroid/app/PendingIntent;)V", False, False), ("(IJLjava/lang/String;Landroid/app/AlarmManager$OnAlarmListener;Landroid/os/Handler;)V", False, False)])
-    setRepeating = JavaMethod("(IJJLandroid/app/PendingIntent;)V")
     setWindow = JavaMultipleMethod([("(IJJLandroid/app/PendingIntent;)V", False, False), ("(IJJLjava/lang/String;Landroid/app/AlarmManager$OnAlarmListener;Landroid/os/Handler;)V", False, False), ("(IJJLjava/lang/String;Ljava/util/concurrent/Executor;Landroid/app/AlarmManager$OnAlarmListener;)V", False, False)])
-    setExact = JavaMultipleMethod([("(IJLandroid/app/PendingIntent;)V", False, False), ("(IJLjava/lang/String;Landroid/app/AlarmManager$OnAlarmListener;Landroid/os/Handler;)V", False, False)])
-    setAlarmClock = JavaMethod("(Landroid/app/AlarmManager$AlarmClockInfo;Landroid/app/PendingIntent;)V")
-    setInexactRepeating = JavaMethod("(IJJLandroid/app/PendingIntent;)V")
-    setAndAllowWhileIdle = JavaMethod("(IJLandroid/app/PendingIntent;)V")
-    setExactAndAllowWhileIdle = JavaMethod("(IJLandroid/app/PendingIntent;)V")
-    cancel = JavaMultipleMethod([("(Landroid/app/PendingIntent;)V", False, False), ("(Landroid/app/AlarmManager$OnAlarmListener;)V", False, False)])
     cancelAll = JavaMethod("()V")
-    setTime = JavaMethod("(J)V")
+    set = JavaMultipleMethod([("(IJLandroid/app/PendingIntent;)V", False, False), ("(IJLjava/lang/String;Landroid/app/AlarmManager$OnAlarmListener;Landroid/os/Handler;)V", False, False)])
+    cancel = JavaMultipleMethod([("(Landroid/app/PendingIntent;)V", False, False), ("(Landroid/app/AlarmManager$OnAlarmListener;)V", False, False)])
     setTimeZone = JavaMethod("(Ljava/lang/String;)V")
     canScheduleExactAlarms = JavaMethod("()Z")
     getNextAlarmClock = JavaMethod("()Landroid/app/AlarmManager$AlarmClockInfo;")
+    setAlarmClock = JavaMethod("(Landroid/app/AlarmManager$AlarmClockInfo;Landroid/app/PendingIntent;)V")
+    setAndAllowWhileIdle = JavaMethod("(IJLandroid/app/PendingIntent;)V")
+    setExact = JavaMultipleMethod([("(IJLandroid/app/PendingIntent;)V", False, False), ("(IJLjava/lang/String;Landroid/app/AlarmManager$OnAlarmListener;Landroid/os/Handler;)V", False, False)])
+    setExactAndAllowWhileIdle = JavaMethod("(IJLandroid/app/PendingIntent;)V")
+    setInexactRepeating = JavaMethod("(IJJLandroid/app/PendingIntent;)V")
+    setRepeating = JavaMethod("(IJJLandroid/app/PendingIntent;)V")
+    setTime = JavaMethod("(J)V")
+
+    class OnAlarmListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/app/AlarmManager$OnAlarmListener"
+        onAlarm = JavaMethod("()V")
 
     class AlarmClockInfo(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/app/AlarmManager/AlarmClockInfo"
+        __javaclass__ = "android/app/AlarmManager$AlarmClockInfo"
         __javaconstructor__ = [("(JLandroid/app/PendingIntent;)V", False)]
         CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
-        getTriggerTime = JavaMethod("()J")
+        CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+        PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
         getShowIntent = JavaMethod("()Landroid/app/PendingIntent;")
-        describeContents = JavaMethod("()I")
+        getTriggerTime = JavaMethod("()J")
         writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
-
-    class OnAlarmListener(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/app/AlarmManager/OnAlarmListener"
-        onAlarm = JavaMethod("()V")
+        describeContents = JavaMethod("()I")

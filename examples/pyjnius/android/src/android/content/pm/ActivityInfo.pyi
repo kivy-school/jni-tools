@@ -1,25 +1,14 @@
 from typing import Any, ClassVar, overload
+from android.content.pm.ApplicationInfo import ApplicationInfo
+from android.os.Bundle import Bundle
 from android.os.Parcel import Parcel
 from android.util.Printer import Printer
-
-# Forward declarations for Java types we do not wrap.
-# Bound as empty classes so annotations resolve in the IDE.
-class Creator:
-    """Forward declaration for ``android.os.Parcelable.Creator``.
-
-    This Java type is referenced by the wrapper but is not itself
-    wrapped by pyjnius-wrap. At runtime pyjnius will hand you a
-    live ``autoclass('android.os.Parcelable.Creator')`` proxy; this empty class exists
-    purely so static type checkers and IDEs can resolve the name.
-
-    See: https://developer.android.com/reference/android/os/Parcelable/Creator
-    """
-    ...
 
 class ActivityInfo:
     COLOR_MODE_DEFAULT: ClassVar[int]
     COLOR_MODE_HDR: ClassVar[int]
     COLOR_MODE_WIDE_COLOR_GAMUT: ClassVar[int]
+    CONFIG_ASSETS_PATHS: ClassVar[int]
     CONFIG_COLOR_MODE: ClassVar[int]
     CONFIG_DENSITY: ClassVar[int]
     CONFIG_FONT_SCALE: ClassVar[int]
@@ -33,12 +22,13 @@ class ActivityInfo:
     CONFIG_MNC: ClassVar[int]
     CONFIG_NAVIGATION: ClassVar[int]
     CONFIG_ORIENTATION: ClassVar[int]
+    CONFIG_RESOURCES_UNUSED: ClassVar[int]
     CONFIG_SCREEN_LAYOUT: ClassVar[int]
     CONFIG_SCREEN_SIZE: ClassVar[int]
     CONFIG_SMALLEST_SCREEN_SIZE: ClassVar[int]
     CONFIG_TOUCHSCREEN: ClassVar[int]
     CONFIG_UI_MODE: ClassVar[int]
-    CREATOR: ClassVar[Creator]
+    CREATOR: ClassVar[Any]
     DOCUMENT_LAUNCH_ALWAYS: ClassVar[int]
     DOCUMENT_LAUNCH_INTO_EXISTING: ClassVar[int]
     DOCUMENT_LAUNCH_NEVER: ClassVar[int]
@@ -86,6 +76,8 @@ class ActivityInfo:
     SCREEN_ORIENTATION_USER_LANDSCAPE: ClassVar[int]
     SCREEN_ORIENTATION_USER_PORTRAIT: ClassVar[int]
     UIOPTION_SPLIT_ACTION_BAR_WHEN_NARROW: ClassVar[int]
+    CONTENTS_FILE_DESCRIPTOR: ClassVar[int]
+    PARCELABLE_WRITE_RETURN_VALUE: ClassVar[int]
     colorMode: int
     configChanges: int
     documentLaunchMode: int
@@ -102,17 +94,34 @@ class ActivityInfo:
     taskAffinity: str
     theme: int
     uiOptions: int
-    windowLayout: "WindowLayout"
+    windowLayout: Any
+    applicationInfo: ApplicationInfo
+    attributionTags: Any
+    descriptionRes: int
+    directBootAware: bool
+    enabled: bool
+    exported: bool
+    processName: str
+    splitName: str
+    banner: int
+    icon: int
+    isArchived: bool
+    labelRes: int
+    logo: int
+    metaData: Bundle
+    name: str
+    nonLocalizedLabel: str
+    packageName: str
     @overload
     def __init__(self) -> None: ...
     @overload
-    def __init__(self, arg0: "ActivityInfo") -> None: ...
-    def getThemeResource(self) -> int: ...
-    def getKnownActivityEmbeddingCerts(self) -> set: ...
-    def dump(self, arg0: Printer, arg1: str) -> None: ...
+    def __init__(self, p0: "ActivityInfo") -> None: ...
     def toString(self) -> str: ...
+    def dump(self, p0: Printer, p1: str) -> None: ...
+    def getKnownActivityEmbeddingCerts(self) -> set: ...
+    def getThemeResource(self) -> int: ...
+    def writeToParcel(self, p0: Parcel, p1: int) -> None: ...
     def describeContents(self) -> int: ...
-    def writeToParcel(self, arg0: Parcel, arg1: int) -> None: ...
 
     class WindowLayout:
         gravity: int
@@ -122,4 +131,4 @@ class ActivityInfo:
         minWidth: int
         width: int
         widthFraction: float
-        def __init__(self, arg0: int, arg1: float, arg2: int, arg3: float, arg4: int, arg5: int, arg6: int) -> None: ...
+        def __init__(self, p0: int, p1: float, p2: int, p3: float, p4: int, p5: int, p6: int) -> None: ...

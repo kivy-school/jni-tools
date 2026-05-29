@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["FontStyle"]
 
@@ -19,8 +19,8 @@ class FontStyle(JavaClass, metaclass=MetaJavaClass):
     FONT_WEIGHT_SEMI_BOLD = JavaStaticField("I")
     FONT_WEIGHT_THIN = JavaStaticField("I")
     FONT_WEIGHT_UNSPECIFIED = JavaStaticField("I")
-    getWeight = JavaMethod("()I")
     getSlant = JavaMethod("()I")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
-    hashCode = JavaMethod("()I")
     toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    getWeight = JavaMethod("()I")

@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["BluetoothLeScanner"]
 
@@ -7,6 +7,6 @@ class BluetoothLeScanner(JavaClass, metaclass=MetaJavaClass):
     EXTRA_CALLBACK_TYPE = JavaStaticField("Ljava/lang/String;")
     EXTRA_ERROR_CODE = JavaStaticField("Ljava/lang/String;")
     EXTRA_LIST_SCAN_RESULT = JavaStaticField("Ljava/lang/String;")
-    startScan = JavaMultipleMethod([("(Landroid/bluetooth/le/ScanCallback;)V", False, False), ("(Ljava/util/List;Landroid/bluetooth/le/ScanSettings;Landroid/bluetooth/le/ScanCallback;)V", False, False), ("(Ljava/util/List;Landroid/bluetooth/le/ScanSettings;Landroid/app/PendingIntent;)I", False, False)])
-    stopScan = JavaMultipleMethod([("(Landroid/bluetooth/le/ScanCallback;)V", False, False), ("(Landroid/app/PendingIntent;)V", False, False)])
     flushPendingScanResults = JavaMethod("(Landroid/bluetooth/le/ScanCallback;)V")
+    startScan = JavaMultipleMethod([("(Ljava/util/List;Landroid/bluetooth/le/ScanSettings;Landroid/bluetooth/le/ScanCallback;)V", False, False), ("(Landroid/bluetooth/le/ScanCallback;)V", False, False), ("(Ljava/util/List;Landroid/bluetooth/le/ScanSettings;Landroid/app/PendingIntent;)I", False, False)])
+    stopScan = JavaMultipleMethod([("(Landroid/app/PendingIntent;)V", False, False), ("(Landroid/bluetooth/le/ScanCallback;)V", False, False)])

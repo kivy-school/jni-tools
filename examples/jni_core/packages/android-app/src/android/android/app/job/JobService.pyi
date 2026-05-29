@@ -29,8 +29,10 @@ class JobService:
     ACCESSIBILITY_SERVICE: ClassVar[str]
     ACCOUNT_SERVICE: ClassVar[str]
     ACTIVITY_SERVICE: ClassVar[str]
+    ADVANCED_PROTECTION_SERVICE: ClassVar[str]
     ALARM_SERVICE: ClassVar[str]
     APPWIDGET_SERVICE: ClassVar[str]
+    APP_FUNCTION_SERVICE: ClassVar[str]
     APP_OPS_SERVICE: ClassVar[str]
     APP_SEARCH_SERVICE: ClassVar[str]
     AUDIO_SERVICE: ClassVar[str]
@@ -89,6 +91,7 @@ class JobService:
     IPSEC_SERVICE: ClassVar[str]
     JOB_SCHEDULER_SERVICE: ClassVar[str]
     KEYGUARD_SERVICE: ClassVar[str]
+    KEYSTORE_SERVICE: ClassVar[str]
     LAUNCHER_APPS_SERVICE: ClassVar[str]
     LAYOUT_INFLATER_SERVICE: ClassVar[str]
     LOCALE_SERVICE: ClassVar[str]
@@ -96,6 +99,7 @@ class JobService:
     MEDIA_COMMUNICATION_SERVICE: ClassVar[str]
     MEDIA_METRICS_SERVICE: ClassVar[str]
     MEDIA_PROJECTION_SERVICE: ClassVar[str]
+    MEDIA_QUALITY_SERVICE: ClassVar[str]
     MEDIA_ROUTER_SERVICE: ClassVar[str]
     MEDIA_SESSION_SERVICE: ClassVar[str]
     MIDI_SERVICE: ClassVar[str]
@@ -122,6 +126,7 @@ class JobService:
     RECEIVER_VISIBLE_TO_INSTANT_APPS: ClassVar[int]
     RESTRICTIONS_SERVICE: ClassVar[str]
     ROLE_SERVICE: ClassVar[str]
+    SATELLITE_SERVICE: ClassVar[str]
     SEARCH_SERVICE: ClassVar[str]
     SECURITY_STATE_SERVICE: ClassVar[str]
     SENSOR_SERVICE: ClassVar[str]
@@ -134,8 +139,10 @@ class JobService:
     TELEPHONY_IMS_SERVICE: ClassVar[str]
     TELEPHONY_SERVICE: ClassVar[str]
     TELEPHONY_SUBSCRIPTION_SERVICE: ClassVar[str]
+    TETHERING_SERVICE: ClassVar[str]
     TEXT_CLASSIFICATION_SERVICE: ClassVar[str]
     TEXT_SERVICES_MANAGER_SERVICE: ClassVar[str]
+    TV_AD_SERVICE: ClassVar[str]
     TV_INPUT_SERVICE: ClassVar[str]
     TV_INTERACTIVE_APP_SERVICE: ClassVar[str]
     UI_MODE_SERVICE: ClassVar[str]
@@ -153,17 +160,17 @@ class JobService:
     WIFI_SERVICE: ClassVar[str]
     WINDOW_SERVICE: ClassVar[str]
     def __init__(self) -> None: ...
-    def onStopJob(self, p0: JobParameters) -> bool: ...
-    def onStartJob(self, p0: JobParameters) -> bool: ...
-    def jobFinished(self, p0: JobParameters, p1: bool) -> None: ...
-    def onNetworkChanged(self, p0: JobParameters) -> None: ...
     @overload
     def updateTransferredNetworkBytes(self, p0: JobParameters, p1: JobWorkItem, p2: int, p3: int) -> None: ...
     @overload
     def updateTransferredNetworkBytes(self, p0: JobParameters, p1: int, p2: int) -> None: ...
-    @overload
-    def updateEstimatedNetworkBytes(self, p0: JobParameters, p1: JobWorkItem, p2: int, p3: int) -> None: ...
+    def jobFinished(self, p0: JobParameters, p1: bool) -> None: ...
+    def onNetworkChanged(self, p0: JobParameters) -> None: ...
+    def onStartJob(self, p0: JobParameters) -> bool: ...
+    def onStopJob(self, p0: JobParameters) -> bool: ...
+    def setNotification(self, p0: JobParameters, p1: int, p2: Notification, p3: int) -> None: ...
     @overload
     def updateEstimatedNetworkBytes(self, p0: JobParameters, p1: int, p2: int) -> None: ...
-    def setNotification(self, p0: JobParameters, p1: int, p2: Notification, p3: int) -> None: ...
+    @overload
+    def updateEstimatedNetworkBytes(self, p0: JobParameters, p1: JobWorkItem, p2: int, p3: int) -> None: ...
     def onBind(self, p0: Intent) -> IBinder: ...

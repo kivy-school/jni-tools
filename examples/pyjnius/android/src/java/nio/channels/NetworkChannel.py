@@ -1,8 +1,8 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["NetworkChannel"]
 
-class NetworkChannel(JavaInterface, metaclass=MetaJavaClass):
+class NetworkChannel(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/nio/channels/NetworkChannel"
     bind = JavaMethod("(Ljava/net/SocketAddress;)Ljava/nio/channels/NetworkChannel;")
     getLocalAddress = JavaMethod("()Ljava/net/SocketAddress;")

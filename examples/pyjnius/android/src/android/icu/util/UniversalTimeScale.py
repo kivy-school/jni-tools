@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["UniversalTimeScale"]
 
@@ -22,8 +22,8 @@ class UniversalTimeScale(JavaClass, metaclass=MetaJavaClass):
     UNIX_MICROSECONDS_TIME = JavaStaticField("I")
     UNIX_TIME = JavaStaticField("I")
     WINDOWS_FILE_TIME = JavaStaticField("I")
-    from = JavaStaticMethod("(JI)J")
-    bigDecimalFrom = JavaMultipleMethod([("(DI)Landroid/icu/math/BigDecimal;", True, False), ("(JI)Landroid/icu/math/BigDecimal;", True, False), ("(Landroid/icu/math/BigDecimal;I)Landroid/icu/math/BigDecimal;", True, False)])
-    toLong = JavaStaticMethod("(JI)J")
-    toBigDecimal = JavaMultipleMethod([("(JI)Landroid/icu/math/BigDecimal;", True, False), ("(Landroid/icu/math/BigDecimal;I)Landroid/icu/math/BigDecimal;", True, False)])
+    bigDecimalFrom = JavaMultipleMethod([("(DI)Landroid/icu/math/BigDecimal;", True, False), ("(Landroid/icu/math/BigDecimal;I)Landroid/icu/math/BigDecimal;", True, False), ("(JI)Landroid/icu/math/BigDecimal;", True, False)])
     getTimeScaleValue = JavaStaticMethod("(II)J")
+    toBigDecimal = JavaMultipleMethod([("(JI)Landroid/icu/math/BigDecimal;", True, False), ("(Landroid/icu/math/BigDecimal;I)Landroid/icu/math/BigDecimal;", True, False)])
+    toLong = JavaStaticMethod("(JI)J")
+    from = JavaStaticMethod("(JI)J")

@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Normalizer"]
 
@@ -13,7 +13,7 @@ class Normalizer(JavaClass, metaclass=MetaJavaClass):
     NO = JavaStaticField("Landroid/icu/text/Normalizer$QuickCheckResult;")
     YES = JavaStaticField("Landroid/icu/text/Normalizer$QuickCheckResult;")
     clone = JavaMethod("()Ljava/lang/Object;")
-    compare = JavaMultipleMethod([("([CII[CIII)I", True, False), ("(Ljava/lang/String;Ljava/lang/String;I)I", True, False), ("([C[CI)I", True, False), ("(III)I", True, False), ("(ILjava/lang/String;I)I", True, False)])
+    compare = JavaMultipleMethod([("(ILjava/lang/String;I)I", True, False), ("(III)I", True, False), ("(Ljava/lang/String;Ljava/lang/String;I)I", True, False), ("([CII[CIII)I", True, False), ("([C[CI)I", True, False)])
 
     class QuickCheckResult(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/icu/text/Normalizer/QuickCheckResult"
+        __javaclass__ = "android/icu/text/Normalizer$QuickCheckResult"

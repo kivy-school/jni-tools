@@ -1,17 +1,18 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Reader"]
 
 class Reader(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/io/Reader"
-    __javaconstructor__ = [("()V", False), ("(Ljava/lang/Object;)V", False)]
-    lock = JavaField("Ljava/lang/Object;")
-    nullReader = JavaStaticMethod("()Ljava/io/Reader;")
-    read = JavaMultipleMethod([("(Ljava/nio/CharBuffer;)I", False, False), ("()I", False, False), ("([C)I", False, False), ("([CII)I", False, False)])
-    skip = JavaMethod("(J)J")
-    ready = JavaMethod("()Z")
-    markSupported = JavaMethod("()Z")
-    mark = JavaMethod("(I)V")
     reset = JavaMethod("()V")
+    of = JavaStaticMethod("(Ljava/lang/CharSequence;)Ljava/io/Reader;")
     close = JavaMethod("()V")
+    mark = JavaMethod("(I)V")
+    read = JavaMultipleMethod([("([CII)I", False, False), ("([C)I", False, False), ("()I", False, False), ("(Ljava/nio/CharBuffer;)I", False, False)])
     transferTo = JavaMethod("(Ljava/io/Writer;)J")
+    skip = JavaMethod("(J)J")
+    markSupported = JavaMethod("()Z")
+    nullReader = JavaStaticMethod("()Ljava/io/Reader;")
+    readAllAsString = JavaMethod("()Ljava/lang/String;")
+    ready = JavaMethod("()Z")
+    readAllLines = JavaMethod("()Ljava/util/List;")

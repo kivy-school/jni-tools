@@ -6,6 +6,7 @@ class FrameMetrics:
     DEADLINE: ClassVar[int]
     DRAW_DURATION: ClassVar[int]
     FIRST_DRAW_FRAME: ClassVar[int]
+    FRAME_TIMELINE_VSYNC_ID: ClassVar[int]
     GPU_DURATION: ClassVar[int]
     INPUT_HANDLING_DURATION: ClassVar[int]
     INTENDED_VSYNC_TIMESTAMP: ClassVar[int]

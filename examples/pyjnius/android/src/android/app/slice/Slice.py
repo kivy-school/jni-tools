@@ -1,10 +1,9 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Slice"]
 
 class Slice(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/app/slice/Slice"
-    __javaconstructor__ = [("(Landroid/os/Parcel;)V", False)]
     CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
     EXTRA_RANGE_VALUE = JavaStaticField("Ljava/lang/String;")
     EXTRA_TOGGLE_STATE = JavaStaticField("Ljava/lang/String;")
@@ -36,26 +35,28 @@ class Slice(JavaClass, metaclass=MetaJavaClass):
     SUBTYPE_SOURCE = JavaStaticField("Ljava/lang/String;")
     SUBTYPE_TOGGLE = JavaStaticField("Ljava/lang/String;")
     SUBTYPE_VALUE = JavaStaticField("Ljava/lang/String;")
-    getSpec = JavaMethod("()Landroid/app/slice/SliceSpec;")
-    getUri = JavaMethod("()Landroid/net/Uri;")
-    getItems = JavaMethod("()Ljava/util/List;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getHints = JavaMethod("()Ljava/util/List;")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
-    describeContents = JavaMethod("()I")
+    getItems = JavaMethod("()Ljava/util/List;")
+    getSpec = JavaMethod("()Landroid/app/slice/SliceSpec;")
     isCallerNeeded = JavaMethod("()Z")
     toString = JavaMethod("()Ljava/lang/String;")
+    getUri = JavaMethod("()Landroid/net/Uri;")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
 
     class Builder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/app/slice/Slice/Builder"
-        __javaconstructor__ = [("(Landroid/net/Uri;Landroid/app/slice/SliceSpec;)V", False), ("(Landroid/app/slice/Slice$Builder;)V", False)]
-        setCallerNeeded = JavaMethod("(Z)Landroid/app/slice/Slice$Builder;")
-        addHints = JavaMethod("(Ljava/util/List;)Landroid/app/slice/Slice$Builder;")
-        addSubSlice = JavaMethod("(Landroid/app/slice/Slice;Ljava/lang/String;)Landroid/app/slice/Slice$Builder;")
-        addAction = JavaMethod("(Landroid/app/PendingIntent;Landroid/app/slice/Slice;Ljava/lang/String;)Landroid/app/slice/Slice$Builder;")
-        addText = JavaMethod("(Ljava/lang/CharSequence;Ljava/lang/String;Ljava/util/List;)Landroid/app/slice/Slice$Builder;")
-        addIcon = JavaMethod("(Landroid/graphics/drawable/Icon;Ljava/lang/String;Ljava/util/List;)Landroid/app/slice/Slice$Builder;")
+        __javaclass__ = "android/app/slice/Slice$Builder"
+        __javaconstructor__ = [("(Landroid/app/slice/Slice$Builder;)V", False), ("(Landroid/net/Uri;Landroid/app/slice/SliceSpec;)V", False)]
         addRemoteInput = JavaMethod("(Landroid/app/RemoteInput;Ljava/lang/String;Ljava/util/List;)Landroid/app/slice/Slice$Builder;")
+        addHints = JavaMethod("(Ljava/util/List;)Landroid/app/slice/Slice$Builder;")
+        addBundle = JavaMethod("(Landroid/os/Bundle;Ljava/lang/String;Ljava/util/List;)Landroid/app/slice/Slice$Builder;")
+        addIcon = JavaMethod("(Landroid/graphics/drawable/Icon;Ljava/lang/String;Ljava/util/List;)Landroid/app/slice/Slice$Builder;")
         addInt = JavaMethod("(ILjava/lang/String;Ljava/util/List;)Landroid/app/slice/Slice$Builder;")
         addLong = JavaMethod("(JLjava/lang/String;Ljava/util/List;)Landroid/app/slice/Slice$Builder;")
-        addBundle = JavaMethod("(Landroid/os/Bundle;Ljava/lang/String;Ljava/util/List;)Landroid/app/slice/Slice$Builder;")
+        addSubSlice = JavaMethod("(Landroid/app/slice/Slice;Ljava/lang/String;)Landroid/app/slice/Slice$Builder;")
+        addText = JavaMethod("(Ljava/lang/CharSequence;Ljava/lang/String;Ljava/util/List;)Landroid/app/slice/Slice$Builder;")
+        setCallerNeeded = JavaMethod("(Z)Landroid/app/slice/Slice$Builder;")
+        addAction = JavaMethod("(Landroid/app/PendingIntent;Landroid/app/slice/Slice;Ljava/lang/String;)Landroid/app/slice/Slice$Builder;")
         build = JavaMethod("()Landroid/app/slice/Slice;")

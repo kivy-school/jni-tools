@@ -1,16 +1,18 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["LinkAddress"]
 
 class LinkAddress(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/net/LinkAddress"
     CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
-    toString = JavaMethod("()Ljava/lang/String;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
     hashCode = JavaMethod("()I")
-    getAddress = JavaMethod("()Ljava/net/InetAddress;")
-    getPrefixLength = JavaMethod("()I")
-    getFlags = JavaMethod("()I")
     getScope = JavaMethod("()I")
-    describeContents = JavaMethod("()I")
+    getAddress = JavaMethod("()Ljava/net/InetAddress;")
+    getFlags = JavaMethod("()I")
+    getPrefixLength = JavaMethod("()I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

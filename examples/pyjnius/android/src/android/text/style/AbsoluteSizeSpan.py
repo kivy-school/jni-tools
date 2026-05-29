@@ -1,15 +1,17 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["AbsoluteSizeSpan"]
 
 class AbsoluteSizeSpan(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/text/style/AbsoluteSizeSpan"
-    __javaconstructor__ = [("(I)V", False), ("(IZ)V", False), ("(Landroid/os/Parcel;)V", False)]
-    getSpanTypeId = JavaMethod("()I")
-    describeContents = JavaMethod("()I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
-    getSize = JavaMethod("()I")
+    __javaconstructor__ = [("(Landroid/os/Parcel;)V", False), ("(IZ)V", False), ("(I)V", False)]
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getDip = JavaMethod("()Z")
-    updateDrawState = JavaMethod("(Landroid/text/TextPaint;)V")
     updateMeasureState = JavaMethod("(Landroid/text/TextPaint;)V")
     toString = JavaMethod("()Ljava/lang/String;")
+    getSize = JavaMethod("()I")
+    updateDrawState = JavaMethod("(Landroid/text/TextPaint;)V")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
+    getSpanTypeId = JavaMethod("()I")

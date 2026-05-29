@@ -1,28 +1,20 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SecurityManager"]
 
 class SecurityManager(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/lang/SecurityManager"
     __javaconstructor__ = [("()V", False)]
-    inCheck = JavaField("Z")
-    getInCheck = JavaMethod("()Z")
-    getClassContext = JavaMethod("()[Ljava/lang/Class;")
-    currentClassLoader = JavaMethod("()Ljava/lang/ClassLoader;")
-    currentLoadedClass = JavaMethod("()Ljava/lang/Class;")
-    classDepth = JavaMethod("(Ljava/lang/String;)I")
-    classLoaderDepth = JavaMethod("()I")
-    inClass = JavaMethod("(Ljava/lang/String;)Z")
-    inClassLoader = JavaMethod("()Z")
-    getSecurityContext = JavaMethod("()Ljava/lang/Object;")
-    checkPermission = JavaMultipleMethod([("(Ljava/security/Permission;)V", False, False), ("(Ljava/security/Permission;Ljava/lang/Object;)V", False, False)])
     checkCreateClassLoader = JavaMethod("()V")
-    checkAccess = JavaMultipleMethod([("(Ljava/lang/Thread;)V", False, False), ("(Ljava/lang/ThreadGroup;)V", False, False)])
+    getThreadGroup = JavaMethod("()Ljava/lang/ThreadGroup;")
+    checkAccess = JavaMultipleMethod([("(Ljava/lang/ThreadGroup;)V", False, False), ("(Ljava/lang/Thread;)V", False, False)])
+    checkPermission = JavaMultipleMethod([("(Ljava/security/Permission;)V", False, False), ("(Ljava/security/Permission;Ljava/lang/Object;)V", False, False)])
     checkExit = JavaMethod("(I)V")
+    getSecurityContext = JavaMethod("()Ljava/lang/Object;")
     checkExec = JavaMethod("(Ljava/lang/String;)V")
     checkLink = JavaMethod("(Ljava/lang/String;)V")
-    checkRead = JavaMultipleMethod([("(Ljava/io/FileDescriptor;)V", False, False), ("(Ljava/lang/String;)V", False, False), ("(Ljava/lang/String;Ljava/lang/Object;)V", False, False)])
-    checkWrite = JavaMultipleMethod([("(Ljava/io/FileDescriptor;)V", False, False), ("(Ljava/lang/String;)V", False, False)])
+    checkRead = JavaMultipleMethod([("(Ljava/lang/String;)V", False, False), ("(Ljava/lang/String;Ljava/lang/Object;)V", False, False), ("(Ljava/io/FileDescriptor;)V", False, False)])
+    checkWrite = JavaMultipleMethod([("(Ljava/lang/String;)V", False, False), ("(Ljava/io/FileDescriptor;)V", False, False)])
     checkDelete = JavaMethod("(Ljava/lang/String;)V")
     checkConnect = JavaMultipleMethod([("(Ljava/lang/String;I)V", False, False), ("(Ljava/lang/String;ILjava/lang/Object;)V", False, False)])
     checkListen = JavaMethod("(I)V")
@@ -30,13 +22,8 @@ class SecurityManager(JavaClass, metaclass=MetaJavaClass):
     checkMulticast = JavaMultipleMethod([("(Ljava/net/InetAddress;)V", False, False), ("(Ljava/net/InetAddress;B)V", False, False)])
     checkPropertiesAccess = JavaMethod("()V")
     checkPropertyAccess = JavaMethod("(Ljava/lang/String;)V")
-    checkTopLevelWindow = JavaMethod("(Ljava/lang/Object;)Z")
     checkPrintJobAccess = JavaMethod("()V")
-    checkSystemClipboardAccess = JavaMethod("()V")
-    checkAwtEventQueueAccess = JavaMethod("()V")
     checkPackageAccess = JavaMethod("(Ljava/lang/String;)V")
     checkPackageDefinition = JavaMethod("(Ljava/lang/String;)V")
     checkSetFactory = JavaMethod("()V")
-    checkMemberAccess = JavaMethod("(Ljava/lang/Class;I)V")
     checkSecurityAccess = JavaMethod("(Ljava/lang/String;)V")
-    getThreadGroup = JavaMethod("()Ljava/lang/ThreadGroup;")

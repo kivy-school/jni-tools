@@ -1,10 +1,10 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ModelDownloadListener"]
 
-class ModelDownloadListener(JavaInterface, metaclass=MetaJavaClass):
+class ModelDownloadListener(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/speech/ModelDownloadListener"
-    onProgress = JavaMethod("(I)V")
-    onSuccess = JavaMethod("()V")
-    onScheduled = JavaMethod("()V")
     onError = JavaMethod("(I)V")
+    onProgress = JavaMethod("(I)V")
+    onScheduled = JavaMethod("()V")
+    onSuccess = JavaMethod("()V")

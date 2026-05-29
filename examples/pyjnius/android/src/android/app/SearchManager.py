@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SearchManager"]
 
@@ -57,20 +57,20 @@ class SearchManager(JavaClass, metaclass=MetaJavaClass):
     SUGGEST_URI_PATH_SHORTCUT = JavaStaticField("Ljava/lang/String;")
     USER_QUERY = JavaStaticField("Ljava/lang/String;")
     startSearch = JavaMethod("(Ljava/lang/String;ZLandroid/content/ComponentName;Landroid/os/Bundle;Z)V")
-    getGlobalSearchActivity = JavaMethod("()Landroid/content/ComponentName;")
     triggerSearch = JavaMethod("(Ljava/lang/String;Landroid/content/ComponentName;Landroid/os/Bundle;)V")
-    stopSearch = JavaMethod("()V")
-    setOnDismissListener = JavaMethod("(Landroid/app/SearchManager$OnDismissListener;)V")
     setOnCancelListener = JavaMethod("(Landroid/app/SearchManager$OnCancelListener;)V")
     onCancel = JavaMethod("(Landroid/content/DialogInterface;)V")
     onDismiss = JavaMethod("(Landroid/content/DialogInterface;)V")
+    setOnDismissListener = JavaMethod("(Landroid/app/SearchManager$OnDismissListener;)V")
+    getGlobalSearchActivity = JavaMethod("()Landroid/content/ComponentName;")
     getSearchableInfo = JavaMethod("(Landroid/content/ComponentName;)Landroid/app/SearchableInfo;")
     getSearchablesInGlobalSearch = JavaMethod("()Ljava/util/List;")
+    stopSearch = JavaMethod("()V")
 
-    class OnCancelListener(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/app/SearchManager/OnCancelListener"
-        onCancel = JavaMethod("()V")
-
-    class OnDismissListener(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/app/SearchManager/OnDismissListener"
+    class OnDismissListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/app/SearchManager$OnDismissListener"
         onDismiss = JavaMethod("()V")
+
+    class OnCancelListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/app/SearchManager$OnCancelListener"
+        onCancel = JavaMethod("()V")

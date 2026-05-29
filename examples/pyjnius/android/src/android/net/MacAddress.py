@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["MacAddress"]
 
@@ -9,16 +9,18 @@ class MacAddress(JavaClass, metaclass=MetaJavaClass):
     TYPE_BROADCAST = JavaStaticField("I")
     TYPE_MULTICAST = JavaStaticField("I")
     TYPE_UNICAST = JavaStaticField("I")
-    getAddressType = JavaMethod("()I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getLinkLocalIpv6FromEui48Mac = JavaMethod("()Ljava/net/Inet6Address;")
     isLocallyAssigned = JavaMethod("()Z")
-    toByteArray = JavaMethod("()[B")
-    toString = JavaMethod("()Ljava/lang/String;")
     toOuiString = JavaMethod("()Ljava/lang/String;")
-    hashCode = JavaMethod("()I")
+    getAddressType = JavaMethod("()I")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    matches = JavaMethod("(Landroid/net/MacAddress;Landroid/net/MacAddress;)Z")
+    fromBytes = JavaStaticMethod("([B)Landroid/net/MacAddress;")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
     describeContents = JavaMethod("()I")
+    toByteArray = JavaMethod("()[B")
     fromString = JavaStaticMethod("(Ljava/lang/String;)Landroid/net/MacAddress;")
-    fromBytes = JavaStaticMethod("([B)Landroid/net/MacAddress;")
-    matches = JavaMethod("(Landroid/net/MacAddress;Landroid/net/MacAddress;)Z")
-    getLinkLocalIpv6FromEui48Mac = JavaMethod("()Ljava/net/Inet6Address;")

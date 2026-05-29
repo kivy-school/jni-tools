@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ControlButton"]
 
@@ -6,7 +6,9 @@ class ControlButton(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/service/controls/templates/ControlButton"
     __javaconstructor__ = [("(ZLjava/lang/CharSequence;)V", False)]
     CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
-    isChecked = JavaMethod("()Z")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getActionDescription = JavaMethod("()Ljava/lang/CharSequence;")
-    describeContents = JavaMethod("()I")
+    isChecked = JavaMethod("()Z")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

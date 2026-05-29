@@ -1,11 +1,11 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["LocationListener"]
 
-class LocationListener(JavaInterface, metaclass=MetaJavaClass):
+class LocationListener(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/location/LocationListener"
-    onLocationChanged = JavaMultipleMethod([("(Landroid/location/Location;)V", False, False), ("(Ljava/util/List;)V", False, False)])
-    onFlushComplete = JavaMethod("(I)V")
     onStatusChanged = JavaMethod("(Ljava/lang/String;ILandroid/os/Bundle;)V")
-    onProviderEnabled = JavaMethod("(Ljava/lang/String;)V")
+    onFlushComplete = JavaMethod("(I)V")
+    onLocationChanged = JavaMultipleMethod([("(Ljava/util/List;)V", False, False), ("(Landroid/location/Location;)V", False, False)])
     onProviderDisabled = JavaMethod("(Ljava/lang/String;)V")
+    onProviderEnabled = JavaMethod("(Ljava/lang/String;)V")

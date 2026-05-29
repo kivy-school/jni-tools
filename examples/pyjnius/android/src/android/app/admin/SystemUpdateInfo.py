@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SystemUpdateInfo"]
 
@@ -8,10 +8,12 @@ class SystemUpdateInfo(JavaClass, metaclass=MetaJavaClass):
     SECURITY_PATCH_STATE_FALSE = JavaStaticField("I")
     SECURITY_PATCH_STATE_TRUE = JavaStaticField("I")
     SECURITY_PATCH_STATE_UNKNOWN = JavaStaticField("I")
-    getReceivedTime = JavaMethod("()J")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getSecurityPatchState = JavaMethod("()I")
-    describeContents = JavaMethod("()I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
-    toString = JavaMethod("()Ljava/lang/String;")
+    getReceivedTime = JavaMethod("()J")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
     hashCode = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

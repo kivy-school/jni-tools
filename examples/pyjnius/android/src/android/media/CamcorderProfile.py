@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["CamcorderProfile"]
 
@@ -53,6 +53,6 @@ class CamcorderProfile(JavaClass, metaclass=MetaJavaClass):
     videoFrameHeight = JavaField("I")
     videoFrameRate = JavaField("I")
     videoFrameWidth = JavaField("I")
-    get = JavaMultipleMethod([("(I)Landroid/media/CamcorderProfile;", True, False), ("(II)Landroid/media/CamcorderProfile;", True, False)])
     getAll = JavaStaticMethod("(Ljava/lang/String;I)Landroid/media/EncoderProfiles;")
     hasProfile = JavaMultipleMethod([("(I)Z", True, False), ("(II)Z", True, False)])
+    get = JavaMultipleMethod([("(I)Landroid/media/CamcorderProfile;", True, False), ("(II)Landroid/media/CamcorderProfile;", True, False)])

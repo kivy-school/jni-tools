@@ -1,8 +1,8 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["CRLSelector"]
 
-class CRLSelector(JavaInterface, metaclass=MetaJavaClass):
+class CRLSelector(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/security/cert/CRLSelector"
-    match = JavaMethod("(Ljava/security/cert/CRL;)Z")
     clone = JavaMethod("()Ljava/lang/Object;")
+    match = JavaMethod("(Ljava/security/cert/CRL;)Z")

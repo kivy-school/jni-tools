@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ResultData"]
 
@@ -11,11 +11,11 @@ class ResultData(JavaClass, metaclass=MetaJavaClass):
     STATUS_OK = JavaStaticField("I")
     STATUS_READER_AUTHENTICATION_FAILED = JavaStaticField("I")
     STATUS_USER_AUTHENTICATION_FAILED = JavaStaticField("I")
+    getStatus = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)I")
+    getNamespaces = JavaMethod("()Ljava/util/Collection;")
     getAuthenticatedData = JavaMethod("()[B")
     getMessageAuthenticationCode = JavaMethod("()[B")
-    getStaticAuthenticationData = JavaMethod("()[B")
-    getNamespaces = JavaMethod("()Ljava/util/Collection;")
     getEntryNames = JavaMethod("(Ljava/lang/String;)Ljava/util/Collection;")
+    getStaticAuthenticationData = JavaMethod("()[B")
     getRetrievedEntryNames = JavaMethod("(Ljava/lang/String;)Ljava/util/Collection;")
-    getStatus = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)I")
     getEntry = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)[B")

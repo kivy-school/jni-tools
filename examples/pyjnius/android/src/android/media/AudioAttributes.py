@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["AudioAttributes"]
 
@@ -34,29 +34,31 @@ class AudioAttributes(JavaClass, metaclass=MetaJavaClass):
     USAGE_UNKNOWN = JavaStaticField("I")
     USAGE_VOICE_COMMUNICATION = JavaStaticField("I")
     USAGE_VOICE_COMMUNICATION_SIGNALLING = JavaStaticField("I")
-    getContentType = JavaMethod("()I")
-    getUsage = JavaMethod("()I")
-    getFlags = JavaMethod("()I")
-    areHapticChannelsMuted = JavaMethod("()Z")
-    isContentSpatialized = JavaMethod("()Z")
-    getSpatializationBehavior = JavaMethod("()I")
-    getAllowedCapturePolicy = JavaMethod("()I")
-    describeContents = JavaMethod("()I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
-    hashCode = JavaMethod("()I")
     toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    areHapticChannelsMuted = JavaMethod("()Z")
+    getAllowedCapturePolicy = JavaMethod("()I")
+    getContentType = JavaMethod("()I")
+    getSpatializationBehavior = JavaMethod("()I")
+    getUsage = JavaMethod("()I")
     getVolumeControlStream = JavaMethod("()I")
+    isContentSpatialized = JavaMethod("()Z")
+    getFlags = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
 
     class Builder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/AudioAttributes/Builder"
-        __javaconstructor__ = [("()V", False), ("(Landroid/media/AudioAttributes;)V", False)]
-        build = JavaMethod("()Landroid/media/AudioAttributes;")
-        setUsage = JavaMethod("(I)Landroid/media/AudioAttributes$Builder;")
+        __javaclass__ = "android/media/AudioAttributes$Builder"
+        __javaconstructor__ = [("(Landroid/media/AudioAttributes;)V", False), ("()V", False)]
         setContentType = JavaMethod("(I)Landroid/media/AudioAttributes$Builder;")
-        setFlags = JavaMethod("(I)Landroid/media/AudioAttributes$Builder;")
-        setAllowedCapturePolicy = JavaMethod("(I)Landroid/media/AudioAttributes$Builder;")
+        setUsage = JavaMethod("(I)Landroid/media/AudioAttributes$Builder;")
         setIsContentSpatialized = JavaMethod("(Z)Landroid/media/AudioAttributes$Builder;")
-        setSpatializationBehavior = JavaMethod("(I)Landroid/media/AudioAttributes$Builder;")
         setLegacyStreamType = JavaMethod("(I)Landroid/media/AudioAttributes$Builder;")
+        setSpatializationBehavior = JavaMethod("(I)Landroid/media/AudioAttributes$Builder;")
+        setAllowedCapturePolicy = JavaMethod("(I)Landroid/media/AudioAttributes$Builder;")
         setHapticChannelsMuted = JavaMethod("(Z)Landroid/media/AudioAttributes$Builder;")
+        setFlags = JavaMethod("(I)Landroid/media/AudioAttributes$Builder;")
+        build = JavaMethod("()Landroid/media/AudioAttributes;")

@@ -1,26 +1,26 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Image"]
 
 class Image(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/media/Image"
-    getFormat = JavaMethod("()I")
-    getWidth = JavaMethod("()I")
-    getHeight = JavaMethod("()I")
-    getTimestamp = JavaMethod("()J")
-    getFence = JavaMethod("()Landroid/hardware/SyncFence;")
-    getHardwareBuffer = JavaMethod("()Landroid/hardware/HardwareBuffer;")
-    setTimestamp = JavaMethod("(J)V")
-    setFence = JavaMethod("(Landroid/hardware/SyncFence;)V")
-    getDataSpace = JavaMethod("()I")
-    setDataSpace = JavaMethod("(I)V")
-    getCropRect = JavaMethod("()Landroid/graphics/Rect;")
-    setCropRect = JavaMethod("(Landroid/graphics/Rect;)V")
-    getPlanes = JavaMethod("()[Landroid/media/Image$Plane;")
     close = JavaMethod("()V")
+    getFence = JavaMethod("()Landroid/hardware/SyncFence;")
+    setCropRect = JavaMethod("(Landroid/graphics/Rect;)V")
+    getCropRect = JavaMethod("()Landroid/graphics/Rect;")
+    setDataSpace = JavaMethod("(I)V")
+    getPlanes = JavaMethod("()[Landroid/media/Image$Plane;")
+    setFence = JavaMethod("(Landroid/hardware/SyncFence;)V")
+    setTimestamp = JavaMethod("(J)V")
+    getHeight = JavaMethod("()I")
+    getWidth = JavaMethod("()I")
+    getHardwareBuffer = JavaMethod("()Landroid/hardware/HardwareBuffer;")
+    getTimestamp = JavaMethod("()J")
+    getDataSpace = JavaMethod("()I")
+    getFormat = JavaMethod("()I")
 
     class Plane(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/Image/Plane"
-        getRowStride = JavaMethod("()I")
-        getPixelStride = JavaMethod("()I")
+        __javaclass__ = "android/media/Image$Plane"
         getBuffer = JavaMethod("()Ljava/nio/ByteBuffer;")
+        getPixelStride = JavaMethod("()I")
+        getRowStride = JavaMethod("()I")

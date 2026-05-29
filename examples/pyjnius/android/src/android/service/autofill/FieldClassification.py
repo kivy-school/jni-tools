@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["FieldClassification"]
 
@@ -8,7 +8,7 @@ class FieldClassification(JavaClass, metaclass=MetaJavaClass):
     toString = JavaMethod("()Ljava/lang/String;")
 
     class Match(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/service/autofill/FieldClassification/Match"
+        __javaclass__ = "android/service/autofill/FieldClassification$Match"
         getCategoryId = JavaMethod("()Ljava/lang/String;")
-        getScore = JavaMethod("()F")
         toString = JavaMethod("()Ljava/lang/String;")
+        getScore = JavaMethod("()F")

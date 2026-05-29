@@ -1,27 +1,14 @@
 from typing import Any, ClassVar, overload
 from android.content.Context import Context
-from android.graphics.Canvas import Canvas
 from android.graphics.drawable.Drawable import Drawable
 from android.os.Parcelable import Parcelable
 from android.util.AttributeSet import AttributeSet
+from android.util.Property import Property
 from android.view.View import View
 from android.view.accessibility.AccessibilityNodeInfo import AccessibilityNodeInfo
+from android.widget.Adapter import Adapter
 from android.widget.ExpandableListAdapter import ExpandableListAdapter
 from android.widget.ListAdapter import ListAdapter
-
-# Forward declarations for Java types we do not wrap.
-# Bound as empty classes so annotations resolve in the IDE.
-class OnItemClickListener:
-    """Forward declaration for ``android.widget.AdapterView.OnItemClickListener``.
-
-    This Java type is referenced by the wrapper but is not itself
-    wrapped by pyjnius-wrap. At runtime pyjnius will hand you a
-    live ``autoclass('android.widget.AdapterView.OnItemClickListener')`` proxy; this empty class exists
-    purely so static type checkers and IDEs can resolve the name.
-
-    See: https://developer.android.com/reference/android/widget/AdapterView/OnItemClickListener
-    """
-    ...
 
 class ExpandableListView:
     CHILD_INDICATOR_INHERIT: ClassVar[int]
@@ -29,76 +16,257 @@ class ExpandableListView:
     PACKED_POSITION_TYPE_GROUP: ClassVar[int]
     PACKED_POSITION_TYPE_NULL: ClassVar[int]
     PACKED_POSITION_VALUE_NULL: ClassVar[int]
+    CHOICE_MODE_MULTIPLE: ClassVar[int]
+    CHOICE_MODE_MULTIPLE_MODAL: ClassVar[int]
+    CHOICE_MODE_NONE: ClassVar[int]
+    CHOICE_MODE_SINGLE: ClassVar[int]
+    TRANSCRIPT_MODE_ALWAYS_SCROLL: ClassVar[int]
+    TRANSCRIPT_MODE_DISABLED: ClassVar[int]
+    TRANSCRIPT_MODE_NORMAL: ClassVar[int]
+    INVALID_POSITION: ClassVar[int]
+    INVALID_ROW_ID: ClassVar[int]
+    ITEM_VIEW_TYPE_HEADER_OR_FOOTER: ClassVar[int]
+    ITEM_VIEW_TYPE_IGNORE: ClassVar[int]
+    FOCUS_AFTER_DESCENDANTS: ClassVar[int]
+    FOCUS_BEFORE_DESCENDANTS: ClassVar[int]
+    FOCUS_BLOCK_DESCENDANTS: ClassVar[int]
+    LAYOUT_MODE_CLIP_BOUNDS: ClassVar[int]
+    LAYOUT_MODE_OPTICAL_BOUNDS: ClassVar[int]
+    PERSISTENT_ALL_CACHES: ClassVar[int]
+    PERSISTENT_ANIMATION_CACHE: ClassVar[int]
+    PERSISTENT_NO_CACHE: ClassVar[int]
+    PERSISTENT_SCROLLING_CACHE: ClassVar[int]
+    ACCESSIBILITY_DATA_SENSITIVE_AUTO: ClassVar[int]
+    ACCESSIBILITY_DATA_SENSITIVE_NO: ClassVar[int]
+    ACCESSIBILITY_DATA_SENSITIVE_YES: ClassVar[int]
+    ACCESSIBILITY_LIVE_REGION_ASSERTIVE: ClassVar[int]
+    ACCESSIBILITY_LIVE_REGION_NONE: ClassVar[int]
+    ACCESSIBILITY_LIVE_REGION_POLITE: ClassVar[int]
+    ALPHA: ClassVar[Property]
+    AUTOFILL_FLAG_INCLUDE_NOT_IMPORTANT_VIEWS: ClassVar[int]
+    AUTOFILL_HINT_CREDIT_CARD_EXPIRATION_DATE: ClassVar[str]
+    AUTOFILL_HINT_CREDIT_CARD_EXPIRATION_DAY: ClassVar[str]
+    AUTOFILL_HINT_CREDIT_CARD_EXPIRATION_MONTH: ClassVar[str]
+    AUTOFILL_HINT_CREDIT_CARD_EXPIRATION_YEAR: ClassVar[str]
+    AUTOFILL_HINT_CREDIT_CARD_NUMBER: ClassVar[str]
+    AUTOFILL_HINT_CREDIT_CARD_SECURITY_CODE: ClassVar[str]
+    AUTOFILL_HINT_EMAIL_ADDRESS: ClassVar[str]
+    AUTOFILL_HINT_NAME: ClassVar[str]
+    AUTOFILL_HINT_PASSWORD: ClassVar[str]
+    AUTOFILL_HINT_PHONE: ClassVar[str]
+    AUTOFILL_HINT_POSTAL_ADDRESS: ClassVar[str]
+    AUTOFILL_HINT_POSTAL_CODE: ClassVar[str]
+    AUTOFILL_HINT_USERNAME: ClassVar[str]
+    AUTOFILL_TYPE_DATE: ClassVar[int]
+    AUTOFILL_TYPE_LIST: ClassVar[int]
+    AUTOFILL_TYPE_NONE: ClassVar[int]
+    AUTOFILL_TYPE_TEXT: ClassVar[int]
+    AUTOFILL_TYPE_TOGGLE: ClassVar[int]
+    CONTENT_SENSITIVITY_AUTO: ClassVar[int]
+    CONTENT_SENSITIVITY_NOT_SENSITIVE: ClassVar[int]
+    CONTENT_SENSITIVITY_SENSITIVE: ClassVar[int]
+    DRAG_FLAG_ACCESSIBILITY_ACTION: ClassVar[int]
+    DRAG_FLAG_GLOBAL: ClassVar[int]
+    DRAG_FLAG_GLOBAL_PERSISTABLE_URI_PERMISSION: ClassVar[int]
+    DRAG_FLAG_GLOBAL_PREFIX_URI_PERMISSION: ClassVar[int]
+    DRAG_FLAG_GLOBAL_SAME_APPLICATION: ClassVar[int]
+    DRAG_FLAG_GLOBAL_URI_READ: ClassVar[int]
+    DRAG_FLAG_GLOBAL_URI_WRITE: ClassVar[int]
+    DRAG_FLAG_HIDE_CALLING_TASK_ON_DRAG_START: ClassVar[int]
+    DRAG_FLAG_OPAQUE: ClassVar[int]
+    DRAG_FLAG_START_INTENT_SENDER_ON_UNHANDLED_DRAG: ClassVar[int]
+    DRAWING_CACHE_QUALITY_AUTO: ClassVar[int]
+    DRAWING_CACHE_QUALITY_HIGH: ClassVar[int]
+    DRAWING_CACHE_QUALITY_LOW: ClassVar[int]
+    FIND_VIEWS_WITH_CONTENT_DESCRIPTION: ClassVar[int]
+    FIND_VIEWS_WITH_TEXT: ClassVar[int]
+    FOCUSABLE: ClassVar[int]
+    FOCUSABLES_ALL: ClassVar[int]
+    FOCUSABLES_TOUCH_MODE: ClassVar[int]
+    FOCUSABLE_AUTO: ClassVar[int]
+    FOCUS_BACKWARD: ClassVar[int]
+    FOCUS_DOWN: ClassVar[int]
+    FOCUS_FORWARD: ClassVar[int]
+    FOCUS_LEFT: ClassVar[int]
+    FOCUS_RIGHT: ClassVar[int]
+    FOCUS_UP: ClassVar[int]
+    GONE: ClassVar[int]
+    HAPTIC_FEEDBACK_ENABLED: ClassVar[int]
+    IMPORTANT_FOR_ACCESSIBILITY_AUTO: ClassVar[int]
+    IMPORTANT_FOR_ACCESSIBILITY_NO: ClassVar[int]
+    IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS: ClassVar[int]
+    IMPORTANT_FOR_ACCESSIBILITY_YES: ClassVar[int]
+    IMPORTANT_FOR_AUTOFILL_AUTO: ClassVar[int]
+    IMPORTANT_FOR_AUTOFILL_NO: ClassVar[int]
+    IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS: ClassVar[int]
+    IMPORTANT_FOR_AUTOFILL_YES: ClassVar[int]
+    IMPORTANT_FOR_AUTOFILL_YES_EXCLUDE_DESCENDANTS: ClassVar[int]
+    IMPORTANT_FOR_CONTENT_CAPTURE_AUTO: ClassVar[int]
+    IMPORTANT_FOR_CONTENT_CAPTURE_NO: ClassVar[int]
+    IMPORTANT_FOR_CONTENT_CAPTURE_NO_EXCLUDE_DESCENDANTS: ClassVar[int]
+    IMPORTANT_FOR_CONTENT_CAPTURE_YES: ClassVar[int]
+    IMPORTANT_FOR_CONTENT_CAPTURE_YES_EXCLUDE_DESCENDANTS: ClassVar[int]
+    INVISIBLE: ClassVar[int]
+    KEEP_SCREEN_ON: ClassVar[int]
+    LAYER_TYPE_HARDWARE: ClassVar[int]
+    LAYER_TYPE_NONE: ClassVar[int]
+    LAYER_TYPE_SOFTWARE: ClassVar[int]
+    LAYOUT_DIRECTION_INHERIT: ClassVar[int]
+    LAYOUT_DIRECTION_LOCALE: ClassVar[int]
+    LAYOUT_DIRECTION_LTR: ClassVar[int]
+    LAYOUT_DIRECTION_RTL: ClassVar[int]
+    MEASURED_HEIGHT_STATE_SHIFT: ClassVar[int]
+    MEASURED_SIZE_MASK: ClassVar[int]
+    MEASURED_STATE_MASK: ClassVar[int]
+    MEASURED_STATE_TOO_SMALL: ClassVar[int]
+    NOT_FOCUSABLE: ClassVar[int]
+    NO_ID: ClassVar[int]
+    OVER_SCROLL_ALWAYS: ClassVar[int]
+    OVER_SCROLL_IF_CONTENT_SCROLLS: ClassVar[int]
+    OVER_SCROLL_NEVER: ClassVar[int]
+    REQUESTED_FRAME_RATE_CATEGORY_DEFAULT: ClassVar[float]
+    REQUESTED_FRAME_RATE_CATEGORY_HIGH: ClassVar[float]
+    REQUESTED_FRAME_RATE_CATEGORY_LOW: ClassVar[float]
+    REQUESTED_FRAME_RATE_CATEGORY_NORMAL: ClassVar[float]
+    REQUESTED_FRAME_RATE_CATEGORY_NO_PREFERENCE: ClassVar[float]
+    ROTATION: ClassVar[Property]
+    ROTATION_X: ClassVar[Property]
+    ROTATION_Y: ClassVar[Property]
+    SCALE_X: ClassVar[Property]
+    SCALE_Y: ClassVar[Property]
+    SCREEN_STATE_OFF: ClassVar[int]
+    SCREEN_STATE_ON: ClassVar[int]
+    SCROLLBARS_INSIDE_INSET: ClassVar[int]
+    SCROLLBARS_INSIDE_OVERLAY: ClassVar[int]
+    SCROLLBARS_OUTSIDE_INSET: ClassVar[int]
+    SCROLLBARS_OUTSIDE_OVERLAY: ClassVar[int]
+    SCROLLBAR_POSITION_DEFAULT: ClassVar[int]
+    SCROLLBAR_POSITION_LEFT: ClassVar[int]
+    SCROLLBAR_POSITION_RIGHT: ClassVar[int]
+    SCROLL_AXIS_HORIZONTAL: ClassVar[int]
+    SCROLL_AXIS_NONE: ClassVar[int]
+    SCROLL_AXIS_VERTICAL: ClassVar[int]
+    SCROLL_CAPTURE_HINT_AUTO: ClassVar[int]
+    SCROLL_CAPTURE_HINT_EXCLUDE: ClassVar[int]
+    SCROLL_CAPTURE_HINT_EXCLUDE_DESCENDANTS: ClassVar[int]
+    SCROLL_CAPTURE_HINT_INCLUDE: ClassVar[int]
+    SCROLL_INDICATOR_BOTTOM: ClassVar[int]
+    SCROLL_INDICATOR_END: ClassVar[int]
+    SCROLL_INDICATOR_LEFT: ClassVar[int]
+    SCROLL_INDICATOR_RIGHT: ClassVar[int]
+    SCROLL_INDICATOR_START: ClassVar[int]
+    SCROLL_INDICATOR_TOP: ClassVar[int]
+    SOUND_EFFECTS_ENABLED: ClassVar[int]
+    STATUS_BAR_HIDDEN: ClassVar[int]
+    STATUS_BAR_VISIBLE: ClassVar[int]
+    SYSTEM_UI_FLAG_FULLSCREEN: ClassVar[int]
+    SYSTEM_UI_FLAG_HIDE_NAVIGATION: ClassVar[int]
+    SYSTEM_UI_FLAG_IMMERSIVE: ClassVar[int]
+    SYSTEM_UI_FLAG_IMMERSIVE_STICKY: ClassVar[int]
+    SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN: ClassVar[int]
+    SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION: ClassVar[int]
+    SYSTEM_UI_FLAG_LAYOUT_STABLE: ClassVar[int]
+    SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR: ClassVar[int]
+    SYSTEM_UI_FLAG_LIGHT_STATUS_BAR: ClassVar[int]
+    SYSTEM_UI_FLAG_LOW_PROFILE: ClassVar[int]
+    SYSTEM_UI_FLAG_VISIBLE: ClassVar[int]
+    SYSTEM_UI_LAYOUT_FLAGS: ClassVar[int]
+    TEXT_ALIGNMENT_CENTER: ClassVar[int]
+    TEXT_ALIGNMENT_GRAVITY: ClassVar[int]
+    TEXT_ALIGNMENT_INHERIT: ClassVar[int]
+    TEXT_ALIGNMENT_TEXT_END: ClassVar[int]
+    TEXT_ALIGNMENT_TEXT_START: ClassVar[int]
+    TEXT_ALIGNMENT_VIEW_END: ClassVar[int]
+    TEXT_ALIGNMENT_VIEW_START: ClassVar[int]
+    TEXT_DIRECTION_ANY_RTL: ClassVar[int]
+    TEXT_DIRECTION_FIRST_STRONG: ClassVar[int]
+    TEXT_DIRECTION_FIRST_STRONG_LTR: ClassVar[int]
+    TEXT_DIRECTION_FIRST_STRONG_RTL: ClassVar[int]
+    TEXT_DIRECTION_INHERIT: ClassVar[int]
+    TEXT_DIRECTION_LOCALE: ClassVar[int]
+    TEXT_DIRECTION_LTR: ClassVar[int]
+    TEXT_DIRECTION_RTL: ClassVar[int]
+    TRANSLATION_X: ClassVar[Property]
+    TRANSLATION_Y: ClassVar[Property]
+    TRANSLATION_Z: ClassVar[Property]
+    VISIBLE: ClassVar[int]
+    X: ClassVar[Property]
+    Y: ClassVar[Property]
+    Z: ClassVar[Property]
     @overload
-    def __init__(self, arg0: Context) -> None: ...
+    def __init__(self, p0: Context, p1: AttributeSet, p2: int, p3: int) -> None: ...
     @overload
-    def __init__(self, arg0: Context, arg1: AttributeSet) -> None: ...
+    def __init__(self, p0: Context, p1: AttributeSet, p2: int) -> None: ...
     @overload
-    def __init__(self, arg0: Context, arg1: AttributeSet, arg2: int) -> None: ...
+    def __init__(self, p0: Context, p1: AttributeSet) -> None: ...
     @overload
-    def __init__(self, arg0: Context, arg1: AttributeSet, arg2: int, arg3: int) -> None: ...
-    def onRtlPropertiesChanged(self, arg0: int) -> None: ...
-    def dispatchDraw(self, arg0: Canvas) -> None: ...
-    def setChildDivider(self, arg0: Drawable) -> None: ...
+    def __init__(self, p0: Context) -> None: ...
+    def performItemClick(self, p0: View, p1: int, p2: int) -> bool: ...
     @overload
-    def setAdapter(self, arg0: ListAdapter) -> None: ...
+    def setAdapter(self, p0: ExpandableListAdapter) -> None: ...
     @overload
-    def setAdapter(self, arg0: ExpandableListAdapter) -> None: ...
-    def getAdapter(self) -> ListAdapter: ...
-    def setOnItemClickListener(self, arg0: OnItemClickListener) -> None: ...
-    def getExpandableListAdapter(self) -> ExpandableListAdapter: ...
-    def performItemClick(self, arg0: View, arg1: int, arg2: int) -> bool: ...
+    def setAdapter(self, p0: ListAdapter) -> None: ...
     @overload
-    def expandGroup(self, arg0: int) -> bool: ...
-    @overload
-    def expandGroup(self, arg0: int, arg1: bool) -> bool: ...
-    def collapseGroup(self, arg0: int) -> bool: ...
-    def setOnGroupCollapseListener(self, arg0: "OnGroupCollapseListener") -> None: ...
-    def setOnGroupExpandListener(self, arg0: "OnGroupExpandListener") -> None: ...
-    def setOnGroupClickListener(self, arg0: "OnGroupClickListener") -> None: ...
-    def setOnChildClickListener(self, arg0: "OnChildClickListener") -> None: ...
-    def getExpandableListPosition(self, arg0: int) -> int: ...
-    def getFlatListPosition(self, arg0: int) -> int: ...
-    def getSelectedPosition(self) -> int: ...
-    def getSelectedId(self) -> int: ...
-    def setSelectedGroup(self, arg0: int) -> None: ...
-    def setSelectedChild(self, arg0: int, arg1: int, arg2: bool) -> bool: ...
-    def isGroupExpanded(self, arg0: int) -> bool: ...
-    @staticmethod
-    def getPackedPositionType(arg0: int) -> int: ...
-    @staticmethod
-    def getPackedPositionGroup(arg0: int) -> int: ...
-    @staticmethod
-    def getPackedPositionChild(arg0: int) -> int: ...
-    @staticmethod
-    def getPackedPositionForChild(arg0: int, arg1: int) -> int: ...
-    @staticmethod
-    def getPackedPositionForGroup(arg0: int) -> int: ...
-    def onInitializeAccessibilityNodeInfoForItem(self, arg0: View, arg1: int, arg2: AccessibilityNodeInfo) -> None: ...
-    def setChildIndicator(self, arg0: Drawable) -> None: ...
-    def setChildIndicatorBounds(self, arg0: int, arg1: int) -> None: ...
-    def setChildIndicatorBoundsRelative(self, arg0: int, arg1: int) -> None: ...
-    def setGroupIndicator(self, arg0: Drawable) -> None: ...
-    def setIndicatorBounds(self, arg0: int, arg1: int) -> None: ...
-    def setIndicatorBoundsRelative(self, arg0: int, arg1: int) -> None: ...
+    def setAdapter(self, p0: Adapter) -> None: ...
+    def setOnItemClickListener(self, p0: Any) -> None: ...
+    def onRtlPropertiesChanged(self, p0: int) -> None: ...
+    def onRestoreInstanceState(self, p0: Parcelable) -> None: ...
     def onSaveInstanceState(self) -> Parcelable: ...
-    def onRestoreInstanceState(self, arg0: Parcelable) -> None: ...
+    @overload
+    def expandGroup(self, p0: int, p1: bool) -> bool: ...
+    @overload
+    def expandGroup(self, p0: int) -> bool: ...
+    def collapseGroup(self, p0: int) -> bool: ...
+    def getExpandableListAdapter(self) -> ExpandableListAdapter: ...
+    def getExpandableListPosition(self, p0: int) -> int: ...
+    def getFlatListPosition(self, p0: int) -> int: ...
+    @staticmethod
+    def getPackedPositionChild(p0: int) -> int: ...
+    @staticmethod
+    def getPackedPositionForChild(p0: int, p1: int) -> int: ...
+    @staticmethod
+    def getPackedPositionForGroup(p0: int) -> int: ...
+    @staticmethod
+    def getPackedPositionGroup(p0: int) -> int: ...
+    @staticmethod
+    def getPackedPositionType(p0: int) -> int: ...
+    def getSelectedId(self) -> int: ...
+    def getSelectedPosition(self) -> int: ...
+    def isGroupExpanded(self, p0: int) -> bool: ...
+    def setChildDivider(self, p0: Drawable) -> None: ...
+    def setChildIndicator(self, p0: Drawable) -> None: ...
+    def setChildIndicatorBounds(self, p0: int, p1: int) -> None: ...
+    def setChildIndicatorBoundsRelative(self, p0: int, p1: int) -> None: ...
+    def setGroupIndicator(self, p0: Drawable) -> None: ...
+    def setIndicatorBounds(self, p0: int, p1: int) -> None: ...
+    def setIndicatorBoundsRelative(self, p0: int, p1: int) -> None: ...
+    def setOnChildClickListener(self, p0: Any) -> None: ...
+    def setOnGroupClickListener(self, p0: Any) -> None: ...
+    def setOnGroupCollapseListener(self, p0: Any) -> None: ...
+    def setOnGroupExpandListener(self, p0: Any) -> None: ...
+    def setSelectedChild(self, p0: int, p1: int, p2: bool) -> bool: ...
+    def setSelectedGroup(self, p0: int) -> None: ...
     def getAccessibilityClassName(self) -> str: ...
+    @overload
+    def getAdapter(self) -> Adapter: ...
+    @overload
+    def getAdapter(self) -> ListAdapter: ...
+    def onInitializeAccessibilityNodeInfoForItem(self, p0: View, p1: int, p2: AccessibilityNodeInfo) -> None: ...
+
+    class OnGroupExpandListener:
+        def onGroupExpand(self, p0: int) -> None: ...
+
+    class OnGroupCollapseListener:
+        def onGroupCollapse(self, p0: int) -> None: ...
+
+    class OnGroupClickListener:
+        def onGroupClick(self, p0: "ExpandableListView", p1: View, p2: int, p3: int) -> bool: ...
+
+    class OnChildClickListener:
+        def onChildClick(self, p0: "ExpandableListView", p1: View, p2: int, p3: int, p4: int) -> bool: ...
 
     class ExpandableListContextMenuInfo:
         id: int
         packedPosition: int
         targetView: View
-        def __init__(self, arg0: View, arg1: int, arg2: int) -> None: ...
-
-    class OnChildClickListener:
-        def onChildClick(self, arg0: "ExpandableListView", arg1: View, arg2: int, arg3: int, arg4: int) -> bool: ...
-
-    class OnGroupClickListener:
-        def onGroupClick(self, arg0: "ExpandableListView", arg1: View, arg2: int, arg3: int) -> bool: ...
-
-    class OnGroupCollapseListener:
-        def onGroupCollapse(self, arg0: int) -> None: ...
-
-    class OnGroupExpandListener:
-        def onGroupExpand(self, arg0: int) -> None: ...
+        def __init__(self, p0: View, p1: int, p2: int) -> None: ...

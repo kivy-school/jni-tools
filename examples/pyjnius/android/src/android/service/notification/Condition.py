@@ -1,10 +1,10 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Condition"]
 
 class Condition(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/service/notification/Condition"
-    __javaconstructor__ = [("(Landroid/net/Uri;Ljava/lang/String;I)V", False), ("(Landroid/net/Uri;Ljava/lang/String;II)V", False), ("(Landroid/net/Uri;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;III)V", False), ("(Landroid/net/Uri;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IIII)V", False), ("(Landroid/os/Parcel;)V", False)]
+    __javaconstructor__ = [("(Landroid/os/Parcel;)V", False), ("(Landroid/net/Uri;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IIII)V", False), ("(Landroid/net/Uri;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;III)V", False), ("(Landroid/net/Uri;Ljava/lang/String;II)V", False), ("(Landroid/net/Uri;Ljava/lang/String;I)V", False)]
     CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
     FLAG_RELEVANT_ALWAYS = JavaStaticField("I")
     FLAG_RELEVANT_NOW = JavaStaticField("I")
@@ -25,13 +25,15 @@ class Condition(JavaClass, metaclass=MetaJavaClass):
     source = JavaField("I")
     state = JavaField("I")
     summary = JavaField("Ljava/lang/String;")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
-    toString = JavaMethod("()Ljava/lang/String;")
-    stateToString = JavaStaticMethod("(I)Ljava/lang/String;")
-    relevanceToString = JavaStaticMethod("(I)Ljava/lang/String;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
     hashCode = JavaMethod("()I")
-    describeContents = JavaMethod("()I")
     copy = JavaMethod("()Landroid/service/notification/Condition;")
+    relevanceToString = JavaStaticMethod("(I)Ljava/lang/String;")
     newId = JavaStaticMethod("(Landroid/content/Context;)Landroid/net/Uri$Builder;")
     isValidId = JavaStaticMethod("(Landroid/net/Uri;Ljava/lang/String;)Z")
+    stateToString = JavaStaticMethod("(I)Ljava/lang/String;")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

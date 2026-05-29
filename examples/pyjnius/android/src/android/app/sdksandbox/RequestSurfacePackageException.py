@@ -1,9 +1,9 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["RequestSurfacePackageException"]
 
 class RequestSurfacePackageException(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/app/sdksandbox/RequestSurfacePackageException"
-    __javaconstructor__ = [("(ILjava/lang/String;)V", False), ("(ILjava/lang/String;Ljava/lang/Throwable;)V", False), ("(ILjava/lang/String;Ljava/lang/Throwable;Landroid/os/Bundle;)V", False)]
-    getRequestSurfacePackageErrorCode = JavaMethod("()I")
+    __javaconstructor__ = [("(ILjava/lang/String;)V", False), ("(ILjava/lang/String;Ljava/lang/Throwable;Landroid/os/Bundle;)V", False), ("(ILjava/lang/String;Ljava/lang/Throwable;)V", False)]
     getExtraErrorInformation = JavaMethod("()Landroid/os/Bundle;")
+    getRequestSurfacePackageErrorCode = JavaMethod("()I")

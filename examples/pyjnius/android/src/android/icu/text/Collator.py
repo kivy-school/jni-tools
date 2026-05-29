@@ -1,10 +1,9 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Collator"]
 
 class Collator(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/icu/text/Collator"
-    __javaconstructor__ = [("()V", False)]
     CANONICAL_DECOMPOSITION = JavaStaticField("I")
     FULL_DECOMPOSITION = JavaStaticField("I")
     IDENTICAL = JavaStaticField("I")
@@ -13,38 +12,38 @@ class Collator(JavaClass, metaclass=MetaJavaClass):
     QUATERNARY = JavaStaticField("I")
     SECONDARY = JavaStaticField("I")
     TERTIARY = JavaStaticField("I")
+    cloneAsThawed = JavaMultipleMethod([("()Ljava/lang/Object;", False, False), ("()Landroid/icu/text/Collator;", False, False)])
+    getAvailableULocales = JavaStaticMethod("()[Landroid/icu/util/ULocale;")
+    getEquivalentReorderCodes = JavaStaticMethod("(I)[I")
+    getFunctionalEquivalent = JavaMultipleMethod([("(Ljava/lang/String;Landroid/icu/util/ULocale;[Z)Landroid/icu/util/ULocale;", True, False), ("(Ljava/lang/String;Landroid/icu/util/ULocale;)Landroid/icu/util/ULocale;", True, False)])
+    getKeywordValues = JavaStaticMethod("(Ljava/lang/String;)[Ljava/lang/String;")
+    getMaxVariable = JavaMethod("()I")
+    getReorderCodes = JavaMethod("()[I")
+    getStrength = JavaMethod("()I")
+    getTailoredSet = JavaMethod("()Landroid/icu/text/UnicodeSet;")
+    getUCAVersion = JavaMethod("()Landroid/icu/util/VersionInfo;")
+    getVariableTop = JavaMethod("()I")
+    setDecomposition = JavaMethod("(I)V")
+    setMaxVariable = JavaMethod("(I)Landroid/icu/text/Collator;")
+    setReorderCodes = JavaMethod("([I)V", varargs=True)
+    setStrength = JavaMethod("(I)V")
+    getKeywordValuesForLocale = JavaStaticMethod("(Ljava/lang/String;Landroid/icu/util/ULocale;Z)[Ljava/lang/String;")
     equals = JavaMultipleMethod([("(Ljava/lang/Object;)Z", False, False), ("(Ljava/lang/String;Ljava/lang/String;)Z", False, False)])
     hashCode = JavaMethod("()I")
-    setStrength = JavaMethod("(I)V")
-    setDecomposition = JavaMethod("(I)V")
-    setReorderCodes = JavaMethod("([I)V", varargs=True)
-    getInstance = JavaMultipleMethod([("()Landroid/icu/text/Collator;", True, False), ("(Landroid/icu/util/ULocale;)Landroid/icu/text/Collator;", True, False), ("(Ljava/util/Locale;)Landroid/icu/text/Collator;", True, False)])
     clone = JavaMethod("()Ljava/lang/Object;")
-    getAvailableLocales = JavaStaticMethod("()[Ljava/util/Locale;")
-    getAvailableULocales = JavaStaticMethod("()[Landroid/icu/util/ULocale;")
-    getKeywords = JavaStaticMethod("()[Ljava/lang/String;")
-    getKeywordValues = JavaStaticMethod("(Ljava/lang/String;)[Ljava/lang/String;")
-    getKeywordValuesForLocale = JavaStaticMethod("(Ljava/lang/String;Landroid/icu/util/ULocale;Z)[Ljava/lang/String;")
-    getFunctionalEquivalent = JavaMultipleMethod([("(Ljava/lang/String;Landroid/icu/util/ULocale;[Z)Landroid/icu/util/ULocale;", True, False), ("(Ljava/lang/String;Landroid/icu/util/ULocale;)Landroid/icu/util/ULocale;", True, False)])
-    getDisplayName = JavaMultipleMethod([("(Ljava/util/Locale;Ljava/util/Locale;)Ljava/lang/String;", True, False), ("(Landroid/icu/util/ULocale;Landroid/icu/util/ULocale;)Ljava/lang/String;", True, False), ("(Ljava/util/Locale;)Ljava/lang/String;", True, False), ("(Landroid/icu/util/ULocale;)Ljava/lang/String;", True, False)])
-    getStrength = JavaMethod("()I")
-    getDecomposition = JavaMethod("()I")
-    getTailoredSet = JavaMethod("()Landroid/icu/text/UnicodeSet;")
     compare = JavaMultipleMethod([("(Ljava/lang/String;Ljava/lang/String;)I", False, False), ("(Ljava/lang/Object;Ljava/lang/Object;)I", False, False)])
-    getCollationKey = JavaMethod("(Ljava/lang/String;)Landroid/icu/text/CollationKey;")
-    setMaxVariable = JavaMethod("(I)Landroid/icu/text/Collator;")
-    getMaxVariable = JavaMethod("()I")
-    getVariableTop = JavaMethod("()I")
-    getVersion = JavaMethod("()Landroid/icu/util/VersionInfo;")
-    getUCAVersion = JavaMethod("()Landroid/icu/util/VersionInfo;")
-    getReorderCodes = JavaMethod("()[I")
-    getEquivalentReorderCodes = JavaStaticMethod("(I)[I")
+    getInstance = JavaMultipleMethod([("(Landroid/icu/util/ULocale;)Landroid/icu/text/Collator;", True, False), ("(Ljava/util/Locale;)Landroid/icu/text/Collator;", True, False), ("()Landroid/icu/text/Collator;", True, False)])
     isFrozen = JavaMethod("()Z")
-    freeze = JavaMethod("()Landroid/icu/text/Collator;")
-    cloneAsThawed = JavaMethod("()Landroid/icu/text/Collator;")
+    getKeywords = JavaStaticMethod("()[Ljava/lang/String;")
+    getDisplayName = JavaMultipleMethod([("(Ljava/util/Locale;)Ljava/lang/String;", True, False), ("(Landroid/icu/util/ULocale;Landroid/icu/util/ULocale;)Ljava/lang/String;", True, False), ("(Ljava/util/Locale;Ljava/util/Locale;)Ljava/lang/String;", True, False), ("(Landroid/icu/util/ULocale;)Ljava/lang/String;", True, False)])
+    getAvailableLocales = JavaStaticMethod("()[Ljava/util/Locale;")
+    getDecomposition = JavaMethod("()I")
+    getCollationKey = JavaMethod("(Ljava/lang/String;)Landroid/icu/text/CollationKey;")
+    getVersion = JavaMethod("()Landroid/icu/util/VersionInfo;")
+    freeze = JavaMultipleMethod([("()Ljava/lang/Object;", False, False), ("()Landroid/icu/text/Collator;", False, False)])
 
-    class ReorderCodes(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/icu/text/Collator/ReorderCodes"
+    class ReorderCodes(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/icu/text/Collator$ReorderCodes"
         CURRENCY = JavaStaticField("I")
         DEFAULT = JavaStaticField("I")
         DIGIT = JavaStaticField("I")

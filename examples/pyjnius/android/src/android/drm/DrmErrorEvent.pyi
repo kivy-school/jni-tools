@@ -9,7 +9,11 @@ class DrmErrorEvent:
     TYPE_REMOVE_ALL_RIGHTS_FAILED: ClassVar[int]
     TYPE_RIGHTS_NOT_INSTALLED: ClassVar[int]
     TYPE_RIGHTS_RENEWAL_NOT_ALLOWED: ClassVar[int]
+    DRM_INFO_OBJECT: ClassVar[str]
+    DRM_INFO_STATUS_OBJECT: ClassVar[str]
+    TYPE_ALL_RIGHTS_REMOVED: ClassVar[int]
+    TYPE_DRM_INFO_PROCESSED: ClassVar[int]
     @overload
-    def __init__(self, arg0: int, arg1: int, arg2: str) -> None: ...
+    def __init__(self, p0: int, p1: int, p2: str) -> None: ...
     @overload
-    def __init__(self, arg0: int, arg1: int, arg2: str, arg3: dict) -> None: ...
+    def __init__(self, p0: int, p1: int, p2: str, p3: dict) -> None: ...

@@ -1,9 +1,9 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SQLiteTransactionListener"]
 
-class SQLiteTransactionListener(JavaInterface, metaclass=MetaJavaClass):
+class SQLiteTransactionListener(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/database/sqlite/SQLiteTransactionListener"
-    onBegin = JavaMethod("()V")
-    onCommit = JavaMethod("()V")
     onRollback = JavaMethod("()V")
+    onCommit = JavaMethod("()V")
+    onBegin = JavaMethod("()V")

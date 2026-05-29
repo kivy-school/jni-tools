@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["NfcAntennaInfo"]
 
@@ -6,9 +6,11 @@ class NfcAntennaInfo(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/nfc/NfcAntennaInfo"
     __javaconstructor__ = [("(IIZLjava/util/List;)V", False)]
     CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
-    getDeviceWidth = JavaMethod("()I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getDeviceHeight = JavaMethod("()I")
-    isDeviceFoldable = JavaMethod("()Z")
     getAvailableNfcAntennas = JavaMethod("()Ljava/util/List;")
-    describeContents = JavaMethod("()I")
+    getDeviceWidth = JavaMethod("()I")
+    isDeviceFoldable = JavaMethod("()Z")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

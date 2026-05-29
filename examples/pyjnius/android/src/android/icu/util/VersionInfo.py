@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["VersionInfo"]
 
@@ -15,6 +15,7 @@ class VersionInfo(JavaClass, metaclass=MetaJavaClass):
     UNICODE_14_0 = JavaStaticField("Landroid/icu/util/VersionInfo;")
     UNICODE_15_0 = JavaStaticField("Landroid/icu/util/VersionInfo;")
     UNICODE_15_1 = JavaStaticField("Landroid/icu/util/VersionInfo;")
+    UNICODE_16_0 = JavaStaticField("Landroid/icu/util/VersionInfo;")
     UNICODE_1_0 = JavaStaticField("Landroid/icu/util/VersionInfo;")
     UNICODE_1_0_1 = JavaStaticField("Landroid/icu/util/VersionInfo;")
     UNICODE_1_1_0 = JavaStaticField("Landroid/icu/util/VersionInfo;")
@@ -42,12 +43,12 @@ class VersionInfo(JavaClass, metaclass=MetaJavaClass):
     UNICODE_7_0 = JavaStaticField("Landroid/icu/util/VersionInfo;")
     UNICODE_8_0 = JavaStaticField("Landroid/icu/util/VersionInfo;")
     UNICODE_9_0 = JavaStaticField("Landroid/icu/util/VersionInfo;")
-    getInstance = JavaMultipleMethod([("(Ljava/lang/String;)Landroid/icu/util/VersionInfo;", True, False), ("(IIII)Landroid/icu/util/VersionInfo;", True, False), ("(III)Landroid/icu/util/VersionInfo;", True, False), ("(II)Landroid/icu/util/VersionInfo;", True, False), ("(I)Landroid/icu/util/VersionInfo;", True, False)])
+    getMicro = JavaMethod("()I")
+    getMilli = JavaMethod("()I")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
     toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    compareTo = JavaMultipleMethod([("(Ljava/lang/Object;)I", False, False), ("(Landroid/icu/util/VersionInfo;)I", False, False)])
+    getInstance = JavaMultipleMethod([("(II)Landroid/icu/util/VersionInfo;", True, False), ("(III)Landroid/icu/util/VersionInfo;", True, False), ("(IIII)Landroid/icu/util/VersionInfo;", True, False), ("(Ljava/lang/String;)Landroid/icu/util/VersionInfo;", True, False), ("(I)Landroid/icu/util/VersionInfo;", True, False)])
     getMajor = JavaMethod("()I")
     getMinor = JavaMethod("()I")
-    getMilli = JavaMethod("()I")
-    getMicro = JavaMethod("()I")
-    equals = JavaMethod("(Ljava/lang/Object;)Z")
-    hashCode = JavaMethod("()I")
-    compareTo = JavaMethod("(Landroid/icu/util/VersionInfo;)I")

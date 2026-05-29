@@ -1,15 +1,16 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["AudioRouting"]
 
-class AudioRouting(JavaInterface, metaclass=MetaJavaClass):
+class AudioRouting(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/media/AudioRouting"
-    setPreferredDevice = JavaMethod("(Landroid/media/AudioDeviceInfo;)Z")
+    addOnRoutingChangedListener = JavaMethod("(Landroid/media/AudioRouting$OnRoutingChangedListener;Landroid/os/Handler;)V")
     getPreferredDevice = JavaMethod("()Landroid/media/AudioDeviceInfo;")
     getRoutedDevice = JavaMethod("()Landroid/media/AudioDeviceInfo;")
-    addOnRoutingChangedListener = JavaMethod("(Landroid/media/AudioRouting$OnRoutingChangedListener;Landroid/os/Handler;)V")
+    getRoutedDevices = JavaMethod("()Ljava/util/List;")
     removeOnRoutingChangedListener = JavaMethod("(Landroid/media/AudioRouting$OnRoutingChangedListener;)V")
+    setPreferredDevice = JavaMethod("(Landroid/media/AudioDeviceInfo;)Z")
 
-    class OnRoutingChangedListener(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/AudioRouting/OnRoutingChangedListener"
+    class OnRoutingChangedListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/media/AudioRouting$OnRoutingChangedListener"
         onRoutingChanged = JavaMethod("(Landroid/media/AudioRouting;)V")

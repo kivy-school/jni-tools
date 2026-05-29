@@ -1,8 +1,8 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["InputType"]
 
-class InputType(JavaInterface, metaclass=MetaJavaClass):
+class InputType(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/text/InputType"
     TYPE_CLASS_DATETIME = JavaStaticField("I")
     TYPE_CLASS_NUMBER = JavaStaticField("I")

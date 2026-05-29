@@ -1,25 +1,25 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["OverScroller"]
 
 class OverScroller(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/widget/OverScroller"
-    __javaconstructor__ = [("(Landroid/content/Context;)V", False), ("(Landroid/content/Context;Landroid/view/animation/Interpolator;)V", False), ("(Landroid/content/Context;Landroid/view/animation/Interpolator;FF)V", False), ("(Landroid/content/Context;Landroid/view/animation/Interpolator;FFZ)V", False)]
-    setFriction = JavaMethod("(F)V")
-    isFinished = JavaMethod("()Z")
-    forceFinished = JavaMethod("(Z)V")
+    __javaconstructor__ = [("(Landroid/content/Context;Landroid/view/animation/Interpolator;FFZ)V", False), ("(Landroid/content/Context;Landroid/view/animation/Interpolator;FF)V", False), ("(Landroid/content/Context;Landroid/view/animation/Interpolator;)V", False), ("(Landroid/content/Context;)V", False)]
     getCurrX = JavaMethod("()I")
     getCurrY = JavaMethod("()I")
-    getCurrVelocity = JavaMethod("()F")
-    getStartX = JavaMethod("()I")
-    getStartY = JavaMethod("()I")
     getFinalX = JavaMethod("()I")
     getFinalY = JavaMethod("()I")
+    getStartX = JavaMethod("()I")
+    getStartY = JavaMethod("()I")
+    isFinished = JavaMethod("()Z")
     computeScrollOffset = JavaMethod("()Z")
-    startScroll = JavaMultipleMethod([("(IIII)V", False, False), ("(IIIII)V", False, False)])
-    springBack = JavaMethod("(IIIIII)Z")
-    fling = JavaMultipleMethod([("(IIIIIIII)V", False, False), ("(IIIIIIIIII)V", False, False)])
+    fling = JavaMultipleMethod([("(IIIIIIIIII)V", False, False), ("(IIIIIIII)V", False, False)])
+    abortAnimation = JavaMethod("()V")
+    setFriction = JavaMethod("(F)V")
+    startScroll = JavaMultipleMethod([("(IIIII)V", False, False), ("(IIII)V", False, False)])
+    forceFinished = JavaMethod("(Z)V")
+    getCurrVelocity = JavaMethod("()F")
+    isOverScrolled = JavaMethod("()Z")
     notifyHorizontalEdgeReached = JavaMethod("(III)V")
     notifyVerticalEdgeReached = JavaMethod("(III)V")
-    isOverScrolled = JavaMethod("()Z")
-    abortAnimation = JavaMethod("()V")
+    springBack = JavaMethod("(IIIIII)Z")

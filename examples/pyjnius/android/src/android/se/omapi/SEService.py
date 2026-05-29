@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SEService"]
 
@@ -9,11 +9,11 @@ class SEService(JavaClass, metaclass=MetaJavaClass):
     EXTRA_READER_NAME = JavaStaticField("Ljava/lang/String;")
     EXTRA_READER_STATE = JavaStaticField("Ljava/lang/String;")
     isConnected = JavaMethod("()Z")
+    shutdown = JavaMethod("()V")
     getReaders = JavaMethod("()[Landroid/se/omapi/Reader;")
     getUiccReader = JavaMethod("(I)Landroid/se/omapi/Reader;")
-    shutdown = JavaMethod("()V")
     getVersion = JavaMethod("()Ljava/lang/String;")
 
-    class OnConnectedListener(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/se/omapi/SEService/OnConnectedListener"
+    class OnConnectedListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/se/omapi/SEService$OnConnectedListener"
         onConnected = JavaMethod("()V")

@@ -1,16 +1,15 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["NetworkStats"]
 
 class NetworkStats(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/app/usage/NetworkStats"
-    finalize = JavaMethod("()V")
-    getNextBucket = JavaMethod("(Landroid/app/usage/NetworkStats$Bucket;)Z")
     hasNextBucket = JavaMethod("()Z")
+    getNextBucket = JavaMethod("(Landroid/app/usage/NetworkStats$Bucket;)Z")
     close = JavaMethod("()V")
 
     class Bucket(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/app/usage/NetworkStats/Bucket"
+        __javaclass__ = "android/app/usage/NetworkStats$Bucket"
         __javaconstructor__ = [("()V", False)]
         DEFAULT_NETWORK_ALL = JavaStaticField("I")
         DEFAULT_NETWORK_NO = JavaStaticField("I")
@@ -28,15 +27,15 @@ class NetworkStats(JavaClass, metaclass=MetaJavaClass):
         UID_ALL = JavaStaticField("I")
         UID_REMOVED = JavaStaticField("I")
         UID_TETHERING = JavaStaticField("I")
-        getUid = JavaMethod("()I")
-        getTag = JavaMethod("()I")
-        getState = JavaMethod("()I")
+        getDefaultNetworkStatus = JavaMethod("()I")
+        getEndTimeStamp = JavaMethod("()J")
         getMetered = JavaMethod("()I")
         getRoaming = JavaMethod("()I")
-        getDefaultNetworkStatus = JavaMethod("()I")
-        getStartTimeStamp = JavaMethod("()J")
-        getEndTimeStamp = JavaMethod("()J")
         getRxBytes = JavaMethod("()J")
-        getTxBytes = JavaMethod("()J")
         getRxPackets = JavaMethod("()J")
+        getStartTimeStamp = JavaMethod("()J")
+        getTxBytes = JavaMethod("()J")
         getTxPackets = JavaMethod("()J")
+        getState = JavaMethod("()I")
+        getUid = JavaMethod("()I")
+        getTag = JavaMethod("()I")

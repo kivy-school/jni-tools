@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["EmergencyNumber"]
 
@@ -21,18 +21,20 @@ class EmergencyNumber(JavaClass, metaclass=MetaJavaClass):
     EMERGENCY_SERVICE_CATEGORY_MOUNTAIN_RESCUE = JavaStaticField("I")
     EMERGENCY_SERVICE_CATEGORY_POLICE = JavaStaticField("I")
     EMERGENCY_SERVICE_CATEGORY_UNSPECIFIED = JavaStaticField("I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
-    getNumber = JavaMethod("()Ljava/lang/String;")
-    getCountryIso = JavaMethod("()Ljava/lang/String;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getMnc = JavaMethod("()Ljava/lang/String;")
-    getEmergencyServiceCategories = JavaMethod("()Ljava/util/List;")
-    getEmergencyUrns = JavaMethod("()Ljava/util/List;")
-    isInEmergencyServiceCategories = JavaMethod("(I)Z")
-    getEmergencyNumberSources = JavaMethod("()Ljava/util/List;")
     isFromSources = JavaMethod("(I)Z")
+    getEmergencyUrns = JavaMethod("()Ljava/util/List;")
     getEmergencyCallRouting = JavaMethod("()I")
-    describeContents = JavaMethod("()I")
-    toString = JavaMethod("()Ljava/lang/String;")
+    getEmergencyNumberSources = JavaMethod("()Ljava/util/List;")
+    getEmergencyServiceCategories = JavaMethod("()Ljava/util/List;")
+    isInEmergencyServiceCategories = JavaMethod("(I)Z")
+    getCountryIso = JavaMethod("()Ljava/lang/String;")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
     hashCode = JavaMethod("()I")
-    compareTo = JavaMethod("(Landroid/telephony/emergency/EmergencyNumber;)I")
+    compareTo = JavaMultipleMethod([("(Landroid/telephony/emergency/EmergencyNumber;)I", False, False), ("(Ljava/lang/Object;)I", False, False)])
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
+    getNumber = JavaMethod("()Ljava/lang/String;")

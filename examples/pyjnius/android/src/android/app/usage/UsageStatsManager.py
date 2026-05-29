@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["UsageStatsManager"]
 
@@ -16,11 +16,11 @@ class UsageStatsManager(JavaClass, metaclass=MetaJavaClass):
     STANDBY_BUCKET_RARE = JavaStaticField("I")
     STANDBY_BUCKET_RESTRICTED = JavaStaticField("I")
     STANDBY_BUCKET_WORKING_SET = JavaStaticField("I")
-    queryUsageStats = JavaMethod("(IJJ)Ljava/util/List;")
-    queryConfigurations = JavaMethod("(IJJ)Ljava/util/List;")
-    queryEventStats = JavaMethod("(IJJ)Ljava/util/List;")
-    queryEvents = JavaMultipleMethod([("(JJ)Landroid/app/usage/UsageEvents;", False, False), ("(Landroid/app/usage/UsageEventsQuery;)Landroid/app/usage/UsageEvents;", False, False)])
-    queryEventsForSelf = JavaMethod("(JJ)Landroid/app/usage/UsageEvents;")
-    queryAndAggregateUsageStats = JavaMethod("(JJ)Ljava/util/Map;")
     isAppInactive = JavaMethod("(Ljava/lang/String;)Z")
+    queryEventsForSelf = JavaMethod("(JJ)Landroid/app/usage/UsageEvents;")
+    queryEvents = JavaMultipleMethod([("(Landroid/app/usage/UsageEventsQuery;)Landroid/app/usage/UsageEvents;", False, False), ("(JJ)Landroid/app/usage/UsageEvents;", False, False)])
+    queryEventStats = JavaMethod("(IJJ)Ljava/util/List;")
+    queryUsageStats = JavaMethod("(IJJ)Ljava/util/List;")
+    queryAndAggregateUsageStats = JavaMethod("(JJ)Ljava/util/Map;")
+    queryConfigurations = JavaMethod("(IJJ)Ljava/util/List;")
     getAppStandbyBucket = JavaMethod("()I")

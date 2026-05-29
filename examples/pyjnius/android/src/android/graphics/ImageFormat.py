@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ImageFormat"]
 
@@ -11,6 +11,7 @@ class ImageFormat(JavaClass, metaclass=MetaJavaClass):
     FLEX_RGBA_8888 = JavaStaticField("I")
     FLEX_RGB_888 = JavaStaticField("I")
     HEIC = JavaStaticField("I")
+    HEIC_ULTRAHDR = JavaStaticField("I")
     JPEG = JavaStaticField("I")
     JPEG_R = JavaStaticField("I")
     NV16 = JavaStaticField("I")
@@ -24,6 +25,7 @@ class ImageFormat(JavaClass, metaclass=MetaJavaClass):
     UNKNOWN = JavaStaticField("I")
     Y8 = JavaStaticField("I")
     YCBCR_P010 = JavaStaticField("I")
+    YCBCR_P210 = JavaStaticField("I")
     YUV_420_888 = JavaStaticField("I")
     YUV_422_888 = JavaStaticField("I")
     YUV_444_888 = JavaStaticField("I")

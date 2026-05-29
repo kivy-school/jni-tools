@@ -1,13 +1,15 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["OverlayManagerTransaction"]
 
 class OverlayManagerTransaction(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/content/om/OverlayManagerTransaction"
     CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
-    newInstance = JavaStaticMethod("()Landroid/content/om/OverlayManagerTransaction;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     toString = JavaMethod("()Ljava/lang/String;")
-    describeContents = JavaMethod("()I")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    newInstance = JavaStaticMethod("()Landroid/content/om/OverlayManagerTransaction;")
     registerFabricatedOverlay = JavaMethod("(Landroid/content/om/FabricatedOverlay;)V")
     unregisterFabricatedOverlay = JavaMethod("(Landroid/content/om/OverlayIdentifier;)V")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

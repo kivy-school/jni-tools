@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["HardwareBuffer"]
 
@@ -38,16 +38,18 @@ class HardwareBuffer(JavaClass, metaclass=MetaJavaClass):
     USAGE_VIDEO_ENCODE = JavaStaticField("J")
     YCBCR_420_888 = JavaStaticField("I")
     YCBCR_P010 = JavaStaticField("I")
-    create = JavaStaticMethod("(IIIIJ)Landroid/hardware/HardwareBuffer;")
+    YCBCR_P210 = JavaStaticField("I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    close = JavaMethod("()V")
     isSupported = JavaStaticMethod("(IIIIJ)Z")
-    finalize = JavaMethod("()V")
-    getWidth = JavaMethod("()I")
+    getId = JavaMethod("()J")
+    create = JavaStaticMethod("(IIIIJ)Landroid/hardware/HardwareBuffer;")
     getHeight = JavaMethod("()I")
-    getFormat = JavaMethod("()I")
+    getWidth = JavaMethod("()I")
+    isClosed = JavaMethod("()Z")
     getLayers = JavaMethod("()I")
     getUsage = JavaMethod("()J")
-    getId = JavaMethod("()J")
-    close = JavaMethod("()V")
-    isClosed = JavaMethod("()Z")
-    describeContents = JavaMethod("()I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
+    getFormat = JavaMethod("()I")

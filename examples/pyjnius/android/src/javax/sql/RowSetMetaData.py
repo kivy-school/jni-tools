@@ -1,23 +1,26 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["RowSetMetaData"]
 
-class RowSetMetaData(JavaInterface, metaclass=MetaJavaClass):
+class RowSetMetaData(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "javax/sql/RowSetMetaData"
-    setColumnCount = JavaMethod("(I)V")
-    setAutoIncrement = JavaMethod("(IZ)V")
-    setCaseSensitive = JavaMethod("(IZ)V")
-    setSearchable = JavaMethod("(IZ)V")
+    columnNoNulls = JavaStaticField("I")
+    columnNullable = JavaStaticField("I")
+    columnNullableUnknown = JavaStaticField("I")
     setCurrency = JavaMethod("(IZ)V")
+    setAutoIncrement = JavaMethod("(IZ)V")
+    setTableName = JavaMethod("(ILjava/lang/String;)V")
+    setCatalogName = JavaMethod("(ILjava/lang/String;)V")
+    setColumnType = JavaMethod("(II)V")
+    setColumnTypeName = JavaMethod("(ILjava/lang/String;)V")
+    setSearchable = JavaMethod("(IZ)V")
     setNullable = JavaMethod("(II)V")
     setSigned = JavaMethod("(IZ)V")
     setColumnDisplaySize = JavaMethod("(II)V")
     setColumnLabel = JavaMethod("(ILjava/lang/String;)V")
     setColumnName = JavaMethod("(ILjava/lang/String;)V")
     setSchemaName = JavaMethod("(ILjava/lang/String;)V")
-    setPrecision = JavaMethod("(II)V")
     setScale = JavaMethod("(II)V")
-    setTableName = JavaMethod("(ILjava/lang/String;)V")
-    setCatalogName = JavaMethod("(ILjava/lang/String;)V")
-    setColumnType = JavaMethod("(II)V")
-    setColumnTypeName = JavaMethod("(ILjava/lang/String;)V")
+    setCaseSensitive = JavaMethod("(IZ)V")
+    setColumnCount = JavaMethod("(I)V")
+    setPrecision = JavaMethod("(II)V")

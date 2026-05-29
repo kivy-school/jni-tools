@@ -8,124 +8,170 @@ from java.text.AttributedCharacterIterator import AttributedCharacterIterator
 from java.util.Locale import Locale
 
 class RelativeDateTimeFormatter:
+    def getNumberFormat(self) -> NumberFormat: ...
+    def combineDateAndTime(self, p0: str, p1: str) -> str: ...
+    def formatNumeric(self, p0: float, p1: Any) -> str: ...
+    def formatNumericToValue(self, p0: float, p1: Any) -> Any: ...
+    def getCapitalizationContext(self) -> DisplayContext: ...
+    def getFormatStyle(self) -> Any: ...
+    @overload
+    def formatToValue(self, p0: float, p1: Any, p2: Any) -> Any: ...
+    @overload
+    def formatToValue(self, p0: float, p1: Any) -> Any: ...
+    @overload
+    def formatToValue(self, p0: Any, p1: Any) -> Any: ...
+    @overload
+    def format(self, p0: float, p1: Any) -> str: ...
+    @overload
+    def format(self, p0: Any, p1: Any) -> str: ...
+    @overload
+    def format(self, p0: float, p1: Any, p2: Any) -> str: ...
+    @overload
+    @staticmethod
+    def getInstance(p0: Locale) -> "RelativeDateTimeFormatter": ...
+    @overload
+    @staticmethod
+    def getInstance(p0: Locale, p1: NumberFormat) -> "RelativeDateTimeFormatter": ...
+    @overload
+    @staticmethod
+    def getInstance(p0: ULocale) -> "RelativeDateTimeFormatter": ...
+    @overload
+    @staticmethod
+    def getInstance(p0: ULocale, p1: NumberFormat, p2: Any, p3: DisplayContext) -> "RelativeDateTimeFormatter": ...
+    @overload
+    @staticmethod
+    def getInstance(p0: ULocale, p1: NumberFormat) -> "RelativeDateTimeFormatter": ...
     @overload
     @staticmethod
     def getInstance() -> "RelativeDateTimeFormatter": ...
-    @overload
-    @staticmethod
-    def getInstance(arg0: ULocale) -> "RelativeDateTimeFormatter": ...
-    @overload
-    @staticmethod
-    def getInstance(arg0: Locale) -> "RelativeDateTimeFormatter": ...
-    @overload
-    @staticmethod
-    def getInstance(arg0: ULocale, arg1: NumberFormat) -> "RelativeDateTimeFormatter": ...
-    @overload
-    @staticmethod
-    def getInstance(arg0: ULocale, arg1: NumberFormat, arg2: "Style", arg3: DisplayContext) -> "RelativeDateTimeFormatter": ...
-    @overload
-    @staticmethod
-    def getInstance(arg0: Locale, arg1: NumberFormat) -> "RelativeDateTimeFormatter": ...
-    @overload
-    def format(self, arg0: float, arg1: "Direction", arg2: "RelativeUnit") -> str: ...
-    @overload
-    def format(self, arg0: "Direction", arg1: "AbsoluteUnit") -> str: ...
-    @overload
-    def format(self, arg0: float, arg1: "RelativeDateTimeUnit") -> str: ...
-    @overload
-    def formatToValue(self, arg0: float, arg1: "Direction", arg2: "RelativeUnit") -> "FormattedRelativeDateTime": ...
-    @overload
-    def formatToValue(self, arg0: "Direction", arg1: "AbsoluteUnit") -> "FormattedRelativeDateTime": ...
-    @overload
-    def formatToValue(self, arg0: float, arg1: "RelativeDateTimeUnit") -> "FormattedRelativeDateTime": ...
-    def formatNumeric(self, arg0: float, arg1: "RelativeDateTimeUnit") -> str: ...
-    def formatNumericToValue(self, arg0: float, arg1: "RelativeDateTimeUnit") -> "FormattedRelativeDateTime": ...
-    def combineDateAndTime(self, arg0: str, arg1: str) -> str: ...
-    def getNumberFormat(self) -> NumberFormat: ...
-    def getCapitalizationContext(self) -> DisplayContext: ...
-    def getFormatStyle(self) -> "Style": ...
-
-    class AbsoluteUnit:
-        SUNDAY: ClassVar["AbsoluteUnit"]
-        MONDAY: ClassVar["AbsoluteUnit"]
-        TUESDAY: ClassVar["AbsoluteUnit"]
-        WEDNESDAY: ClassVar["AbsoluteUnit"]
-        THURSDAY: ClassVar["AbsoluteUnit"]
-        FRIDAY: ClassVar["AbsoluteUnit"]
-        SATURDAY: ClassVar["AbsoluteUnit"]
-        DAY: ClassVar["AbsoluteUnit"]
-        WEEK: ClassVar["AbsoluteUnit"]
-        MONTH: ClassVar["AbsoluteUnit"]
-        YEAR: ClassVar["AbsoluteUnit"]
-        NOW: ClassVar["AbsoluteUnit"]
-        QUARTER: ClassVar["AbsoluteUnit"]
-        HOUR: ClassVar["AbsoluteUnit"]
-        MINUTE: ClassVar["AbsoluteUnit"]
-        @staticmethod
-        def values() -> list["AbsoluteUnit"]: ...
-        @staticmethod
-        def valueOf(arg0: str) -> "AbsoluteUnit": ...
-
-    class Direction:
-        LAST_2: ClassVar["Direction"]
-        LAST: ClassVar["Direction"]
-        THIS: ClassVar["Direction"]
-        NEXT: ClassVar["Direction"]
-        NEXT_2: ClassVar["Direction"]
-        PLAIN: ClassVar["Direction"]
-        @staticmethod
-        def values() -> list["Direction"]: ...
-        @staticmethod
-        def valueOf(arg0: str) -> "Direction": ...
-
-    class FormattedRelativeDateTime:
-        def toString(self) -> str: ...
-        def length(self) -> int: ...
-        def charAt(self, arg0: int) -> str: ...
-        def subSequence(self, arg0: int, arg1: int) -> str: ...
-        def appendTo(self, arg0: Appendable) -> Appendable: ...
-        def nextPosition(self, arg0: ConstrainedFieldPosition) -> bool: ...
-        def toCharacterIterator(self) -> AttributedCharacterIterator: ...
-
-    class RelativeDateTimeUnit:
-        YEAR: ClassVar["RelativeDateTimeUnit"]
-        QUARTER: ClassVar["RelativeDateTimeUnit"]
-        MONTH: ClassVar["RelativeDateTimeUnit"]
-        WEEK: ClassVar["RelativeDateTimeUnit"]
-        DAY: ClassVar["RelativeDateTimeUnit"]
-        HOUR: ClassVar["RelativeDateTimeUnit"]
-        MINUTE: ClassVar["RelativeDateTimeUnit"]
-        SECOND: ClassVar["RelativeDateTimeUnit"]
-        SUNDAY: ClassVar["RelativeDateTimeUnit"]
-        MONDAY: ClassVar["RelativeDateTimeUnit"]
-        TUESDAY: ClassVar["RelativeDateTimeUnit"]
-        WEDNESDAY: ClassVar["RelativeDateTimeUnit"]
-        THURSDAY: ClassVar["RelativeDateTimeUnit"]
-        FRIDAY: ClassVar["RelativeDateTimeUnit"]
-        SATURDAY: ClassVar["RelativeDateTimeUnit"]
-        @staticmethod
-        def values() -> list["RelativeDateTimeUnit"]: ...
-        @staticmethod
-        def valueOf(arg0: str) -> "RelativeDateTimeUnit": ...
-
-    class RelativeUnit:
-        SECONDS: ClassVar["RelativeUnit"]
-        MINUTES: ClassVar["RelativeUnit"]
-        HOURS: ClassVar["RelativeUnit"]
-        DAYS: ClassVar["RelativeUnit"]
-        WEEKS: ClassVar["RelativeUnit"]
-        MONTHS: ClassVar["RelativeUnit"]
-        YEARS: ClassVar["RelativeUnit"]
-        @staticmethod
-        def values() -> list["RelativeUnit"]: ...
-        @staticmethod
-        def valueOf(arg0: str) -> "RelativeUnit": ...
 
     class Style:
         LONG: ClassVar["Style"]
-        SHORT: ClassVar["Style"]
         NARROW: ClassVar["Style"]
+        SHORT: ClassVar["Style"]
+        LONG: ClassVar[Any]
+        NARROW: ClassVar[Any]
+        SHORT: ClassVar[Any]
         @staticmethod
-        def values() -> list["Style"]: ...
+        def values() -> Any: ...
         @staticmethod
-        def valueOf(arg0: str) -> "Style": ...
+        def valueOf(p0: str) -> Any: ...
+
+    class RelativeUnit:
+        DAYS: ClassVar["RelativeUnit"]
+        HOURS: ClassVar["RelativeUnit"]
+        MINUTES: ClassVar["RelativeUnit"]
+        MONTHS: ClassVar["RelativeUnit"]
+        SECONDS: ClassVar["RelativeUnit"]
+        WEEKS: ClassVar["RelativeUnit"]
+        YEARS: ClassVar["RelativeUnit"]
+        DAYS: ClassVar[Any]
+        HOURS: ClassVar[Any]
+        MINUTES: ClassVar[Any]
+        MONTHS: ClassVar[Any]
+        SECONDS: ClassVar[Any]
+        WEEKS: ClassVar[Any]
+        YEARS: ClassVar[Any]
+        @staticmethod
+        def values() -> Any: ...
+        @staticmethod
+        def valueOf(p0: str) -> Any: ...
+
+    class RelativeDateTimeUnit:
+        DAY: ClassVar["RelativeDateTimeUnit"]
+        FRIDAY: ClassVar["RelativeDateTimeUnit"]
+        HOUR: ClassVar["RelativeDateTimeUnit"]
+        MINUTE: ClassVar["RelativeDateTimeUnit"]
+        MONDAY: ClassVar["RelativeDateTimeUnit"]
+        MONTH: ClassVar["RelativeDateTimeUnit"]
+        QUARTER: ClassVar["RelativeDateTimeUnit"]
+        SATURDAY: ClassVar["RelativeDateTimeUnit"]
+        SECOND: ClassVar["RelativeDateTimeUnit"]
+        SUNDAY: ClassVar["RelativeDateTimeUnit"]
+        THURSDAY: ClassVar["RelativeDateTimeUnit"]
+        TUESDAY: ClassVar["RelativeDateTimeUnit"]
+        WEDNESDAY: ClassVar["RelativeDateTimeUnit"]
+        WEEK: ClassVar["RelativeDateTimeUnit"]
+        YEAR: ClassVar["RelativeDateTimeUnit"]
+        DAY: ClassVar[Any]
+        FRIDAY: ClassVar[Any]
+        HOUR: ClassVar[Any]
+        MINUTE: ClassVar[Any]
+        MONDAY: ClassVar[Any]
+        MONTH: ClassVar[Any]
+        QUARTER: ClassVar[Any]
+        SATURDAY: ClassVar[Any]
+        SECOND: ClassVar[Any]
+        SUNDAY: ClassVar[Any]
+        THURSDAY: ClassVar[Any]
+        TUESDAY: ClassVar[Any]
+        WEDNESDAY: ClassVar[Any]
+        WEEK: ClassVar[Any]
+        YEAR: ClassVar[Any]
+        @staticmethod
+        def values() -> Any: ...
+        @staticmethod
+        def valueOf(p0: str) -> Any: ...
+
+    class FormattedRelativeDateTime:
+        def appendTo(self, p0: Appendable) -> Appendable: ...
+        def nextPosition(self, p0: ConstrainedFieldPosition) -> bool: ...
+        def toCharacterIterator(self) -> AttributedCharacterIterator: ...
+        def length(self) -> int: ...
+        def toString(self) -> str: ...
+        def charAt(self, p0: int) -> str: ...
+        def subSequence(self, p0: int, p1: int) -> str: ...
+
+    class Direction:
+        LAST: ClassVar["Direction"]
+        LAST_2: ClassVar["Direction"]
+        NEXT: ClassVar["Direction"]
+        NEXT_2: ClassVar["Direction"]
+        PLAIN: ClassVar["Direction"]
+        THIS: ClassVar["Direction"]
+        LAST: ClassVar[Any]
+        LAST_2: ClassVar[Any]
+        NEXT: ClassVar[Any]
+        NEXT_2: ClassVar[Any]
+        PLAIN: ClassVar[Any]
+        THIS: ClassVar[Any]
+        @staticmethod
+        def values() -> Any: ...
+        @staticmethod
+        def valueOf(p0: str) -> Any: ...
+
+    class AbsoluteUnit:
+        DAY: ClassVar["AbsoluteUnit"]
+        FRIDAY: ClassVar["AbsoluteUnit"]
+        HOUR: ClassVar["AbsoluteUnit"]
+        MINUTE: ClassVar["AbsoluteUnit"]
+        MONDAY: ClassVar["AbsoluteUnit"]
+        MONTH: ClassVar["AbsoluteUnit"]
+        NOW: ClassVar["AbsoluteUnit"]
+        QUARTER: ClassVar["AbsoluteUnit"]
+        SATURDAY: ClassVar["AbsoluteUnit"]
+        SUNDAY: ClassVar["AbsoluteUnit"]
+        THURSDAY: ClassVar["AbsoluteUnit"]
+        TUESDAY: ClassVar["AbsoluteUnit"]
+        WEDNESDAY: ClassVar["AbsoluteUnit"]
+        WEEK: ClassVar["AbsoluteUnit"]
+        YEAR: ClassVar["AbsoluteUnit"]
+        DAY: ClassVar[Any]
+        FRIDAY: ClassVar[Any]
+        HOUR: ClassVar[Any]
+        MINUTE: ClassVar[Any]
+        MONDAY: ClassVar[Any]
+        MONTH: ClassVar[Any]
+        NOW: ClassVar[Any]
+        QUARTER: ClassVar[Any]
+        SATURDAY: ClassVar[Any]
+        SUNDAY: ClassVar[Any]
+        THURSDAY: ClassVar[Any]
+        TUESDAY: ClassVar[Any]
+        WEDNESDAY: ClassVar[Any]
+        WEEK: ClassVar[Any]
+        YEAR: ClassVar[Any]
+        @staticmethod
+        def values() -> Any: ...
+        @staticmethod
+        def valueOf(p0: str) -> Any: ...

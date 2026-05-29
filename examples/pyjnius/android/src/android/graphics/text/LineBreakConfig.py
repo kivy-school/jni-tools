@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["LineBreakConfig"]
 
@@ -19,21 +19,23 @@ class LineBreakConfig(JavaClass, metaclass=MetaJavaClass):
     LINE_BREAK_WORD_STYLE_NONE = JavaStaticField("I")
     LINE_BREAK_WORD_STYLE_PHRASE = JavaStaticField("I")
     LINE_BREAK_WORD_STYLE_UNSPECIFIED = JavaStaticField("I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getHyphenation = JavaMethod("()I")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    merge = JavaMethod("(Landroid/graphics/text/LineBreakConfig;)Landroid/graphics/text/LineBreakConfig;")
     getLineBreakStyle = JavaMethod("()I")
     getLineBreakWordStyle = JavaMethod("()I")
-    getHyphenation = JavaMethod("()I")
-    merge = JavaMethod("(Landroid/graphics/text/LineBreakConfig;)Landroid/graphics/text/LineBreakConfig;")
-    equals = JavaMethod("(Ljava/lang/Object;)Z")
-    hashCode = JavaMethod("()I")
-    toString = JavaMethod("()Ljava/lang/String;")
-    describeContents = JavaMethod("()I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
 
     class Builder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/graphics/text/LineBreakConfig/Builder"
+        __javaclass__ = "android/graphics/text/LineBreakConfig$Builder"
         __javaconstructor__ = [("()V", False)]
+        setHyphenation = JavaMethod("(I)Landroid/graphics/text/LineBreakConfig$Builder;")
         merge = JavaMethod("(Landroid/graphics/text/LineBreakConfig;)Landroid/graphics/text/LineBreakConfig$Builder;")
+        build = JavaMethod("()Landroid/graphics/text/LineBreakConfig;")
         setLineBreakStyle = JavaMethod("(I)Landroid/graphics/text/LineBreakConfig$Builder;")
         setLineBreakWordStyle = JavaMethod("(I)Landroid/graphics/text/LineBreakConfig$Builder;")
-        setHyphenation = JavaMethod("(I)Landroid/graphics/text/LineBreakConfig$Builder;")
-        build = JavaMethod("()Landroid/graphics/text/LineBreakConfig;")

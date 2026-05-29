@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["FingerprintManager"]
 
@@ -21,25 +21,25 @@ class FingerprintManager(JavaClass, metaclass=MetaJavaClass):
     FINGERPRINT_ERROR_UNABLE_TO_PROCESS = JavaStaticField("I")
     FINGERPRINT_ERROR_USER_CANCELED = JavaStaticField("I")
     FINGERPRINT_ERROR_VENDOR = JavaStaticField("I")
+    isHardwareDetected = JavaMethod("()Z")
     authenticate = JavaMethod("(Landroid/hardware/fingerprint/FingerprintManager$CryptoObject;Landroid/os/CancellationSignal;ILandroid/hardware/fingerprint/FingerprintManager$AuthenticationCallback;Landroid/os/Handler;)V")
     hasEnrolledFingerprints = JavaMethod("()Z")
-    isHardwareDetected = JavaMethod("()Z")
-
-    class AuthenticationCallback(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/hardware/fingerprint/FingerprintManager/AuthenticationCallback"
-        __javaconstructor__ = [("()V", False)]
-        onAuthenticationError = JavaMethod("(ILjava/lang/CharSequence;)V")
-        onAuthenticationHelp = JavaMethod("(ILjava/lang/CharSequence;)V")
-        onAuthenticationSucceeded = JavaMethod("(Landroid/hardware/fingerprint/FingerprintManager$AuthenticationResult;)V")
-        onAuthenticationFailed = JavaMethod("()V")
-
-    class AuthenticationResult(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/hardware/fingerprint/FingerprintManager/AuthenticationResult"
-        getCryptoObject = JavaMethod("()Landroid/hardware/fingerprint/FingerprintManager$CryptoObject;")
 
     class CryptoObject(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/hardware/fingerprint/FingerprintManager/CryptoObject"
-        __javaconstructor__ = [("(Ljava/security/Signature;)V", False), ("(Ljavax/crypto/Cipher;)V", False), ("(Ljavax/crypto/Mac;)V", False)]
-        getSignature = JavaMethod("()Ljava/security/Signature;")
+        __javaclass__ = "android/hardware/fingerprint/FingerprintManager$CryptoObject"
+        __javaconstructor__ = [("(Ljava/security/Signature;)V", False), ("(Ljavax/crypto/Mac;)V", False), ("(Ljavax/crypto/Cipher;)V", False)]
         getCipher = JavaMethod("()Ljavax/crypto/Cipher;")
         getMac = JavaMethod("()Ljavax/crypto/Mac;")
+        getSignature = JavaMethod("()Ljava/security/Signature;")
+
+    class AuthenticationResult(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/hardware/fingerprint/FingerprintManager$AuthenticationResult"
+        getCryptoObject = JavaMethod("()Landroid/hardware/fingerprint/FingerprintManager$CryptoObject;")
+
+    class AuthenticationCallback(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/hardware/fingerprint/FingerprintManager$AuthenticationCallback"
+        __javaconstructor__ = [("()V", False)]
+        onAuthenticationError = JavaMethod("(ILjava/lang/CharSequence;)V")
+        onAuthenticationFailed = JavaMethod("()V")
+        onAuthenticationHelp = JavaMethod("(ILjava/lang/CharSequence;)V")
+        onAuthenticationSucceeded = JavaMethod("(Landroid/hardware/fingerprint/FingerprintManager$AuthenticationResult;)V")

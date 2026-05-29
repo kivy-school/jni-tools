@@ -1,18 +1,18 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["IsoDep"]
 
 class IsoDep(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/nfc/tech/IsoDep"
-    get = JavaStaticMethod("(Landroid/nfc/Tag;)Landroid/nfc/tech/IsoDep;")
-    setTimeout = JavaMethod("(I)V")
-    getTimeout = JavaMethod("()I")
-    getHistoricalBytes = JavaMethod("()[B")
-    getHiLayerResponse = JavaMethod("()[B")
-    transceive = JavaMethod("([B)[B")
-    getMaxTransceiveLength = JavaMethod("()I")
-    isExtendedLengthApduSupported = JavaMethod("()Z")
-    isConnected = JavaMethod("()Z")
-    getTag = JavaMethod("()Landroid/nfc/Tag;")
-    close = JavaMethod("()V")
     connect = JavaMethod("()V")
+    getTimeout = JavaMethod("()I")
+    setTimeout = JavaMethod("(I)V")
+    getHistoricalBytes = JavaMethod("()[B")
+    getMaxTransceiveLength = JavaMethod("()I")
+    isConnected = JavaMethod("()Z")
+    transceive = JavaMethod("([B)[B")
+    getHiLayerResponse = JavaMethod("()[B")
+    isExtendedLengthApduSupported = JavaMethod("()Z")
+    get = JavaStaticMethod("(Landroid/nfc/Tag;)Landroid/nfc/tech/IsoDep;")
+    close = JavaMethod("()V")
+    getTag = JavaMethod("()Landroid/nfc/Tag;")

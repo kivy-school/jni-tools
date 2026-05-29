@@ -6,4 +6,4 @@ class SensorEvent:
     firstEventAfterDiscontinuity: bool
     sensor: Sensor
     timestamp: int
-    values: list[float]
+    values: Any

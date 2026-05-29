@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["SensorDirectChannel"]
 
@@ -13,4 +13,3 @@ class SensorDirectChannel(JavaClass, metaclass=MetaJavaClass):
     isOpen = JavaMethod("()Z")
     close = JavaMethod("()V")
     configure = JavaMethod("(Landroid/hardware/Sensor;I)I")
-    finalize = JavaMethod("()V")

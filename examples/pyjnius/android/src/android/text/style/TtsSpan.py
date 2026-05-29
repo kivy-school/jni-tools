@@ -1,10 +1,10 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["TtsSpan"]
 
 class TtsSpan(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/text/style/TtsSpan"
-    __javaconstructor__ = [("(Ljava/lang/String;Landroid/os/PersistableBundle;)V", False), ("(Landroid/os/Parcel;)V", False)]
+    __javaconstructor__ = [("(Landroid/os/Parcel;)V", False), ("(Ljava/lang/String;Landroid/os/PersistableBundle;)V", False)]
     ANIMACY_ANIMATE = JavaStaticField("Ljava/lang/String;")
     ANIMACY_INANIMATE = JavaStaticField("Ljava/lang/String;")
     ARG_ANIMACY = JavaStaticField("Ljava/lang/String;")
@@ -33,6 +33,7 @@ class TtsSpan(JavaClass, metaclass=MetaJavaClass):
     ARG_PROTOCOL = JavaStaticField("Ljava/lang/String;")
     ARG_QUANTITY = JavaStaticField("Ljava/lang/String;")
     ARG_QUERY_STRING = JavaStaticField("Ljava/lang/String;")
+    ARG_SECONDS = JavaStaticField("Ljava/lang/String;")
     ARG_TEXT = JavaStaticField("Ljava/lang/String;")
     ARG_UNIT = JavaStaticField("Ljava/lang/String;")
     ARG_USERNAME = JavaStaticField("Ljava/lang/String;")
@@ -69,6 +70,7 @@ class TtsSpan(JavaClass, metaclass=MetaJavaClass):
     TYPE_DATE = JavaStaticField("Ljava/lang/String;")
     TYPE_DECIMAL = JavaStaticField("Ljava/lang/String;")
     TYPE_DIGITS = JavaStaticField("Ljava/lang/String;")
+    TYPE_DURATION = JavaStaticField("Ljava/lang/String;")
     TYPE_ELECTRONIC = JavaStaticField("Ljava/lang/String;")
     TYPE_FRACTION = JavaStaticField("Ljava/lang/String;")
     TYPE_MEASURE = JavaStaticField("Ljava/lang/String;")
@@ -85,115 +87,125 @@ class TtsSpan(JavaClass, metaclass=MetaJavaClass):
     WEEKDAY_THURSDAY = JavaStaticField("I")
     WEEKDAY_TUESDAY = JavaStaticField("I")
     WEEKDAY_WEDNESDAY = JavaStaticField("I")
-    getType = JavaMethod("()Ljava/lang/String;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     getArgs = JavaMethod("()Landroid/os/PersistableBundle;")
-    describeContents = JavaMethod("()I")
+    getType = JavaMethod("()Ljava/lang/String;")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
     getSpanTypeId = JavaMethod("()I")
 
-    class Builder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/text/style/TtsSpan/Builder"
-        __javaconstructor__ = [("(Ljava/lang/String;)V", False)]
-        build = JavaMethod("()Landroid/text/style/TtsSpan;")
-        setStringArgument = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)Landroid/text/style/TtsSpan$Builder;")
-        setIntArgument = JavaMethod("(Ljava/lang/String;I)Landroid/text/style/TtsSpan$Builder;")
-        setLongArgument = JavaMethod("(Ljava/lang/String;J)Landroid/text/style/TtsSpan$Builder;")
-
-    class CardinalBuilder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/text/style/TtsSpan/CardinalBuilder"
-        __javaconstructor__ = [("()V", False), ("(J)V", False), ("(Ljava/lang/String;)V", False)]
-        setNumber = JavaMultipleMethod([("(J)Landroid/text/style/TtsSpan$CardinalBuilder;", False, False), ("(Ljava/lang/String;)Landroid/text/style/TtsSpan$CardinalBuilder;", False, False)])
-
-    class DateBuilder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/text/style/TtsSpan/DateBuilder"
-        __javaconstructor__ = [("()V", False), ("(Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;)V", False)]
-        setWeekday = JavaMethod("(I)Landroid/text/style/TtsSpan$DateBuilder;")
-        setDay = JavaMethod("(I)Landroid/text/style/TtsSpan$DateBuilder;")
-        setMonth = JavaMethod("(I)Landroid/text/style/TtsSpan$DateBuilder;")
-        setYear = JavaMethod("(I)Landroid/text/style/TtsSpan$DateBuilder;")
-
-    class DecimalBuilder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/text/style/TtsSpan/DecimalBuilder"
-        __javaconstructor__ = [("()V", False), ("(DII)V", False), ("(Ljava/lang/String;Ljava/lang/String;)V", False)]
-        setArgumentsFromDouble = JavaMethod("(DII)Landroid/text/style/TtsSpan$DecimalBuilder;")
-        setIntegerPart = JavaMultipleMethod([("(J)Landroid/text/style/TtsSpan$DecimalBuilder;", False, False), ("(Ljava/lang/String;)Landroid/text/style/TtsSpan$DecimalBuilder;", False, False)])
-        setFractionalPart = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$DecimalBuilder;")
-
-    class DigitsBuilder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/text/style/TtsSpan/DigitsBuilder"
-        __javaconstructor__ = [("()V", False), ("(Ljava/lang/String;)V", False)]
-        setDigits = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$DigitsBuilder;")
-
-    class ElectronicBuilder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/text/style/TtsSpan/ElectronicBuilder"
-        __javaconstructor__ = [("()V", False)]
-        setEmailArguments = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)Landroid/text/style/TtsSpan$ElectronicBuilder;")
-        setProtocol = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$ElectronicBuilder;")
-        setUsername = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$ElectronicBuilder;")
-        setPassword = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$ElectronicBuilder;")
-        setDomain = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$ElectronicBuilder;")
-        setPort = JavaMethod("(I)Landroid/text/style/TtsSpan$ElectronicBuilder;")
-        setPath = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$ElectronicBuilder;")
-        setQueryString = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$ElectronicBuilder;")
-        setFragmentId = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$ElectronicBuilder;")
-
-    class FractionBuilder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/text/style/TtsSpan/FractionBuilder"
-        __javaconstructor__ = [("()V", False), ("(JJJ)V", False)]
-        setIntegerPart = JavaMultipleMethod([("(J)Landroid/text/style/TtsSpan$FractionBuilder;", False, False), ("(Ljava/lang/String;)Landroid/text/style/TtsSpan$FractionBuilder;", False, False)])
-        setNumerator = JavaMultipleMethod([("(J)Landroid/text/style/TtsSpan$FractionBuilder;", False, False), ("(Ljava/lang/String;)Landroid/text/style/TtsSpan$FractionBuilder;", False, False)])
-        setDenominator = JavaMultipleMethod([("(J)Landroid/text/style/TtsSpan$FractionBuilder;", False, False), ("(Ljava/lang/String;)Landroid/text/style/TtsSpan$FractionBuilder;", False, False)])
-
-    class MeasureBuilder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/text/style/TtsSpan/MeasureBuilder"
-        __javaconstructor__ = [("()V", False)]
-        setNumber = JavaMultipleMethod([("(J)Landroid/text/style/TtsSpan$MeasureBuilder;", False, False), ("(Ljava/lang/String;)Landroid/text/style/TtsSpan$MeasureBuilder;", False, False)])
-        setIntegerPart = JavaMultipleMethod([("(J)Landroid/text/style/TtsSpan$MeasureBuilder;", False, False), ("(Ljava/lang/String;)Landroid/text/style/TtsSpan$MeasureBuilder;", False, False)])
-        setFractionalPart = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$MeasureBuilder;")
-        setNumerator = JavaMultipleMethod([("(J)Landroid/text/style/TtsSpan$MeasureBuilder;", False, False), ("(Ljava/lang/String;)Landroid/text/style/TtsSpan$MeasureBuilder;", False, False)])
-        setDenominator = JavaMultipleMethod([("(J)Landroid/text/style/TtsSpan$MeasureBuilder;", False, False), ("(Ljava/lang/String;)Landroid/text/style/TtsSpan$MeasureBuilder;", False, False)])
-        setUnit = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$MeasureBuilder;")
-
-    class MoneyBuilder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/text/style/TtsSpan/MoneyBuilder"
-        __javaconstructor__ = [("()V", False)]
-        setIntegerPart = JavaMultipleMethod([("(J)Landroid/text/style/TtsSpan$MoneyBuilder;", False, False), ("(Ljava/lang/String;)Landroid/text/style/TtsSpan$MoneyBuilder;", False, False)])
-        setFractionalPart = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$MoneyBuilder;")
-        setCurrency = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$MoneyBuilder;")
-        setQuantity = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$MoneyBuilder;")
-
-    class OrdinalBuilder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/text/style/TtsSpan/OrdinalBuilder"
-        __javaconstructor__ = [("()V", False), ("(J)V", False), ("(Ljava/lang/String;)V", False)]
-        setNumber = JavaMultipleMethod([("(J)Landroid/text/style/TtsSpan$OrdinalBuilder;", False, False), ("(Ljava/lang/String;)Landroid/text/style/TtsSpan$OrdinalBuilder;", False, False)])
-
-    class SemioticClassBuilder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/text/style/TtsSpan/SemioticClassBuilder"
-        __javaconstructor__ = [("(Ljava/lang/String;)V", False)]
-        setGender = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$SemioticClassBuilder;")
-        setAnimacy = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$SemioticClassBuilder;")
-        setMultiplicity = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$SemioticClassBuilder;")
-        setCase = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$SemioticClassBuilder;")
-
-    class TelephoneBuilder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/text/style/TtsSpan/TelephoneBuilder"
-        __javaconstructor__ = [("()V", False), ("(Ljava/lang/String;)V", False)]
-        setCountryCode = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$TelephoneBuilder;")
-        setNumberParts = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$TelephoneBuilder;")
-        setExtension = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$TelephoneBuilder;")
-
-    class TextBuilder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/text/style/TtsSpan/TextBuilder"
-        __javaconstructor__ = [("()V", False), ("(Ljava/lang/String;)V", False)]
-        setText = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$TextBuilder;")
+    class VerbatimBuilder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/text/style/TtsSpan$VerbatimBuilder"
+        __javaconstructor__ = [("(Ljava/lang/String;)V", False), ("()V", False)]
+        setVerbatim = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$VerbatimBuilder;")
 
     class TimeBuilder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/text/style/TtsSpan/TimeBuilder"
+        __javaclass__ = "android/text/style/TtsSpan$TimeBuilder"
         __javaconstructor__ = [("()V", False), ("(II)V", False)]
         setHours = JavaMethod("(I)Landroid/text/style/TtsSpan$TimeBuilder;")
         setMinutes = JavaMethod("(I)Landroid/text/style/TtsSpan$TimeBuilder;")
+        setSeconds = JavaMethod("(I)Landroid/text/style/TtsSpan$TimeBuilder;")
 
-    class VerbatimBuilder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/text/style/TtsSpan/VerbatimBuilder"
+    class TextBuilder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/text/style/TtsSpan$TextBuilder"
         __javaconstructor__ = [("()V", False), ("(Ljava/lang/String;)V", False)]
-        setVerbatim = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$VerbatimBuilder;")
+        setText = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$TextBuilder;")
+
+    class TelephoneBuilder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/text/style/TtsSpan$TelephoneBuilder"
+        __javaconstructor__ = [("(Ljava/lang/String;)V", False), ("()V", False)]
+        setExtension = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$TelephoneBuilder;")
+        setNumberParts = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$TelephoneBuilder;")
+        setCountryCode = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$TelephoneBuilder;")
+
+    class SemioticClassBuilder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/text/style/TtsSpan$SemioticClassBuilder"
+        __javaconstructor__ = [("(Ljava/lang/String;)V", False)]
+        setCase = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$SemioticClassBuilder;")
+        setGender = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$SemioticClassBuilder;")
+        setMultiplicity = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$SemioticClassBuilder;")
+        setAnimacy = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$SemioticClassBuilder;")
+
+    class OrdinalBuilder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/text/style/TtsSpan$OrdinalBuilder"
+        __javaconstructor__ = [("()V", False), ("(J)V", False), ("(Ljava/lang/String;)V", False)]
+        setNumber = JavaMultipleMethod([("(J)Landroid/text/style/TtsSpan$OrdinalBuilder;", False, False), ("(Ljava/lang/String;)Landroid/text/style/TtsSpan$OrdinalBuilder;", False, False)])
+
+    class MoneyBuilder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/text/style/TtsSpan$MoneyBuilder"
+        __javaconstructor__ = [("()V", False)]
+        setCurrency = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$MoneyBuilder;")
+        setFractionalPart = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$MoneyBuilder;")
+        setIntegerPart = JavaMultipleMethod([("(J)Landroid/text/style/TtsSpan$MoneyBuilder;", False, False), ("(Ljava/lang/String;)Landroid/text/style/TtsSpan$MoneyBuilder;", False, False)])
+        setQuantity = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$MoneyBuilder;")
+
+    class MeasureBuilder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/text/style/TtsSpan$MeasureBuilder"
+        __javaconstructor__ = [("()V", False)]
+        setNumerator = JavaMultipleMethod([("(Ljava/lang/String;)Landroid/text/style/TtsSpan$MeasureBuilder;", False, False), ("(J)Landroid/text/style/TtsSpan$MeasureBuilder;", False, False)])
+        setUnit = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$MeasureBuilder;")
+        setFractionalPart = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$MeasureBuilder;")
+        setIntegerPart = JavaMultipleMethod([("(J)Landroid/text/style/TtsSpan$MeasureBuilder;", False, False), ("(Ljava/lang/String;)Landroid/text/style/TtsSpan$MeasureBuilder;", False, False)])
+        setDenominator = JavaMultipleMethod([("(Ljava/lang/String;)Landroid/text/style/TtsSpan$MeasureBuilder;", False, False), ("(J)Landroid/text/style/TtsSpan$MeasureBuilder;", False, False)])
+        setNumber = JavaMultipleMethod([("(J)Landroid/text/style/TtsSpan$MeasureBuilder;", False, False), ("(Ljava/lang/String;)Landroid/text/style/TtsSpan$MeasureBuilder;", False, False)])
+
+    class FractionBuilder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/text/style/TtsSpan$FractionBuilder"
+        __javaconstructor__ = [("()V", False), ("(JJJ)V", False)]
+        setNumerator = JavaMultipleMethod([("(J)Landroid/text/style/TtsSpan$FractionBuilder;", False, False), ("(Ljava/lang/String;)Landroid/text/style/TtsSpan$FractionBuilder;", False, False)])
+        setIntegerPart = JavaMultipleMethod([("(Ljava/lang/String;)Landroid/text/style/TtsSpan$FractionBuilder;", False, False), ("(J)Landroid/text/style/TtsSpan$FractionBuilder;", False, False)])
+        setDenominator = JavaMultipleMethod([("(J)Landroid/text/style/TtsSpan$FractionBuilder;", False, False), ("(Ljava/lang/String;)Landroid/text/style/TtsSpan$FractionBuilder;", False, False)])
+
+    class ElectronicBuilder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/text/style/TtsSpan$ElectronicBuilder"
+        __javaconstructor__ = [("()V", False)]
+        setDomain = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$ElectronicBuilder;")
+        setEmailArguments = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)Landroid/text/style/TtsSpan$ElectronicBuilder;")
+        setFragmentId = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$ElectronicBuilder;")
+        setPort = JavaMethod("(I)Landroid/text/style/TtsSpan$ElectronicBuilder;")
+        setProtocol = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$ElectronicBuilder;")
+        setQueryString = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$ElectronicBuilder;")
+        setUsername = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$ElectronicBuilder;")
+        setPassword = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$ElectronicBuilder;")
+        setPath = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$ElectronicBuilder;")
+
+    class DurationBuilder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/text/style/TtsSpan$DurationBuilder"
+        __javaconstructor__ = [("()V", False)]
+        setHours = JavaMethod("(I)Landroid/text/style/TtsSpan$DurationBuilder;")
+        setMinutes = JavaMethod("(I)Landroid/text/style/TtsSpan$DurationBuilder;")
+        setSeconds = JavaMethod("(I)Landroid/text/style/TtsSpan$DurationBuilder;")
+
+    class DigitsBuilder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/text/style/TtsSpan$DigitsBuilder"
+        __javaconstructor__ = [("(Ljava/lang/String;)V", False), ("()V", False)]
+        setDigits = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$DigitsBuilder;")
+
+    class DecimalBuilder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/text/style/TtsSpan$DecimalBuilder"
+        __javaconstructor__ = [("(Ljava/lang/String;Ljava/lang/String;)V", False), ("(DII)V", False), ("()V", False)]
+        setFractionalPart = JavaMethod("(Ljava/lang/String;)Landroid/text/style/TtsSpan$DecimalBuilder;")
+        setIntegerPart = JavaMultipleMethod([("(J)Landroid/text/style/TtsSpan$DecimalBuilder;", False, False), ("(Ljava/lang/String;)Landroid/text/style/TtsSpan$DecimalBuilder;", False, False)])
+        setArgumentsFromDouble = JavaMethod("(DII)Landroid/text/style/TtsSpan$DecimalBuilder;")
+
+    class DateBuilder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/text/style/TtsSpan$DateBuilder"
+        __javaconstructor__ = [("(Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;)V", False), ("()V", False)]
+        setDay = JavaMethod("(I)Landroid/text/style/TtsSpan$DateBuilder;")
+        setWeekday = JavaMethod("(I)Landroid/text/style/TtsSpan$DateBuilder;")
+        setMonth = JavaMethod("(I)Landroid/text/style/TtsSpan$DateBuilder;")
+        setYear = JavaMethod("(I)Landroid/text/style/TtsSpan$DateBuilder;")
+
+    class CardinalBuilder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/text/style/TtsSpan$CardinalBuilder"
+        __javaconstructor__ = [("()V", False), ("(J)V", False), ("(Ljava/lang/String;)V", False)]
+        setNumber = JavaMultipleMethod([("(J)Landroid/text/style/TtsSpan$CardinalBuilder;", False, False), ("(Ljava/lang/String;)Landroid/text/style/TtsSpan$CardinalBuilder;", False, False)])
+
+    class Builder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/text/style/TtsSpan$Builder"
+        __javaconstructor__ = [("(Ljava/lang/String;)V", False)]
+        setIntArgument = JavaMethod("(Ljava/lang/String;I)Landroid/text/style/TtsSpan$Builder;")
+        setLongArgument = JavaMethod("(Ljava/lang/String;J)Landroid/text/style/TtsSpan$Builder;")
+        setStringArgument = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)Landroid/text/style/TtsSpan$Builder;")
+        build = JavaMethod("()Landroid/text/style/TtsSpan;")

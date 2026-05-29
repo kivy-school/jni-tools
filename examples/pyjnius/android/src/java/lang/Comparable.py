@@ -1,7 +1,7 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Comparable"]
 
-class Comparable(JavaInterface, metaclass=MetaJavaClass):
+class Comparable(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "java/lang/Comparable"
     compareTo = JavaMethod("(Ljava/lang/Object;)I")

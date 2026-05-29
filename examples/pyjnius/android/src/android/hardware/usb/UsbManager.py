@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["UsbManager"]
 
@@ -12,8 +12,10 @@ class UsbManager(JavaClass, metaclass=MetaJavaClass):
     EXTRA_DEVICE = JavaStaticField("Ljava/lang/String;")
     EXTRA_PERMISSION_GRANTED = JavaStaticField("Ljava/lang/String;")
     getDeviceList = JavaMethod("()Ljava/util/HashMap;")
-    openDevice = JavaMethod("(Landroid/hardware/usb/UsbDevice;)Landroid/hardware/usb/UsbDeviceConnection;")
     getAccessoryList = JavaMethod("()[Landroid/hardware/usb/UsbAccessory;")
-    openAccessory = JavaMethod("(Landroid/hardware/usb/UsbAccessory;)Landroid/os/ParcelFileDescriptor;")
     hasPermission = JavaMultipleMethod([("(Landroid/hardware/usb/UsbDevice;)Z", False, False), ("(Landroid/hardware/usb/UsbAccessory;)Z", False, False)])
-    requestPermission = JavaMultipleMethod([("(Landroid/hardware/usb/UsbDevice;Landroid/app/PendingIntent;)V", False, False), ("(Landroid/hardware/usb/UsbAccessory;Landroid/app/PendingIntent;)V", False, False)])
+    openAccessory = JavaMethod("(Landroid/hardware/usb/UsbAccessory;)Landroid/os/ParcelFileDescriptor;")
+    openAccessoryInputStream = JavaMethod("(Landroid/hardware/usb/UsbAccessory;)Ljava/io/InputStream;")
+    openAccessoryOutputStream = JavaMethod("(Landroid/hardware/usb/UsbAccessory;)Ljava/io/OutputStream;")
+    openDevice = JavaMethod("(Landroid/hardware/usb/UsbDevice;)Landroid/hardware/usb/UsbDeviceConnection;")
+    requestPermission = JavaMultipleMethod([("(Landroid/hardware/usb/UsbAccessory;Landroid/app/PendingIntent;)V", False, False), ("(Landroid/hardware/usb/UsbDevice;Landroid/app/PendingIntent;)V", False, False)])

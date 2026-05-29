@@ -1,10 +1,10 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["ProtoOutputStream"]
 
 class ProtoOutputStream(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/util/proto/ProtoOutputStream"
-    __javaconstructor__ = [("()V", False), ("(I)V", False), ("(Ljava/io/OutputStream;)V", False)]
+    __javaconstructor__ = [("(I)V", False), ("(Ljava/io/OutputStream;)V", False), ("()V", False)]
     FIELD_COUNT_MASK = JavaStaticField("J")
     FIELD_COUNT_PACKED = JavaStaticField("J")
     FIELD_COUNT_REPEATED = JavaStaticField("J")
@@ -38,19 +38,19 @@ class ProtoOutputStream(JavaClass, metaclass=MetaJavaClass):
     WIRE_TYPE_MASK = JavaStaticField("I")
     WIRE_TYPE_START_GROUP = JavaStaticField("I")
     WIRE_TYPE_VARINT = JavaStaticField("I")
-    getRawSize = JavaMethod("()I")
-    write = JavaMultipleMethod([("(JD)V", False, False), ("(JF)V", False, False), ("(JI)V", False, False), ("(JJ)V", False, False), ("(JZ)V", False, False), ("(JLjava/lang/String;)V", False, False), ("(J[B)V", False, False)])
-    start = JavaMethod("(J)J")
-    end = JavaMethod("(J)V")
-    makeFieldId = JavaStaticMethod("(IJ)J")
     checkFieldId = JavaStaticMethod("(JJ)I")
-    writeTag = JavaMethod("(II)V")
-    getBytes = JavaMethod("()[B")
-    flush = JavaMethod("()V")
-    dump = JavaMethod("(Ljava/lang/String;)V")
-    token2String = JavaStaticMethod("(J)Ljava/lang/String;")
-    getFieldTypeString = JavaStaticMethod("(J)Ljava/lang/String;")
-    getWireTypeString = JavaStaticMethod("(I)Ljava/lang/String;")
-    getFieldIdString = JavaStaticMethod("(J)Ljava/lang/String;")
     getFieldCountString = JavaStaticMethod("(J)Ljava/lang/String;")
+    getFieldIdString = JavaStaticMethod("(J)Ljava/lang/String;")
+    getFieldTypeString = JavaStaticMethod("(J)Ljava/lang/String;")
+    getRawSize = JavaMethod("()I")
+    getWireTypeString = JavaStaticMethod("(I)Ljava/lang/String;")
+    makeFieldId = JavaStaticMethod("(IJ)J")
     makeToken = JavaStaticMethod("(IZIII)J")
+    token2String = JavaStaticMethod("(J)Ljava/lang/String;")
+    writeTag = JavaMethod("(II)V")
+    flush = JavaMethod("()V")
+    getBytes = JavaMethod("()[B")
+    end = JavaMethod("(J)V")
+    start = JavaMethod("(J)J")
+    write = JavaMultipleMethod([("(JI)V", False, False), ("(JLjava/lang/String;)V", False, False), ("(JJ)V", False, False), ("(JZ)V", False, False), ("(J[B)V", False, False), ("(JD)V", False, False), ("(JF)V", False, False)])
+    dump = JavaMethod("(Ljava/lang/String;)V")

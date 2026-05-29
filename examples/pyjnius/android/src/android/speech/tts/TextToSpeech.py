@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["TextToSpeech"]
 
@@ -24,38 +24,54 @@ class TextToSpeech(JavaClass, metaclass=MetaJavaClass):
     STOPPED = JavaStaticField("I")
     SUCCESS = JavaStaticField("I")
     shutdown = JavaMethod("()V")
-    addSpeech = JavaMultipleMethod([("(Ljava/lang/String;Ljava/lang/String;I)I", False, False), ("(Ljava/lang/CharSequence;Ljava/lang/String;I)I", False, False), ("(Ljava/lang/String;Ljava/lang/String;)I", False, False), ("(Ljava/lang/CharSequence;Ljava/io/File;)I", False, False), ("(Ljava/lang/CharSequence;Landroid/net/Uri;)I", False, False)])
-    addEarcon = JavaMultipleMethod([("(Ljava/lang/String;Ljava/lang/String;I)I", False, False), ("(Ljava/lang/String;Ljava/lang/String;)I", False, False), ("(Ljava/lang/String;Ljava/io/File;)I", False, False), ("(Ljava/lang/String;Landroid/net/Uri;)I", False, False)])
-    speak = JavaMultipleMethod([("(Ljava/lang/CharSequence;ILandroid/os/Bundle;Ljava/lang/String;)I", False, False), ("(Ljava/lang/String;ILjava/util/HashMap;)I", False, False)])
-    playEarcon = JavaMultipleMethod([("(Ljava/lang/String;ILandroid/os/Bundle;Ljava/lang/String;)I", False, False), ("(Ljava/lang/String;ILjava/util/HashMap;)I", False, False)])
-    playSilentUtterance = JavaMethod("(JILjava/lang/String;)I")
-    playSilence = JavaMethod("(JILjava/util/HashMap;)I")
-    getFeatures = JavaMethod("(Ljava/util/Locale;)Ljava/util/Set;")
-    isSpeaking = JavaMethod("()Z")
-    stop = JavaMethod("()I")
-    setSpeechRate = JavaMethod("(F)I")
-    setPitch = JavaMethod("(F)I")
-    setAudioAttributes = JavaMethod("(Landroid/media/AudioAttributes;)I")
-    getDefaultLanguage = JavaMethod("()Ljava/util/Locale;")
-    setLanguage = JavaMethod("(Ljava/util/Locale;)I")
     getLanguage = JavaMethod("()Ljava/util/Locale;")
-    getAvailableLanguages = JavaMethod("()Ljava/util/Set;")
-    getVoices = JavaMethod("()Ljava/util/Set;")
-    setVoice = JavaMethod("(Landroid/speech/tts/Voice;)I")
-    getVoice = JavaMethod("()Landroid/speech/tts/Voice;")
     getDefaultVoice = JavaMethod("()Landroid/speech/tts/Voice;")
+    addSpeech = JavaMultipleMethod([("(Ljava/lang/String;Ljava/lang/String;)I", False, False), ("(Ljava/lang/CharSequence;Ljava/lang/String;I)I", False, False), ("(Ljava/lang/String;Ljava/lang/String;I)I", False, False), ("(Ljava/lang/CharSequence;Ljava/io/File;)I", False, False), ("(Ljava/lang/CharSequence;Landroid/net/Uri;)I", False, False)])
+    getDefaultLanguage = JavaMethod("()Ljava/util/Locale;")
+    getDefaultEngine = JavaMethod("()Ljava/lang/String;")
+    addEarcon = JavaMultipleMethod([("(Ljava/lang/String;Ljava/io/File;)I", False, False), ("(Ljava/lang/String;Ljava/lang/String;)I", False, False), ("(Ljava/lang/String;Landroid/net/Uri;)I", False, False), ("(Ljava/lang/String;Ljava/lang/String;I)I", False, False)])
+    areDefaultsEnforced = JavaMethod("()Z")
+    getAvailableLanguages = JavaMethod("()Ljava/util/Set;")
+    getEngines = JavaMethod("()Ljava/util/List;")
+    getFeatures = JavaMethod("(Ljava/util/Locale;)Ljava/util/Set;")
+    getMaxSpeechInputLength = JavaStaticMethod("()I")
+    getVoice = JavaMethod("()Landroid/speech/tts/Voice;")
+    getVoices = JavaMethod("()Ljava/util/Set;")
     isLanguageAvailable = JavaMethod("(Ljava/util/Locale;)I")
-    synthesizeToFile = JavaMultipleMethod([("(Ljava/lang/CharSequence;Landroid/os/Bundle;Landroid/os/ParcelFileDescriptor;Ljava/lang/String;)I", False, False), ("(Ljava/lang/CharSequence;Landroid/os/Bundle;Ljava/io/File;Ljava/lang/String;)I", False, False), ("(Ljava/lang/String;Ljava/util/HashMap;Ljava/lang/String;)I", False, False)])
+    isSpeaking = JavaMethod("()Z")
+    playEarcon = JavaMultipleMethod([("(Ljava/lang/String;ILjava/util/HashMap;)I", False, False), ("(Ljava/lang/String;ILandroid/os/Bundle;Ljava/lang/String;)I", False, False)])
+    playSilence = JavaMethod("(JILjava/util/HashMap;)I")
+    playSilentUtterance = JavaMethod("(JILjava/lang/String;)I")
+    setAudioAttributes = JavaMethod("(Landroid/media/AudioAttributes;)I")
+    setEngineByPackageName = JavaMethod("(Ljava/lang/String;)I")
+    setLanguage = JavaMethod("(Ljava/util/Locale;)I")
     setOnUtteranceCompletedListener = JavaMethod("(Landroid/speech/tts/TextToSpeech$OnUtteranceCompletedListener;)I")
     setOnUtteranceProgressListener = JavaMethod("(Landroid/speech/tts/UtteranceProgressListener;)I")
-    setEngineByPackageName = JavaMethod("(Ljava/lang/String;)I")
-    getDefaultEngine = JavaMethod("()Ljava/lang/String;")
-    areDefaultsEnforced = JavaMethod("()Z")
-    getEngines = JavaMethod("()Ljava/util/List;")
-    getMaxSpeechInputLength = JavaStaticMethod("()I")
+    setPitch = JavaMethod("(F)I")
+    setSpeechRate = JavaMethod("(F)I")
+    setVoice = JavaMethod("(Landroid/speech/tts/Voice;)I")
+    speak = JavaMultipleMethod([("(Ljava/lang/String;ILjava/util/HashMap;)I", False, False), ("(Ljava/lang/CharSequence;ILandroid/os/Bundle;Ljava/lang/String;)I", False, False)])
+    stop = JavaMethod("()I")
+    synthesizeToFile = JavaMultipleMethod([("(Ljava/lang/CharSequence;Landroid/os/Bundle;Ljava/io/File;Ljava/lang/String;)I", False, False), ("(Ljava/lang/String;Ljava/util/HashMap;Ljava/lang/String;)I", False, False), ("(Ljava/lang/CharSequence;Landroid/os/Bundle;Landroid/os/ParcelFileDescriptor;Ljava/lang/String;)I", False, False)])
+
+    class OnUtteranceCompletedListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/speech/tts/TextToSpeech$OnUtteranceCompletedListener"
+        onUtteranceCompleted = JavaMethod("(Ljava/lang/String;)V")
+
+    class OnInitListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/speech/tts/TextToSpeech$OnInitListener"
+        onInit = JavaMethod("(I)V")
+
+    class EngineInfo(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/speech/tts/TextToSpeech$EngineInfo"
+        __javaconstructor__ = [("()V", False)]
+        icon = JavaField("I")
+        label = JavaField("Ljava/lang/String;")
+        name = JavaField("Ljava/lang/String;")
+        toString = JavaMethod("()Ljava/lang/String;")
 
     class Engine(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/speech/tts/TextToSpeech/Engine"
+        __javaclass__ = "android/speech/tts/TextToSpeech$Engine"
         __javaconstructor__ = [("(Landroid/speech/tts/TextToSpeech;)V", False)]
         ACTION_CHECK_TTS_DATA = JavaStaticField("Ljava/lang/String;")
         ACTION_GET_SAMPLE_TEXT = JavaStaticField("Ljava/lang/String;")
@@ -87,19 +103,3 @@ class TextToSpeech(JavaClass, metaclass=MetaJavaClass):
         KEY_PARAM_UTTERANCE_ID = JavaStaticField("Ljava/lang/String;")
         KEY_PARAM_VOLUME = JavaStaticField("Ljava/lang/String;")
         SERVICE_META_DATA = JavaStaticField("Ljava/lang/String;")
-
-    class EngineInfo(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/speech/tts/TextToSpeech/EngineInfo"
-        __javaconstructor__ = [("()V", False)]
-        icon = JavaField("I")
-        label = JavaField("Ljava/lang/String;")
-        name = JavaField("Ljava/lang/String;")
-        toString = JavaMethod("()Ljava/lang/String;")
-
-    class OnInitListener(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/speech/tts/TextToSpeech/OnInitListener"
-        onInit = JavaMethod("(I)V")
-
-    class OnUtteranceCompletedListener(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/speech/tts/TextToSpeech/OnUtteranceCompletedListener"
-        onUtteranceCompleted = JavaMethod("(Ljava/lang/String;)V")

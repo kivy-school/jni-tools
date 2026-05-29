@@ -1,10 +1,10 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["WifiConfiguration"]
 
 class WifiConfiguration(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/net/wifi/WifiConfiguration"
-    __javaconstructor__ = [("()V", False), ("(Landroid/net/wifi/WifiConfiguration;)V", False)]
+    __javaconstructor__ = [("(Landroid/net/wifi/WifiConfiguration;)V", False), ("()V", False)]
     BSSID = JavaField("Ljava/lang/String;")
     FQDN = JavaField("Ljava/lang/String;")
     RANDOMIZATION_AUTO = JavaStaticField("I")
@@ -42,49 +42,50 @@ class WifiConfiguration(JavaClass, metaclass=MetaJavaClass):
     status = JavaField("I")
     wepKeys = JavaField("[Ljava/lang/String;")
     wepTxKeyIndex = JavaField("I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getHttpProxy = JavaMethod("()Landroid/net/ProxyInfo;")
+    isDppConfigurator = JavaMethod("()Z")
     setSecurityParams = JavaMethod("(I)V")
-    setMacRandomizationSetting = JavaMethod("(I)V")
+    setIpConfiguration = JavaMethod("(Landroid/net/IpConfiguration;)V")
+    isPasspoint = JavaMethod("()Z")
     getMacRandomizationSetting = JavaMethod("()I")
     getRandomizedMacAddress = JavaMethod("()Landroid/net/MacAddress;")
-    isDppConfigurator = JavaMethod("()Z")
-    isPasspoint = JavaMethod("()Z")
+    setMacRandomizationSetting = JavaMethod("(I)V")
     toString = JavaMethod("()Ljava/lang/String;")
     getKey = JavaMethod("()Ljava/lang/String;")
-    setIpConfiguration = JavaMethod("(Landroid/net/IpConfiguration;)V")
-    getHttpProxy = JavaMethod("()Landroid/net/ProxyInfo;")
-    setHttpProxy = JavaMethod("(Landroid/net/ProxyInfo;)V")
-    describeContents = JavaMethod("()I")
     writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
+    setHttpProxy = JavaMethod("(Landroid/net/ProxyInfo;)V")
 
-    class AuthAlgorithm(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/net/wifi/WifiConfiguration/AuthAlgorithm"
-        LEAP = JavaStaticField("I")
-        OPEN = JavaStaticField("I")
-        SAE = JavaStaticField("I")
-        SHARED = JavaStaticField("I")
+    class Status(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/net/wifi/WifiConfiguration$Status"
+        CURRENT = JavaStaticField("I")
+        DISABLED = JavaStaticField("I")
+        ENABLED = JavaStaticField("I")
+        strings = JavaStaticField("[Ljava/lang/String;")
+
+    class Protocol(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/net/wifi/WifiConfiguration$Protocol"
+        RSN = JavaStaticField("I")
+        WAPI = JavaStaticField("I")
+        WPA = JavaStaticField("I")
         strings = JavaStaticField("[Ljava/lang/String;")
         varName = JavaStaticField("Ljava/lang/String;")
 
-    class GroupCipher(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/net/wifi/WifiConfiguration/GroupCipher"
+    class PairwiseCipher(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/net/wifi/WifiConfiguration$PairwiseCipher"
         CCMP = JavaStaticField("I")
         GCMP_128 = JavaStaticField("I")
         GCMP_256 = JavaStaticField("I")
+        NONE = JavaStaticField("I")
         SMS4 = JavaStaticField("I")
         TKIP = JavaStaticField("I")
-        WEP104 = JavaStaticField("I")
-        WEP40 = JavaStaticField("I")
         strings = JavaStaticField("[Ljava/lang/String;")
         varName = JavaStaticField("Ljava/lang/String;")
 
-    class GroupMgmtCipher(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/net/wifi/WifiConfiguration/GroupMgmtCipher"
-        BIP_CMAC_256 = JavaStaticField("I")
-        BIP_GMAC_128 = JavaStaticField("I")
-        BIP_GMAC_256 = JavaStaticField("I")
-
     class KeyMgmt(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/net/wifi/WifiConfiguration/KeyMgmt"
+        __javaclass__ = "android/net/wifi/WifiConfiguration$KeyMgmt"
         DPP = JavaStaticField("I")
         FILS_SHA256 = JavaStaticField("I")
         FILS_SHA384 = JavaStaticField("I")
@@ -106,28 +107,29 @@ class WifiConfiguration(JavaClass, metaclass=MetaJavaClass):
         strings = JavaStaticField("[Ljava/lang/String;")
         varName = JavaStaticField("Ljava/lang/String;")
 
-    class PairwiseCipher(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/net/wifi/WifiConfiguration/PairwiseCipher"
+    class GroupMgmtCipher(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/net/wifi/WifiConfiguration$GroupMgmtCipher"
+        BIP_CMAC_256 = JavaStaticField("I")
+        BIP_GMAC_128 = JavaStaticField("I")
+        BIP_GMAC_256 = JavaStaticField("I")
+
+    class GroupCipher(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/net/wifi/WifiConfiguration$GroupCipher"
         CCMP = JavaStaticField("I")
         GCMP_128 = JavaStaticField("I")
         GCMP_256 = JavaStaticField("I")
-        NONE = JavaStaticField("I")
         SMS4 = JavaStaticField("I")
         TKIP = JavaStaticField("I")
+        WEP104 = JavaStaticField("I")
+        WEP40 = JavaStaticField("I")
         strings = JavaStaticField("[Ljava/lang/String;")
         varName = JavaStaticField("Ljava/lang/String;")
 
-    class Protocol(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/net/wifi/WifiConfiguration/Protocol"
-        RSN = JavaStaticField("I")
-        WAPI = JavaStaticField("I")
-        WPA = JavaStaticField("I")
+    class AuthAlgorithm(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/net/wifi/WifiConfiguration$AuthAlgorithm"
+        LEAP = JavaStaticField("I")
+        OPEN = JavaStaticField("I")
+        SAE = JavaStaticField("I")
+        SHARED = JavaStaticField("I")
         strings = JavaStaticField("[Ljava/lang/String;")
         varName = JavaStaticField("Ljava/lang/String;")
-
-    class Status(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/net/wifi/WifiConfiguration/Status"
-        CURRENT = JavaStaticField("I")
-        DISABLED = JavaStaticField("I")
-        ENABLED = JavaStaticField("I")
-        strings = JavaStaticField("[Ljava/lang/String;")

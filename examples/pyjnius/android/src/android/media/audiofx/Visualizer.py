@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["Visualizer"]
 
@@ -20,31 +20,30 @@ class Visualizer(JavaClass, metaclass=MetaJavaClass):
     STATE_INITIALIZED = JavaStaticField("I")
     STATE_UNINITIALIZED = JavaStaticField("I")
     SUCCESS = JavaStaticField("I")
-    release = JavaMethod("()V")
-    finalize = JavaMethod("()V")
-    setEnabled = JavaMethod("(Z)I")
     getEnabled = JavaMethod("()Z")
-    getCaptureSizeRange = JavaStaticMethod("()[I")
-    getMaxCaptureRate = JavaStaticMethod("()I")
-    setCaptureSize = JavaMethod("(I)I")
     getCaptureSize = JavaMethod("()I")
-    setScalingMode = JavaMethod("(I)I")
-    getScalingMode = JavaMethod("()I")
-    setMeasurementMode = JavaMethod("(I)I")
-    getMeasurementMode = JavaMethod("()I")
-    getSamplingRate = JavaMethod("()I")
-    getWaveForm = JavaMethod("([B)I")
+    getCaptureSizeRange = JavaStaticMethod("()[I")
     getFft = JavaMethod("([B)I")
+    getMaxCaptureRate = JavaStaticMethod("()I")
+    getMeasurementMode = JavaMethod("()I")
     getMeasurementPeakRms = JavaMethod("(Landroid/media/audiofx/Visualizer$MeasurementPeakRms;)I")
+    getSamplingRate = JavaMethod("()I")
+    getScalingMode = JavaMethod("()I")
+    getWaveForm = JavaMethod("([B)I")
+    setCaptureSize = JavaMethod("(I)I")
     setDataCaptureListener = JavaMethod("(Landroid/media/audiofx/Visualizer$OnDataCaptureListener;IZZ)I")
+    setMeasurementMode = JavaMethod("(I)I")
+    setScalingMode = JavaMethod("(I)I")
+    release = JavaMethod("()V")
+    setEnabled = JavaMethod("(Z)I")
+
+    class OnDataCaptureListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/media/audiofx/Visualizer$OnDataCaptureListener"
+        onFftDataCapture = JavaMethod("(Landroid/media/audiofx/Visualizer;[BI)V")
+        onWaveFormDataCapture = JavaMethod("(Landroid/media/audiofx/Visualizer;[BI)V")
 
     class MeasurementPeakRms(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/audiofx/Visualizer/MeasurementPeakRms"
+        __javaclass__ = "android/media/audiofx/Visualizer$MeasurementPeakRms"
         __javaconstructor__ = [("()V", False)]
         mPeak = JavaField("I")
         mRms = JavaField("I")
-
-    class OnDataCaptureListener(JavaInterface, metaclass=MetaJavaClass):
-        __javaclass__ = "android/media/audiofx/Visualizer/OnDataCaptureListener"
-        onWaveFormDataCapture = JavaMethod("(Landroid/media/audiofx/Visualizer;[BI)V")
-        onFftDataCapture = JavaMethod("(Landroid/media/audiofx/Visualizer;[BI)V")

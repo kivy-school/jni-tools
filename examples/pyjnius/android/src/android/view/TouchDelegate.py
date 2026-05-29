@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["TouchDelegate"]
 
@@ -9,6 +9,6 @@ class TouchDelegate(JavaClass, metaclass=MetaJavaClass):
     BELOW = JavaStaticField("I")
     TO_LEFT = JavaStaticField("I")
     TO_RIGHT = JavaStaticField("I")
-    onTouchEvent = JavaMethod("(Landroid/view/MotionEvent;)Z")
     onTouchExplorationHoverEvent = JavaMethod("(Landroid/view/MotionEvent;)Z")
     getTouchDelegateInfo = JavaMethod("()Landroid/view/accessibility/AccessibilityNodeInfo$TouchDelegateInfo;")
+    onTouchEvent = JavaMethod("(Landroid/view/MotionEvent;)Z")

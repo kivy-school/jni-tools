@@ -24,8 +24,10 @@ class CallScreeningService:
     ACCESSIBILITY_SERVICE: ClassVar[str]
     ACCOUNT_SERVICE: ClassVar[str]
     ACTIVITY_SERVICE: ClassVar[str]
+    ADVANCED_PROTECTION_SERVICE: ClassVar[str]
     ALARM_SERVICE: ClassVar[str]
     APPWIDGET_SERVICE: ClassVar[str]
+    APP_FUNCTION_SERVICE: ClassVar[str]
     APP_OPS_SERVICE: ClassVar[str]
     APP_SEARCH_SERVICE: ClassVar[str]
     AUDIO_SERVICE: ClassVar[str]
@@ -84,6 +86,7 @@ class CallScreeningService:
     IPSEC_SERVICE: ClassVar[str]
     JOB_SCHEDULER_SERVICE: ClassVar[str]
     KEYGUARD_SERVICE: ClassVar[str]
+    KEYSTORE_SERVICE: ClassVar[str]
     LAUNCHER_APPS_SERVICE: ClassVar[str]
     LAYOUT_INFLATER_SERVICE: ClassVar[str]
     LOCALE_SERVICE: ClassVar[str]
@@ -91,6 +94,7 @@ class CallScreeningService:
     MEDIA_COMMUNICATION_SERVICE: ClassVar[str]
     MEDIA_METRICS_SERVICE: ClassVar[str]
     MEDIA_PROJECTION_SERVICE: ClassVar[str]
+    MEDIA_QUALITY_SERVICE: ClassVar[str]
     MEDIA_ROUTER_SERVICE: ClassVar[str]
     MEDIA_SESSION_SERVICE: ClassVar[str]
     MIDI_SERVICE: ClassVar[str]
@@ -117,6 +121,7 @@ class CallScreeningService:
     RECEIVER_VISIBLE_TO_INSTANT_APPS: ClassVar[int]
     RESTRICTIONS_SERVICE: ClassVar[str]
     ROLE_SERVICE: ClassVar[str]
+    SATELLITE_SERVICE: ClassVar[str]
     SEARCH_SERVICE: ClassVar[str]
     SECURITY_STATE_SERVICE: ClassVar[str]
     SENSOR_SERVICE: ClassVar[str]
@@ -129,8 +134,10 @@ class CallScreeningService:
     TELEPHONY_IMS_SERVICE: ClassVar[str]
     TELEPHONY_SERVICE: ClassVar[str]
     TELEPHONY_SUBSCRIPTION_SERVICE: ClassVar[str]
+    TETHERING_SERVICE: ClassVar[str]
     TEXT_CLASSIFICATION_SERVICE: ClassVar[str]
     TEXT_SERVICES_MANAGER_SERVICE: ClassVar[str]
+    TV_AD_SERVICE: ClassVar[str]
     TV_INPUT_SERVICE: ClassVar[str]
     TV_INTERACTIVE_APP_SERVICE: ClassVar[str]
     UI_MODE_SERVICE: ClassVar[str]
@@ -150,20 +157,20 @@ class CallScreeningService:
     def __init__(self) -> None: ...
     def onScreenCall(self, p0: Any) -> None: ...
     def respondToCall(self, p0: Any, p1: Any) -> None: ...
-    def onBind(self, p0: Intent) -> IBinder: ...
     def onUnbind(self, p0: Intent) -> bool: ...
+    def onBind(self, p0: Intent) -> IBinder: ...
 
     class CallResponse:
         CALL_COMPOSER_ATTACHMENT_LOCATION: ClassVar[int]
         CALL_COMPOSER_ATTACHMENT_PICTURE: ClassVar[int]
         CALL_COMPOSER_ATTACHMENT_PRIORITY: ClassVar[int]
         CALL_COMPOSER_ATTACHMENT_SUBJECT: ClassVar[int]
+        def getDisallowCall(self) -> bool: ...
+        def getCallComposerAttachmentsToShow(self) -> int: ...
+        def getRejectCall(self) -> bool: ...
         def getSilenceCall(self) -> bool: ...
         def getSkipCallLog(self) -> bool: ...
         def getSkipNotification(self) -> bool: ...
-        def getCallComposerAttachmentsToShow(self) -> int: ...
-        def getRejectCall(self) -> bool: ...
-        def getDisallowCall(self) -> bool: ...
         def equals(self, p0: Any) -> bool: ...
         def hashCode(self) -> int: ...
 

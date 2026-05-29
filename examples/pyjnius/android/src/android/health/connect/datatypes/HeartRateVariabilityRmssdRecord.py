@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["HeartRateVariabilityRmssdRecord"]
 
@@ -9,8 +9,8 @@ class HeartRateVariabilityRmssdRecord(JavaClass, metaclass=MetaJavaClass):
     getHeartRateVariabilityMillis = JavaMethod("()D")
 
     class Builder(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/health/connect/datatypes/HeartRateVariabilityRmssdRecord/Builder"
+        __javaclass__ = "android/health/connect/datatypes/HeartRateVariabilityRmssdRecord$Builder"
         __javaconstructor__ = [("(Landroid/health/connect/datatypes/Metadata;Ljava/time/Instant;D)V", False)]
-        setZoneOffset = JavaMethod("(Ljava/time/ZoneOffset;)Landroid/health/connect/datatypes/HeartRateVariabilityRmssdRecord$Builder;")
-        clearZoneOffset = JavaMethod("()Landroid/health/connect/datatypes/HeartRateVariabilityRmssdRecord$Builder;")
         build = JavaMethod("()Landroid/health/connect/datatypes/HeartRateVariabilityRmssdRecord;")
+        clearZoneOffset = JavaMethod("()Landroid/health/connect/datatypes/HeartRateVariabilityRmssdRecord$Builder;")
+        setZoneOffset = JavaMethod("(Ljava/time/ZoneOffset;)Landroid/health/connect/datatypes/HeartRateVariabilityRmssdRecord$Builder;")

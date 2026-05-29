@@ -1,4 +1,4 @@
-from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
 __all__ = ["NotificationChannelGroup"]
 
@@ -6,15 +6,17 @@ class NotificationChannelGroup(JavaClass, metaclass=MetaJavaClass):
     __javaclass__ = "android/app/NotificationChannelGroup"
     __javaconstructor__ = [("(Ljava/lang/String;Ljava/lang/CharSequence;)V", False)]
     CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
-    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
-    getId = JavaMethod("()Ljava/lang/String;")
-    getName = JavaMethod("()Ljava/lang/CharSequence;")
-    getDescription = JavaMethod("()Ljava/lang/String;")
-    getChannels = JavaMethod("()Ljava/util/List;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
     isBlocked = JavaMethod("()Z")
-    setDescription = JavaMethod("(Ljava/lang/String;)V")
-    describeContents = JavaMethod("()I")
+    getChannels = JavaMethod("()Ljava/util/List;")
+    getName = JavaMethod("()Ljava/lang/CharSequence;")
     equals = JavaMethod("(Ljava/lang/Object;)Z")
-    hashCode = JavaMethod("()I")
-    clone = JavaMethod("()Landroid/app/NotificationChannelGroup;")
     toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    clone = JavaMultipleMethod([("()Landroid/app/NotificationChannelGroup;", False, False), ("()Ljava/lang/Object;", False, False)])
+    getId = JavaMethod("()Ljava/lang/String;")
+    setDescription = JavaMethod("(Ljava/lang/String;)V")
+    getDescription = JavaMethod("()Ljava/lang/String;")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
