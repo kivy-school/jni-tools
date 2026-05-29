@@ -323,7 +323,7 @@ def _materialise_simple_ns(src_root: Path, ns: str) -> Path:
             f"Cython JNI wrappers for the {ns}.* namespace "
             f"(android.jar, API 35). Imports as android.{ns}.*."
         ),
-        deps=["jni_core"],
+        deps=["jni-core"],
     )
     (pkg_dir / "pyproject.toml").write_text(pyproject)
     _copy_shared_assets(pkg_dir)
@@ -355,7 +355,7 @@ def _materialise_ns_toplevel(src_root: Path, ns: str, stem: str) -> tuple[Path, 
             f"Cython JNI wrapper for {ns}.{stem} "
             f"(android.jar, API 35). Imports as android.{ns}.{stem}."
         ),
-        deps=["jni_core", f"android-{ns} == {VERSION}"],
+        deps=["jni-core", f"android-{ns} == {VERSION}"],
     )
     (pkg_dir / "pyproject.toml").write_text(pyproject)
     _copy_shared_assets(pkg_dir)
@@ -380,7 +380,7 @@ def _materialise_ns_group(src_root: Path, ns: str, group: str) -> tuple[Path, in
             f"Cython JNI wrappers for the {ns}.{group}.* subpackage "
             f"(android.jar, API 35). Imports as android.{ns}.{group}.*."
         ),
-        deps=["jni_core", f"android-{ns} == {VERSION}"],
+        deps=["jni-core", f"android-{ns} == {VERSION}"],
     )
     (pkg_dir / "pyproject.toml").write_text(pyproject)
     _copy_shared_assets(pkg_dir)

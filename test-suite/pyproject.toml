@@ -17,13 +17,16 @@ dev = [
     "pip",
     "setuptools>=68",
     "wheel",
-    "jni_core",
+    "jni-core",
     "pyjnius-builder",
 ]
 
 [tool.uv.sources]
-jni_core = { path = "../jni_core", editable = true }
+jni-core = { git = "https://github.com/kivy-school/jni-core" }
 pyjnius-builder = { path = "../../pyjnius-builder", editable = true }
 
 [tool.pytest.ini_options]
 testpaths = ["commons_csv"]
+
+[tool.setuptools]
+packages = []

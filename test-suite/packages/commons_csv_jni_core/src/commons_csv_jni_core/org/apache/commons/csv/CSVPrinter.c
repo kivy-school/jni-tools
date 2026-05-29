@@ -5,15 +5,15 @@
     "distutils": {
         "depends": [
             "/Library/Java/JavaVirtualMachines/temurin-26.jdk/Contents/Home/include/jni.h",
-            "/Volumes/CodeSSD/dev_projects/ksproject_dev/jni-tools/jni_core/src/jni_core/_jni_dispatch.h"
+            "/Volumes/CodeSSD/dev_projects/ksproject_dev/jni-tools/test-suite/.venv/lib/python3.13/site-packages/jni_core/_jni_dispatch.h"
         ],
         "extra_link_args": [
             "-L/Library/Java/JavaVirtualMachines/temurin-26.jdk/Contents/Home/lib/server",
             "-Wl,-rpath,/Library/Java/JavaVirtualMachines/temurin-26.jdk/Contents/Home/lib/server"
         ],
         "include_dirs": [
-            "/Volumes/CodeSSD/dev_projects/ksproject_dev/jni-tools/jni_core/src/jni_core",
-            "/Volumes/CodeSSD/dev_projects/ksproject_dev/jni-tools/jni_core/src",
+            "/Volumes/CodeSSD/dev_projects/ksproject_dev/jni-tools/test-suite/.venv/lib/python3.13/site-packages/jni_core",
+            "/Volumes/CodeSSD/dev_projects/ksproject_dev/jni-tools/test-suite/.venv/lib/python3.13/site-packages",
             "/Library/Java/JavaVirtualMachines/temurin-26.jdk/Contents/Home/include",
             "/Library/Java/JavaVirtualMachines/temurin-26.jdk/Contents/Home/include/darwin"
         ],
@@ -1366,7 +1366,7 @@ static const char *__pyx_filename;
 
 static const char* const __pyx_f[] = {
   "src/commons_csv_jni_core/org/apache/commons/csv/CSVPrinter.pyx",
-  "../../../jni_core/src/jni_core/conversions.pxi",
+  "../../.venv/lib/python3.13/site-packages/jni_core/conversions.pxi",
   "<stringsource>",
 };
 /* #### Code section: utility_code_proto_before_types ### */
@@ -2821,7 +2821,7 @@ return 0;
 #endif
 /* #### Code section: module_code ### */
 
-/* "../../../jni_core/src/jni_core/conversions.pxi":20
+/* "../../.venv/lib/python3.13/site-packages/jni_core/conversions.pxi":20
  * 
  * 
  * cdef inline jboolean py_to_jboolean(object v):             # <<<<<<<<<<<<<<
@@ -2837,7 +2837,7 @@ static CYTHON_INLINE jboolean __pyx_f_20commons_csv_jni_core_3org_6apache_7commo
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
 
-  /* "../../../jni_core/src/jni_core/conversions.pxi":21
+  /* "../../.venv/lib/python3.13/site-packages/jni_core/conversions.pxi":21
  * 
  * cdef inline jboolean py_to_jboolean(object v):
  *     return JNI_TRUE if v else JNI_FALSE             # <<<<<<<<<<<<<<
@@ -2853,7 +2853,7 @@ static CYTHON_INLINE jboolean __pyx_f_20commons_csv_jni_core_3org_6apache_7commo
   __pyx_r = __pyx_t_1;
   goto __pyx_L0;
 
-  /* "../../../jni_core/src/jni_core/conversions.pxi":20
+  /* "../../.venv/lib/python3.13/site-packages/jni_core/conversions.pxi":20
  * 
  * 
  * cdef inline jboolean py_to_jboolean(object v):             # <<<<<<<<<<<<<<
@@ -2869,7 +2869,7 @@ static CYTHON_INLINE jboolean __pyx_f_20commons_csv_jni_core_3org_6apache_7commo
   return __pyx_r;
 }
 
-/* "../../../jni_core/src/jni_core/conversions.pxi":24
+/* "../../.venv/lib/python3.13/site-packages/jni_core/conversions.pxi":24
  * 
  * 
  * cdef inline object jboolean_to_py(jboolean v):             # <<<<<<<<<<<<<<
@@ -2884,7 +2884,7 @@ static CYTHON_INLINE PyObject *__pyx_f_20commons_csv_jni_core_3org_6apache_7comm
   int __pyx_t_2;
   __Pyx_RefNannySetupContext("jboolean_to_py", 0);
 
-  /* "../../../jni_core/src/jni_core/conversions.pxi":25
+  /* "../../.venv/lib/python3.13/site-packages/jni_core/conversions.pxi":25
  * 
  * cdef inline object jboolean_to_py(jboolean v):
  *     return True if v == JNI_TRUE else False             # <<<<<<<<<<<<<<
@@ -2904,7 +2904,7 @@ static CYTHON_INLINE PyObject *__pyx_f_20commons_csv_jni_core_3org_6apache_7comm
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../jni_core/src/jni_core/conversions.pxi":24
+  /* "../../.venv/lib/python3.13/site-packages/jni_core/conversions.pxi":24
  * 
  * 
  * cdef inline object jboolean_to_py(jboolean v):             # <<<<<<<<<<<<<<
@@ -2919,7 +2919,7 @@ static CYTHON_INLINE PyObject *__pyx_f_20commons_csv_jni_core_3org_6apache_7comm
   return __pyx_r;
 }
 
-/* "../../../jni_core/src/jni_core/conversions.pxi":28
+/* "../../.venv/lib/python3.13/site-packages/jni_core/conversions.pxi":28
  * 
  * 
  * cdef inline jbyte   py_to_jbyte  (object v): return <jbyte>(<int>v)             # <<<<<<<<<<<<<<
@@ -2945,7 +2945,7 @@ static CYTHON_INLINE jbyte __pyx_f_20commons_csv_jni_core_3org_6apache_7commons_
   return __pyx_r;
 }
 
-/* "../../../jni_core/src/jni_core/conversions.pxi":29
+/* "../../.venv/lib/python3.13/site-packages/jni_core/conversions.pxi":29
  * 
  * cdef inline jbyte   py_to_jbyte  (object v): return <jbyte>(<int>v)
  * cdef inline jchar   py_to_jchar  (object v): return <jchar>(<int>v) if not isinstance(v, str) else <jchar>ord(v)             # <<<<<<<<<<<<<<
@@ -2983,7 +2983,7 @@ static CYTHON_INLINE jchar __pyx_f_20commons_csv_jni_core_3org_6apache_7commons_
   return __pyx_r;
 }
 
-/* "../../../jni_core/src/jni_core/conversions.pxi":30
+/* "../../.venv/lib/python3.13/site-packages/jni_core/conversions.pxi":30
  * cdef inline jbyte   py_to_jbyte  (object v): return <jbyte>(<int>v)
  * cdef inline jchar   py_to_jchar  (object v): return <jchar>(<int>v) if not isinstance(v, str) else <jchar>ord(v)
  * cdef inline jshort  py_to_jshort (object v): return <jshort>(<int>v)             # <<<<<<<<<<<<<<
@@ -3009,7 +3009,7 @@ static CYTHON_INLINE jshort __pyx_f_20commons_csv_jni_core_3org_6apache_7commons
   return __pyx_r;
 }
 
-/* "../../../jni_core/src/jni_core/conversions.pxi":31
+/* "../../.venv/lib/python3.13/site-packages/jni_core/conversions.pxi":31
  * cdef inline jchar   py_to_jchar  (object v): return <jchar>(<int>v) if not isinstance(v, str) else <jchar>ord(v)
  * cdef inline jshort  py_to_jshort (object v): return <jshort>(<int>v)
  * cdef inline jint    py_to_jint   (object v): return <jint>(<int>v)             # <<<<<<<<<<<<<<
@@ -3035,7 +3035,7 @@ static CYTHON_INLINE jint __pyx_f_20commons_csv_jni_core_3org_6apache_7commons_3
   return __pyx_r;
 }
 
-/* "../../../jni_core/src/jni_core/conversions.pxi":32
+/* "../../.venv/lib/python3.13/site-packages/jni_core/conversions.pxi":32
  * cdef inline jshort  py_to_jshort (object v): return <jshort>(<int>v)
  * cdef inline jint    py_to_jint   (object v): return <jint>(<int>v)
  * cdef inline jlong   py_to_jlong  (object v): return <jlong>(<long long>v)             # <<<<<<<<<<<<<<
@@ -3061,7 +3061,7 @@ static CYTHON_INLINE jlong __pyx_f_20commons_csv_jni_core_3org_6apache_7commons_
   return __pyx_r;
 }
 
-/* "../../../jni_core/src/jni_core/conversions.pxi":33
+/* "../../.venv/lib/python3.13/site-packages/jni_core/conversions.pxi":33
  * cdef inline jint    py_to_jint   (object v): return <jint>(<int>v)
  * cdef inline jlong   py_to_jlong  (object v): return <jlong>(<long long>v)
  * cdef inline jfloat  py_to_jfloat (object v): return <jfloat>(<double>v)             # <<<<<<<<<<<<<<
@@ -3086,7 +3086,7 @@ static CYTHON_INLINE jfloat __pyx_f_20commons_csv_jni_core_3org_6apache_7commons
   return __pyx_r;
 }
 
-/* "../../../jni_core/src/jni_core/conversions.pxi":34
+/* "../../.venv/lib/python3.13/site-packages/jni_core/conversions.pxi":34
  * cdef inline jlong   py_to_jlong  (object v): return <jlong>(<long long>v)
  * cdef inline jfloat  py_to_jfloat (object v): return <jfloat>(<double>v)
  * cdef inline jdouble py_to_jdouble(object v): return <jdouble>(<double>v)             # <<<<<<<<<<<<<<

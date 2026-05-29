@@ -8,7 +8,7 @@ version = "35.0.0"
 description = "Cython JNI wrappers for the android.animation.* subpackage (android.jar, API 35). Imports as android.android.animation.*."
 requires-python = ">=3.11"
 dependencies = [
-    "jni_core",
+    "jni-core",
     "android-android == 35.0.0",
 ]
 

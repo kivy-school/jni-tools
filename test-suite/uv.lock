@@ -64,7 +64,7 @@ wheels = [
 [[package]]
 name = "jni-core"
 version = "0.1.0"
-source = { editable = "../jni_core" }
+source = { git = "https://github.com/kivy-school/jni-core#bfb8a2ec183c09e79322f706281e9c89286f10bb" }
 
 [[package]]
 name = "jni-tools-test-suite"
@@ -88,7 +88,7 @@ dev = [
 [package.metadata.requires-dev]
 dev = [
     { name = "cython", specifier = ">=3.0" },
-    { name = "jni-core", editable = "../jni_core" },
+    { name = "jni-core", git = "https://github.com/kivy-school/jni-core" },
     { name = "pip" },
     { name = "pyjnius", specifier = ">=1.6" },
     { name = "pyjnius-builder", editable = "../../pyjnius-builder" },
