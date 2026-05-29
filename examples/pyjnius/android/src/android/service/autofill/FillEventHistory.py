@@ -1,0 +1,51 @@
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["FillEventHistory"]
+
+class FillEventHistory(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/service/autofill/FillEventHistory"
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getClientState = JavaMethod("()Landroid/os/Bundle;")
+    getEvents = JavaMethod("()Ljava/util/List;")
+    toString = JavaMethod("()Ljava/lang/String;")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
+    getSessionId = JavaMethod("()I")
+
+    class Event(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/service/autofill/FillEventHistory$Event"
+        NO_SAVE_UI_REASON_DATASET_MATCH = JavaStaticField("I")
+        NO_SAVE_UI_REASON_FIELD_VALIDATION_FAILED = JavaStaticField("I")
+        NO_SAVE_UI_REASON_HAS_EMPTY_REQUIRED = JavaStaticField("I")
+        NO_SAVE_UI_REASON_NONE = JavaStaticField("I")
+        NO_SAVE_UI_REASON_NO_SAVE_INFO = JavaStaticField("I")
+        NO_SAVE_UI_REASON_NO_VALUE_CHANGED = JavaStaticField("I")
+        NO_SAVE_UI_REASON_USING_CREDMAN = JavaStaticField("I")
+        NO_SAVE_UI_REASON_WITH_DELAY_SAVE_FLAG = JavaStaticField("I")
+        TYPE_AUTHENTICATION_SELECTED = JavaStaticField("I")
+        TYPE_CONTEXT_COMMITTED = JavaStaticField("I")
+        TYPE_DATASETS_SHOWN = JavaStaticField("I")
+        TYPE_DATASET_AUTHENTICATION_SELECTED = JavaStaticField("I")
+        TYPE_DATASET_SELECTED = JavaStaticField("I")
+        TYPE_SAVE_SHOWN = JavaStaticField("I")
+        TYPE_VIEW_REQUESTED_AUTOFILL = JavaStaticField("I")
+        UI_TYPE_CREDENTIAL_MANAGER = JavaStaticField("I")
+        UI_TYPE_DIALOG = JavaStaticField("I")
+        UI_TYPE_INLINE = JavaStaticField("I")
+        UI_TYPE_MENU = JavaStaticField("I")
+        UI_TYPE_UNKNOWN = JavaStaticField("I")
+        getFocusedId = JavaMethod("()Landroid/view/autofill/AutofillId;")
+        getClientState = JavaMethod("()Landroid/os/Bundle;")
+        getChangedFields = JavaMethod("()Ljava/util/Map;")
+        getDatasetId = JavaMethod("()Ljava/lang/String;")
+        getFieldsClassification = JavaMethod("()Ljava/util/Map;")
+        getIgnoredDatasetIds = JavaMethod("()Ljava/util/Set;")
+        getManuallyEnteredField = JavaMethod("()Ljava/util/Map;")
+        getNoSaveUiReason = JavaMethod("()I")
+        getSelectedDatasetIds = JavaMethod("()Ljava/util/Set;")
+        getShownDatasetIds = JavaMethod("()Ljava/util/Set;")
+        getUiType = JavaMethod("()I")
+        toString = JavaMethod("()Ljava/lang/String;")
+        getType = JavaMethod("()I")

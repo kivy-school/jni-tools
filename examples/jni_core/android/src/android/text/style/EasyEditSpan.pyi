@@ -1,0 +1,19 @@
+from typing import Any, ClassVar, overload
+from android.app.PendingIntent import PendingIntent
+from android.os.Parcel import Parcel
+
+class EasyEditSpan:
+    EXTRA_TEXT_CHANGED_TYPE: ClassVar[str]
+    TEXT_DELETED: ClassVar[int]
+    TEXT_MODIFIED: ClassVar[int]
+    CONTENTS_FILE_DESCRIPTOR: ClassVar[int]
+    PARCELABLE_WRITE_RETURN_VALUE: ClassVar[int]
+    @overload
+    def __init__(self, p0: Parcel) -> None: ...
+    @overload
+    def __init__(self, p0: PendingIntent) -> None: ...
+    @overload
+    def __init__(self) -> None: ...
+    def writeToParcel(self, p0: Parcel, p1: int) -> None: ...
+    def describeContents(self) -> int: ...
+    def getSpanTypeId(self) -> int: ...

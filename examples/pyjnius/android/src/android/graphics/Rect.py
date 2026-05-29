@@ -1,0 +1,41 @@
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["Rect"]
+
+class Rect(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/graphics/Rect"
+    __javaconstructor__ = [("(IIII)V", False), ("(Landroid/graphics/Rect;)V", False), ("()V", False)]
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    bottom = JavaField("I")
+    left = JavaField("I")
+    right = JavaField("I")
+    top = JavaField("I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    sort = JavaMethod("()V")
+    isEmpty = JavaMethod("()Z")
+    offset = JavaMethod("(II)V")
+    contains = JavaMultipleMethod([("(Landroid/graphics/Rect;)Z", False, False), ("(II)Z", False, False), ("(IIII)Z", False, False)])
+    set = JavaMultipleMethod([("(IIII)V", False, False), ("(Landroid/graphics/Rect;)V", False, False)])
+    toShortString = JavaMethod("()Ljava/lang/String;")
+    flattenToString = JavaMethod("()Ljava/lang/String;")
+    unflattenFromString = JavaStaticMethod("(Ljava/lang/String;)Landroid/graphics/Rect;")
+    centerX = JavaMethod("()I")
+    centerY = JavaMethod("()I")
+    exactCenterX = JavaMethod("()F")
+    exactCenterY = JavaMethod("()F")
+    inset = JavaMultipleMethod([("(II)V", False, False), ("(Landroid/graphics/Insets;)V", False, False), ("(IIII)V", False, False)])
+    intersect = JavaMultipleMethod([("(Landroid/graphics/Rect;)Z", False, False), ("(IIII)Z", False, False)])
+    offsetTo = JavaMethod("(II)V")
+    setEmpty = JavaMethod("()V")
+    setIntersect = JavaMethod("(Landroid/graphics/Rect;Landroid/graphics/Rect;)Z")
+    union = JavaMultipleMethod([("(IIII)V", False, False), ("(Landroid/graphics/Rect;)V", False, False), ("(II)V", False, False)])
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    readFromParcel = JavaMethod("(Landroid/os/Parcel;)V")
+    describeContents = JavaMethod("()I")
+    width = JavaMethod("()I")
+    height = JavaMethod("()I")
+    intersects = JavaMultipleMethod([("(IIII)Z", False, False), ("(Landroid/graphics/Rect;Landroid/graphics/Rect;)Z", True, False)])

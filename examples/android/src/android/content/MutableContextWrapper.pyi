@@ -1,6 +1,0 @@
-from typing import Any, ClassVar, overload
-from android.content.Context import Context
-
-class MutableContextWrapper:
-    def __init__(self, arg0: Context) -> None: ...
-    def setBaseContext(self, arg0: Context) -> None: ...

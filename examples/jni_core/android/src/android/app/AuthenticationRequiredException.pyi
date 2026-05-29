@@ -1,0 +1,13 @@
+from typing import Any, ClassVar, overload
+from android.app.PendingIntent import PendingIntent
+from android.os.Parcel import Parcel
+from java.lang.Throwable import Throwable
+
+class AuthenticationRequiredException:
+    CREATOR: ClassVar[Any]
+    CONTENTS_FILE_DESCRIPTOR: ClassVar[int]
+    PARCELABLE_WRITE_RETURN_VALUE: ClassVar[int]
+    def __init__(self, p0: Throwable, p1: PendingIntent) -> None: ...
+    def getUserAction(self) -> PendingIntent: ...
+    def writeToParcel(self, p0: Parcel, p1: int) -> None: ...
+    def describeContents(self) -> int: ...

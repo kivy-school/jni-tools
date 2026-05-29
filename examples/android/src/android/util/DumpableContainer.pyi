@@ -1,6 +1,0 @@
-from typing import Any, ClassVar, overload
-from android.util.Dumpable import Dumpable
-
-class DumpableContainer:
-    def addDumpable(self, arg0: Dumpable) -> bool: ...
-    def removeDumpable(self, arg0: Dumpable) -> bool: ...

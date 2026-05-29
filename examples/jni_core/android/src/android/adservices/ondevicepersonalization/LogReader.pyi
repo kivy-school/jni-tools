@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from java.time.Instant import Instant
+
+class LogReader:
+    def getJoinedEvents(self, p0: Instant, p1: Instant) -> list: ...
+    def getRequests(self, p0: Instant, p1: Instant) -> list: ...

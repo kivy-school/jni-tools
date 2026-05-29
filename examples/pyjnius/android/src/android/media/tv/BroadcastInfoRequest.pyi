@@ -1,0 +1,16 @@
+from typing import Any, ClassVar, overload
+from android.os.Parcel import Parcel
+
+class BroadcastInfoRequest:
+    CREATOR: ClassVar[Any]
+    REQUEST_OPTION_AUTO_UPDATE: ClassVar[int]
+    REQUEST_OPTION_ONESHOT: ClassVar[int]
+    REQUEST_OPTION_ONEWAY: ClassVar[int]
+    REQUEST_OPTION_REPEAT: ClassVar[int]
+    CONTENTS_FILE_DESCRIPTOR: ClassVar[int]
+    PARCELABLE_WRITE_RETURN_VALUE: ClassVar[int]
+    def getRequestId(self) -> int: ...
+    def getType(self) -> int: ...
+    def writeToParcel(self, p0: Parcel, p1: int) -> None: ...
+    def describeContents(self) -> int: ...
+    def getOption(self) -> int: ...

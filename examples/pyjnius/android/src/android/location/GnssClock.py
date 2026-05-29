@@ -1,0 +1,38 @@
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["GnssClock"]
+
+class GnssClock(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/location/GnssClock"
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getTimeNanos = JavaMethod("()J")
+    getFullBiasNanos = JavaMethod("()J")
+    getBiasNanos = JavaMethod("()D")
+    getBiasUncertaintyNanos = JavaMethod("()D")
+    getDriftNanosPerSecond = JavaMethod("()D")
+    getDriftUncertaintyNanosPerSecond = JavaMethod("()D")
+    getHardwareClockDiscontinuityCount = JavaMethod("()I")
+    getLeapSecond = JavaMethod("()I")
+    getReferenceCarrierFrequencyHzForIsb = JavaMethod("()D")
+    getReferenceCodeTypeForIsb = JavaMethod("()Ljava/lang/String;")
+    getReferenceConstellationTypeForIsb = JavaMethod("()I")
+    getTimeUncertaintyNanos = JavaMethod("()D")
+    hasBiasNanos = JavaMethod("()Z")
+    hasBiasUncertaintyNanos = JavaMethod("()Z")
+    hasDriftNanosPerSecond = JavaMethod("()Z")
+    hasDriftUncertaintyNanosPerSecond = JavaMethod("()Z")
+    hasElapsedRealtimeNanos = JavaMethod("()Z")
+    hasFullBiasNanos = JavaMethod("()Z")
+    hasLeapSecond = JavaMethod("()Z")
+    hasReferenceCarrierFrequencyHzForIsb = JavaMethod("()Z")
+    hasReferenceCodeTypeForIsb = JavaMethod("()Z")
+    hasReferenceConstellationTypeForIsb = JavaMethod("()Z")
+    hasTimeUncertaintyNanos = JavaMethod("()Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    getElapsedRealtimeNanos = JavaMethod("()J")
+    getElapsedRealtimeUncertaintyNanos = JavaMethod("()D")
+    hasElapsedRealtimeUncertaintyNanos = JavaMethod("()Z")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

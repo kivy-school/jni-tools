@@ -1,0 +1,61 @@
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["PrecomputedText"]
+
+class PrecomputedText(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/text/PrecomputedText"
+    SPAN_COMPOSING = JavaStaticField("I")
+    SPAN_EXCLUSIVE_EXCLUSIVE = JavaStaticField("I")
+    SPAN_EXCLUSIVE_INCLUSIVE = JavaStaticField("I")
+    SPAN_INCLUSIVE_EXCLUSIVE = JavaStaticField("I")
+    SPAN_INCLUSIVE_INCLUSIVE = JavaStaticField("I")
+    SPAN_INTERMEDIATE = JavaStaticField("I")
+    SPAN_MARK_MARK = JavaStaticField("I")
+    SPAN_MARK_POINT = JavaStaticField("I")
+    SPAN_PARAGRAPH = JavaStaticField("I")
+    SPAN_POINT_MARK = JavaStaticField("I")
+    SPAN_POINT_MARK_MASK = JavaStaticField("I")
+    SPAN_POINT_POINT = JavaStaticField("I")
+    SPAN_PRIORITY = JavaStaticField("I")
+    SPAN_PRIORITY_SHIFT = JavaStaticField("I")
+    SPAN_USER = JavaStaticField("I")
+    SPAN_USER_SHIFT = JavaStaticField("I")
+    getParagraphCount = JavaMethod("()I")
+    getParagraphEnd = JavaMethod("(I)I")
+    getParagraphStart = JavaMethod("(I)I")
+    length = JavaMethod("()I")
+    toString = JavaMethod("()Ljava/lang/String;")
+    charAt = JavaMethod("(I)C")
+    subSequence = JavaMethod("(II)Ljava/lang/CharSequence;")
+    getBounds = JavaMethod("(IILandroid/graphics/Rect;)V")
+    create = JavaStaticMethod("(Ljava/lang/CharSequence;Landroid/text/PrecomputedText$Params;)Landroid/text/PrecomputedText;")
+    getWidth = JavaMethod("(II)F")
+    removeSpan = JavaMethod("(Ljava/lang/Object;)V")
+    setSpan = JavaMethod("(Ljava/lang/Object;III)V")
+    getSpanEnd = JavaMethod("(Ljava/lang/Object;)I")
+    getSpanFlags = JavaMethod("(Ljava/lang/Object;)I")
+    getSpanStart = JavaMethod("(Ljava/lang/Object;)I")
+    nextSpanTransition = JavaMethod("(IILjava/lang/Class;)I")
+    getSpans = JavaMethod("(IILjava/lang/Class;)[Ljava/lang/Object;")
+    getParams = JavaMethod("()Landroid/text/PrecomputedText$Params;")
+    getFontMetricsInt = JavaMethod("(IILandroid/graphics/Paint$FontMetricsInt;)V")
+
+    class Params(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/text/PrecomputedText$Params"
+        equals = JavaMethod("(Ljava/lang/Object;)Z")
+        toString = JavaMethod("()Ljava/lang/String;")
+        hashCode = JavaMethod("()I")
+        getTextDirection = JavaMethod("()Landroid/text/TextDirectionHeuristic;")
+        getBreakStrategy = JavaMethod("()I")
+        getHyphenationFrequency = JavaMethod("()I")
+        getLineBreakConfig = JavaMethod("()Landroid/graphics/text/LineBreakConfig;")
+        getTextPaint = JavaMethod("()Landroid/text/TextPaint;")
+
+        class Builder(JavaClass, metaclass=MetaJavaClass):
+            __javaclass__ = "android/text/PrecomputedText$Params$Builder"
+            __javaconstructor__ = [("(Landroid/text/PrecomputedText$Params;)V", False), ("(Landroid/text/TextPaint;)V", False)]
+            setLineBreakConfig = JavaMethod("(Landroid/graphics/text/LineBreakConfig;)Landroid/text/PrecomputedText$Params$Builder;")
+            setTextDirection = JavaMethod("(Landroid/text/TextDirectionHeuristic;)Landroid/text/PrecomputedText$Params$Builder;")
+            build = JavaMethod("()Landroid/text/PrecomputedText$Params;")
+            setBreakStrategy = JavaMethod("(I)Landroid/text/PrecomputedText$Params$Builder;")
+            setHyphenationFrequency = JavaMethod("(I)Landroid/text/PrecomputedText$Params$Builder;")

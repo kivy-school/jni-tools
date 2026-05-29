@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from android.graphics.Rect import Rect
+
+class TimedText:
+    def getBounds(self) -> Rect: ...
+    def getText(self) -> str: ...

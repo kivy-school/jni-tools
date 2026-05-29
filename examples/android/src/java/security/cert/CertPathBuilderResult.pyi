@@ -1,6 +1,0 @@
-from typing import Any, ClassVar, overload
-from java.security.cert.CertPath import CertPath
-
-class CertPathBuilderResult:
-    def getCertPath(self) -> CertPath: ...
-    def clone(self) -> Any: ...

@@ -1,0 +1,222 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "android-android"
+version = "35.0.0"
+description = "Meta-package for the android.android.* namespace (android.jar, API 35). Use extras to pull in individual dists: [manifest, r, accessibilityservice, …, all]."
+requires-python = ">=3.11"
+dependencies = [
+]
+
+[project.optional-dependencies]
+accessibilityservice = [
+    "android-android-accessibilityservice == 35.0.0",
+]
+accounts = [
+    "android-android-accounts == 35.0.0",
+]
+adservices = [
+    "android-android-adservices == 35.0.0",
+]
+all = [
+    "android-android-manifest == 35.0.0",
+    "android-android-r == 35.0.0",
+    "android-android-accessibilityservice == 35.0.0",
+    "android-android-accounts == 35.0.0",
+    "android-android-adservices == 35.0.0",
+    "android-android-animation == 35.0.0",
+    "android-android-annotation == 35.0.0",
+    "android-android-app == 35.0.0",
+    "android-android-appwidget == 35.0.0",
+    "android-android-bluetooth == 35.0.0",
+    "android-android-companion == 35.0.0",
+    "android-android-content == 35.0.0",
+    "android-android-credentials == 35.0.0",
+    "android-android-crypto == 35.0.0",
+    "android-android-database == 35.0.0",
+    "android-android-devicelock == 35.0.0",
+    "android-android-drm == 35.0.0",
+    "android-android-gesture == 35.0.0",
+    "android-android-graphics == 35.0.0",
+    "android-android-hardware == 35.0.0",
+    "android-android-health == 35.0.0",
+    "android-android-icu == 35.0.0",
+    "android-android-inputmethodservice == 35.0.0",
+    "android-android-location == 35.0.0",
+    "android-android-media == 35.0.0",
+    "android-android-mtp == 35.0.0",
+    "android-android-net == 35.0.0",
+    "android-android-nfc == 35.0.0",
+    "android-android-opengl == 35.0.0",
+    "android-android-os == 35.0.0",
+    "android-android-preference == 35.0.0",
+    "android-android-print == 35.0.0",
+    "android-android-printservice == 35.0.0",
+    "android-android-provider == 35.0.0",
+    "android-android-ranging == 35.0.0",
+    "android-android-renderscript == 35.0.0",
+    "android-android-sax == 35.0.0",
+    "android-android-se == 35.0.0",
+    "android-android-security == 35.0.0",
+    "android-android-service == 35.0.0",
+    "android-android-speech == 35.0.0",
+    "android-android-system == 35.0.0",
+    "android-android-telecom == 35.0.0",
+    "android-android-telephony == 35.0.0",
+    "android-android-text == 35.0.0",
+    "android-android-transition == 35.0.0",
+    "android-android-util == 35.0.0",
+    "android-android-view == 35.0.0",
+    "android-android-webkit == 35.0.0",
+    "android-android-widget == 35.0.0",
+    "android-android-window == 35.0.0",
+]
+animation = [
+    "android-android-animation == 35.0.0",
+]
+annotation = [
+    "android-android-annotation == 35.0.0",
+]
+app = [
+    "android-android-app == 35.0.0",
+]
+appwidget = [
+    "android-android-appwidget == 35.0.0",
+]
+bluetooth = [
+    "android-android-bluetooth == 35.0.0",
+]
+companion = [
+    "android-android-companion == 35.0.0",
+]
+content = [
+    "android-android-content == 35.0.0",
+]
+credentials = [
+    "android-android-credentials == 35.0.0",
+]
+crypto = [
+    "android-android-crypto == 35.0.0",
+]
+database = [
+    "android-android-database == 35.0.0",
+]
+devicelock = [
+    "android-android-devicelock == 35.0.0",
+]
+drm = [
+    "android-android-drm == 35.0.0",
+]
+gesture = [
+    "android-android-gesture == 35.0.0",
+]
+graphics = [
+    "android-android-graphics == 35.0.0",
+]
+hardware = [
+    "android-android-hardware == 35.0.0",
+]
+health = [
+    "android-android-health == 35.0.0",
+]
+icu = [
+    "android-android-icu == 35.0.0",
+]
+inputmethodservice = [
+    "android-android-inputmethodservice == 35.0.0",
+]
+location = [
+    "android-android-location == 35.0.0",
+]
+manifest = [
+    "android-android-manifest == 35.0.0",
+]
+media = [
+    "android-android-media == 35.0.0",
+]
+mtp = [
+    "android-android-mtp == 35.0.0",
+]
+net = [
+    "android-android-net == 35.0.0",
+]
+nfc = [
+    "android-android-nfc == 35.0.0",
+]
+opengl = [
+    "android-android-opengl == 35.0.0",
+]
+os = [
+    "android-android-os == 35.0.0",
+]
+preference = [
+    "android-android-preference == 35.0.0",
+]
+print = [
+    "android-android-print == 35.0.0",
+]
+printservice = [
+    "android-android-printservice == 35.0.0",
+]
+provider = [
+    "android-android-provider == 35.0.0",
+]
+r = [
+    "android-android-r == 35.0.0",
+]
+ranging = [
+    "android-android-ranging == 35.0.0",
+]
+renderscript = [
+    "android-android-renderscript == 35.0.0",
+]
+sax = [
+    "android-android-sax == 35.0.0",
+]
+se = [
+    "android-android-se == 35.0.0",
+]
+security = [
+    "android-android-security == 35.0.0",
+]
+service = [
+    "android-android-service == 35.0.0",
+]
+speech = [
+    "android-android-speech == 35.0.0",
+]
+system = [
+    "android-android-system == 35.0.0",
+]
+telecom = [
+    "android-android-telecom == 35.0.0",
+]
+telephony = [
+    "android-android-telephony == 35.0.0",
+]
+text = [
+    "android-android-text == 35.0.0",
+]
+transition = [
+    "android-android-transition == 35.0.0",
+]
+util = [
+    "android-android-util == 35.0.0",
+]
+view = [
+    "android-android-view == 35.0.0",
+]
+webkit = [
+    "android-android-webkit == 35.0.0",
+]
+widget = [
+    "android-android-widget == 35.0.0",
+]
+window = [
+    "android-android-window == 35.0.0",
+]
+
+[tool.setuptools]
+packages = []

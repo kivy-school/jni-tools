@@ -1,0 +1,87 @@
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["AudioRecord"]
+
+class AudioRecord(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/media/AudioRecord"
+    __javaconstructor__ = [("(IIIII)V", False)]
+    ERROR = JavaStaticField("I")
+    ERROR_BAD_VALUE = JavaStaticField("I")
+    ERROR_DEAD_OBJECT = JavaStaticField("I")
+    ERROR_INVALID_OPERATION = JavaStaticField("I")
+    READ_BLOCKING = JavaStaticField("I")
+    READ_NON_BLOCKING = JavaStaticField("I")
+    RECORDSTATE_RECORDING = JavaStaticField("I")
+    RECORDSTATE_STOPPED = JavaStaticField("I")
+    STATE_INITIALIZED = JavaStaticField("I")
+    STATE_UNINITIALIZED = JavaStaticField("I")
+    SUCCESS = JavaStaticField("I")
+    MIC_DIRECTION_AWAY_FROM_USER = JavaStaticField("I")
+    MIC_DIRECTION_EXTERNAL = JavaStaticField("I")
+    MIC_DIRECTION_TOWARDS_USER = JavaStaticField("I")
+    MIC_DIRECTION_UNSPECIFIED = JavaStaticField("I")
+    getMetrics = JavaMethod("()Landroid/os/PersistableBundle;")
+    getSampleRate = JavaMethod("()I")
+    startRecording = JavaMultipleMethod([("(Landroid/media/MediaSyncEvent;)V", False, False), ("()V", False, False)])
+    getLogSessionId = JavaMethod("()Landroid/media/metrics/LogSessionId;")
+    setLogSessionId = JavaMethod("(Landroid/media/metrics/LogSessionId;)V")
+    isPrivacySensitive = JavaMethod("()Z")
+    getActiveMicrophones = JavaMethod("()Ljava/util/List;")
+    getActiveRecordingConfiguration = JavaMethod("()Landroid/media/AudioRecordingConfiguration;")
+    registerAudioRecordingCallback = JavaMethod("(Ljava/util/concurrent/Executor;Landroid/media/AudioManager$AudioRecordingCallback;)V")
+    setPreferredMicrophoneDirection = JavaMethod("(I)Z")
+    setPreferredMicrophoneFieldDimension = JavaMethod("(F)Z")
+    unregisterAudioRecordingCallback = JavaMethod("(Landroid/media/AudioManager$AudioRecordingCallback;)V")
+    getAudioFormat = JavaMethod("()I")
+    getBufferSizeInFrames = JavaMethod("()I")
+    getChannelConfiguration = JavaMethod("()I")
+    getMinBufferSize = JavaStaticMethod("(III)I")
+    getNotificationMarkerPosition = JavaMethod("()I")
+    getPositionNotificationPeriod = JavaMethod("()I")
+    setNotificationMarkerPosition = JavaMethod("(I)I")
+    setPositionNotificationPeriod = JavaMethod("(I)I")
+    addOnRoutingChangedListener = JavaMultipleMethod([("(Landroid/media/AudioRouting$OnRoutingChangedListener;Landroid/os/Handler;)V", False, False), ("(Landroid/media/AudioRecord$OnRoutingChangedListener;Landroid/os/Handler;)V", False, False)])
+    getPreferredDevice = JavaMethod("()Landroid/media/AudioDeviceInfo;")
+    getRoutedDevice = JavaMethod("()Landroid/media/AudioDeviceInfo;")
+    getRoutedDevices = JavaMethod("()Ljava/util/List;")
+    removeOnRoutingChangedListener = JavaMultipleMethod([("(Landroid/media/AudioRouting$OnRoutingChangedListener;)V", False, False), ("(Landroid/media/AudioRecord$OnRoutingChangedListener;)V", False, False)])
+    setPreferredDevice = JavaMethod("(Landroid/media/AudioDeviceInfo;)Z")
+    getRecordingState = JavaMethod("()I")
+    setRecordPositionUpdateListener = JavaMultipleMethod([("(Landroid/media/AudioRecord$OnRecordPositionUpdateListener;)V", False, False), ("(Landroid/media/AudioRecord$OnRecordPositionUpdateListener;Landroid/os/Handler;)V", False, False)])
+    getState = JavaMethod("()I")
+    read = JavaMultipleMethod([("([BIII)I", False, False), ("([BII)I", False, False), ("([SIII)I", False, False), ("([SII)I", False, False), ("(Ljava/nio/ByteBuffer;II)I", False, False), ("(Ljava/nio/ByteBuffer;I)I", False, False), ("([FIII)I", False, False)])
+    release = JavaMethod("()V")
+    getChannelCount = JavaMethod("()I")
+    getAudioSessionId = JavaMethod("()I")
+    getAudioSource = JavaMethod("()I")
+    getTimestamp = JavaMethod("(Landroid/media/AudioTimestamp;I)I")
+    stop = JavaMethod("()V")
+    getFormat = JavaMethod("()Landroid/media/AudioFormat;")
+
+    class OnRoutingChangedListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/media/AudioRecord$OnRoutingChangedListener"
+        onRoutingChanged = JavaMultipleMethod([("(Landroid/media/AudioRecord;)V", False, False), ("(Landroid/media/AudioRouting;)V", False, False)])
+
+    class OnRecordPositionUpdateListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/media/AudioRecord$OnRecordPositionUpdateListener"
+        onMarkerReached = JavaMethod("(Landroid/media/AudioRecord;)V")
+        onPeriodicNotification = JavaMethod("(Landroid/media/AudioRecord;)V")
+
+    class MetricsConstants(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/media/AudioRecord$MetricsConstants"
+        CHANNELS = JavaStaticField("Ljava/lang/String;")
+        ENCODING = JavaStaticField("Ljava/lang/String;")
+        LATENCY = JavaStaticField("Ljava/lang/String;")
+        SAMPLERATE = JavaStaticField("Ljava/lang/String;")
+        SOURCE = JavaStaticField("Ljava/lang/String;")
+
+    class Builder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/media/AudioRecord$Builder"
+        __javaconstructor__ = [("()V", False)]
+        setContext = JavaMethod("(Landroid/content/Context;)Landroid/media/AudioRecord$Builder;")
+        setAudioSource = JavaMethod("(I)Landroid/media/AudioRecord$Builder;")
+        setPrivacySensitive = JavaMethod("(Z)Landroid/media/AudioRecord$Builder;")
+        setAudioFormat = JavaMethod("(Landroid/media/AudioFormat;)Landroid/media/AudioRecord$Builder;")
+        setAudioPlaybackCaptureConfig = JavaMethod("(Landroid/media/AudioPlaybackCaptureConfiguration;)Landroid/media/AudioRecord$Builder;")
+        setBufferSizeInBytes = JavaMethod("(I)Landroid/media/AudioRecord$Builder;")
+        build = JavaMethod("()Landroid/media/AudioRecord;")

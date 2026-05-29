@@ -1,0 +1,36 @@
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["ChronoZonedDateTime"]
+
+class ChronoZonedDateTime(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "java/time/chrono/ChronoZonedDateTime"
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    compareTo = JavaMultipleMethod([("(Ljava/lang/Object;)I", False, False), ("(Ljava/time/chrono/ChronoZonedDateTime;)I", False, False)])
+    getLong = JavaMethod("(Ljava/time/temporal/TemporalField;)J")
+    get = JavaMethod("(Ljava/time/temporal/TemporalField;)I")
+    format = JavaMethod("(Ljava/time/format/DateTimeFormatter;)Ljava/lang/String;")
+    from = JavaStaticMethod("(Ljava/time/temporal/TemporalAccessor;)Ljava/time/chrono/ChronoZonedDateTime;")
+    isSupported = JavaMultipleMethod([("(Ljava/time/temporal/TemporalUnit;)Z", False, False), ("(Ljava/time/temporal/TemporalField;)Z", False, False)])
+    with = JavaMultipleMethod([("(Ljava/time/temporal/TemporalAdjuster;)Ljava/time/temporal/Temporal;", False, False), ("(Ljava/time/temporal/TemporalAdjuster;)Ljava/time/chrono/ChronoZonedDateTime;", False, False), ("(Ljava/time/temporal/TemporalField;J)Ljava/time/temporal/Temporal;", False, False), ("(Ljava/time/temporal/TemporalField;J)Ljava/time/chrono/ChronoZonedDateTime;", False, False)])
+    query = JavaMethod("(Ljava/time/temporal/TemporalQuery;)Ljava/lang/Object;")
+    getOffset = JavaMethod("()Ljava/time/ZoneOffset;")
+    isEqual = JavaMethod("(Ljava/time/chrono/ChronoZonedDateTime;)Z")
+    range = JavaMethod("(Ljava/time/temporal/TemporalField;)Ljava/time/temporal/ValueRange;")
+    toLocalDateTime = JavaMethod("()Ljava/time/chrono/ChronoLocalDateTime;")
+    toLocalDate = JavaMethod("()Ljava/time/chrono/ChronoLocalDate;")
+    withZoneSameInstant = JavaMethod("(Ljava/time/ZoneId;)Ljava/time/chrono/ChronoZonedDateTime;")
+    withZoneSameLocal = JavaMethod("(Ljava/time/ZoneId;)Ljava/time/chrono/ChronoZonedDateTime;")
+    withLaterOffsetAtOverlap = JavaMethod("()Ljava/time/chrono/ChronoZonedDateTime;")
+    withEarlierOffsetAtOverlap = JavaMethod("()Ljava/time/chrono/ChronoZonedDateTime;")
+    plus = JavaMultipleMethod([("(Ljava/time/temporal/TemporalAmount;)Ljava/time/temporal/Temporal;", False, False), ("(JLjava/time/temporal/TemporalUnit;)Ljava/time/chrono/ChronoZonedDateTime;", False, False), ("(Ljava/time/temporal/TemporalAmount;)Ljava/time/chrono/ChronoZonedDateTime;", False, False), ("(JLjava/time/temporal/TemporalUnit;)Ljava/time/temporal/Temporal;", False, False)])
+    minus = JavaMultipleMethod([("(JLjava/time/temporal/TemporalUnit;)Ljava/time/temporal/Temporal;", False, False), ("(Ljava/time/temporal/TemporalAmount;)Ljava/time/temporal/Temporal;", False, False), ("(Ljava/time/temporal/TemporalAmount;)Ljava/time/chrono/ChronoZonedDateTime;", False, False), ("(JLjava/time/temporal/TemporalUnit;)Ljava/time/chrono/ChronoZonedDateTime;", False, False)])
+    getChronology = JavaMethod("()Ljava/time/chrono/Chronology;")
+    getZone = JavaMethod("()Ljava/time/ZoneId;")
+    toLocalTime = JavaMethod("()Ljava/time/LocalTime;")
+    isAfter = JavaMethod("(Ljava/time/chrono/ChronoZonedDateTime;)Z")
+    isBefore = JavaMethod("(Ljava/time/chrono/ChronoZonedDateTime;)Z")
+    timeLineOrder = JavaStaticMethod("()Ljava/util/Comparator;")
+    toEpochSecond = JavaMethod("()J")
+    toInstant = JavaMethod("()Ljava/time/Instant;")

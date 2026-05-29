@@ -1,0 +1,13 @@
+from typing import Any, ClassVar, overload
+from android.os.Parcel import Parcel
+
+class PowerMonitor:
+    CREATOR: ClassVar[Any]
+    POWER_MONITOR_TYPE_CONSUMER: ClassVar[int]
+    POWER_MONITOR_TYPE_MEASUREMENT: ClassVar[int]
+    CONTENTS_FILE_DESCRIPTOR: ClassVar[int]
+    PARCELABLE_WRITE_RETURN_VALUE: ClassVar[int]
+    def getName(self) -> str: ...
+    def getType(self) -> int: ...
+    def writeToParcel(self, p0: Parcel, p1: int) -> None: ...
+    def describeContents(self) -> int: ...

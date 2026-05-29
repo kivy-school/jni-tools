@@ -1,6 +1,0 @@
-from typing import Any, ClassVar, overload
-from java.lang.Throwable import Throwable
-
-class OutcomeReceiver:
-    def onResult(self, arg0: Any) -> None: ...
-    def onError(self, arg0: Throwable) -> None: ...

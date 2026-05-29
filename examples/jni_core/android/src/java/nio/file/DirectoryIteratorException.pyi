@@ -1,0 +1,10 @@
+from typing import Any, ClassVar, overload
+from java.io.IOException import IOException
+from java.lang.Throwable import Throwable
+
+class DirectoryIteratorException:
+    def __init__(self, p0: IOException) -> None: ...
+    @overload
+    def getCause(self) -> Throwable: ...
+    @overload
+    def getCause(self) -> IOException: ...

@@ -1,0 +1,19 @@
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["BulletSpan"]
+
+class BulletSpan(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/text/style/BulletSpan"
+    __javaconstructor__ = [("()V", False), ("(Landroid/os/Parcel;)V", False), ("(II)V", False), ("(III)V", False), ("(I)V", False)]
+    STANDARD_GAP_WIDTH = JavaStaticField("I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    drawLeadingMargin = JavaMethod("(Landroid/graphics/Canvas;Landroid/graphics/Paint;IIIIILjava/lang/CharSequence;IIZLandroid/text/Layout;)V")
+    getGapWidth = JavaMethod("()I")
+    getLeadingMargin = JavaMethod("(Z)I")
+    getBulletRadius = JavaMethod("()I")
+    toString = JavaMethod("()Ljava/lang/String;")
+    getColor = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
+    getSpanTypeId = JavaMethod("()I")

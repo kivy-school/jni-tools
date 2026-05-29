@@ -1,0 +1,50 @@
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["WallpaperManager"]
+
+class WallpaperManager(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/app/WallpaperManager"
+    ACTION_CHANGE_LIVE_WALLPAPER = JavaStaticField("Ljava/lang/String;")
+    ACTION_CROP_AND_SET_WALLPAPER = JavaStaticField("Ljava/lang/String;")
+    ACTION_LIVE_WALLPAPER_CHOOSER = JavaStaticField("Ljava/lang/String;")
+    COMMAND_DROP = JavaStaticField("Ljava/lang/String;")
+    COMMAND_SECONDARY_TAP = JavaStaticField("Ljava/lang/String;")
+    COMMAND_TAP = JavaStaticField("Ljava/lang/String;")
+    EXTRA_LIVE_WALLPAPER_COMPONENT = JavaStaticField("Ljava/lang/String;")
+    FLAG_LOCK = JavaStaticField("I")
+    FLAG_SYSTEM = JavaStaticField("I")
+    WALLPAPER_PREVIEW_META_DATA = JavaStaticField("Ljava/lang/String;")
+    getDesiredMinimumHeight = JavaMethod("()I")
+    getDesiredMinimumWidth = JavaMethod("()I")
+    getBuiltInDrawable = JavaMultipleMethod([("()Landroid/graphics/drawable/Drawable;", False, False), ("(I)Landroid/graphics/drawable/Drawable;", False, False), ("(IIZFF)Landroid/graphics/drawable/Drawable;", False, False), ("(IIZFFI)Landroid/graphics/drawable/Drawable;", False, False)])
+    getFastDrawable = JavaMultipleMethod([("()Landroid/graphics/drawable/Drawable;", False, False), ("(I)Landroid/graphics/drawable/Drawable;", False, False)])
+    addOnColorsChangedListener = JavaMethod("(Landroid/app/WallpaperManager$OnColorsChangedListener;Landroid/os/Handler;)V")
+    clearWallpaperOffsets = JavaMethod("(Landroid/os/IBinder;)V")
+    forgetLoadedWallpaper = JavaMethod("()V")
+    getCropAndSetWallpaperIntent = JavaMethod("(Landroid/net/Uri;)Landroid/content/Intent;")
+    clear = JavaMultipleMethod([("()V", False, False), ("(I)V", False, False)])
+    getInstance = JavaStaticMethod("(Landroid/content/Context;)Landroid/app/WallpaperManager;")
+    setBitmap = JavaMultipleMethod([("(Landroid/graphics/Bitmap;Landroid/graphics/Rect;ZI)I", False, False), ("(Landroid/graphics/Bitmap;Landroid/graphics/Rect;Z)I", False, False), ("(Landroid/graphics/Bitmap;)V", False, False)])
+    getDrawable = JavaMultipleMethod([("()Landroid/graphics/drawable/Drawable;", False, False), ("(I)Landroid/graphics/drawable/Drawable;", False, False)])
+    clearWallpaper = JavaMethod("()V")
+    setStream = JavaMultipleMethod([("(Ljava/io/InputStream;Landroid/graphics/Rect;ZI)I", False, False), ("(Ljava/io/InputStream;)V", False, False), ("(Ljava/io/InputStream;Landroid/graphics/Rect;Z)I", False, False)])
+    getWallpaperFile = JavaMethod("(I)Landroid/os/ParcelFileDescriptor;")
+    peekFastDrawable = JavaMultipleMethod([("()Landroid/graphics/drawable/Drawable;", False, False), ("(I)Landroid/graphics/drawable/Drawable;", False, False)])
+    setDisplayPadding = JavaMethod("(Landroid/graphics/Rect;)V")
+    getWallpaperId = JavaMethod("(I)I")
+    setResource = JavaMultipleMethod([("(I)V", False, False), ("(II)I", False, False)])
+    getWallpaperInfo = JavaMultipleMethod([("()Landroid/app/WallpaperInfo;", False, False), ("(I)Landroid/app/WallpaperInfo;", False, False)])
+    hasResourceWallpaper = JavaMethod("(I)Z")
+    peekDrawable = JavaMultipleMethod([("()Landroid/graphics/drawable/Drawable;", False, False), ("(I)Landroid/graphics/drawable/Drawable;", False, False)])
+    getWallpaperColors = JavaMethod("(I)Landroid/app/WallpaperColors;")
+    isSetWallpaperAllowed = JavaMethod("()Z")
+    isWallpaperSupported = JavaMethod("()Z")
+    removeOnColorsChangedListener = JavaMethod("(Landroid/app/WallpaperManager$OnColorsChangedListener;)V")
+    sendWallpaperCommand = JavaMethod("(Landroid/os/IBinder;Ljava/lang/String;IIILandroid/os/Bundle;)V")
+    setWallpaperOffsetSteps = JavaMethod("(FF)V")
+    setWallpaperOffsets = JavaMethod("(Landroid/os/IBinder;FF)V")
+    suggestDesiredDimensions = JavaMethod("(II)V")
+
+    class OnColorsChangedListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/app/WallpaperManager$OnColorsChangedListener"
+        onColorsChanged = JavaMethod("(Landroid/app/WallpaperColors;I)V")

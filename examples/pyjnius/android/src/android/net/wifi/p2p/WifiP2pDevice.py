@@ -1,0 +1,39 @@
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["WifiP2pDevice"]
+
+class WifiP2pDevice(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/net/wifi/p2p/WifiP2pDevice"
+    __javaconstructor__ = [("()V", False), ("(Landroid/net/wifi/p2p/WifiP2pDevice;)V", False)]
+    AVAILABLE = JavaStaticField("I")
+    CONNECTED = JavaStaticField("I")
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    FAILED = JavaStaticField("I")
+    INVITED = JavaStaticField("I")
+    UNAVAILABLE = JavaStaticField("I")
+    deviceAddress = JavaField("Ljava/lang/String;")
+    deviceName = JavaField("Ljava/lang/String;")
+    primaryDeviceType = JavaField("Ljava/lang/String;")
+    secondaryDeviceType = JavaField("Ljava/lang/String;")
+    status = JavaField("I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    wpsKeypadSupported = JavaMethod("()Z")
+    getIpAddress = JavaMethod("()Ljava/net/InetAddress;")
+    wpsPbcSupported = JavaMethod("()Z")
+    getWfdInfo = JavaMethod("()Landroid/net/wifi/p2p/WifiP2pWfdInfo;")
+    getVendorElements = JavaMethod("()Ljava/util/List;")
+    isOpportunisticBootstrappingMethodSupported = JavaMethod("()Z")
+    isPassphraseDisplayBootstrappingMethodSupported = JavaMethod("()Z")
+    isPassphraseKeypadBootstrappingMethodSupported = JavaMethod("()Z")
+    isPinCodeDisplayBootstrappingMethodSupported = JavaMethod("()Z")
+    isPinCodeKeypadBootstrappingMethodSupported = JavaMethod("()Z")
+    isServiceDiscoveryCapable = JavaMethod("()Z")
+    wpsDisplaySupported = JavaMethod("()Z")
+    isGroupOwner = JavaMethod("()Z")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    update = JavaMethod("(Landroid/net/wifi/p2p/WifiP2pDevice;)V")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

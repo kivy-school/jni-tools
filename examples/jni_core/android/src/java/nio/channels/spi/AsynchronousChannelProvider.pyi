@@ -1,0 +1,16 @@
+from typing import Any, ClassVar, overload
+from java.nio.channels.AsynchronousChannelGroup import AsynchronousChannelGroup
+from java.nio.channels.AsynchronousServerSocketChannel import AsynchronousServerSocketChannel
+from java.nio.channels.AsynchronousSocketChannel import AsynchronousSocketChannel
+from java.util.concurrent.ExecutorService import ExecutorService
+from java.util.concurrent.ThreadFactory import ThreadFactory
+
+class AsynchronousChannelProvider:
+    @staticmethod
+    def provider() -> "AsynchronousChannelProvider": ...
+    def openAsynchronousSocketChannel(self, p0: AsynchronousChannelGroup) -> AsynchronousSocketChannel: ...
+    @overload
+    def openAsynchronousChannelGroup(self, p0: int, p1: ThreadFactory) -> AsynchronousChannelGroup: ...
+    @overload
+    def openAsynchronousChannelGroup(self, p0: ExecutorService, p1: int) -> AsynchronousChannelGroup: ...
+    def openAsynchronousServerSocketChannel(self, p0: AsynchronousChannelGroup) -> AsynchronousServerSocketChannel: ...

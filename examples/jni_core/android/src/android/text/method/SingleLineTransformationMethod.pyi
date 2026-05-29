@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+
+class SingleLineTransformationMethod:
+    def __init__(self) -> None: ...
+    @staticmethod
+    def getInstance() -> "SingleLineTransformationMethod": ...

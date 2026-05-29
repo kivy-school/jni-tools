@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from javax.net.ssl.SSLSessionBindingEvent import SSLSessionBindingEvent
+
+class SSLSessionBindingListener:
+    def valueBound(self, p0: SSLSessionBindingEvent) -> None: ...
+    def valueUnbound(self, p0: SSLSessionBindingEvent) -> None: ...

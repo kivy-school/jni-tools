@@ -1,6 +1,0 @@
-from typing import Any, ClassVar, overload
-from android.os.Bundle import Bundle
-
-class AliasActivity:
-    def __init__(self) -> None: ...
-    def onCreate(self, arg0: Bundle) -> None: ...

@@ -1,0 +1,70 @@
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["UrlQuerySanitizer"]
+
+class UrlQuerySanitizer(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/net/UrlQuerySanitizer"
+    __javaconstructor__ = [("(Ljava/lang/String;)V", False), ("()V", False)]
+    getAllButNulAndAngleBracketsLegal = JavaStaticMethod("()Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
+    getAllButNulLegal = JavaStaticMethod("()Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
+    getAllButWhitespaceLegal = JavaStaticMethod("()Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
+    getAllIllegal = JavaStaticMethod("()Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
+    getAllowUnregisteredParamaters = JavaMethod("()Z")
+    getAmpAndSpaceLegal = JavaStaticMethod("()Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
+    getAmpLegal = JavaStaticMethod("()Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
+    getEffectiveValueSanitizer = JavaMethod("(Ljava/lang/String;)Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
+    getParameterList = JavaMethod("()Ljava/util/List;")
+    getParameterSet = JavaMethod("()Ljava/util/Set;")
+    getPreferFirstRepeatedParameter = JavaMethod("()Z")
+    getSpaceLegal = JavaStaticMethod("()Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
+    getUnregisteredParameterValueSanitizer = JavaMethod("()Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
+    getUrlLegal = JavaStaticMethod("()Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
+    getUrlAndSpaceLegal = JavaStaticMethod("()Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
+    getValueSanitizer = JavaMethod("(Ljava/lang/String;)Landroid/net/UrlQuerySanitizer$ValueSanitizer;")
+    hasParameter = JavaMethod("(Ljava/lang/String;)Z")
+    parseQuery = JavaMethod("(Ljava/lang/String;)V")
+    parseUrl = JavaMethod("(Ljava/lang/String;)V")
+    registerParameter = JavaMethod("(Ljava/lang/String;Landroid/net/UrlQuerySanitizer$ValueSanitizer;)V")
+    registerParameters = JavaMethod("([Ljava/lang/String;Landroid/net/UrlQuerySanitizer$ValueSanitizer;)V")
+    setAllowUnregisteredParamaters = JavaMethod("(Z)V")
+    setPreferFirstRepeatedParameter = JavaMethod("(Z)V")
+    setUnregisteredParameterValueSanitizer = JavaMethod("(Landroid/net/UrlQuerySanitizer$ValueSanitizer;)V")
+    getValue = JavaMethod("(Ljava/lang/String;)Ljava/lang/String;")
+    unescape = JavaMethod("(Ljava/lang/String;)Ljava/lang/String;")
+
+    class ValueSanitizer(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/net/UrlQuerySanitizer$ValueSanitizer"
+        sanitize = JavaMethod("(Ljava/lang/String;)Ljava/lang/String;")
+
+    class ParameterValuePair(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/net/UrlQuerySanitizer$ParameterValuePair"
+        __javaconstructor__ = [("(Landroid/net/UrlQuerySanitizer;Ljava/lang/String;Ljava/lang/String;)V", False)]
+        mParameter = JavaField("Ljava/lang/String;")
+        mValue = JavaField("Ljava/lang/String;")
+
+    class IllegalCharacterValueSanitizer(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/net/UrlQuerySanitizer$IllegalCharacterValueSanitizer"
+        __javaconstructor__ = [("(I)V", False)]
+        ALL_BUT_NUL_AND_ANGLE_BRACKETS_LEGAL = JavaStaticField("I")
+        ALL_BUT_NUL_LEGAL = JavaStaticField("I")
+        ALL_BUT_WHITESPACE_LEGAL = JavaStaticField("I")
+        ALL_ILLEGAL = JavaStaticField("I")
+        ALL_OK = JavaStaticField("I")
+        ALL_WHITESPACE_OK = JavaStaticField("I")
+        AMP_AND_SPACE_LEGAL = JavaStaticField("I")
+        AMP_LEGAL = JavaStaticField("I")
+        AMP_OK = JavaStaticField("I")
+        DQUOTE_OK = JavaStaticField("I")
+        GT_OK = JavaStaticField("I")
+        LT_OK = JavaStaticField("I")
+        NON_7_BIT_ASCII_OK = JavaStaticField("I")
+        NUL_OK = JavaStaticField("I")
+        OTHER_WHITESPACE_OK = JavaStaticField("I")
+        PCT_OK = JavaStaticField("I")
+        SCRIPT_URL_OK = JavaStaticField("I")
+        SPACE_LEGAL = JavaStaticField("I")
+        SPACE_OK = JavaStaticField("I")
+        SQUOTE_OK = JavaStaticField("I")
+        URL_AND_SPACE_LEGAL = JavaStaticField("I")
+        URL_LEGAL = JavaStaticField("I")
+        sanitize = JavaMethod("(Ljava/lang/String;)Ljava/lang/String;")

@@ -1,0 +1,37 @@
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["Modifier"]
+
+class Modifier(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "java/lang/reflect/Modifier"
+    PUBLIC = JavaStaticField("I")
+    PRIVATE = JavaStaticField("I")
+    PROTECTED = JavaStaticField("I")
+    STATIC = JavaStaticField("I")
+    FINAL = JavaStaticField("I")
+    SYNCHRONIZED = JavaStaticField("I")
+    VOLATILE = JavaStaticField("I")
+    TRANSIENT = JavaStaticField("I")
+    NATIVE = JavaStaticField("I")
+    INTERFACE = JavaStaticField("I")
+    ABSTRACT = JavaStaticField("I")
+    STRICT = JavaStaticField("I")
+    toString = JavaStaticMethod("(I)Ljava/lang/String;")
+    isInterface = JavaStaticMethod("(I)Z")
+    classModifiers = JavaStaticMethod("()I")
+    isFinal = JavaStaticMethod("(I)Z")
+    isPublic = JavaStaticMethod("(I)Z")
+    isStatic = JavaStaticMethod("(I)Z")
+    isProtected = JavaStaticMethod("(I)Z")
+    methodModifiers = JavaStaticMethod("()I")
+    constructorModifiers = JavaStaticMethod("()I")
+    isAbstract = JavaStaticMethod("(I)Z")
+    isVolatile = JavaStaticMethod("(I)Z")
+    isPrivate = JavaStaticMethod("(I)Z")
+    isNative = JavaStaticMethod("(I)Z")
+    isSynchronized = JavaStaticMethod("(I)Z")
+    isTransient = JavaStaticMethod("(I)Z")
+    isStrict = JavaStaticMethod("(I)Z")
+    interfaceModifiers = JavaStaticMethod("()I")
+    fieldModifiers = JavaStaticMethod("()I")
+    parameterModifiers = JavaStaticMethod("()I")

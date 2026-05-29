@@ -7,7 +7,7 @@ This repo contains two complementary halves:
 
 | Path                | What it is |
 | ------------------- | ---------- |
-| [`pyjnius-wrapper/`](pyjnius-wrapper/) | **The generator.** A pure Swift 6 CLI (`pyjnius-wrap`) that uses [swift-java](https://github.com/swiftlang/swift-java) to call JavaParser and JVM reflection APIs directly, turning `.java` / `.jar` / `.aar` inputs into pyjnius-style Python wrappers plus PEP 561 `.pyi` stubs. |
+| [`jni-wrapper/`](jni-wrapper/) | **The generator.** A pure Swift 6 CLI (`jni-wrap`) that uses [swift-java](https://github.com/swiftlang/swift-java) to call JavaParser and JVM reflection APIs directly, turning `.java` / `.jar` / `.aar` inputs into pyjnius-style Python wrappers plus PEP 561 `.pyi` stubs. |
 | [`examples/`](examples/)               | **Pre-generated, installable Python packages** produced by that generator, ready to drop into a Kivy / Buildozer / pyjnius project. |
 
 ## Pre-built packages (`examples/`)
@@ -36,25 +36,25 @@ from admob_pyjnius.ads import AdView, AdRequest
 Type checkers (`pyright`, `mypy`) pick up the bundled `.pyi` stubs
 automatically.
 
-## The generator (`pyjnius-wrapper/`)
+## The generator (`jni-wrapper/`)
 
 Generates the packages above — and any other pyjnius wrapper you need —
 from compiled JVM artifacts. No Java source required.
 
 ```
 .java sources        ─┐
-.jar / .aar / .class ─┤──►  swift-java (embedded JVM)  ──►  pyjnius-wrap  ──►  .py + .pyi
+.jar / .aar / .class ─┤──►  swift-java (embedded JVM)  ──►  jni-wrap  ──►  .py + .pyi
                       ┘      (JavaParser or Reflection)     (Swift 6, SwiftPM)
 ```
 
 Basic usage:
 
 ```sh
-cd pyjnius-wrapper/PyjniusWrap
+cd jni-wrapper/JniWrap
 swift build -c release
 
 # Wrap a jar straight from Maven Central (uses swift-java embedded JVM by default):
-.build/release/pyjnius-wrap /path/to/some-lib.jar ./out
+.build/release/jni-wrap /path/to/some-lib.jar ./out
 ```
 
 Key flags:
@@ -91,8 +91,8 @@ reference:
    developers.google.com/android/reference)
 6. `typing.Any` (last resort)
 
-See [`pyjnius-wrapper/wrap-android-module.md`](pyjnius-wrapper/wrap-android-module.md)
-for the full recipe and [`pyjnius-wrapper/auto-wrap-java-classes.md`](pyjnius-wrapper/auto-wrap-java-classes.md)
+See [`jni-wrapper/wrap-android-module.md`](jni-wrapper/wrap-android-module.md)
+for the full recipe and [`jni-wrapper/auto-wrap-java-classes.md`](jni-wrapper/auto-wrap-java-classes.md)
 for the single-class / source-folder walkthrough.
 
 ## Layout
@@ -103,8 +103,8 @@ jni-tools/
 │   ├── android/                    #   android-pyjnius 35.0.0
 │   ├── admob/                      #   admob-pyjnius 25.3.0
 │   └── onesignal/                  #   onesignal-pyjnius 4.8.10
-└── pyjnius-wrapper/                # the generator
-    ├── PyjniusWrap/                #   Swift 6 SwiftPM package — CLI + codegen + swift-java backends
+└── jni-wrapper/                # the generator
+    ├── JniWrap/                #   Swift 6 SwiftPM package — CLI + codegen + swift-java backends
     ├── fixtures/                   #   shared test fixtures
     ├── README.md
     ├── auto-wrap-java-classes.md   #   how-to: single class / source dir

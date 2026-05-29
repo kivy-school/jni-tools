@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+
+class HideReturnsTransformationMethod:
+    def __init__(self) -> None: ...
+    @staticmethod
+    def getInstance() -> "HideReturnsTransformationMethod": ...

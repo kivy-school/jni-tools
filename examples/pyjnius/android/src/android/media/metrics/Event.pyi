@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from android.os.Bundle import Bundle
+
+class Event:
+    def getMetricsBundle(self) -> Bundle: ...
+    def getTimeSinceCreatedMillis(self) -> int: ...

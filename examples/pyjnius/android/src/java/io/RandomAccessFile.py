@@ -1,0 +1,41 @@
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["RandomAccessFile"]
+
+class RandomAccessFile(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "java/io/RandomAccessFile"
+    __javaconstructor__ = [("(Ljava/io/File;Ljava/lang/String;)V", False), ("(Ljava/lang/String;Ljava/lang/String;)V", False)]
+    length = JavaMethod("()J")
+    close = JavaMethod("()V")
+    readLine = JavaMethod("()Ljava/lang/String;")
+    setLength = JavaMethod("(J)V")
+    write = JavaMultipleMethod([("(I)V", False, False), ("([BII)V", False, False), ("([B)V", False, False)])
+    writeInt = JavaMethod("(I)V")
+    readInt = JavaMethod("()I")
+    read = JavaMultipleMethod([("()I", False, False), ("([BII)I", False, False), ("([B)I", False, False)])
+    writeUTF = JavaMethod("(Ljava/lang/String;)V")
+    readUTF = JavaMethod("()Ljava/lang/String;")
+    getChannel = JavaMethod("()Ljava/nio/channels/FileChannel;")
+    getFD = JavaMethod("()Ljava/io/FileDescriptor;")
+    writeBytes = JavaMethod("(Ljava/lang/String;)V")
+    readUnsignedShort = JavaMethod("()I")
+    writeChar = JavaMethod("(I)V")
+    readChar = JavaMethod("()C")
+    writeFloat = JavaMethod("(F)V")
+    readFloat = JavaMethod("()F")
+    seek = JavaMethod("(J)V")
+    readFully = JavaMultipleMethod([("([B)V", False, False), ("([BII)V", False, False)])
+    readLong = JavaMethod("()J")
+    readByte = JavaMethod("()B")
+    readShort = JavaMethod("()S")
+    writeLong = JavaMethod("(J)V")
+    writeByte = JavaMethod("(I)V")
+    writeShort = JavaMethod("(I)V")
+    getFilePointer = JavaMethod("()J")
+    readUnsignedByte = JavaMethod("()I")
+    skipBytes = JavaMethod("(I)I")
+    readBoolean = JavaMethod("()Z")
+    readDouble = JavaMethod("()D")
+    writeBoolean = JavaMethod("(Z)V")
+    writeDouble = JavaMethod("(D)V")
+    writeChars = JavaMethod("(Ljava/lang/String;)V")

@@ -1,0 +1,43 @@
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["LinkedList"]
+
+class LinkedList(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "java/util/LinkedList"
+    __javaconstructor__ = [("()V", False), ("(Ljava/util/Collection;)V", False)]
+    remove = JavaMultipleMethod([("(Ljava/lang/Object;)Z", False, False), ("(I)Ljava/lang/Object;", False, False), ("()Ljava/lang/Object;", False, False)])
+    size = JavaMethod("()I")
+    clone = JavaMethod("()Ljava/lang/Object;")
+    indexOf = JavaMethod("(Ljava/lang/Object;)I")
+    clear = JavaMethod("()V")
+    lastIndexOf = JavaMethod("(Ljava/lang/Object;)I")
+    add = JavaMultipleMethod([("(Ljava/lang/Object;)Z", False, False), ("(ILjava/lang/Object;)V", False, False)])
+    get = JavaMethod("(I)Ljava/lang/Object;")
+    toArray = JavaMultipleMethod([("([Ljava/lang/Object;)[Ljava/lang/Object;", False, False), ("()[Ljava/lang/Object;", False, False)])
+    contains = JavaMethod("(Ljava/lang/Object;)Z")
+    spliterator = JavaMethod("()Ljava/util/Spliterator;")
+    removeLast = JavaMethod("()Ljava/lang/Object;")
+    addAll = JavaMultipleMethod([("(ILjava/util/Collection;)Z", False, False), ("(Ljava/util/Collection;)Z", False, False)])
+    set = JavaMethod("(ILjava/lang/Object;)Ljava/lang/Object;")
+    offer = JavaMethod("(Ljava/lang/Object;)Z")
+    peek = JavaMethod("()Ljava/lang/Object;")
+    poll = JavaMethod("()Ljava/lang/Object;")
+    pollLast = JavaMethod("()Ljava/lang/Object;")
+    offerLast = JavaMethod("(Ljava/lang/Object;)Z")
+    peekFirst = JavaMethod("()Ljava/lang/Object;")
+    removeFirstOccurrence = JavaMethod("(Ljava/lang/Object;)Z")
+    offerFirst = JavaMethod("(Ljava/lang/Object;)Z")
+    peekLast = JavaMethod("()Ljava/lang/Object;")
+    removeLastOccurrence = JavaMethod("(Ljava/lang/Object;)Z")
+    descendingIterator = JavaMethod("()Ljava/util/Iterator;")
+    getFirst = JavaMethod("()Ljava/lang/Object;")
+    getLast = JavaMethod("()Ljava/lang/Object;")
+    element = JavaMethod("()Ljava/lang/Object;")
+    addFirst = JavaMethod("(Ljava/lang/Object;)V")
+    addLast = JavaMethod("(Ljava/lang/Object;)V")
+    removeFirst = JavaMethod("()Ljava/lang/Object;")
+    listIterator = JavaMethod("(I)Ljava/util/ListIterator;")
+    reversed = JavaMultipleMethod([("()Ljava/util/LinkedList;", False, False), ("()Ljava/util/List;", False, False), ("()Ljava/util/SequencedCollection;", False, False), ("()Ljava/util/Deque;", False, False)])
+    push = JavaMethod("(Ljava/lang/Object;)V")
+    pop = JavaMethod("()Ljava/lang/Object;")
+    pollFirst = JavaMethod("()Ljava/lang/Object;")

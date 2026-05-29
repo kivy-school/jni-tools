@@ -1,0 +1,66 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "android-java"
+version = "35.0.0"
+description = "Meta-package for the android.java.* namespace (android.jar, API 35). Use extras to pull in individual dists: [awt, beans, io, …, all]."
+requires-python = ">=3.11"
+dependencies = [
+]
+
+[project.optional-dependencies]
+all = [
+    "android-java-awt == 35.0.0",
+    "android-java-beans == 35.0.0",
+    "android-java-io == 35.0.0",
+    "android-java-lang == 35.0.0",
+    "android-java-math == 35.0.0",
+    "android-java-net == 35.0.0",
+    "android-java-nio == 35.0.0",
+    "android-java-security == 35.0.0",
+    "android-java-sql == 35.0.0",
+    "android-java-text == 35.0.0",
+    "android-java-time == 35.0.0",
+    "android-java-util == 35.0.0",
+]
+awt = [
+    "android-java-awt == 35.0.0",
+]
+beans = [
+    "android-java-beans == 35.0.0",
+]
+io = [
+    "android-java-io == 35.0.0",
+]
+lang = [
+    "android-java-lang == 35.0.0",
+]
+math = [
+    "android-java-math == 35.0.0",
+]
+net = [
+    "android-java-net == 35.0.0",
+]
+nio = [
+    "android-java-nio == 35.0.0",
+]
+security = [
+    "android-java-security == 35.0.0",
+]
+sql = [
+    "android-java-sql == 35.0.0",
+]
+text = [
+    "android-java-text == 35.0.0",
+]
+time = [
+    "android-java-time == 35.0.0",
+]
+util = [
+    "android-java-util == 35.0.0",
+]
+
+[tool.setuptools]
+packages = []

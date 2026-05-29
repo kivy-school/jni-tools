@@ -1,0 +1,40 @@
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["CursorWindow"]
+
+class CursorWindow(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/CursorWindow"
+    __javaconstructor__ = [("(Ljava/lang/String;)V", False), ("(Z)V", False), ("(Ljava/lang/String;J)V", False)]
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    allocRow = JavaMethod("()Z")
+    freeLastRow = JavaMethod("()V")
+    getNumRows = JavaMethod("()I")
+    isBlob = JavaMethod("(II)Z")
+    isLong = JavaMethod("(II)Z")
+    newFromParcel = JavaStaticMethod("(Landroid/os/Parcel;)Landroid/database/CursorWindow;")
+    putBlob = JavaMethod("([BII)Z")
+    setStartPosition = JavaMethod("(I)V")
+    toString = JavaMethod("()Ljava/lang/String;")
+    getShort = JavaMethod("(II)S")
+    getInt = JavaMethod("(II)I")
+    getLong = JavaMethod("(II)J")
+    putLong = JavaMethod("(JII)Z")
+    getFloat = JavaMethod("(II)F")
+    getDouble = JavaMethod("(II)D")
+    putDouble = JavaMethod("(DII)Z")
+    clear = JavaMethod("()V")
+    getType = JavaMethod("(II)I")
+    copyStringToBuffer = JavaMethod("(IILandroid/database/CharArrayBuffer;)V")
+    getBlob = JavaMethod("(II)[B")
+    putNull = JavaMethod("(II)Z")
+    isFloat = JavaMethod("(II)Z")
+    isString = JavaMethod("(II)Z")
+    getString = JavaMethod("(II)Ljava/lang/String;")
+    putString = JavaMethod("(Ljava/lang/String;II)Z")
+    getStartPosition = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
+    setNumColumns = JavaMethod("(I)Z")
+    isNull = JavaMethod("(II)Z")

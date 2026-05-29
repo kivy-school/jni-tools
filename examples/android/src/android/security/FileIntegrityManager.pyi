@@ -1,6 +1,0 @@
-from typing import Any, ClassVar, overload
-from java.security.cert.X509Certificate import X509Certificate
-
-class FileIntegrityManager:
-    def isApkVeritySupported(self) -> bool: ...
-    def isAppSourceCertificateTrusted(self, arg0: X509Certificate) -> bool: ...

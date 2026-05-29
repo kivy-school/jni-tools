@@ -1,0 +1,37 @@
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["GL11Ext"]
+
+class GL11Ext(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "javax/microedition/khronos/opengles/GL11Ext"
+    GL_MATRIX_INDEX_ARRAY_BUFFER_BINDING_OES = JavaStaticField("I")
+    GL_MATRIX_INDEX_ARRAY_OES = JavaStaticField("I")
+    GL_MATRIX_INDEX_ARRAY_POINTER_OES = JavaStaticField("I")
+    GL_MATRIX_INDEX_ARRAY_SIZE_OES = JavaStaticField("I")
+    GL_MATRIX_INDEX_ARRAY_STRIDE_OES = JavaStaticField("I")
+    GL_MATRIX_INDEX_ARRAY_TYPE_OES = JavaStaticField("I")
+    GL_MATRIX_PALETTE_OES = JavaStaticField("I")
+    GL_MAX_PALETTE_MATRICES_OES = JavaStaticField("I")
+    GL_MAX_VERTEX_UNITS_OES = JavaStaticField("I")
+    GL_TEXTURE_CROP_RECT_OES = JavaStaticField("I")
+    GL_WEIGHT_ARRAY_BUFFER_BINDING_OES = JavaStaticField("I")
+    GL_WEIGHT_ARRAY_OES = JavaStaticField("I")
+    GL_WEIGHT_ARRAY_POINTER_OES = JavaStaticField("I")
+    GL_WEIGHT_ARRAY_SIZE_OES = JavaStaticField("I")
+    GL_WEIGHT_ARRAY_STRIDE_OES = JavaStaticField("I")
+    GL_WEIGHT_ARRAY_TYPE_OES = JavaStaticField("I")
+    glTexParameterfv = JavaMethod("(II[FI)V")
+    glCurrentPaletteMatrixOES = JavaMethod("(I)V")
+    glDrawTexfOES = JavaMethod("(FFFFF)V")
+    glDrawTexfvOES = JavaMultipleMethod([("(Ljava/nio/FloatBuffer;)V", False, False), ("([FI)V", False, False)])
+    glDrawTexiOES = JavaMethod("(IIIII)V")
+    glDrawTexivOES = JavaMultipleMethod([("([II)V", False, False), ("(Ljava/nio/IntBuffer;)V", False, False)])
+    glDrawTexsOES = JavaMethod("(SSSSS)V")
+    glDrawTexsvOES = JavaMultipleMethod([("(Ljava/nio/ShortBuffer;)V", False, False), ("([SI)V", False, False)])
+    glDrawTexxOES = JavaMethod("(IIIII)V")
+    glDrawTexxvOES = JavaMultipleMethod([("([II)V", False, False), ("(Ljava/nio/IntBuffer;)V", False, False)])
+    glLoadPaletteFromModelViewMatrixOES = JavaMethod("()V")
+    glMatrixIndexPointerOES = JavaMultipleMethod([("(IIII)V", False, False), ("(IIILjava/nio/Buffer;)V", False, False)])
+    glWeightPointerOES = JavaMultipleMethod([("(IIILjava/nio/Buffer;)V", False, False), ("(IIII)V", False, False)])
+    glEnable = JavaMethod("(I)V")
+    glEnableClientState = JavaMethod("(I)V")

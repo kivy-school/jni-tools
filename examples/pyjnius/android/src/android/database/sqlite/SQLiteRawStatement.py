@@ -1,0 +1,36 @@
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["SQLiteRawStatement"]
+
+class SQLiteRawStatement(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/sqlite/SQLiteRawStatement"
+    SQLITE_DATA_TYPE_BLOB = JavaStaticField("I")
+    SQLITE_DATA_TYPE_FLOAT = JavaStaticField("I")
+    SQLITE_DATA_TYPE_INTEGER = JavaStaticField("I")
+    SQLITE_DATA_TYPE_NULL = JavaStaticField("I")
+    SQLITE_DATA_TYPE_TEXT = JavaStaticField("I")
+    bindBlob = JavaMultipleMethod([("(I[BII)V", False, False), ("(I[B)V", False, False)])
+    clearBindings = JavaMethod("()V")
+    bindNull = JavaMethod("(I)V")
+    bindDouble = JavaMethod("(ID)V")
+    bindLong = JavaMethod("(IJ)V")
+    bindInt = JavaMethod("(II)V")
+    bindText = JavaMethod("(ILjava/lang/String;)V")
+    getColumnBlob = JavaMethod("(I)[B")
+    getColumnDouble = JavaMethod("(I)D")
+    getColumnInt = JavaMethod("(I)I")
+    getColumnLength = JavaMethod("(I)I")
+    getColumnLong = JavaMethod("(I)J")
+    getColumnText = JavaMethod("(I)Ljava/lang/String;")
+    getColumnType = JavaMethod("(I)I")
+    getParameterIndex = JavaMethod("(Ljava/lang/String;)I")
+    getParameterName = JavaMethod("(I)Ljava/lang/String;")
+    getResultColumnCount = JavaMethod("()I")
+    readColumnBlob = JavaMethod("(I[BIII)I")
+    reset = JavaMethod("()V")
+    toString = JavaMethod("()Ljava/lang/String;")
+    isOpen = JavaMethod("()Z")
+    close = JavaMethod("()V")
+    getParameterCount = JavaMethod("()I")
+    step = JavaMethod("()Z")
+    getColumnName = JavaMethod("(I)Ljava/lang/String;")

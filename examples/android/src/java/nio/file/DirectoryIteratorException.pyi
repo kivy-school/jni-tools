@@ -1,6 +1,0 @@
-from typing import Any, ClassVar, overload
-from java.io.IOException import IOException
-
-class DirectoryIteratorException:
-    def __init__(self, arg0: IOException) -> None: ...
-    def getCause(self) -> IOException: ...

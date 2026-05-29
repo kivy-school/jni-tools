@@ -1,6 +1,0 @@
-from typing import Any, ClassVar, overload
-from javax.xml.validation.SchemaFactory import SchemaFactory
-
-class SchemaFactoryLoader:
-    def __init__(self) -> None: ...
-    def newFactory(self, arg0: str) -> SchemaFactory: ...

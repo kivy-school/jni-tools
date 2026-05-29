@@ -1,0 +1,43 @@
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["ServiceState"]
+
+class ServiceState(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/telephony/ServiceState"
+    __javaconstructor__ = [("()V", False), ("(Landroid/os/Parcel;)V", False), ("(Landroid/telephony/ServiceState;)V", False)]
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    DUPLEX_MODE_FDD = JavaStaticField("I")
+    DUPLEX_MODE_TDD = JavaStaticField("I")
+    DUPLEX_MODE_UNKNOWN = JavaStaticField("I")
+    STATE_EMERGENCY_ONLY = JavaStaticField("I")
+    STATE_IN_SERVICE = JavaStaticField("I")
+    STATE_OUT_OF_SERVICE = JavaStaticField("I")
+    STATE_POWER_OFF = JavaStaticField("I")
+    UNKNOWN_ID = JavaStaticField("I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getRoaming = JavaMethod("()Z")
+    getOperatorNumeric = JavaMethod("()Ljava/lang/String;")
+    getCdmaNetworkId = JavaMethod("()I")
+    getCdmaSystemId = JavaMethod("()I")
+    getCellBandwidths = JavaMethod("()[I")
+    getChannelNumber = JavaMethod("()I")
+    getDuplexMode = JavaMethod("()I")
+    getIsManualSelection = JavaMethod("()Z")
+    getNetworkRegistrationInfoList = JavaMethod("()Ljava/util/List;")
+    isSearching = JavaMethod("()Z")
+    isUsingNonTerrestrialNetwork = JavaMethod("()Z")
+    setIsManualSelection = JavaMethod("(Z)V")
+    setOperatorName = JavaMethod("(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V")
+    setRoaming = JavaMethod("(Z)V")
+    setStateOff = JavaMethod("()V")
+    setStateOutOfService = JavaMethod("()V")
+    getOperatorAlphaLong = JavaMethod("()Ljava/lang/String;")
+    getOperatorAlphaShort = JavaMethod("()Ljava/lang/String;")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    getState = JavaMethod("()I")
+    setState = JavaMethod("(I)V")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

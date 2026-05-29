@@ -1,0 +1,15 @@
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["IntermenstrualBleedingRecord"]
+
+class IntermenstrualBleedingRecord(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/health/connect/datatypes/IntermenstrualBleedingRecord"
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    hashCode = JavaMethod("()I")
+
+    class Builder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/health/connect/datatypes/IntermenstrualBleedingRecord$Builder"
+        __javaconstructor__ = [("(Landroid/health/connect/datatypes/Metadata;Ljava/time/Instant;)V", False)]
+        build = JavaMethod("()Landroid/health/connect/datatypes/IntermenstrualBleedingRecord;")
+        clearZoneOffset = JavaMethod("()Landroid/health/connect/datatypes/IntermenstrualBleedingRecord$Builder;")
+        setZoneOffset = JavaMethod("(Ljava/time/ZoneOffset;)Landroid/health/connect/datatypes/IntermenstrualBleedingRecord$Builder;")

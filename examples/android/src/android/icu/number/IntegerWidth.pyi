@@ -1,6 +1,0 @@
-from typing import Any, ClassVar, overload
-
-class IntegerWidth:
-    @staticmethod
-    def zeroFillTo(arg0: int) -> "IntegerWidth": ...
-    def truncateAt(self, arg0: int) -> "IntegerWidth": ...

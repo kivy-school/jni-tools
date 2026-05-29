@@ -1,6 +1,0 @@
-from typing import Any, ClassVar, overload
-from android.os.PersistableBundle import PersistableBundle
-
-class ExecuteInput:
-    def getAppPackageName(self) -> str: ...
-    def getAppParams(self) -> PersistableBundle: ...

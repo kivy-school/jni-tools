@@ -1,0 +1,42 @@
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["XMLGregorianCalendar"]
+
+class XMLGregorianCalendar(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "javax/xml/datatype/XMLGregorianCalendar"
+    __javaconstructor__ = [("()V", False)]
+    setDay = JavaMethod("(I)V")
+    reset = JavaMethod("()V")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    clone = JavaMethod("()Ljava/lang/Object;")
+    compare = JavaMethod("(Ljavax/xml/datatype/XMLGregorianCalendar;)I")
+    clear = JavaMethod("()V")
+    add = JavaMethod("(Ljavax/xml/datatype/Duration;)V")
+    isValid = JavaMethod("()Z")
+    getTimeZone = JavaMethod("(I)Ljava/util/TimeZone;")
+    getMonth = JavaMethod("()I")
+    normalize = JavaMethod("()Ljavax/xml/datatype/XMLGregorianCalendar;")
+    setMinute = JavaMethod("(I)V")
+    setHour = JavaMethod("(I)V")
+    getXMLSchemaType = JavaMethod("()Ljavax/xml/namespace/QName;")
+    setSecond = JavaMethod("(I)V")
+    setFractionalSecond = JavaMethod("(Ljava/math/BigDecimal;)V")
+    setMillisecond = JavaMethod("(I)V")
+    getFractionalSecond = JavaMethod("()Ljava/math/BigDecimal;")
+    getTimezone = JavaMethod("()I")
+    getMillisecond = JavaMethod("()I")
+    toXMLFormat = JavaMethod("()Ljava/lang/String;")
+    setTimezone = JavaMethod("(I)V")
+    getEon = JavaMethod("()Ljava/math/BigInteger;")
+    getEonAndYear = JavaMethod("()Ljava/math/BigInteger;")
+    toGregorianCalendar = JavaMultipleMethod([("(Ljava/util/TimeZone;Ljava/util/Locale;Ljavax/xml/datatype/XMLGregorianCalendar;)Ljava/util/GregorianCalendar;", False, False), ("()Ljava/util/GregorianCalendar;", False, False)])
+    setMonth = JavaMethod("(I)V")
+    setYear = JavaMultipleMethod([("(I)V", False, False), ("(Ljava/math/BigInteger;)V", False, False)])
+    getDay = JavaMethod("()I")
+    getYear = JavaMethod("()I")
+    getHour = JavaMethod("()I")
+    getMinute = JavaMethod("()I")
+    getSecond = JavaMethod("()I")
+    setTime = JavaMultipleMethod([("(IIILjava/math/BigDecimal;)V", False, False), ("(III)V", False, False), ("(IIII)V", False, False)])

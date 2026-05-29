@@ -1,6 +1,0 @@
-from typing import Any, ClassVar, overload
-from android.hardware.camera2.CaptureRequest import CaptureRequest
-
-class CameraConstrainedHighSpeedCaptureSession:
-    def __init__(self) -> None: ...
-    def createHighSpeedRequestList(self, arg0: CaptureRequest) -> list: ...

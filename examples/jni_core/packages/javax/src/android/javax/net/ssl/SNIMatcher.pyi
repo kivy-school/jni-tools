@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from javax.net.ssl.SNIServerName import SNIServerName
+
+class SNIMatcher:
+    def matches(self, p0: SNIServerName) -> bool: ...
+    def getType(self) -> int: ...

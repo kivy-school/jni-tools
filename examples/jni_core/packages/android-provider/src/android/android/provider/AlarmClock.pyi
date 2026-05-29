@@ -1,0 +1,27 @@
+from typing import Any, ClassVar, overload
+
+class AlarmClock:
+    ACTION_DISMISS_ALARM: ClassVar[str]
+    ACTION_DISMISS_TIMER: ClassVar[str]
+    ACTION_SET_ALARM: ClassVar[str]
+    ACTION_SET_TIMER: ClassVar[str]
+    ACTION_SHOW_ALARMS: ClassVar[str]
+    ACTION_SHOW_TIMERS: ClassVar[str]
+    ACTION_SNOOZE_ALARM: ClassVar[str]
+    ALARM_SEARCH_MODE_ALL: ClassVar[str]
+    ALARM_SEARCH_MODE_LABEL: ClassVar[str]
+    ALARM_SEARCH_MODE_NEXT: ClassVar[str]
+    ALARM_SEARCH_MODE_TIME: ClassVar[str]
+    EXTRA_ALARM_SEARCH_MODE: ClassVar[str]
+    EXTRA_ALARM_SNOOZE_DURATION: ClassVar[str]
+    EXTRA_DAYS: ClassVar[str]
+    EXTRA_HOUR: ClassVar[str]
+    EXTRA_IS_PM: ClassVar[str]
+    EXTRA_LENGTH: ClassVar[str]
+    EXTRA_MESSAGE: ClassVar[str]
+    EXTRA_MINUTES: ClassVar[str]
+    EXTRA_RINGTONE: ClassVar[str]
+    EXTRA_SKIP_UI: ClassVar[str]
+    EXTRA_VIBRATE: ClassVar[str]
+    VALUE_RINGTONE_SILENT: ClassVar[str]
+    def __init__(self) -> None: ...

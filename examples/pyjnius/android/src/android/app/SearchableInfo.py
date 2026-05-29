@@ -1,0 +1,35 @@
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["SearchableInfo"]
+
+class SearchableInfo(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/app/SearchableInfo"
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    autoUrlDetect = JavaMethod("()Z")
+    getHintId = JavaMethod("()I")
+    getSearchActivity = JavaMethod("()Landroid/content/ComponentName;")
+    getSettingsDescriptionId = JavaMethod("()I")
+    getSuggestAuthority = JavaMethod("()Ljava/lang/String;")
+    getSuggestIntentAction = JavaMethod("()Ljava/lang/String;")
+    getSuggestIntentData = JavaMethod("()Ljava/lang/String;")
+    getSuggestPackage = JavaMethod("()Ljava/lang/String;")
+    getSuggestPath = JavaMethod("()Ljava/lang/String;")
+    getSuggestSelection = JavaMethod("()Ljava/lang/String;")
+    getSuggestThreshold = JavaMethod("()I")
+    getVoiceLanguageId = JavaMethod("()I")
+    getVoiceLanguageModeId = JavaMethod("()I")
+    getVoiceMaxResults = JavaMethod("()I")
+    getVoicePromptTextId = JavaMethod("()I")
+    getVoiceSearchEnabled = JavaMethod("()Z")
+    getVoiceSearchLaunchRecognizer = JavaMethod("()Z")
+    getVoiceSearchLaunchWebSearch = JavaMethod("()Z")
+    queryAfterZeroResults = JavaMethod("()Z")
+    shouldIncludeInGlobalSearch = JavaMethod("()Z")
+    shouldRewriteQueryFromData = JavaMethod("()Z")
+    shouldRewriteQueryFromText = JavaMethod("()Z")
+    getImeOptions = JavaMethod("()I")
+    getInputType = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")

@@ -1,0 +1,16 @@
+from typing import Any, ClassVar, overload
+from android.icu.number.CompactNotation import CompactNotation
+from android.icu.number.ScientificNotation import ScientificNotation
+from android.icu.number.SimpleNotation import SimpleNotation
+
+class Notation:
+    @staticmethod
+    def compactShort() -> CompactNotation: ...
+    @staticmethod
+    def compactLong() -> CompactNotation: ...
+    @staticmethod
+    def simple() -> SimpleNotation: ...
+    @staticmethod
+    def engineering() -> ScientificNotation: ...
+    @staticmethod
+    def scientific() -> ScientificNotation: ...

@@ -1,0 +1,35 @@
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["Matcher"]
+
+class Matcher(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "java/util/regex/Matcher"
+    namedGroups = JavaMethod("()Ljava/util/Map;")
+    group = JavaMultipleMethod([("()Ljava/lang/String;", False, False), ("(Ljava/lang/String;)Ljava/lang/String;", False, False), ("(I)Ljava/lang/String;", False, False)])
+    reset = JavaMultipleMethod([("(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;", False, False), ("()Ljava/util/regex/Matcher;", False, False)])
+    toString = JavaMethod("()Ljava/lang/String;")
+    matches = JavaMethod("()Z")
+    replaceFirst = JavaMultipleMethod([("(Ljava/util/function/Function;)Ljava/lang/String;", False, False), ("(Ljava/lang/String;)Ljava/lang/String;", False, False)])
+    replaceAll = JavaMultipleMethod([("(Ljava/util/function/Function;)Ljava/lang/String;", False, False), ("(Ljava/lang/String;)Ljava/lang/String;", False, False)])
+    pattern = JavaMethod("()Ljava/util/regex/Pattern;")
+    end = JavaMultipleMethod([("()I", False, False), ("(I)I", False, False), ("(Ljava/lang/String;)I", False, False)])
+    find = JavaMultipleMethod([("()Z", False, False), ("(I)Z", False, False)])
+    start = JavaMultipleMethod([("()I", False, False), ("(I)I", False, False), ("(Ljava/lang/String;)I", False, False)])
+    region = JavaMethod("(II)Ljava/util/regex/Matcher;")
+    results = JavaMethod("()Ljava/util/stream/Stream;")
+    hasMatch = JavaMethod("()Z")
+    groupCount = JavaMethod("()I")
+    appendReplacement = JavaMultipleMethod([("(Ljava/lang/StringBuffer;Ljava/lang/String;)Ljava/util/regex/Matcher;", False, False), ("(Ljava/lang/StringBuilder;Ljava/lang/String;)Ljava/util/regex/Matcher;", False, False)])
+    appendTail = JavaMultipleMethod([("(Ljava/lang/StringBuffer;)Ljava/lang/StringBuffer;", False, False), ("(Ljava/lang/StringBuilder;)Ljava/lang/StringBuilder;", False, False)])
+    regionStart = JavaMethod("()I")
+    regionEnd = JavaMethod("()I")
+    hitEnd = JavaMethod("()Z")
+    requireEnd = JavaMethod("()Z")
+    toMatchResult = JavaMethod("()Ljava/util/regex/MatchResult;")
+    usePattern = JavaMethod("(Ljava/util/regex/Pattern;)Ljava/util/regex/Matcher;")
+    lookingAt = JavaMethod("()Z")
+    quoteReplacement = JavaStaticMethod("(Ljava/lang/String;)Ljava/lang/String;")
+    hasTransparentBounds = JavaMethod("()Z")
+    useTransparentBounds = JavaMethod("(Z)Ljava/util/regex/Matcher;")
+    hasAnchoringBounds = JavaMethod("()Z")
+    useAnchoringBounds = JavaMethod("(Z)Ljava/util/regex/Matcher;")

@@ -1,0 +1,14 @@
+from typing import Any, ClassVar, overload
+
+class BodyTemperatureMeasurementLocation:
+    MEASUREMENT_LOCATION_ARMPIT: ClassVar[int]
+    MEASUREMENT_LOCATION_EAR: ClassVar[int]
+    MEASUREMENT_LOCATION_FINGER: ClassVar[int]
+    MEASUREMENT_LOCATION_FOREHEAD: ClassVar[int]
+    MEASUREMENT_LOCATION_MOUTH: ClassVar[int]
+    MEASUREMENT_LOCATION_RECTUM: ClassVar[int]
+    MEASUREMENT_LOCATION_TEMPORAL_ARTERY: ClassVar[int]
+    MEASUREMENT_LOCATION_TOE: ClassVar[int]
+    MEASUREMENT_LOCATION_UNKNOWN: ClassVar[int]
+    MEASUREMENT_LOCATION_VAGINA: ClassVar[int]
+    MEASUREMENT_LOCATION_WRIST: ClassVar[int]

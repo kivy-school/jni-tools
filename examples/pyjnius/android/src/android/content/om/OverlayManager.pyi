@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from android.content.om.OverlayManagerTransaction import OverlayManagerTransaction
+
+class OverlayManager:
+    def commit(self, p0: OverlayManagerTransaction) -> None: ...
+    def getOverlayInfosForTarget(self, p0: str) -> list: ...

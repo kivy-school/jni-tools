@@ -1,6 +1,0 @@
-from typing import Any, ClassVar, overload
-from android.service.autofill.FillResponse import FillResponse
-
-class FillCallback:
-    def onSuccess(self, arg0: FillResponse) -> None: ...
-    def onFailure(self, arg0: str) -> None: ...

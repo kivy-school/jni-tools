@@ -1,9 +1,0 @@
-from typing import Any, ClassVar, overload
-from android.content.Context import Context
-from android.content.Intent import Intent
-from android.os.PersistableBundle import PersistableBundle
-
-class RestrictionsReceiver:
-    def __init__(self) -> None: ...
-    def onRequestPermission(self, arg0: Context, arg1: str, arg2: str, arg3: str, arg4: PersistableBundle) -> None: ...
-    def onReceive(self, arg0: Context, arg1: Intent) -> None: ...

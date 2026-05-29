@@ -1,0 +1,43 @@
+from typing import Any, ClassVar, overload
+from android.icu.util.ULocale import ULocale
+from java.util.Locale import Locale
+
+class TimeZoneNames:
+    @overload
+    def getAvailableMetaZoneIDs(self, p0: str) -> set: ...
+    @overload
+    def getAvailableMetaZoneIDs(self) -> set: ...
+    def getExemplarLocationName(self, p0: str) -> str: ...
+    def getMetaZoneDisplayName(self, p0: str, p1: Any) -> str: ...
+    def getMetaZoneID(self, p0: str, p1: int) -> str: ...
+    def getReferenceZoneID(self, p0: str, p1: str) -> str: ...
+    @staticmethod
+    def getTZDBInstance(p0: ULocale) -> "TimeZoneNames": ...
+    def getTimeZoneDisplayName(self, p0: str, p1: Any) -> str: ...
+    @overload
+    @staticmethod
+    def getInstance(p0: Locale) -> "TimeZoneNames": ...
+    @overload
+    @staticmethod
+    def getInstance(p0: ULocale) -> "TimeZoneNames": ...
+    def getDisplayName(self, p0: str, p1: Any, p2: int) -> str: ...
+
+    class NameType:
+        EXEMPLAR_LOCATION: ClassVar["NameType"]
+        LONG_DAYLIGHT: ClassVar["NameType"]
+        LONG_GENERIC: ClassVar["NameType"]
+        LONG_STANDARD: ClassVar["NameType"]
+        SHORT_DAYLIGHT: ClassVar["NameType"]
+        SHORT_GENERIC: ClassVar["NameType"]
+        SHORT_STANDARD: ClassVar["NameType"]
+        EXEMPLAR_LOCATION: ClassVar[Any]
+        LONG_DAYLIGHT: ClassVar[Any]
+        LONG_GENERIC: ClassVar[Any]
+        LONG_STANDARD: ClassVar[Any]
+        SHORT_DAYLIGHT: ClassVar[Any]
+        SHORT_GENERIC: ClassVar[Any]
+        SHORT_STANDARD: ClassVar[Any]
+        @staticmethod
+        def values() -> Any: ...
+        @staticmethod
+        def valueOf(p0: str) -> Any: ...

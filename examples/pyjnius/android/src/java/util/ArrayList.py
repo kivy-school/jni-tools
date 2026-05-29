@@ -1,0 +1,40 @@
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["ArrayList"]
+
+class ArrayList(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "java/util/ArrayList"
+    __javaconstructor__ = [("(Ljava/util/Collection;)V", False), ("()V", False), ("(I)V", False)]
+    remove = JavaMultipleMethod([("(I)Ljava/lang/Object;", False, False), ("(Ljava/lang/Object;)Z", False, False)])
+    size = JavaMethod("()I")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    hashCode = JavaMethod("()I")
+    clone = JavaMethod("()Ljava/lang/Object;")
+    sort = JavaMethod("(Ljava/util/Comparator;)V")
+    indexOf = JavaMethod("(Ljava/lang/Object;)I")
+    clear = JavaMethod("()V")
+    lastIndexOf = JavaMethod("(Ljava/lang/Object;)I")
+    isEmpty = JavaMethod("()Z")
+    replaceAll = JavaMethod("(Ljava/util/function/UnaryOperator;)V")
+    add = JavaMultipleMethod([("(ILjava/lang/Object;)V", False, False), ("(Ljava/lang/Object;)Z", False, False)])
+    get = JavaMethod("(I)Ljava/lang/Object;")
+    subList = JavaMethod("(II)Ljava/util/List;")
+    toArray = JavaMultipleMethod([("([Ljava/lang/Object;)[Ljava/lang/Object;", False, False), ("()[Ljava/lang/Object;", False, False)])
+    iterator = JavaMethod("()Ljava/util/Iterator;")
+    contains = JavaMethod("(Ljava/lang/Object;)Z")
+    spliterator = JavaMethod("()Ljava/util/Spliterator;")
+    removeLast = JavaMethod("()Ljava/lang/Object;")
+    addAll = JavaMultipleMethod([("(ILjava/util/Collection;)Z", False, False), ("(Ljava/util/Collection;)Z", False, False)])
+    trimToSize = JavaMethod("()V")
+    set = JavaMethod("(ILjava/lang/Object;)Ljava/lang/Object;")
+    forEach = JavaMethod("(Ljava/util/function/Consumer;)V")
+    ensureCapacity = JavaMethod("(I)V")
+    removeIf = JavaMethod("(Ljava/util/function/Predicate;)Z")
+    getFirst = JavaMethod("()Ljava/lang/Object;")
+    getLast = JavaMethod("()Ljava/lang/Object;")
+    addFirst = JavaMethod("(Ljava/lang/Object;)V")
+    addLast = JavaMethod("(Ljava/lang/Object;)V")
+    removeFirst = JavaMethod("()Ljava/lang/Object;")
+    removeAll = JavaMethod("(Ljava/util/Collection;)Z")
+    retainAll = JavaMethod("(Ljava/util/Collection;)Z")
+    listIterator = JavaMultipleMethod([("()Ljava/util/ListIterator;", False, False), ("(I)Ljava/util/ListIterator;", False, False)])

@@ -79,3 +79,11 @@ venv/
 
 # Swift package manager
 .swiftpm/
+
+# examples — generated Cython C sources and build artifacts
+examples/**/*.c
+examples/**/*.h
+examples/**/.DS_Store
+examples/**/build/
+examples/**/wheelhouse/
+examples/**/__pycache__/

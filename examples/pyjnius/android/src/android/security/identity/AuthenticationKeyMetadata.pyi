@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from java.time.Instant import Instant
+
+class AuthenticationKeyMetadata:
+    def getUsageCount(self) -> int: ...
+    def getExpirationDate(self) -> Instant: ...

@@ -1,0 +1,66 @@
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["Allocation"]
+
+class Allocation(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/renderscript/Allocation"
+    USAGE_GRAPHICS_CONSTANTS = JavaStaticField("I")
+    USAGE_GRAPHICS_RENDER_TARGET = JavaStaticField("I")
+    USAGE_GRAPHICS_TEXTURE = JavaStaticField("I")
+    USAGE_GRAPHICS_VERTEX = JavaStaticField("I")
+    USAGE_IO_INPUT = JavaStaticField("I")
+    USAGE_IO_OUTPUT = JavaStaticField("I")
+    USAGE_SCRIPT = JavaStaticField("I")
+    USAGE_SHARED = JavaStaticField("I")
+    copyFrom = JavaMultipleMethod([("([F)V", False, False), ("([I)V", False, False), ("(Ljava/lang/Object;)V", False, False), ("([S)V", False, False), ("(Landroid/graphics/Bitmap;)V", False, False), ("(Landroid/renderscript/Allocation;)V", False, False), ("([Landroid/renderscript/BaseObj;)V", False, False), ("([B)V", False, False)])
+    getTimeStamp = JavaMethod("()J")
+    copy1DRangeFrom = JavaMultipleMethod([("(IILandroid/renderscript/Allocation;I)V", False, False), ("(II[B)V", False, False), ("(IILjava/lang/Object;)V", False, False), ("(II[I)V", False, False), ("(II[S)V", False, False), ("(II[F)V", False, False)])
+    copy1DRangeFromUnchecked = JavaMultipleMethod([("(II[B)V", False, False), ("(IILjava/lang/Object;)V", False, False), ("(II[S)V", False, False), ("(II[I)V", False, False), ("(II[F)V", False, False)])
+    copy1DRangeTo = JavaMultipleMethod([("(II[I)V", False, False), ("(II[F)V", False, False), ("(II[B)V", False, False), ("(IILjava/lang/Object;)V", False, False), ("(II[S)V", False, False)])
+    copy1DRangeToUnchecked = JavaMultipleMethod([("(II[I)V", False, False), ("(II[S)V", False, False), ("(II[F)V", False, False), ("(II[B)V", False, False), ("(IILjava/lang/Object;)V", False, False)])
+    copy2DRangeFrom = JavaMultipleMethod([("(IIII[B)V", False, False), ("(IIII[F)V", False, False), ("(IIII[I)V", False, False), ("(IIII[S)V", False, False), ("(IIIILjava/lang/Object;)V", False, False), ("(IILandroid/graphics/Bitmap;)V", False, False), ("(IIIILandroid/renderscript/Allocation;II)V", False, False)])
+    copy2DRangeTo = JavaMultipleMethod([("(IIII[F)V", False, False), ("(IIII[I)V", False, False), ("(IIIILjava/lang/Object;)V", False, False), ("(IIII[S)V", False, False), ("(IIII[B)V", False, False)])
+    copy3DRangeFrom = JavaMultipleMethod([("(IIIIIILandroid/renderscript/Allocation;III)V", False, False), ("(IIIIIILjava/lang/Object;)V", False, False)])
+    copy3DRangeTo = JavaMethod("(IIIIIILjava/lang/Object;)V")
+    copyFromUnchecked = JavaMultipleMethod([("(Ljava/lang/Object;)V", False, False), ("([I)V", False, False), ("([S)V", False, False), ("([F)V", False, False), ("([B)V", False, False)])
+    createAllocations = JavaStaticMethod("(Landroid/renderscript/RenderScript;Landroid/renderscript/Type;II)[Landroid/renderscript/Allocation;")
+    createCubemapFromBitmap = JavaMultipleMethod([("(Landroid/renderscript/RenderScript;Landroid/graphics/Bitmap;)Landroid/renderscript/Allocation;", True, False), ("(Landroid/renderscript/RenderScript;Landroid/graphics/Bitmap;Landroid/renderscript/Allocation$MipmapControl;I)Landroid/renderscript/Allocation;", True, False)])
+    createCubemapFromCubeFaces = JavaMultipleMethod([("(Landroid/renderscript/RenderScript;Landroid/graphics/Bitmap;Landroid/graphics/Bitmap;Landroid/graphics/Bitmap;Landroid/graphics/Bitmap;Landroid/graphics/Bitmap;Landroid/graphics/Bitmap;Landroid/renderscript/Allocation$MipmapControl;I)Landroid/renderscript/Allocation;", True, False), ("(Landroid/renderscript/RenderScript;Landroid/graphics/Bitmap;Landroid/graphics/Bitmap;Landroid/graphics/Bitmap;Landroid/graphics/Bitmap;Landroid/graphics/Bitmap;Landroid/graphics/Bitmap;)Landroid/renderscript/Allocation;", True, False)])
+    createFromBitmap = JavaMultipleMethod([("(Landroid/renderscript/RenderScript;Landroid/graphics/Bitmap;Landroid/renderscript/Allocation$MipmapControl;I)Landroid/renderscript/Allocation;", True, False), ("(Landroid/renderscript/RenderScript;Landroid/graphics/Bitmap;)Landroid/renderscript/Allocation;", True, False)])
+    createFromBitmapResource = JavaMultipleMethod([("(Landroid/renderscript/RenderScript;Landroid/content/res/Resources;ILandroid/renderscript/Allocation$MipmapControl;I)Landroid/renderscript/Allocation;", True, False), ("(Landroid/renderscript/RenderScript;Landroid/content/res/Resources;I)Landroid/renderscript/Allocation;", True, False)])
+    createFromString = JavaStaticMethod("(Landroid/renderscript/RenderScript;Ljava/lang/String;I)Landroid/renderscript/Allocation;")
+    createSized = JavaMultipleMethod([("(Landroid/renderscript/RenderScript;Landroid/renderscript/Element;II)Landroid/renderscript/Allocation;", True, False), ("(Landroid/renderscript/RenderScript;Landroid/renderscript/Element;I)Landroid/renderscript/Allocation;", True, False)])
+    createTyped = JavaMultipleMethod([("(Landroid/renderscript/RenderScript;Landroid/renderscript/Type;)Landroid/renderscript/Allocation;", True, False), ("(Landroid/renderscript/RenderScript;Landroid/renderscript/Type;I)Landroid/renderscript/Allocation;", True, False), ("(Landroid/renderscript/RenderScript;Landroid/renderscript/Type;Landroid/renderscript/Allocation$MipmapControl;I)Landroid/renderscript/Allocation;", True, False)])
+    generateMipmaps = JavaMethod("()V")
+    getBytesSize = JavaMethod("()I")
+    getStride = JavaMethod("()J")
+    ioReceive = JavaMethod("()V")
+    ioSend = JavaMethod("()V")
+    setAutoPadding = JavaMethod("(Z)V")
+    setFromFieldPacker = JavaMultipleMethod([("(IIIILandroid/renderscript/FieldPacker;)V", False, False), ("(IILandroid/renderscript/FieldPacker;)V", False, False), ("(ILandroid/renderscript/FieldPacker;)V", False, False)])
+    setOnBufferAvailableListener = JavaMethod("(Landroid/renderscript/Allocation$OnBufferAvailableListener;)V")
+    destroy = JavaMethod("()V")
+    getType = JavaMethod("()Landroid/renderscript/Type;")
+    syncAll = JavaMethod("(I)V")
+    getByteBuffer = JavaMethod("()Ljava/nio/ByteBuffer;")
+    setSurface = JavaMethod("(Landroid/view/Surface;)V")
+    getSurface = JavaMethod("()Landroid/view/Surface;")
+    getUsage = JavaMethod("()I")
+    getElement = JavaMethod("()Landroid/renderscript/Element;")
+    copyTo = JavaMultipleMethod([("([B)V", False, False), ("(Landroid/graphics/Bitmap;)V", False, False), ("(Ljava/lang/Object;)V", False, False), ("([S)V", False, False), ("([I)V", False, False), ("([F)V", False, False)])
+    resize = JavaMethod("(I)V")
+
+    class OnBufferAvailableListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/renderscript/Allocation$OnBufferAvailableListener"
+        onBufferAvailable = JavaMethod("(Landroid/renderscript/Allocation;)V")
+
+    class MipmapControl(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/renderscript/Allocation$MipmapControl"
+        MIPMAP_FULL = JavaStaticField("Landroid/renderscript/Allocation$MipmapControl;")
+        MIPMAP_NONE = JavaStaticField("Landroid/renderscript/Allocation$MipmapControl;")
+        MIPMAP_ON_SYNC_TO_TEXTURE = JavaStaticField("Landroid/renderscript/Allocation$MipmapControl;")
+        values = JavaStaticMethod("()[Landroid/renderscript/Allocation$MipmapControl;")
+        valueOf = JavaStaticMethod("(Ljava/lang/String;)Landroid/renderscript/Allocation$MipmapControl;")
+        MIPMAP_FULL = JavaStaticField("Landroid/renderscript/Allocation$MipmapControl;")
+        MIPMAP_NONE = JavaStaticField("Landroid/renderscript/Allocation$MipmapControl;")
+        MIPMAP_ON_SYNC_TO_TEXTURE = JavaStaticField("Landroid/renderscript/Allocation$MipmapControl;")

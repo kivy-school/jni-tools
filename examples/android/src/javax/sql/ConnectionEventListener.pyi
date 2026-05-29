@@ -1,6 +1,0 @@
-from typing import Any, ClassVar, overload
-from javax.sql.ConnectionEvent import ConnectionEvent
-
-class ConnectionEventListener:
-    def connectionClosed(self, arg0: ConnectionEvent) -> None: ...
-    def connectionErrorOccurred(self, arg0: ConnectionEvent) -> None: ...

@@ -1,0 +1,9 @@
+from typing import Any, ClassVar, overload
+from java.net.InetAddress import InetAddress
+from java.net.Socket import Socket
+from org.apache.http.params.HttpParams import HttpParams
+
+class SocketFactory:
+    def createSocket(self) -> Socket: ...
+    def connectSocket(self, p0: Socket, p1: str, p2: int, p3: InetAddress, p4: int, p5: HttpParams) -> Socket: ...
+    def isSecure(self, p0: Socket) -> bool: ...

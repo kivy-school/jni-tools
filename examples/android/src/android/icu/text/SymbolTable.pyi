@@ -1,9 +1,0 @@
-from typing import Any, ClassVar, overload
-from android.icu.text.UnicodeMatcher import UnicodeMatcher
-from java.text.ParsePosition import ParsePosition
-
-class SymbolTable:
-    SYMBOL_REF: ClassVar[str]
-    def lookup(self, arg0: str) -> list[str]: ...
-    def lookupMatcher(self, arg0: int) -> UnicodeMatcher: ...
-    def parseReference(self, arg0: str, arg1: ParsePosition, arg2: int) -> str: ...

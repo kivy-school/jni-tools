@@ -1,0 +1,244 @@
+{
+  "classes" : [ {
+    "fqcn" : "com.example.fixture.Color",
+    "jniName" : "com/example/fixture/Color",
+    "simpleName" : "Color",
+    "kind" : "ENUM",
+    "modifiers" : [ "PUBLIC" ],
+    "superclass" : "java.lang.Enum",
+    "interfaces" : [ ],
+    "javadoc" : "Traffic-light enum with a custom method.",
+    "fields" : [ ],
+    "constructors" : [ ],
+    "methods" : [ {
+      "name" : "describe",
+      "jniDescriptor" : "()Ljava/lang/String;",
+      "isStatic" : false,
+      "isVarargs" : false,
+      "modifiers" : [ "PUBLIC" ],
+      "parameters" : [ ],
+      "returnTypeFqcn" : "java.lang.String"
+    } ],
+    "nested" : [ ],
+    "enumConstants" : [ {
+      "name" : "RED"
+    }, {
+      "name" : "GREEN"
+    }, {
+      "name" : "BLUE"
+    } ]
+  }, {
+    "fqcn" : "com.example.fixture.Content",
+    "jniName" : "com/example/fixture/Content",
+    "simpleName" : "Content",
+    "kind" : "CLASS",
+    "modifiers" : [ "PUBLIC" ],
+    "interfaces" : [ ],
+    "javadoc" : "Outer with a Builder-style nested class.",
+    "fields" : [ {
+      "name" : "body",
+      "jniDescriptor" : "Ljava/lang/String;",
+      "typeFqcn" : "java.lang.String",
+      "isStatic" : false,
+      "modifiers" : [ "PUBLIC" ]
+    } ],
+    "constructors" : [ {
+      "jniDescriptor" : "(Ljava/lang/String;)V",
+      "isVarargs" : false,
+      "modifiers" : [ "PUBLIC" ],
+      "parameters" : [ {
+        "name" : "body",
+        "jniDescriptor" : "Ljava/lang/String;",
+        "typeFqcn" : "java.lang.String"
+      } ]
+    } ],
+    "methods" : [ ],
+    "nested" : [ {
+      "fqcn" : "com.example.fixture.Content.Builder",
+      "jniName" : "com/example/fixture/Content/Builder",
+      "simpleName" : "Builder",
+      "kind" : "CLASS",
+      "modifiers" : [ "PUBLIC", "STATIC" ],
+      "interfaces" : [ ],
+      "javadoc" : "Builder for {@link Content}.",
+      "fields" : [ ],
+      "constructors" : [ ],
+      "methods" : [ {
+        "name" : "setBody",
+        "jniDescriptor" : "(Ljava/lang/String;)Lcom/example/fixture/Content/Builder;",
+        "isStatic" : false,
+        "isVarargs" : false,
+        "modifiers" : [ "PUBLIC" ],
+        "parameters" : [ {
+          "name" : "body",
+          "jniDescriptor" : "Ljava/lang/String;",
+          "typeFqcn" : "java.lang.String"
+        } ],
+        "returnTypeFqcn" : "com.example.fixture.Content.Builder"
+      }, {
+        "name" : "build",
+        "jniDescriptor" : "()Lcom/example/fixture/Content;",
+        "isStatic" : false,
+        "isVarargs" : false,
+        "modifiers" : [ "PUBLIC" ],
+        "parameters" : [ ],
+        "returnTypeFqcn" : "com.example.fixture.Content"
+      } ],
+      "nested" : [ ]
+    } ]
+  }, {
+    "fqcn" : "com.example.fixture.Listener",
+    "jniName" : "com/example/fixture/Listener",
+    "simpleName" : "Listener",
+    "kind" : "INTERFACE",
+    "modifiers" : [ "PUBLIC" ],
+    "interfaces" : [ ],
+    "javadoc" : "A simple listener interface. Used to test interface emission.",
+    "fields" : [ {
+      "name" : "TAG",
+      "jniDescriptor" : "Ljava/lang/String;",
+      "typeFqcn" : "java.lang.String",
+      "isStatic" : true,
+      "modifiers" : [ ]
+    } ],
+    "constructors" : [ ],
+    "methods" : [ {
+      "name" : "onEvent",
+      "jniDescriptor" : "(Ljava/lang/String;I)V",
+      "isStatic" : false,
+      "isVarargs" : false,
+      "modifiers" : [ ],
+      "parameters" : [ {
+        "name" : "name",
+        "jniDescriptor" : "Ljava/lang/String;",
+        "typeFqcn" : "java.lang.String"
+      }, {
+        "name" : "code",
+        "jniDescriptor" : "I",
+        "typeFqcn" : "int"
+      } ],
+      "returnTypeFqcn" : "void",
+      "javadoc" : "Called when something happens."
+    }, {
+      "name" : "isReady",
+      "jniDescriptor" : "()Z",
+      "isStatic" : false,
+      "isVarargs" : false,
+      "modifiers" : [ "DEFAULT" ],
+      "parameters" : [ ],
+      "returnTypeFqcn" : "boolean",
+      "javadoc" : "Default helper."
+    } ],
+    "nested" : [ ]
+  }, {
+    "fqcn" : "com.example.fixture.Person",
+    "jniName" : "com/example/fixture/Person",
+    "simpleName" : "Person",
+    "kind" : "CLASS",
+    "modifiers" : [ "PUBLIC" ],
+    "interfaces" : [ ],
+    "javadoc" : "Represents a person with a name and age.\nUsed as a smoke-test fixture for the jni-wrap generator.",
+    "fields" : [ {
+      "name" : "SPECIES",
+      "jniDescriptor" : "Ljava/lang/String;",
+      "typeFqcn" : "java.lang.String",
+      "isStatic" : true,
+      "modifiers" : [ "PUBLIC", "STATIC", "FINAL" ]
+    }, {
+      "name" : "name",
+      "jniDescriptor" : "Ljava/lang/String;",
+      "typeFqcn" : "java.lang.String",
+      "isStatic" : false,
+      "modifiers" : [ "PUBLIC" ]
+    }, {
+      "name" : "age",
+      "jniDescriptor" : "I",
+      "typeFqcn" : "int",
+      "isStatic" : false,
+      "modifiers" : [ "PROTECTED" ]
+    } ],
+    "constructors" : [ {
+      "jniDescriptor" : "(Ljava/lang/String;)V",
+      "isVarargs" : false,
+      "modifiers" : [ "PUBLIC" ],
+      "parameters" : [ {
+        "name" : "name",
+        "jniDescriptor" : "Ljava/lang/String;",
+        "typeFqcn" : "java.lang.String"
+      } ]
+    }, {
+      "jniDescriptor" : "(Ljava/lang/String;I)V",
+      "isVarargs" : false,
+      "modifiers" : [ "PUBLIC" ],
+      "parameters" : [ {
+        "name" : "name",
+        "jniDescriptor" : "Ljava/lang/String;",
+        "typeFqcn" : "java.lang.String"
+      }, {
+        "name" : "age",
+        "jniDescriptor" : "I",
+        "typeFqcn" : "int"
+      } ]
+    } ],
+    "methods" : [ {
+      "name" : "greet",
+      "jniDescriptor" : "(Ljava/lang/String;)Ljava/lang/String;",
+      "isStatic" : false,
+      "isVarargs" : false,
+      "modifiers" : [ "PUBLIC" ],
+      "parameters" : [ {
+        "name" : "other",
+        "jniDescriptor" : "Ljava/lang/String;",
+        "typeFqcn" : "java.lang.String"
+      } ],
+      "returnTypeFqcn" : "java.lang.String",
+      "javadoc" : "Greet the named recipient."
+    }, {
+      "name" : "greet",
+      "jniDescriptor" : "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",
+      "isStatic" : false,
+      "isVarargs" : false,
+      "modifiers" : [ "PUBLIC" ],
+      "parameters" : [ {
+        "name" : "prefix",
+        "jniDescriptor" : "Ljava/lang/String;",
+        "typeFqcn" : "java.lang.String"
+      }, {
+        "name" : "other",
+        "jniDescriptor" : "Ljava/lang/String;",
+        "typeFqcn" : "java.lang.String"
+      } ],
+      "returnTypeFqcn" : "java.lang.String",
+      "javadoc" : "Greet with an explicit prefix."
+    }, {
+      "name" : "anonymous",
+      "jniDescriptor" : "()Lcom/example/fixture/Person;",
+      "isStatic" : true,
+      "isVarargs" : false,
+      "modifiers" : [ "PUBLIC", "STATIC" ],
+      "parameters" : [ ],
+      "returnTypeFqcn" : "com.example.fixture.Person"
+    }, {
+      "name" : "getAge",
+      "jniDescriptor" : "()I",
+      "isStatic" : false,
+      "isVarargs" : false,
+      "modifiers" : [ "PUBLIC" ],
+      "parameters" : [ ],
+      "returnTypeFqcn" : "int"
+    }, {
+      "name" : "addTags",
+      "jniDescriptor" : "([Ljava/lang/String;)V",
+      "isStatic" : false,
+      "isVarargs" : true,
+      "modifiers" : [ "PUBLIC" ],
+      "parameters" : [ {
+        "name" : "tags",
+        "jniDescriptor" : "[Ljava/lang/String;",
+        "typeFqcn" : "java.lang.String[]"
+      } ],
+      "returnTypeFqcn" : "void"
+    } ],
+    "nested" : [ ]
+  } ]
+}

@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from android.speech.RecognitionSupport import RecognitionSupport
+
+class RecognitionSupportCallback:
+    def onError(self, p0: int) -> None: ...
+    def onSupportResult(self, p0: RecognitionSupport) -> None: ...

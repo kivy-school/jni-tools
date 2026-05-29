@@ -1,0 +1,42 @@
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["AccessibilityWindowInfo"]
+
+class AccessibilityWindowInfo(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/view/accessibility/AccessibilityWindowInfo"
+    __javaconstructor__ = [("()V", False), ("(Landroid/view/accessibility/AccessibilityWindowInfo;)V", False)]
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    TYPE_ACCESSIBILITY_OVERLAY = JavaStaticField("I")
+    TYPE_APPLICATION = JavaStaticField("I")
+    TYPE_INPUT_METHOD = JavaStaticField("I")
+    TYPE_MAGNIFICATION_OVERLAY = JavaStaticField("I")
+    TYPE_SPLIT_SCREEN_DIVIDER = JavaStaticField("I")
+    TYPE_SYSTEM = JavaStaticField("I")
+    TYPE_WINDOW_CONTROL = JavaStaticField("I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getRegionInScreen = JavaMethod("(Landroid/graphics/Region;)V")
+    getAnchor = JavaMethod("()Landroid/view/accessibility/AccessibilityNodeInfo;")
+    getTransitionTimeMillis = JavaMethod("()J")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    getParent = JavaMethod("()Landroid/view/accessibility/AccessibilityWindowInfo;")
+    getId = JavaMethod("()I")
+    getLayer = JavaMethod("()I")
+    getRoot = JavaMultipleMethod([("()Landroid/view/accessibility/AccessibilityNodeInfo;", False, False), ("(I)Landroid/view/accessibility/AccessibilityNodeInfo;", False, False)])
+    getType = JavaMethod("()I")
+    isInPictureInPictureMode = JavaMethod("()Z")
+    isAccessibilityFocused = JavaMethod("()Z")
+    isFocused = JavaMethod("()Z")
+    getTitle = JavaMethod("()Ljava/lang/CharSequence;")
+    getBoundsInScreen = JavaMethod("(Landroid/graphics/Rect;)V")
+    getChild = JavaMethod("(I)Landroid/view/accessibility/AccessibilityWindowInfo;")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    describeContents = JavaMethod("()I")
+    getLocales = JavaMethod("()Landroid/os/LocaleList;")
+    recycle = JavaMethod("()V")
+    obtain = JavaMultipleMethod([("(Landroid/view/accessibility/AccessibilityWindowInfo;)Landroid/view/accessibility/AccessibilityWindowInfo;", True, False), ("()Landroid/view/accessibility/AccessibilityWindowInfo;", True, False)])
+    getChildCount = JavaMethod("()I")
+    getDisplayId = JavaMethod("()I")
+    isActive = JavaMethod("()Z")

@@ -1,0 +1,77 @@
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["Resources"]
+
+class Resources(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/content/res/Resources"
+    __javaconstructor__ = [("(Landroid/content/res/AssetManager;Landroid/util/DisplayMetrics;Landroid/content/res/Configuration;)V", False)]
+    ID_NULL = JavaStaticField("I")
+    getBoolean = JavaMethod("(I)Z")
+    getFloat = JavaMethod("(I)F")
+    getValue = JavaMultipleMethod([("(Ljava/lang/String;Landroid/util/TypedValue;Z)V", False, False), ("(ILandroid/util/TypedValue;Z)V", False, False)])
+    getAnimation = JavaMethod("(I)Landroid/content/res/XmlResourceParser;")
+    addLoaders = JavaMethod("([Landroid/content/res/loader/ResourcesLoader;)V", varargs=True)
+    finishPreloading = JavaMethod("()V")
+    flushLayoutCache = JavaMethod("()V")
+    getAttributeSetSourceResId = JavaStaticMethod("(Landroid/util/AttributeSet;)I")
+    getConfiguration = JavaMethod("()Landroid/content/res/Configuration;")
+    getDisplayMetrics = JavaMethod("()Landroid/util/DisplayMetrics;")
+    getDrawableForDensity = JavaMultipleMethod([("(IILandroid/content/res/Resources$Theme;)Landroid/graphics/drawable/Drawable;", False, False), ("(II)Landroid/graphics/drawable/Drawable;", False, False)])
+    getMovie = JavaMethod("(I)Landroid/graphics/Movie;")
+    getQuantityString = JavaMultipleMethod([("(II[Ljava/lang/Object;)Ljava/lang/String;", False, True), ("(II)Ljava/lang/String;", False, False)])
+    getQuantityText = JavaMethod("(II)Ljava/lang/CharSequence;")
+    getResourceEntryName = JavaMethod("(I)Ljava/lang/String;")
+    getResourceName = JavaMethod("(I)Ljava/lang/String;")
+    getResourcePackageName = JavaMethod("(I)Ljava/lang/String;")
+    getResourceTypeName = JavaMethod("(I)Ljava/lang/String;")
+    getSystem = JavaStaticMethod("()Landroid/content/res/Resources;")
+    getValueForDensity = JavaMethod("(IILandroid/util/TypedValue;Z)V")
+    newTheme = JavaMethod("()Landroid/content/res/Resources$Theme;")
+    obtainAttributes = JavaMethod("(Landroid/util/AttributeSet;[I)Landroid/content/res/TypedArray;")
+    obtainTypedArray = JavaMethod("(I)Landroid/content/res/TypedArray;")
+    openRawResource = JavaMultipleMethod([("(I)Ljava/io/InputStream;", False, False), ("(ILandroid/util/TypedValue;)Ljava/io/InputStream;", False, False)])
+    openRawResourceFd = JavaMethod("(I)Landroid/content/res/AssetFileDescriptor;")
+    parseBundleExtra = JavaMethod("(Ljava/lang/String;Landroid/util/AttributeSet;Landroid/os/Bundle;)V")
+    parseBundleExtras = JavaMethod("(Landroid/content/res/XmlResourceParser;Landroid/os/Bundle;)V")
+    registerResourcePaths = JavaStaticMethod("(Ljava/lang/String;Landroid/content/pm/ApplicationInfo;)V")
+    removeLoaders = JavaMethod("([Landroid/content/res/loader/ResourcesLoader;)V", varargs=True)
+    updateConfiguration = JavaMethod("(Landroid/content/res/Configuration;Landroid/util/DisplayMetrics;)V")
+    getColor = JavaMultipleMethod([("(ILandroid/content/res/Resources$Theme;)I", False, False), ("(I)I", False, False)])
+    getDrawable = JavaMultipleMethod([("(I)Landroid/graphics/drawable/Drawable;", False, False), ("(ILandroid/content/res/Resources$Theme;)Landroid/graphics/drawable/Drawable;", False, False)])
+    getColorStateList = JavaMultipleMethod([("(I)Landroid/content/res/ColorStateList;", False, False), ("(ILandroid/content/res/Resources$Theme;)Landroid/content/res/ColorStateList;", False, False)])
+    getLayout = JavaMethod("(I)Landroid/content/res/XmlResourceParser;")
+    getXml = JavaMethod("(I)Landroid/content/res/XmlResourceParser;")
+    getIdentifier = JavaMethod("(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)I")
+    getString = JavaMultipleMethod([("(I[Ljava/lang/Object;)Ljava/lang/String;", False, True), ("(I)Ljava/lang/String;", False, False)])
+    getStringArray = JavaMethod("(I)[Ljava/lang/String;")
+    getIntArray = JavaMethod("(I)[I")
+    getDimension = JavaMethod("(I)F")
+    getDimensionPixelOffset = JavaMethod("(I)I")
+    getDimensionPixelSize = JavaMethod("(I)I")
+    getFont = JavaMethod("(I)Landroid/graphics/Typeface;")
+    getFraction = JavaMethod("(III)F")
+    getTextArray = JavaMethod("(I)[Ljava/lang/CharSequence;")
+    getAssets = JavaMethod("()Landroid/content/res/AssetManager;")
+    getText = JavaMultipleMethod([("(I)Ljava/lang/CharSequence;", False, False), ("(ILjava/lang/CharSequence;)Ljava/lang/CharSequence;", False, False)])
+    getInteger = JavaMethod("(I)I")
+
+    class Theme(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/content/res/Resources$Theme"
+        equals = JavaMethod("(Ljava/lang/Object;)Z")
+        toString = JavaMethod("()Ljava/lang/String;")
+        hashCode = JavaMethod("()I")
+        getResources = JavaMethod("()Landroid/content/res/Resources;")
+        dump = JavaMethod("(ILjava/lang/String;Ljava/lang/String;)V")
+        getAttributeResolutionStack = JavaMethod("(III)[I")
+        getExplicitStyle = JavaMethod("(Landroid/util/AttributeSet;)I")
+        rebase = JavaMethod("()V")
+        applyStyle = JavaMethod("(IZ)V")
+        resolveAttribute = JavaMethod("(ILandroid/util/TypedValue;Z)Z")
+        getDrawable = JavaMethod("(I)Landroid/graphics/drawable/Drawable;")
+        obtainStyledAttributes = JavaMultipleMethod([("(Landroid/util/AttributeSet;[III)Landroid/content/res/TypedArray;", False, False), ("([I)Landroid/content/res/TypedArray;", False, False), ("(I[I)Landroid/content/res/TypedArray;", False, False)])
+        getChangingConfigurations = JavaMethod("()I")
+        setTo = JavaMethod("(Landroid/content/res/Resources$Theme;)V")
+
+    class NotFoundException(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/content/res/Resources$NotFoundException"
+        __javaconstructor__ = [("()V", False), ("(Ljava/lang/String;)V", False), ("(Ljava/lang/String;Ljava/lang/Exception;)V", False)]

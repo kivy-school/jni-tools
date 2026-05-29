@@ -1,0 +1,41 @@
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["AtomicLong"]
+
+class AtomicLong(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "java/util/concurrent/atomic/AtomicLong"
+    __javaconstructor__ = [("(J)V", False), ("()V", False)]
+    toString = JavaMethod("()Ljava/lang/String;")
+    intValue = JavaMethod("()I")
+    longValue = JavaMethod("()J")
+    floatValue = JavaMethod("()F")
+    doubleValue = JavaMethod("()D")
+    get = JavaMethod("()J")
+    set = JavaMethod("(J)V")
+    getOpaque = JavaMethod("()J")
+    setOpaque = JavaMethod("(J)V")
+    getAcquire = JavaMethod("()J")
+    setRelease = JavaMethod("(J)V")
+    compareAndSet = JavaMethod("(JJ)Z")
+    compareAndExchange = JavaMethod("(JJ)J")
+    compareAndExchangeAcquire = JavaMethod("(JJ)J")
+    compareAndExchangeRelease = JavaMethod("(JJ)J")
+    weakCompareAndSetPlain = JavaMethod("(JJ)Z")
+    weakCompareAndSet = JavaMethod("(JJ)Z")
+    weakCompareAndSetAcquire = JavaMethod("(JJ)Z")
+    weakCompareAndSetRelease = JavaMethod("(JJ)Z")
+    getAndSet = JavaMethod("(J)J")
+    getAndAdd = JavaMethod("(J)J")
+    incrementAndGet = JavaMethod("()J")
+    weakCompareAndSetVolatile = JavaMethod("(JJ)Z")
+    lazySet = JavaMethod("(J)V")
+    getAndIncrement = JavaMethod("()J")
+    getAndDecrement = JavaMethod("()J")
+    decrementAndGet = JavaMethod("()J")
+    addAndGet = JavaMethod("(J)J")
+    getAndUpdate = JavaMethod("(Ljava/util/function/LongUnaryOperator;)J")
+    updateAndGet = JavaMethod("(Ljava/util/function/LongUnaryOperator;)J")
+    getAndAccumulate = JavaMethod("(JLjava/util/function/LongBinaryOperator;)J")
+    accumulateAndGet = JavaMethod("(JLjava/util/function/LongBinaryOperator;)J")
+    getPlain = JavaMethod("()J")
+    setPlain = JavaMethod("(J)V")

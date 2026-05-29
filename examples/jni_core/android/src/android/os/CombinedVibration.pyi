@@ -1,0 +1,16 @@
+from typing import Any, ClassVar, overload
+from android.os.VibrationEffect import VibrationEffect
+
+class CombinedVibration:
+    CREATOR: ClassVar[Any]
+    CONTENTS_FILE_DESCRIPTOR: ClassVar[int]
+    PARCELABLE_WRITE_RETURN_VALUE: ClassVar[int]
+    @staticmethod
+    def createParallel(p0: VibrationEffect) -> "CombinedVibration": ...
+    @staticmethod
+    def startParallel() -> Any: ...
+    def describeContents(self) -> int: ...
+
+    class ParallelCombination:
+        def combine(self) -> "CombinedVibration": ...
+        def addVibrator(self, p0: int, p1: VibrationEffect) -> Any: ...

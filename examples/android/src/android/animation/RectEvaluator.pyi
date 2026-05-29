@@ -1,9 +1,0 @@
-from typing import Any, ClassVar, overload
-from android.graphics.Rect import Rect
-
-class RectEvaluator:
-    @overload
-    def __init__(self) -> None: ...
-    @overload
-    def __init__(self, arg0: Rect) -> None: ...
-    def evaluate(self, arg0: float, arg1: Rect, arg2: Rect) -> Rect: ...

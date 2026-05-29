@@ -1,0 +1,42 @@
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["JobScheduler"]
+
+class JobScheduler(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/app/job/JobScheduler"
+    __javaconstructor__ = [("()V", False)]
+    PENDING_JOB_REASON_APP = JavaStaticField("I")
+    PENDING_JOB_REASON_APP_STANDBY = JavaStaticField("I")
+    PENDING_JOB_REASON_BACKGROUND_RESTRICTION = JavaStaticField("I")
+    PENDING_JOB_REASON_CONSTRAINT_BATTERY_NOT_LOW = JavaStaticField("I")
+    PENDING_JOB_REASON_CONSTRAINT_CHARGING = JavaStaticField("I")
+    PENDING_JOB_REASON_CONSTRAINT_CONNECTIVITY = JavaStaticField("I")
+    PENDING_JOB_REASON_CONSTRAINT_CONTENT_TRIGGER = JavaStaticField("I")
+    PENDING_JOB_REASON_CONSTRAINT_DEADLINE = JavaStaticField("I")
+    PENDING_JOB_REASON_CONSTRAINT_DEVICE_IDLE = JavaStaticField("I")
+    PENDING_JOB_REASON_CONSTRAINT_MINIMUM_LATENCY = JavaStaticField("I")
+    PENDING_JOB_REASON_CONSTRAINT_PREFETCH = JavaStaticField("I")
+    PENDING_JOB_REASON_CONSTRAINT_STORAGE_NOT_LOW = JavaStaticField("I")
+    PENDING_JOB_REASON_DEVICE_STATE = JavaStaticField("I")
+    PENDING_JOB_REASON_EXECUTING = JavaStaticField("I")
+    PENDING_JOB_REASON_INVALID_JOB_ID = JavaStaticField("I")
+    PENDING_JOB_REASON_JOB_SCHEDULER_OPTIMIZATION = JavaStaticField("I")
+    PENDING_JOB_REASON_QUOTA = JavaStaticField("I")
+    PENDING_JOB_REASON_UNDEFINED = JavaStaticField("I")
+    PENDING_JOB_REASON_USER = JavaStaticField("I")
+    RESULT_FAILURE = JavaStaticField("I")
+    RESULT_SUCCESS = JavaStaticField("I")
+    getPendingJobReasons = JavaMethod("(I)[I")
+    cancelAll = JavaMethod("()V")
+    getAllPendingJobs = JavaMethod("()Ljava/util/List;")
+    forNamespace = JavaMethod("(Ljava/lang/String;)Landroid/app/job/JobScheduler;")
+    getPendingJob = JavaMethod("(I)Landroid/app/job/JobInfo;")
+    canRunUserInitiatedJobs = JavaMethod("()Z")
+    cancelInAllNamespaces = JavaMethod("()V")
+    getPendingJobReason = JavaMethod("(I)I")
+    getPendingJobReasonsHistory = JavaMethod("(I)Ljava/util/List;")
+    getPendingJobsInAllNamespaces = JavaMethod("()Ljava/util/Map;")
+    enqueue = JavaMethod("(Landroid/app/job/JobInfo;Landroid/app/job/JobWorkItem;)I")
+    cancel = JavaMethod("(I)V")
+    schedule = JavaMethod("(Landroid/app/job/JobInfo;)I")
+    getNamespace = JavaMethod("()Ljava/lang/String;")

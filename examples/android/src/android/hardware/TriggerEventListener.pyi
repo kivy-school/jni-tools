@@ -1,6 +1,0 @@
-from typing import Any, ClassVar, overload
-from android.hardware.TriggerEvent import TriggerEvent
-
-class TriggerEventListener:
-    def __init__(self) -> None: ...
-    def onTrigger(self, arg0: TriggerEvent) -> None: ...

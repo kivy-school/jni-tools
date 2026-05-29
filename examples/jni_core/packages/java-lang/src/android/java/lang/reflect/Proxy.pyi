@@ -1,0 +1,13 @@
+from typing import Any, ClassVar, overload
+from java.lang.ClassLoader import ClassLoader
+from java.lang.reflect.InvocationHandler import InvocationHandler
+
+class Proxy:
+    @staticmethod
+    def isProxyClass(p0: type) -> bool: ...
+    @staticmethod
+    def newProxyInstance(p0: ClassLoader, p1: Any, p2: InvocationHandler) -> Any: ...
+    @staticmethod
+    def getInvocationHandler(p0: Any) -> InvocationHandler: ...
+    @staticmethod
+    def getProxyClass(p0: ClassLoader, p1: Any) -> type: ...

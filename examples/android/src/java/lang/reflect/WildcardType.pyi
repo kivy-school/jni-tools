@@ -1,6 +1,0 @@
-from typing import Any, ClassVar, overload
-from java.lang.reflect.Type import Type
-
-class WildcardType:
-    def getUpperBounds(self) -> list[Type]: ...
-    def getLowerBounds(self) -> list[Type]: ...

@@ -1,6 +1,0 @@
-from typing import Any, ClassVar, overload
-from android.net.Network import Network
-
-class IkeNetworkLostException:
-    def __init__(self, arg0: Network) -> None: ...
-    def getNetwork(self) -> Network: ...

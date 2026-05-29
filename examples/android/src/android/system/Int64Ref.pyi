@@ -1,6 +1,0 @@
-from typing import Any, ClassVar, overload
-
-class Int64Ref:
-    value: int
-    def __init__(self, arg0: int) -> None: ...
-    def toString(self) -> str: ...

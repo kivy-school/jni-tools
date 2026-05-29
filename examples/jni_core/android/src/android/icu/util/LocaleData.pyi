@@ -1,0 +1,33 @@
+from typing import Any, ClassVar, overload
+from android.icu.util.ULocale import ULocale
+from android.icu.util.VersionInfo import VersionInfo
+
+class LocaleData:
+    ALT_QUOTATION_END: ClassVar[int]
+    ALT_QUOTATION_START: ClassVar[int]
+    QUOTATION_END: ClassVar[int]
+    QUOTATION_START: ClassVar[int]
+    def setNoSubstitute(self, p0: bool) -> None: ...
+    def getDelimiter(self, p0: int) -> str: ...
+    @staticmethod
+    def getPaperSize(p0: ULocale) -> Any: ...
+    def getNoSubstitute(self) -> bool: ...
+    @staticmethod
+    def getCLDRVersion() -> VersionInfo: ...
+    @staticmethod
+    def getMeasurementSystem(p0: ULocale) -> Any: ...
+    @overload
+    @staticmethod
+    def getInstance() -> "LocaleData": ...
+    @overload
+    @staticmethod
+    def getInstance(p0: ULocale) -> "LocaleData": ...
+
+    class PaperSize:
+        def getHeight(self) -> int: ...
+        def getWidth(self) -> int: ...
+
+    class MeasurementSystem:
+        SI: ClassVar[Any]
+        UK: ClassVar[Any]
+        US: ClassVar[Any]

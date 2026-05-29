@@ -1,0 +1,13 @@
+from typing import Any, ClassVar, overload
+from android.os.Parcel import Parcel
+from android.view.autofill.AutofillId import AutofillId
+from java.util.regex.Pattern import Pattern
+
+class RegexValidator:
+    CREATOR: ClassVar[Any]
+    CONTENTS_FILE_DESCRIPTOR: ClassVar[int]
+    PARCELABLE_WRITE_RETURN_VALUE: ClassVar[int]
+    def __init__(self, p0: AutofillId, p1: Pattern) -> None: ...
+    def toString(self) -> str: ...
+    def writeToParcel(self, p0: Parcel, p1: int) -> None: ...
+    def describeContents(self) -> int: ...

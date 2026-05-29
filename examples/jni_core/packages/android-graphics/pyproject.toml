@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel", "cython>=3.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "android-android-graphics"
+version = "35.0.0"
+description = "Cython JNI wrappers for the android.graphics.* subpackage (android.jar, API 35). Imports as android.android.graphics.*."
+requires-python = ">=3.11"
+dependencies = [
+    "jni-core",
+    "android-android == 35.0.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+namespaces = true
+
+[tool.setuptools.package-data]
+"*" = ["*.pxd", "*.pyi"]
+
+[tool.setuptools.exclude-package-data]
+"*" = [".DS_Store", "*.DS_Store", "*.c", "*.pyx", "*.pxi"]
+
+[tool.cibuildwheel]
+build = "cp313-android_*"
+
+[tool.cibuildwheel.android]
+archs = ["arm64_v8a", "x86_64"]

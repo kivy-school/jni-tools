@@ -1,0 +1,16 @@
+from typing import Any, ClassVar, overload
+from java.lang.Runnable import Runnable
+from java.util.concurrent.Callable import Callable
+from java.util.concurrent.Future import Future
+from java.util.concurrent.TimeUnit import TimeUnit
+
+class CompletionService:
+    @overload
+    def submit(self, p0: Callable) -> Future: ...
+    @overload
+    def submit(self, p0: Runnable, p1: Any) -> Future: ...
+    @overload
+    def poll(self) -> Future: ...
+    @overload
+    def poll(self, p0: int, p1: TimeUnit) -> Future: ...
+    def take(self) -> Future: ...

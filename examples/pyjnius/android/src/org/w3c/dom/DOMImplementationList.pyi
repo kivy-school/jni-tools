@@ -1,0 +1,6 @@
+from typing import Any, ClassVar, overload
+from org.w3c.dom.DOMImplementation import DOMImplementation
+
+class DOMImplementationList:
+    def getLength(self) -> int: ...
+    def item(self, p0: int) -> DOMImplementation: ...

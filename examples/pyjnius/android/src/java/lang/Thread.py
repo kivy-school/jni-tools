@@ -1,0 +1,95 @@
+from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+__all__ = ["Thread"]
+
+class Thread(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "java/lang/Thread"
+    __javaconstructor__ = [("(Ljava/lang/ThreadGroup;Ljava/lang/Runnable;Ljava/lang/String;)V", False), ("(Ljava/lang/Runnable;Ljava/lang/String;)V", False), ("(Ljava/lang/ThreadGroup;Ljava/lang/String;)V", False), ("(Ljava/lang/ThreadGroup;Ljava/lang/Runnable;Ljava/lang/String;J)V", False), ("(Ljava/lang/ThreadGroup;Ljava/lang/Runnable;Ljava/lang/String;JZ)V", False), ("()V", False), ("(Ljava/lang/Runnable;)V", False), ("(Ljava/lang/ThreadGroup;Ljava/lang/Runnable;)V", False), ("(Ljava/lang/String;)V", False)]
+    MIN_PRIORITY = JavaStaticField("I")
+    NORM_PRIORITY = JavaStaticField("I")
+    MAX_PRIORITY = JavaStaticField("I")
+    getName = JavaMethod("()Ljava/lang/String;")
+    getStackTrace = JavaMethod("()[Ljava/lang/StackTraceElement;")
+    run = JavaMethod("()V")
+    interrupt = JavaMethod("()V")
+    toString = JavaMethod("()Ljava/lang/String;")
+    currentThread = JavaStaticMethod("()Ljava/lang/Thread;")
+    onSpinWait = JavaStaticMethod("()V")
+    join = JavaMultipleMethod([("(J)V", False, False), ("(Ljava/time/Duration;)Z", False, False), ("(JI)V", False, False), ("()V", False, False)])
+    setContextClassLoader = JavaMethod("(Ljava/lang/ClassLoader;)V")
+    holdsLock = JavaStaticMethod("(Ljava/lang/Object;)Z")
+    setPriority = JavaMethod("(I)V")
+    setDaemon = JavaMethod("(Z)V")
+    start = JavaMethod("()V")
+    getThreadGroup = JavaMethod("()Ljava/lang/ThreadGroup;")
+    getPriority = JavaMethod("()I")
+    isDaemon = JavaMethod("()Z")
+    getContextClassLoader = JavaMethod("()Ljava/lang/ClassLoader;")
+    interrupted = JavaStaticMethod("()Z")
+    isVirtual = JavaMethod("()Z")
+    activeCount = JavaStaticMethod("()I")
+    enumerate = JavaStaticMethod("([Ljava/lang/Thread;)I")
+    isAlive = JavaMethod("()Z")
+    threadId = JavaMethod("()J")
+    getUncaughtExceptionHandler = JavaMethod("()Ljava/lang/Thread$UncaughtExceptionHandler;")
+    yield = JavaStaticMethod("()V")
+    sleep = JavaMultipleMethod([("(JI)V", True, False), ("(Ljava/time/Duration;)V", True, False), ("(J)V", True, False)])
+    ofPlatform = JavaStaticMethod("()Ljava/lang/Thread$Builder$OfPlatform;")
+    ofVirtual = JavaStaticMethod("()Ljava/lang/Thread$Builder$OfVirtual;")
+    startVirtualThread = JavaStaticMethod("(Ljava/lang/Runnable;)Ljava/lang/Thread;")
+    isInterrupted = JavaMethod("()Z")
+    setName = JavaMethod("(Ljava/lang/String;)V")
+    dumpStack = JavaStaticMethod("()V")
+    checkAccess = JavaMethod("()V")
+    getAllStackTraces = JavaStaticMethod("()Ljava/util/Map;")
+    getId = JavaMethod("()J")
+    getState = JavaMethod("()Ljava/lang/Thread$State;")
+    setDefaultUncaughtExceptionHandler = JavaStaticMethod("(Ljava/lang/Thread$UncaughtExceptionHandler;)V")
+    getDefaultUncaughtExceptionHandler = JavaStaticMethod("()Ljava/lang/Thread$UncaughtExceptionHandler;")
+    setUncaughtExceptionHandler = JavaMethod("(Ljava/lang/Thread$UncaughtExceptionHandler;)V")
+
+    class UncaughtExceptionHandler(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "java/lang/Thread$UncaughtExceptionHandler"
+        uncaughtException = JavaMethod("(Ljava/lang/Thread;Ljava/lang/Throwable;)V")
+
+    class State(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "java/lang/Thread$State"
+        NEW = JavaStaticField("Ljava/lang/Thread$State;")
+        RUNNABLE = JavaStaticField("Ljava/lang/Thread$State;")
+        BLOCKED = JavaStaticField("Ljava/lang/Thread$State;")
+        WAITING = JavaStaticField("Ljava/lang/Thread$State;")
+        TIMED_WAITING = JavaStaticField("Ljava/lang/Thread$State;")
+        TERMINATED = JavaStaticField("Ljava/lang/Thread$State;")
+        values = JavaStaticMethod("()[Ljava/lang/Thread$State;")
+        valueOf = JavaStaticMethod("(Ljava/lang/String;)Ljava/lang/Thread$State;")
+        NEW = JavaStaticField("Ljava/lang/Thread$State;")
+        RUNNABLE = JavaStaticField("Ljava/lang/Thread$State;")
+        BLOCKED = JavaStaticField("Ljava/lang/Thread$State;")
+        WAITING = JavaStaticField("Ljava/lang/Thread$State;")
+        TIMED_WAITING = JavaStaticField("Ljava/lang/Thread$State;")
+        TERMINATED = JavaStaticField("Ljava/lang/Thread$State;")
+
+    class Builder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "java/lang/Thread$Builder"
+        name = JavaMultipleMethod([("(Ljava/lang/String;)Ljava/lang/Thread$Builder;", False, False), ("(Ljava/lang/String;J)Ljava/lang/Thread$Builder;", False, False)])
+        factory = JavaMethod("()Ljava/util/concurrent/ThreadFactory;")
+        start = JavaMethod("(Ljava/lang/Runnable;)Ljava/lang/Thread;")
+        uncaughtExceptionHandler = JavaMethod("(Ljava/lang/Thread$UncaughtExceptionHandler;)Ljava/lang/Thread$Builder;")
+        inheritInheritableThreadLocals = JavaMethod("(Z)Ljava/lang/Thread$Builder;")
+        unstarted = JavaMethod("(Ljava/lang/Runnable;)Ljava/lang/Thread;")
+
+        class OfVirtual(JavaClass, metaclass=MetaJavaClass):
+            __javaclass__ = "java/lang/Thread$Builder$OfVirtual"
+            name = JavaMultipleMethod([("(Ljava/lang/String;J)Ljava/lang/Thread$Builder;", False, False), ("(Ljava/lang/String;)Ljava/lang/Thread$Builder;", False, False), ("(Ljava/lang/String;)Ljava/lang/Thread$Builder$OfVirtual;", False, False), ("(Ljava/lang/String;J)Ljava/lang/Thread$Builder$OfVirtual;", False, False)])
+            uncaughtExceptionHandler = JavaMultipleMethod([("(Ljava/lang/Thread$UncaughtExceptionHandler;)Ljava/lang/Thread$Builder;", False, False), ("(Ljava/lang/Thread$UncaughtExceptionHandler;)Ljava/lang/Thread$Builder$OfVirtual;", False, False)])
+            inheritInheritableThreadLocals = JavaMultipleMethod([("(Z)Ljava/lang/Thread$Builder$OfVirtual;", False, False), ("(Z)Ljava/lang/Thread$Builder;", False, False)])
+
+        class OfPlatform(JavaClass, metaclass=MetaJavaClass):
+            __javaclass__ = "java/lang/Thread$Builder$OfPlatform"
+            name = JavaMultipleMethod([("(Ljava/lang/String;J)Ljava/lang/Thread$Builder;", False, False), ("(Ljava/lang/String;)Ljava/lang/Thread$Builder;", False, False), ("(Ljava/lang/String;J)Ljava/lang/Thread$Builder$OfPlatform;", False, False), ("(Ljava/lang/String;)Ljava/lang/Thread$Builder$OfPlatform;", False, False)])
+            priority = JavaMethod("(I)Ljava/lang/Thread$Builder$OfPlatform;")
+            group = JavaMethod("(Ljava/lang/ThreadGroup;)Ljava/lang/Thread$Builder$OfPlatform;")
+            daemon = JavaMultipleMethod([("()Ljava/lang/Thread$Builder$OfPlatform;", False, False), ("(Z)Ljava/lang/Thread$Builder$OfPlatform;", False, False)])
+            uncaughtExceptionHandler = JavaMultipleMethod([("(Ljava/lang/Thread$UncaughtExceptionHandler;)Ljava/lang/Thread$Builder$OfPlatform;", False, False), ("(Ljava/lang/Thread$UncaughtExceptionHandler;)Ljava/lang/Thread$Builder;", False, False)])
+            stackSize = JavaMethod("(J)Ljava/lang/Thread$Builder$OfPlatform;")
+            inheritInheritableThreadLocals = JavaMultipleMethod([("(Z)Ljava/lang/Thread$Builder$OfPlatform;", False, False), ("(Z)Ljava/lang/Thread$Builder;", False, False)])

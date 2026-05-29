@@ -1,0 +1,9 @@
+from typing import Any, ClassVar, overload
+from java.lang.Void import Void
+
+class RecursiveAction:
+    def __init__(self) -> None: ...
+    @overload
+    def getRawResult(self) -> Void: ...
+    @overload
+    def getRawResult(self) -> Any: ...

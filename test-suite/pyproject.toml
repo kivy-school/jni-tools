@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jni-tools-test-suite"
+version = "0.0.0"
+description = "Desktop (macOS) tests exercising the jni-wrap CLI end-to-end via both pyjnius and jni_core backends."
+requires-python = ">=3.13"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "pyjnius>=1.6",
+    "cython>=3.0",
+    "pip",
+    "setuptools>=68",
+    "wheel",
+    "jni-core",
+    "pyjnius-builder",
+]
+
+[tool.uv.sources]
+jni-core = { git = "https://github.com/kivy-school/jni-core" }
+pyjnius-builder = { path = "../../pyjnius-builder", editable = true }
+
+[tool.pytest.ini_options]
+testpaths = ["commons_csv"]
+
+[tool.setuptools]
+packages = []

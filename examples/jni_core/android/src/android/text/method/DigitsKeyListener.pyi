@@ -1,0 +1,36 @@
+from typing import Any, ClassVar, overload
+from android.text.Spanned import Spanned
+from java.util.Locale import Locale
+
+class DigitsKeyListener:
+    META_ALT_LOCKED: ClassVar[int]
+    META_ALT_ON: ClassVar[int]
+    META_CAP_LOCKED: ClassVar[int]
+    META_SHIFT_ON: ClassVar[int]
+    META_SYM_LOCKED: ClassVar[int]
+    META_SYM_ON: ClassVar[int]
+    @overload
+    def __init__(self) -> None: ...
+    @overload
+    def __init__(self, p0: Locale, p1: bool, p2: bool) -> None: ...
+    @overload
+    def __init__(self, p0: Locale) -> None: ...
+    @overload
+    def __init__(self, p0: bool, p1: bool) -> None: ...
+    def filter(self, p0: str, p1: int, p2: int, p3: Spanned, p4: int, p5: int) -> str: ...
+    @overload
+    @staticmethod
+    def getInstance(p0: bool, p1: bool) -> "DigitsKeyListener": ...
+    @overload
+    @staticmethod
+    def getInstance(p0: str) -> "DigitsKeyListener": ...
+    @overload
+    @staticmethod
+    def getInstance(p0: Locale) -> "DigitsKeyListener": ...
+    @overload
+    @staticmethod
+    def getInstance() -> "DigitsKeyListener": ...
+    @overload
+    @staticmethod
+    def getInstance(p0: Locale, p1: bool, p2: bool) -> "DigitsKeyListener": ...
+    def getInputType(self) -> int: ...
