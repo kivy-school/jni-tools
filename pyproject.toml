@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "jni-tools"
+version = "0.1.0"
+description = "Java JNI tooling for Python — jni-wrap CLI and supporting libraries"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.11"
+dependencies = []
+
+# ---------------------------------------------------------------------------
+# Hatchling config
+# ---------------------------------------------------------------------------
+[tool.hatch.build]
+hooks.custom.path = "hatch_build.py"
+
+# No Python packages — wheel contains only the native binary.
+[tool.hatch.build.targets.wheel]
+packages = ["src/jni_tools"]
+
+# Install the binary directly into .venv/bin/ — no Python shim needed.
+[tool.hatch.build.targets.wheel.shared-scripts]
+"bin/jni-wrap" = "jni-wrap"
