@@ -1,24 +1,25 @@
-from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
-__all__ = ["Vibrator"]
+class VibratorEnvelopeEffectInfo(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/os/vibrator/VibratorEnvelopeEffectInfo"
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getMaxControlPointDurationMillis = JavaMethod("()J")
+    getMaxDurationMillis = JavaMethod("()J")
+    getMinControlPointDurationMillis = JavaMethod("()J")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    getMaxSize = JavaMethod("()I")
+    describeContents = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
 
-class Vibrator(JavaClass, metaclass=MetaJavaClass):
-    __javaclass__ = "android/os/Vibrator"
-    VIBRATION_EFFECT_SUPPORT_NO = JavaStaticField("I")
-    VIBRATION_EFFECT_SUPPORT_UNKNOWN = JavaStaticField("I")
-    VIBRATION_EFFECT_SUPPORT_YES = JavaStaticField("I")
-    vibrate = JavaMultipleMethod([("([JI)V", False, False), ("(JLandroid/media/AudioAttributes;)V", False, False), ("(J)V", False, False), ("(Landroid/os/VibrationEffect;Landroid/os/VibrationAttributes;)V", False, False), ("(Landroid/os/VibrationEffect;Landroid/media/AudioAttributes;)V", False, False), ("(Landroid/os/VibrationEffect;)V", False, False), ("([JILandroid/media/AudioAttributes;)V", False, False)])
-    hasVibrator = JavaMethod("()Z")
-    areAllEffectsSupported = JavaMethod("([I)I", varargs=True)
-    areAllPrimitivesSupported = JavaMethod("([I)Z", varargs=True)
-    areEffectsSupported = JavaMethod("([I)[I", varargs=True)
-    areEnvelopeEffectsSupported = JavaMethod("()Z")
-    getQFactor = JavaMethod("()F")
-    arePrimitivesSupported = JavaMethod("([I)[Z", varargs=True)
-    getEnvelopeEffectInfo = JavaMethod("()Landroid/os/vibrator/VibratorEnvelopeEffectInfo;")
-    getFrequencyProfile = JavaMethod("()Landroid/os/vibrator/VibratorFrequencyProfile;")
-    getPrimitiveDurations = JavaMethod("([I)[I", varargs=True)
-    getResonantFrequency = JavaMethod("()F")
-    hasAmplitudeControl = JavaMethod("()Z")
-    getId = JavaMethod("()I")
-    cancel = JavaMethod("()V")
+class VibratorFrequencyProfile(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/os/vibrator/VibratorFrequencyProfile"
+    getMaxFrequencyHz = JavaMethod("()F")
+    getMaxOutputAccelerationGs = JavaMethod("()F")
+    getMinFrequencyHz = JavaMethod("()F")
+    getOutputAccelerationGs = JavaMethod("(F)F")
+    getFrequenciesOutputAcceleration = JavaMethod("()Landroid/util/SparseArray;")
+    getFrequencyRange = JavaMethod("(F)Landroid/util/Range;")

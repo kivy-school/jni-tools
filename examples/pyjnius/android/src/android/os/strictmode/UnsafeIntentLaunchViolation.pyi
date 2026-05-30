@@ -1,6 +1,0 @@
-from typing import Any, ClassVar, overload
-from android.content.Intent import Intent
-
-class UnsafeIntentLaunchViolation:
-    def __init__(self, p0: Intent) -> None: ...
-    def getIntent(self) -> Intent: ...

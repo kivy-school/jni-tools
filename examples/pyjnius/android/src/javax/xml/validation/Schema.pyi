@@ -1,7 +1,0 @@
-from typing import Any, ClassVar, overload
-from javax.xml.validation.Validator import Validator
-from javax.xml.validation.ValidatorHandler import ValidatorHandler
-
-class Schema:
-    def newValidator(self) -> Validator: ...
-    def newValidatorHandler(self) -> ValidatorHandler: ...

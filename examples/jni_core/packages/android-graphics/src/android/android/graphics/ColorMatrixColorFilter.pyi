@@ -1,9 +1,0 @@
-from typing import Any, ClassVar, overload
-from android.graphics.ColorMatrix import ColorMatrix
-
-class ColorMatrixColorFilter:
-    @overload
-    def __init__(self, p0: Any) -> None: ...
-    @overload
-    def __init__(self, p0: ColorMatrix) -> None: ...
-    def getColorMatrix(self, p0: ColorMatrix) -> None: ...

@@ -1,9 +1,0 @@
-from typing import Any, ClassVar, overload
-from java.security.cert.CRLSelector import CRLSelector
-from java.security.cert.CertSelector import CertSelector
-from java.security.cert.CertStoreParameters import CertStoreParameters
-
-class CertStoreSpi:
-    def __init__(self, p0: CertStoreParameters) -> None: ...
-    def engineGetCertificates(self, p0: CertSelector) -> list: ...
-    def engineGetCRLs(self, p0: CRLSelector) -> list: ...

@@ -6,40 +6,191 @@ from jni_core.jni cimport (
     jboolean, jbyte, jchar, jshort, jint, jlong, jfloat, jdouble,
 )
 
-cdef class Random(JavaObject):
+cdef class RandomGenerator(JavaObject):
+    @staticmethod
+    cdef jobject _getDefault(JNIEnv* env) except? NULL
+    @staticmethod
+    cdef jobject _getDefault_0(JNIEnv* env) except? NULL
+    @staticmethod
+    cdef jobject _of(JNIEnv* env, jstring p0) except? NULL
+    @staticmethod
+    cdef jobject _of_0(JNIEnv* env, jstring p0) except? NULL
+    cdef jdouble _nextDouble(self, JNIEnv* env, jdouble p0) except *
+    cdef jdouble _nextDouble_0(self, JNIEnv* env, jdouble p0) except *
+    cdef jdouble _nextDouble_1(self, JNIEnv* env, jdouble p0, jdouble p1) except *
+    cdef jdouble _nextDouble_2(self, JNIEnv* env) except *
+    cdef void _nextBytes(self, JNIEnv* env, jobject p0) except *
+    cdef void _nextBytes_0(self, JNIEnv* env, jobject p0) except *
     cdef jboolean _nextBoolean(self, JNIEnv* env) except *
     cdef jboolean _nextBoolean_0(self, JNIEnv* env) except *
     cdef jlong _nextLong(self, JNIEnv* env) except *
     cdef jlong _nextLong_0(self, JNIEnv* env) except *
-    cdef jobject _longs(self, JNIEnv* env, jlong p0, jlong p1) except? NULL
-    cdef jobject _longs_0(self, JNIEnv* env, jlong p0, jlong p1) except? NULL
-    cdef jobject _longs_1(self, JNIEnv* env, jlong p0, jlong p1, jlong p2) except? NULL
-    cdef jobject _longs_2(self, JNIEnv* env) except? NULL
-    cdef jobject _longs_3(self, JNIEnv* env, jlong p0) except? NULL
-    cdef jfloat _nextFloat(self, JNIEnv* env) except *
-    cdef jfloat _nextFloat_0(self, JNIEnv* env) except *
-    cdef jobject _ints(self, JNIEnv* env, jlong p0, jint p1, jint p2) except? NULL
-    cdef jobject _ints_0(self, JNIEnv* env, jlong p0, jint p1, jint p2) except? NULL
-    cdef jobject _ints_1(self, JNIEnv* env, jint p0, jint p1) except? NULL
-    cdef jobject _ints_2(self, JNIEnv* env) except? NULL
-    cdef jobject _ints_3(self, JNIEnv* env, jlong p0) except? NULL
-    cdef jobject _doubles(self, JNIEnv* env, jdouble p0, jdouble p1) except? NULL
-    cdef jobject _doubles_0(self, JNIEnv* env, jdouble p0, jdouble p1) except? NULL
-    cdef jobject _doubles_1(self, JNIEnv* env, jlong p0, jdouble p1, jdouble p2) except? NULL
-    cdef jobject _doubles_2(self, JNIEnv* env) except? NULL
-    cdef jobject _doubles_3(self, JNIEnv* env, jlong p0) except? NULL
-    cdef void _setSeed(self, JNIEnv* env, jlong p0) except *
-    cdef void _setSeed_0(self, JNIEnv* env, jlong p0) except *
-    cdef jdouble _nextGaussian(self, JNIEnv* env) except *
-    cdef jdouble _nextGaussian_0(self, JNIEnv* env) except *
-    @staticmethod
-    cdef jobject _from_(JNIEnv* env, jobject p0) except? NULL
-    @staticmethod
-    cdef jobject _from__0(JNIEnv* env, jobject p0) except? NULL
-    cdef jdouble _nextDouble(self, JNIEnv* env) except *
-    cdef jdouble _nextDouble_0(self, JNIEnv* env) except *
+    cdef jlong _nextLong_1(self, JNIEnv* env, jlong p0, jlong p1) except *
+    cdef jlong _nextLong_2(self, JNIEnv* env, jlong p0) except *
+    cdef jfloat _nextFloat(self, JNIEnv* env, jfloat p0) except *
+    cdef jfloat _nextFloat_0(self, JNIEnv* env, jfloat p0) except *
+    cdef jfloat _nextFloat_1(self, JNIEnv* env) except *
+    cdef jfloat _nextFloat_2(self, JNIEnv* env, jfloat p0, jfloat p1) except *
+    cdef jobject _ints(self, JNIEnv* env, jint p0, jint p1) except? NULL
+    cdef jobject _ints_0(self, JNIEnv* env, jint p0, jint p1) except? NULL
+    cdef jobject _ints_1(self, JNIEnv* env, jlong p0) except? NULL
+    cdef jobject _ints_2(self, JNIEnv* env, jlong p0, jint p1, jint p2) except? NULL
+    cdef jobject _ints_3(self, JNIEnv* env) except? NULL
+    cdef jobject _doubles(self, JNIEnv* env) except? NULL
+    cdef jobject _doubles_0(self, JNIEnv* env) except? NULL
+    cdef jobject _doubles_1(self, JNIEnv* env, jdouble p0, jdouble p1) except? NULL
+    cdef jobject _doubles_2(self, JNIEnv* env, jlong p0) except? NULL
+    cdef jobject _doubles_3(self, JNIEnv* env, jlong p0, jdouble p1, jdouble p2) except? NULL
+    cdef jdouble _nextGaussian(self, JNIEnv* env, jdouble p0, jdouble p1) except *
+    cdef jdouble _nextGaussian_0(self, JNIEnv* env, jdouble p0, jdouble p1) except *
+    cdef jdouble _nextGaussian_1(self, JNIEnv* env) except *
+    cdef jboolean _isDeprecated(self, JNIEnv* env) except *
+    cdef jboolean _isDeprecated_0(self, JNIEnv* env) except *
+    cdef jdouble _nextExponential(self, JNIEnv* env) except *
+    cdef jdouble _nextExponential_0(self, JNIEnv* env) except *
     cdef jint _nextInt(self, JNIEnv* env) except *
     cdef jint _nextInt_0(self, JNIEnv* env) except *
     cdef jint _nextInt_1(self, JNIEnv* env, jint p0) except *
-    cdef void _nextBytes(self, JNIEnv* env, jobject p0) except *
-    cdef void _nextBytes_0(self, JNIEnv* env, jobject p0) except *
+    cdef jint _nextInt_2(self, JNIEnv* env, jint p0, jint p1) except *
+    cdef jobject _longs(self, JNIEnv* env, jlong p0) except? NULL
+    cdef jobject _longs_0(self, JNIEnv* env, jlong p0) except? NULL
+    cdef jobject _longs_1(self, JNIEnv* env, jlong p0, jlong p1, jlong p2) except? NULL
+    cdef jobject _longs_2(self, JNIEnv* env, jlong p0, jlong p1) except? NULL
+    cdef jobject _longs_3(self, JNIEnv* env) except? NULL
+
+cdef class ArbitrarilyJumpableGenerator(JavaObject):
+    @staticmethod
+    cdef jobject _of(JNIEnv* env, jstring p0) except? NULL
+    @staticmethod
+    cdef jobject _of_0(JNIEnv* env, jstring p0) except? NULL
+    cdef jobject _copy(self, JNIEnv* env) except? NULL
+    cdef jobject _copy_0(self, JNIEnv* env) except? NULL
+    cdef jobject _copy_1(self, JNIEnv* env) except? NULL
+    cdef jobject _copy_2(self, JNIEnv* env) except? NULL
+    cdef void _leap(self, JNIEnv* env) except *
+    cdef void _leap_0(self, JNIEnv* env) except *
+    cdef void _jump(self, JNIEnv* env) except *
+    cdef void _jump_0(self, JNIEnv* env) except *
+    cdef void _jump_1(self, JNIEnv* env, jdouble p0) except *
+    cdef jobject _jumps(self, JNIEnv* env, jdouble p0) except? NULL
+    cdef jobject _jumps_0(self, JNIEnv* env, jdouble p0) except? NULL
+    cdef jobject _jumps_1(self, JNIEnv* env, jlong p0, jdouble p1) except? NULL
+    cdef jobject _copyAndJump(self, JNIEnv* env, jdouble p0) except? NULL
+    cdef jobject _copyAndJump_0(self, JNIEnv* env, jdouble p0) except? NULL
+    cdef void _jumpPowerOfTwo(self, JNIEnv* env, jint p0) except *
+    cdef void _jumpPowerOfTwo_0(self, JNIEnv* env, jint p0) except *
+
+cdef class LeapableGenerator(JavaObject):
+    @staticmethod
+    cdef jobject _of(JNIEnv* env, jstring p0) except? NULL
+    @staticmethod
+    cdef jobject _of_0(JNIEnv* env, jstring p0) except? NULL
+    cdef jobject _copy(self, JNIEnv* env) except? NULL
+    cdef jobject _copy_0(self, JNIEnv* env) except? NULL
+    cdef jobject _copy_1(self, JNIEnv* env) except? NULL
+    cdef void _leap(self, JNIEnv* env) except *
+    cdef void _leap_0(self, JNIEnv* env) except *
+    cdef jdouble _leapDistance(self, JNIEnv* env) except *
+    cdef jdouble _leapDistance_0(self, JNIEnv* env) except *
+    cdef jobject _leaps(self, JNIEnv* env) except? NULL
+    cdef jobject _leaps_0(self, JNIEnv* env) except? NULL
+    cdef jobject _leaps_1(self, JNIEnv* env, jlong p0) except? NULL
+    cdef jobject _copyAndLeap(self, JNIEnv* env) except? NULL
+    cdef jobject _copyAndLeap_0(self, JNIEnv* env) except? NULL
+
+cdef class JumpableGenerator(JavaObject):
+    @staticmethod
+    cdef jobject _of(JNIEnv* env, jstring p0) except? NULL
+    @staticmethod
+    cdef jobject _of_0(JNIEnv* env, jstring p0) except? NULL
+    cdef jobject _copy(self, JNIEnv* env) except? NULL
+    cdef jobject _copy_0(self, JNIEnv* env) except? NULL
+    cdef jobject _rngs(self, JNIEnv* env) except? NULL
+    cdef jobject _rngs_0(self, JNIEnv* env) except? NULL
+    cdef jobject _rngs_1(self, JNIEnv* env, jlong p0) except? NULL
+    cdef void _jump(self, JNIEnv* env) except *
+    cdef void _jump_0(self, JNIEnv* env) except *
+    cdef jdouble _jumpDistance(self, JNIEnv* env) except *
+    cdef jdouble _jumpDistance_0(self, JNIEnv* env) except *
+    cdef jobject _jumps(self, JNIEnv* env, jlong p0) except? NULL
+    cdef jobject _jumps_0(self, JNIEnv* env, jlong p0) except? NULL
+    cdef jobject _jumps_1(self, JNIEnv* env) except? NULL
+    cdef jobject _copyAndJump(self, JNIEnv* env) except? NULL
+    cdef jobject _copyAndJump_0(self, JNIEnv* env) except? NULL
+
+cdef class SplittableGenerator(JavaObject):
+    cdef jobject _split(self, JNIEnv* env, jobject p0) except? NULL
+    cdef jobject _split_0(self, JNIEnv* env, jobject p0) except? NULL
+    cdef jobject _split_1(self, JNIEnv* env) except? NULL
+    @staticmethod
+    cdef jobject _of(JNIEnv* env, jstring p0) except? NULL
+    @staticmethod
+    cdef jobject _of_0(JNIEnv* env, jstring p0) except? NULL
+    cdef jobject _splits(self, JNIEnv* env, jlong p0, jobject p1) except? NULL
+    cdef jobject _splits_0(self, JNIEnv* env, jlong p0, jobject p1) except? NULL
+    cdef jobject _splits_1(self, JNIEnv* env, jobject p0) except? NULL
+    cdef jobject _splits_2(self, JNIEnv* env, jlong p0) except? NULL
+    cdef jobject _splits_3(self, JNIEnv* env) except? NULL
+    cdef jobject _rngs(self, JNIEnv* env, jlong p0) except? NULL
+    cdef jobject _rngs_0(self, JNIEnv* env, jlong p0) except? NULL
+    cdef jobject _rngs_1(self, JNIEnv* env) except? NULL
+
+cdef class StreamableGenerator(JavaObject):
+    @staticmethod
+    cdef jobject _of(JNIEnv* env, jstring p0) except? NULL
+    @staticmethod
+    cdef jobject _of_0(JNIEnv* env, jstring p0) except? NULL
+    cdef jobject _rngs(self, JNIEnv* env) except? NULL
+    cdef jobject _rngs_0(self, JNIEnv* env) except? NULL
+    cdef jobject _rngs_1(self, JNIEnv* env, jlong p0) except? NULL
+
+from jni_core.jni cimport (
+    JNIEnv, jobject, jstring,
+    jboolean, jbyte, jchar, jshort, jint, jlong, jfloat, jdouble,
+)
+
+cdef class RandomGeneratorFactory(JavaObject):
+    cdef jstring _name(self, JNIEnv* env) except? NULL
+    cdef jstring _name_0(self, JNIEnv* env) except? NULL
+    cdef jstring _group(self, JNIEnv* env) except? NULL
+    cdef jstring _group_0(self, JNIEnv* env) except? NULL
+    @staticmethod
+    cdef jobject _getDefault(JNIEnv* env) except? NULL
+    @staticmethod
+    cdef jobject _getDefault_0(JNIEnv* env) except? NULL
+    @staticmethod
+    cdef jobject _of(JNIEnv* env, jstring p0) except? NULL
+    @staticmethod
+    cdef jobject _of_0(JNIEnv* env, jstring p0) except? NULL
+    cdef jobject _create(self, JNIEnv* env) except? NULL
+    cdef jobject _create_0(self, JNIEnv* env) except? NULL
+    cdef jobject _create_1(self, JNIEnv* env, jobject p0) except? NULL
+    cdef jobject _create_2(self, JNIEnv* env, jlong p0) except? NULL
+    cdef jobject _period(self, JNIEnv* env) except? NULL
+    cdef jobject _period_0(self, JNIEnv* env) except? NULL
+    cdef jint _equidistribution(self, JNIEnv* env) except *
+    cdef jint _equidistribution_0(self, JNIEnv* env) except *
+    cdef jboolean _isDeprecated(self, JNIEnv* env) except *
+    cdef jboolean _isDeprecated_0(self, JNIEnv* env) except *
+    @staticmethod
+    cdef jobject _all(JNIEnv* env) except? NULL
+    @staticmethod
+    cdef jobject _all_0(JNIEnv* env) except? NULL
+    cdef jboolean _isStochastic(self, JNIEnv* env) except *
+    cdef jboolean _isStochastic_0(self, JNIEnv* env) except *
+    cdef jboolean _isHardware(self, JNIEnv* env) except *
+    cdef jboolean _isHardware_0(self, JNIEnv* env) except *
+    cdef jint _stateBits(self, JNIEnv* env) except *
+    cdef jint _stateBits_0(self, JNIEnv* env) except *
+    cdef jboolean _isStatistical(self, JNIEnv* env) except *
+    cdef jboolean _isStatistical_0(self, JNIEnv* env) except *
+    cdef jboolean _isArbitrarilyJumpable(self, JNIEnv* env) except *
+    cdef jboolean _isArbitrarilyJumpable_0(self, JNIEnv* env) except *
+    cdef jboolean _isJumpable(self, JNIEnv* env) except *
+    cdef jboolean _isJumpable_0(self, JNIEnv* env) except *
+    cdef jboolean _isLeapable(self, JNIEnv* env) except *
+    cdef jboolean _isLeapable_0(self, JNIEnv* env) except *
+    cdef jboolean _isSplittable(self, JNIEnv* env) except *
+    cdef jboolean _isSplittable_0(self, JNIEnv* env) except *
+    cdef jboolean _isStreamable(self, JNIEnv* env) except *
+    cdef jboolean _isStreamable_0(self, JNIEnv* env) except *

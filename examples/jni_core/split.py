@@ -90,7 +90,7 @@ dependencies = [
 
 _PYPROJECT_HEAD = """\
 [build-system]
-requires = ["setuptools>=68", "wheel", "cython>=3.0"]
+requires = ["setuptools>=68", "wheel", "cython>=3.0", "jni-core"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -235,7 +235,7 @@ def _copy_tree(src: Path, dst: Path, *, top_only: bool = False) -> int:
 
 
 def _copy_shared_assets(pkg_dir: Path) -> None:
-    """Copy ``setup.py``, ``MANIFEST.in`` and ``vendor/jni_core/`` into pkg_dir.
+    """Copy ``setup.py`` and ``MANIFEST.in`` into pkg_dir.
 
     Both are shared across all packages; they live in the monolith and are
     re-copied on every run so updates to setup.py propagate to all dists.
@@ -245,12 +245,14 @@ def _copy_shared_assets(pkg_dir: Path) -> None:
         if src.exists():
             shutil.copy2(src, pkg_dir / fname)
 
-    vendor_src = MONOLITH / "vendor" / "jni_core"
+    # Remove any stale vendor/jni_core/ that may exist from a previous run
+    # (jni_core headers are now obtained from the installed jni-core package).
     vendor_dst = pkg_dir / "vendor" / "jni_core"
-    if vendor_src.exists():
-        if vendor_dst.exists():
-            shutil.rmtree(vendor_dst)
-        shutil.copytree(vendor_src, vendor_dst)
+    if vendor_dst.exists():
+        shutil.rmtree(vendor_dst)
+    vendor_dir = pkg_dir / "vendor"
+    if vendor_dir.exists() and not any(vendor_dir.iterdir()):
+        vendor_dir.rmdir()
 
 
 def _reset_src(pkg_dir: Path, ns_path: tuple[str, ...]) -> Path:

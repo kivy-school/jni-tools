@@ -44,84 +44,265 @@ from jni_core.jni cimport (
 
 include "jni_core/conversions.pxi"
 
-__javaclass__ = "java/util/Random"  # java.util.Random
+__javaclass__ = "java/util/random/RandomGenerator"  # java.util.random.RandomGenerator
 
-cdef jclass _cls_Random = NULL
-cdef jmethodID _ctor_Random_0 = NULL
-cdef jmethodID _ctor_Random_1 = NULL
-cdef jmethodID _m_Random_nextBoolean_0 = NULL
-cdef jmethodID _m_Random_nextLong_0 = NULL
-cdef jmethodID _m_Random_longs_0 = NULL
-cdef jmethodID _m_Random_longs_1 = NULL
-cdef jmethodID _m_Random_longs_2 = NULL
-cdef jmethodID _m_Random_longs_3 = NULL
-cdef jmethodID _m_Random_nextFloat_0 = NULL
-cdef jmethodID _m_Random_ints_0 = NULL
-cdef jmethodID _m_Random_ints_1 = NULL
-cdef jmethodID _m_Random_ints_2 = NULL
-cdef jmethodID _m_Random_ints_3 = NULL
-cdef jmethodID _m_Random_doubles_0 = NULL
-cdef jmethodID _m_Random_doubles_1 = NULL
-cdef jmethodID _m_Random_doubles_2 = NULL
-cdef jmethodID _m_Random_doubles_3 = NULL
-cdef jmethodID _m_Random_setSeed_0 = NULL
-cdef jmethodID _m_Random_nextGaussian_0 = NULL
-cdef jmethodID _m_Random_from_0 = NULL
-cdef jmethodID _m_Random_nextDouble_0 = NULL
-cdef jmethodID _m_Random_nextInt_0 = NULL
-cdef jmethodID _m_Random_nextInt_1 = NULL
-cdef jmethodID _m_Random_nextBytes_0 = NULL
+cdef jclass _cls_RandomGenerator = NULL
+cdef jmethodID _m_RandomGenerator_getDefault_0 = NULL
+cdef jmethodID _m_RandomGenerator_of_0 = NULL
+cdef jmethodID _m_RandomGenerator_nextDouble_0 = NULL
+cdef jmethodID _m_RandomGenerator_nextDouble_1 = NULL
+cdef jmethodID _m_RandomGenerator_nextDouble_2 = NULL
+cdef jmethodID _m_RandomGenerator_nextBytes_0 = NULL
+cdef jmethodID _m_RandomGenerator_nextBoolean_0 = NULL
+cdef jmethodID _m_RandomGenerator_nextLong_0 = NULL
+cdef jmethodID _m_RandomGenerator_nextLong_1 = NULL
+cdef jmethodID _m_RandomGenerator_nextLong_2 = NULL
+cdef jmethodID _m_RandomGenerator_nextFloat_0 = NULL
+cdef jmethodID _m_RandomGenerator_nextFloat_1 = NULL
+cdef jmethodID _m_RandomGenerator_nextFloat_2 = NULL
+cdef jmethodID _m_RandomGenerator_ints_0 = NULL
+cdef jmethodID _m_RandomGenerator_ints_1 = NULL
+cdef jmethodID _m_RandomGenerator_ints_2 = NULL
+cdef jmethodID _m_RandomGenerator_ints_3 = NULL
+cdef jmethodID _m_RandomGenerator_doubles_0 = NULL
+cdef jmethodID _m_RandomGenerator_doubles_1 = NULL
+cdef jmethodID _m_RandomGenerator_doubles_2 = NULL
+cdef jmethodID _m_RandomGenerator_doubles_3 = NULL
+cdef jmethodID _m_RandomGenerator_nextGaussian_0 = NULL
+cdef jmethodID _m_RandomGenerator_nextGaussian_1 = NULL
+cdef jmethodID _m_RandomGenerator_isDeprecated_0 = NULL
+cdef jmethodID _m_RandomGenerator_nextExponential_0 = NULL
+cdef jmethodID _m_RandomGenerator_nextInt_0 = NULL
+cdef jmethodID _m_RandomGenerator_nextInt_1 = NULL
+cdef jmethodID _m_RandomGenerator_nextInt_2 = NULL
+cdef jmethodID _m_RandomGenerator_longs_0 = NULL
+cdef jmethodID _m_RandomGenerator_longs_1 = NULL
+cdef jmethodID _m_RandomGenerator_longs_2 = NULL
+cdef jmethodID _m_RandomGenerator_longs_3 = NULL
 
-cdef int _ensure_ids_Random(JNIEnv* env) except -1:
-    global _cls_Random, _ctor_Random_0, _ctor_Random_1, _m_Random_nextBoolean_0, _m_Random_nextLong_0, _m_Random_longs_0, _m_Random_longs_1, _m_Random_longs_2, _m_Random_longs_3, _m_Random_nextFloat_0, _m_Random_ints_0, _m_Random_ints_1, _m_Random_ints_2, _m_Random_ints_3, _m_Random_doubles_0, _m_Random_doubles_1, _m_Random_doubles_2, _m_Random_doubles_3, _m_Random_setSeed_0, _m_Random_nextGaussian_0, _m_Random_from_0, _m_Random_nextDouble_0, _m_Random_nextInt_0, _m_Random_nextInt_1, _m_Random_nextBytes_0
-    if _cls_Random != NULL:
+cdef int _ensure_ids_RandomGenerator(JNIEnv* env) except -1:
+    global _cls_RandomGenerator, _m_RandomGenerator_getDefault_0, _m_RandomGenerator_of_0, _m_RandomGenerator_nextDouble_0, _m_RandomGenerator_nextDouble_1, _m_RandomGenerator_nextDouble_2, _m_RandomGenerator_nextBytes_0, _m_RandomGenerator_nextBoolean_0, _m_RandomGenerator_nextLong_0, _m_RandomGenerator_nextLong_1, _m_RandomGenerator_nextLong_2, _m_RandomGenerator_nextFloat_0, _m_RandomGenerator_nextFloat_1, _m_RandomGenerator_nextFloat_2, _m_RandomGenerator_ints_0, _m_RandomGenerator_ints_1, _m_RandomGenerator_ints_2, _m_RandomGenerator_ints_3, _m_RandomGenerator_doubles_0, _m_RandomGenerator_doubles_1, _m_RandomGenerator_doubles_2, _m_RandomGenerator_doubles_3, _m_RandomGenerator_nextGaussian_0, _m_RandomGenerator_nextGaussian_1, _m_RandomGenerator_isDeprecated_0, _m_RandomGenerator_nextExponential_0, _m_RandomGenerator_nextInt_0, _m_RandomGenerator_nextInt_1, _m_RandomGenerator_nextInt_2, _m_RandomGenerator_longs_0, _m_RandomGenerator_longs_1, _m_RandomGenerator_longs_2, _m_RandomGenerator_longs_3
+    if _cls_RandomGenerator != NULL:
         return 0
-    _cls_Random = find_class_global(env, b"java/util/Random")
-    _ctor_Random_0 = get_method_id(env, _cls_Random, b"<init>", b"(J)V")
-    _ctor_Random_1 = get_method_id(env, _cls_Random, b"<init>", b"()V")
-    _m_Random_nextBoolean_0 = get_method_id(env, _cls_Random, b"nextBoolean", b"()Z")
-    _m_Random_nextLong_0 = get_method_id(env, _cls_Random, b"nextLong", b"()J")
-    _m_Random_longs_0 = get_method_id(env, _cls_Random, b"longs", b"(JJ)Ljava/util/stream/LongStream;")
-    _m_Random_longs_1 = get_method_id(env, _cls_Random, b"longs", b"(JJJ)Ljava/util/stream/LongStream;")
-    _m_Random_longs_2 = get_method_id(env, _cls_Random, b"longs", b"()Ljava/util/stream/LongStream;")
-    _m_Random_longs_3 = get_method_id(env, _cls_Random, b"longs", b"(J)Ljava/util/stream/LongStream;")
-    _m_Random_nextFloat_0 = get_method_id(env, _cls_Random, b"nextFloat", b"()F")
-    _m_Random_ints_0 = get_method_id(env, _cls_Random, b"ints", b"(JII)Ljava/util/stream/IntStream;")
-    _m_Random_ints_1 = get_method_id(env, _cls_Random, b"ints", b"(II)Ljava/util/stream/IntStream;")
-    _m_Random_ints_2 = get_method_id(env, _cls_Random, b"ints", b"()Ljava/util/stream/IntStream;")
-    _m_Random_ints_3 = get_method_id(env, _cls_Random, b"ints", b"(J)Ljava/util/stream/IntStream;")
-    _m_Random_doubles_0 = get_method_id(env, _cls_Random, b"doubles", b"(DD)Ljava/util/stream/DoubleStream;")
-    _m_Random_doubles_1 = get_method_id(env, _cls_Random, b"doubles", b"(JDD)Ljava/util/stream/DoubleStream;")
-    _m_Random_doubles_2 = get_method_id(env, _cls_Random, b"doubles", b"()Ljava/util/stream/DoubleStream;")
-    _m_Random_doubles_3 = get_method_id(env, _cls_Random, b"doubles", b"(J)Ljava/util/stream/DoubleStream;")
-    _m_Random_setSeed_0 = get_method_id(env, _cls_Random, b"setSeed", b"(J)V")
-    _m_Random_nextGaussian_0 = get_method_id(env, _cls_Random, b"nextGaussian", b"()D")
-    _m_Random_from_0 = get_static_method_id(env, _cls_Random, b"from", b"(Ljava/util/random/RandomGenerator;)Ljava/util/Random;")
-    _m_Random_nextDouble_0 = get_method_id(env, _cls_Random, b"nextDouble", b"()D")
-    _m_Random_nextInt_0 = get_method_id(env, _cls_Random, b"nextInt", b"()I")
-    _m_Random_nextInt_1 = get_method_id(env, _cls_Random, b"nextInt", b"(I)I")
-    _m_Random_nextBytes_0 = get_method_id(env, _cls_Random, b"nextBytes", b"([B)V")
+    _cls_RandomGenerator = find_class_global(env, b"java/util/random/RandomGenerator")
+    _m_RandomGenerator_getDefault_0 = get_static_method_id(env, _cls_RandomGenerator, b"getDefault", b"()Ljava/util/random/RandomGenerator;")
+    _m_RandomGenerator_of_0 = get_static_method_id(env, _cls_RandomGenerator, b"of", b"(Ljava/lang/String;)Ljava/util/random/RandomGenerator;")
+    _m_RandomGenerator_nextDouble_0 = get_method_id(env, _cls_RandomGenerator, b"nextDouble", b"(D)D")
+    _m_RandomGenerator_nextDouble_1 = get_method_id(env, _cls_RandomGenerator, b"nextDouble", b"(DD)D")
+    _m_RandomGenerator_nextDouble_2 = get_method_id(env, _cls_RandomGenerator, b"nextDouble", b"()D")
+    _m_RandomGenerator_nextBytes_0 = get_method_id(env, _cls_RandomGenerator, b"nextBytes", b"([B)V")
+    _m_RandomGenerator_nextBoolean_0 = get_method_id(env, _cls_RandomGenerator, b"nextBoolean", b"()Z")
+    _m_RandomGenerator_nextLong_0 = get_method_id(env, _cls_RandomGenerator, b"nextLong", b"()J")
+    _m_RandomGenerator_nextLong_1 = get_method_id(env, _cls_RandomGenerator, b"nextLong", b"(JJ)J")
+    _m_RandomGenerator_nextLong_2 = get_method_id(env, _cls_RandomGenerator, b"nextLong", b"(J)J")
+    _m_RandomGenerator_nextFloat_0 = get_method_id(env, _cls_RandomGenerator, b"nextFloat", b"(F)F")
+    _m_RandomGenerator_nextFloat_1 = get_method_id(env, _cls_RandomGenerator, b"nextFloat", b"()F")
+    _m_RandomGenerator_nextFloat_2 = get_method_id(env, _cls_RandomGenerator, b"nextFloat", b"(FF)F")
+    _m_RandomGenerator_ints_0 = get_method_id(env, _cls_RandomGenerator, b"ints", b"(II)Ljava/util/stream/IntStream;")
+    _m_RandomGenerator_ints_1 = get_method_id(env, _cls_RandomGenerator, b"ints", b"(J)Ljava/util/stream/IntStream;")
+    _m_RandomGenerator_ints_2 = get_method_id(env, _cls_RandomGenerator, b"ints", b"(JII)Ljava/util/stream/IntStream;")
+    _m_RandomGenerator_ints_3 = get_method_id(env, _cls_RandomGenerator, b"ints", b"()Ljava/util/stream/IntStream;")
+    _m_RandomGenerator_doubles_0 = get_method_id(env, _cls_RandomGenerator, b"doubles", b"()Ljava/util/stream/DoubleStream;")
+    _m_RandomGenerator_doubles_1 = get_method_id(env, _cls_RandomGenerator, b"doubles", b"(DD)Ljava/util/stream/DoubleStream;")
+    _m_RandomGenerator_doubles_2 = get_method_id(env, _cls_RandomGenerator, b"doubles", b"(J)Ljava/util/stream/DoubleStream;")
+    _m_RandomGenerator_doubles_3 = get_method_id(env, _cls_RandomGenerator, b"doubles", b"(JDD)Ljava/util/stream/DoubleStream;")
+    _m_RandomGenerator_nextGaussian_0 = get_method_id(env, _cls_RandomGenerator, b"nextGaussian", b"(DD)D")
+    _m_RandomGenerator_nextGaussian_1 = get_method_id(env, _cls_RandomGenerator, b"nextGaussian", b"()D")
+    _m_RandomGenerator_isDeprecated_0 = get_method_id(env, _cls_RandomGenerator, b"isDeprecated", b"()Z")
+    _m_RandomGenerator_nextExponential_0 = get_method_id(env, _cls_RandomGenerator, b"nextExponential", b"()D")
+    _m_RandomGenerator_nextInt_0 = get_method_id(env, _cls_RandomGenerator, b"nextInt", b"()I")
+    _m_RandomGenerator_nextInt_1 = get_method_id(env, _cls_RandomGenerator, b"nextInt", b"(I)I")
+    _m_RandomGenerator_nextInt_2 = get_method_id(env, _cls_RandomGenerator, b"nextInt", b"(II)I")
+    _m_RandomGenerator_longs_0 = get_method_id(env, _cls_RandomGenerator, b"longs", b"(J)Ljava/util/stream/LongStream;")
+    _m_RandomGenerator_longs_1 = get_method_id(env, _cls_RandomGenerator, b"longs", b"(JJJ)Ljava/util/stream/LongStream;")
+    _m_RandomGenerator_longs_2 = get_method_id(env, _cls_RandomGenerator, b"longs", b"(JJ)Ljava/util/stream/LongStream;")
+    _m_RandomGenerator_longs_3 = get_method_id(env, _cls_RandomGenerator, b"longs", b"()Ljava/util/stream/LongStream;")
     return 0
 
-cdef class Random(JavaObject):
-    """java.util.Random"""
+# NOTE: RandomGenerator is a Java interface. Cython subclassing of
+# Java interfaces (PythonJavaClass equivalent) is not yet implemented.
+# This class is provided to access the interface's static members only.
+cdef class RandomGenerator(JavaObject):
+    """java.util.random.RandomGenerator"""
 
-    # TODO: 2 constructor overloads; only the first is wired.
-    #   overload[0] = (J)V
-    #   overload[1] = ()V
-    def __init__(self, p0):
-        cdef JNIEnv* env = get_env()
-        _ensure_ids_Random(env)
-        cdef jvalue _args[1]
-        _args[0].j = py_to_jlong(p0)
-        cdef jobject _ret = jnicore_NewObjectA(env, _cls_Random, _ctor_Random_0, _args)
+    @staticmethod
+    cdef jobject _getDefault(JNIEnv* env) except? NULL:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_RandomGenerator, _m_RandomGenerator_getDefault_0, _args)
         check_jni_exc(env)
-        self._adopt_local(env, _ret)
+        return _ret
+
+    @staticmethod
+    def getDefault() -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = RandomGenerator._getDefault(env)
+        if _ret == NULL:
+            return None
+        cdef RandomGenerator _wrapped = RandomGenerator.__new__(RandomGenerator)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    @staticmethod
+    cdef jobject _getDefault_0(JNIEnv* env) except? NULL:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_RandomGenerator, _m_RandomGenerator_getDefault_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    @staticmethod
+    def getDefault_0() -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = RandomGenerator._getDefault_0(env)
+        if _ret == NULL:
+            return None
+        cdef RandomGenerator _wrapped = RandomGenerator.__new__(RandomGenerator)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    @staticmethod
+    cdef jobject _of(JNIEnv* env, jstring p0) except? NULL:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].l = <jobject>p0
+        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_RandomGenerator, _m_RandomGenerator_of_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    @staticmethod
+    def of(p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jstring _arg0_s = NULL
+        _arg0_s = j_str(env, p0) if p0 is not None else <jstring>NULL
+        try:
+            _ret = RandomGenerator._of(env, _arg0_s)
+        finally:
+            if _arg0_s != NULL:
+                jnicore_DeleteLocalRef(env, <jobject>_arg0_s)
+        if _ret == NULL:
+            return None
+        cdef RandomGenerator _wrapped = RandomGenerator.__new__(RandomGenerator)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    @staticmethod
+    cdef jobject _of_0(JNIEnv* env, jstring p0) except? NULL:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].l = <jobject>p0
+        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_RandomGenerator, _m_RandomGenerator_of_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    @staticmethod
+    def of_0(p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jstring _arg0_s = NULL
+        _arg0_s = j_str(env, p0) if p0 is not None else <jstring>NULL
+        try:
+            _ret = RandomGenerator._of_0(env, _arg0_s)
+        finally:
+            if _arg0_s != NULL:
+                jnicore_DeleteLocalRef(env, <jobject>_arg0_s)
+        if _ret == NULL:
+            return None
+        cdef RandomGenerator _wrapped = RandomGenerator.__new__(RandomGenerator)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jdouble _nextDouble(self, JNIEnv* env, jdouble p0) except *:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].d = p0
+        cdef jdouble _ret = jnicore_CallDoubleMethodA(env, self._handle, _m_RandomGenerator_nextDouble_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def nextDouble(self, p0) -> float:
+        cdef JNIEnv* env = get_env()
+        cdef jdouble _ret = 0.0
+        cdef jdouble _c0 = py_to_jdouble(p0)
+        _ret = self._nextDouble(env, _c0)
+        return <double>_ret
+
+    cdef jdouble _nextDouble_0(self, JNIEnv* env, jdouble p0) except *:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].d = p0
+        cdef jdouble _ret = jnicore_CallDoubleMethodA(env, self._handle, _m_RandomGenerator_nextDouble_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def nextDouble_0(self, p0) -> float:
+        cdef JNIEnv* env = get_env()
+        cdef jdouble _ret = 0.0
+        cdef jdouble _c0 = py_to_jdouble(p0)
+        _ret = self._nextDouble_0(env, _c0)
+        return <double>_ret
+
+    cdef jdouble _nextDouble_1(self, JNIEnv* env, jdouble p0, jdouble p1) except *:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[2]
+        _args[0].d = p0
+        _args[1].d = p1
+        cdef jdouble _ret = jnicore_CallDoubleMethodA(env, self._handle, _m_RandomGenerator_nextDouble_1, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def nextDouble_1(self, p0, p1) -> float:
+        cdef JNIEnv* env = get_env()
+        cdef jdouble _ret = 0.0
+        cdef jdouble _c0 = py_to_jdouble(p0)
+        cdef jdouble _c1 = py_to_jdouble(p1)
+        _ret = self._nextDouble_1(env, _c0, _c1)
+        return <double>_ret
+
+    cdef jdouble _nextDouble_2(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jdouble _ret = jnicore_CallDoubleMethodA(env, self._handle, _m_RandomGenerator_nextDouble_2, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def nextDouble_2(self) -> float:
+        cdef JNIEnv* env = get_env()
+        cdef jdouble _ret = 0.0
+        _ret = self._nextDouble_2(env)
+        return <double>_ret
+
+    cdef void _nextBytes(self, JNIEnv* env, jobject p0) except *:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].l = p0
+        jnicore_CallVoidMethodA(env, self._handle, _m_RandomGenerator_nextBytes_0, _args)
+        check_jni_exc(env)
+
+    def nextBytes(self, p0) -> None:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
+        self._nextBytes(env, _h0)
+
+    cdef void _nextBytes_0(self, JNIEnv* env, jobject p0) except *:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].l = p0
+        jnicore_CallVoidMethodA(env, self._handle, _m_RandomGenerator_nextBytes_0, _args)
+        check_jni_exc(env)
+
+    def nextBytes_0(self, p0) -> None:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
+        self._nextBytes_0(env, _h0)
 
     cdef jboolean _nextBoolean(self, JNIEnv* env) except *:
-        _ensure_ids_Random(env)
+        _ensure_ids_RandomGenerator(env)
         cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_Random_nextBoolean_0, _args)
+        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_RandomGenerator_nextBoolean_0, _args)
         check_jni_exc(env)
         return _ret
 
@@ -132,9 +313,9 @@ cdef class Random(JavaObject):
         return jboolean_to_py(_ret)
 
     cdef jboolean _nextBoolean_0(self, JNIEnv* env) except *:
-        _ensure_ids_Random(env)
+        _ensure_ids_RandomGenerator(env)
         cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_Random_nextBoolean_0, _args)
+        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_RandomGenerator_nextBoolean_0, _args)
         check_jni_exc(env)
         return _ret
 
@@ -145,9 +326,9 @@ cdef class Random(JavaObject):
         return jboolean_to_py(_ret)
 
     cdef jlong _nextLong(self, JNIEnv* env) except *:
-        _ensure_ids_Random(env)
+        _ensure_ids_RandomGenerator(env)
         cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jlong _ret = jnicore_CallLongMethodA(env, self._handle, _m_Random_nextLong_0, _args)
+        cdef jlong _ret = jnicore_CallLongMethodA(env, self._handle, _m_RandomGenerator_nextLong_0, _args)
         check_jni_exc(env)
         return _ret
 
@@ -158,9 +339,9 @@ cdef class Random(JavaObject):
         return <long long>_ret
 
     cdef jlong _nextLong_0(self, JNIEnv* env) except *:
-        _ensure_ids_Random(env)
+        _ensure_ids_RandomGenerator(env)
         cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jlong _ret = jnicore_CallLongMethodA(env, self._handle, _m_Random_nextLong_0, _args)
+        cdef jlong _ret = jnicore_CallLongMethodA(env, self._handle, _m_RandomGenerator_nextLong_0, _args)
         check_jni_exc(env)
         return _ret
 
@@ -170,42 +351,485 @@ cdef class Random(JavaObject):
         _ret = self._nextLong_0(env)
         return <long long>_ret
 
-    cdef jobject _longs(self, JNIEnv* env, jlong p0, jlong p1) except? NULL:
-        _ensure_ids_Random(env)
+    cdef jlong _nextLong_1(self, JNIEnv* env, jlong p0, jlong p1) except *:
+        _ensure_ids_RandomGenerator(env)
         cdef jvalue _args[2]
         _args[0].j = p0
         _args[1].j = p1
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Random_longs_0, _args)
+        cdef jlong _ret = jnicore_CallLongMethodA(env, self._handle, _m_RandomGenerator_nextLong_1, _args)
         check_jni_exc(env)
         return _ret
 
-    def longs(self, p0, p1) -> object:
+    def nextLong_1(self, p0, p1) -> int:
         cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
+        cdef jlong _ret = 0
         cdef jlong _c0 = py_to_jlong(p0)
         cdef jlong _c1 = py_to_jlong(p1)
-        _ret = self._longs(env, _c0, _c1)
+        _ret = self._nextLong_1(env, _c0, _c1)
+        return <long long>_ret
+
+    cdef jlong _nextLong_2(self, JNIEnv* env, jlong p0) except *:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].j = p0
+        cdef jlong _ret = jnicore_CallLongMethodA(env, self._handle, _m_RandomGenerator_nextLong_2, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def nextLong_2(self, p0) -> int:
+        cdef JNIEnv* env = get_env()
+        cdef jlong _ret = 0
+        cdef jlong _c0 = py_to_jlong(p0)
+        _ret = self._nextLong_2(env, _c0)
+        return <long long>_ret
+
+    cdef jfloat _nextFloat(self, JNIEnv* env, jfloat p0) except *:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].f = p0
+        cdef jfloat _ret = jnicore_CallFloatMethodA(env, self._handle, _m_RandomGenerator_nextFloat_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def nextFloat(self, p0) -> float:
+        cdef JNIEnv* env = get_env()
+        cdef jfloat _ret = 0.0
+        cdef jfloat _c0 = py_to_jfloat(p0)
+        _ret = self._nextFloat(env, _c0)
+        return <double>_ret
+
+    cdef jfloat _nextFloat_0(self, JNIEnv* env, jfloat p0) except *:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].f = p0
+        cdef jfloat _ret = jnicore_CallFloatMethodA(env, self._handle, _m_RandomGenerator_nextFloat_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def nextFloat_0(self, p0) -> float:
+        cdef JNIEnv* env = get_env()
+        cdef jfloat _ret = 0.0
+        cdef jfloat _c0 = py_to_jfloat(p0)
+        _ret = self._nextFloat_0(env, _c0)
+        return <double>_ret
+
+    cdef jfloat _nextFloat_1(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jfloat _ret = jnicore_CallFloatMethodA(env, self._handle, _m_RandomGenerator_nextFloat_1, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def nextFloat_1(self) -> float:
+        cdef JNIEnv* env = get_env()
+        cdef jfloat _ret = 0.0
+        _ret = self._nextFloat_1(env)
+        return <double>_ret
+
+    cdef jfloat _nextFloat_2(self, JNIEnv* env, jfloat p0, jfloat p1) except *:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[2]
+        _args[0].f = p0
+        _args[1].f = p1
+        cdef jfloat _ret = jnicore_CallFloatMethodA(env, self._handle, _m_RandomGenerator_nextFloat_2, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def nextFloat_2(self, p0, p1) -> float:
+        cdef JNIEnv* env = get_env()
+        cdef jfloat _ret = 0.0
+        cdef jfloat _c0 = py_to_jfloat(p0)
+        cdef jfloat _c1 = py_to_jfloat(p1)
+        _ret = self._nextFloat_2(env, _c0, _c1)
+        return <double>_ret
+
+    cdef jobject _ints(self, JNIEnv* env, jint p0, jint p1) except? NULL:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[2]
+        _args[0].i = p0
+        _args[1].i = p1
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_RandomGenerator_ints_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def ints(self, p0, p1) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jint _c0 = py_to_jint(p0)
+        cdef jint _c1 = py_to_jint(p1)
+        _ret = self._ints(env, _c0, _c1)
         if _ret == NULL:
             return None
         cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
         _wrapped._adopt_local(env, _ret)
         return _wrapped
 
-    cdef jobject _longs_0(self, JNIEnv* env, jlong p0, jlong p1) except? NULL:
-        _ensure_ids_Random(env)
+    cdef jobject _ints_0(self, JNIEnv* env, jint p0, jint p1) except? NULL:
+        _ensure_ids_RandomGenerator(env)
         cdef jvalue _args[2]
-        _args[0].j = p0
-        _args[1].j = p1
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Random_longs_0, _args)
+        _args[0].i = p0
+        _args[1].i = p1
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_RandomGenerator_ints_0, _args)
         check_jni_exc(env)
         return _ret
 
-    def longs_0(self, p0, p1) -> object:
+    def ints_0(self, p0, p1) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jint _c0 = py_to_jint(p0)
+        cdef jint _c1 = py_to_jint(p1)
+        _ret = self._ints_0(env, _c0, _c1)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _ints_1(self, JNIEnv* env, jlong p0) except? NULL:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].j = p0
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_RandomGenerator_ints_1, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def ints_1(self, p0) -> object:
         cdef JNIEnv* env = get_env()
         cdef jobject _ret = NULL
         cdef jlong _c0 = py_to_jlong(p0)
-        cdef jlong _c1 = py_to_jlong(p1)
-        _ret = self._longs_0(env, _c0, _c1)
+        _ret = self._ints_1(env, _c0)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _ints_2(self, JNIEnv* env, jlong p0, jint p1, jint p2) except? NULL:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[3]
+        _args[0].j = p0
+        _args[1].i = p1
+        _args[2].i = p2
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_RandomGenerator_ints_2, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def ints_2(self, p0, p1, p2) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jlong _c0 = py_to_jlong(p0)
+        cdef jint _c1 = py_to_jint(p1)
+        cdef jint _c2 = py_to_jint(p2)
+        _ret = self._ints_2(env, _c0, _c1, _c2)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _ints_3(self, JNIEnv* env) except? NULL:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_RandomGenerator_ints_3, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def ints_3(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._ints_3(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _doubles(self, JNIEnv* env) except? NULL:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_RandomGenerator_doubles_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def doubles(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._doubles(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _doubles_0(self, JNIEnv* env) except? NULL:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_RandomGenerator_doubles_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def doubles_0(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._doubles_0(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _doubles_1(self, JNIEnv* env, jdouble p0, jdouble p1) except? NULL:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[2]
+        _args[0].d = p0
+        _args[1].d = p1
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_RandomGenerator_doubles_1, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def doubles_1(self, p0, p1) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jdouble _c0 = py_to_jdouble(p0)
+        cdef jdouble _c1 = py_to_jdouble(p1)
+        _ret = self._doubles_1(env, _c0, _c1)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _doubles_2(self, JNIEnv* env, jlong p0) except? NULL:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].j = p0
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_RandomGenerator_doubles_2, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def doubles_2(self, p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jlong _c0 = py_to_jlong(p0)
+        _ret = self._doubles_2(env, _c0)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _doubles_3(self, JNIEnv* env, jlong p0, jdouble p1, jdouble p2) except? NULL:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[3]
+        _args[0].j = p0
+        _args[1].d = p1
+        _args[2].d = p2
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_RandomGenerator_doubles_3, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def doubles_3(self, p0, p1, p2) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jlong _c0 = py_to_jlong(p0)
+        cdef jdouble _c1 = py_to_jdouble(p1)
+        cdef jdouble _c2 = py_to_jdouble(p2)
+        _ret = self._doubles_3(env, _c0, _c1, _c2)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jdouble _nextGaussian(self, JNIEnv* env, jdouble p0, jdouble p1) except *:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[2]
+        _args[0].d = p0
+        _args[1].d = p1
+        cdef jdouble _ret = jnicore_CallDoubleMethodA(env, self._handle, _m_RandomGenerator_nextGaussian_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def nextGaussian(self, p0, p1) -> float:
+        cdef JNIEnv* env = get_env()
+        cdef jdouble _ret = 0.0
+        cdef jdouble _c0 = py_to_jdouble(p0)
+        cdef jdouble _c1 = py_to_jdouble(p1)
+        _ret = self._nextGaussian(env, _c0, _c1)
+        return <double>_ret
+
+    cdef jdouble _nextGaussian_0(self, JNIEnv* env, jdouble p0, jdouble p1) except *:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[2]
+        _args[0].d = p0
+        _args[1].d = p1
+        cdef jdouble _ret = jnicore_CallDoubleMethodA(env, self._handle, _m_RandomGenerator_nextGaussian_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def nextGaussian_0(self, p0, p1) -> float:
+        cdef JNIEnv* env = get_env()
+        cdef jdouble _ret = 0.0
+        cdef jdouble _c0 = py_to_jdouble(p0)
+        cdef jdouble _c1 = py_to_jdouble(p1)
+        _ret = self._nextGaussian_0(env, _c0, _c1)
+        return <double>_ret
+
+    cdef jdouble _nextGaussian_1(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jdouble _ret = jnicore_CallDoubleMethodA(env, self._handle, _m_RandomGenerator_nextGaussian_1, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def nextGaussian_1(self) -> float:
+        cdef JNIEnv* env = get_env()
+        cdef jdouble _ret = 0.0
+        _ret = self._nextGaussian_1(env)
+        return <double>_ret
+
+    cdef jboolean _isDeprecated(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_RandomGenerator_isDeprecated_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def isDeprecated(self) -> bool:
+        cdef JNIEnv* env = get_env()
+        cdef jboolean _ret = 0
+        _ret = self._isDeprecated(env)
+        return jboolean_to_py(_ret)
+
+    cdef jboolean _isDeprecated_0(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_RandomGenerator_isDeprecated_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def isDeprecated_0(self) -> bool:
+        cdef JNIEnv* env = get_env()
+        cdef jboolean _ret = 0
+        _ret = self._isDeprecated_0(env)
+        return jboolean_to_py(_ret)
+
+    cdef jdouble _nextExponential(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jdouble _ret = jnicore_CallDoubleMethodA(env, self._handle, _m_RandomGenerator_nextExponential_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def nextExponential(self) -> float:
+        cdef JNIEnv* env = get_env()
+        cdef jdouble _ret = 0.0
+        _ret = self._nextExponential(env)
+        return <double>_ret
+
+    cdef jdouble _nextExponential_0(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jdouble _ret = jnicore_CallDoubleMethodA(env, self._handle, _m_RandomGenerator_nextExponential_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def nextExponential_0(self) -> float:
+        cdef JNIEnv* env = get_env()
+        cdef jdouble _ret = 0.0
+        _ret = self._nextExponential_0(env)
+        return <double>_ret
+
+    cdef jint _nextInt(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_RandomGenerator_nextInt_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def nextInt(self) -> int:
+        cdef JNIEnv* env = get_env()
+        cdef jint _ret = 0
+        _ret = self._nextInt(env)
+        return <int>_ret
+
+    cdef jint _nextInt_0(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_RandomGenerator_nextInt_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def nextInt_0(self) -> int:
+        cdef JNIEnv* env = get_env()
+        cdef jint _ret = 0
+        _ret = self._nextInt_0(env)
+        return <int>_ret
+
+    cdef jint _nextInt_1(self, JNIEnv* env, jint p0) except *:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].i = p0
+        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_RandomGenerator_nextInt_1, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def nextInt_1(self, p0) -> int:
+        cdef JNIEnv* env = get_env()
+        cdef jint _ret = 0
+        cdef jint _c0 = py_to_jint(p0)
+        _ret = self._nextInt_1(env, _c0)
+        return <int>_ret
+
+    cdef jint _nextInt_2(self, JNIEnv* env, jint p0, jint p1) except *:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[2]
+        _args[0].i = p0
+        _args[1].i = p1
+        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_RandomGenerator_nextInt_2, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def nextInt_2(self, p0, p1) -> int:
+        cdef JNIEnv* env = get_env()
+        cdef jint _ret = 0
+        cdef jint _c0 = py_to_jint(p0)
+        cdef jint _c1 = py_to_jint(p1)
+        _ret = self._nextInt_2(env, _c0, _c1)
+        return <int>_ret
+
+    cdef jobject _longs(self, JNIEnv* env, jlong p0) except? NULL:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].j = p0
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_RandomGenerator_longs_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def longs(self, p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jlong _c0 = py_to_jlong(p0)
+        _ret = self._longs(env, _c0)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _longs_0(self, JNIEnv* env, jlong p0) except? NULL:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].j = p0
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_RandomGenerator_longs_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def longs_0(self, p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jlong _c0 = py_to_jlong(p0)
+        _ret = self._longs_0(env, _c0)
         if _ret == NULL:
             return None
         cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
@@ -213,12 +837,12 @@ cdef class Random(JavaObject):
         return _wrapped
 
     cdef jobject _longs_1(self, JNIEnv* env, jlong p0, jlong p1, jlong p2) except? NULL:
-        _ensure_ids_Random(env)
+        _ensure_ids_RandomGenerator(env)
         cdef jvalue _args[3]
         _args[0].j = p0
         _args[1].j = p1
         _args[2].j = p2
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Random_longs_1, _args)
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_RandomGenerator_longs_1, _args)
         check_jni_exc(env)
         return _ret
 
@@ -235,460 +859,2060 @@ cdef class Random(JavaObject):
         _wrapped._adopt_local(env, _ret)
         return _wrapped
 
-    cdef jobject _longs_2(self, JNIEnv* env) except? NULL:
-        _ensure_ids_Random(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Random_longs_2, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def longs_2(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._longs_2(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _longs_3(self, JNIEnv* env, jlong p0) except? NULL:
-        _ensure_ids_Random(env)
-        cdef jvalue _args[1]
-        _args[0].j = p0
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Random_longs_3, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def longs_3(self, p0) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        cdef jlong _c0 = py_to_jlong(p0)
-        _ret = self._longs_3(env, _c0)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jfloat _nextFloat(self, JNIEnv* env) except *:
-        _ensure_ids_Random(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jfloat _ret = jnicore_CallFloatMethodA(env, self._handle, _m_Random_nextFloat_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def nextFloat(self) -> float:
-        cdef JNIEnv* env = get_env()
-        cdef jfloat _ret = 0.0
-        _ret = self._nextFloat(env)
-        return <double>_ret
-
-    cdef jfloat _nextFloat_0(self, JNIEnv* env) except *:
-        _ensure_ids_Random(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jfloat _ret = jnicore_CallFloatMethodA(env, self._handle, _m_Random_nextFloat_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def nextFloat_0(self) -> float:
-        cdef JNIEnv* env = get_env()
-        cdef jfloat _ret = 0.0
-        _ret = self._nextFloat_0(env)
-        return <double>_ret
-
-    cdef jobject _ints(self, JNIEnv* env, jlong p0, jint p1, jint p2) except? NULL:
-        _ensure_ids_Random(env)
-        cdef jvalue _args[3]
-        _args[0].j = p0
-        _args[1].i = p1
-        _args[2].i = p2
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Random_ints_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def ints(self, p0, p1, p2) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        cdef jlong _c0 = py_to_jlong(p0)
-        cdef jint _c1 = py_to_jint(p1)
-        cdef jint _c2 = py_to_jint(p2)
-        _ret = self._ints(env, _c0, _c1, _c2)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _ints_0(self, JNIEnv* env, jlong p0, jint p1, jint p2) except? NULL:
-        _ensure_ids_Random(env)
-        cdef jvalue _args[3]
-        _args[0].j = p0
-        _args[1].i = p1
-        _args[2].i = p2
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Random_ints_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def ints_0(self, p0, p1, p2) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        cdef jlong _c0 = py_to_jlong(p0)
-        cdef jint _c1 = py_to_jint(p1)
-        cdef jint _c2 = py_to_jint(p2)
-        _ret = self._ints_0(env, _c0, _c1, _c2)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _ints_1(self, JNIEnv* env, jint p0, jint p1) except? NULL:
-        _ensure_ids_Random(env)
+    cdef jobject _longs_2(self, JNIEnv* env, jlong p0, jlong p1) except? NULL:
+        _ensure_ids_RandomGenerator(env)
         cdef jvalue _args[2]
-        _args[0].i = p0
-        _args[1].i = p1
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Random_ints_1, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def ints_1(self, p0, p1) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        cdef jint _c0 = py_to_jint(p0)
-        cdef jint _c1 = py_to_jint(p1)
-        _ret = self._ints_1(env, _c0, _c1)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _ints_2(self, JNIEnv* env) except? NULL:
-        _ensure_ids_Random(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Random_ints_2, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def ints_2(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._ints_2(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _ints_3(self, JNIEnv* env, jlong p0) except? NULL:
-        _ensure_ids_Random(env)
-        cdef jvalue _args[1]
         _args[0].j = p0
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Random_ints_3, _args)
+        _args[1].j = p1
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_RandomGenerator_longs_2, _args)
         check_jni_exc(env)
         return _ret
 
-    def ints_3(self, p0) -> object:
+    def longs_2(self, p0, p1) -> object:
         cdef JNIEnv* env = get_env()
         cdef jobject _ret = NULL
         cdef jlong _c0 = py_to_jlong(p0)
-        _ret = self._ints_3(env, _c0)
+        cdef jlong _c1 = py_to_jlong(p1)
+        _ret = self._longs_2(env, _c0, _c1)
         if _ret == NULL:
             return None
         cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
         _wrapped._adopt_local(env, _ret)
         return _wrapped
 
-    cdef jobject _doubles(self, JNIEnv* env, jdouble p0, jdouble p1) except? NULL:
-        _ensure_ids_Random(env)
-        cdef jvalue _args[2]
-        _args[0].d = p0
-        _args[1].d = p1
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Random_doubles_0, _args)
+    cdef jobject _longs_3(self, JNIEnv* env) except? NULL:
+        _ensure_ids_RandomGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_RandomGenerator_longs_3, _args)
         check_jni_exc(env)
         return _ret
 
-    def doubles(self, p0, p1) -> object:
+    def longs_3(self) -> object:
         cdef JNIEnv* env = get_env()
         cdef jobject _ret = NULL
-        cdef jdouble _c0 = py_to_jdouble(p0)
-        cdef jdouble _c1 = py_to_jdouble(p1)
-        _ret = self._doubles(env, _c0, _c1)
+        _ret = self._longs_3(env)
         if _ret == NULL:
             return None
         cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
         _wrapped._adopt_local(env, _ret)
         return _wrapped
-
-    cdef jobject _doubles_0(self, JNIEnv* env, jdouble p0, jdouble p1) except? NULL:
-        _ensure_ids_Random(env)
-        cdef jvalue _args[2]
-        _args[0].d = p0
-        _args[1].d = p1
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Random_doubles_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def doubles_0(self, p0, p1) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        cdef jdouble _c0 = py_to_jdouble(p0)
-        cdef jdouble _c1 = py_to_jdouble(p1)
-        _ret = self._doubles_0(env, _c0, _c1)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _doubles_1(self, JNIEnv* env, jlong p0, jdouble p1, jdouble p2) except? NULL:
-        _ensure_ids_Random(env)
-        cdef jvalue _args[3]
-        _args[0].j = p0
-        _args[1].d = p1
-        _args[2].d = p2
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Random_doubles_1, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def doubles_1(self, p0, p1, p2) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        cdef jlong _c0 = py_to_jlong(p0)
-        cdef jdouble _c1 = py_to_jdouble(p1)
-        cdef jdouble _c2 = py_to_jdouble(p2)
-        _ret = self._doubles_1(env, _c0, _c1, _c2)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _doubles_2(self, JNIEnv* env) except? NULL:
-        _ensure_ids_Random(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Random_doubles_2, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def doubles_2(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._doubles_2(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _doubles_3(self, JNIEnv* env, jlong p0) except? NULL:
-        _ensure_ids_Random(env)
-        cdef jvalue _args[1]
-        _args[0].j = p0
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Random_doubles_3, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def doubles_3(self, p0) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        cdef jlong _c0 = py_to_jlong(p0)
-        _ret = self._doubles_3(env, _c0)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef void _setSeed(self, JNIEnv* env, jlong p0) except *:
-        _ensure_ids_Random(env)
-        cdef jvalue _args[1]
-        _args[0].j = p0
-        jnicore_CallVoidMethodA(env, self._handle, _m_Random_setSeed_0, _args)
-        check_jni_exc(env)
-
-    def setSeed(self, p0) -> None:
-        cdef JNIEnv* env = get_env()
-        cdef jlong _c0 = py_to_jlong(p0)
-        self._setSeed(env, _c0)
-
-    cdef void _setSeed_0(self, JNIEnv* env, jlong p0) except *:
-        _ensure_ids_Random(env)
-        cdef jvalue _args[1]
-        _args[0].j = p0
-        jnicore_CallVoidMethodA(env, self._handle, _m_Random_setSeed_0, _args)
-        check_jni_exc(env)
-
-    def setSeed_0(self, p0) -> None:
-        cdef JNIEnv* env = get_env()
-        cdef jlong _c0 = py_to_jlong(p0)
-        self._setSeed_0(env, _c0)
-
-    cdef jdouble _nextGaussian(self, JNIEnv* env) except *:
-        _ensure_ids_Random(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jdouble _ret = jnicore_CallDoubleMethodA(env, self._handle, _m_Random_nextGaussian_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def nextGaussian(self) -> float:
-        cdef JNIEnv* env = get_env()
-        cdef jdouble _ret = 0.0
-        _ret = self._nextGaussian(env)
-        return <double>_ret
-
-    cdef jdouble _nextGaussian_0(self, JNIEnv* env) except *:
-        _ensure_ids_Random(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jdouble _ret = jnicore_CallDoubleMethodA(env, self._handle, _m_Random_nextGaussian_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def nextGaussian_0(self) -> float:
-        cdef JNIEnv* env = get_env()
-        cdef jdouble _ret = 0.0
-        _ret = self._nextGaussian_0(env)
-        return <double>_ret
-
-    @staticmethod
-    cdef jobject _from_(JNIEnv* env, jobject p0) except? NULL:
-        _ensure_ids_Random(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_Random, _m_Random_from_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    @staticmethod
-    def from_(p0) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        _ret = Random._from_(env, _h0)
-        if _ret == NULL:
-            return None
-        cdef Random _wrapped = Random.__new__(Random)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    @staticmethod
-    cdef jobject _from__0(JNIEnv* env, jobject p0) except? NULL:
-        _ensure_ids_Random(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_Random, _m_Random_from_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    @staticmethod
-    def from__0(p0) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        _ret = Random._from__0(env, _h0)
-        if _ret == NULL:
-            return None
-        cdef Random _wrapped = Random.__new__(Random)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jdouble _nextDouble(self, JNIEnv* env) except *:
-        _ensure_ids_Random(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jdouble _ret = jnicore_CallDoubleMethodA(env, self._handle, _m_Random_nextDouble_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def nextDouble(self) -> float:
-        cdef JNIEnv* env = get_env()
-        cdef jdouble _ret = 0.0
-        _ret = self._nextDouble(env)
-        return <double>_ret
-
-    cdef jdouble _nextDouble_0(self, JNIEnv* env) except *:
-        _ensure_ids_Random(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jdouble _ret = jnicore_CallDoubleMethodA(env, self._handle, _m_Random_nextDouble_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def nextDouble_0(self) -> float:
-        cdef JNIEnv* env = get_env()
-        cdef jdouble _ret = 0.0
-        _ret = self._nextDouble_0(env)
-        return <double>_ret
-
-    cdef jint _nextInt(self, JNIEnv* env) except *:
-        _ensure_ids_Random(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Random_nextInt_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def nextInt(self) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jint _ret = 0
-        _ret = self._nextInt(env)
-        return <int>_ret
-
-    cdef jint _nextInt_0(self, JNIEnv* env) except *:
-        _ensure_ids_Random(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Random_nextInt_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def nextInt_0(self) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jint _ret = 0
-        _ret = self._nextInt_0(env)
-        return <int>_ret
-
-    cdef jint _nextInt_1(self, JNIEnv* env, jint p0) except *:
-        _ensure_ids_Random(env)
-        cdef jvalue _args[1]
-        _args[0].i = p0
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Random_nextInt_1, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def nextInt_1(self, p0) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jint _ret = 0
-        cdef jint _c0 = py_to_jint(p0)
-        _ret = self._nextInt_1(env, _c0)
-        return <int>_ret
-
-    cdef void _nextBytes(self, JNIEnv* env, jobject p0) except *:
-        _ensure_ids_Random(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        jnicore_CallVoidMethodA(env, self._handle, _m_Random_nextBytes_0, _args)
-        check_jni_exc(env)
-
-    def nextBytes(self, p0) -> None:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        self._nextBytes(env, _h0)
-
-    cdef void _nextBytes_0(self, JNIEnv* env, jobject p0) except *:
-        _ensure_ids_Random(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        jnicore_CallVoidMethodA(env, self._handle, _m_Random_nextBytes_0, _args)
-        check_jni_exc(env)
-
-    def nextBytes_0(self, p0) -> None:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        self._nextBytes_0(env, _h0)
 
     @staticmethod
     def from_java_object(obj) -> object:
-        """Wrap a plain JavaObject as Random (no JNI type check)."""
+        """Wrap a plain JavaObject as RandomGenerator (no JNI type check)."""
         cdef JNIEnv* env = get_env()
-        cdef Random inst = Random.__new__(Random)
+        cdef RandomGenerator inst = RandomGenerator.__new__(RandomGenerator)
+        cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
+        inst._adopt_global(env, global_ref)
+        return inst
+
+# Nested class: java.util.random.RandomGenerator$ArbitrarilyJumpableGenerator  (JNI: java/util/random/RandomGenerator$ArbitrarilyJumpableGenerator)
+cdef jclass _cls_ArbitrarilyJumpableGenerator = NULL
+cdef jmethodID _m_ArbitrarilyJumpableGenerator_of_0 = NULL
+cdef jmethodID _m_ArbitrarilyJumpableGenerator_copy_0 = NULL
+cdef jmethodID _m_ArbitrarilyJumpableGenerator_copy_1 = NULL
+cdef jmethodID _m_ArbitrarilyJumpableGenerator_copy_2 = NULL
+cdef jmethodID _m_ArbitrarilyJumpableGenerator_leap_0 = NULL
+cdef jmethodID _m_ArbitrarilyJumpableGenerator_jump_0 = NULL
+cdef jmethodID _m_ArbitrarilyJumpableGenerator_jump_1 = NULL
+cdef jmethodID _m_ArbitrarilyJumpableGenerator_jumps_0 = NULL
+cdef jmethodID _m_ArbitrarilyJumpableGenerator_jumps_1 = NULL
+cdef jmethodID _m_ArbitrarilyJumpableGenerator_copyAndJump_0 = NULL
+cdef jmethodID _m_ArbitrarilyJumpableGenerator_jumpPowerOfTwo_0 = NULL
+
+cdef int _ensure_ids_ArbitrarilyJumpableGenerator(JNIEnv* env) except -1:
+    global _cls_ArbitrarilyJumpableGenerator, _m_ArbitrarilyJumpableGenerator_of_0, _m_ArbitrarilyJumpableGenerator_copy_0, _m_ArbitrarilyJumpableGenerator_copy_1, _m_ArbitrarilyJumpableGenerator_copy_2, _m_ArbitrarilyJumpableGenerator_leap_0, _m_ArbitrarilyJumpableGenerator_jump_0, _m_ArbitrarilyJumpableGenerator_jump_1, _m_ArbitrarilyJumpableGenerator_jumps_0, _m_ArbitrarilyJumpableGenerator_jumps_1, _m_ArbitrarilyJumpableGenerator_copyAndJump_0, _m_ArbitrarilyJumpableGenerator_jumpPowerOfTwo_0
+    if _cls_ArbitrarilyJumpableGenerator != NULL:
+        return 0
+    _cls_ArbitrarilyJumpableGenerator = find_class_global(env, b"java/util/random/RandomGenerator$ArbitrarilyJumpableGenerator")
+    _m_ArbitrarilyJumpableGenerator_of_0 = get_static_method_id(env, _cls_ArbitrarilyJumpableGenerator, b"of", b"(Ljava/lang/String;)Ljava/util/random/RandomGenerator$ArbitrarilyJumpableGenerator;")
+    _m_ArbitrarilyJumpableGenerator_copy_0 = get_method_id(env, _cls_ArbitrarilyJumpableGenerator, b"copy", b"()Ljava/util/random/RandomGenerator$LeapableGenerator;")
+    _m_ArbitrarilyJumpableGenerator_copy_1 = get_method_id(env, _cls_ArbitrarilyJumpableGenerator, b"copy", b"()Ljava/util/random/RandomGenerator$JumpableGenerator;")
+    _m_ArbitrarilyJumpableGenerator_copy_2 = get_method_id(env, _cls_ArbitrarilyJumpableGenerator, b"copy", b"()Ljava/util/random/RandomGenerator$ArbitrarilyJumpableGenerator;")
+    _m_ArbitrarilyJumpableGenerator_leap_0 = get_method_id(env, _cls_ArbitrarilyJumpableGenerator, b"leap", b"()V")
+    _m_ArbitrarilyJumpableGenerator_jump_0 = get_method_id(env, _cls_ArbitrarilyJumpableGenerator, b"jump", b"()V")
+    _m_ArbitrarilyJumpableGenerator_jump_1 = get_method_id(env, _cls_ArbitrarilyJumpableGenerator, b"jump", b"(D)V")
+    _m_ArbitrarilyJumpableGenerator_jumps_0 = get_method_id(env, _cls_ArbitrarilyJumpableGenerator, b"jumps", b"(D)Ljava/util/stream/Stream;")
+    _m_ArbitrarilyJumpableGenerator_jumps_1 = get_method_id(env, _cls_ArbitrarilyJumpableGenerator, b"jumps", b"(JD)Ljava/util/stream/Stream;")
+    _m_ArbitrarilyJumpableGenerator_copyAndJump_0 = get_method_id(env, _cls_ArbitrarilyJumpableGenerator, b"copyAndJump", b"(D)Ljava/util/random/RandomGenerator$ArbitrarilyJumpableGenerator;")
+    _m_ArbitrarilyJumpableGenerator_jumpPowerOfTwo_0 = get_method_id(env, _cls_ArbitrarilyJumpableGenerator, b"jumpPowerOfTwo", b"(I)V")
+    return 0
+
+# NOTE: ArbitrarilyJumpableGenerator is a Java interface. Cython subclassing of
+# Java interfaces (PythonJavaClass equivalent) is not yet implemented.
+# This class is provided to access the interface's static members only.
+cdef class ArbitrarilyJumpableGenerator(JavaObject):
+    """java.util.random.RandomGenerator$ArbitrarilyJumpableGenerator"""
+
+    @staticmethod
+    cdef jobject _of(JNIEnv* env, jstring p0) except? NULL:
+        _ensure_ids_ArbitrarilyJumpableGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].l = <jobject>p0
+        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_ArbitrarilyJumpableGenerator, _m_ArbitrarilyJumpableGenerator_of_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    @staticmethod
+    def of(p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jstring _arg0_s = NULL
+        _arg0_s = j_str(env, p0) if p0 is not None else <jstring>NULL
+        try:
+            _ret = ArbitrarilyJumpableGenerator._of(env, _arg0_s)
+        finally:
+            if _arg0_s != NULL:
+                jnicore_DeleteLocalRef(env, <jobject>_arg0_s)
+        if _ret == NULL:
+            return None
+        cdef ArbitrarilyJumpableGenerator _wrapped = ArbitrarilyJumpableGenerator.__new__(ArbitrarilyJumpableGenerator)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    @staticmethod
+    cdef jobject _of_0(JNIEnv* env, jstring p0) except? NULL:
+        _ensure_ids_ArbitrarilyJumpableGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].l = <jobject>p0
+        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_ArbitrarilyJumpableGenerator, _m_ArbitrarilyJumpableGenerator_of_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    @staticmethod
+    def of_0(p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jstring _arg0_s = NULL
+        _arg0_s = j_str(env, p0) if p0 is not None else <jstring>NULL
+        try:
+            _ret = ArbitrarilyJumpableGenerator._of_0(env, _arg0_s)
+        finally:
+            if _arg0_s != NULL:
+                jnicore_DeleteLocalRef(env, <jobject>_arg0_s)
+        if _ret == NULL:
+            return None
+        cdef ArbitrarilyJumpableGenerator _wrapped = ArbitrarilyJumpableGenerator.__new__(ArbitrarilyJumpableGenerator)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _copy(self, JNIEnv* env) except? NULL:
+        _ensure_ids_ArbitrarilyJumpableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ArbitrarilyJumpableGenerator_copy_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def copy(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._copy(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _copy_0(self, JNIEnv* env) except? NULL:
+        _ensure_ids_ArbitrarilyJumpableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ArbitrarilyJumpableGenerator_copy_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def copy_0(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._copy_0(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _copy_1(self, JNIEnv* env) except? NULL:
+        _ensure_ids_ArbitrarilyJumpableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ArbitrarilyJumpableGenerator_copy_1, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def copy_1(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._copy_1(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _copy_2(self, JNIEnv* env) except? NULL:
+        _ensure_ids_ArbitrarilyJumpableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ArbitrarilyJumpableGenerator_copy_2, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def copy_2(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._copy_2(env)
+        if _ret == NULL:
+            return None
+        cdef ArbitrarilyJumpableGenerator _wrapped = ArbitrarilyJumpableGenerator.__new__(ArbitrarilyJumpableGenerator)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef void _leap(self, JNIEnv* env) except *:
+        _ensure_ids_ArbitrarilyJumpableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        jnicore_CallVoidMethodA(env, self._handle, _m_ArbitrarilyJumpableGenerator_leap_0, _args)
+        check_jni_exc(env)
+
+    def leap(self) -> None:
+        cdef JNIEnv* env = get_env()
+        self._leap(env)
+
+    cdef void _leap_0(self, JNIEnv* env) except *:
+        _ensure_ids_ArbitrarilyJumpableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        jnicore_CallVoidMethodA(env, self._handle, _m_ArbitrarilyJumpableGenerator_leap_0, _args)
+        check_jni_exc(env)
+
+    def leap_0(self) -> None:
+        cdef JNIEnv* env = get_env()
+        self._leap_0(env)
+
+    cdef void _jump(self, JNIEnv* env) except *:
+        _ensure_ids_ArbitrarilyJumpableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        jnicore_CallVoidMethodA(env, self._handle, _m_ArbitrarilyJumpableGenerator_jump_0, _args)
+        check_jni_exc(env)
+
+    def jump(self) -> None:
+        cdef JNIEnv* env = get_env()
+        self._jump(env)
+
+    cdef void _jump_0(self, JNIEnv* env) except *:
+        _ensure_ids_ArbitrarilyJumpableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        jnicore_CallVoidMethodA(env, self._handle, _m_ArbitrarilyJumpableGenerator_jump_0, _args)
+        check_jni_exc(env)
+
+    def jump_0(self) -> None:
+        cdef JNIEnv* env = get_env()
+        self._jump_0(env)
+
+    cdef void _jump_1(self, JNIEnv* env, jdouble p0) except *:
+        _ensure_ids_ArbitrarilyJumpableGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].d = p0
+        jnicore_CallVoidMethodA(env, self._handle, _m_ArbitrarilyJumpableGenerator_jump_1, _args)
+        check_jni_exc(env)
+
+    def jump_1(self, p0) -> None:
+        cdef JNIEnv* env = get_env()
+        cdef jdouble _c0 = py_to_jdouble(p0)
+        self._jump_1(env, _c0)
+
+    cdef jobject _jumps(self, JNIEnv* env, jdouble p0) except? NULL:
+        _ensure_ids_ArbitrarilyJumpableGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].d = p0
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ArbitrarilyJumpableGenerator_jumps_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def jumps(self, p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jdouble _c0 = py_to_jdouble(p0)
+        _ret = self._jumps(env, _c0)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _jumps_0(self, JNIEnv* env, jdouble p0) except? NULL:
+        _ensure_ids_ArbitrarilyJumpableGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].d = p0
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ArbitrarilyJumpableGenerator_jumps_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def jumps_0(self, p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jdouble _c0 = py_to_jdouble(p0)
+        _ret = self._jumps_0(env, _c0)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _jumps_1(self, JNIEnv* env, jlong p0, jdouble p1) except? NULL:
+        _ensure_ids_ArbitrarilyJumpableGenerator(env)
+        cdef jvalue _args[2]
+        _args[0].j = p0
+        _args[1].d = p1
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ArbitrarilyJumpableGenerator_jumps_1, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def jumps_1(self, p0, p1) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jlong _c0 = py_to_jlong(p0)
+        cdef jdouble _c1 = py_to_jdouble(p1)
+        _ret = self._jumps_1(env, _c0, _c1)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _copyAndJump(self, JNIEnv* env, jdouble p0) except? NULL:
+        _ensure_ids_ArbitrarilyJumpableGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].d = p0
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ArbitrarilyJumpableGenerator_copyAndJump_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def copyAndJump(self, p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jdouble _c0 = py_to_jdouble(p0)
+        _ret = self._copyAndJump(env, _c0)
+        if _ret == NULL:
+            return None
+        cdef ArbitrarilyJumpableGenerator _wrapped = ArbitrarilyJumpableGenerator.__new__(ArbitrarilyJumpableGenerator)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _copyAndJump_0(self, JNIEnv* env, jdouble p0) except? NULL:
+        _ensure_ids_ArbitrarilyJumpableGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].d = p0
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ArbitrarilyJumpableGenerator_copyAndJump_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def copyAndJump_0(self, p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jdouble _c0 = py_to_jdouble(p0)
+        _ret = self._copyAndJump_0(env, _c0)
+        if _ret == NULL:
+            return None
+        cdef ArbitrarilyJumpableGenerator _wrapped = ArbitrarilyJumpableGenerator.__new__(ArbitrarilyJumpableGenerator)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef void _jumpPowerOfTwo(self, JNIEnv* env, jint p0) except *:
+        _ensure_ids_ArbitrarilyJumpableGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].i = p0
+        jnicore_CallVoidMethodA(env, self._handle, _m_ArbitrarilyJumpableGenerator_jumpPowerOfTwo_0, _args)
+        check_jni_exc(env)
+
+    def jumpPowerOfTwo(self, p0) -> None:
+        cdef JNIEnv* env = get_env()
+        cdef jint _c0 = py_to_jint(p0)
+        self._jumpPowerOfTwo(env, _c0)
+
+    cdef void _jumpPowerOfTwo_0(self, JNIEnv* env, jint p0) except *:
+        _ensure_ids_ArbitrarilyJumpableGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].i = p0
+        jnicore_CallVoidMethodA(env, self._handle, _m_ArbitrarilyJumpableGenerator_jumpPowerOfTwo_0, _args)
+        check_jni_exc(env)
+
+    def jumpPowerOfTwo_0(self, p0) -> None:
+        cdef JNIEnv* env = get_env()
+        cdef jint _c0 = py_to_jint(p0)
+        self._jumpPowerOfTwo_0(env, _c0)
+
+    @staticmethod
+    def from_java_object(obj) -> object:
+        """Wrap a plain JavaObject as ArbitrarilyJumpableGenerator (no JNI type check)."""
+        cdef JNIEnv* env = get_env()
+        cdef ArbitrarilyJumpableGenerator inst = ArbitrarilyJumpableGenerator.__new__(ArbitrarilyJumpableGenerator)
+        cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
+        inst._adopt_global(env, global_ref)
+        return inst
+
+# Nested class: java.util.random.RandomGenerator$LeapableGenerator  (JNI: java/util/random/RandomGenerator$LeapableGenerator)
+cdef jclass _cls_LeapableGenerator = NULL
+cdef jmethodID _m_LeapableGenerator_of_0 = NULL
+cdef jmethodID _m_LeapableGenerator_copy_0 = NULL
+cdef jmethodID _m_LeapableGenerator_copy_1 = NULL
+cdef jmethodID _m_LeapableGenerator_leap_0 = NULL
+cdef jmethodID _m_LeapableGenerator_leapDistance_0 = NULL
+cdef jmethodID _m_LeapableGenerator_leaps_0 = NULL
+cdef jmethodID _m_LeapableGenerator_leaps_1 = NULL
+cdef jmethodID _m_LeapableGenerator_copyAndLeap_0 = NULL
+
+cdef int _ensure_ids_LeapableGenerator(JNIEnv* env) except -1:
+    global _cls_LeapableGenerator, _m_LeapableGenerator_of_0, _m_LeapableGenerator_copy_0, _m_LeapableGenerator_copy_1, _m_LeapableGenerator_leap_0, _m_LeapableGenerator_leapDistance_0, _m_LeapableGenerator_leaps_0, _m_LeapableGenerator_leaps_1, _m_LeapableGenerator_copyAndLeap_0
+    if _cls_LeapableGenerator != NULL:
+        return 0
+    _cls_LeapableGenerator = find_class_global(env, b"java/util/random/RandomGenerator$LeapableGenerator")
+    _m_LeapableGenerator_of_0 = get_static_method_id(env, _cls_LeapableGenerator, b"of", b"(Ljava/lang/String;)Ljava/util/random/RandomGenerator$LeapableGenerator;")
+    _m_LeapableGenerator_copy_0 = get_method_id(env, _cls_LeapableGenerator, b"copy", b"()Ljava/util/random/RandomGenerator$JumpableGenerator;")
+    _m_LeapableGenerator_copy_1 = get_method_id(env, _cls_LeapableGenerator, b"copy", b"()Ljava/util/random/RandomGenerator$LeapableGenerator;")
+    _m_LeapableGenerator_leap_0 = get_method_id(env, _cls_LeapableGenerator, b"leap", b"()V")
+    _m_LeapableGenerator_leapDistance_0 = get_method_id(env, _cls_LeapableGenerator, b"leapDistance", b"()D")
+    _m_LeapableGenerator_leaps_0 = get_method_id(env, _cls_LeapableGenerator, b"leaps", b"()Ljava/util/stream/Stream;")
+    _m_LeapableGenerator_leaps_1 = get_method_id(env, _cls_LeapableGenerator, b"leaps", b"(J)Ljava/util/stream/Stream;")
+    _m_LeapableGenerator_copyAndLeap_0 = get_method_id(env, _cls_LeapableGenerator, b"copyAndLeap", b"()Ljava/util/random/RandomGenerator$JumpableGenerator;")
+    return 0
+
+# NOTE: LeapableGenerator is a Java interface. Cython subclassing of
+# Java interfaces (PythonJavaClass equivalent) is not yet implemented.
+# This class is provided to access the interface's static members only.
+cdef class LeapableGenerator(JavaObject):
+    """java.util.random.RandomGenerator$LeapableGenerator"""
+
+    @staticmethod
+    cdef jobject _of(JNIEnv* env, jstring p0) except? NULL:
+        _ensure_ids_LeapableGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].l = <jobject>p0
+        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_LeapableGenerator, _m_LeapableGenerator_of_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    @staticmethod
+    def of(p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jstring _arg0_s = NULL
+        _arg0_s = j_str(env, p0) if p0 is not None else <jstring>NULL
+        try:
+            _ret = LeapableGenerator._of(env, _arg0_s)
+        finally:
+            if _arg0_s != NULL:
+                jnicore_DeleteLocalRef(env, <jobject>_arg0_s)
+        if _ret == NULL:
+            return None
+        cdef LeapableGenerator _wrapped = LeapableGenerator.__new__(LeapableGenerator)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    @staticmethod
+    cdef jobject _of_0(JNIEnv* env, jstring p0) except? NULL:
+        _ensure_ids_LeapableGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].l = <jobject>p0
+        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_LeapableGenerator, _m_LeapableGenerator_of_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    @staticmethod
+    def of_0(p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jstring _arg0_s = NULL
+        _arg0_s = j_str(env, p0) if p0 is not None else <jstring>NULL
+        try:
+            _ret = LeapableGenerator._of_0(env, _arg0_s)
+        finally:
+            if _arg0_s != NULL:
+                jnicore_DeleteLocalRef(env, <jobject>_arg0_s)
+        if _ret == NULL:
+            return None
+        cdef LeapableGenerator _wrapped = LeapableGenerator.__new__(LeapableGenerator)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _copy(self, JNIEnv* env) except? NULL:
+        _ensure_ids_LeapableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_LeapableGenerator_copy_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def copy(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._copy(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _copy_0(self, JNIEnv* env) except? NULL:
+        _ensure_ids_LeapableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_LeapableGenerator_copy_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def copy_0(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._copy_0(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _copy_1(self, JNIEnv* env) except? NULL:
+        _ensure_ids_LeapableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_LeapableGenerator_copy_1, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def copy_1(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._copy_1(env)
+        if _ret == NULL:
+            return None
+        cdef LeapableGenerator _wrapped = LeapableGenerator.__new__(LeapableGenerator)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef void _leap(self, JNIEnv* env) except *:
+        _ensure_ids_LeapableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        jnicore_CallVoidMethodA(env, self._handle, _m_LeapableGenerator_leap_0, _args)
+        check_jni_exc(env)
+
+    def leap(self) -> None:
+        cdef JNIEnv* env = get_env()
+        self._leap(env)
+
+    cdef void _leap_0(self, JNIEnv* env) except *:
+        _ensure_ids_LeapableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        jnicore_CallVoidMethodA(env, self._handle, _m_LeapableGenerator_leap_0, _args)
+        check_jni_exc(env)
+
+    def leap_0(self) -> None:
+        cdef JNIEnv* env = get_env()
+        self._leap_0(env)
+
+    cdef jdouble _leapDistance(self, JNIEnv* env) except *:
+        _ensure_ids_LeapableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jdouble _ret = jnicore_CallDoubleMethodA(env, self._handle, _m_LeapableGenerator_leapDistance_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def leapDistance(self) -> float:
+        cdef JNIEnv* env = get_env()
+        cdef jdouble _ret = 0.0
+        _ret = self._leapDistance(env)
+        return <double>_ret
+
+    cdef jdouble _leapDistance_0(self, JNIEnv* env) except *:
+        _ensure_ids_LeapableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jdouble _ret = jnicore_CallDoubleMethodA(env, self._handle, _m_LeapableGenerator_leapDistance_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def leapDistance_0(self) -> float:
+        cdef JNIEnv* env = get_env()
+        cdef jdouble _ret = 0.0
+        _ret = self._leapDistance_0(env)
+        return <double>_ret
+
+    cdef jobject _leaps(self, JNIEnv* env) except? NULL:
+        _ensure_ids_LeapableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_LeapableGenerator_leaps_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def leaps(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._leaps(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _leaps_0(self, JNIEnv* env) except? NULL:
+        _ensure_ids_LeapableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_LeapableGenerator_leaps_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def leaps_0(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._leaps_0(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _leaps_1(self, JNIEnv* env, jlong p0) except? NULL:
+        _ensure_ids_LeapableGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].j = p0
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_LeapableGenerator_leaps_1, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def leaps_1(self, p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jlong _c0 = py_to_jlong(p0)
+        _ret = self._leaps_1(env, _c0)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _copyAndLeap(self, JNIEnv* env) except? NULL:
+        _ensure_ids_LeapableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_LeapableGenerator_copyAndLeap_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def copyAndLeap(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._copyAndLeap(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _copyAndLeap_0(self, JNIEnv* env) except? NULL:
+        _ensure_ids_LeapableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_LeapableGenerator_copyAndLeap_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def copyAndLeap_0(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._copyAndLeap_0(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    @staticmethod
+    def from_java_object(obj) -> object:
+        """Wrap a plain JavaObject as LeapableGenerator (no JNI type check)."""
+        cdef JNIEnv* env = get_env()
+        cdef LeapableGenerator inst = LeapableGenerator.__new__(LeapableGenerator)
+        cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
+        inst._adopt_global(env, global_ref)
+        return inst
+
+# Nested class: java.util.random.RandomGenerator$JumpableGenerator  (JNI: java/util/random/RandomGenerator$JumpableGenerator)
+cdef jclass _cls_JumpableGenerator = NULL
+cdef jmethodID _m_JumpableGenerator_of_0 = NULL
+cdef jmethodID _m_JumpableGenerator_copy_0 = NULL
+cdef jmethodID _m_JumpableGenerator_rngs_0 = NULL
+cdef jmethodID _m_JumpableGenerator_rngs_1 = NULL
+cdef jmethodID _m_JumpableGenerator_jump_0 = NULL
+cdef jmethodID _m_JumpableGenerator_jumpDistance_0 = NULL
+cdef jmethodID _m_JumpableGenerator_jumps_0 = NULL
+cdef jmethodID _m_JumpableGenerator_jumps_1 = NULL
+cdef jmethodID _m_JumpableGenerator_copyAndJump_0 = NULL
+
+cdef int _ensure_ids_JumpableGenerator(JNIEnv* env) except -1:
+    global _cls_JumpableGenerator, _m_JumpableGenerator_of_0, _m_JumpableGenerator_copy_0, _m_JumpableGenerator_rngs_0, _m_JumpableGenerator_rngs_1, _m_JumpableGenerator_jump_0, _m_JumpableGenerator_jumpDistance_0, _m_JumpableGenerator_jumps_0, _m_JumpableGenerator_jumps_1, _m_JumpableGenerator_copyAndJump_0
+    if _cls_JumpableGenerator != NULL:
+        return 0
+    _cls_JumpableGenerator = find_class_global(env, b"java/util/random/RandomGenerator$JumpableGenerator")
+    _m_JumpableGenerator_of_0 = get_static_method_id(env, _cls_JumpableGenerator, b"of", b"(Ljava/lang/String;)Ljava/util/random/RandomGenerator$JumpableGenerator;")
+    _m_JumpableGenerator_copy_0 = get_method_id(env, _cls_JumpableGenerator, b"copy", b"()Ljava/util/random/RandomGenerator$JumpableGenerator;")
+    _m_JumpableGenerator_rngs_0 = get_method_id(env, _cls_JumpableGenerator, b"rngs", b"()Ljava/util/stream/Stream;")
+    _m_JumpableGenerator_rngs_1 = get_method_id(env, _cls_JumpableGenerator, b"rngs", b"(J)Ljava/util/stream/Stream;")
+    _m_JumpableGenerator_jump_0 = get_method_id(env, _cls_JumpableGenerator, b"jump", b"()V")
+    _m_JumpableGenerator_jumpDistance_0 = get_method_id(env, _cls_JumpableGenerator, b"jumpDistance", b"()D")
+    _m_JumpableGenerator_jumps_0 = get_method_id(env, _cls_JumpableGenerator, b"jumps", b"(J)Ljava/util/stream/Stream;")
+    _m_JumpableGenerator_jumps_1 = get_method_id(env, _cls_JumpableGenerator, b"jumps", b"()Ljava/util/stream/Stream;")
+    _m_JumpableGenerator_copyAndJump_0 = get_method_id(env, _cls_JumpableGenerator, b"copyAndJump", b"()Ljava/util/random/RandomGenerator;")
+    return 0
+
+# NOTE: JumpableGenerator is a Java interface. Cython subclassing of
+# Java interfaces (PythonJavaClass equivalent) is not yet implemented.
+# This class is provided to access the interface's static members only.
+cdef class JumpableGenerator(JavaObject):
+    """java.util.random.RandomGenerator$JumpableGenerator"""
+
+    @staticmethod
+    cdef jobject _of(JNIEnv* env, jstring p0) except? NULL:
+        _ensure_ids_JumpableGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].l = <jobject>p0
+        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_JumpableGenerator, _m_JumpableGenerator_of_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    @staticmethod
+    def of(p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jstring _arg0_s = NULL
+        _arg0_s = j_str(env, p0) if p0 is not None else <jstring>NULL
+        try:
+            _ret = JumpableGenerator._of(env, _arg0_s)
+        finally:
+            if _arg0_s != NULL:
+                jnicore_DeleteLocalRef(env, <jobject>_arg0_s)
+        if _ret == NULL:
+            return None
+        cdef JumpableGenerator _wrapped = JumpableGenerator.__new__(JumpableGenerator)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    @staticmethod
+    cdef jobject _of_0(JNIEnv* env, jstring p0) except? NULL:
+        _ensure_ids_JumpableGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].l = <jobject>p0
+        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_JumpableGenerator, _m_JumpableGenerator_of_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    @staticmethod
+    def of_0(p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jstring _arg0_s = NULL
+        _arg0_s = j_str(env, p0) if p0 is not None else <jstring>NULL
+        try:
+            _ret = JumpableGenerator._of_0(env, _arg0_s)
+        finally:
+            if _arg0_s != NULL:
+                jnicore_DeleteLocalRef(env, <jobject>_arg0_s)
+        if _ret == NULL:
+            return None
+        cdef JumpableGenerator _wrapped = JumpableGenerator.__new__(JumpableGenerator)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _copy(self, JNIEnv* env) except? NULL:
+        _ensure_ids_JumpableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_JumpableGenerator_copy_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def copy(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._copy(env)
+        if _ret == NULL:
+            return None
+        cdef JumpableGenerator _wrapped = JumpableGenerator.__new__(JumpableGenerator)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _copy_0(self, JNIEnv* env) except? NULL:
+        _ensure_ids_JumpableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_JumpableGenerator_copy_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def copy_0(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._copy_0(env)
+        if _ret == NULL:
+            return None
+        cdef JumpableGenerator _wrapped = JumpableGenerator.__new__(JumpableGenerator)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _rngs(self, JNIEnv* env) except? NULL:
+        _ensure_ids_JumpableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_JumpableGenerator_rngs_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def rngs(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._rngs(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _rngs_0(self, JNIEnv* env) except? NULL:
+        _ensure_ids_JumpableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_JumpableGenerator_rngs_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def rngs_0(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._rngs_0(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _rngs_1(self, JNIEnv* env, jlong p0) except? NULL:
+        _ensure_ids_JumpableGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].j = p0
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_JumpableGenerator_rngs_1, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def rngs_1(self, p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jlong _c0 = py_to_jlong(p0)
+        _ret = self._rngs_1(env, _c0)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef void _jump(self, JNIEnv* env) except *:
+        _ensure_ids_JumpableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        jnicore_CallVoidMethodA(env, self._handle, _m_JumpableGenerator_jump_0, _args)
+        check_jni_exc(env)
+
+    def jump(self) -> None:
+        cdef JNIEnv* env = get_env()
+        self._jump(env)
+
+    cdef void _jump_0(self, JNIEnv* env) except *:
+        _ensure_ids_JumpableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        jnicore_CallVoidMethodA(env, self._handle, _m_JumpableGenerator_jump_0, _args)
+        check_jni_exc(env)
+
+    def jump_0(self) -> None:
+        cdef JNIEnv* env = get_env()
+        self._jump_0(env)
+
+    cdef jdouble _jumpDistance(self, JNIEnv* env) except *:
+        _ensure_ids_JumpableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jdouble _ret = jnicore_CallDoubleMethodA(env, self._handle, _m_JumpableGenerator_jumpDistance_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def jumpDistance(self) -> float:
+        cdef JNIEnv* env = get_env()
+        cdef jdouble _ret = 0.0
+        _ret = self._jumpDistance(env)
+        return <double>_ret
+
+    cdef jdouble _jumpDistance_0(self, JNIEnv* env) except *:
+        _ensure_ids_JumpableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jdouble _ret = jnicore_CallDoubleMethodA(env, self._handle, _m_JumpableGenerator_jumpDistance_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def jumpDistance_0(self) -> float:
+        cdef JNIEnv* env = get_env()
+        cdef jdouble _ret = 0.0
+        _ret = self._jumpDistance_0(env)
+        return <double>_ret
+
+    cdef jobject _jumps(self, JNIEnv* env, jlong p0) except? NULL:
+        _ensure_ids_JumpableGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].j = p0
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_JumpableGenerator_jumps_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def jumps(self, p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jlong _c0 = py_to_jlong(p0)
+        _ret = self._jumps(env, _c0)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _jumps_0(self, JNIEnv* env, jlong p0) except? NULL:
+        _ensure_ids_JumpableGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].j = p0
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_JumpableGenerator_jumps_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def jumps_0(self, p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jlong _c0 = py_to_jlong(p0)
+        _ret = self._jumps_0(env, _c0)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _jumps_1(self, JNIEnv* env) except? NULL:
+        _ensure_ids_JumpableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_JumpableGenerator_jumps_1, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def jumps_1(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._jumps_1(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _copyAndJump(self, JNIEnv* env) except? NULL:
+        _ensure_ids_JumpableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_JumpableGenerator_copyAndJump_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def copyAndJump(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._copyAndJump(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _copyAndJump_0(self, JNIEnv* env) except? NULL:
+        _ensure_ids_JumpableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_JumpableGenerator_copyAndJump_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def copyAndJump_0(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._copyAndJump_0(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    @staticmethod
+    def from_java_object(obj) -> object:
+        """Wrap a plain JavaObject as JumpableGenerator (no JNI type check)."""
+        cdef JNIEnv* env = get_env()
+        cdef JumpableGenerator inst = JumpableGenerator.__new__(JumpableGenerator)
+        cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
+        inst._adopt_global(env, global_ref)
+        return inst
+
+# Nested class: java.util.random.RandomGenerator$SplittableGenerator  (JNI: java/util/random/RandomGenerator$SplittableGenerator)
+cdef jclass _cls_SplittableGenerator = NULL
+cdef jmethodID _m_SplittableGenerator_split_0 = NULL
+cdef jmethodID _m_SplittableGenerator_split_1 = NULL
+cdef jmethodID _m_SplittableGenerator_of_0 = NULL
+cdef jmethodID _m_SplittableGenerator_splits_0 = NULL
+cdef jmethodID _m_SplittableGenerator_splits_1 = NULL
+cdef jmethodID _m_SplittableGenerator_splits_2 = NULL
+cdef jmethodID _m_SplittableGenerator_splits_3 = NULL
+cdef jmethodID _m_SplittableGenerator_rngs_0 = NULL
+cdef jmethodID _m_SplittableGenerator_rngs_1 = NULL
+
+cdef int _ensure_ids_SplittableGenerator(JNIEnv* env) except -1:
+    global _cls_SplittableGenerator, _m_SplittableGenerator_split_0, _m_SplittableGenerator_split_1, _m_SplittableGenerator_of_0, _m_SplittableGenerator_splits_0, _m_SplittableGenerator_splits_1, _m_SplittableGenerator_splits_2, _m_SplittableGenerator_splits_3, _m_SplittableGenerator_rngs_0, _m_SplittableGenerator_rngs_1
+    if _cls_SplittableGenerator != NULL:
+        return 0
+    _cls_SplittableGenerator = find_class_global(env, b"java/util/random/RandomGenerator$SplittableGenerator")
+    _m_SplittableGenerator_split_0 = get_method_id(env, _cls_SplittableGenerator, b"split", b"(Ljava/util/random/RandomGenerator$SplittableGenerator;)Ljava/util/random/RandomGenerator$SplittableGenerator;")
+    _m_SplittableGenerator_split_1 = get_method_id(env, _cls_SplittableGenerator, b"split", b"()Ljava/util/random/RandomGenerator$SplittableGenerator;")
+    _m_SplittableGenerator_of_0 = get_static_method_id(env, _cls_SplittableGenerator, b"of", b"(Ljava/lang/String;)Ljava/util/random/RandomGenerator$SplittableGenerator;")
+    _m_SplittableGenerator_splits_0 = get_method_id(env, _cls_SplittableGenerator, b"splits", b"(JLjava/util/random/RandomGenerator$SplittableGenerator;)Ljava/util/stream/Stream;")
+    _m_SplittableGenerator_splits_1 = get_method_id(env, _cls_SplittableGenerator, b"splits", b"(Ljava/util/random/RandomGenerator$SplittableGenerator;)Ljava/util/stream/Stream;")
+    _m_SplittableGenerator_splits_2 = get_method_id(env, _cls_SplittableGenerator, b"splits", b"(J)Ljava/util/stream/Stream;")
+    _m_SplittableGenerator_splits_3 = get_method_id(env, _cls_SplittableGenerator, b"splits", b"()Ljava/util/stream/Stream;")
+    _m_SplittableGenerator_rngs_0 = get_method_id(env, _cls_SplittableGenerator, b"rngs", b"(J)Ljava/util/stream/Stream;")
+    _m_SplittableGenerator_rngs_1 = get_method_id(env, _cls_SplittableGenerator, b"rngs", b"()Ljava/util/stream/Stream;")
+    return 0
+
+# NOTE: SplittableGenerator is a Java interface. Cython subclassing of
+# Java interfaces (PythonJavaClass equivalent) is not yet implemented.
+# This class is provided to access the interface's static members only.
+cdef class SplittableGenerator(JavaObject):
+    """java.util.random.RandomGenerator$SplittableGenerator"""
+
+    cdef jobject _split(self, JNIEnv* env, jobject p0) except? NULL:
+        _ensure_ids_SplittableGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].l = p0
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_SplittableGenerator_split_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def split(self, p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
+        _ret = self._split(env, _h0)
+        if _ret == NULL:
+            return None
+        cdef SplittableGenerator _wrapped = SplittableGenerator.__new__(SplittableGenerator)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _split_0(self, JNIEnv* env, jobject p0) except? NULL:
+        _ensure_ids_SplittableGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].l = p0
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_SplittableGenerator_split_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def split_0(self, p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
+        _ret = self._split_0(env, _h0)
+        if _ret == NULL:
+            return None
+        cdef SplittableGenerator _wrapped = SplittableGenerator.__new__(SplittableGenerator)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _split_1(self, JNIEnv* env) except? NULL:
+        _ensure_ids_SplittableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_SplittableGenerator_split_1, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def split_1(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._split_1(env)
+        if _ret == NULL:
+            return None
+        cdef SplittableGenerator _wrapped = SplittableGenerator.__new__(SplittableGenerator)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    @staticmethod
+    cdef jobject _of(JNIEnv* env, jstring p0) except? NULL:
+        _ensure_ids_SplittableGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].l = <jobject>p0
+        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_SplittableGenerator, _m_SplittableGenerator_of_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    @staticmethod
+    def of(p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jstring _arg0_s = NULL
+        _arg0_s = j_str(env, p0) if p0 is not None else <jstring>NULL
+        try:
+            _ret = SplittableGenerator._of(env, _arg0_s)
+        finally:
+            if _arg0_s != NULL:
+                jnicore_DeleteLocalRef(env, <jobject>_arg0_s)
+        if _ret == NULL:
+            return None
+        cdef SplittableGenerator _wrapped = SplittableGenerator.__new__(SplittableGenerator)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    @staticmethod
+    cdef jobject _of_0(JNIEnv* env, jstring p0) except? NULL:
+        _ensure_ids_SplittableGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].l = <jobject>p0
+        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_SplittableGenerator, _m_SplittableGenerator_of_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    @staticmethod
+    def of_0(p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jstring _arg0_s = NULL
+        _arg0_s = j_str(env, p0) if p0 is not None else <jstring>NULL
+        try:
+            _ret = SplittableGenerator._of_0(env, _arg0_s)
+        finally:
+            if _arg0_s != NULL:
+                jnicore_DeleteLocalRef(env, <jobject>_arg0_s)
+        if _ret == NULL:
+            return None
+        cdef SplittableGenerator _wrapped = SplittableGenerator.__new__(SplittableGenerator)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _splits(self, JNIEnv* env, jlong p0, jobject p1) except? NULL:
+        _ensure_ids_SplittableGenerator(env)
+        cdef jvalue _args[2]
+        _args[0].j = p0
+        _args[1].l = p1
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_SplittableGenerator_splits_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def splits(self, p0, p1) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jlong _c0 = py_to_jlong(p0)
+        cdef jobject _h1 = (<JavaObject?>p1)._handle if p1 is not None else <jobject>NULL
+        _ret = self._splits(env, _c0, _h1)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _splits_0(self, JNIEnv* env, jlong p0, jobject p1) except? NULL:
+        _ensure_ids_SplittableGenerator(env)
+        cdef jvalue _args[2]
+        _args[0].j = p0
+        _args[1].l = p1
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_SplittableGenerator_splits_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def splits_0(self, p0, p1) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jlong _c0 = py_to_jlong(p0)
+        cdef jobject _h1 = (<JavaObject?>p1)._handle if p1 is not None else <jobject>NULL
+        _ret = self._splits_0(env, _c0, _h1)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _splits_1(self, JNIEnv* env, jobject p0) except? NULL:
+        _ensure_ids_SplittableGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].l = p0
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_SplittableGenerator_splits_1, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def splits_1(self, p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
+        _ret = self._splits_1(env, _h0)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _splits_2(self, JNIEnv* env, jlong p0) except? NULL:
+        _ensure_ids_SplittableGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].j = p0
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_SplittableGenerator_splits_2, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def splits_2(self, p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jlong _c0 = py_to_jlong(p0)
+        _ret = self._splits_2(env, _c0)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _splits_3(self, JNIEnv* env) except? NULL:
+        _ensure_ids_SplittableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_SplittableGenerator_splits_3, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def splits_3(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._splits_3(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _rngs(self, JNIEnv* env, jlong p0) except? NULL:
+        _ensure_ids_SplittableGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].j = p0
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_SplittableGenerator_rngs_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def rngs(self, p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jlong _c0 = py_to_jlong(p0)
+        _ret = self._rngs(env, _c0)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _rngs_0(self, JNIEnv* env, jlong p0) except? NULL:
+        _ensure_ids_SplittableGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].j = p0
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_SplittableGenerator_rngs_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def rngs_0(self, p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jlong _c0 = py_to_jlong(p0)
+        _ret = self._rngs_0(env, _c0)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _rngs_1(self, JNIEnv* env) except? NULL:
+        _ensure_ids_SplittableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_SplittableGenerator_rngs_1, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def rngs_1(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._rngs_1(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    @staticmethod
+    def from_java_object(obj) -> object:
+        """Wrap a plain JavaObject as SplittableGenerator (no JNI type check)."""
+        cdef JNIEnv* env = get_env()
+        cdef SplittableGenerator inst = SplittableGenerator.__new__(SplittableGenerator)
+        cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
+        inst._adopt_global(env, global_ref)
+        return inst
+
+# Nested class: java.util.random.RandomGenerator$StreamableGenerator  (JNI: java/util/random/RandomGenerator$StreamableGenerator)
+cdef jclass _cls_StreamableGenerator = NULL
+cdef jmethodID _m_StreamableGenerator_of_0 = NULL
+cdef jmethodID _m_StreamableGenerator_rngs_0 = NULL
+cdef jmethodID _m_StreamableGenerator_rngs_1 = NULL
+
+cdef int _ensure_ids_StreamableGenerator(JNIEnv* env) except -1:
+    global _cls_StreamableGenerator, _m_StreamableGenerator_of_0, _m_StreamableGenerator_rngs_0, _m_StreamableGenerator_rngs_1
+    if _cls_StreamableGenerator != NULL:
+        return 0
+    _cls_StreamableGenerator = find_class_global(env, b"java/util/random/RandomGenerator$StreamableGenerator")
+    _m_StreamableGenerator_of_0 = get_static_method_id(env, _cls_StreamableGenerator, b"of", b"(Ljava/lang/String;)Ljava/util/random/RandomGenerator$StreamableGenerator;")
+    _m_StreamableGenerator_rngs_0 = get_method_id(env, _cls_StreamableGenerator, b"rngs", b"()Ljava/util/stream/Stream;")
+    _m_StreamableGenerator_rngs_1 = get_method_id(env, _cls_StreamableGenerator, b"rngs", b"(J)Ljava/util/stream/Stream;")
+    return 0
+
+# NOTE: StreamableGenerator is a Java interface. Cython subclassing of
+# Java interfaces (PythonJavaClass equivalent) is not yet implemented.
+# This class is provided to access the interface's static members only.
+cdef class StreamableGenerator(JavaObject):
+    """java.util.random.RandomGenerator$StreamableGenerator"""
+
+    @staticmethod
+    cdef jobject _of(JNIEnv* env, jstring p0) except? NULL:
+        _ensure_ids_StreamableGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].l = <jobject>p0
+        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_StreamableGenerator, _m_StreamableGenerator_of_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    @staticmethod
+    def of(p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jstring _arg0_s = NULL
+        _arg0_s = j_str(env, p0) if p0 is not None else <jstring>NULL
+        try:
+            _ret = StreamableGenerator._of(env, _arg0_s)
+        finally:
+            if _arg0_s != NULL:
+                jnicore_DeleteLocalRef(env, <jobject>_arg0_s)
+        if _ret == NULL:
+            return None
+        cdef StreamableGenerator _wrapped = StreamableGenerator.__new__(StreamableGenerator)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    @staticmethod
+    cdef jobject _of_0(JNIEnv* env, jstring p0) except? NULL:
+        _ensure_ids_StreamableGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].l = <jobject>p0
+        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_StreamableGenerator, _m_StreamableGenerator_of_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    @staticmethod
+    def of_0(p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jstring _arg0_s = NULL
+        _arg0_s = j_str(env, p0) if p0 is not None else <jstring>NULL
+        try:
+            _ret = StreamableGenerator._of_0(env, _arg0_s)
+        finally:
+            if _arg0_s != NULL:
+                jnicore_DeleteLocalRef(env, <jobject>_arg0_s)
+        if _ret == NULL:
+            return None
+        cdef StreamableGenerator _wrapped = StreamableGenerator.__new__(StreamableGenerator)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _rngs(self, JNIEnv* env) except? NULL:
+        _ensure_ids_StreamableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_StreamableGenerator_rngs_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def rngs(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._rngs(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _rngs_0(self, JNIEnv* env) except? NULL:
+        _ensure_ids_StreamableGenerator(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_StreamableGenerator_rngs_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def rngs_0(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._rngs_0(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _rngs_1(self, JNIEnv* env, jlong p0) except? NULL:
+        _ensure_ids_StreamableGenerator(env)
+        cdef jvalue _args[1]
+        _args[0].j = p0
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_StreamableGenerator_rngs_1, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def rngs_1(self, p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jlong _c0 = py_to_jlong(p0)
+        _ret = self._rngs_1(env, _c0)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    @staticmethod
+    def from_java_object(obj) -> object:
+        """Wrap a plain JavaObject as StreamableGenerator (no JNI type check)."""
+        cdef JNIEnv* env = get_env()
+        cdef StreamableGenerator inst = StreamableGenerator.__new__(StreamableGenerator)
+        cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
+        inst._adopt_global(env, global_ref)
+        return inst
+
+
+__javaclass__ = "java/util/random/RandomGeneratorFactory"  # java.util.random.RandomGeneratorFactory
+
+cdef jclass _cls_RandomGeneratorFactory = NULL
+cdef jmethodID _m_RandomGeneratorFactory_name_0 = NULL
+cdef jmethodID _m_RandomGeneratorFactory_group_0 = NULL
+cdef jmethodID _m_RandomGeneratorFactory_getDefault_0 = NULL
+cdef jmethodID _m_RandomGeneratorFactory_of_0 = NULL
+cdef jmethodID _m_RandomGeneratorFactory_create_0 = NULL
+cdef jmethodID _m_RandomGeneratorFactory_create_1 = NULL
+cdef jmethodID _m_RandomGeneratorFactory_create_2 = NULL
+cdef jmethodID _m_RandomGeneratorFactory_period_0 = NULL
+cdef jmethodID _m_RandomGeneratorFactory_equidistribution_0 = NULL
+cdef jmethodID _m_RandomGeneratorFactory_isDeprecated_0 = NULL
+cdef jmethodID _m_RandomGeneratorFactory_all_0 = NULL
+cdef jmethodID _m_RandomGeneratorFactory_isStochastic_0 = NULL
+cdef jmethodID _m_RandomGeneratorFactory_isHardware_0 = NULL
+cdef jmethodID _m_RandomGeneratorFactory_stateBits_0 = NULL
+cdef jmethodID _m_RandomGeneratorFactory_isStatistical_0 = NULL
+cdef jmethodID _m_RandomGeneratorFactory_isArbitrarilyJumpable_0 = NULL
+cdef jmethodID _m_RandomGeneratorFactory_isJumpable_0 = NULL
+cdef jmethodID _m_RandomGeneratorFactory_isLeapable_0 = NULL
+cdef jmethodID _m_RandomGeneratorFactory_isSplittable_0 = NULL
+cdef jmethodID _m_RandomGeneratorFactory_isStreamable_0 = NULL
+
+cdef int _ensure_ids_RandomGeneratorFactory(JNIEnv* env) except -1:
+    global _cls_RandomGeneratorFactory, _m_RandomGeneratorFactory_name_0, _m_RandomGeneratorFactory_group_0, _m_RandomGeneratorFactory_getDefault_0, _m_RandomGeneratorFactory_of_0, _m_RandomGeneratorFactory_create_0, _m_RandomGeneratorFactory_create_1, _m_RandomGeneratorFactory_create_2, _m_RandomGeneratorFactory_period_0, _m_RandomGeneratorFactory_equidistribution_0, _m_RandomGeneratorFactory_isDeprecated_0, _m_RandomGeneratorFactory_all_0, _m_RandomGeneratorFactory_isStochastic_0, _m_RandomGeneratorFactory_isHardware_0, _m_RandomGeneratorFactory_stateBits_0, _m_RandomGeneratorFactory_isStatistical_0, _m_RandomGeneratorFactory_isArbitrarilyJumpable_0, _m_RandomGeneratorFactory_isJumpable_0, _m_RandomGeneratorFactory_isLeapable_0, _m_RandomGeneratorFactory_isSplittable_0, _m_RandomGeneratorFactory_isStreamable_0
+    if _cls_RandomGeneratorFactory != NULL:
+        return 0
+    _cls_RandomGeneratorFactory = find_class_global(env, b"java/util/random/RandomGeneratorFactory")
+    _m_RandomGeneratorFactory_name_0 = get_method_id(env, _cls_RandomGeneratorFactory, b"name", b"()Ljava/lang/String;")
+    _m_RandomGeneratorFactory_group_0 = get_method_id(env, _cls_RandomGeneratorFactory, b"group", b"()Ljava/lang/String;")
+    _m_RandomGeneratorFactory_getDefault_0 = get_static_method_id(env, _cls_RandomGeneratorFactory, b"getDefault", b"()Ljava/util/random/RandomGeneratorFactory;")
+    _m_RandomGeneratorFactory_of_0 = get_static_method_id(env, _cls_RandomGeneratorFactory, b"of", b"(Ljava/lang/String;)Ljava/util/random/RandomGeneratorFactory;")
+    _m_RandomGeneratorFactory_create_0 = get_method_id(env, _cls_RandomGeneratorFactory, b"create", b"()Ljava/util/random/RandomGenerator;")
+    _m_RandomGeneratorFactory_create_1 = get_method_id(env, _cls_RandomGeneratorFactory, b"create", b"([B)Ljava/util/random/RandomGenerator;")
+    _m_RandomGeneratorFactory_create_2 = get_method_id(env, _cls_RandomGeneratorFactory, b"create", b"(J)Ljava/util/random/RandomGenerator;")
+    _m_RandomGeneratorFactory_period_0 = get_method_id(env, _cls_RandomGeneratorFactory, b"period", b"()Ljava/math/BigInteger;")
+    _m_RandomGeneratorFactory_equidistribution_0 = get_method_id(env, _cls_RandomGeneratorFactory, b"equidistribution", b"()I")
+    _m_RandomGeneratorFactory_isDeprecated_0 = get_method_id(env, _cls_RandomGeneratorFactory, b"isDeprecated", b"()Z")
+    _m_RandomGeneratorFactory_all_0 = get_static_method_id(env, _cls_RandomGeneratorFactory, b"all", b"()Ljava/util/stream/Stream;")
+    _m_RandomGeneratorFactory_isStochastic_0 = get_method_id(env, _cls_RandomGeneratorFactory, b"isStochastic", b"()Z")
+    _m_RandomGeneratorFactory_isHardware_0 = get_method_id(env, _cls_RandomGeneratorFactory, b"isHardware", b"()Z")
+    _m_RandomGeneratorFactory_stateBits_0 = get_method_id(env, _cls_RandomGeneratorFactory, b"stateBits", b"()I")
+    _m_RandomGeneratorFactory_isStatistical_0 = get_method_id(env, _cls_RandomGeneratorFactory, b"isStatistical", b"()Z")
+    _m_RandomGeneratorFactory_isArbitrarilyJumpable_0 = get_method_id(env, _cls_RandomGeneratorFactory, b"isArbitrarilyJumpable", b"()Z")
+    _m_RandomGeneratorFactory_isJumpable_0 = get_method_id(env, _cls_RandomGeneratorFactory, b"isJumpable", b"()Z")
+    _m_RandomGeneratorFactory_isLeapable_0 = get_method_id(env, _cls_RandomGeneratorFactory, b"isLeapable", b"()Z")
+    _m_RandomGeneratorFactory_isSplittable_0 = get_method_id(env, _cls_RandomGeneratorFactory, b"isSplittable", b"()Z")
+    _m_RandomGeneratorFactory_isStreamable_0 = get_method_id(env, _cls_RandomGeneratorFactory, b"isStreamable", b"()Z")
+    return 0
+
+cdef class RandomGeneratorFactory(JavaObject):
+    """java.util.random.RandomGeneratorFactory"""
+
+    def __init__(self, *args, **kwargs):
+        raise TypeError("RandomGeneratorFactory has no public constructor")
+
+    cdef jstring _name(self, JNIEnv* env) except? NULL:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jstring _ret = <jstring>jnicore_CallObjectMethodA(env, self._handle, _m_RandomGeneratorFactory_name_0, _args)
+        check_jni_exc(env)
+        return <jstring>_ret
+
+    def name(self) -> str:
+        cdef JNIEnv* env = get_env()
+        cdef jstring _ret = NULL
+        _ret = self._name(env)
+        return py_str(env, _ret)
+
+    cdef jstring _name_0(self, JNIEnv* env) except? NULL:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jstring _ret = <jstring>jnicore_CallObjectMethodA(env, self._handle, _m_RandomGeneratorFactory_name_0, _args)
+        check_jni_exc(env)
+        return <jstring>_ret
+
+    def name_0(self) -> str:
+        cdef JNIEnv* env = get_env()
+        cdef jstring _ret = NULL
+        _ret = self._name_0(env)
+        return py_str(env, _ret)
+
+    cdef jstring _group(self, JNIEnv* env) except? NULL:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jstring _ret = <jstring>jnicore_CallObjectMethodA(env, self._handle, _m_RandomGeneratorFactory_group_0, _args)
+        check_jni_exc(env)
+        return <jstring>_ret
+
+    def group(self) -> str:
+        cdef JNIEnv* env = get_env()
+        cdef jstring _ret = NULL
+        _ret = self._group(env)
+        return py_str(env, _ret)
+
+    cdef jstring _group_0(self, JNIEnv* env) except? NULL:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jstring _ret = <jstring>jnicore_CallObjectMethodA(env, self._handle, _m_RandomGeneratorFactory_group_0, _args)
+        check_jni_exc(env)
+        return <jstring>_ret
+
+    def group_0(self) -> str:
+        cdef JNIEnv* env = get_env()
+        cdef jstring _ret = NULL
+        _ret = self._group_0(env)
+        return py_str(env, _ret)
+
+    @staticmethod
+    cdef jobject _getDefault(JNIEnv* env) except? NULL:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_RandomGeneratorFactory, _m_RandomGeneratorFactory_getDefault_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    @staticmethod
+    def getDefault() -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = RandomGeneratorFactory._getDefault(env)
+        if _ret == NULL:
+            return None
+        cdef RandomGeneratorFactory _wrapped = RandomGeneratorFactory.__new__(RandomGeneratorFactory)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    @staticmethod
+    cdef jobject _getDefault_0(JNIEnv* env) except? NULL:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_RandomGeneratorFactory, _m_RandomGeneratorFactory_getDefault_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    @staticmethod
+    def getDefault_0() -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = RandomGeneratorFactory._getDefault_0(env)
+        if _ret == NULL:
+            return None
+        cdef RandomGeneratorFactory _wrapped = RandomGeneratorFactory.__new__(RandomGeneratorFactory)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    @staticmethod
+    cdef jobject _of(JNIEnv* env, jstring p0) except? NULL:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]
+        _args[0].l = <jobject>p0
+        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_RandomGeneratorFactory, _m_RandomGeneratorFactory_of_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    @staticmethod
+    def of(p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jstring _arg0_s = NULL
+        _arg0_s = j_str(env, p0) if p0 is not None else <jstring>NULL
+        try:
+            _ret = RandomGeneratorFactory._of(env, _arg0_s)
+        finally:
+            if _arg0_s != NULL:
+                jnicore_DeleteLocalRef(env, <jobject>_arg0_s)
+        if _ret == NULL:
+            return None
+        cdef RandomGeneratorFactory _wrapped = RandomGeneratorFactory.__new__(RandomGeneratorFactory)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    @staticmethod
+    cdef jobject _of_0(JNIEnv* env, jstring p0) except? NULL:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]
+        _args[0].l = <jobject>p0
+        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_RandomGeneratorFactory, _m_RandomGeneratorFactory_of_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    @staticmethod
+    def of_0(p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jstring _arg0_s = NULL
+        _arg0_s = j_str(env, p0) if p0 is not None else <jstring>NULL
+        try:
+            _ret = RandomGeneratorFactory._of_0(env, _arg0_s)
+        finally:
+            if _arg0_s != NULL:
+                jnicore_DeleteLocalRef(env, <jobject>_arg0_s)
+        if _ret == NULL:
+            return None
+        cdef RandomGeneratorFactory _wrapped = RandomGeneratorFactory.__new__(RandomGeneratorFactory)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _create(self, JNIEnv* env) except? NULL:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_RandomGeneratorFactory_create_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def create(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._create(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _create_0(self, JNIEnv* env) except? NULL:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_RandomGeneratorFactory_create_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def create_0(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._create_0(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _create_1(self, JNIEnv* env, jobject p0) except? NULL:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]
+        _args[0].l = p0
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_RandomGeneratorFactory_create_1, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def create_1(self, p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
+        _ret = self._create_1(env, _h0)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _create_2(self, JNIEnv* env, jlong p0) except? NULL:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]
+        _args[0].j = p0
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_RandomGeneratorFactory_create_2, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def create_2(self, p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jlong _c0 = py_to_jlong(p0)
+        _ret = self._create_2(env, _c0)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _period(self, JNIEnv* env) except? NULL:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_RandomGeneratorFactory_period_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def period(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._period(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _period_0(self, JNIEnv* env) except? NULL:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_RandomGeneratorFactory_period_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def period_0(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._period_0(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jint _equidistribution(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_RandomGeneratorFactory_equidistribution_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def equidistribution(self) -> int:
+        cdef JNIEnv* env = get_env()
+        cdef jint _ret = 0
+        _ret = self._equidistribution(env)
+        return <int>_ret
+
+    cdef jint _equidistribution_0(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_RandomGeneratorFactory_equidistribution_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def equidistribution_0(self) -> int:
+        cdef JNIEnv* env = get_env()
+        cdef jint _ret = 0
+        _ret = self._equidistribution_0(env)
+        return <int>_ret
+
+    cdef jboolean _isDeprecated(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_RandomGeneratorFactory_isDeprecated_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def isDeprecated(self) -> bool:
+        cdef JNIEnv* env = get_env()
+        cdef jboolean _ret = 0
+        _ret = self._isDeprecated(env)
+        return jboolean_to_py(_ret)
+
+    cdef jboolean _isDeprecated_0(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_RandomGeneratorFactory_isDeprecated_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def isDeprecated_0(self) -> bool:
+        cdef JNIEnv* env = get_env()
+        cdef jboolean _ret = 0
+        _ret = self._isDeprecated_0(env)
+        return jboolean_to_py(_ret)
+
+    @staticmethod
+    cdef jobject _all(JNIEnv* env) except? NULL:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_RandomGeneratorFactory, _m_RandomGeneratorFactory_all_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    @staticmethod
+    def all() -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = RandomGeneratorFactory._all(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    @staticmethod
+    cdef jobject _all_0(JNIEnv* env) except? NULL:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_RandomGeneratorFactory, _m_RandomGeneratorFactory_all_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    @staticmethod
+    def all_0() -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = RandomGeneratorFactory._all_0(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jboolean _isStochastic(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_RandomGeneratorFactory_isStochastic_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def isStochastic(self) -> bool:
+        cdef JNIEnv* env = get_env()
+        cdef jboolean _ret = 0
+        _ret = self._isStochastic(env)
+        return jboolean_to_py(_ret)
+
+    cdef jboolean _isStochastic_0(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_RandomGeneratorFactory_isStochastic_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def isStochastic_0(self) -> bool:
+        cdef JNIEnv* env = get_env()
+        cdef jboolean _ret = 0
+        _ret = self._isStochastic_0(env)
+        return jboolean_to_py(_ret)
+
+    cdef jboolean _isHardware(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_RandomGeneratorFactory_isHardware_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def isHardware(self) -> bool:
+        cdef JNIEnv* env = get_env()
+        cdef jboolean _ret = 0
+        _ret = self._isHardware(env)
+        return jboolean_to_py(_ret)
+
+    cdef jboolean _isHardware_0(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_RandomGeneratorFactory_isHardware_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def isHardware_0(self) -> bool:
+        cdef JNIEnv* env = get_env()
+        cdef jboolean _ret = 0
+        _ret = self._isHardware_0(env)
+        return jboolean_to_py(_ret)
+
+    cdef jint _stateBits(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_RandomGeneratorFactory_stateBits_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def stateBits(self) -> int:
+        cdef JNIEnv* env = get_env()
+        cdef jint _ret = 0
+        _ret = self._stateBits(env)
+        return <int>_ret
+
+    cdef jint _stateBits_0(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_RandomGeneratorFactory_stateBits_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def stateBits_0(self) -> int:
+        cdef JNIEnv* env = get_env()
+        cdef jint _ret = 0
+        _ret = self._stateBits_0(env)
+        return <int>_ret
+
+    cdef jboolean _isStatistical(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_RandomGeneratorFactory_isStatistical_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def isStatistical(self) -> bool:
+        cdef JNIEnv* env = get_env()
+        cdef jboolean _ret = 0
+        _ret = self._isStatistical(env)
+        return jboolean_to_py(_ret)
+
+    cdef jboolean _isStatistical_0(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_RandomGeneratorFactory_isStatistical_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def isStatistical_0(self) -> bool:
+        cdef JNIEnv* env = get_env()
+        cdef jboolean _ret = 0
+        _ret = self._isStatistical_0(env)
+        return jboolean_to_py(_ret)
+
+    cdef jboolean _isArbitrarilyJumpable(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_RandomGeneratorFactory_isArbitrarilyJumpable_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def isArbitrarilyJumpable(self) -> bool:
+        cdef JNIEnv* env = get_env()
+        cdef jboolean _ret = 0
+        _ret = self._isArbitrarilyJumpable(env)
+        return jboolean_to_py(_ret)
+
+    cdef jboolean _isArbitrarilyJumpable_0(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_RandomGeneratorFactory_isArbitrarilyJumpable_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def isArbitrarilyJumpable_0(self) -> bool:
+        cdef JNIEnv* env = get_env()
+        cdef jboolean _ret = 0
+        _ret = self._isArbitrarilyJumpable_0(env)
+        return jboolean_to_py(_ret)
+
+    cdef jboolean _isJumpable(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_RandomGeneratorFactory_isJumpable_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def isJumpable(self) -> bool:
+        cdef JNIEnv* env = get_env()
+        cdef jboolean _ret = 0
+        _ret = self._isJumpable(env)
+        return jboolean_to_py(_ret)
+
+    cdef jboolean _isJumpable_0(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_RandomGeneratorFactory_isJumpable_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def isJumpable_0(self) -> bool:
+        cdef JNIEnv* env = get_env()
+        cdef jboolean _ret = 0
+        _ret = self._isJumpable_0(env)
+        return jboolean_to_py(_ret)
+
+    cdef jboolean _isLeapable(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_RandomGeneratorFactory_isLeapable_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def isLeapable(self) -> bool:
+        cdef JNIEnv* env = get_env()
+        cdef jboolean _ret = 0
+        _ret = self._isLeapable(env)
+        return jboolean_to_py(_ret)
+
+    cdef jboolean _isLeapable_0(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_RandomGeneratorFactory_isLeapable_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def isLeapable_0(self) -> bool:
+        cdef JNIEnv* env = get_env()
+        cdef jboolean _ret = 0
+        _ret = self._isLeapable_0(env)
+        return jboolean_to_py(_ret)
+
+    cdef jboolean _isSplittable(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_RandomGeneratorFactory_isSplittable_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def isSplittable(self) -> bool:
+        cdef JNIEnv* env = get_env()
+        cdef jboolean _ret = 0
+        _ret = self._isSplittable(env)
+        return jboolean_to_py(_ret)
+
+    cdef jboolean _isSplittable_0(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_RandomGeneratorFactory_isSplittable_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def isSplittable_0(self) -> bool:
+        cdef JNIEnv* env = get_env()
+        cdef jboolean _ret = 0
+        _ret = self._isSplittable_0(env)
+        return jboolean_to_py(_ret)
+
+    cdef jboolean _isStreamable(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_RandomGeneratorFactory_isStreamable_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def isStreamable(self) -> bool:
+        cdef JNIEnv* env = get_env()
+        cdef jboolean _ret = 0
+        _ret = self._isStreamable(env)
+        return jboolean_to_py(_ret)
+
+    cdef jboolean _isStreamable_0(self, JNIEnv* env) except *:
+        _ensure_ids_RandomGeneratorFactory(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_RandomGeneratorFactory_isStreamable_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def isStreamable_0(self) -> bool:
+        cdef JNIEnv* env = get_env()
+        cdef jboolean _ret = 0
+        _ret = self._isStreamable_0(env)
+        return jboolean_to_py(_ret)
+
+    @staticmethod
+    def from_java_object(obj) -> object:
+        """Wrap a plain JavaObject as RandomGeneratorFactory (no JNI type check)."""
+        cdef JNIEnv* env = get_env()
+        cdef RandomGeneratorFactory inst = RandomGeneratorFactory.__new__(RandomGeneratorFactory)
         cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
         inst._adopt_global(env, global_ref)
         return inst

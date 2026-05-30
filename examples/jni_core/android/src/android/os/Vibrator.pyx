@@ -44,629 +44,542 @@ from jni_core.jni cimport (
 
 include "jni_core/conversions.pxi"
 
-__javaclass__ = "android/os/Vibrator"  # android.os.Vibrator
+__javaclass__ = "android/os/vibrator/VibratorEnvelopeEffectInfo"  # android.os.vibrator.VibratorEnvelopeEffectInfo
 
-cdef jclass _cls_Vibrator = NULL
-cdef jmethodID _m_Vibrator_vibrate_0 = NULL
-cdef jmethodID _m_Vibrator_vibrate_1 = NULL
-cdef jmethodID _m_Vibrator_vibrate_2 = NULL
-cdef jmethodID _m_Vibrator_vibrate_3 = NULL
-cdef jmethodID _m_Vibrator_vibrate_4 = NULL
-cdef jmethodID _m_Vibrator_vibrate_5 = NULL
-cdef jmethodID _m_Vibrator_vibrate_6 = NULL
-cdef jmethodID _m_Vibrator_getQFactor_0 = NULL
-cdef jmethodID _m_Vibrator_hasVibrator_0 = NULL
-cdef jmethodID _m_Vibrator_areAllEffectsSupported_0 = NULL
-cdef jmethodID _m_Vibrator_areAllPrimitivesSupported_0 = NULL
-cdef jmethodID _m_Vibrator_areEffectsSupported_0 = NULL
-cdef jmethodID _m_Vibrator_areEnvelopeEffectsSupported_0 = NULL
-cdef jmethodID _m_Vibrator_arePrimitivesSupported_0 = NULL
-cdef jmethodID _m_Vibrator_getEnvelopeEffectInfo_0 = NULL
-cdef jmethodID _m_Vibrator_getFrequencyProfile_0 = NULL
-cdef jmethodID _m_Vibrator_getPrimitiveDurations_0 = NULL
-cdef jmethodID _m_Vibrator_getResonantFrequency_0 = NULL
-cdef jmethodID _m_Vibrator_hasAmplitudeControl_0 = NULL
-cdef jmethodID _m_Vibrator_getId_0 = NULL
-cdef jmethodID _m_Vibrator_cancel_0 = NULL
-cdef jfieldID _sf_Vibrator_VIBRATION_EFFECT_SUPPORT_NO = NULL
-cdef jfieldID _sf_Vibrator_VIBRATION_EFFECT_SUPPORT_UNKNOWN = NULL
-cdef jfieldID _sf_Vibrator_VIBRATION_EFFECT_SUPPORT_YES = NULL
+cdef jclass _cls_VibratorEnvelopeEffectInfo = NULL
+cdef jmethodID _m_VibratorEnvelopeEffectInfo_getMaxControlPointDurationMillis_0 = NULL
+cdef jmethodID _m_VibratorEnvelopeEffectInfo_getMaxDurationMillis_0 = NULL
+cdef jmethodID _m_VibratorEnvelopeEffectInfo_getMinControlPointDurationMillis_0 = NULL
+cdef jmethodID _m_VibratorEnvelopeEffectInfo_equals_0 = NULL
+cdef jmethodID _m_VibratorEnvelopeEffectInfo_toString_0 = NULL
+cdef jmethodID _m_VibratorEnvelopeEffectInfo_hashCode_0 = NULL
+cdef jmethodID _m_VibratorEnvelopeEffectInfo_describeContents_0 = NULL
+cdef jmethodID _m_VibratorEnvelopeEffectInfo_writeToParcel_0 = NULL
+cdef jmethodID _m_VibratorEnvelopeEffectInfo_getMaxSize_0 = NULL
+cdef jfieldID _sf_VibratorEnvelopeEffectInfo_CREATOR = NULL
+cdef jfieldID _sf_VibratorEnvelopeEffectInfo_CONTENTS_FILE_DESCRIPTOR = NULL
+cdef jfieldID _sf_VibratorEnvelopeEffectInfo_PARCELABLE_WRITE_RETURN_VALUE = NULL
 
-cdef int _ensure_ids_Vibrator(JNIEnv* env) except -1:
-    global _cls_Vibrator, _m_Vibrator_vibrate_0, _m_Vibrator_vibrate_1, _m_Vibrator_vibrate_2, _m_Vibrator_vibrate_3, _m_Vibrator_vibrate_4, _m_Vibrator_vibrate_5, _m_Vibrator_vibrate_6, _m_Vibrator_getQFactor_0, _m_Vibrator_hasVibrator_0, _m_Vibrator_areAllEffectsSupported_0, _m_Vibrator_areAllPrimitivesSupported_0, _m_Vibrator_areEffectsSupported_0, _m_Vibrator_areEnvelopeEffectsSupported_0, _m_Vibrator_arePrimitivesSupported_0, _m_Vibrator_getEnvelopeEffectInfo_0, _m_Vibrator_getFrequencyProfile_0, _m_Vibrator_getPrimitiveDurations_0, _m_Vibrator_getResonantFrequency_0, _m_Vibrator_hasAmplitudeControl_0, _m_Vibrator_getId_0, _m_Vibrator_cancel_0, _sf_Vibrator_VIBRATION_EFFECT_SUPPORT_NO, _sf_Vibrator_VIBRATION_EFFECT_SUPPORT_UNKNOWN, _sf_Vibrator_VIBRATION_EFFECT_SUPPORT_YES
-    if _cls_Vibrator != NULL:
+cdef int _ensure_ids_VibratorEnvelopeEffectInfo(JNIEnv* env) except -1:
+    global _cls_VibratorEnvelopeEffectInfo, _m_VibratorEnvelopeEffectInfo_getMaxControlPointDurationMillis_0, _m_VibratorEnvelopeEffectInfo_getMaxDurationMillis_0, _m_VibratorEnvelopeEffectInfo_getMinControlPointDurationMillis_0, _m_VibratorEnvelopeEffectInfo_equals_0, _m_VibratorEnvelopeEffectInfo_toString_0, _m_VibratorEnvelopeEffectInfo_hashCode_0, _m_VibratorEnvelopeEffectInfo_describeContents_0, _m_VibratorEnvelopeEffectInfo_writeToParcel_0, _m_VibratorEnvelopeEffectInfo_getMaxSize_0, _sf_VibratorEnvelopeEffectInfo_CREATOR, _sf_VibratorEnvelopeEffectInfo_CONTENTS_FILE_DESCRIPTOR, _sf_VibratorEnvelopeEffectInfo_PARCELABLE_WRITE_RETURN_VALUE
+    if _cls_VibratorEnvelopeEffectInfo != NULL:
         return 0
-    _cls_Vibrator = find_class_global(env, b"android/os/Vibrator")
-    _m_Vibrator_vibrate_0 = get_method_id(env, _cls_Vibrator, b"vibrate", b"(J)V")
-    _m_Vibrator_vibrate_1 = get_method_id(env, _cls_Vibrator, b"vibrate", b"(Landroid/os/VibrationEffect;Landroid/os/VibrationAttributes;)V")
-    _m_Vibrator_vibrate_2 = get_method_id(env, _cls_Vibrator, b"vibrate", b"(Landroid/os/VibrationEffect;Landroid/media/AudioAttributes;)V")
-    _m_Vibrator_vibrate_3 = get_method_id(env, _cls_Vibrator, b"vibrate", b"(Landroid/os/VibrationEffect;)V")
-    _m_Vibrator_vibrate_4 = get_method_id(env, _cls_Vibrator, b"vibrate", b"([JILandroid/media/AudioAttributes;)V")
-    _m_Vibrator_vibrate_5 = get_method_id(env, _cls_Vibrator, b"vibrate", b"([JI)V")
-    _m_Vibrator_vibrate_6 = get_method_id(env, _cls_Vibrator, b"vibrate", b"(JLandroid/media/AudioAttributes;)V")
-    _m_Vibrator_getQFactor_0 = get_method_id(env, _cls_Vibrator, b"getQFactor", b"()F")
-    _m_Vibrator_hasVibrator_0 = get_method_id(env, _cls_Vibrator, b"hasVibrator", b"()Z")
-    _m_Vibrator_areAllEffectsSupported_0 = get_method_id(env, _cls_Vibrator, b"areAllEffectsSupported", b"([I)I")
-    _m_Vibrator_areAllPrimitivesSupported_0 = get_method_id(env, _cls_Vibrator, b"areAllPrimitivesSupported", b"([I)Z")
-    _m_Vibrator_areEffectsSupported_0 = get_method_id(env, _cls_Vibrator, b"areEffectsSupported", b"([I)[I")
-    _m_Vibrator_areEnvelopeEffectsSupported_0 = get_method_id(env, _cls_Vibrator, b"areEnvelopeEffectsSupported", b"()Z")
-    _m_Vibrator_arePrimitivesSupported_0 = get_method_id(env, _cls_Vibrator, b"arePrimitivesSupported", b"([I)[Z")
-    _m_Vibrator_getEnvelopeEffectInfo_0 = get_method_id(env, _cls_Vibrator, b"getEnvelopeEffectInfo", b"()Landroid/os/vibrator/VibratorEnvelopeEffectInfo;")
-    _m_Vibrator_getFrequencyProfile_0 = get_method_id(env, _cls_Vibrator, b"getFrequencyProfile", b"()Landroid/os/vibrator/VibratorFrequencyProfile;")
-    _m_Vibrator_getPrimitiveDurations_0 = get_method_id(env, _cls_Vibrator, b"getPrimitiveDurations", b"([I)[I")
-    _m_Vibrator_getResonantFrequency_0 = get_method_id(env, _cls_Vibrator, b"getResonantFrequency", b"()F")
-    _m_Vibrator_hasAmplitudeControl_0 = get_method_id(env, _cls_Vibrator, b"hasAmplitudeControl", b"()Z")
-    _m_Vibrator_getId_0 = get_method_id(env, _cls_Vibrator, b"getId", b"()I")
-    _m_Vibrator_cancel_0 = get_method_id(env, _cls_Vibrator, b"cancel", b"()V")
-    _sf_Vibrator_VIBRATION_EFFECT_SUPPORT_NO = get_static_field_id(env, _cls_Vibrator, b"VIBRATION_EFFECT_SUPPORT_NO", b"I")
-    _sf_Vibrator_VIBRATION_EFFECT_SUPPORT_UNKNOWN = get_static_field_id(env, _cls_Vibrator, b"VIBRATION_EFFECT_SUPPORT_UNKNOWN", b"I")
-    _sf_Vibrator_VIBRATION_EFFECT_SUPPORT_YES = get_static_field_id(env, _cls_Vibrator, b"VIBRATION_EFFECT_SUPPORT_YES", b"I")
+    _cls_VibratorEnvelopeEffectInfo = find_class_global(env, b"android/os/vibrator/VibratorEnvelopeEffectInfo")
+    _m_VibratorEnvelopeEffectInfo_getMaxControlPointDurationMillis_0 = get_method_id(env, _cls_VibratorEnvelopeEffectInfo, b"getMaxControlPointDurationMillis", b"()J")
+    _m_VibratorEnvelopeEffectInfo_getMaxDurationMillis_0 = get_method_id(env, _cls_VibratorEnvelopeEffectInfo, b"getMaxDurationMillis", b"()J")
+    _m_VibratorEnvelopeEffectInfo_getMinControlPointDurationMillis_0 = get_method_id(env, _cls_VibratorEnvelopeEffectInfo, b"getMinControlPointDurationMillis", b"()J")
+    _m_VibratorEnvelopeEffectInfo_equals_0 = get_method_id(env, _cls_VibratorEnvelopeEffectInfo, b"equals", b"(Ljava/lang/Object;)Z")
+    _m_VibratorEnvelopeEffectInfo_toString_0 = get_method_id(env, _cls_VibratorEnvelopeEffectInfo, b"toString", b"()Ljava/lang/String;")
+    _m_VibratorEnvelopeEffectInfo_hashCode_0 = get_method_id(env, _cls_VibratorEnvelopeEffectInfo, b"hashCode", b"()I")
+    _m_VibratorEnvelopeEffectInfo_describeContents_0 = get_method_id(env, _cls_VibratorEnvelopeEffectInfo, b"describeContents", b"()I")
+    _m_VibratorEnvelopeEffectInfo_writeToParcel_0 = get_method_id(env, _cls_VibratorEnvelopeEffectInfo, b"writeToParcel", b"(Landroid/os/Parcel;I)V")
+    _m_VibratorEnvelopeEffectInfo_getMaxSize_0 = get_method_id(env, _cls_VibratorEnvelopeEffectInfo, b"getMaxSize", b"()I")
+    _sf_VibratorEnvelopeEffectInfo_CREATOR = get_static_field_id(env, _cls_VibratorEnvelopeEffectInfo, b"CREATOR", b"Landroid/os/Parcelable$Creator;")
+    _sf_VibratorEnvelopeEffectInfo_CONTENTS_FILE_DESCRIPTOR = get_static_field_id(env, _cls_VibratorEnvelopeEffectInfo, b"CONTENTS_FILE_DESCRIPTOR", b"I")
+    _sf_VibratorEnvelopeEffectInfo_PARCELABLE_WRITE_RETURN_VALUE = get_static_field_id(env, _cls_VibratorEnvelopeEffectInfo, b"PARCELABLE_WRITE_RETURN_VALUE", b"I")
     return 0
 
-cdef class Vibrator(JavaObject):
-    """android.os.Vibrator"""
+cdef class VibratorEnvelopeEffectInfo(JavaObject):
+    """android.os.vibrator.VibratorEnvelopeEffectInfo"""
 
     def __init__(self, *args, **kwargs):
-        raise TypeError("Vibrator has no public constructor")
+        raise TypeError("VibratorEnvelopeEffectInfo has no public constructor")
 
-    # Static field Vibrator.VIBRATION_EFFECT_SUPPORT_NO
+    # Static field VibratorEnvelopeEffectInfo.CREATOR
     @staticmethod
-    def VIBRATION_EFFECT_SUPPORT_NO() -> int:
+    def CREATOR() -> object:
         cdef JNIEnv* env = get_env()
-        _ensure_ids_Vibrator(env)
-        cdef jint _ret = jnicore_GetStaticIntField(env, _cls_Vibrator, _sf_Vibrator_VIBRATION_EFFECT_SUPPORT_NO)
+        _ensure_ids_VibratorEnvelopeEffectInfo(env)
+        cdef jobject _ret = jnicore_GetStaticObjectField(env, _cls_VibratorEnvelopeEffectInfo, _sf_VibratorEnvelopeEffectInfo_CREATOR)
+        check_jni_exc(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    # Static field VibratorEnvelopeEffectInfo.CONTENTS_FILE_DESCRIPTOR
+    @staticmethod
+    def CONTENTS_FILE_DESCRIPTOR() -> int:
+        cdef JNIEnv* env = get_env()
+        _ensure_ids_VibratorEnvelopeEffectInfo(env)
+        cdef jint _ret = jnicore_GetStaticIntField(env, _cls_VibratorEnvelopeEffectInfo, _sf_VibratorEnvelopeEffectInfo_CONTENTS_FILE_DESCRIPTOR)
         check_jni_exc(env)
         return <int>_ret
 
-    # Static field Vibrator.VIBRATION_EFFECT_SUPPORT_UNKNOWN
+    # Static field VibratorEnvelopeEffectInfo.PARCELABLE_WRITE_RETURN_VALUE
     @staticmethod
-    def VIBRATION_EFFECT_SUPPORT_UNKNOWN() -> int:
+    def PARCELABLE_WRITE_RETURN_VALUE() -> int:
         cdef JNIEnv* env = get_env()
-        _ensure_ids_Vibrator(env)
-        cdef jint _ret = jnicore_GetStaticIntField(env, _cls_Vibrator, _sf_Vibrator_VIBRATION_EFFECT_SUPPORT_UNKNOWN)
+        _ensure_ids_VibratorEnvelopeEffectInfo(env)
+        cdef jint _ret = jnicore_GetStaticIntField(env, _cls_VibratorEnvelopeEffectInfo, _sf_VibratorEnvelopeEffectInfo_PARCELABLE_WRITE_RETURN_VALUE)
         check_jni_exc(env)
         return <int>_ret
 
-    # Static field Vibrator.VIBRATION_EFFECT_SUPPORT_YES
-    @staticmethod
-    def VIBRATION_EFFECT_SUPPORT_YES() -> int:
-        cdef JNIEnv* env = get_env()
-        _ensure_ids_Vibrator(env)
-        cdef jint _ret = jnicore_GetStaticIntField(env, _cls_Vibrator, _sf_Vibrator_VIBRATION_EFFECT_SUPPORT_YES)
+    cdef jlong _getMaxControlPointDurationMillis(self, JNIEnv* env) except *:
+        _ensure_ids_VibratorEnvelopeEffectInfo(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jlong _ret = jnicore_CallLongMethodA(env, self._handle, _m_VibratorEnvelopeEffectInfo_getMaxControlPointDurationMillis_0, _args)
         check_jni_exc(env)
-        return <int>_ret
+        return _ret
 
-    cdef void _vibrate(self, JNIEnv* env, jlong p0) except *:
-        _ensure_ids_Vibrator(env)
+    def getMaxControlPointDurationMillis(self) -> int:
+        cdef JNIEnv* env = get_env()
+        cdef jlong _ret = 0
+        _ret = self._getMaxControlPointDurationMillis(env)
+        return <long long>_ret
+
+    cdef jlong _getMaxControlPointDurationMillis_0(self, JNIEnv* env) except *:
+        _ensure_ids_VibratorEnvelopeEffectInfo(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jlong _ret = jnicore_CallLongMethodA(env, self._handle, _m_VibratorEnvelopeEffectInfo_getMaxControlPointDurationMillis_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def getMaxControlPointDurationMillis_0(self) -> int:
+        cdef JNIEnv* env = get_env()
+        cdef jlong _ret = 0
+        _ret = self._getMaxControlPointDurationMillis_0(env)
+        return <long long>_ret
+
+    cdef jlong _getMaxDurationMillis(self, JNIEnv* env) except *:
+        _ensure_ids_VibratorEnvelopeEffectInfo(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jlong _ret = jnicore_CallLongMethodA(env, self._handle, _m_VibratorEnvelopeEffectInfo_getMaxDurationMillis_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def getMaxDurationMillis(self) -> int:
+        cdef JNIEnv* env = get_env()
+        cdef jlong _ret = 0
+        _ret = self._getMaxDurationMillis(env)
+        return <long long>_ret
+
+    cdef jlong _getMaxDurationMillis_0(self, JNIEnv* env) except *:
+        _ensure_ids_VibratorEnvelopeEffectInfo(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jlong _ret = jnicore_CallLongMethodA(env, self._handle, _m_VibratorEnvelopeEffectInfo_getMaxDurationMillis_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def getMaxDurationMillis_0(self) -> int:
+        cdef JNIEnv* env = get_env()
+        cdef jlong _ret = 0
+        _ret = self._getMaxDurationMillis_0(env)
+        return <long long>_ret
+
+    cdef jlong _getMinControlPointDurationMillis(self, JNIEnv* env) except *:
+        _ensure_ids_VibratorEnvelopeEffectInfo(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jlong _ret = jnicore_CallLongMethodA(env, self._handle, _m_VibratorEnvelopeEffectInfo_getMinControlPointDurationMillis_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def getMinControlPointDurationMillis(self) -> int:
+        cdef JNIEnv* env = get_env()
+        cdef jlong _ret = 0
+        _ret = self._getMinControlPointDurationMillis(env)
+        return <long long>_ret
+
+    cdef jlong _getMinControlPointDurationMillis_0(self, JNIEnv* env) except *:
+        _ensure_ids_VibratorEnvelopeEffectInfo(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jlong _ret = jnicore_CallLongMethodA(env, self._handle, _m_VibratorEnvelopeEffectInfo_getMinControlPointDurationMillis_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def getMinControlPointDurationMillis_0(self) -> int:
+        cdef JNIEnv* env = get_env()
+        cdef jlong _ret = 0
+        _ret = self._getMinControlPointDurationMillis_0(env)
+        return <long long>_ret
+
+    cdef jboolean _equals(self, JNIEnv* env, jobject p0) except *:
+        _ensure_ids_VibratorEnvelopeEffectInfo(env)
         cdef jvalue _args[1]
-        _args[0].j = p0
-        jnicore_CallVoidMethodA(env, self._handle, _m_Vibrator_vibrate_0, _args)
+        _args[0].l = p0
+        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_VibratorEnvelopeEffectInfo_equals_0, _args)
         check_jni_exc(env)
+        return _ret
 
-    def vibrate(self, p0) -> None:
+    def equals(self, p0) -> bool:
         cdef JNIEnv* env = get_env()
-        cdef jlong _c0 = py_to_jlong(p0)
-        self._vibrate(env, _c0)
+        cdef jboolean _ret = 0
+        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
+        _ret = self._equals(env, _h0)
+        return jboolean_to_py(_ret)
 
-    cdef void _vibrate_0(self, JNIEnv* env, jlong p0) except *:
-        _ensure_ids_Vibrator(env)
+    cdef jboolean _equals_0(self, JNIEnv* env, jobject p0) except *:
+        _ensure_ids_VibratorEnvelopeEffectInfo(env)
         cdef jvalue _args[1]
-        _args[0].j = p0
-        jnicore_CallVoidMethodA(env, self._handle, _m_Vibrator_vibrate_0, _args)
+        _args[0].l = p0
+        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_VibratorEnvelopeEffectInfo_equals_0, _args)
         check_jni_exc(env)
+        return _ret
 
-    def vibrate_0(self, p0) -> None:
+    def equals_0(self, p0) -> bool:
         cdef JNIEnv* env = get_env()
-        cdef jlong _c0 = py_to_jlong(p0)
-        self._vibrate_0(env, _c0)
+        cdef jboolean _ret = 0
+        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
+        _ret = self._equals_0(env, _h0)
+        return jboolean_to_py(_ret)
 
-    cdef void _vibrate_1(self, JNIEnv* env, jobject p0, jobject p1) except *:
-        _ensure_ids_Vibrator(env)
+    cdef jstring _toString(self, JNIEnv* env) except? NULL:
+        _ensure_ids_VibratorEnvelopeEffectInfo(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jstring _ret = <jstring>jnicore_CallObjectMethodA(env, self._handle, _m_VibratorEnvelopeEffectInfo_toString_0, _args)
+        check_jni_exc(env)
+        return <jstring>_ret
+
+    def toString(self) -> str:
+        cdef JNIEnv* env = get_env()
+        cdef jstring _ret = NULL
+        _ret = self._toString(env)
+        return py_str(env, _ret)
+
+    cdef jstring _toString_0(self, JNIEnv* env) except? NULL:
+        _ensure_ids_VibratorEnvelopeEffectInfo(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jstring _ret = <jstring>jnicore_CallObjectMethodA(env, self._handle, _m_VibratorEnvelopeEffectInfo_toString_0, _args)
+        check_jni_exc(env)
+        return <jstring>_ret
+
+    def toString_0(self) -> str:
+        cdef JNIEnv* env = get_env()
+        cdef jstring _ret = NULL
+        _ret = self._toString_0(env)
+        return py_str(env, _ret)
+
+    cdef jint _hashCode(self, JNIEnv* env) except *:
+        _ensure_ids_VibratorEnvelopeEffectInfo(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_VibratorEnvelopeEffectInfo_hashCode_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def hashCode(self) -> int:
+        cdef JNIEnv* env = get_env()
+        cdef jint _ret = 0
+        _ret = self._hashCode(env)
+        return <int>_ret
+
+    cdef jint _hashCode_0(self, JNIEnv* env) except *:
+        _ensure_ids_VibratorEnvelopeEffectInfo(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_VibratorEnvelopeEffectInfo_hashCode_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def hashCode_0(self) -> int:
+        cdef JNIEnv* env = get_env()
+        cdef jint _ret = 0
+        _ret = self._hashCode_0(env)
+        return <int>_ret
+
+    cdef jint _describeContents(self, JNIEnv* env) except *:
+        _ensure_ids_VibratorEnvelopeEffectInfo(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_VibratorEnvelopeEffectInfo_describeContents_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def describeContents(self) -> int:
+        cdef JNIEnv* env = get_env()
+        cdef jint _ret = 0
+        _ret = self._describeContents(env)
+        return <int>_ret
+
+    cdef jint _describeContents_0(self, JNIEnv* env) except *:
+        _ensure_ids_VibratorEnvelopeEffectInfo(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_VibratorEnvelopeEffectInfo_describeContents_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def describeContents_0(self) -> int:
+        cdef JNIEnv* env = get_env()
+        cdef jint _ret = 0
+        _ret = self._describeContents_0(env)
+        return <int>_ret
+
+    cdef void _writeToParcel(self, JNIEnv* env, jobject p0, jint p1) except *:
+        _ensure_ids_VibratorEnvelopeEffectInfo(env)
         cdef jvalue _args[2]
-        _args[0].l = p0
-        _args[1].l = p1
-        jnicore_CallVoidMethodA(env, self._handle, _m_Vibrator_vibrate_1, _args)
-        check_jni_exc(env)
-
-    def vibrate_1(self, p0, p1) -> None:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        cdef jobject _h1 = (<JavaObject?>p1)._handle if p1 is not None else <jobject>NULL
-        self._vibrate_1(env, _h0, _h1)
-
-    cdef void _vibrate_2(self, JNIEnv* env, jobject p0, jobject p1) except *:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[2]
-        _args[0].l = p0
-        _args[1].l = p1
-        jnicore_CallVoidMethodA(env, self._handle, _m_Vibrator_vibrate_2, _args)
-        check_jni_exc(env)
-
-    def vibrate_2(self, p0, p1) -> None:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        cdef jobject _h1 = (<JavaObject?>p1)._handle if p1 is not None else <jobject>NULL
-        self._vibrate_2(env, _h0, _h1)
-
-    cdef void _vibrate_3(self, JNIEnv* env, jobject p0) except *:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        jnicore_CallVoidMethodA(env, self._handle, _m_Vibrator_vibrate_3, _args)
-        check_jni_exc(env)
-
-    def vibrate_3(self, p0) -> None:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        self._vibrate_3(env, _h0)
-
-    cdef void _vibrate_4(self, JNIEnv* env, jobject p0, jint p1, jobject p2) except *:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[3]
         _args[0].l = p0
         _args[1].i = p1
-        _args[2].l = p2
-        jnicore_CallVoidMethodA(env, self._handle, _m_Vibrator_vibrate_4, _args)
+        jnicore_CallVoidMethodA(env, self._handle, _m_VibratorEnvelopeEffectInfo_writeToParcel_0, _args)
         check_jni_exc(env)
 
-    def vibrate_4(self, p0, p1, p2) -> None:
+    def writeToParcel(self, p0, p1) -> None:
         cdef JNIEnv* env = get_env()
         cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
         cdef jint _c1 = py_to_jint(p1)
-        cdef jobject _h2 = (<JavaObject?>p2)._handle if p2 is not None else <jobject>NULL
-        self._vibrate_4(env, _h0, _c1, _h2)
+        self._writeToParcel(env, _h0, _c1)
 
-    cdef void _vibrate_5(self, JNIEnv* env, jobject p0, jint p1) except *:
-        _ensure_ids_Vibrator(env)
+    cdef void _writeToParcel_0(self, JNIEnv* env, jobject p0, jint p1) except *:
+        _ensure_ids_VibratorEnvelopeEffectInfo(env)
         cdef jvalue _args[2]
         _args[0].l = p0
         _args[1].i = p1
-        jnicore_CallVoidMethodA(env, self._handle, _m_Vibrator_vibrate_5, _args)
+        jnicore_CallVoidMethodA(env, self._handle, _m_VibratorEnvelopeEffectInfo_writeToParcel_0, _args)
         check_jni_exc(env)
 
-    def vibrate_5(self, p0, p1) -> None:
+    def writeToParcel_0(self, p0, p1) -> None:
         cdef JNIEnv* env = get_env()
         cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
         cdef jint _c1 = py_to_jint(p1)
-        self._vibrate_5(env, _h0, _c1)
+        self._writeToParcel_0(env, _h0, _c1)
 
-    cdef void _vibrate_6(self, JNIEnv* env, jlong p0, jobject p1) except *:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[2]
-        _args[0].j = p0
-        _args[1].l = p1
-        jnicore_CallVoidMethodA(env, self._handle, _m_Vibrator_vibrate_6, _args)
-        check_jni_exc(env)
-
-    def vibrate_6(self, p0, p1) -> None:
-        cdef JNIEnv* env = get_env()
-        cdef jlong _c0 = py_to_jlong(p0)
-        cdef jobject _h1 = (<JavaObject?>p1)._handle if p1 is not None else <jobject>NULL
-        self._vibrate_6(env, _c0, _h1)
-
-    cdef jfloat _getQFactor(self, JNIEnv* env) except *:
-        _ensure_ids_Vibrator(env)
+    cdef jint _getMaxSize(self, JNIEnv* env) except *:
+        _ensure_ids_VibratorEnvelopeEffectInfo(env)
         cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jfloat _ret = jnicore_CallFloatMethodA(env, self._handle, _m_Vibrator_getQFactor_0, _args)
+        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_VibratorEnvelopeEffectInfo_getMaxSize_0, _args)
         check_jni_exc(env)
         return _ret
 
-    def getQFactor(self) -> float:
-        cdef JNIEnv* env = get_env()
-        cdef jfloat _ret = 0.0
-        _ret = self._getQFactor(env)
-        return <double>_ret
-
-    cdef jfloat _getQFactor_0(self, JNIEnv* env) except *:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jfloat _ret = jnicore_CallFloatMethodA(env, self._handle, _m_Vibrator_getQFactor_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def getQFactor_0(self) -> float:
-        cdef JNIEnv* env = get_env()
-        cdef jfloat _ret = 0.0
-        _ret = self._getQFactor_0(env)
-        return <double>_ret
-
-    cdef jboolean _hasVibrator(self, JNIEnv* env) except *:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_Vibrator_hasVibrator_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def hasVibrator(self) -> bool:
-        cdef JNIEnv* env = get_env()
-        cdef jboolean _ret = 0
-        _ret = self._hasVibrator(env)
-        return jboolean_to_py(_ret)
-
-    cdef jboolean _hasVibrator_0(self, JNIEnv* env) except *:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_Vibrator_hasVibrator_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def hasVibrator_0(self) -> bool:
-        cdef JNIEnv* env = get_env()
-        cdef jboolean _ret = 0
-        _ret = self._hasVibrator_0(env)
-        return jboolean_to_py(_ret)
-
-    cdef jint _areAllEffectsSupported(self, JNIEnv* env, jobject p0) except *:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Vibrator_areAllEffectsSupported_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def areAllEffectsSupported(self, p0) -> int:
+    def getMaxSize(self) -> int:
         cdef JNIEnv* env = get_env()
         cdef jint _ret = 0
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        _ret = self._areAllEffectsSupported(env, _h0)
+        _ret = self._getMaxSize(env)
         return <int>_ret
 
-    cdef jint _areAllEffectsSupported_0(self, JNIEnv* env, jobject p0) except *:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Vibrator_areAllEffectsSupported_0, _args)
+    cdef jint _getMaxSize_0(self, JNIEnv* env) except *:
+        _ensure_ids_VibratorEnvelopeEffectInfo(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_VibratorEnvelopeEffectInfo_getMaxSize_0, _args)
         check_jni_exc(env)
         return _ret
 
-    def areAllEffectsSupported_0(self, p0) -> int:
+    def getMaxSize_0(self) -> int:
         cdef JNIEnv* env = get_env()
         cdef jint _ret = 0
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        _ret = self._areAllEffectsSupported_0(env, _h0)
+        _ret = self._getMaxSize_0(env)
         return <int>_ret
-
-    cdef jboolean _areAllPrimitivesSupported(self, JNIEnv* env, jobject p0) except *:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_Vibrator_areAllPrimitivesSupported_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def areAllPrimitivesSupported(self, p0) -> bool:
-        cdef JNIEnv* env = get_env()
-        cdef jboolean _ret = 0
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        _ret = self._areAllPrimitivesSupported(env, _h0)
-        return jboolean_to_py(_ret)
-
-    cdef jboolean _areAllPrimitivesSupported_0(self, JNIEnv* env, jobject p0) except *:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_Vibrator_areAllPrimitivesSupported_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def areAllPrimitivesSupported_0(self, p0) -> bool:
-        cdef JNIEnv* env = get_env()
-        cdef jboolean _ret = 0
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        _ret = self._areAllPrimitivesSupported_0(env, _h0)
-        return jboolean_to_py(_ret)
-
-    cdef jobject _areEffectsSupported(self, JNIEnv* env, jobject p0) except? NULL:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Vibrator_areEffectsSupported_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def areEffectsSupported(self, p0) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        _ret = self._areEffectsSupported(env, _h0)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _areEffectsSupported_0(self, JNIEnv* env, jobject p0) except? NULL:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Vibrator_areEffectsSupported_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def areEffectsSupported_0(self, p0) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        _ret = self._areEffectsSupported_0(env, _h0)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jboolean _areEnvelopeEffectsSupported(self, JNIEnv* env) except *:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_Vibrator_areEnvelopeEffectsSupported_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def areEnvelopeEffectsSupported(self) -> bool:
-        cdef JNIEnv* env = get_env()
-        cdef jboolean _ret = 0
-        _ret = self._areEnvelopeEffectsSupported(env)
-        return jboolean_to_py(_ret)
-
-    cdef jboolean _areEnvelopeEffectsSupported_0(self, JNIEnv* env) except *:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_Vibrator_areEnvelopeEffectsSupported_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def areEnvelopeEffectsSupported_0(self) -> bool:
-        cdef JNIEnv* env = get_env()
-        cdef jboolean _ret = 0
-        _ret = self._areEnvelopeEffectsSupported_0(env)
-        return jboolean_to_py(_ret)
-
-    cdef jobject _arePrimitivesSupported(self, JNIEnv* env, jobject p0) except? NULL:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Vibrator_arePrimitivesSupported_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def arePrimitivesSupported(self, p0) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        _ret = self._arePrimitivesSupported(env, _h0)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _arePrimitivesSupported_0(self, JNIEnv* env, jobject p0) except? NULL:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Vibrator_arePrimitivesSupported_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def arePrimitivesSupported_0(self, p0) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        _ret = self._arePrimitivesSupported_0(env, _h0)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _getEnvelopeEffectInfo(self, JNIEnv* env) except? NULL:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Vibrator_getEnvelopeEffectInfo_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def getEnvelopeEffectInfo(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._getEnvelopeEffectInfo(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _getEnvelopeEffectInfo_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Vibrator_getEnvelopeEffectInfo_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def getEnvelopeEffectInfo_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._getEnvelopeEffectInfo_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _getFrequencyProfile(self, JNIEnv* env) except? NULL:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Vibrator_getFrequencyProfile_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def getFrequencyProfile(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._getFrequencyProfile(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _getFrequencyProfile_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Vibrator_getFrequencyProfile_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def getFrequencyProfile_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._getFrequencyProfile_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _getPrimitiveDurations(self, JNIEnv* env, jobject p0) except? NULL:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Vibrator_getPrimitiveDurations_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def getPrimitiveDurations(self, p0) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        _ret = self._getPrimitiveDurations(env, _h0)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _getPrimitiveDurations_0(self, JNIEnv* env, jobject p0) except? NULL:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Vibrator_getPrimitiveDurations_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def getPrimitiveDurations_0(self, p0) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        _ret = self._getPrimitiveDurations_0(env, _h0)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jfloat _getResonantFrequency(self, JNIEnv* env) except *:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jfloat _ret = jnicore_CallFloatMethodA(env, self._handle, _m_Vibrator_getResonantFrequency_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def getResonantFrequency(self) -> float:
-        cdef JNIEnv* env = get_env()
-        cdef jfloat _ret = 0.0
-        _ret = self._getResonantFrequency(env)
-        return <double>_ret
-
-    cdef jfloat _getResonantFrequency_0(self, JNIEnv* env) except *:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jfloat _ret = jnicore_CallFloatMethodA(env, self._handle, _m_Vibrator_getResonantFrequency_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def getResonantFrequency_0(self) -> float:
-        cdef JNIEnv* env = get_env()
-        cdef jfloat _ret = 0.0
-        _ret = self._getResonantFrequency_0(env)
-        return <double>_ret
-
-    cdef jboolean _hasAmplitudeControl(self, JNIEnv* env) except *:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_Vibrator_hasAmplitudeControl_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def hasAmplitudeControl(self) -> bool:
-        cdef JNIEnv* env = get_env()
-        cdef jboolean _ret = 0
-        _ret = self._hasAmplitudeControl(env)
-        return jboolean_to_py(_ret)
-
-    cdef jboolean _hasAmplitudeControl_0(self, JNIEnv* env) except *:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_Vibrator_hasAmplitudeControl_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def hasAmplitudeControl_0(self) -> bool:
-        cdef JNIEnv* env = get_env()
-        cdef jboolean _ret = 0
-        _ret = self._hasAmplitudeControl_0(env)
-        return jboolean_to_py(_ret)
-
-    cdef jint _getId(self, JNIEnv* env) except *:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Vibrator_getId_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def getId(self) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jint _ret = 0
-        _ret = self._getId(env)
-        return <int>_ret
-
-    cdef jint _getId_0(self, JNIEnv* env) except *:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Vibrator_getId_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def getId_0(self) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jint _ret = 0
-        _ret = self._getId_0(env)
-        return <int>_ret
-
-    cdef void _cancel(self, JNIEnv* env) except *:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        jnicore_CallVoidMethodA(env, self._handle, _m_Vibrator_cancel_0, _args)
-        check_jni_exc(env)
-
-    def cancel(self) -> None:
-        cdef JNIEnv* env = get_env()
-        self._cancel(env)
-
-    cdef void _cancel_0(self, JNIEnv* env) except *:
-        _ensure_ids_Vibrator(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        jnicore_CallVoidMethodA(env, self._handle, _m_Vibrator_cancel_0, _args)
-        check_jni_exc(env)
-
-    def cancel_0(self) -> None:
-        cdef JNIEnv* env = get_env()
-        self._cancel_0(env)
 
     @staticmethod
     def from_java_object(obj) -> object:
-        """Wrap a plain JavaObject as Vibrator (no JNI type check)."""
+        """Wrap a plain JavaObject as VibratorEnvelopeEffectInfo (no JNI type check)."""
         cdef JNIEnv* env = get_env()
-        cdef Vibrator inst = Vibrator.__new__(Vibrator)
+        cdef VibratorEnvelopeEffectInfo inst = VibratorEnvelopeEffectInfo.__new__(VibratorEnvelopeEffectInfo)
+        cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
+        inst._adopt_global(env, global_ref)
+        return inst
+
+
+__javaclass__ = "android/os/vibrator/VibratorFrequencyProfile"  # android.os.vibrator.VibratorFrequencyProfile
+
+cdef jclass _cls_VibratorFrequencyProfile = NULL
+cdef jmethodID _m_VibratorFrequencyProfile_getFrequencyRange_0 = NULL
+cdef jmethodID _m_VibratorFrequencyProfile_getMaxFrequencyHz_0 = NULL
+cdef jmethodID _m_VibratorFrequencyProfile_getMaxOutputAccelerationGs_0 = NULL
+cdef jmethodID _m_VibratorFrequencyProfile_getMinFrequencyHz_0 = NULL
+cdef jmethodID _m_VibratorFrequencyProfile_getOutputAccelerationGs_0 = NULL
+cdef jmethodID _m_VibratorFrequencyProfile_getFrequenciesOutputAcceleration_0 = NULL
+
+cdef int _ensure_ids_VibratorFrequencyProfile(JNIEnv* env) except -1:
+    global _cls_VibratorFrequencyProfile, _m_VibratorFrequencyProfile_getFrequencyRange_0, _m_VibratorFrequencyProfile_getMaxFrequencyHz_0, _m_VibratorFrequencyProfile_getMaxOutputAccelerationGs_0, _m_VibratorFrequencyProfile_getMinFrequencyHz_0, _m_VibratorFrequencyProfile_getOutputAccelerationGs_0, _m_VibratorFrequencyProfile_getFrequenciesOutputAcceleration_0
+    if _cls_VibratorFrequencyProfile != NULL:
+        return 0
+    _cls_VibratorFrequencyProfile = find_class_global(env, b"android/os/vibrator/VibratorFrequencyProfile")
+    _m_VibratorFrequencyProfile_getFrequencyRange_0 = get_method_id(env, _cls_VibratorFrequencyProfile, b"getFrequencyRange", b"(F)Landroid/util/Range;")
+    _m_VibratorFrequencyProfile_getMaxFrequencyHz_0 = get_method_id(env, _cls_VibratorFrequencyProfile, b"getMaxFrequencyHz", b"()F")
+    _m_VibratorFrequencyProfile_getMaxOutputAccelerationGs_0 = get_method_id(env, _cls_VibratorFrequencyProfile, b"getMaxOutputAccelerationGs", b"()F")
+    _m_VibratorFrequencyProfile_getMinFrequencyHz_0 = get_method_id(env, _cls_VibratorFrequencyProfile, b"getMinFrequencyHz", b"()F")
+    _m_VibratorFrequencyProfile_getOutputAccelerationGs_0 = get_method_id(env, _cls_VibratorFrequencyProfile, b"getOutputAccelerationGs", b"(F)F")
+    _m_VibratorFrequencyProfile_getFrequenciesOutputAcceleration_0 = get_method_id(env, _cls_VibratorFrequencyProfile, b"getFrequenciesOutputAcceleration", b"()Landroid/util/SparseArray;")
+    return 0
+
+cdef class VibratorFrequencyProfile(JavaObject):
+    """android.os.vibrator.VibratorFrequencyProfile"""
+
+    def __init__(self, *args, **kwargs):
+        raise TypeError("VibratorFrequencyProfile has no public constructor")
+
+    cdef jobject _getFrequencyRange(self, JNIEnv* env, jfloat p0) except? NULL:
+        _ensure_ids_VibratorFrequencyProfile(env)
+        cdef jvalue _args[1]
+        _args[0].f = p0
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VibratorFrequencyProfile_getFrequencyRange_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def getFrequencyRange(self, p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jfloat _c0 = py_to_jfloat(p0)
+        _ret = self._getFrequencyRange(env, _c0)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _getFrequencyRange_0(self, JNIEnv* env, jfloat p0) except? NULL:
+        _ensure_ids_VibratorFrequencyProfile(env)
+        cdef jvalue _args[1]
+        _args[0].f = p0
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VibratorFrequencyProfile_getFrequencyRange_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def getFrequencyRange_0(self, p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jfloat _c0 = py_to_jfloat(p0)
+        _ret = self._getFrequencyRange_0(env, _c0)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jfloat _getMaxFrequencyHz(self, JNIEnv* env) except *:
+        _ensure_ids_VibratorFrequencyProfile(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jfloat _ret = jnicore_CallFloatMethodA(env, self._handle, _m_VibratorFrequencyProfile_getMaxFrequencyHz_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def getMaxFrequencyHz(self) -> float:
+        cdef JNIEnv* env = get_env()
+        cdef jfloat _ret = 0.0
+        _ret = self._getMaxFrequencyHz(env)
+        return <double>_ret
+
+    cdef jfloat _getMaxFrequencyHz_0(self, JNIEnv* env) except *:
+        _ensure_ids_VibratorFrequencyProfile(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jfloat _ret = jnicore_CallFloatMethodA(env, self._handle, _m_VibratorFrequencyProfile_getMaxFrequencyHz_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def getMaxFrequencyHz_0(self) -> float:
+        cdef JNIEnv* env = get_env()
+        cdef jfloat _ret = 0.0
+        _ret = self._getMaxFrequencyHz_0(env)
+        return <double>_ret
+
+    cdef jfloat _getMaxOutputAccelerationGs(self, JNIEnv* env) except *:
+        _ensure_ids_VibratorFrequencyProfile(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jfloat _ret = jnicore_CallFloatMethodA(env, self._handle, _m_VibratorFrequencyProfile_getMaxOutputAccelerationGs_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def getMaxOutputAccelerationGs(self) -> float:
+        cdef JNIEnv* env = get_env()
+        cdef jfloat _ret = 0.0
+        _ret = self._getMaxOutputAccelerationGs(env)
+        return <double>_ret
+
+    cdef jfloat _getMaxOutputAccelerationGs_0(self, JNIEnv* env) except *:
+        _ensure_ids_VibratorFrequencyProfile(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jfloat _ret = jnicore_CallFloatMethodA(env, self._handle, _m_VibratorFrequencyProfile_getMaxOutputAccelerationGs_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def getMaxOutputAccelerationGs_0(self) -> float:
+        cdef JNIEnv* env = get_env()
+        cdef jfloat _ret = 0.0
+        _ret = self._getMaxOutputAccelerationGs_0(env)
+        return <double>_ret
+
+    cdef jfloat _getMinFrequencyHz(self, JNIEnv* env) except *:
+        _ensure_ids_VibratorFrequencyProfile(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jfloat _ret = jnicore_CallFloatMethodA(env, self._handle, _m_VibratorFrequencyProfile_getMinFrequencyHz_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def getMinFrequencyHz(self) -> float:
+        cdef JNIEnv* env = get_env()
+        cdef jfloat _ret = 0.0
+        _ret = self._getMinFrequencyHz(env)
+        return <double>_ret
+
+    cdef jfloat _getMinFrequencyHz_0(self, JNIEnv* env) except *:
+        _ensure_ids_VibratorFrequencyProfile(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jfloat _ret = jnicore_CallFloatMethodA(env, self._handle, _m_VibratorFrequencyProfile_getMinFrequencyHz_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def getMinFrequencyHz_0(self) -> float:
+        cdef JNIEnv* env = get_env()
+        cdef jfloat _ret = 0.0
+        _ret = self._getMinFrequencyHz_0(env)
+        return <double>_ret
+
+    cdef jfloat _getOutputAccelerationGs(self, JNIEnv* env, jfloat p0) except *:
+        _ensure_ids_VibratorFrequencyProfile(env)
+        cdef jvalue _args[1]
+        _args[0].f = p0
+        cdef jfloat _ret = jnicore_CallFloatMethodA(env, self._handle, _m_VibratorFrequencyProfile_getOutputAccelerationGs_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def getOutputAccelerationGs(self, p0) -> float:
+        cdef JNIEnv* env = get_env()
+        cdef jfloat _ret = 0.0
+        cdef jfloat _c0 = py_to_jfloat(p0)
+        _ret = self._getOutputAccelerationGs(env, _c0)
+        return <double>_ret
+
+    cdef jfloat _getOutputAccelerationGs_0(self, JNIEnv* env, jfloat p0) except *:
+        _ensure_ids_VibratorFrequencyProfile(env)
+        cdef jvalue _args[1]
+        _args[0].f = p0
+        cdef jfloat _ret = jnicore_CallFloatMethodA(env, self._handle, _m_VibratorFrequencyProfile_getOutputAccelerationGs_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def getOutputAccelerationGs_0(self, p0) -> float:
+        cdef JNIEnv* env = get_env()
+        cdef jfloat _ret = 0.0
+        cdef jfloat _c0 = py_to_jfloat(p0)
+        _ret = self._getOutputAccelerationGs_0(env, _c0)
+        return <double>_ret
+
+    cdef jobject _getFrequenciesOutputAcceleration(self, JNIEnv* env) except? NULL:
+        _ensure_ids_VibratorFrequencyProfile(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VibratorFrequencyProfile_getFrequenciesOutputAcceleration_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def getFrequenciesOutputAcceleration(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._getFrequenciesOutputAcceleration(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _getFrequenciesOutputAcceleration_0(self, JNIEnv* env) except? NULL:
+        _ensure_ids_VibratorFrequencyProfile(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VibratorFrequencyProfile_getFrequenciesOutputAcceleration_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def getFrequenciesOutputAcceleration_0(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._getFrequenciesOutputAcceleration_0(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    @staticmethod
+    def from_java_object(obj) -> object:
+        """Wrap a plain JavaObject as VibratorFrequencyProfile (no JNI type check)."""
+        cdef JNIEnv* env = get_env()
+        cdef VibratorFrequencyProfile inst = VibratorFrequencyProfile.__new__(VibratorFrequencyProfile)
         cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
         inst._adopt_global(env, global_ref)
         return inst

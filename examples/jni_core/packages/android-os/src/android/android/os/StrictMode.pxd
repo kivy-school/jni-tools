@@ -6,156 +6,190 @@ from jni_core.jni cimport (
     jboolean, jbyte, jchar, jshort, jint, jlong, jfloat, jdouble,
 )
 
-cdef class StrictMode(JavaObject):
-    @staticmethod
-    cdef void _setVmPolicy(JNIEnv* env, jobject p0) except *
-    @staticmethod
-    cdef void _setVmPolicy_0(JNIEnv* env, jobject p0) except *
-    @staticmethod
-    cdef void _enableDefaults(JNIEnv* env) except *
-    @staticmethod
-    cdef void _enableDefaults_0(JNIEnv* env) except *
-    @staticmethod
-    cdef jobject _getThreadPolicy(JNIEnv* env) except? NULL
-    @staticmethod
-    cdef jobject _getThreadPolicy_0(JNIEnv* env) except? NULL
-    @staticmethod
-    cdef void _noteSlowCall(JNIEnv* env, jstring p0) except *
-    @staticmethod
-    cdef void _noteSlowCall_0(JNIEnv* env, jstring p0) except *
-    @staticmethod
-    cdef jobject _getVmPolicy(JNIEnv* env) except? NULL
-    @staticmethod
-    cdef jobject _getVmPolicy_0(JNIEnv* env) except? NULL
-    @staticmethod
-    cdef void _setThreadPolicy(JNIEnv* env, jobject p0) except *
-    @staticmethod
-    cdef void _setThreadPolicy_0(JNIEnv* env, jobject p0) except *
-    @staticmethod
-    cdef jobject _allowThreadDiskReads(JNIEnv* env) except? NULL
-    @staticmethod
-    cdef jobject _allowThreadDiskReads_0(JNIEnv* env) except? NULL
-    @staticmethod
-    cdef jobject _allowThreadDiskWrites(JNIEnv* env) except? NULL
-    @staticmethod
-    cdef jobject _allowThreadDiskWrites_0(JNIEnv* env) except? NULL
+cdef class ServiceConnectionLeakedViolation(JavaObject):
+    pass
 
-cdef class VmPolicy(JavaObject):
-    cdef jstring _toString(self, JNIEnv* env) except? NULL
-    cdef jstring _toString_0(self, JNIEnv* env) except? NULL
+from jni_core.jni cimport (
+    JNIEnv, jobject, jstring,
+    jboolean, jbyte, jchar, jshort, jint, jlong, jfloat, jdouble,
+)
 
-cdef class VmPolicy_Builder(JavaObject):
-    cdef jobject _detectAll(self, JNIEnv* env) except? NULL
-    cdef jobject _detectAll_0(self, JNIEnv* env) except? NULL
-    cdef jobject _detectActivityLeaks(self, JNIEnv* env) except? NULL
-    cdef jobject _detectActivityLeaks_0(self, JNIEnv* env) except? NULL
-    cdef jobject _detectBlockedBackgroundActivityLaunch(self, JNIEnv* env) except? NULL
-    cdef jobject _detectBlockedBackgroundActivityLaunch_0(self, JNIEnv* env) except? NULL
-    cdef jobject _detectCleartextNetwork(self, JNIEnv* env) except? NULL
-    cdef jobject _detectCleartextNetwork_0(self, JNIEnv* env) except? NULL
-    cdef jobject _detectContentUriWithoutPermission(self, JNIEnv* env) except? NULL
-    cdef jobject _detectContentUriWithoutPermission_0(self, JNIEnv* env) except? NULL
-    cdef jobject _detectCredentialProtectedWhileLocked(self, JNIEnv* env) except? NULL
-    cdef jobject _detectCredentialProtectedWhileLocked_0(self, JNIEnv* env) except? NULL
-    cdef jobject _detectFileUriExposure(self, JNIEnv* env) except? NULL
-    cdef jobject _detectFileUriExposure_0(self, JNIEnv* env) except? NULL
-    cdef jobject _detectImplicitDirectBoot(self, JNIEnv* env) except? NULL
-    cdef jobject _detectImplicitDirectBoot_0(self, JNIEnv* env) except? NULL
-    cdef jobject _detectIncorrectContextUse(self, JNIEnv* env) except? NULL
-    cdef jobject _detectIncorrectContextUse_0(self, JNIEnv* env) except? NULL
-    cdef jobject _detectLeakedClosableObjects(self, JNIEnv* env) except? NULL
-    cdef jobject _detectLeakedClosableObjects_0(self, JNIEnv* env) except? NULL
-    cdef jobject _detectLeakedRegistrationObjects(self, JNIEnv* env) except? NULL
-    cdef jobject _detectLeakedRegistrationObjects_0(self, JNIEnv* env) except? NULL
-    cdef jobject _detectLeakedSqlLiteObjects(self, JNIEnv* env) except? NULL
-    cdef jobject _detectLeakedSqlLiteObjects_0(self, JNIEnv* env) except? NULL
-    cdef jobject _detectNonSdkApiUsage(self, JNIEnv* env) except? NULL
-    cdef jobject _detectNonSdkApiUsage_0(self, JNIEnv* env) except? NULL
-    cdef jobject _detectUnsafeIntentLaunch(self, JNIEnv* env) except? NULL
-    cdef jobject _detectUnsafeIntentLaunch_0(self, JNIEnv* env) except? NULL
-    cdef jobject _detectUntaggedSockets(self, JNIEnv* env) except? NULL
-    cdef jobject _detectUntaggedSockets_0(self, JNIEnv* env) except? NULL
-    cdef jobject _ignoreBlockedBackgroundActivityLaunch(self, JNIEnv* env) except? NULL
-    cdef jobject _ignoreBlockedBackgroundActivityLaunch_0(self, JNIEnv* env) except? NULL
-    cdef jobject _penaltyDeath(self, JNIEnv* env) except? NULL
-    cdef jobject _penaltyDeath_0(self, JNIEnv* env) except? NULL
-    cdef jobject _penaltyDeathOnCleartextNetwork(self, JNIEnv* env) except? NULL
-    cdef jobject _penaltyDeathOnCleartextNetwork_0(self, JNIEnv* env) except? NULL
-    cdef jobject _penaltyDeathOnFileUriExposure(self, JNIEnv* env) except? NULL
-    cdef jobject _penaltyDeathOnFileUriExposure_0(self, JNIEnv* env) except? NULL
-    cdef jobject _penaltyDropBox(self, JNIEnv* env) except? NULL
-    cdef jobject _penaltyDropBox_0(self, JNIEnv* env) except? NULL
-    cdef jobject _penaltyListener(self, JNIEnv* env, jobject p0, jobject p1) except? NULL
-    cdef jobject _penaltyListener_0(self, JNIEnv* env, jobject p0, jobject p1) except? NULL
-    cdef jobject _penaltyLog(self, JNIEnv* env) except? NULL
-    cdef jobject _penaltyLog_0(self, JNIEnv* env) except? NULL
-    cdef jobject _permitNonSdkApiUsage(self, JNIEnv* env) except? NULL
-    cdef jobject _permitNonSdkApiUsage_0(self, JNIEnv* env) except? NULL
-    cdef jobject _permitUnsafeIntentLaunch(self, JNIEnv* env) except? NULL
-    cdef jobject _permitUnsafeIntentLaunch_0(self, JNIEnv* env) except? NULL
-    cdef jobject _setClassInstanceLimit(self, JNIEnv* env, jobject p0, jint p1) except? NULL
-    cdef jobject _setClassInstanceLimit_0(self, JNIEnv* env, jobject p0, jint p1) except? NULL
-    cdef jobject _build(self, JNIEnv* env) except? NULL
-    cdef jobject _build_0(self, JNIEnv* env) except? NULL
+cdef class InstanceCountViolation(JavaObject):
+    cdef jlong _getNumberOfInstances(self, JNIEnv* env) except *
+    cdef jlong _getNumberOfInstances_0(self, JNIEnv* env) except *
 
-cdef class ThreadPolicy(JavaObject):
-    cdef jstring _toString(self, JNIEnv* env) except? NULL
-    cdef jstring _toString_0(self, JNIEnv* env) except? NULL
+from jni_core.jni cimport (
+    JNIEnv, jobject, jstring,
+    jboolean, jbyte, jchar, jshort, jint, jlong, jfloat, jdouble,
+)
 
-cdef class ThreadPolicy_Builder(JavaObject):
-    cdef jobject _detectAll(self, JNIEnv* env) except? NULL
-    cdef jobject _detectAll_0(self, JNIEnv* env) except? NULL
-    cdef jobject _penaltyDeath(self, JNIEnv* env) except? NULL
-    cdef jobject _penaltyDeath_0(self, JNIEnv* env) except? NULL
-    cdef jobject _penaltyDropBox(self, JNIEnv* env) except? NULL
-    cdef jobject _penaltyDropBox_0(self, JNIEnv* env) except? NULL
-    cdef jobject _penaltyListener(self, JNIEnv* env, jobject p0, jobject p1) except? NULL
-    cdef jobject _penaltyListener_0(self, JNIEnv* env, jobject p0, jobject p1) except? NULL
-    cdef jobject _penaltyLog(self, JNIEnv* env) except? NULL
-    cdef jobject _penaltyLog_0(self, JNIEnv* env) except? NULL
-    cdef jobject _penaltyFlashScreen(self, JNIEnv* env) except? NULL
-    cdef jobject _penaltyFlashScreen_0(self, JNIEnv* env) except? NULL
-    cdef jobject _permitUnbufferedIo(self, JNIEnv* env) except? NULL
-    cdef jobject _permitUnbufferedIo_0(self, JNIEnv* env) except? NULL
-    cdef jobject _penaltyDialog(self, JNIEnv* env) except? NULL
-    cdef jobject _penaltyDialog_0(self, JNIEnv* env) except? NULL
-    cdef jobject _permitExplicitGc(self, JNIEnv* env) except? NULL
-    cdef jobject _permitExplicitGc_0(self, JNIEnv* env) except? NULL
-    cdef jobject _permitDiskWrites(self, JNIEnv* env) except? NULL
-    cdef jobject _permitDiskWrites_0(self, JNIEnv* env) except? NULL
-    cdef jobject _permitDiskReads(self, JNIEnv* env) except? NULL
-    cdef jobject _permitDiskReads_0(self, JNIEnv* env) except? NULL
-    cdef jobject _permitAll(self, JNIEnv* env) except? NULL
-    cdef jobject _permitAll_0(self, JNIEnv* env) except? NULL
-    cdef jobject _detectNetwork(self, JNIEnv* env) except? NULL
-    cdef jobject _detectNetwork_0(self, JNIEnv* env) except? NULL
-    cdef jobject _permitNetwork(self, JNIEnv* env) except? NULL
-    cdef jobject _permitNetwork_0(self, JNIEnv* env) except? NULL
-    cdef jobject _detectDiskReads(self, JNIEnv* env) except? NULL
-    cdef jobject _detectDiskReads_0(self, JNIEnv* env) except? NULL
-    cdef jobject _detectUnbufferedIo(self, JNIEnv* env) except? NULL
-    cdef jobject _detectUnbufferedIo_0(self, JNIEnv* env) except? NULL
-    cdef jobject _detectDiskWrites(self, JNIEnv* env) except? NULL
-    cdef jobject _detectDiskWrites_0(self, JNIEnv* env) except? NULL
-    cdef jobject _detectExplicitGc(self, JNIEnv* env) except? NULL
-    cdef jobject _detectExplicitGc_0(self, JNIEnv* env) except? NULL
-    cdef jobject _detectCustomSlowCalls(self, JNIEnv* env) except? NULL
-    cdef jobject _detectCustomSlowCalls_0(self, JNIEnv* env) except? NULL
-    cdef jobject _detectResourceMismatches(self, JNIEnv* env) except? NULL
-    cdef jobject _detectResourceMismatches_0(self, JNIEnv* env) except? NULL
-    cdef jobject _penaltyDeathOnNetwork(self, JNIEnv* env) except? NULL
-    cdef jobject _penaltyDeathOnNetwork_0(self, JNIEnv* env) except? NULL
-    cdef jobject _permitCustomSlowCalls(self, JNIEnv* env) except? NULL
-    cdef jobject _permitCustomSlowCalls_0(self, JNIEnv* env) except? NULL
-    cdef jobject _permitResourceMismatches(self, JNIEnv* env) except? NULL
-    cdef jobject _permitResourceMismatches_0(self, JNIEnv* env) except? NULL
-    cdef jobject _build(self, JNIEnv* env) except? NULL
-    cdef jobject _build_0(self, JNIEnv* env) except? NULL
+cdef class Violation(JavaObject):
+    cdef jobject _fillInStackTrace(self, JNIEnv* env) except? NULL
+    cdef jobject _fillInStackTrace_0(self, JNIEnv* env) except? NULL
+    cdef jobject _initCause(self, JNIEnv* env, jobject p0) except? NULL
+    cdef jobject _initCause_0(self, JNIEnv* env, jobject p0) except? NULL
+    cdef jint _hashCode(self, JNIEnv* env) except *
+    cdef jint _hashCode_0(self, JNIEnv* env) except *
+    cdef void _setStackTrace(self, JNIEnv* env, jobject p0) except *
+    cdef void _setStackTrace_0(self, JNIEnv* env, jobject p0) except *
 
-cdef class OnVmViolationListener(JavaObject):
-    cdef void _onVmViolation(self, JNIEnv* env, jobject p0) except *
-    cdef void _onVmViolation_0(self, JNIEnv* env, jobject p0) except *
+from jni_core.jni cimport (
+    JNIEnv, jobject, jstring,
+    jboolean, jbyte, jchar, jshort, jint, jlong, jfloat, jdouble,
+)
 
-cdef class OnThreadViolationListener(JavaObject):
-    cdef void _onThreadViolation(self, JNIEnv* env, jobject p0) except *
-    cdef void _onThreadViolation_0(self, JNIEnv* env, jobject p0) except *
+cdef class CleartextNetworkViolation(JavaObject):
+    pass
+
+from jni_core.jni cimport (
+    JNIEnv, jobject, jstring,
+    jboolean, jbyte, jchar, jshort, jint, jlong, jfloat, jdouble,
+)
+
+cdef class NetworkViolation(JavaObject):
+    pass
+
+from jni_core.jni cimport (
+    JNIEnv, jobject, jstring,
+    jboolean, jbyte, jchar, jshort, jint, jlong, jfloat, jdouble,
+)
+
+cdef class ResourceMismatchViolation(JavaObject):
+    pass
+
+from jni_core.jni cimport (
+    JNIEnv, jobject, jstring,
+    jboolean, jbyte, jchar, jshort, jint, jlong, jfloat, jdouble,
+)
+
+cdef class DiskReadViolation(JavaObject):
+    pass
+
+from jni_core.jni cimport (
+    JNIEnv, jobject, jstring,
+    jboolean, jbyte, jchar, jshort, jint, jlong, jfloat, jdouble,
+)
+
+cdef class UntaggedSocketViolation(JavaObject):
+    pass
+
+from jni_core.jni cimport (
+    JNIEnv, jobject, jstring,
+    jboolean, jbyte, jchar, jshort, jint, jlong, jfloat, jdouble,
+)
+
+cdef class IntentReceiverLeakedViolation(JavaObject):
+    pass
+
+from jni_core.jni cimport (
+    JNIEnv, jobject, jstring,
+    jboolean, jbyte, jchar, jshort, jint, jlong, jfloat, jdouble,
+)
+
+cdef class FileUriExposedViolation(JavaObject):
+    pass
+
+from jni_core.jni cimport (
+    JNIEnv, jobject, jstring,
+    jboolean, jbyte, jchar, jshort, jint, jlong, jfloat, jdouble,
+)
+
+cdef class ContentUriWithoutPermissionViolation(JavaObject):
+    pass
+
+from jni_core.jni cimport (
+    JNIEnv, jobject, jstring,
+    jboolean, jbyte, jchar, jshort, jint, jlong, jfloat, jdouble,
+)
+
+cdef class ExplicitGcViolation(JavaObject):
+    pass
+
+from jni_core.jni cimport (
+    JNIEnv, jobject, jstring,
+    jboolean, jbyte, jchar, jshort, jint, jlong, jfloat, jdouble,
+)
+
+cdef class SqliteObjectLeakedViolation(JavaObject):
+    pass
+
+from jni_core.jni cimport (
+    JNIEnv, jobject, jstring,
+    jboolean, jbyte, jchar, jshort, jint, jlong, jfloat, jdouble,
+)
+
+cdef class CustomViolation(JavaObject):
+    pass
+
+from jni_core.jni cimport (
+    JNIEnv, jobject, jstring,
+    jboolean, jbyte, jchar, jshort, jint, jlong, jfloat, jdouble,
+)
+
+cdef class DiskWriteViolation(JavaObject):
+    pass
+
+from jni_core.jni cimport (
+    JNIEnv, jobject, jstring,
+    jboolean, jbyte, jchar, jshort, jint, jlong, jfloat, jdouble,
+)
+
+cdef class ImplicitDirectBootViolation(JavaObject):
+    pass
+
+from jni_core.jni cimport (
+    JNIEnv, jobject, jstring,
+    jboolean, jbyte, jchar, jshort, jint, jlong, jfloat, jdouble,
+)
+
+cdef class NonSdkApiUsedViolation(JavaObject):
+    pass
+
+from jni_core.jni cimport (
+    JNIEnv, jobject, jstring,
+    jboolean, jbyte, jchar, jshort, jint, jlong, jfloat, jdouble,
+)
+
+cdef class IncorrectContextUseViolation(JavaObject):
+    pass
+
+from jni_core.jni cimport (
+    JNIEnv, jobject, jstring,
+    jboolean, jbyte, jchar, jshort, jint, jlong, jfloat, jdouble,
+)
+
+cdef class UnbufferedIoViolation(JavaObject):
+    pass
+
+from jni_core.jni cimport (
+    JNIEnv, jobject, jstring,
+    jboolean, jbyte, jchar, jshort, jint, jlong, jfloat, jdouble,
+)
+
+cdef class CredentialProtectedWhileLockedViolation(JavaObject):
+    pass
+
+from jni_core.jni cimport (
+    JNIEnv, jobject, jstring,
+    jboolean, jbyte, jchar, jshort, jint, jlong, jfloat, jdouble,
+)
+
+cdef class UnsafeIntentLaunchViolation(JavaObject):
+    cdef jobject _getIntent(self, JNIEnv* env) except? NULL
+    cdef jobject _getIntent_0(self, JNIEnv* env) except? NULL
+
+from jni_core.jni cimport (
+    JNIEnv, jobject, jstring,
+    jboolean, jbyte, jchar, jshort, jint, jlong, jfloat, jdouble,
+)
+
+cdef class LeakedClosableViolation(JavaObject):
+    pass
+
+from jni_core.jni cimport (
+    JNIEnv, jobject, jstring,
+    jboolean, jbyte, jchar, jshort, jint, jlong, jfloat, jdouble,
+)
+
+cdef class WebViewMethodCalledOnWrongThreadViolation(JavaObject):
+    pass

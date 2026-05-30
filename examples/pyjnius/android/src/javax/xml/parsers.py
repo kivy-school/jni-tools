@@ -1,0 +1,84 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+class SAXParserFactory(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "javax/xml/parsers/SAXParserFactory"
+    setNamespaceAware = JavaMethod("(Z)V")
+    newDefaultNSInstance = JavaStaticMethod("()Ljavax/xml/parsers/SAXParserFactory;")
+    newNSInstance = JavaMultipleMethod([("(Ljava/lang/String;Ljava/lang/ClassLoader;)Ljavax/xml/parsers/SAXParserFactory;", True, False), ("()Ljavax/xml/parsers/SAXParserFactory;", True, False)])
+    newSAXParser = JavaMethod("()Ljavax/xml/parsers/SAXParser;")
+    setValidating = JavaMethod("(Z)V")
+    isNamespaceAware = JavaMethod("()Z")
+    isValidating = JavaMethod("()Z")
+    setXIncludeAware = JavaMethod("(Z)V")
+    isXIncludeAware = JavaMethod("()Z")
+    getSchema = JavaMethod("()Ljavax/xml/validation/Schema;")
+    setSchema = JavaMethod("(Ljavax/xml/validation/Schema;)V")
+    newInstance = JavaMultipleMethod([("(Ljava/lang/String;Ljava/lang/ClassLoader;)Ljavax/xml/parsers/SAXParserFactory;", True, False), ("()Ljavax/xml/parsers/SAXParserFactory;", True, False)])
+    getFeature = JavaMethod("(Ljava/lang/String;)Z")
+    setFeature = JavaMethod("(Ljava/lang/String;Z)V")
+    newDefaultInstance = JavaStaticMethod("()Ljavax/xml/parsers/SAXParserFactory;")
+
+class SAXParser(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "javax/xml/parsers/SAXParser"
+    isNamespaceAware = JavaMethod("()Z")
+    isValidating = JavaMethod("()Z")
+    isXIncludeAware = JavaMethod("()Z")
+    getParser = JavaMethod("()Lorg/xml/sax/Parser;")
+    getSchema = JavaMethod("()Ljavax/xml/validation/Schema;")
+    getXMLReader = JavaMethod("()Lorg/xml/sax/XMLReader;")
+    reset = JavaMethod("()V")
+    getProperty = JavaMethod("(Ljava/lang/String;)Ljava/lang/Object;")
+    setProperty = JavaMethod("(Ljava/lang/String;Ljava/lang/Object;)V")
+    parse = JavaMultipleMethod([("(Ljava/io/InputStream;Lorg/xml/sax/helpers/DefaultHandler;)V", False, False), ("(Ljava/io/InputStream;Lorg/xml/sax/HandlerBase;Ljava/lang/String;)V", False, False), ("(Ljava/io/InputStream;Lorg/xml/sax/HandlerBase;)V", False, False), ("(Lorg/xml/sax/InputSource;Lorg/xml/sax/HandlerBase;)V", False, False), ("(Ljava/lang/String;Lorg/xml/sax/helpers/DefaultHandler;)V", False, False), ("(Ljava/io/File;Lorg/xml/sax/HandlerBase;)V", False, False), ("(Ljava/io/File;Lorg/xml/sax/helpers/DefaultHandler;)V", False, False), ("(Ljava/lang/String;Lorg/xml/sax/HandlerBase;)V", False, False), ("(Lorg/xml/sax/InputSource;Lorg/xml/sax/helpers/DefaultHandler;)V", False, False), ("(Ljava/io/InputStream;Lorg/xml/sax/helpers/DefaultHandler;Ljava/lang/String;)V", False, False)])
+
+class FactoryConfigurationError(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "javax/xml/parsers/FactoryConfigurationError"
+    __javaconstructor__ = [("(Ljava/lang/Exception;Ljava/lang/String;)V", False), ("(Ljava/lang/Exception;)V", False), ("(Ljava/lang/String;)V", False), ("()V", False)]
+    getCause = JavaMethod("()Ljava/lang/Throwable;")
+    getMessage = JavaMethod("()Ljava/lang/String;")
+    getException = JavaMethod("()Ljava/lang/Exception;")
+
+class DocumentBuilderFactory(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "javax/xml/parsers/DocumentBuilderFactory"
+    setNamespaceAware = JavaMethod("(Z)V")
+    newDefaultNSInstance = JavaStaticMethod("()Ljavax/xml/parsers/DocumentBuilderFactory;")
+    newNSInstance = JavaMultipleMethod([("()Ljavax/xml/parsers/DocumentBuilderFactory;", True, False), ("(Ljava/lang/String;Ljava/lang/ClassLoader;)Ljavax/xml/parsers/DocumentBuilderFactory;", True, False)])
+    setValidating = JavaMethod("(Z)V")
+    isNamespaceAware = JavaMethod("()Z")
+    isValidating = JavaMethod("()Z")
+    setXIncludeAware = JavaMethod("(Z)V")
+    isXIncludeAware = JavaMethod("()Z")
+    newDocumentBuilder = JavaMethod("()Ljavax/xml/parsers/DocumentBuilder;")
+    setIgnoringElementContentWhitespace = JavaMethod("(Z)V")
+    setExpandEntityReferences = JavaMethod("(Z)V")
+    setIgnoringComments = JavaMethod("(Z)V")
+    setCoalescing = JavaMethod("(Z)V")
+    isIgnoringElementContentWhitespace = JavaMethod("()Z")
+    isExpandEntityReferences = JavaMethod("()Z")
+    isIgnoringComments = JavaMethod("()Z")
+    isCoalescing = JavaMethod("()Z")
+    getSchema = JavaMethod("()Ljavax/xml/validation/Schema;")
+    setSchema = JavaMethod("(Ljavax/xml/validation/Schema;)V")
+    setAttribute = JavaMethod("(Ljava/lang/String;Ljava/lang/Object;)V")
+    getAttribute = JavaMethod("(Ljava/lang/String;)Ljava/lang/Object;")
+    newInstance = JavaMultipleMethod([("(Ljava/lang/String;Ljava/lang/ClassLoader;)Ljavax/xml/parsers/DocumentBuilderFactory;", True, False), ("()Ljavax/xml/parsers/DocumentBuilderFactory;", True, False)])
+    getFeature = JavaMethod("(Ljava/lang/String;)Z")
+    setFeature = JavaMethod("(Ljava/lang/String;Z)V")
+    newDefaultInstance = JavaStaticMethod("()Ljavax/xml/parsers/DocumentBuilderFactory;")
+
+class ParserConfigurationException(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "javax/xml/parsers/ParserConfigurationException"
+    __javaconstructor__ = [("()V", False), ("(Ljava/lang/String;)V", False)]
+
+class DocumentBuilder(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "javax/xml/parsers/DocumentBuilder"
+    isNamespaceAware = JavaMethod("()Z")
+    isValidating = JavaMethod("()Z")
+    isXIncludeAware = JavaMethod("()Z")
+    newDocument = JavaMethod("()Lorg/w3c/dom/Document;")
+    getDOMImplementation = JavaMethod("()Lorg/w3c/dom/DOMImplementation;")
+    getSchema = JavaMethod("()Ljavax/xml/validation/Schema;")
+    reset = JavaMethod("()V")
+    parse = JavaMultipleMethod([("(Ljava/io/InputStream;Ljava/lang/String;)Lorg/w3c/dom/Document;", False, False), ("(Ljava/lang/String;)Lorg/w3c/dom/Document;", False, False), ("(Ljava/io/File;)Lorg/w3c/dom/Document;", False, False), ("(Lorg/xml/sax/InputSource;)Lorg/w3c/dom/Document;", False, False), ("(Ljava/io/InputStream;)Lorg/w3c/dom/Document;", False, False)])
+    setErrorHandler = JavaMethod("(Lorg/xml/sax/ErrorHandler;)V")
+    setEntityResolver = JavaMethod("(Lorg/xml/sax/EntityResolver;)V")

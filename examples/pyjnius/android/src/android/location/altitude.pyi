@@ -1,0 +1,9 @@
+from typing import Any, ClassVar, overload
+from android.content.Context import Context
+from android.location.Location import Location
+
+class AltitudeConverter:
+    def __init__(self) -> None: ...
+    def tryAddMslAltitudeToLocation(self, p0: Location) -> bool: ...
+    def addMslAltitudeToLocation(self, p0: Context, p1: Location) -> None: ...
+

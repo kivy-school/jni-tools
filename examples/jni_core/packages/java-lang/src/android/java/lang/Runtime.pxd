@@ -6,84 +6,23 @@ from jni_core.jni cimport (
     jboolean, jbyte, jchar, jshort, jint, jlong, jfloat, jdouble,
 )
 
-cdef class Runtime(JavaObject):
+cdef class SwitchBootstraps(JavaObject):
     @staticmethod
-    cdef jobject _getRuntime(JNIEnv* env) except? NULL
+    cdef jobject _enumSwitch(JNIEnv* env, jobject p0, jstring p1, jobject p2, jobject p3) except? NULL
     @staticmethod
-    cdef jobject _getRuntime_0(JNIEnv* env) except? NULL
-    cdef void _exit(self, JNIEnv* env, jint p0) except *
-    cdef void _exit_0(self, JNIEnv* env, jint p0) except *
-    cdef void _runFinalization(self, JNIEnv* env) except *
-    cdef void _runFinalization_0(self, JNIEnv* env) except *
+    cdef jobject _enumSwitch_0(JNIEnv* env, jobject p0, jstring p1, jobject p2, jobject p3) except? NULL
     @staticmethod
-    cdef jobject _version(JNIEnv* env) except? NULL
+    cdef jobject _typeSwitch(JNIEnv* env, jobject p0, jstring p1, jobject p2, jobject p3) except? NULL
     @staticmethod
-    cdef jobject _version_0(JNIEnv* env) except? NULL
-    cdef void _load(self, JNIEnv* env, jstring p0) except *
-    cdef void _load_0(self, JNIEnv* env, jstring p0) except *
-    cdef void _loadLibrary(self, JNIEnv* env, jstring p0) except *
-    cdef void _loadLibrary_0(self, JNIEnv* env, jstring p0) except *
-    cdef void _gc(self, JNIEnv* env) except *
-    cdef void _gc_0(self, JNIEnv* env) except *
-    cdef jint _availableProcessors(self, JNIEnv* env) except *
-    cdef jint _availableProcessors_0(self, JNIEnv* env) except *
-    cdef jlong _freeMemory(self, JNIEnv* env) except *
-    cdef jlong _freeMemory_0(self, JNIEnv* env) except *
-    cdef void _halt(self, JNIEnv* env, jint p0) except *
-    cdef void _halt_0(self, JNIEnv* env, jint p0) except *
-    cdef void _addShutdownHook(self, JNIEnv* env, jobject p0) except *
-    cdef void _addShutdownHook_0(self, JNIEnv* env, jobject p0) except *
-    cdef jboolean _removeShutdownHook(self, JNIEnv* env, jobject p0) except *
-    cdef jboolean _removeShutdownHook_0(self, JNIEnv* env, jobject p0) except *
-    cdef jlong _totalMemory(self, JNIEnv* env) except *
-    cdef jlong _totalMemory_0(self, JNIEnv* env) except *
-    cdef jlong _maxMemory(self, JNIEnv* env) except *
-    cdef jlong _maxMemory_0(self, JNIEnv* env) except *
-    cdef jobject _exec(self, JNIEnv* env, jstring p0) except? NULL
-    cdef jobject _exec_0(self, JNIEnv* env, jstring p0) except? NULL
-    cdef jobject _exec_1(self, JNIEnv* env, jobject p0, jobject p1, jobject p2) except? NULL
-    cdef jobject _exec_2(self, JNIEnv* env, jobject p0, jobject p1) except? NULL
-    cdef jobject _exec_3(self, JNIEnv* env, jobject p0) except? NULL
-    cdef jobject _exec_4(self, JNIEnv* env, jstring p0, jobject p1, jobject p2) except? NULL
-    cdef jobject _exec_5(self, JNIEnv* env, jstring p0, jobject p1) except? NULL
+    cdef jobject _typeSwitch_0(JNIEnv* env, jobject p0, jstring p1, jobject p2, jobject p3) except? NULL
 
-cdef class Version(JavaObject):
-    cdef jboolean _equals(self, JNIEnv* env, jobject p0) except *
-    cdef jboolean _equals_0(self, JNIEnv* env, jobject p0) except *
-    cdef jstring _toString(self, JNIEnv* env) except? NULL
-    cdef jstring _toString_0(self, JNIEnv* env) except? NULL
-    cdef jobject _version(self, JNIEnv* env) except? NULL
-    cdef jobject _version_0(self, JNIEnv* env) except? NULL
-    cdef jint _hashCode(self, JNIEnv* env) except *
-    cdef jint _hashCode_0(self, JNIEnv* env) except *
-    cdef jint _compareTo(self, JNIEnv* env, jobject p0) except *
-    cdef jint _compareTo_0(self, JNIEnv* env, jobject p0) except *
-    cdef jint _compareTo_1(self, JNIEnv* env, jobject p0) except *
-    cdef jint _update(self, JNIEnv* env) except *
-    cdef jint _update_0(self, JNIEnv* env) except *
-    cdef jint _feature(self, JNIEnv* env) except *
-    cdef jint _feature_0(self, JNIEnv* env) except *
+from jni_core.jni cimport (
+    JNIEnv, jobject, jstring,
+    jboolean, jbyte, jchar, jshort, jint, jlong, jfloat, jdouble,
+)
+
+cdef class ObjectMethods(JavaObject):
     @staticmethod
-    cdef jobject _parse(JNIEnv* env, jstring p0) except? NULL
+    cdef jobject _bootstrap(JNIEnv* env, jobject p0, jstring p1, jobject p2, jobject p3, jstring p4, jobject p5) except? NULL
     @staticmethod
-    cdef jobject _parse_0(JNIEnv* env, jstring p0) except? NULL
-    cdef jobject _pre(self, JNIEnv* env) except? NULL
-    cdef jobject _pre_0(self, JNIEnv* env) except? NULL
-    cdef jobject _build(self, JNIEnv* env) except? NULL
-    cdef jobject _build_0(self, JNIEnv* env) except? NULL
-    cdef jobject _optional(self, JNIEnv* env) except? NULL
-    cdef jobject _optional_0(self, JNIEnv* env) except? NULL
-    cdef jint _major(self, JNIEnv* env) except *
-    cdef jint _major_0(self, JNIEnv* env) except *
-    cdef jint _minor(self, JNIEnv* env) except *
-    cdef jint _minor_0(self, JNIEnv* env) except *
-    cdef jint _interim(self, JNIEnv* env) except *
-    cdef jint _interim_0(self, JNIEnv* env) except *
-    cdef jboolean _equalsIgnoreOptional(self, JNIEnv* env, jobject p0) except *
-    cdef jboolean _equalsIgnoreOptional_0(self, JNIEnv* env, jobject p0) except *
-    cdef jint _patch(self, JNIEnv* env) except *
-    cdef jint _patch_0(self, JNIEnv* env) except *
-    cdef jint _security(self, JNIEnv* env) except *
-    cdef jint _security_0(self, JNIEnv* env) except *
-    cdef jint _compareToIgnoreOptional(self, JNIEnv* env, jobject p0) except *
-    cdef jint _compareToIgnoreOptional_0(self, JNIEnv* env, jobject p0) except *
+    cdef jobject _bootstrap_0(JNIEnv* env, jobject p0, jstring p1, jobject p2, jobject p3, jstring p4, jobject p5) except? NULL

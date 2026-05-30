@@ -1,11 +1,11 @@
 [build-system]
-requires = ["setuptools>=68", "wheel", "cython>=3.0"]
+requires = ["setuptools>=68", "wheel", "cython>=3.0", "jni-core"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "android-android-window"
 version = "35.0.0"
-description = "Cython JNI wrappers for the android.window.* subpackage (android.jar, API 35). Imports as android.android.window.*."
+description = "Cython JNI wrapper for android.window (android.jar, API 35). Imports as android.android.window."
 requires-python = ">=3.11"
 dependencies = [
     "jni-core",

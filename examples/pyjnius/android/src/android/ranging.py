@@ -1,0 +1,202 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+class RangingDevice(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/ranging/RangingDevice"
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getUuid = JavaMethod("()Ljava/util/UUID;")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    describeContents = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+
+    class Builder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/ranging/RangingDevice$Builder"
+        __javaconstructor__ = [("()V", False)]
+        setUuid = JavaMethod("(Ljava/util/UUID;)Landroid/ranging/RangingDevice$Builder;")
+        build = JavaMethod("()Landroid/ranging/RangingDevice;")
+
+class SensorFusionParams(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/ranging/SensorFusionParams"
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    isSensorFusionEnabled = JavaMethod("()Z")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    describeContents = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+
+    class Builder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/ranging/SensorFusionParams$Builder"
+        __javaconstructor__ = [("()V", False)]
+        setSensorFusionEnabled = JavaMethod("(Z)Landroid/ranging/SensorFusionParams$Builder;")
+        build = JavaMethod("()Landroid/ranging/SensorFusionParams;")
+
+class RangingMeasurement(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/ranging/RangingMeasurement"
+    CONFIDENCE_HIGH = JavaStaticField("I")
+    CONFIDENCE_LOW = JavaStaticField("I")
+    CONFIDENCE_MEDIUM = JavaStaticField("I")
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getConfidence = JavaMethod("()I")
+    getMeasurement = JavaMethod("()D")
+    toString = JavaMethod("()Ljava/lang/String;")
+    describeContents = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+
+class RangingManager(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/ranging/RangingManager"
+    BLE_CS = JavaStaticField("I")
+    BLE_RSSI = JavaStaticField("I")
+    UWB = JavaStaticField("I")
+    WIFI_NAN_RTT = JavaStaticField("I")
+    registerCapabilitiesCallback = JavaMethod("(Ljava/util/concurrent/Executor;Landroid/ranging/RangingManager$RangingCapabilitiesCallback;)V")
+    createRangingSession = JavaMethod("(Ljava/util/concurrent/Executor;Landroid/ranging/RangingSession$Callback;)Landroid/ranging/RangingSession;")
+    unregisterCapabilitiesCallback = JavaMethod("(Landroid/ranging/RangingManager$RangingCapabilitiesCallback;)V")
+
+    class RangingCapabilitiesCallback(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/ranging/RangingManager$RangingCapabilitiesCallback"
+        onRangingCapabilities = JavaMethod("(Landroid/ranging/RangingCapabilities;)V")
+
+class RangingCapabilities(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/ranging/RangingCapabilities"
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    DISABLED_REGULATORY = JavaStaticField("I")
+    DISABLED_USER = JavaStaticField("I")
+    DISABLED_USER_RESTRICTIONS = JavaStaticField("I")
+    ENABLED = JavaStaticField("I")
+    NOT_SUPPORTED = JavaStaticField("I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    toString = JavaMethod("()Ljava/lang/String;")
+    getCsCapabilities = JavaMethod("()Landroid/ranging/ble/cs/BleCsRangingCapabilities;")
+    getRttRangingCapabilities = JavaMethod("()Landroid/ranging/wifi/rtt/RttRangingCapabilities;")
+    getTechnologyAvailability = JavaMethod("()Ljava/util/Map;")
+    getUwbCapabilities = JavaMethod("()Landroid/ranging/uwb/UwbRangingCapabilities;")
+    describeContents = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+
+class RangingData(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/ranging/RangingData"
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getAzimuth = JavaMethod("()Landroid/ranging/RangingMeasurement;")
+    getRangingTechnology = JavaMethod("()I")
+    getRssi = JavaMethod("()I")
+    hasRssi = JavaMethod("()Z")
+    getElevation = JavaMethod("()Landroid/ranging/RangingMeasurement;")
+    getTimestampMillis = JavaMethod("()J")
+    describeContents = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    getDistance = JavaMethod("()Landroid/ranging/RangingMeasurement;")
+
+class RangingPreference(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/ranging/RangingPreference"
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    DEVICE_ROLE_INITIATOR = JavaStaticField("I")
+    DEVICE_ROLE_RESPONDER = JavaStaticField("I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getRangingParams = JavaMethod("()Landroid/ranging/RangingConfig;")
+    getSessionConfig = JavaMethod("()Landroid/ranging/SessionConfig;")
+    getDeviceRole = JavaMethod("()I")
+    toString = JavaMethod("()Ljava/lang/String;")
+    describeContents = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+
+    class Builder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/ranging/RangingPreference$Builder"
+        __javaconstructor__ = [("(ILandroid/ranging/RangingConfig;)V", False)]
+        setSessionConfig = JavaMethod("(Landroid/ranging/SessionConfig;)Landroid/ranging/RangingPreference$Builder;")
+        build = JavaMethod("()Landroid/ranging/RangingPreference;")
+
+class SessionConfig(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/ranging/SessionConfig"
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getDataNotificationConfig = JavaMethod("()Landroid/ranging/DataNotificationConfig;")
+    getRangingMeasurementsLimit = JavaMethod("()I")
+    getSensorFusionParams = JavaMethod("()Landroid/ranging/SensorFusionParams;")
+    isAngleOfArrivalNeeded = JavaMethod("()Z")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    describeContents = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+
+    class Builder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/ranging/SessionConfig$Builder"
+        __javaconstructor__ = [("()V", False)]
+        setAngleOfArrivalNeeded = JavaMethod("(Z)Landroid/ranging/SessionConfig$Builder;")
+        setDataNotificationConfig = JavaMethod("(Landroid/ranging/DataNotificationConfig;)Landroid/ranging/SessionConfig$Builder;")
+        setRangingMeasurementsLimit = JavaMethod("(I)Landroid/ranging/SessionConfig$Builder;")
+        setSensorFusionParams = JavaMethod("(Landroid/ranging/SensorFusionParams;)Landroid/ranging/SessionConfig$Builder;")
+        build = JavaMethod("()Landroid/ranging/SessionConfig;")
+
+class RangingSession(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/ranging/RangingSession"
+    toString = JavaMethod("()Ljava/lang/String;")
+    start = JavaMethod("(Landroid/ranging/RangingPreference;)Landroid/os/CancellationSignal;")
+    stop = JavaMethod("()V")
+    close = JavaMethod("()V")
+    addDeviceToRangingSession = JavaMethod("(Landroid/ranging/RangingConfig;)V")
+    reconfigureRangingInterval = JavaMethod("(I)V")
+    removeDeviceFromRangingSession = JavaMethod("(Landroid/ranging/RangingDevice;)V")
+
+    class Callback(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/ranging/RangingSession$Callback"
+        REASON_LOCAL_REQUEST = JavaStaticField("I")
+        REASON_NO_PEERS_FOUND = JavaStaticField("I")
+        REASON_REMOTE_REQUEST = JavaStaticField("I")
+        REASON_SYSTEM_POLICY = JavaStaticField("I")
+        REASON_UNKNOWN = JavaStaticField("I")
+        REASON_UNSUPPORTED = JavaStaticField("I")
+        onClosed = JavaMethod("(I)V")
+        onOpenFailed = JavaMethod("(I)V")
+        onOpened = JavaMethod("()V")
+        onStarted = JavaMethod("(Landroid/ranging/RangingDevice;I)V")
+        onStopped = JavaMethod("(Landroid/ranging/RangingDevice;I)V")
+        onResults = JavaMethod("(Landroid/ranging/RangingDevice;Landroid/ranging/RangingData;)V")
+
+class RangingConfig(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/ranging/RangingConfig"
+    RANGING_SESSION_OOB = JavaStaticField("I")
+    RANGING_SESSION_RAW = JavaStaticField("I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    toString = JavaMethod("()Ljava/lang/String;")
+    getRangingSessionType = JavaMethod("()I")
+
+class DataNotificationConfig(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/ranging/DataNotificationConfig"
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    NOTIFICATION_CONFIG_DISABLE = JavaStaticField("I")
+    NOTIFICATION_CONFIG_ENABLE = JavaStaticField("I")
+    NOTIFICATION_CONFIG_PROXIMITY_EDGE = JavaStaticField("I")
+    NOTIFICATION_CONFIG_PROXIMITY_LEVEL = JavaStaticField("I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getProximityFarCm = JavaMethod("()I")
+    getNotificationConfigType = JavaMethod("()I")
+    getProximityNearCm = JavaMethod("()I")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    describeContents = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+
+    class Builder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/ranging/DataNotificationConfig$Builder"
+        __javaconstructor__ = [("()V", False)]
+        setProximityFarCm = JavaMethod("(I)Landroid/ranging/DataNotificationConfig$Builder;")
+        setNotificationConfigType = JavaMethod("(I)Landroid/ranging/DataNotificationConfig$Builder;")
+        setProximityNearCm = JavaMethod("(I)Landroid/ranging/DataNotificationConfig$Builder;")
+        build = JavaMethod("()Landroid/ranging/DataNotificationConfig;")

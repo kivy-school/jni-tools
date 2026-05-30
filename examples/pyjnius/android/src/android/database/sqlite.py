@@ -1,0 +1,337 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+class SQLiteBlobTooBigException(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/sqlite/SQLiteBlobTooBigException"
+    __javaconstructor__ = [("()V", False), ("(Ljava/lang/String;)V", False)]
+
+class SQLiteProgram(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/sqlite/SQLiteProgram"
+    bindAllArgsAsStrings = JavaMethod("([Ljava/lang/String;)V")
+    bindBlob = JavaMethod("(I[B)V")
+    bindDouble = JavaMethod("(ID)V")
+    bindLong = JavaMethod("(IJ)V")
+    bindNull = JavaMethod("(I)V")
+    bindString = JavaMethod("(ILjava/lang/String;)V")
+    clearBindings = JavaMethod("()V")
+    getUniqueId = JavaMethod("()I")
+
+class SQLiteQueryBuilder(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/sqlite/SQLiteQueryBuilder"
+    __javaconstructor__ = [("()V", False)]
+    appendWhereEscapeString = JavaMethod("(Ljava/lang/String;)V")
+    appendColumns = JavaStaticMethod("(Ljava/lang/StringBuilder;[Ljava/lang/String;)V")
+    appendWhere = JavaMethod("(Ljava/lang/CharSequence;)V")
+    appendWhereStandalone = JavaMethod("(Ljava/lang/CharSequence;)V")
+    buildQuery = JavaMultipleMethod([("([Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", False, False), ("([Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", False, False)])
+    buildQueryString = JavaStaticMethod("(ZLjava/lang/String;[Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;")
+    buildUnionQuery = JavaMethod("([Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;")
+    buildUnionSubQuery = JavaMultipleMethod([("(Ljava/lang/String;[Ljava/lang/String;Ljava/util/Set;ILjava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", False, False), ("(Ljava/lang/String;[Ljava/lang/String;Ljava/util/Set;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", False, False)])
+    getCursorFactory = JavaMethod("()Landroid/database/sqlite/SQLiteDatabase$CursorFactory;")
+    getProjectionGreylist = JavaMethod("()Ljava/util/Collection;")
+    getProjectionMap = JavaMethod("()Ljava/util/Map;")
+    getTables = JavaMethod("()Ljava/lang/String;")
+    isDistinct = JavaMethod("()Z")
+    isStrictColumns = JavaMethod("()Z")
+    isStrictGrammar = JavaMethod("()Z")
+    setCursorFactory = JavaMethod("(Landroid/database/sqlite/SQLiteDatabase$CursorFactory;)V")
+    setDistinct = JavaMethod("(Z)V")
+    setProjectionGreylist = JavaMethod("(Ljava/util/Collection;)V")
+    setProjectionMap = JavaMethod("(Ljava/util/Map;)V")
+    setStrict = JavaMethod("(Z)V")
+    setStrictColumns = JavaMethod("(Z)V")
+    setStrictGrammar = JavaMethod("(Z)V")
+    setTables = JavaMethod("(Ljava/lang/String;)V")
+    update = JavaMethod("(Landroid/database/sqlite/SQLiteDatabase;Landroid/content/ContentValues;Ljava/lang/String;[Ljava/lang/String;)I")
+    insert = JavaMethod("(Landroid/database/sqlite/SQLiteDatabase;Landroid/content/ContentValues;)J")
+    delete = JavaMethod("(Landroid/database/sqlite/SQLiteDatabase;Ljava/lang/String;[Ljava/lang/String;)I")
+    isStrict = JavaMethod("()Z")
+    query = JavaMultipleMethod([("(Landroid/database/sqlite/SQLiteDatabase;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;", False, False), ("(Landroid/database/sqlite/SQLiteDatabase;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;", False, False), ("(Landroid/database/sqlite/SQLiteDatabase;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Landroid/os/CancellationSignal;)Landroid/database/Cursor;", False, False)])
+
+class SQLiteException(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/sqlite/SQLiteException"
+    __javaconstructor__ = [("()V", False), ("(Ljava/lang/String;)V", False), ("(Ljava/lang/String;Ljava/lang/Throwable;)V", False)]
+
+class SQLiteDoneException(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/sqlite/SQLiteDoneException"
+    __javaconstructor__ = [("()V", False), ("(Ljava/lang/String;)V", False)]
+
+class SQLiteFullException(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/sqlite/SQLiteFullException"
+    __javaconstructor__ = [("()V", False), ("(Ljava/lang/String;)V", False)]
+
+class SQLiteDatabase(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/sqlite/SQLiteDatabase"
+    CONFLICT_ABORT = JavaStaticField("I")
+    CONFLICT_FAIL = JavaStaticField("I")
+    CONFLICT_IGNORE = JavaStaticField("I")
+    CONFLICT_NONE = JavaStaticField("I")
+    CONFLICT_REPLACE = JavaStaticField("I")
+    CONFLICT_ROLLBACK = JavaStaticField("I")
+    CREATE_IF_NECESSARY = JavaStaticField("I")
+    ENABLE_WRITE_AHEAD_LOGGING = JavaStaticField("I")
+    JOURNAL_MODE_DELETE = JavaStaticField("Ljava/lang/String;")
+    JOURNAL_MODE_MEMORY = JavaStaticField("Ljava/lang/String;")
+    JOURNAL_MODE_OFF = JavaStaticField("Ljava/lang/String;")
+    JOURNAL_MODE_PERSIST = JavaStaticField("Ljava/lang/String;")
+    JOURNAL_MODE_TRUNCATE = JavaStaticField("Ljava/lang/String;")
+    JOURNAL_MODE_WAL = JavaStaticField("Ljava/lang/String;")
+    MAX_SQL_CACHE_SIZE = JavaStaticField("I")
+    NO_LOCALIZED_COLLATORS = JavaStaticField("I")
+    OPEN_READONLY = JavaStaticField("I")
+    OPEN_READWRITE = JavaStaticField("I")
+    SQLITE_MAX_LIKE_PATTERN_LENGTH = JavaStaticField("I")
+    SYNC_MODE_EXTRA = JavaStaticField("Ljava/lang/String;")
+    SYNC_MODE_FULL = JavaStaticField("Ljava/lang/String;")
+    SYNC_MODE_NORMAL = JavaStaticField("Ljava/lang/String;")
+    SYNC_MODE_OFF = JavaStaticField("Ljava/lang/String;")
+    beginTransaction = JavaMethod("()V")
+    beginTransactionNonExclusive = JavaMethod("()V")
+    beginTransactionReadOnly = JavaMethod("()V")
+    beginTransactionWithListener = JavaMethod("(Landroid/database/sqlite/SQLiteTransactionListener;)V")
+    beginTransactionWithListenerNonExclusive = JavaMethod("(Landroid/database/sqlite/SQLiteTransactionListener;)V")
+    beginTransactionWithListenerReadOnly = JavaMethod("(Landroid/database/sqlite/SQLiteTransactionListener;)V")
+    compileStatement = JavaMethod("(Ljava/lang/String;)Landroid/database/sqlite/SQLiteStatement;")
+    createInMemory = JavaStaticMethod("(Landroid/database/sqlite/SQLiteDatabase$OpenParams;)Landroid/database/sqlite/SQLiteDatabase;")
+    createRawStatement = JavaMethod("(Ljava/lang/String;)Landroid/database/sqlite/SQLiteRawStatement;")
+    disableWriteAheadLogging = JavaMethod("()V")
+    enableWriteAheadLogging = JavaMethod("()Z")
+    endTransaction = JavaMethod("()V")
+    execPerConnectionSQL = JavaMethod("(Ljava/lang/String;[Ljava/lang/Object;)V")
+    execSQL = JavaMultipleMethod([("(Ljava/lang/String;[Ljava/lang/Object;)V", False, False), ("(Ljava/lang/String;)V", False, False)])
+    findEditTable = JavaStaticMethod("(Ljava/lang/String;)Ljava/lang/String;")
+    getAttachedDbs = JavaMethod("()Ljava/util/List;")
+    getLastChangedRowCount = JavaMethod("()J")
+    getLastInsertRowId = JavaMethod("()J")
+    getMaximumSize = JavaMethod("()J")
+    getSyncedTables = JavaMethod("()Ljava/util/Map;")
+    getTotalChangedRowCount = JavaMethod("()J")
+    inTransaction = JavaMethod("()Z")
+    insertOrThrow = JavaMethod("(Ljava/lang/String;Ljava/lang/String;Landroid/content/ContentValues;)J")
+    insertWithOnConflict = JavaMethod("(Ljava/lang/String;Ljava/lang/String;Landroid/content/ContentValues;I)J")
+    isDatabaseIntegrityOk = JavaMethod("()Z")
+    isDbLockedByCurrentThread = JavaMethod("()Z")
+    isDbLockedByOtherThreads = JavaMethod("()Z")
+    isWriteAheadLoggingEnabled = JavaMethod("()Z")
+    markTableSyncable = JavaMultipleMethod([("(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", False, False), ("(Ljava/lang/String;Ljava/lang/String;)V", False, False)])
+    needUpgrade = JavaMethod("(I)Z")
+    openDatabase = JavaMultipleMethod([("(Ljava/lang/String;Landroid/database/sqlite/SQLiteDatabase$CursorFactory;I)Landroid/database/sqlite/SQLiteDatabase;", True, False), ("(Ljava/io/File;Landroid/database/sqlite/SQLiteDatabase$OpenParams;)Landroid/database/sqlite/SQLiteDatabase;", True, False), ("(Ljava/lang/String;Landroid/database/sqlite/SQLiteDatabase$CursorFactory;ILandroid/database/DatabaseErrorHandler;)Landroid/database/sqlite/SQLiteDatabase;", True, False)])
+    queryWithFactory = JavaMultipleMethod([("(Landroid/database/sqlite/SQLiteDatabase$CursorFactory;ZLjava/lang/String;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Landroid/os/CancellationSignal;)Landroid/database/Cursor;", False, False), ("(Landroid/database/sqlite/SQLiteDatabase$CursorFactory;ZLjava/lang/String;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;", False, False)])
+    rawQuery = JavaMultipleMethod([("(Ljava/lang/String;[Ljava/lang/String;Landroid/os/CancellationSignal;)Landroid/database/Cursor;", False, False), ("(Ljava/lang/String;[Ljava/lang/String;)Landroid/database/Cursor;", False, False)])
+    rawQueryWithFactory = JavaMultipleMethod([("(Landroid/database/sqlite/SQLiteDatabase$CursorFactory;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;", False, False), ("(Landroid/database/sqlite/SQLiteDatabase$CursorFactory;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;Landroid/os/CancellationSignal;)Landroid/database/Cursor;", False, False)])
+    releaseMemory = JavaStaticMethod("()I")
+    replaceOrThrow = JavaMethod("(Ljava/lang/String;Ljava/lang/String;Landroid/content/ContentValues;)J")
+    setCustomAggregateFunction = JavaMethod("(Ljava/lang/String;Ljava/util/function/BinaryOperator;)V")
+    setCustomScalarFunction = JavaMethod("(Ljava/lang/String;Ljava/util/function/UnaryOperator;)V")
+    setForeignKeyConstraintsEnabled = JavaMethod("(Z)V")
+    setLockingEnabled = JavaMethod("(Z)V")
+    setMaxSqlCacheSize = JavaMethod("(I)V")
+    setMaximumSize = JavaMethod("(J)J")
+    setTransactionSuccessful = JavaMethod("()V")
+    setVersion = JavaMethod("(I)V")
+    updateWithOnConflict = JavaMethod("(Ljava/lang/String;Landroid/content/ContentValues;Ljava/lang/String;[Ljava/lang/String;I)I")
+    validateSql = JavaMethod("(Ljava/lang/String;Landroid/os/CancellationSignal;)V")
+    yieldIfContended = JavaMethod("()Z")
+    yieldIfContendedSafely = JavaMultipleMethod([("()Z", False, False), ("(J)Z", False, False)])
+    create = JavaStaticMethod("(Landroid/database/sqlite/SQLiteDatabase$CursorFactory;)Landroid/database/sqlite/SQLiteDatabase;")
+    getVersion = JavaMethod("()I")
+    toString = JavaMethod("()Ljava/lang/String;")
+    update = JavaMethod("(Ljava/lang/String;Landroid/content/ContentValues;Ljava/lang/String;[Ljava/lang/String;)I")
+    insert = JavaMethod("(Ljava/lang/String;Ljava/lang/String;Landroid/content/ContentValues;)J")
+    replace = JavaMethod("(Ljava/lang/String;Ljava/lang/String;Landroid/content/ContentValues;)J")
+    isOpen = JavaMethod("()Z")
+    delete = JavaMethod("(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;)I")
+    deleteDatabase = JavaStaticMethod("(Ljava/io/File;)Z")
+    openOrCreateDatabase = JavaMultipleMethod([("(Ljava/lang/String;Landroid/database/sqlite/SQLiteDatabase$CursorFactory;Landroid/database/DatabaseErrorHandler;)Landroid/database/sqlite/SQLiteDatabase;", True, False), ("(Ljava/io/File;Landroid/database/sqlite/SQLiteDatabase$CursorFactory;)Landroid/database/sqlite/SQLiteDatabase;", True, False), ("(Ljava/lang/String;Landroid/database/sqlite/SQLiteDatabase$CursorFactory;)Landroid/database/sqlite/SQLiteDatabase;", True, False)])
+    setLocale = JavaMethod("(Ljava/util/Locale;)V")
+    setPageSize = JavaMethod("(J)V")
+    getPageSize = JavaMethod("()J")
+    getPath = JavaMethod("()Ljava/lang/String;")
+    query = JavaMultipleMethod([("(Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;", False, False), ("(Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;", False, False), ("(ZLjava/lang/String;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;", False, False), ("(ZLjava/lang/String;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Landroid/os/CancellationSignal;)Landroid/database/Cursor;", False, False)])
+    isReadOnly = JavaMethod("()Z")
+
+    class OpenParams(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/database/sqlite/SQLiteDatabase$OpenParams"
+        getCursorFactory = JavaMethod("()Landroid/database/sqlite/SQLiteDatabase$CursorFactory;")
+        getErrorHandler = JavaMethod("()Landroid/database/DatabaseErrorHandler;")
+        getJournalMode = JavaMethod("()Ljava/lang/String;")
+        getLookasideSlotCount = JavaMethod("()I")
+        getIdleConnectionTimeout = JavaMethod("()J")
+        getLookasideSlotSize = JavaMethod("()I")
+        getOpenFlags = JavaMethod("()I")
+        getSynchronousMode = JavaMethod("()Ljava/lang/String;")
+
+        class Builder(JavaClass, metaclass=MetaJavaClass):
+            __javaclass__ = "android/database/sqlite/SQLiteDatabase$OpenParams$Builder"
+            __javaconstructor__ = [("()V", False), ("(Landroid/database/sqlite/SQLiteDatabase$OpenParams;)V", False)]
+            setCursorFactory = JavaMethod("(Landroid/database/sqlite/SQLiteDatabase$CursorFactory;)Landroid/database/sqlite/SQLiteDatabase$OpenParams$Builder;")
+            setIdleConnectionTimeout = JavaMethod("(J)Landroid/database/sqlite/SQLiteDatabase$OpenParams$Builder;")
+            addOpenFlags = JavaMethod("(I)Landroid/database/sqlite/SQLiteDatabase$OpenParams$Builder;")
+            removeOpenFlags = JavaMethod("(I)Landroid/database/sqlite/SQLiteDatabase$OpenParams$Builder;")
+            setErrorHandler = JavaMethod("(Landroid/database/DatabaseErrorHandler;)Landroid/database/sqlite/SQLiteDatabase$OpenParams$Builder;")
+            setJournalMode = JavaMethod("(Ljava/lang/String;)Landroid/database/sqlite/SQLiteDatabase$OpenParams$Builder;")
+            setLookasideConfig = JavaMethod("(II)Landroid/database/sqlite/SQLiteDatabase$OpenParams$Builder;")
+            setOpenFlags = JavaMethod("(I)Landroid/database/sqlite/SQLiteDatabase$OpenParams$Builder;")
+            setSynchronousMode = JavaMethod("(Ljava/lang/String;)Landroid/database/sqlite/SQLiteDatabase$OpenParams$Builder;")
+            build = JavaMethod("()Landroid/database/sqlite/SQLiteDatabase$OpenParams;")
+
+    class CursorFactory(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/database/sqlite/SQLiteDatabase$CursorFactory"
+        newCursor = JavaMethod("(Landroid/database/sqlite/SQLiteDatabase;Landroid/database/sqlite/SQLiteCursorDriver;Ljava/lang/String;Landroid/database/sqlite/SQLiteQuery;)Landroid/database/Cursor;")
+
+class SQLiteOpenHelper(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/sqlite/SQLiteOpenHelper"
+    __javaconstructor__ = [("(Landroid/content/Context;Ljava/lang/String;Landroid/database/sqlite/SQLiteDatabase$CursorFactory;ILandroid/database/DatabaseErrorHandler;)V", False), ("(Landroid/content/Context;Ljava/lang/String;ILandroid/database/sqlite/SQLiteDatabase$OpenParams;)V", False), ("(Landroid/content/Context;Ljava/lang/String;Landroid/database/sqlite/SQLiteDatabase$CursorFactory;I)V", False)]
+    onOpen = JavaMethod("(Landroid/database/sqlite/SQLiteDatabase;)V")
+    getWritableDatabase = JavaMethod("()Landroid/database/sqlite/SQLiteDatabase;")
+    getDatabaseName = JavaMethod("()Ljava/lang/String;")
+    setWriteAheadLoggingEnabled = JavaMethod("(Z)V")
+    getReadableDatabase = JavaMethod("()Landroid/database/sqlite/SQLiteDatabase;")
+    onConfigure = JavaMethod("(Landroid/database/sqlite/SQLiteDatabase;)V")
+    onDowngrade = JavaMethod("(Landroid/database/sqlite/SQLiteDatabase;II)V")
+    onUpgrade = JavaMethod("(Landroid/database/sqlite/SQLiteDatabase;II)V")
+    setOpenParams = JavaMethod("(Landroid/database/sqlite/SQLiteDatabase$OpenParams;)V")
+    close = JavaMethod("()V")
+    setIdleConnectionTimeout = JavaMethod("(J)V")
+    setLookasideConfig = JavaMethod("(II)V")
+    onCreate = JavaMethod("(Landroid/database/sqlite/SQLiteDatabase;)V")
+
+class SQLiteDiskIOException(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/sqlite/SQLiteDiskIOException"
+    __javaconstructor__ = [("()V", False), ("(Ljava/lang/String;)V", False)]
+
+class SQLiteReadOnlyDatabaseException(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/sqlite/SQLiteReadOnlyDatabaseException"
+    __javaconstructor__ = [("()V", False), ("(Ljava/lang/String;)V", False)]
+
+class SQLiteStatement(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/sqlite/SQLiteStatement"
+    simpleQueryForBlobFileDescriptor = JavaMethod("()Landroid/os/ParcelFileDescriptor;")
+    executeUpdateDelete = JavaMethod("()I")
+    executeInsert = JavaMethod("()J")
+    simpleQueryForLong = JavaMethod("()J")
+    simpleQueryForString = JavaMethod("()Ljava/lang/String;")
+    toString = JavaMethod("()Ljava/lang/String;")
+    execute = JavaMethod("()V")
+
+class SQLiteOutOfMemoryException(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/sqlite/SQLiteOutOfMemoryException"
+    __javaconstructor__ = [("()V", False), ("(Ljava/lang/String;)V", False)]
+
+class SQLiteCursor(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/sqlite/SQLiteCursor"
+    __javaconstructor__ = [("(Landroid/database/sqlite/SQLiteCursorDriver;Ljava/lang/String;Landroid/database/sqlite/SQLiteQuery;)V", False), ("(Landroid/database/sqlite/SQLiteDatabase;Landroid/database/sqlite/SQLiteCursorDriver;Ljava/lang/String;Landroid/database/sqlite/SQLiteQuery;)V", False)]
+    FIELD_TYPE_BLOB = JavaStaticField("I")
+    FIELD_TYPE_FLOAT = JavaStaticField("I")
+    FIELD_TYPE_INTEGER = JavaStaticField("I")
+    FIELD_TYPE_NULL = JavaStaticField("I")
+    FIELD_TYPE_STRING = JavaStaticField("I")
+    onMove = JavaMethod("(II)Z")
+    getDatabase = JavaMethod("()Landroid/database/sqlite/SQLiteDatabase;")
+    setFillWindowForwardOnly = JavaMethod("(Z)V")
+    setSelectionArguments = JavaMethod("([Ljava/lang/String;)V")
+    setWindow = JavaMethod("(Landroid/database/CursorWindow;)V")
+    getCount = JavaMethod("()I")
+    close = JavaMethod("()V")
+    deactivate = JavaMethod("()V")
+    getColumnIndex = JavaMethod("(Ljava/lang/String;)I")
+    getColumnNames = JavaMethod("()[Ljava/lang/String;")
+    requery = JavaMethod("()Z")
+
+class SQLiteClosable(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/sqlite/SQLiteClosable"
+    __javaconstructor__ = [("()V", False)]
+    releaseReferenceFromContainer = JavaMethod("()V")
+    acquireReference = JavaMethod("()V")
+    releaseReference = JavaMethod("()V")
+    close = JavaMethod("()V")
+
+class SQLiteCantOpenDatabaseException(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/sqlite/SQLiteCantOpenDatabaseException"
+    __javaconstructor__ = [("()V", False), ("(Ljava/lang/String;)V", False)]
+
+class SQLiteAccessPermException(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/sqlite/SQLiteAccessPermException"
+    __javaconstructor__ = [("()V", False), ("(Ljava/lang/String;)V", False)]
+
+class SQLiteQuery(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/sqlite/SQLiteQuery"
+    toString = JavaMethod("()Ljava/lang/String;")
+
+class SQLiteDatatypeMismatchException(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/sqlite/SQLiteDatatypeMismatchException"
+    __javaconstructor__ = [("()V", False), ("(Ljava/lang/String;)V", False)]
+
+class SQLiteDatabaseLockedException(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/sqlite/SQLiteDatabaseLockedException"
+    __javaconstructor__ = [("()V", False), ("(Ljava/lang/String;)V", False)]
+
+class SQLiteDatabaseCorruptException(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/sqlite/SQLiteDatabaseCorruptException"
+    __javaconstructor__ = [("()V", False), ("(Ljava/lang/String;)V", False)]
+
+class SQLiteCursorDriver(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/sqlite/SQLiteCursorDriver"
+    cursorClosed = JavaMethod("()V")
+    cursorDeactivated = JavaMethod("()V")
+    cursorRequeried = JavaMethod("(Landroid/database/Cursor;)V")
+    setBindArguments = JavaMethod("([Ljava/lang/String;)V")
+    query = JavaMethod("(Landroid/database/sqlite/SQLiteDatabase$CursorFactory;[Ljava/lang/String;)Landroid/database/Cursor;")
+
+class SQLiteMisuseException(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/sqlite/SQLiteMisuseException"
+    __javaconstructor__ = [("()V", False), ("(Ljava/lang/String;)V", False)]
+
+class SQLiteAbortException(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/sqlite/SQLiteAbortException"
+    __javaconstructor__ = [("()V", False), ("(Ljava/lang/String;)V", False)]
+
+class SQLiteTransactionListener(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/sqlite/SQLiteTransactionListener"
+    onCommit = JavaMethod("()V")
+    onRollback = JavaMethod("()V")
+    onBegin = JavaMethod("()V")
+
+class SQLiteConstraintException(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/sqlite/SQLiteConstraintException"
+    __javaconstructor__ = [("()V", False), ("(Ljava/lang/String;)V", False)]
+
+class SQLiteTableLockedException(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/sqlite/SQLiteTableLockedException"
+    __javaconstructor__ = [("()V", False), ("(Ljava/lang/String;)V", False)]
+
+class SQLiteRawStatement(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/sqlite/SQLiteRawStatement"
+    SQLITE_DATA_TYPE_BLOB = JavaStaticField("I")
+    SQLITE_DATA_TYPE_FLOAT = JavaStaticField("I")
+    SQLITE_DATA_TYPE_INTEGER = JavaStaticField("I")
+    SQLITE_DATA_TYPE_NULL = JavaStaticField("I")
+    SQLITE_DATA_TYPE_TEXT = JavaStaticField("I")
+    bindInt = JavaMethod("(II)V")
+    bindText = JavaMethod("(ILjava/lang/String;)V")
+    getColumnBlob = JavaMethod("(I)[B")
+    getColumnDouble = JavaMethod("(I)D")
+    getColumnInt = JavaMethod("(I)I")
+    getColumnLength = JavaMethod("(I)I")
+    getColumnLong = JavaMethod("(I)J")
+    getColumnText = JavaMethod("(I)Ljava/lang/String;")
+    getColumnType = JavaMethod("(I)I")
+    getParameterIndex = JavaMethod("(Ljava/lang/String;)I")
+    getParameterName = JavaMethod("(I)Ljava/lang/String;")
+    getResultColumnCount = JavaMethod("()I")
+    readColumnBlob = JavaMethod("(I[BIII)I")
+    bindBlob = JavaMultipleMethod([("(I[B)V", False, False), ("(I[BII)V", False, False)])
+    bindDouble = JavaMethod("(ID)V")
+    bindLong = JavaMethod("(IJ)V")
+    bindNull = JavaMethod("(I)V")
+    clearBindings = JavaMethod("()V")
+    reset = JavaMethod("()V")
+    toString = JavaMethod("()Ljava/lang/String;")
+    isOpen = JavaMethod("()Z")
+    close = JavaMethod("()V")
+    getParameterCount = JavaMethod("()I")
+    getColumnName = JavaMethod("(I)Ljava/lang/String;")
+    step = JavaMethod("()Z")
+
+class SQLiteBindOrColumnIndexOutOfRangeException(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/database/sqlite/SQLiteBindOrColumnIndexOutOfRangeException"
+    __javaconstructor__ = [("()V", False), ("(Ljava/lang/String;)V", False)]

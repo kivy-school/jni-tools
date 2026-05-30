@@ -1,0 +1,50 @@
+from typing import Any, ClassVar, overload
+from android.os.CancellationSignal import CancellationSignal
+from android.os.Handler import Handler
+from java.security.Signature import Signature
+from javax.crypto.Cipher import Cipher
+from javax.crypto.Mac import Mac
+
+class FingerprintManager:
+    FINGERPRINT_ACQUIRED_GOOD: ClassVar[int]
+    FINGERPRINT_ACQUIRED_IMAGER_DIRTY: ClassVar[int]
+    FINGERPRINT_ACQUIRED_INSUFFICIENT: ClassVar[int]
+    FINGERPRINT_ACQUIRED_PARTIAL: ClassVar[int]
+    FINGERPRINT_ACQUIRED_TOO_FAST: ClassVar[int]
+    FINGERPRINT_ACQUIRED_TOO_SLOW: ClassVar[int]
+    FINGERPRINT_ERROR_CANCELED: ClassVar[int]
+    FINGERPRINT_ERROR_HW_NOT_PRESENT: ClassVar[int]
+    FINGERPRINT_ERROR_HW_UNAVAILABLE: ClassVar[int]
+    FINGERPRINT_ERROR_LOCKOUT: ClassVar[int]
+    FINGERPRINT_ERROR_LOCKOUT_PERMANENT: ClassVar[int]
+    FINGERPRINT_ERROR_NO_FINGERPRINTS: ClassVar[int]
+    FINGERPRINT_ERROR_NO_SPACE: ClassVar[int]
+    FINGERPRINT_ERROR_TIMEOUT: ClassVar[int]
+    FINGERPRINT_ERROR_UNABLE_TO_PROCESS: ClassVar[int]
+    FINGERPRINT_ERROR_USER_CANCELED: ClassVar[int]
+    FINGERPRINT_ERROR_VENDOR: ClassVar[int]
+    def isHardwareDetected(self) -> bool: ...
+    def authenticate(self, p0: Any, p1: CancellationSignal, p2: int, p3: Any, p4: Handler) -> None: ...
+    def hasEnrolledFingerprints(self) -> bool: ...
+
+    class CryptoObject:
+        @overload
+        def __init__(self, p0: Mac) -> None: ...
+        @overload
+        def __init__(self, p0: Cipher) -> None: ...
+        @overload
+        def __init__(self, p0: Signature) -> None: ...
+        def getMac(self) -> Mac: ...
+        def getCipher(self) -> Cipher: ...
+        def getSignature(self) -> Signature: ...
+
+    class AuthenticationResult:
+        def getCryptoObject(self) -> Any: ...
+
+    class AuthenticationCallback:
+        def __init__(self) -> None: ...
+        def onAuthenticationSucceeded(self, p0: Any) -> None: ...
+        def onAuthenticationError(self, p0: int, p1: str) -> None: ...
+        def onAuthenticationFailed(self) -> None: ...
+        def onAuthenticationHelp(self, p0: int, p1: str) -> None: ...
+

@@ -30,8 +30,10 @@ SWIFT_PKG = REPO / "jni-wrapper" / "JniWrap"
 JNI_CORE_DIR = HERE / "jni_core"
 PYJNIUS_DIR  = HERE / "pyjnius"
 
-CYTHON_MONOLITH_SRC = JNI_CORE_DIR / "android" / "src"
-PYJNIUS_ANDROID_SRC = PYJNIUS_DIR / "android" / "src"
+CYTHON_MONOLITH_SRC  = JNI_CORE_DIR / "android" / "src"
+CYTHON_ADMOB_SRC     = JNI_CORE_DIR / "admob" / "src"
+CYTHON_ONESIGNAL_SRC = JNI_CORE_DIR / "onesignal" / "src"
+PYJNIUS_ANDROID_SRC  = PYJNIUS_DIR / "android" / "src"
 
 _DEFAULT_JAR_CANDIDATES = [
     Path.home() / ".kivyschool" / "android-sdk" / "platforms" / "android-36" / "android.jar",
@@ -64,27 +66,28 @@ def _jni_wrap_bin() -> Path:
     return debug
 
 
-def regen_cython(jni_wrap: Path, jar: Path) -> None:
+def regen_cython(jni_wrap: Path, jar: Path, per_package: bool = False) -> None:
     """Regenerate jni_core/android/src/ then resync packages/ via split.py."""
     print(f"\n{'='*60}")
     print(f"[cython] Generating from {jar.name} …")
     print(f"{'='*60}")
+
+    # Clean old sources before generating new ones.
+    if CYTHON_MONOLITH_SRC.exists():
+        shutil.rmtree(CYTHON_MONOLITH_SRC)
+    CYTHON_MONOLITH_SRC.mkdir(parents=True)
 
     tmp = Path(tempfile.mkdtemp(prefix="jni-wrap-cython-"))
     try:
         cmd = [
             str(jni_wrap), "cython",
             "--keep-package-prefix",
-            str(jar),
-            str(tmp),
         ]
+        if per_package:
+            cmd.append("--per-package")
+        cmd += [str(jar), str(tmp)]
         print(f"[cython] {' '.join(cmd)}")
         subprocess.run(cmd, check=True)
-
-        # Wipe and replace the monolith src tree.
-        if CYTHON_MONOLITH_SRC.exists():
-            shutil.rmtree(CYTHON_MONOLITH_SRC)
-        CYTHON_MONOLITH_SRC.mkdir(parents=True)
 
         for ns_dir in sorted(tmp.iterdir()):
             if ns_dir.is_dir():
@@ -106,27 +109,62 @@ def regen_cython(jni_wrap: Path, jar: Path) -> None:
     print("[cython] Done.")
 
 
-def regen_pyjnius(jni_wrap: Path, jar: Path) -> None:
+def regen_cython_third_party(jni_wrap: Path, aar: Path, dest_src: Path,
+                              per_package: bool = False) -> None:
+    """Generate Cython wrappers from a third-party AAR/JAR into dest_src/."""
+    print(f"\n{'='*60}")
+    print(f"[cython] Generating from {aar.name} …")
+    print(f"{'='*60}")
+
+    # Clean old sources before generating new ones.
+    if dest_src.exists():
+        shutil.rmtree(dest_src)
+    dest_src.mkdir(parents=True)
+
+    tmp = Path(tempfile.mkdtemp(prefix="jni-wrap-cython-"))
+    try:
+        cmd = [str(jni_wrap), "cython"]
+        if per_package:
+            cmd.append("--per-package")
+        cmd += [str(aar), str(tmp)]
+        print(f"[cython] {' '.join(cmd)}")
+        subprocess.run(cmd, check=True)
+
+        for item in sorted(tmp.iterdir()):
+            if item.is_dir():
+                shutil.copytree(item, dest_src / item.name)
+            else:
+                shutil.copy2(item, dest_src / item.name)
+
+        print(f"[cython] Written to {dest_src}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+    print("[cython] Done.")
+
+
+def regen_pyjnius(jni_wrap: Path, jar: Path, per_package: bool = False) -> None:
     """Regenerate pyjnius/android/src/ in-place."""
     print(f"\n{'='*60}")
     print(f"[pyjnius] Generating from {jar.name} …")
     print(f"{'='*60}")
+
+    # Clean old sources before generating new ones.
+    if PYJNIUS_ANDROID_SRC.exists():
+        shutil.rmtree(PYJNIUS_ANDROID_SRC)
+    PYJNIUS_ANDROID_SRC.mkdir(parents=True)
 
     tmp = Path(tempfile.mkdtemp(prefix="jni-wrap-pyjnius-"))
     try:
         cmd = [
             str(jni_wrap), "pyjnius",
             "--keep-package-prefix",
-            str(jar),
-            str(tmp),
         ]
+        if per_package:
+            cmd.append("--per-package")
+        cmd += [str(jar), str(tmp)]
         print(f"[pyjnius] {' '.join(cmd)}")
         subprocess.run(cmd, check=True)
-
-        # Wipe and replace the src tree.
-        if PYJNIUS_ANDROID_SRC.exists():
-            shutil.rmtree(PYJNIUS_ANDROID_SRC)
-        PYJNIUS_ANDROID_SRC.mkdir(parents=True)
 
         for item in sorted(tmp.iterdir()):
             if item.is_dir():
@@ -148,6 +186,11 @@ def main() -> None:
     ap.add_argument("--jar", help="Path to android.jar (auto-detected if omitted)")
     ap.add_argument("--cython-only", action="store_true", help="Only regen jni_core")
     ap.add_argument("--pyjnius-only", action="store_true", help="Only regen pyjnius")
+    ap.add_argument("--admob-aar", help="Path to play-services-ads-api AAR for admob-jni-core")
+    ap.add_argument("--onesignal-aar", help="Path to OneSignal AAR for onesignal-jni-core")
+    ap.add_argument("--per-package", action="store_true",
+                    help="Merge all classes in the same Java package into one module file "
+                         "(e.g. language.py instead of language/LanguageContext.py).")
     args = ap.parse_args()
 
     jar = Path(args.jar).resolve() if args.jar else _find_jar()
@@ -158,13 +201,22 @@ def main() -> None:
     jni_wrap = _jni_wrap_bin()
     print(f"[regen] jni-wrap:    {jni_wrap}")
 
+    per_package: bool = args.per_package
+
     if args.pyjnius_only:
-        regen_pyjnius(jni_wrap, jar)
+        regen_pyjnius(jni_wrap, jar, per_package=per_package)
     elif args.cython_only:
-        regen_cython(jni_wrap, jar)
+        regen_cython(jni_wrap, jar, per_package=per_package)
     else:
-        regen_cython(jni_wrap, jar)
-        regen_pyjnius(jni_wrap, jar)
+        regen_cython(jni_wrap, jar, per_package=per_package)
+        regen_pyjnius(jni_wrap, jar, per_package=per_package)
+
+    if args.admob_aar:
+        regen_cython_third_party(jni_wrap, Path(args.admob_aar).resolve(), CYTHON_ADMOB_SRC,
+                                  per_package=per_package)
+    if args.onesignal_aar:
+        regen_cython_third_party(jni_wrap, Path(args.onesignal_aar).resolve(), CYTHON_ONESIGNAL_SRC,
+                                  per_package=per_package)
 
     print("\n[regen] All done.")
 

@@ -1,9 +1,0 @@
-from typing import Any, ClassVar, overload
-from javax.microedition.khronos.egl.EGL import EGL
-from javax.microedition.khronos.opengles.GL import GL
-
-class EGLContext:
-    def __init__(self) -> None: ...
-    @staticmethod
-    def getEGL() -> EGL: ...
-    def getGL(self) -> GL: ...

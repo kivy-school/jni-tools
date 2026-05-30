@@ -44,2337 +44,772 @@ from jni_core.jni cimport (
 
 include "jni_core/conversions.pxi"
 
-__javaclass__ = "android/os/StrictMode"  # android.os.StrictMode
+__javaclass__ = "android/os/strictmode/ServiceConnectionLeakedViolation"  # android.os.strictmode.ServiceConnectionLeakedViolation
 
-cdef jclass _cls_StrictMode = NULL
-cdef jmethodID _m_StrictMode_setVmPolicy_0 = NULL
-cdef jmethodID _m_StrictMode_enableDefaults_0 = NULL
-cdef jmethodID _m_StrictMode_getThreadPolicy_0 = NULL
-cdef jmethodID _m_StrictMode_noteSlowCall_0 = NULL
-cdef jmethodID _m_StrictMode_getVmPolicy_0 = NULL
-cdef jmethodID _m_StrictMode_setThreadPolicy_0 = NULL
-cdef jmethodID _m_StrictMode_allowThreadDiskReads_0 = NULL
-cdef jmethodID _m_StrictMode_allowThreadDiskWrites_0 = NULL
+cdef jclass _cls_ServiceConnectionLeakedViolation = NULL
 
-cdef int _ensure_ids_StrictMode(JNIEnv* env) except -1:
-    global _cls_StrictMode, _m_StrictMode_setVmPolicy_0, _m_StrictMode_enableDefaults_0, _m_StrictMode_getThreadPolicy_0, _m_StrictMode_noteSlowCall_0, _m_StrictMode_getVmPolicy_0, _m_StrictMode_setThreadPolicy_0, _m_StrictMode_allowThreadDiskReads_0, _m_StrictMode_allowThreadDiskWrites_0
-    if _cls_StrictMode != NULL:
+cdef int _ensure_ids_ServiceConnectionLeakedViolation(JNIEnv* env) except -1:
+    global _cls_ServiceConnectionLeakedViolation
+    if _cls_ServiceConnectionLeakedViolation != NULL:
         return 0
-    _cls_StrictMode = find_class_global(env, b"android/os/StrictMode")
-    _m_StrictMode_setVmPolicy_0 = get_static_method_id(env, _cls_StrictMode, b"setVmPolicy", b"(Landroid/os/StrictMode$VmPolicy;)V")
-    _m_StrictMode_enableDefaults_0 = get_static_method_id(env, _cls_StrictMode, b"enableDefaults", b"()V")
-    _m_StrictMode_getThreadPolicy_0 = get_static_method_id(env, _cls_StrictMode, b"getThreadPolicy", b"()Landroid/os/StrictMode$ThreadPolicy;")
-    _m_StrictMode_noteSlowCall_0 = get_static_method_id(env, _cls_StrictMode, b"noteSlowCall", b"(Ljava/lang/String;)V")
-    _m_StrictMode_getVmPolicy_0 = get_static_method_id(env, _cls_StrictMode, b"getVmPolicy", b"()Landroid/os/StrictMode$VmPolicy;")
-    _m_StrictMode_setThreadPolicy_0 = get_static_method_id(env, _cls_StrictMode, b"setThreadPolicy", b"(Landroid/os/StrictMode$ThreadPolicy;)V")
-    _m_StrictMode_allowThreadDiskReads_0 = get_static_method_id(env, _cls_StrictMode, b"allowThreadDiskReads", b"()Landroid/os/StrictMode$ThreadPolicy;")
-    _m_StrictMode_allowThreadDiskWrites_0 = get_static_method_id(env, _cls_StrictMode, b"allowThreadDiskWrites", b"()Landroid/os/StrictMode$ThreadPolicy;")
+    _cls_ServiceConnectionLeakedViolation = find_class_global(env, b"android/os/strictmode/ServiceConnectionLeakedViolation")
     return 0
 
-cdef class StrictMode(JavaObject):
-    """android.os.StrictMode"""
+cdef class ServiceConnectionLeakedViolation(JavaObject):
+    """android.os.strictmode.ServiceConnectionLeakedViolation"""
 
     def __init__(self, *args, **kwargs):
-        raise TypeError("StrictMode has no public constructor")
-
-    @staticmethod
-    cdef void _setVmPolicy(JNIEnv* env, jobject p0) except *:
-        _ensure_ids_StrictMode(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        jnicore_CallStaticVoidMethodA(env, _cls_StrictMode, _m_StrictMode_setVmPolicy_0, _args)
-        check_jni_exc(env)
-
-    @staticmethod
-    def setVmPolicy(p0) -> None:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        StrictMode._setVmPolicy(env, _h0)
-
-    @staticmethod
-    cdef void _setVmPolicy_0(JNIEnv* env, jobject p0) except *:
-        _ensure_ids_StrictMode(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        jnicore_CallStaticVoidMethodA(env, _cls_StrictMode, _m_StrictMode_setVmPolicy_0, _args)
-        check_jni_exc(env)
-
-    @staticmethod
-    def setVmPolicy_0(p0) -> None:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        StrictMode._setVmPolicy_0(env, _h0)
-
-    @staticmethod
-    cdef void _enableDefaults(JNIEnv* env) except *:
-        _ensure_ids_StrictMode(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        jnicore_CallStaticVoidMethodA(env, _cls_StrictMode, _m_StrictMode_enableDefaults_0, _args)
-        check_jni_exc(env)
-
-    @staticmethod
-    def enableDefaults() -> None:
-        cdef JNIEnv* env = get_env()
-        StrictMode._enableDefaults(env)
-
-    @staticmethod
-    cdef void _enableDefaults_0(JNIEnv* env) except *:
-        _ensure_ids_StrictMode(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        jnicore_CallStaticVoidMethodA(env, _cls_StrictMode, _m_StrictMode_enableDefaults_0, _args)
-        check_jni_exc(env)
-
-    @staticmethod
-    def enableDefaults_0() -> None:
-        cdef JNIEnv* env = get_env()
-        StrictMode._enableDefaults_0(env)
-
-    @staticmethod
-    cdef jobject _getThreadPolicy(JNIEnv* env) except? NULL:
-        _ensure_ids_StrictMode(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_StrictMode, _m_StrictMode_getThreadPolicy_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    @staticmethod
-    def getThreadPolicy() -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = StrictMode._getThreadPolicy(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    @staticmethod
-    cdef jobject _getThreadPolicy_0(JNIEnv* env) except? NULL:
-        _ensure_ids_StrictMode(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_StrictMode, _m_StrictMode_getThreadPolicy_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    @staticmethod
-    def getThreadPolicy_0() -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = StrictMode._getThreadPolicy_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    @staticmethod
-    cdef void _noteSlowCall(JNIEnv* env, jstring p0) except *:
-        _ensure_ids_StrictMode(env)
-        cdef jvalue _args[1]
-        _args[0].l = <jobject>p0
-        jnicore_CallStaticVoidMethodA(env, _cls_StrictMode, _m_StrictMode_noteSlowCall_0, _args)
-        check_jni_exc(env)
-
-    @staticmethod
-    def noteSlowCall(p0) -> None:
-        cdef JNIEnv* env = get_env()
-        cdef jstring _arg0_s = NULL
-        _arg0_s = j_str(env, p0) if p0 is not None else <jstring>NULL
-        try:
-            StrictMode._noteSlowCall(env, _arg0_s)
-        finally:
-            if _arg0_s != NULL:
-                jnicore_DeleteLocalRef(env, <jobject>_arg0_s)
-
-    @staticmethod
-    cdef void _noteSlowCall_0(JNIEnv* env, jstring p0) except *:
-        _ensure_ids_StrictMode(env)
-        cdef jvalue _args[1]
-        _args[0].l = <jobject>p0
-        jnicore_CallStaticVoidMethodA(env, _cls_StrictMode, _m_StrictMode_noteSlowCall_0, _args)
-        check_jni_exc(env)
-
-    @staticmethod
-    def noteSlowCall_0(p0) -> None:
-        cdef JNIEnv* env = get_env()
-        cdef jstring _arg0_s = NULL
-        _arg0_s = j_str(env, p0) if p0 is not None else <jstring>NULL
-        try:
-            StrictMode._noteSlowCall_0(env, _arg0_s)
-        finally:
-            if _arg0_s != NULL:
-                jnicore_DeleteLocalRef(env, <jobject>_arg0_s)
-
-    @staticmethod
-    cdef jobject _getVmPolicy(JNIEnv* env) except? NULL:
-        _ensure_ids_StrictMode(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_StrictMode, _m_StrictMode_getVmPolicy_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    @staticmethod
-    def getVmPolicy() -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = StrictMode._getVmPolicy(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    @staticmethod
-    cdef jobject _getVmPolicy_0(JNIEnv* env) except? NULL:
-        _ensure_ids_StrictMode(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_StrictMode, _m_StrictMode_getVmPolicy_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    @staticmethod
-    def getVmPolicy_0() -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = StrictMode._getVmPolicy_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    @staticmethod
-    cdef void _setThreadPolicy(JNIEnv* env, jobject p0) except *:
-        _ensure_ids_StrictMode(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        jnicore_CallStaticVoidMethodA(env, _cls_StrictMode, _m_StrictMode_setThreadPolicy_0, _args)
-        check_jni_exc(env)
-
-    @staticmethod
-    def setThreadPolicy(p0) -> None:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        StrictMode._setThreadPolicy(env, _h0)
-
-    @staticmethod
-    cdef void _setThreadPolicy_0(JNIEnv* env, jobject p0) except *:
-        _ensure_ids_StrictMode(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        jnicore_CallStaticVoidMethodA(env, _cls_StrictMode, _m_StrictMode_setThreadPolicy_0, _args)
-        check_jni_exc(env)
-
-    @staticmethod
-    def setThreadPolicy_0(p0) -> None:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        StrictMode._setThreadPolicy_0(env, _h0)
-
-    @staticmethod
-    cdef jobject _allowThreadDiskReads(JNIEnv* env) except? NULL:
-        _ensure_ids_StrictMode(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_StrictMode, _m_StrictMode_allowThreadDiskReads_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    @staticmethod
-    def allowThreadDiskReads() -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = StrictMode._allowThreadDiskReads(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    @staticmethod
-    cdef jobject _allowThreadDiskReads_0(JNIEnv* env) except? NULL:
-        _ensure_ids_StrictMode(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_StrictMode, _m_StrictMode_allowThreadDiskReads_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    @staticmethod
-    def allowThreadDiskReads_0() -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = StrictMode._allowThreadDiskReads_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    @staticmethod
-    cdef jobject _allowThreadDiskWrites(JNIEnv* env) except? NULL:
-        _ensure_ids_StrictMode(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_StrictMode, _m_StrictMode_allowThreadDiskWrites_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    @staticmethod
-    def allowThreadDiskWrites() -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = StrictMode._allowThreadDiskWrites(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    @staticmethod
-    cdef jobject _allowThreadDiskWrites_0(JNIEnv* env) except? NULL:
-        _ensure_ids_StrictMode(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_StrictMode, _m_StrictMode_allowThreadDiskWrites_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    @staticmethod
-    def allowThreadDiskWrites_0() -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = StrictMode._allowThreadDiskWrites_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
+        raise TypeError("ServiceConnectionLeakedViolation has no public constructor")
 
     @staticmethod
     def from_java_object(obj) -> object:
-        """Wrap a plain JavaObject as StrictMode (no JNI type check)."""
+        """Wrap a plain JavaObject as ServiceConnectionLeakedViolation (no JNI type check)."""
         cdef JNIEnv* env = get_env()
-        cdef StrictMode inst = StrictMode.__new__(StrictMode)
+        cdef ServiceConnectionLeakedViolation inst = ServiceConnectionLeakedViolation.__new__(ServiceConnectionLeakedViolation)
         cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
         inst._adopt_global(env, global_ref)
         return inst
 
-# Nested class: android.os.StrictMode$VmPolicy  (JNI: android/os/StrictMode$VmPolicy)
-cdef jclass _cls_VmPolicy = NULL
-cdef jmethodID _m_VmPolicy_toString_0 = NULL
-cdef jfieldID _sf_VmPolicy_LAX = NULL
 
-cdef int _ensure_ids_VmPolicy(JNIEnv* env) except -1:
-    global _cls_VmPolicy, _m_VmPolicy_toString_0, _sf_VmPolicy_LAX
-    if _cls_VmPolicy != NULL:
+__javaclass__ = "android/os/strictmode/InstanceCountViolation"  # android.os.strictmode.InstanceCountViolation
+
+cdef jclass _cls_InstanceCountViolation = NULL
+cdef jmethodID _m_InstanceCountViolation_getNumberOfInstances_0 = NULL
+
+cdef int _ensure_ids_InstanceCountViolation(JNIEnv* env) except -1:
+    global _cls_InstanceCountViolation, _m_InstanceCountViolation_getNumberOfInstances_0
+    if _cls_InstanceCountViolation != NULL:
         return 0
-    _cls_VmPolicy = find_class_global(env, b"android/os/StrictMode$VmPolicy")
-    _m_VmPolicy_toString_0 = get_method_id(env, _cls_VmPolicy, b"toString", b"()Ljava/lang/String;")
-    _sf_VmPolicy_LAX = get_static_field_id(env, _cls_VmPolicy, b"LAX", b"Landroid/os/StrictMode$VmPolicy;")
+    _cls_InstanceCountViolation = find_class_global(env, b"android/os/strictmode/InstanceCountViolation")
+    _m_InstanceCountViolation_getNumberOfInstances_0 = get_method_id(env, _cls_InstanceCountViolation, b"getNumberOfInstances", b"()J")
     return 0
 
-cdef class VmPolicy(JavaObject):
-    """android.os.StrictMode$VmPolicy"""
+cdef class InstanceCountViolation(JavaObject):
+    """android.os.strictmode.InstanceCountViolation"""
 
     def __init__(self, *args, **kwargs):
-        raise TypeError("VmPolicy has no public constructor")
+        raise TypeError("InstanceCountViolation has no public constructor")
 
-    # Static field VmPolicy.LAX
-    @staticmethod
-    def LAX() -> object:
-        cdef JNIEnv* env = get_env()
-        _ensure_ids_VmPolicy(env)
-        cdef jobject _ret = jnicore_GetStaticObjectField(env, _cls_VmPolicy, _sf_VmPolicy_LAX)
+    cdef jlong _getNumberOfInstances(self, JNIEnv* env) except *:
+        _ensure_ids_InstanceCountViolation(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jlong _ret = jnicore_CallLongMethodA(env, self._handle, _m_InstanceCountViolation_getNumberOfInstances_0, _args)
         check_jni_exc(env)
+        return _ret
+
+    def getNumberOfInstances(self) -> int:
+        cdef JNIEnv* env = get_env()
+        cdef jlong _ret = 0
+        _ret = self._getNumberOfInstances(env)
+        return <long long>_ret
+
+    cdef jlong _getNumberOfInstances_0(self, JNIEnv* env) except *:
+        _ensure_ids_InstanceCountViolation(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jlong _ret = jnicore_CallLongMethodA(env, self._handle, _m_InstanceCountViolation_getNumberOfInstances_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def getNumberOfInstances_0(self) -> int:
+        cdef JNIEnv* env = get_env()
+        cdef jlong _ret = 0
+        _ret = self._getNumberOfInstances_0(env)
+        return <long long>_ret
+
+    @staticmethod
+    def from_java_object(obj) -> object:
+        """Wrap a plain JavaObject as InstanceCountViolation (no JNI type check)."""
+        cdef JNIEnv* env = get_env()
+        cdef InstanceCountViolation inst = InstanceCountViolation.__new__(InstanceCountViolation)
+        cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
+        inst._adopt_global(env, global_ref)
+        return inst
+
+
+__javaclass__ = "android/os/strictmode/Violation"  # android.os.strictmode.Violation
+
+cdef jclass _cls_Violation = NULL
+cdef jmethodID _m_Violation_fillInStackTrace_0 = NULL
+cdef jmethodID _m_Violation_initCause_0 = NULL
+cdef jmethodID _m_Violation_hashCode_0 = NULL
+cdef jmethodID _m_Violation_setStackTrace_0 = NULL
+
+cdef int _ensure_ids_Violation(JNIEnv* env) except -1:
+    global _cls_Violation, _m_Violation_fillInStackTrace_0, _m_Violation_initCause_0, _m_Violation_hashCode_0, _m_Violation_setStackTrace_0
+    if _cls_Violation != NULL:
+        return 0
+    _cls_Violation = find_class_global(env, b"android/os/strictmode/Violation")
+    _m_Violation_fillInStackTrace_0 = get_method_id(env, _cls_Violation, b"fillInStackTrace", b"()Ljava/lang/Throwable;")
+    _m_Violation_initCause_0 = get_method_id(env, _cls_Violation, b"initCause", b"(Ljava/lang/Throwable;)Ljava/lang/Throwable;")
+    _m_Violation_hashCode_0 = get_method_id(env, _cls_Violation, b"hashCode", b"()I")
+    _m_Violation_setStackTrace_0 = get_method_id(env, _cls_Violation, b"setStackTrace", b"([Ljava/lang/StackTraceElement;)V")
+    return 0
+
+cdef class Violation(JavaObject):
+    """android.os.strictmode.Violation"""
+
+    def __init__(self, *args, **kwargs):
+        raise TypeError("Violation has no public constructor")
+
+    cdef jobject _fillInStackTrace(self, JNIEnv* env) except? NULL:
+        _ensure_ids_Violation(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Violation_fillInStackTrace_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def fillInStackTrace(self) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        _ret = self._fillInStackTrace(env)
         if _ret == NULL:
             return None
         cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
         _wrapped._adopt_local(env, _ret)
         return _wrapped
 
-    cdef jstring _toString(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy(env)
+    cdef jobject _fillInStackTrace_0(self, JNIEnv* env) except? NULL:
+        _ensure_ids_Violation(env)
         cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jstring _ret = <jstring>jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_toString_0, _args)
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Violation_fillInStackTrace_0, _args)
         check_jni_exc(env)
-        return <jstring>_ret
+        return _ret
 
-    def toString(self) -> str:
+    def fillInStackTrace_0(self) -> object:
         cdef JNIEnv* env = get_env()
-        cdef jstring _ret = NULL
-        _ret = self._toString(env)
-        return py_str(env, _ret)
+        cdef jobject _ret = NULL
+        _ret = self._fillInStackTrace_0(env)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
 
-    cdef jstring _toString_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy(env)
+    cdef jobject _initCause(self, JNIEnv* env, jobject p0) except? NULL:
+        _ensure_ids_Violation(env)
+        cdef jvalue _args[1]
+        _args[0].l = p0
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Violation_initCause_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def initCause(self, p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
+        _ret = self._initCause(env, _h0)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jobject _initCause_0(self, JNIEnv* env, jobject p0) except? NULL:
+        _ensure_ids_Violation(env)
+        cdef jvalue _args[1]
+        _args[0].l = p0
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Violation_initCause_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def initCause_0(self, p0) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
+        _ret = self._initCause_0(env, _h0)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    cdef jint _hashCode(self, JNIEnv* env) except *:
+        _ensure_ids_Violation(env)
         cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jstring _ret = <jstring>jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_toString_0, _args)
+        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Violation_hashCode_0, _args)
         check_jni_exc(env)
-        return <jstring>_ret
+        return _ret
 
-    def toString_0(self) -> str:
+    def hashCode(self) -> int:
         cdef JNIEnv* env = get_env()
-        cdef jstring _ret = NULL
-        _ret = self._toString_0(env)
-        return py_str(env, _ret)
+        cdef jint _ret = 0
+        _ret = self._hashCode(env)
+        return <int>_ret
+
+    cdef jint _hashCode_0(self, JNIEnv* env) except *:
+        _ensure_ids_Violation(env)
+        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
+        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Violation_hashCode_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    def hashCode_0(self) -> int:
+        cdef JNIEnv* env = get_env()
+        cdef jint _ret = 0
+        _ret = self._hashCode_0(env)
+        return <int>_ret
+
+    cdef void _setStackTrace(self, JNIEnv* env, jobject p0) except *:
+        _ensure_ids_Violation(env)
+        cdef jvalue _args[1]
+        _args[0].l = p0
+        jnicore_CallVoidMethodA(env, self._handle, _m_Violation_setStackTrace_0, _args)
+        check_jni_exc(env)
+
+    def setStackTrace(self, p0) -> None:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
+        self._setStackTrace(env, _h0)
+
+    cdef void _setStackTrace_0(self, JNIEnv* env, jobject p0) except *:
+        _ensure_ids_Violation(env)
+        cdef jvalue _args[1]
+        _args[0].l = p0
+        jnicore_CallVoidMethodA(env, self._handle, _m_Violation_setStackTrace_0, _args)
+        check_jni_exc(env)
+
+    def setStackTrace_0(self, p0) -> None:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
+        self._setStackTrace_0(env, _h0)
 
     @staticmethod
     def from_java_object(obj) -> object:
-        """Wrap a plain JavaObject as VmPolicy (no JNI type check)."""
+        """Wrap a plain JavaObject as Violation (no JNI type check)."""
         cdef JNIEnv* env = get_env()
-        cdef VmPolicy inst = VmPolicy.__new__(VmPolicy)
+        cdef Violation inst = Violation.__new__(Violation)
         cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
         inst._adopt_global(env, global_ref)
         return inst
 
-# Nested class: android.os.StrictMode$VmPolicy$Builder  (JNI: android/os/StrictMode$VmPolicy$Builder)
-cdef jclass _cls_VmPolicy_Builder = NULL
-cdef jmethodID _ctor_VmPolicy_Builder_0 = NULL
-cdef jmethodID _ctor_VmPolicy_Builder_1 = NULL
-cdef jmethodID _m_VmPolicy_Builder_detectAll_0 = NULL
-cdef jmethodID _m_VmPolicy_Builder_detectActivityLeaks_0 = NULL
-cdef jmethodID _m_VmPolicy_Builder_detectBlockedBackgroundActivityLaunch_0 = NULL
-cdef jmethodID _m_VmPolicy_Builder_detectCleartextNetwork_0 = NULL
-cdef jmethodID _m_VmPolicy_Builder_detectContentUriWithoutPermission_0 = NULL
-cdef jmethodID _m_VmPolicy_Builder_detectCredentialProtectedWhileLocked_0 = NULL
-cdef jmethodID _m_VmPolicy_Builder_detectFileUriExposure_0 = NULL
-cdef jmethodID _m_VmPolicy_Builder_detectImplicitDirectBoot_0 = NULL
-cdef jmethodID _m_VmPolicy_Builder_detectIncorrectContextUse_0 = NULL
-cdef jmethodID _m_VmPolicy_Builder_detectLeakedClosableObjects_0 = NULL
-cdef jmethodID _m_VmPolicy_Builder_detectLeakedRegistrationObjects_0 = NULL
-cdef jmethodID _m_VmPolicy_Builder_detectLeakedSqlLiteObjects_0 = NULL
-cdef jmethodID _m_VmPolicy_Builder_detectNonSdkApiUsage_0 = NULL
-cdef jmethodID _m_VmPolicy_Builder_detectUnsafeIntentLaunch_0 = NULL
-cdef jmethodID _m_VmPolicy_Builder_detectUntaggedSockets_0 = NULL
-cdef jmethodID _m_VmPolicy_Builder_ignoreBlockedBackgroundActivityLaunch_0 = NULL
-cdef jmethodID _m_VmPolicy_Builder_penaltyDeath_0 = NULL
-cdef jmethodID _m_VmPolicy_Builder_penaltyDeathOnCleartextNetwork_0 = NULL
-cdef jmethodID _m_VmPolicy_Builder_penaltyDeathOnFileUriExposure_0 = NULL
-cdef jmethodID _m_VmPolicy_Builder_penaltyDropBox_0 = NULL
-cdef jmethodID _m_VmPolicy_Builder_penaltyListener_0 = NULL
-cdef jmethodID _m_VmPolicy_Builder_penaltyLog_0 = NULL
-cdef jmethodID _m_VmPolicy_Builder_permitNonSdkApiUsage_0 = NULL
-cdef jmethodID _m_VmPolicy_Builder_permitUnsafeIntentLaunch_0 = NULL
-cdef jmethodID _m_VmPolicy_Builder_setClassInstanceLimit_0 = NULL
-cdef jmethodID _m_VmPolicy_Builder_build_0 = NULL
 
-cdef int _ensure_ids_VmPolicy_Builder(JNIEnv* env) except -1:
-    global _cls_VmPolicy_Builder, _ctor_VmPolicy_Builder_0, _ctor_VmPolicy_Builder_1, _m_VmPolicy_Builder_detectAll_0, _m_VmPolicy_Builder_detectActivityLeaks_0, _m_VmPolicy_Builder_detectBlockedBackgroundActivityLaunch_0, _m_VmPolicy_Builder_detectCleartextNetwork_0, _m_VmPolicy_Builder_detectContentUriWithoutPermission_0, _m_VmPolicy_Builder_detectCredentialProtectedWhileLocked_0, _m_VmPolicy_Builder_detectFileUriExposure_0, _m_VmPolicy_Builder_detectImplicitDirectBoot_0, _m_VmPolicy_Builder_detectIncorrectContextUse_0, _m_VmPolicy_Builder_detectLeakedClosableObjects_0, _m_VmPolicy_Builder_detectLeakedRegistrationObjects_0, _m_VmPolicy_Builder_detectLeakedSqlLiteObjects_0, _m_VmPolicy_Builder_detectNonSdkApiUsage_0, _m_VmPolicy_Builder_detectUnsafeIntentLaunch_0, _m_VmPolicy_Builder_detectUntaggedSockets_0, _m_VmPolicy_Builder_ignoreBlockedBackgroundActivityLaunch_0, _m_VmPolicy_Builder_penaltyDeath_0, _m_VmPolicy_Builder_penaltyDeathOnCleartextNetwork_0, _m_VmPolicy_Builder_penaltyDeathOnFileUriExposure_0, _m_VmPolicy_Builder_penaltyDropBox_0, _m_VmPolicy_Builder_penaltyListener_0, _m_VmPolicy_Builder_penaltyLog_0, _m_VmPolicy_Builder_permitNonSdkApiUsage_0, _m_VmPolicy_Builder_permitUnsafeIntentLaunch_0, _m_VmPolicy_Builder_setClassInstanceLimit_0, _m_VmPolicy_Builder_build_0
-    if _cls_VmPolicy_Builder != NULL:
+__javaclass__ = "android/os/strictmode/CleartextNetworkViolation"  # android.os.strictmode.CleartextNetworkViolation
+
+cdef jclass _cls_CleartextNetworkViolation = NULL
+
+cdef int _ensure_ids_CleartextNetworkViolation(JNIEnv* env) except -1:
+    global _cls_CleartextNetworkViolation
+    if _cls_CleartextNetworkViolation != NULL:
         return 0
-    _cls_VmPolicy_Builder = find_class_global(env, b"android/os/StrictMode$VmPolicy$Builder")
-    _ctor_VmPolicy_Builder_0 = get_method_id(env, _cls_VmPolicy_Builder, b"<init>", b"()V")
-    _ctor_VmPolicy_Builder_1 = get_method_id(env, _cls_VmPolicy_Builder, b"<init>", b"(Landroid/os/StrictMode$VmPolicy;)V")
-    _m_VmPolicy_Builder_detectAll_0 = get_method_id(env, _cls_VmPolicy_Builder, b"detectAll", b"()Landroid/os/StrictMode$VmPolicy$Builder;")
-    _m_VmPolicy_Builder_detectActivityLeaks_0 = get_method_id(env, _cls_VmPolicy_Builder, b"detectActivityLeaks", b"()Landroid/os/StrictMode$VmPolicy$Builder;")
-    _m_VmPolicy_Builder_detectBlockedBackgroundActivityLaunch_0 = get_method_id(env, _cls_VmPolicy_Builder, b"detectBlockedBackgroundActivityLaunch", b"()Landroid/os/StrictMode$VmPolicy$Builder;")
-    _m_VmPolicy_Builder_detectCleartextNetwork_0 = get_method_id(env, _cls_VmPolicy_Builder, b"detectCleartextNetwork", b"()Landroid/os/StrictMode$VmPolicy$Builder;")
-    _m_VmPolicy_Builder_detectContentUriWithoutPermission_0 = get_method_id(env, _cls_VmPolicy_Builder, b"detectContentUriWithoutPermission", b"()Landroid/os/StrictMode$VmPolicy$Builder;")
-    _m_VmPolicy_Builder_detectCredentialProtectedWhileLocked_0 = get_method_id(env, _cls_VmPolicy_Builder, b"detectCredentialProtectedWhileLocked", b"()Landroid/os/StrictMode$VmPolicy$Builder;")
-    _m_VmPolicy_Builder_detectFileUriExposure_0 = get_method_id(env, _cls_VmPolicy_Builder, b"detectFileUriExposure", b"()Landroid/os/StrictMode$VmPolicy$Builder;")
-    _m_VmPolicy_Builder_detectImplicitDirectBoot_0 = get_method_id(env, _cls_VmPolicy_Builder, b"detectImplicitDirectBoot", b"()Landroid/os/StrictMode$VmPolicy$Builder;")
-    _m_VmPolicy_Builder_detectIncorrectContextUse_0 = get_method_id(env, _cls_VmPolicy_Builder, b"detectIncorrectContextUse", b"()Landroid/os/StrictMode$VmPolicy$Builder;")
-    _m_VmPolicy_Builder_detectLeakedClosableObjects_0 = get_method_id(env, _cls_VmPolicy_Builder, b"detectLeakedClosableObjects", b"()Landroid/os/StrictMode$VmPolicy$Builder;")
-    _m_VmPolicy_Builder_detectLeakedRegistrationObjects_0 = get_method_id(env, _cls_VmPolicy_Builder, b"detectLeakedRegistrationObjects", b"()Landroid/os/StrictMode$VmPolicy$Builder;")
-    _m_VmPolicy_Builder_detectLeakedSqlLiteObjects_0 = get_method_id(env, _cls_VmPolicy_Builder, b"detectLeakedSqlLiteObjects", b"()Landroid/os/StrictMode$VmPolicy$Builder;")
-    _m_VmPolicy_Builder_detectNonSdkApiUsage_0 = get_method_id(env, _cls_VmPolicy_Builder, b"detectNonSdkApiUsage", b"()Landroid/os/StrictMode$VmPolicy$Builder;")
-    _m_VmPolicy_Builder_detectUnsafeIntentLaunch_0 = get_method_id(env, _cls_VmPolicy_Builder, b"detectUnsafeIntentLaunch", b"()Landroid/os/StrictMode$VmPolicy$Builder;")
-    _m_VmPolicy_Builder_detectUntaggedSockets_0 = get_method_id(env, _cls_VmPolicy_Builder, b"detectUntaggedSockets", b"()Landroid/os/StrictMode$VmPolicy$Builder;")
-    _m_VmPolicy_Builder_ignoreBlockedBackgroundActivityLaunch_0 = get_method_id(env, _cls_VmPolicy_Builder, b"ignoreBlockedBackgroundActivityLaunch", b"()Landroid/os/StrictMode$VmPolicy$Builder;")
-    _m_VmPolicy_Builder_penaltyDeath_0 = get_method_id(env, _cls_VmPolicy_Builder, b"penaltyDeath", b"()Landroid/os/StrictMode$VmPolicy$Builder;")
-    _m_VmPolicy_Builder_penaltyDeathOnCleartextNetwork_0 = get_method_id(env, _cls_VmPolicy_Builder, b"penaltyDeathOnCleartextNetwork", b"()Landroid/os/StrictMode$VmPolicy$Builder;")
-    _m_VmPolicy_Builder_penaltyDeathOnFileUriExposure_0 = get_method_id(env, _cls_VmPolicy_Builder, b"penaltyDeathOnFileUriExposure", b"()Landroid/os/StrictMode$VmPolicy$Builder;")
-    _m_VmPolicy_Builder_penaltyDropBox_0 = get_method_id(env, _cls_VmPolicy_Builder, b"penaltyDropBox", b"()Landroid/os/StrictMode$VmPolicy$Builder;")
-    _m_VmPolicy_Builder_penaltyListener_0 = get_method_id(env, _cls_VmPolicy_Builder, b"penaltyListener", b"(Ljava/util/concurrent/Executor;Landroid/os/StrictMode$OnVmViolationListener;)Landroid/os/StrictMode$VmPolicy$Builder;")
-    _m_VmPolicy_Builder_penaltyLog_0 = get_method_id(env, _cls_VmPolicy_Builder, b"penaltyLog", b"()Landroid/os/StrictMode$VmPolicy$Builder;")
-    _m_VmPolicy_Builder_permitNonSdkApiUsage_0 = get_method_id(env, _cls_VmPolicy_Builder, b"permitNonSdkApiUsage", b"()Landroid/os/StrictMode$VmPolicy$Builder;")
-    _m_VmPolicy_Builder_permitUnsafeIntentLaunch_0 = get_method_id(env, _cls_VmPolicy_Builder, b"permitUnsafeIntentLaunch", b"()Landroid/os/StrictMode$VmPolicy$Builder;")
-    _m_VmPolicy_Builder_setClassInstanceLimit_0 = get_method_id(env, _cls_VmPolicy_Builder, b"setClassInstanceLimit", b"(Ljava/lang/Class;I)Landroid/os/StrictMode$VmPolicy$Builder;")
-    _m_VmPolicy_Builder_build_0 = get_method_id(env, _cls_VmPolicy_Builder, b"build", b"()Landroid/os/StrictMode$VmPolicy;")
+    _cls_CleartextNetworkViolation = find_class_global(env, b"android/os/strictmode/CleartextNetworkViolation")
     return 0
 
-cdef class VmPolicy_Builder(JavaObject):
-    """android.os.StrictMode$VmPolicy$Builder"""
+cdef class CleartextNetworkViolation(JavaObject):
+    """android.os.strictmode.CleartextNetworkViolation"""
 
-    # TODO: 2 constructor overloads; only the first is wired.
-    #   overload[0] = ()V
-    #   overload[1] = (Landroid/os/StrictMode$VmPolicy;)V
-    def __init__(self, ):
+    def __init__(self, *args, **kwargs):
+        raise TypeError("CleartextNetworkViolation has no public constructor")
+
+    @staticmethod
+    def from_java_object(obj) -> object:
+        """Wrap a plain JavaObject as CleartextNetworkViolation (no JNI type check)."""
         cdef JNIEnv* env = get_env()
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # unused; arrayless calls disallowed in Cython
-        cdef jobject _ret = jnicore_NewObjectA(env, _cls_VmPolicy_Builder, _ctor_VmPolicy_Builder_0, _args)
+        cdef CleartextNetworkViolation inst = CleartextNetworkViolation.__new__(CleartextNetworkViolation)
+        cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
+        inst._adopt_global(env, global_ref)
+        return inst
+
+
+__javaclass__ = "android/os/strictmode/NetworkViolation"  # android.os.strictmode.NetworkViolation
+
+cdef jclass _cls_NetworkViolation = NULL
+
+cdef int _ensure_ids_NetworkViolation(JNIEnv* env) except -1:
+    global _cls_NetworkViolation
+    if _cls_NetworkViolation != NULL:
+        return 0
+    _cls_NetworkViolation = find_class_global(env, b"android/os/strictmode/NetworkViolation")
+    return 0
+
+cdef class NetworkViolation(JavaObject):
+    """android.os.strictmode.NetworkViolation"""
+
+    def __init__(self, *args, **kwargs):
+        raise TypeError("NetworkViolation has no public constructor")
+
+    @staticmethod
+    def from_java_object(obj) -> object:
+        """Wrap a plain JavaObject as NetworkViolation (no JNI type check)."""
+        cdef JNIEnv* env = get_env()
+        cdef NetworkViolation inst = NetworkViolation.__new__(NetworkViolation)
+        cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
+        inst._adopt_global(env, global_ref)
+        return inst
+
+
+__javaclass__ = "android/os/strictmode/ResourceMismatchViolation"  # android.os.strictmode.ResourceMismatchViolation
+
+cdef jclass _cls_ResourceMismatchViolation = NULL
+
+cdef int _ensure_ids_ResourceMismatchViolation(JNIEnv* env) except -1:
+    global _cls_ResourceMismatchViolation
+    if _cls_ResourceMismatchViolation != NULL:
+        return 0
+    _cls_ResourceMismatchViolation = find_class_global(env, b"android/os/strictmode/ResourceMismatchViolation")
+    return 0
+
+cdef class ResourceMismatchViolation(JavaObject):
+    """android.os.strictmode.ResourceMismatchViolation"""
+
+    def __init__(self, *args, **kwargs):
+        raise TypeError("ResourceMismatchViolation has no public constructor")
+
+    @staticmethod
+    def from_java_object(obj) -> object:
+        """Wrap a plain JavaObject as ResourceMismatchViolation (no JNI type check)."""
+        cdef JNIEnv* env = get_env()
+        cdef ResourceMismatchViolation inst = ResourceMismatchViolation.__new__(ResourceMismatchViolation)
+        cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
+        inst._adopt_global(env, global_ref)
+        return inst
+
+
+__javaclass__ = "android/os/strictmode/DiskReadViolation"  # android.os.strictmode.DiskReadViolation
+
+cdef jclass _cls_DiskReadViolation = NULL
+
+cdef int _ensure_ids_DiskReadViolation(JNIEnv* env) except -1:
+    global _cls_DiskReadViolation
+    if _cls_DiskReadViolation != NULL:
+        return 0
+    _cls_DiskReadViolation = find_class_global(env, b"android/os/strictmode/DiskReadViolation")
+    return 0
+
+cdef class DiskReadViolation(JavaObject):
+    """android.os.strictmode.DiskReadViolation"""
+
+    def __init__(self, *args, **kwargs):
+        raise TypeError("DiskReadViolation has no public constructor")
+
+    @staticmethod
+    def from_java_object(obj) -> object:
+        """Wrap a plain JavaObject as DiskReadViolation (no JNI type check)."""
+        cdef JNIEnv* env = get_env()
+        cdef DiskReadViolation inst = DiskReadViolation.__new__(DiskReadViolation)
+        cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
+        inst._adopt_global(env, global_ref)
+        return inst
+
+
+__javaclass__ = "android/os/strictmode/UntaggedSocketViolation"  # android.os.strictmode.UntaggedSocketViolation
+
+cdef jclass _cls_UntaggedSocketViolation = NULL
+
+cdef int _ensure_ids_UntaggedSocketViolation(JNIEnv* env) except -1:
+    global _cls_UntaggedSocketViolation
+    if _cls_UntaggedSocketViolation != NULL:
+        return 0
+    _cls_UntaggedSocketViolation = find_class_global(env, b"android/os/strictmode/UntaggedSocketViolation")
+    return 0
+
+cdef class UntaggedSocketViolation(JavaObject):
+    """android.os.strictmode.UntaggedSocketViolation"""
+
+    def __init__(self, *args, **kwargs):
+        raise TypeError("UntaggedSocketViolation has no public constructor")
+
+    @staticmethod
+    def from_java_object(obj) -> object:
+        """Wrap a plain JavaObject as UntaggedSocketViolation (no JNI type check)."""
+        cdef JNIEnv* env = get_env()
+        cdef UntaggedSocketViolation inst = UntaggedSocketViolation.__new__(UntaggedSocketViolation)
+        cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
+        inst._adopt_global(env, global_ref)
+        return inst
+
+
+__javaclass__ = "android/os/strictmode/IntentReceiverLeakedViolation"  # android.os.strictmode.IntentReceiverLeakedViolation
+
+cdef jclass _cls_IntentReceiverLeakedViolation = NULL
+
+cdef int _ensure_ids_IntentReceiverLeakedViolation(JNIEnv* env) except -1:
+    global _cls_IntentReceiverLeakedViolation
+    if _cls_IntentReceiverLeakedViolation != NULL:
+        return 0
+    _cls_IntentReceiverLeakedViolation = find_class_global(env, b"android/os/strictmode/IntentReceiverLeakedViolation")
+    return 0
+
+cdef class IntentReceiverLeakedViolation(JavaObject):
+    """android.os.strictmode.IntentReceiverLeakedViolation"""
+
+    def __init__(self, *args, **kwargs):
+        raise TypeError("IntentReceiverLeakedViolation has no public constructor")
+
+    @staticmethod
+    def from_java_object(obj) -> object:
+        """Wrap a plain JavaObject as IntentReceiverLeakedViolation (no JNI type check)."""
+        cdef JNIEnv* env = get_env()
+        cdef IntentReceiverLeakedViolation inst = IntentReceiverLeakedViolation.__new__(IntentReceiverLeakedViolation)
+        cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
+        inst._adopt_global(env, global_ref)
+        return inst
+
+
+__javaclass__ = "android/os/strictmode/FileUriExposedViolation"  # android.os.strictmode.FileUriExposedViolation
+
+cdef jclass _cls_FileUriExposedViolation = NULL
+
+cdef int _ensure_ids_FileUriExposedViolation(JNIEnv* env) except -1:
+    global _cls_FileUriExposedViolation
+    if _cls_FileUriExposedViolation != NULL:
+        return 0
+    _cls_FileUriExposedViolation = find_class_global(env, b"android/os/strictmode/FileUriExposedViolation")
+    return 0
+
+cdef class FileUriExposedViolation(JavaObject):
+    """android.os.strictmode.FileUriExposedViolation"""
+
+    def __init__(self, *args, **kwargs):
+        raise TypeError("FileUriExposedViolation has no public constructor")
+
+    @staticmethod
+    def from_java_object(obj) -> object:
+        """Wrap a plain JavaObject as FileUriExposedViolation (no JNI type check)."""
+        cdef JNIEnv* env = get_env()
+        cdef FileUriExposedViolation inst = FileUriExposedViolation.__new__(FileUriExposedViolation)
+        cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
+        inst._adopt_global(env, global_ref)
+        return inst
+
+
+__javaclass__ = "android/os/strictmode/ContentUriWithoutPermissionViolation"  # android.os.strictmode.ContentUriWithoutPermissionViolation
+
+cdef jclass _cls_ContentUriWithoutPermissionViolation = NULL
+
+cdef int _ensure_ids_ContentUriWithoutPermissionViolation(JNIEnv* env) except -1:
+    global _cls_ContentUriWithoutPermissionViolation
+    if _cls_ContentUriWithoutPermissionViolation != NULL:
+        return 0
+    _cls_ContentUriWithoutPermissionViolation = find_class_global(env, b"android/os/strictmode/ContentUriWithoutPermissionViolation")
+    return 0
+
+cdef class ContentUriWithoutPermissionViolation(JavaObject):
+    """android.os.strictmode.ContentUriWithoutPermissionViolation"""
+
+    def __init__(self, *args, **kwargs):
+        raise TypeError("ContentUriWithoutPermissionViolation has no public constructor")
+
+    @staticmethod
+    def from_java_object(obj) -> object:
+        """Wrap a plain JavaObject as ContentUriWithoutPermissionViolation (no JNI type check)."""
+        cdef JNIEnv* env = get_env()
+        cdef ContentUriWithoutPermissionViolation inst = ContentUriWithoutPermissionViolation.__new__(ContentUriWithoutPermissionViolation)
+        cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
+        inst._adopt_global(env, global_ref)
+        return inst
+
+
+__javaclass__ = "android/os/strictmode/ExplicitGcViolation"  # android.os.strictmode.ExplicitGcViolation
+
+cdef jclass _cls_ExplicitGcViolation = NULL
+
+cdef int _ensure_ids_ExplicitGcViolation(JNIEnv* env) except -1:
+    global _cls_ExplicitGcViolation
+    if _cls_ExplicitGcViolation != NULL:
+        return 0
+    _cls_ExplicitGcViolation = find_class_global(env, b"android/os/strictmode/ExplicitGcViolation")
+    return 0
+
+cdef class ExplicitGcViolation(JavaObject):
+    """android.os.strictmode.ExplicitGcViolation"""
+
+    def __init__(self, *args, **kwargs):
+        raise TypeError("ExplicitGcViolation has no public constructor")
+
+    @staticmethod
+    def from_java_object(obj) -> object:
+        """Wrap a plain JavaObject as ExplicitGcViolation (no JNI type check)."""
+        cdef JNIEnv* env = get_env()
+        cdef ExplicitGcViolation inst = ExplicitGcViolation.__new__(ExplicitGcViolation)
+        cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
+        inst._adopt_global(env, global_ref)
+        return inst
+
+
+__javaclass__ = "android/os/strictmode/SqliteObjectLeakedViolation"  # android.os.strictmode.SqliteObjectLeakedViolation
+
+cdef jclass _cls_SqliteObjectLeakedViolation = NULL
+
+cdef int _ensure_ids_SqliteObjectLeakedViolation(JNIEnv* env) except -1:
+    global _cls_SqliteObjectLeakedViolation
+    if _cls_SqliteObjectLeakedViolation != NULL:
+        return 0
+    _cls_SqliteObjectLeakedViolation = find_class_global(env, b"android/os/strictmode/SqliteObjectLeakedViolation")
+    return 0
+
+cdef class SqliteObjectLeakedViolation(JavaObject):
+    """android.os.strictmode.SqliteObjectLeakedViolation"""
+
+    def __init__(self, *args, **kwargs):
+        raise TypeError("SqliteObjectLeakedViolation has no public constructor")
+
+    @staticmethod
+    def from_java_object(obj) -> object:
+        """Wrap a plain JavaObject as SqliteObjectLeakedViolation (no JNI type check)."""
+        cdef JNIEnv* env = get_env()
+        cdef SqliteObjectLeakedViolation inst = SqliteObjectLeakedViolation.__new__(SqliteObjectLeakedViolation)
+        cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
+        inst._adopt_global(env, global_ref)
+        return inst
+
+
+__javaclass__ = "android/os/strictmode/CustomViolation"  # android.os.strictmode.CustomViolation
+
+cdef jclass _cls_CustomViolation = NULL
+
+cdef int _ensure_ids_CustomViolation(JNIEnv* env) except -1:
+    global _cls_CustomViolation
+    if _cls_CustomViolation != NULL:
+        return 0
+    _cls_CustomViolation = find_class_global(env, b"android/os/strictmode/CustomViolation")
+    return 0
+
+cdef class CustomViolation(JavaObject):
+    """android.os.strictmode.CustomViolation"""
+
+    def __init__(self, *args, **kwargs):
+        raise TypeError("CustomViolation has no public constructor")
+
+    @staticmethod
+    def from_java_object(obj) -> object:
+        """Wrap a plain JavaObject as CustomViolation (no JNI type check)."""
+        cdef JNIEnv* env = get_env()
+        cdef CustomViolation inst = CustomViolation.__new__(CustomViolation)
+        cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
+        inst._adopt_global(env, global_ref)
+        return inst
+
+
+__javaclass__ = "android/os/strictmode/DiskWriteViolation"  # android.os.strictmode.DiskWriteViolation
+
+cdef jclass _cls_DiskWriteViolation = NULL
+
+cdef int _ensure_ids_DiskWriteViolation(JNIEnv* env) except -1:
+    global _cls_DiskWriteViolation
+    if _cls_DiskWriteViolation != NULL:
+        return 0
+    _cls_DiskWriteViolation = find_class_global(env, b"android/os/strictmode/DiskWriteViolation")
+    return 0
+
+cdef class DiskWriteViolation(JavaObject):
+    """android.os.strictmode.DiskWriteViolation"""
+
+    def __init__(self, *args, **kwargs):
+        raise TypeError("DiskWriteViolation has no public constructor")
+
+    @staticmethod
+    def from_java_object(obj) -> object:
+        """Wrap a plain JavaObject as DiskWriteViolation (no JNI type check)."""
+        cdef JNIEnv* env = get_env()
+        cdef DiskWriteViolation inst = DiskWriteViolation.__new__(DiskWriteViolation)
+        cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
+        inst._adopt_global(env, global_ref)
+        return inst
+
+
+__javaclass__ = "android/os/strictmode/ImplicitDirectBootViolation"  # android.os.strictmode.ImplicitDirectBootViolation
+
+cdef jclass _cls_ImplicitDirectBootViolation = NULL
+
+cdef int _ensure_ids_ImplicitDirectBootViolation(JNIEnv* env) except -1:
+    global _cls_ImplicitDirectBootViolation
+    if _cls_ImplicitDirectBootViolation != NULL:
+        return 0
+    _cls_ImplicitDirectBootViolation = find_class_global(env, b"android/os/strictmode/ImplicitDirectBootViolation")
+    return 0
+
+cdef class ImplicitDirectBootViolation(JavaObject):
+    """android.os.strictmode.ImplicitDirectBootViolation"""
+
+    def __init__(self, *args, **kwargs):
+        raise TypeError("ImplicitDirectBootViolation has no public constructor")
+
+    @staticmethod
+    def from_java_object(obj) -> object:
+        """Wrap a plain JavaObject as ImplicitDirectBootViolation (no JNI type check)."""
+        cdef JNIEnv* env = get_env()
+        cdef ImplicitDirectBootViolation inst = ImplicitDirectBootViolation.__new__(ImplicitDirectBootViolation)
+        cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
+        inst._adopt_global(env, global_ref)
+        return inst
+
+
+__javaclass__ = "android/os/strictmode/NonSdkApiUsedViolation"  # android.os.strictmode.NonSdkApiUsedViolation
+
+cdef jclass _cls_NonSdkApiUsedViolation = NULL
+
+cdef int _ensure_ids_NonSdkApiUsedViolation(JNIEnv* env) except -1:
+    global _cls_NonSdkApiUsedViolation
+    if _cls_NonSdkApiUsedViolation != NULL:
+        return 0
+    _cls_NonSdkApiUsedViolation = find_class_global(env, b"android/os/strictmode/NonSdkApiUsedViolation")
+    return 0
+
+cdef class NonSdkApiUsedViolation(JavaObject):
+    """android.os.strictmode.NonSdkApiUsedViolation"""
+
+    def __init__(self, *args, **kwargs):
+        raise TypeError("NonSdkApiUsedViolation has no public constructor")
+
+    @staticmethod
+    def from_java_object(obj) -> object:
+        """Wrap a plain JavaObject as NonSdkApiUsedViolation (no JNI type check)."""
+        cdef JNIEnv* env = get_env()
+        cdef NonSdkApiUsedViolation inst = NonSdkApiUsedViolation.__new__(NonSdkApiUsedViolation)
+        cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
+        inst._adopt_global(env, global_ref)
+        return inst
+
+
+__javaclass__ = "android/os/strictmode/IncorrectContextUseViolation"  # android.os.strictmode.IncorrectContextUseViolation
+
+cdef jclass _cls_IncorrectContextUseViolation = NULL
+cdef jmethodID _ctor_IncorrectContextUseViolation_0 = NULL
+
+cdef int _ensure_ids_IncorrectContextUseViolation(JNIEnv* env) except -1:
+    global _cls_IncorrectContextUseViolation, _ctor_IncorrectContextUseViolation_0
+    if _cls_IncorrectContextUseViolation != NULL:
+        return 0
+    _cls_IncorrectContextUseViolation = find_class_global(env, b"android/os/strictmode/IncorrectContextUseViolation")
+    _ctor_IncorrectContextUseViolation_0 = get_method_id(env, _cls_IncorrectContextUseViolation, b"<init>", b"(Ljava/lang/String;Ljava/lang/Throwable;)V")
+    return 0
+
+cdef class IncorrectContextUseViolation(JavaObject):
+    """android.os.strictmode.IncorrectContextUseViolation"""
+
+    def __init__(self, p0, p1):
+        cdef JNIEnv* env = get_env()
+        _ensure_ids_IncorrectContextUseViolation(env)
+        cdef jvalue _args[2]
+        cdef jstring _arg0_s = NULL
+        _arg0_s = j_str(env, p0) if p0 is not None else <jstring>NULL
+        _args[0].l = <jobject>_arg0_s
+        _args[1].l = (<JavaObject?>p1)._handle if p1 is not None else <jobject>NULL
+        cdef jobject _ret = jnicore_NewObjectA(env, _cls_IncorrectContextUseViolation, _ctor_IncorrectContextUseViolation_0, _args)
+        if _arg0_s != NULL:
+            jnicore_DeleteLocalRef(env, <jobject>_arg0_s)
         check_jni_exc(env)
         self._adopt_local(env, _ret)
 
-    cdef jobject _detectAll(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectAll_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectAll(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectAll(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectAll_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectAll_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectAll_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectAll_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectActivityLeaks(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectActivityLeaks_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectActivityLeaks(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectActivityLeaks(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectActivityLeaks_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectActivityLeaks_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectActivityLeaks_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectActivityLeaks_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectBlockedBackgroundActivityLaunch(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectBlockedBackgroundActivityLaunch_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectBlockedBackgroundActivityLaunch(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectBlockedBackgroundActivityLaunch(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectBlockedBackgroundActivityLaunch_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectBlockedBackgroundActivityLaunch_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectBlockedBackgroundActivityLaunch_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectBlockedBackgroundActivityLaunch_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectCleartextNetwork(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectCleartextNetwork_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectCleartextNetwork(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectCleartextNetwork(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectCleartextNetwork_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectCleartextNetwork_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectCleartextNetwork_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectCleartextNetwork_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectContentUriWithoutPermission(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectContentUriWithoutPermission_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectContentUriWithoutPermission(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectContentUriWithoutPermission(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectContentUriWithoutPermission_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectContentUriWithoutPermission_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectContentUriWithoutPermission_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectContentUriWithoutPermission_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectCredentialProtectedWhileLocked(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectCredentialProtectedWhileLocked_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectCredentialProtectedWhileLocked(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectCredentialProtectedWhileLocked(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectCredentialProtectedWhileLocked_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectCredentialProtectedWhileLocked_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectCredentialProtectedWhileLocked_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectCredentialProtectedWhileLocked_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectFileUriExposure(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectFileUriExposure_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectFileUriExposure(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectFileUriExposure(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectFileUriExposure_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectFileUriExposure_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectFileUriExposure_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectFileUriExposure_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectImplicitDirectBoot(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectImplicitDirectBoot_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectImplicitDirectBoot(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectImplicitDirectBoot(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectImplicitDirectBoot_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectImplicitDirectBoot_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectImplicitDirectBoot_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectImplicitDirectBoot_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectIncorrectContextUse(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectIncorrectContextUse_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectIncorrectContextUse(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectIncorrectContextUse(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectIncorrectContextUse_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectIncorrectContextUse_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectIncorrectContextUse_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectIncorrectContextUse_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectLeakedClosableObjects(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectLeakedClosableObjects_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectLeakedClosableObjects(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectLeakedClosableObjects(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectLeakedClosableObjects_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectLeakedClosableObjects_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectLeakedClosableObjects_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectLeakedClosableObjects_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectLeakedRegistrationObjects(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectLeakedRegistrationObjects_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectLeakedRegistrationObjects(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectLeakedRegistrationObjects(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectLeakedRegistrationObjects_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectLeakedRegistrationObjects_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectLeakedRegistrationObjects_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectLeakedRegistrationObjects_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectLeakedSqlLiteObjects(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectLeakedSqlLiteObjects_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectLeakedSqlLiteObjects(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectLeakedSqlLiteObjects(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectLeakedSqlLiteObjects_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectLeakedSqlLiteObjects_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectLeakedSqlLiteObjects_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectLeakedSqlLiteObjects_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectNonSdkApiUsage(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectNonSdkApiUsage_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectNonSdkApiUsage(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectNonSdkApiUsage(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectNonSdkApiUsage_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectNonSdkApiUsage_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectNonSdkApiUsage_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectNonSdkApiUsage_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectUnsafeIntentLaunch(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectUnsafeIntentLaunch_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectUnsafeIntentLaunch(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectUnsafeIntentLaunch(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectUnsafeIntentLaunch_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectUnsafeIntentLaunch_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectUnsafeIntentLaunch_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectUnsafeIntentLaunch_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectUntaggedSockets(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectUntaggedSockets_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectUntaggedSockets(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectUntaggedSockets(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectUntaggedSockets_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_detectUntaggedSockets_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectUntaggedSockets_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectUntaggedSockets_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _ignoreBlockedBackgroundActivityLaunch(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_ignoreBlockedBackgroundActivityLaunch_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def ignoreBlockedBackgroundActivityLaunch(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._ignoreBlockedBackgroundActivityLaunch(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _ignoreBlockedBackgroundActivityLaunch_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_ignoreBlockedBackgroundActivityLaunch_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def ignoreBlockedBackgroundActivityLaunch_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._ignoreBlockedBackgroundActivityLaunch_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _penaltyDeath(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_penaltyDeath_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def penaltyDeath(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._penaltyDeath(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _penaltyDeath_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_penaltyDeath_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def penaltyDeath_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._penaltyDeath_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _penaltyDeathOnCleartextNetwork(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_penaltyDeathOnCleartextNetwork_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def penaltyDeathOnCleartextNetwork(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._penaltyDeathOnCleartextNetwork(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _penaltyDeathOnCleartextNetwork_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_penaltyDeathOnCleartextNetwork_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def penaltyDeathOnCleartextNetwork_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._penaltyDeathOnCleartextNetwork_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _penaltyDeathOnFileUriExposure(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_penaltyDeathOnFileUriExposure_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def penaltyDeathOnFileUriExposure(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._penaltyDeathOnFileUriExposure(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _penaltyDeathOnFileUriExposure_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_penaltyDeathOnFileUriExposure_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def penaltyDeathOnFileUriExposure_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._penaltyDeathOnFileUriExposure_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _penaltyDropBox(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_penaltyDropBox_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def penaltyDropBox(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._penaltyDropBox(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _penaltyDropBox_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_penaltyDropBox_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def penaltyDropBox_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._penaltyDropBox_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _penaltyListener(self, JNIEnv* env, jobject p0, jobject p1) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[2]
-        _args[0].l = p0
-        _args[1].l = p1
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_penaltyListener_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def penaltyListener(self, p0, p1) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        cdef jobject _h1 = (<JavaObject?>p1)._handle if p1 is not None else <jobject>NULL
-        _ret = self._penaltyListener(env, _h0, _h1)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _penaltyListener_0(self, JNIEnv* env, jobject p0, jobject p1) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[2]
-        _args[0].l = p0
-        _args[1].l = p1
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_penaltyListener_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def penaltyListener_0(self, p0, p1) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        cdef jobject _h1 = (<JavaObject?>p1)._handle if p1 is not None else <jobject>NULL
-        _ret = self._penaltyListener_0(env, _h0, _h1)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _penaltyLog(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_penaltyLog_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def penaltyLog(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._penaltyLog(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _penaltyLog_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_penaltyLog_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def penaltyLog_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._penaltyLog_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _permitNonSdkApiUsage(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_permitNonSdkApiUsage_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def permitNonSdkApiUsage(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._permitNonSdkApiUsage(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _permitNonSdkApiUsage_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_permitNonSdkApiUsage_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def permitNonSdkApiUsage_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._permitNonSdkApiUsage_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _permitUnsafeIntentLaunch(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_permitUnsafeIntentLaunch_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def permitUnsafeIntentLaunch(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._permitUnsafeIntentLaunch(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _permitUnsafeIntentLaunch_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_permitUnsafeIntentLaunch_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def permitUnsafeIntentLaunch_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._permitUnsafeIntentLaunch_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _setClassInstanceLimit(self, JNIEnv* env, jobject p0, jint p1) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[2]
-        _args[0].l = p0
-        _args[1].i = p1
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_setClassInstanceLimit_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def setClassInstanceLimit(self, p0, p1) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        cdef jint _c1 = py_to_jint(p1)
-        _ret = self._setClassInstanceLimit(env, _h0, _c1)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _setClassInstanceLimit_0(self, JNIEnv* env, jobject p0, jint p1) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[2]
-        _args[0].l = p0
-        _args[1].i = p1
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_setClassInstanceLimit_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def setClassInstanceLimit_0(self, p0, p1) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        cdef jint _c1 = py_to_jint(p1)
-        _ret = self._setClassInstanceLimit_0(env, _h0, _c1)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _build(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_build_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def build(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._build(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _build_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_VmPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_VmPolicy_Builder_build_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def build_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._build_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
     @staticmethod
     def from_java_object(obj) -> object:
-        """Wrap a plain JavaObject as VmPolicy_Builder (no JNI type check)."""
+        """Wrap a plain JavaObject as IncorrectContextUseViolation (no JNI type check)."""
         cdef JNIEnv* env = get_env()
-        cdef VmPolicy_Builder inst = VmPolicy_Builder.__new__(VmPolicy_Builder)
+        cdef IncorrectContextUseViolation inst = IncorrectContextUseViolation.__new__(IncorrectContextUseViolation)
         cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
         inst._adopt_global(env, global_ref)
         return inst
 
-# Nested class: android.os.StrictMode$ThreadPolicy  (JNI: android/os/StrictMode$ThreadPolicy)
-cdef jclass _cls_ThreadPolicy = NULL
-cdef jmethodID _m_ThreadPolicy_toString_0 = NULL
-cdef jfieldID _sf_ThreadPolicy_LAX = NULL
 
-cdef int _ensure_ids_ThreadPolicy(JNIEnv* env) except -1:
-    global _cls_ThreadPolicy, _m_ThreadPolicy_toString_0, _sf_ThreadPolicy_LAX
-    if _cls_ThreadPolicy != NULL:
+__javaclass__ = "android/os/strictmode/UnbufferedIoViolation"  # android.os.strictmode.UnbufferedIoViolation
+
+cdef jclass _cls_UnbufferedIoViolation = NULL
+
+cdef int _ensure_ids_UnbufferedIoViolation(JNIEnv* env) except -1:
+    global _cls_UnbufferedIoViolation
+    if _cls_UnbufferedIoViolation != NULL:
         return 0
-    _cls_ThreadPolicy = find_class_global(env, b"android/os/StrictMode$ThreadPolicy")
-    _m_ThreadPolicy_toString_0 = get_method_id(env, _cls_ThreadPolicy, b"toString", b"()Ljava/lang/String;")
-    _sf_ThreadPolicy_LAX = get_static_field_id(env, _cls_ThreadPolicy, b"LAX", b"Landroid/os/StrictMode$ThreadPolicy;")
+    _cls_UnbufferedIoViolation = find_class_global(env, b"android/os/strictmode/UnbufferedIoViolation")
     return 0
 
-cdef class ThreadPolicy(JavaObject):
-    """android.os.StrictMode$ThreadPolicy"""
+cdef class UnbufferedIoViolation(JavaObject):
+    """android.os.strictmode.UnbufferedIoViolation"""
 
     def __init__(self, *args, **kwargs):
-        raise TypeError("ThreadPolicy has no public constructor")
-
-    # Static field ThreadPolicy.LAX
-    @staticmethod
-    def LAX() -> object:
-        cdef JNIEnv* env = get_env()
-        _ensure_ids_ThreadPolicy(env)
-        cdef jobject _ret = jnicore_GetStaticObjectField(env, _cls_ThreadPolicy, _sf_ThreadPolicy_LAX)
-        check_jni_exc(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jstring _toString(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jstring _ret = <jstring>jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_toString_0, _args)
-        check_jni_exc(env)
-        return <jstring>_ret
-
-    def toString(self) -> str:
-        cdef JNIEnv* env = get_env()
-        cdef jstring _ret = NULL
-        _ret = self._toString(env)
-        return py_str(env, _ret)
-
-    cdef jstring _toString_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jstring _ret = <jstring>jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_toString_0, _args)
-        check_jni_exc(env)
-        return <jstring>_ret
-
-    def toString_0(self) -> str:
-        cdef JNIEnv* env = get_env()
-        cdef jstring _ret = NULL
-        _ret = self._toString_0(env)
-        return py_str(env, _ret)
+        raise TypeError("UnbufferedIoViolation has no public constructor")
 
     @staticmethod
     def from_java_object(obj) -> object:
-        """Wrap a plain JavaObject as ThreadPolicy (no JNI type check)."""
+        """Wrap a plain JavaObject as UnbufferedIoViolation (no JNI type check)."""
         cdef JNIEnv* env = get_env()
-        cdef ThreadPolicy inst = ThreadPolicy.__new__(ThreadPolicy)
+        cdef UnbufferedIoViolation inst = UnbufferedIoViolation.__new__(UnbufferedIoViolation)
         cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
         inst._adopt_global(env, global_ref)
         return inst
 
-# Nested class: android.os.StrictMode$ThreadPolicy$Builder  (JNI: android/os/StrictMode$ThreadPolicy$Builder)
-cdef jclass _cls_ThreadPolicy_Builder = NULL
-cdef jmethodID _ctor_ThreadPolicy_Builder_0 = NULL
-cdef jmethodID _ctor_ThreadPolicy_Builder_1 = NULL
-cdef jmethodID _m_ThreadPolicy_Builder_detectAll_0 = NULL
-cdef jmethodID _m_ThreadPolicy_Builder_penaltyDeath_0 = NULL
-cdef jmethodID _m_ThreadPolicy_Builder_penaltyDropBox_0 = NULL
-cdef jmethodID _m_ThreadPolicy_Builder_penaltyListener_0 = NULL
-cdef jmethodID _m_ThreadPolicy_Builder_penaltyLog_0 = NULL
-cdef jmethodID _m_ThreadPolicy_Builder_penaltyFlashScreen_0 = NULL
-cdef jmethodID _m_ThreadPolicy_Builder_permitUnbufferedIo_0 = NULL
-cdef jmethodID _m_ThreadPolicy_Builder_penaltyDialog_0 = NULL
-cdef jmethodID _m_ThreadPolicy_Builder_permitExplicitGc_0 = NULL
-cdef jmethodID _m_ThreadPolicy_Builder_permitDiskWrites_0 = NULL
-cdef jmethodID _m_ThreadPolicy_Builder_permitDiskReads_0 = NULL
-cdef jmethodID _m_ThreadPolicy_Builder_permitAll_0 = NULL
-cdef jmethodID _m_ThreadPolicy_Builder_detectNetwork_0 = NULL
-cdef jmethodID _m_ThreadPolicy_Builder_permitNetwork_0 = NULL
-cdef jmethodID _m_ThreadPolicy_Builder_detectDiskReads_0 = NULL
-cdef jmethodID _m_ThreadPolicy_Builder_detectUnbufferedIo_0 = NULL
-cdef jmethodID _m_ThreadPolicy_Builder_detectDiskWrites_0 = NULL
-cdef jmethodID _m_ThreadPolicy_Builder_detectExplicitGc_0 = NULL
-cdef jmethodID _m_ThreadPolicy_Builder_detectCustomSlowCalls_0 = NULL
-cdef jmethodID _m_ThreadPolicy_Builder_detectResourceMismatches_0 = NULL
-cdef jmethodID _m_ThreadPolicy_Builder_penaltyDeathOnNetwork_0 = NULL
-cdef jmethodID _m_ThreadPolicy_Builder_permitCustomSlowCalls_0 = NULL
-cdef jmethodID _m_ThreadPolicy_Builder_permitResourceMismatches_0 = NULL
-cdef jmethodID _m_ThreadPolicy_Builder_build_0 = NULL
 
-cdef int _ensure_ids_ThreadPolicy_Builder(JNIEnv* env) except -1:
-    global _cls_ThreadPolicy_Builder, _ctor_ThreadPolicy_Builder_0, _ctor_ThreadPolicy_Builder_1, _m_ThreadPolicy_Builder_detectAll_0, _m_ThreadPolicy_Builder_penaltyDeath_0, _m_ThreadPolicy_Builder_penaltyDropBox_0, _m_ThreadPolicy_Builder_penaltyListener_0, _m_ThreadPolicy_Builder_penaltyLog_0, _m_ThreadPolicy_Builder_penaltyFlashScreen_0, _m_ThreadPolicy_Builder_permitUnbufferedIo_0, _m_ThreadPolicy_Builder_penaltyDialog_0, _m_ThreadPolicy_Builder_permitExplicitGc_0, _m_ThreadPolicy_Builder_permitDiskWrites_0, _m_ThreadPolicy_Builder_permitDiskReads_0, _m_ThreadPolicy_Builder_permitAll_0, _m_ThreadPolicy_Builder_detectNetwork_0, _m_ThreadPolicy_Builder_permitNetwork_0, _m_ThreadPolicy_Builder_detectDiskReads_0, _m_ThreadPolicy_Builder_detectUnbufferedIo_0, _m_ThreadPolicy_Builder_detectDiskWrites_0, _m_ThreadPolicy_Builder_detectExplicitGc_0, _m_ThreadPolicy_Builder_detectCustomSlowCalls_0, _m_ThreadPolicy_Builder_detectResourceMismatches_0, _m_ThreadPolicy_Builder_penaltyDeathOnNetwork_0, _m_ThreadPolicy_Builder_permitCustomSlowCalls_0, _m_ThreadPolicy_Builder_permitResourceMismatches_0, _m_ThreadPolicy_Builder_build_0
-    if _cls_ThreadPolicy_Builder != NULL:
+__javaclass__ = "android/os/strictmode/CredentialProtectedWhileLockedViolation"  # android.os.strictmode.CredentialProtectedWhileLockedViolation
+
+cdef jclass _cls_CredentialProtectedWhileLockedViolation = NULL
+
+cdef int _ensure_ids_CredentialProtectedWhileLockedViolation(JNIEnv* env) except -1:
+    global _cls_CredentialProtectedWhileLockedViolation
+    if _cls_CredentialProtectedWhileLockedViolation != NULL:
         return 0
-    _cls_ThreadPolicy_Builder = find_class_global(env, b"android/os/StrictMode$ThreadPolicy$Builder")
-    _ctor_ThreadPolicy_Builder_0 = get_method_id(env, _cls_ThreadPolicy_Builder, b"<init>", b"()V")
-    _ctor_ThreadPolicy_Builder_1 = get_method_id(env, _cls_ThreadPolicy_Builder, b"<init>", b"(Landroid/os/StrictMode$ThreadPolicy;)V")
-    _m_ThreadPolicy_Builder_detectAll_0 = get_method_id(env, _cls_ThreadPolicy_Builder, b"detectAll", b"()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-    _m_ThreadPolicy_Builder_penaltyDeath_0 = get_method_id(env, _cls_ThreadPolicy_Builder, b"penaltyDeath", b"()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-    _m_ThreadPolicy_Builder_penaltyDropBox_0 = get_method_id(env, _cls_ThreadPolicy_Builder, b"penaltyDropBox", b"()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-    _m_ThreadPolicy_Builder_penaltyListener_0 = get_method_id(env, _cls_ThreadPolicy_Builder, b"penaltyListener", b"(Ljava/util/concurrent/Executor;Landroid/os/StrictMode$OnThreadViolationListener;)Landroid/os/StrictMode$ThreadPolicy$Builder;")
-    _m_ThreadPolicy_Builder_penaltyLog_0 = get_method_id(env, _cls_ThreadPolicy_Builder, b"penaltyLog", b"()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-    _m_ThreadPolicy_Builder_penaltyFlashScreen_0 = get_method_id(env, _cls_ThreadPolicy_Builder, b"penaltyFlashScreen", b"()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-    _m_ThreadPolicy_Builder_permitUnbufferedIo_0 = get_method_id(env, _cls_ThreadPolicy_Builder, b"permitUnbufferedIo", b"()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-    _m_ThreadPolicy_Builder_penaltyDialog_0 = get_method_id(env, _cls_ThreadPolicy_Builder, b"penaltyDialog", b"()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-    _m_ThreadPolicy_Builder_permitExplicitGc_0 = get_method_id(env, _cls_ThreadPolicy_Builder, b"permitExplicitGc", b"()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-    _m_ThreadPolicy_Builder_permitDiskWrites_0 = get_method_id(env, _cls_ThreadPolicy_Builder, b"permitDiskWrites", b"()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-    _m_ThreadPolicy_Builder_permitDiskReads_0 = get_method_id(env, _cls_ThreadPolicy_Builder, b"permitDiskReads", b"()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-    _m_ThreadPolicy_Builder_permitAll_0 = get_method_id(env, _cls_ThreadPolicy_Builder, b"permitAll", b"()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-    _m_ThreadPolicy_Builder_detectNetwork_0 = get_method_id(env, _cls_ThreadPolicy_Builder, b"detectNetwork", b"()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-    _m_ThreadPolicy_Builder_permitNetwork_0 = get_method_id(env, _cls_ThreadPolicy_Builder, b"permitNetwork", b"()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-    _m_ThreadPolicy_Builder_detectDiskReads_0 = get_method_id(env, _cls_ThreadPolicy_Builder, b"detectDiskReads", b"()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-    _m_ThreadPolicy_Builder_detectUnbufferedIo_0 = get_method_id(env, _cls_ThreadPolicy_Builder, b"detectUnbufferedIo", b"()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-    _m_ThreadPolicy_Builder_detectDiskWrites_0 = get_method_id(env, _cls_ThreadPolicy_Builder, b"detectDiskWrites", b"()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-    _m_ThreadPolicy_Builder_detectExplicitGc_0 = get_method_id(env, _cls_ThreadPolicy_Builder, b"detectExplicitGc", b"()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-    _m_ThreadPolicy_Builder_detectCustomSlowCalls_0 = get_method_id(env, _cls_ThreadPolicy_Builder, b"detectCustomSlowCalls", b"()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-    _m_ThreadPolicy_Builder_detectResourceMismatches_0 = get_method_id(env, _cls_ThreadPolicy_Builder, b"detectResourceMismatches", b"()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-    _m_ThreadPolicy_Builder_penaltyDeathOnNetwork_0 = get_method_id(env, _cls_ThreadPolicy_Builder, b"penaltyDeathOnNetwork", b"()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-    _m_ThreadPolicy_Builder_permitCustomSlowCalls_0 = get_method_id(env, _cls_ThreadPolicy_Builder, b"permitCustomSlowCalls", b"()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-    _m_ThreadPolicy_Builder_permitResourceMismatches_0 = get_method_id(env, _cls_ThreadPolicy_Builder, b"permitResourceMismatches", b"()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-    _m_ThreadPolicy_Builder_build_0 = get_method_id(env, _cls_ThreadPolicy_Builder, b"build", b"()Landroid/os/StrictMode$ThreadPolicy;")
+    _cls_CredentialProtectedWhileLockedViolation = find_class_global(env, b"android/os/strictmode/CredentialProtectedWhileLockedViolation")
     return 0
 
-cdef class ThreadPolicy_Builder(JavaObject):
-    """android.os.StrictMode$ThreadPolicy$Builder"""
+cdef class CredentialProtectedWhileLockedViolation(JavaObject):
+    """android.os.strictmode.CredentialProtectedWhileLockedViolation"""
 
-    # TODO: 2 constructor overloads; only the first is wired.
-    #   overload[0] = ()V
-    #   overload[1] = (Landroid/os/StrictMode$ThreadPolicy;)V
-    def __init__(self, ):
+    def __init__(self, *args, **kwargs):
+        raise TypeError("CredentialProtectedWhileLockedViolation has no public constructor")
+
+    @staticmethod
+    def from_java_object(obj) -> object:
+        """Wrap a plain JavaObject as CredentialProtectedWhileLockedViolation (no JNI type check)."""
         cdef JNIEnv* env = get_env()
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # unused; arrayless calls disallowed in Cython
-        cdef jobject _ret = jnicore_NewObjectA(env, _cls_ThreadPolicy_Builder, _ctor_ThreadPolicy_Builder_0, _args)
+        cdef CredentialProtectedWhileLockedViolation inst = CredentialProtectedWhileLockedViolation.__new__(CredentialProtectedWhileLockedViolation)
+        cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
+        inst._adopt_global(env, global_ref)
+        return inst
+
+
+__javaclass__ = "android/os/strictmode/UnsafeIntentLaunchViolation"  # android.os.strictmode.UnsafeIntentLaunchViolation
+
+cdef jclass _cls_UnsafeIntentLaunchViolation = NULL
+cdef jmethodID _ctor_UnsafeIntentLaunchViolation_0 = NULL
+cdef jmethodID _m_UnsafeIntentLaunchViolation_getIntent_0 = NULL
+
+cdef int _ensure_ids_UnsafeIntentLaunchViolation(JNIEnv* env) except -1:
+    global _cls_UnsafeIntentLaunchViolation, _ctor_UnsafeIntentLaunchViolation_0, _m_UnsafeIntentLaunchViolation_getIntent_0
+    if _cls_UnsafeIntentLaunchViolation != NULL:
+        return 0
+    _cls_UnsafeIntentLaunchViolation = find_class_global(env, b"android/os/strictmode/UnsafeIntentLaunchViolation")
+    _ctor_UnsafeIntentLaunchViolation_0 = get_method_id(env, _cls_UnsafeIntentLaunchViolation, b"<init>", b"(Landroid/content/Intent;)V")
+    _m_UnsafeIntentLaunchViolation_getIntent_0 = get_method_id(env, _cls_UnsafeIntentLaunchViolation, b"getIntent", b"()Landroid/content/Intent;")
+    return 0
+
+cdef class UnsafeIntentLaunchViolation(JavaObject):
+    """android.os.strictmode.UnsafeIntentLaunchViolation"""
+
+    def __init__(self, p0):
+        cdef JNIEnv* env = get_env()
+        _ensure_ids_UnsafeIntentLaunchViolation(env)
+        cdef jvalue _args[1]
+        _args[0].l = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
+        cdef jobject _ret = jnicore_NewObjectA(env, _cls_UnsafeIntentLaunchViolation, _ctor_UnsafeIntentLaunchViolation_0, _args)
         check_jni_exc(env)
         self._adopt_local(env, _ret)
 
-    cdef jobject _detectAll(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
+    cdef jobject _getIntent(self, JNIEnv* env) except? NULL:
+        _ensure_ids_UnsafeIntentLaunchViolation(env)
         cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_detectAll_0, _args)
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_UnsafeIntentLaunchViolation_getIntent_0, _args)
         check_jni_exc(env)
         return _ret
 
-    def detectAll(self) -> object:
+    def getIntent(self) -> object:
         cdef JNIEnv* env = get_env()
         cdef jobject _ret = NULL
-        _ret = self._detectAll(env)
+        _ret = self._getIntent(env)
         if _ret == NULL:
             return None
         cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
         _wrapped._adopt_local(env, _ret)
         return _wrapped
 
-    cdef jobject _detectAll_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
+    cdef jobject _getIntent_0(self, JNIEnv* env) except? NULL:
+        _ensure_ids_UnsafeIntentLaunchViolation(env)
         cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_detectAll_0, _args)
+        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_UnsafeIntentLaunchViolation_getIntent_0, _args)
         check_jni_exc(env)
         return _ret
 
-    def detectAll_0(self) -> object:
+    def getIntent_0(self) -> object:
         cdef JNIEnv* env = get_env()
         cdef jobject _ret = NULL
-        _ret = self._detectAll_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _penaltyDeath(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_penaltyDeath_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def penaltyDeath(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._penaltyDeath(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _penaltyDeath_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_penaltyDeath_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def penaltyDeath_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._penaltyDeath_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _penaltyDropBox(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_penaltyDropBox_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def penaltyDropBox(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._penaltyDropBox(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _penaltyDropBox_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_penaltyDropBox_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def penaltyDropBox_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._penaltyDropBox_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _penaltyListener(self, JNIEnv* env, jobject p0, jobject p1) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[2]
-        _args[0].l = p0
-        _args[1].l = p1
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_penaltyListener_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def penaltyListener(self, p0, p1) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        cdef jobject _h1 = (<JavaObject?>p1)._handle if p1 is not None else <jobject>NULL
-        _ret = self._penaltyListener(env, _h0, _h1)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _penaltyListener_0(self, JNIEnv* env, jobject p0, jobject p1) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[2]
-        _args[0].l = p0
-        _args[1].l = p1
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_penaltyListener_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def penaltyListener_0(self, p0, p1) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        cdef jobject _h1 = (<JavaObject?>p1)._handle if p1 is not None else <jobject>NULL
-        _ret = self._penaltyListener_0(env, _h0, _h1)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _penaltyLog(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_penaltyLog_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def penaltyLog(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._penaltyLog(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _penaltyLog_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_penaltyLog_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def penaltyLog_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._penaltyLog_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _penaltyFlashScreen(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_penaltyFlashScreen_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def penaltyFlashScreen(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._penaltyFlashScreen(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _penaltyFlashScreen_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_penaltyFlashScreen_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def penaltyFlashScreen_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._penaltyFlashScreen_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _permitUnbufferedIo(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_permitUnbufferedIo_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def permitUnbufferedIo(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._permitUnbufferedIo(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _permitUnbufferedIo_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_permitUnbufferedIo_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def permitUnbufferedIo_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._permitUnbufferedIo_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _penaltyDialog(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_penaltyDialog_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def penaltyDialog(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._penaltyDialog(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _penaltyDialog_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_penaltyDialog_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def penaltyDialog_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._penaltyDialog_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _permitExplicitGc(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_permitExplicitGc_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def permitExplicitGc(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._permitExplicitGc(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _permitExplicitGc_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_permitExplicitGc_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def permitExplicitGc_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._permitExplicitGc_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _permitDiskWrites(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_permitDiskWrites_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def permitDiskWrites(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._permitDiskWrites(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _permitDiskWrites_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_permitDiskWrites_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def permitDiskWrites_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._permitDiskWrites_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _permitDiskReads(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_permitDiskReads_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def permitDiskReads(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._permitDiskReads(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _permitDiskReads_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_permitDiskReads_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def permitDiskReads_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._permitDiskReads_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _permitAll(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_permitAll_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def permitAll(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._permitAll(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _permitAll_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_permitAll_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def permitAll_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._permitAll_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectNetwork(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_detectNetwork_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectNetwork(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectNetwork(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectNetwork_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_detectNetwork_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectNetwork_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectNetwork_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _permitNetwork(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_permitNetwork_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def permitNetwork(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._permitNetwork(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _permitNetwork_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_permitNetwork_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def permitNetwork_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._permitNetwork_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectDiskReads(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_detectDiskReads_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectDiskReads(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectDiskReads(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectDiskReads_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_detectDiskReads_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectDiskReads_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectDiskReads_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectUnbufferedIo(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_detectUnbufferedIo_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectUnbufferedIo(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectUnbufferedIo(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectUnbufferedIo_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_detectUnbufferedIo_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectUnbufferedIo_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectUnbufferedIo_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectDiskWrites(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_detectDiskWrites_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectDiskWrites(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectDiskWrites(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectDiskWrites_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_detectDiskWrites_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectDiskWrites_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectDiskWrites_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectExplicitGc(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_detectExplicitGc_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectExplicitGc(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectExplicitGc(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectExplicitGc_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_detectExplicitGc_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectExplicitGc_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectExplicitGc_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectCustomSlowCalls(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_detectCustomSlowCalls_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectCustomSlowCalls(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectCustomSlowCalls(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectCustomSlowCalls_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_detectCustomSlowCalls_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectCustomSlowCalls_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectCustomSlowCalls_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectResourceMismatches(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_detectResourceMismatches_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectResourceMismatches(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectResourceMismatches(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _detectResourceMismatches_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_detectResourceMismatches_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def detectResourceMismatches_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._detectResourceMismatches_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _penaltyDeathOnNetwork(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_penaltyDeathOnNetwork_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def penaltyDeathOnNetwork(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._penaltyDeathOnNetwork(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _penaltyDeathOnNetwork_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_penaltyDeathOnNetwork_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def penaltyDeathOnNetwork_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._penaltyDeathOnNetwork_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _permitCustomSlowCalls(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_permitCustomSlowCalls_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def permitCustomSlowCalls(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._permitCustomSlowCalls(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _permitCustomSlowCalls_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_permitCustomSlowCalls_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def permitCustomSlowCalls_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._permitCustomSlowCalls_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _permitResourceMismatches(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_permitResourceMismatches_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def permitResourceMismatches(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._permitResourceMismatches(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _permitResourceMismatches_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_permitResourceMismatches_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def permitResourceMismatches_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._permitResourceMismatches_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _build(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_build_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def build(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._build(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _build_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_ThreadPolicy_Builder(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_ThreadPolicy_Builder_build_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def build_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._build_0(env)
+        _ret = self._getIntent_0(env)
         if _ret == NULL:
             return None
         cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
@@ -2383,111 +818,63 @@ cdef class ThreadPolicy_Builder(JavaObject):
 
     @staticmethod
     def from_java_object(obj) -> object:
-        """Wrap a plain JavaObject as ThreadPolicy_Builder (no JNI type check)."""
+        """Wrap a plain JavaObject as UnsafeIntentLaunchViolation (no JNI type check)."""
         cdef JNIEnv* env = get_env()
-        cdef ThreadPolicy_Builder inst = ThreadPolicy_Builder.__new__(ThreadPolicy_Builder)
+        cdef UnsafeIntentLaunchViolation inst = UnsafeIntentLaunchViolation.__new__(UnsafeIntentLaunchViolation)
         cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
         inst._adopt_global(env, global_ref)
         return inst
 
-# Nested class: android.os.StrictMode$OnVmViolationListener  (JNI: android/os/StrictMode$OnVmViolationListener)
-cdef jclass _cls_OnVmViolationListener = NULL
-cdef jmethodID _m_OnVmViolationListener_onVmViolation_0 = NULL
 
-cdef int _ensure_ids_OnVmViolationListener(JNIEnv* env) except -1:
-    global _cls_OnVmViolationListener, _m_OnVmViolationListener_onVmViolation_0
-    if _cls_OnVmViolationListener != NULL:
+__javaclass__ = "android/os/strictmode/LeakedClosableViolation"  # android.os.strictmode.LeakedClosableViolation
+
+cdef jclass _cls_LeakedClosableViolation = NULL
+
+cdef int _ensure_ids_LeakedClosableViolation(JNIEnv* env) except -1:
+    global _cls_LeakedClosableViolation
+    if _cls_LeakedClosableViolation != NULL:
         return 0
-    _cls_OnVmViolationListener = find_class_global(env, b"android/os/StrictMode$OnVmViolationListener")
-    _m_OnVmViolationListener_onVmViolation_0 = get_method_id(env, _cls_OnVmViolationListener, b"onVmViolation", b"(Landroid/os/strictmode/Violation;)V")
+    _cls_LeakedClosableViolation = find_class_global(env, b"android/os/strictmode/LeakedClosableViolation")
     return 0
 
-# NOTE: OnVmViolationListener is a Java interface. Cython subclassing of
-# Java interfaces (PythonJavaClass equivalent) is not yet implemented.
-# This class is provided to access the interface's static members only.
-cdef class OnVmViolationListener(JavaObject):
-    """android.os.StrictMode$OnVmViolationListener"""
+cdef class LeakedClosableViolation(JavaObject):
+    """android.os.strictmode.LeakedClosableViolation"""
 
-    cdef void _onVmViolation(self, JNIEnv* env, jobject p0) except *:
-        _ensure_ids_OnVmViolationListener(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        jnicore_CallVoidMethodA(env, self._handle, _m_OnVmViolationListener_onVmViolation_0, _args)
-        check_jni_exc(env)
-
-    def onVmViolation(self, p0) -> None:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        self._onVmViolation(env, _h0)
-
-    cdef void _onVmViolation_0(self, JNIEnv* env, jobject p0) except *:
-        _ensure_ids_OnVmViolationListener(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        jnicore_CallVoidMethodA(env, self._handle, _m_OnVmViolationListener_onVmViolation_0, _args)
-        check_jni_exc(env)
-
-    def onVmViolation_0(self, p0) -> None:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        self._onVmViolation_0(env, _h0)
+    def __init__(self, *args, **kwargs):
+        raise TypeError("LeakedClosableViolation has no public constructor")
 
     @staticmethod
     def from_java_object(obj) -> object:
-        """Wrap a plain JavaObject as OnVmViolationListener (no JNI type check)."""
+        """Wrap a plain JavaObject as LeakedClosableViolation (no JNI type check)."""
         cdef JNIEnv* env = get_env()
-        cdef OnVmViolationListener inst = OnVmViolationListener.__new__(OnVmViolationListener)
+        cdef LeakedClosableViolation inst = LeakedClosableViolation.__new__(LeakedClosableViolation)
         cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
         inst._adopt_global(env, global_ref)
         return inst
 
-# Nested class: android.os.StrictMode$OnThreadViolationListener  (JNI: android/os/StrictMode$OnThreadViolationListener)
-cdef jclass _cls_OnThreadViolationListener = NULL
-cdef jmethodID _m_OnThreadViolationListener_onThreadViolation_0 = NULL
 
-cdef int _ensure_ids_OnThreadViolationListener(JNIEnv* env) except -1:
-    global _cls_OnThreadViolationListener, _m_OnThreadViolationListener_onThreadViolation_0
-    if _cls_OnThreadViolationListener != NULL:
+__javaclass__ = "android/os/strictmode/WebViewMethodCalledOnWrongThreadViolation"  # android.os.strictmode.WebViewMethodCalledOnWrongThreadViolation
+
+cdef jclass _cls_WebViewMethodCalledOnWrongThreadViolation = NULL
+
+cdef int _ensure_ids_WebViewMethodCalledOnWrongThreadViolation(JNIEnv* env) except -1:
+    global _cls_WebViewMethodCalledOnWrongThreadViolation
+    if _cls_WebViewMethodCalledOnWrongThreadViolation != NULL:
         return 0
-    _cls_OnThreadViolationListener = find_class_global(env, b"android/os/StrictMode$OnThreadViolationListener")
-    _m_OnThreadViolationListener_onThreadViolation_0 = get_method_id(env, _cls_OnThreadViolationListener, b"onThreadViolation", b"(Landroid/os/strictmode/Violation;)V")
+    _cls_WebViewMethodCalledOnWrongThreadViolation = find_class_global(env, b"android/os/strictmode/WebViewMethodCalledOnWrongThreadViolation")
     return 0
 
-# NOTE: OnThreadViolationListener is a Java interface. Cython subclassing of
-# Java interfaces (PythonJavaClass equivalent) is not yet implemented.
-# This class is provided to access the interface's static members only.
-cdef class OnThreadViolationListener(JavaObject):
-    """android.os.StrictMode$OnThreadViolationListener"""
+cdef class WebViewMethodCalledOnWrongThreadViolation(JavaObject):
+    """android.os.strictmode.WebViewMethodCalledOnWrongThreadViolation"""
 
-    cdef void _onThreadViolation(self, JNIEnv* env, jobject p0) except *:
-        _ensure_ids_OnThreadViolationListener(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        jnicore_CallVoidMethodA(env, self._handle, _m_OnThreadViolationListener_onThreadViolation_0, _args)
-        check_jni_exc(env)
-
-    def onThreadViolation(self, p0) -> None:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        self._onThreadViolation(env, _h0)
-
-    cdef void _onThreadViolation_0(self, JNIEnv* env, jobject p0) except *:
-        _ensure_ids_OnThreadViolationListener(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        jnicore_CallVoidMethodA(env, self._handle, _m_OnThreadViolationListener_onThreadViolation_0, _args)
-        check_jni_exc(env)
-
-    def onThreadViolation_0(self, p0) -> None:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        self._onThreadViolation_0(env, _h0)
+    def __init__(self, *args, **kwargs):
+        raise TypeError("WebViewMethodCalledOnWrongThreadViolation has no public constructor")
 
     @staticmethod
     def from_java_object(obj) -> object:
-        """Wrap a plain JavaObject as OnThreadViolationListener (no JNI type check)."""
+        """Wrap a plain JavaObject as WebViewMethodCalledOnWrongThreadViolation (no JNI type check)."""
         cdef JNIEnv* env = get_env()
-        cdef OnThreadViolationListener inst = OnThreadViolationListener.__new__(OnThreadViolationListener)
+        cdef WebViewMethodCalledOnWrongThreadViolation inst = WebViewMethodCalledOnWrongThreadViolation.__new__(WebViewMethodCalledOnWrongThreadViolation)
         cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
         inst._adopt_global(env, global_ref)
         return inst

@@ -1,9 +1,0 @@
-from typing import Any, ClassVar, overload
-
-class PBEKey:
-    serialVersionUID: ClassVar[int]
-    serialVersionUID: ClassVar[int]
-    serialVersionUID: ClassVar[int]
-    def getPassword(self) -> Any: ...
-    def getIterationCount(self) -> int: ...
-    def getSalt(self) -> Any: ...

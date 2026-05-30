@@ -1,9 +1,0 @@
-from typing import Any, ClassVar, overload
-from java.security.Permission import Permission
-
-class AccessControlException:
-    @overload
-    def __init__(self, p0: str) -> None: ...
-    @overload
-    def __init__(self, p0: str, p1: Permission) -> None: ...
-    def getPermission(self) -> Permission: ...

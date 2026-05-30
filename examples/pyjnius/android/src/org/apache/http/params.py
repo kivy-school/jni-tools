@@ -1,0 +1,52 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+class HttpParams(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "org/apache/http/params/HttpParams"
+    getBooleanParameter = JavaMethod("(Ljava/lang/String;Z)Z")
+    getDoubleParameter = JavaMethod("(Ljava/lang/String;D)D")
+    getIntParameter = JavaMethod("(Ljava/lang/String;I)I")
+    getLongParameter = JavaMethod("(Ljava/lang/String;J)J")
+    isParameterFalse = JavaMethod("(Ljava/lang/String;)Z")
+    isParameterTrue = JavaMethod("(Ljava/lang/String;)Z")
+    removeParameter = JavaMethod("(Ljava/lang/String;)Z")
+    setBooleanParameter = JavaMethod("(Ljava/lang/String;Z)Lorg/apache/http/params/HttpParams;")
+    setDoubleParameter = JavaMethod("(Ljava/lang/String;D)Lorg/apache/http/params/HttpParams;")
+    setIntParameter = JavaMethod("(Ljava/lang/String;I)Lorg/apache/http/params/HttpParams;")
+    setLongParameter = JavaMethod("(Ljava/lang/String;J)Lorg/apache/http/params/HttpParams;")
+    setParameter = JavaMethod("(Ljava/lang/String;Ljava/lang/Object;)Lorg/apache/http/params/HttpParams;")
+    getParameter = JavaMethod("(Ljava/lang/String;)Ljava/lang/Object;")
+    copy = JavaMethod("()Lorg/apache/http/params/HttpParams;")
+
+class HttpConnectionParams(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "org/apache/http/params/HttpConnectionParams"
+    CONNECTION_TIMEOUT = JavaStaticField("Ljava/lang/String;")
+    MAX_HEADER_COUNT = JavaStaticField("Ljava/lang/String;")
+    MAX_LINE_LENGTH = JavaStaticField("Ljava/lang/String;")
+    SOCKET_BUFFER_SIZE = JavaStaticField("Ljava/lang/String;")
+    SO_LINGER = JavaStaticField("Ljava/lang/String;")
+    SO_TIMEOUT = JavaStaticField("Ljava/lang/String;")
+    STALE_CONNECTION_CHECK = JavaStaticField("Ljava/lang/String;")
+    TCP_NODELAY = JavaStaticField("Ljava/lang/String;")
+    getSocketBufferSize = JavaStaticMethod("(Lorg/apache/http/params/HttpParams;)I")
+    isStaleCheckingEnabled = JavaStaticMethod("(Lorg/apache/http/params/HttpParams;)Z")
+    setConnectionTimeout = JavaStaticMethod("(Lorg/apache/http/params/HttpParams;I)V")
+    getConnectionTimeout = JavaStaticMethod("(Lorg/apache/http/params/HttpParams;)I")
+    getLinger = JavaStaticMethod("(Lorg/apache/http/params/HttpParams;)I")
+    setLinger = JavaStaticMethod("(Lorg/apache/http/params/HttpParams;I)V")
+    setSocketBufferSize = JavaStaticMethod("(Lorg/apache/http/params/HttpParams;I)V")
+    setStaleCheckingEnabled = JavaStaticMethod("(Lorg/apache/http/params/HttpParams;Z)V")
+    setSoTimeout = JavaStaticMethod("(Lorg/apache/http/params/HttpParams;I)V")
+    getSoTimeout = JavaStaticMethod("(Lorg/apache/http/params/HttpParams;)I")
+    setTcpNoDelay = JavaStaticMethod("(Lorg/apache/http/params/HttpParams;Z)V")
+    getTcpNoDelay = JavaStaticMethod("(Lorg/apache/http/params/HttpParams;)Z")
+
+class CoreConnectionPNames(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "org/apache/http/params/CoreConnectionPNames"
+    CONNECTION_TIMEOUT = JavaStaticField("Ljava/lang/String;")
+    MAX_HEADER_COUNT = JavaStaticField("Ljava/lang/String;")
+    MAX_LINE_LENGTH = JavaStaticField("Ljava/lang/String;")
+    SOCKET_BUFFER_SIZE = JavaStaticField("Ljava/lang/String;")
+    SO_LINGER = JavaStaticField("Ljava/lang/String;")
+    SO_TIMEOUT = JavaStaticField("Ljava/lang/String;")
+    STALE_CONNECTION_CHECK = JavaStaticField("Ljava/lang/String;")
+    TCP_NODELAY = JavaStaticField("Ljava/lang/String;")

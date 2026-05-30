@@ -1,0 +1,91 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+class AutofillManager(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/view/autofill/AutofillManager"
+    EXTRA_ASSIST_STRUCTURE = JavaStaticField("Ljava/lang/String;")
+    EXTRA_AUTHENTICATION_RESULT = JavaStaticField("Ljava/lang/String;")
+    EXTRA_AUTHENTICATION_RESULT_EPHEMERAL_DATASET = JavaStaticField("Ljava/lang/String;")
+    EXTRA_CLIENT_STATE = JavaStaticField("Ljava/lang/String;")
+    EXTRA_INLINE_SUGGESTIONS_REQUEST = JavaStaticField("Ljava/lang/String;")
+    registerCallback = JavaMethod("(Landroid/view/autofill/AutofillManager$AutofillCallback;)V")
+    unregisterCallback = JavaMethod("(Landroid/view/autofill/AutofillManager$AutofillCallback;)V")
+    getUserData = JavaMethod("()Landroid/service/autofill/UserData;")
+    setUserData = JavaMethod("(Landroid/service/autofill/UserData;)V")
+    disableAutofillServices = JavaMethod("()V")
+    getAutofillServiceComponentName = JavaMethod("()Landroid/content/ComponentName;")
+    getAvailableFieldClassificationAlgorithms = JavaMethod("()Ljava/util/List;")
+    getDefaultFieldClassificationAlgorithm = JavaMethod("()Ljava/lang/String;")
+    getNextAutofillId = JavaMethod("()Landroid/view/autofill/AutofillId;")
+    getUserDataId = JavaMethod("()Ljava/lang/String;")
+    hasEnabledAutofillServices = JavaMethod("()Z")
+    isAutofillSupported = JavaMethod("()Z")
+    isFieldClassificationEnabled = JavaMethod("()Z")
+    notifyValueChanged = JavaMultipleMethod([("(Landroid/view/View;ILandroid/view/autofill/AutofillValue;)V", False, False), ("(Landroid/view/View;)V", False, False)])
+    notifyViewClicked = JavaMultipleMethod([("(Landroid/view/View;I)V", False, False), ("(Landroid/view/View;)V", False, False)])
+    notifyViewEntered = JavaMultipleMethod([("(Landroid/view/View;ILandroid/graphics/Rect;)V", False, False), ("(Landroid/view/View;)V", False, False)])
+    notifyViewExited = JavaMultipleMethod([("(Landroid/view/View;I)V", False, False), ("(Landroid/view/View;)V", False, False)])
+    notifyViewVisibilityChanged = JavaMultipleMethod([("(Landroid/view/View;IZ)V", False, False), ("(Landroid/view/View;Z)V", False, False)])
+    notifyVirtualViewsReady = JavaMethod("(Landroid/view/View;Landroid/util/SparseArray;)V")
+    requestAutofill = JavaMultipleMethod([("(Landroid/view/View;)V", False, False), ("(Landroid/view/View;ILandroid/graphics/Rect;)V", False, False)])
+    showAutofillDialog = JavaMultipleMethod([("(Landroid/view/View;I)Z", False, False), ("(Landroid/view/View;)Z", False, False)])
+    commit = JavaMethod("()V")
+    isEnabled = JavaMethod("()Z")
+    cancel = JavaMethod("()V")
+
+    class AutofillCallback(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/view/autofill/AutofillManager$AutofillCallback"
+        __javaconstructor__ = [("()V", False)]
+        EVENT_INPUT_HIDDEN = JavaStaticField("I")
+        EVENT_INPUT_SHOWN = JavaStaticField("I")
+        EVENT_INPUT_UNAVAILABLE = JavaStaticField("I")
+        onAutofillEvent = JavaMultipleMethod([("(Landroid/view/View;I)V", False, False), ("(Landroid/view/View;II)V", False, False)])
+
+class VirtualViewFillInfo(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/view/autofill/VirtualViewFillInfo"
+    getAutofillHints = JavaMethod("()[Ljava/lang/String;")
+
+    class Builder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/view/autofill/VirtualViewFillInfo$Builder"
+        __javaconstructor__ = [("()V", False)]
+        setAutofillHints = JavaMethod("([Ljava/lang/String;)Landroid/view/autofill/VirtualViewFillInfo$Builder;", varargs=True)
+        build = JavaMethod("()Landroid/view/autofill/VirtualViewFillInfo;")
+
+class AutofillId(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/view/autofill/AutofillId"
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getSessionId = JavaMethod("()I")
+    isInAutofillSession = JavaMethod("()Z")
+    getAutofillVirtualId = JavaMethod("()I")
+    create = JavaStaticMethod("(Landroid/view/View;I)Landroid/view/autofill/AutofillId;")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    isVirtual = JavaMethod("()Z")
+    getViewId = JavaMethod("()I")
+    describeContents = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+
+class AutofillValue(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/view/autofill/AutofillValue"
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    isList = JavaMethod("()Z")
+    isText = JavaMethod("()Z")
+    forDate = JavaStaticMethod("(J)Landroid/view/autofill/AutofillValue;")
+    forList = JavaStaticMethod("(I)Landroid/view/autofill/AutofillValue;")
+    forText = JavaStaticMethod("(Ljava/lang/CharSequence;)Landroid/view/autofill/AutofillValue;")
+    forToggle = JavaStaticMethod("(Z)Landroid/view/autofill/AutofillValue;")
+    getDateValue = JavaMethod("()J")
+    isDate = JavaMethod("()Z")
+    getListValue = JavaMethod("()I")
+    getTextValue = JavaMethod("()Ljava/lang/CharSequence;")
+    getToggleValue = JavaMethod("()Z")
+    isToggle = JavaMethod("()Z")
+    describeContents = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")

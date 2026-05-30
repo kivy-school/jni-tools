@@ -1,0 +1,59 @@
+from typing import Any, ClassVar, overload
+from org.xml.sax.ContentHandler import ContentHandler
+
+class RootElement:
+    @overload
+    def __init__(self, p0: str) -> None: ...
+    @overload
+    def __init__(self, p0: str, p1: str) -> None: ...
+    def getContentHandler(self) -> ContentHandler: ...
+
+from typing import Any, ClassVar, overload
+
+class TextElementListener:
+    ...
+
+from typing import Any, ClassVar, overload
+from android.sax.ElementListener import ElementListener
+from android.sax.EndElementListener import EndElementListener
+from android.sax.EndTextElementListener import EndTextElementListener
+from android.sax.StartElementListener import StartElementListener
+from android.sax.TextElementListener import TextElementListener
+
+class Element:
+    @overload
+    def requireChild(self, p0: str) -> "Element": ...
+    @overload
+    def requireChild(self, p0: str, p1: str) -> "Element": ...
+    def setElementListener(self, p0: ElementListener) -> None: ...
+    def setEndElementListener(self, p0: EndElementListener) -> None: ...
+    def setEndTextElementListener(self, p0: EndTextElementListener) -> None: ...
+    def setStartElementListener(self, p0: StartElementListener) -> None: ...
+    def setTextElementListener(self, p0: TextElementListener) -> None: ...
+    def toString(self) -> str: ...
+    @overload
+    def getChild(self, p0: str, p1: str) -> "Element": ...
+    @overload
+    def getChild(self, p0: str) -> "Element": ...
+
+from typing import Any, ClassVar, overload
+from org.xml.sax.Attributes import Attributes
+
+class StartElementListener:
+    def start(self, p0: Attributes) -> None: ...
+
+from typing import Any, ClassVar, overload
+
+class EndElementListener:
+    def end(self) -> None: ...
+
+from typing import Any, ClassVar, overload
+
+class EndTextElementListener:
+    def end(self, p0: str) -> None: ...
+
+from typing import Any, ClassVar, overload
+
+class ElementListener:
+    ...
+

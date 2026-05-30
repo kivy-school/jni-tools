@@ -1,0 +1,935 @@
+from typing import Any, ClassVar, overload
+from java.io.FileDescriptor import FileDescriptor
+
+class StructPollfd:
+    events: int
+    fd: FileDescriptor
+    revents: int
+    userData: Any
+    def __init__(self) -> None: ...
+    def toString(self) -> str: ...
+
+from typing import Any, ClassVar, overload
+from java.net.SocketAddress import SocketAddress
+
+class StructMsghdr:
+    msg_control: Any
+    msg_flags: int
+    msg_iov: Any
+    msg_name: SocketAddress
+    def __init__(self, p0: SocketAddress, p1: Any, p2: Any, p3: int) -> None: ...
+
+from typing import Any, ClassVar, overload
+from android.system.Int64Ref import Int64Ref
+from android.system.StructMsghdr import StructMsghdr
+from android.system.StructStat import StructStat
+from android.system.StructStatVfs import StructStatVfs
+from android.system.StructTimeval import StructTimeval
+from android.system.StructUtsname import StructUtsname
+from java.io.FileDescriptor import FileDescriptor
+from java.net.InetAddress import InetAddress
+from java.net.InetSocketAddress import InetSocketAddress
+from java.net.SocketAddress import SocketAddress
+from java.nio.ByteBuffer import ByteBuffer
+
+class Os:
+    @staticmethod
+    def kill(p0: int, p1: int) -> None: ...
+    @staticmethod
+    def mmap(p0: int, p1: int, p2: int, p3: int, p4: FileDescriptor, p5: int) -> int: ...
+    @staticmethod
+    def msync(p0: int, p1: int, p2: int) -> None: ...
+    @staticmethod
+    def execv(p0: str, p1: Any) -> None: ...
+    @staticmethod
+    def munmap(p0: int, p1: int) -> None: ...
+    @staticmethod
+    def execve(p0: str, p1: Any, p2: Any) -> None: ...
+    @staticmethod
+    def gettid() -> int: ...
+    @staticmethod
+    def lseek(p0: FileDescriptor, p1: int, p2: int) -> int: ...
+    @staticmethod
+    def mkfifo(p0: str, p1: int) -> None: ...
+    @staticmethod
+    def pipe() -> Any: ...
+    @staticmethod
+    def prctl(p0: int, p1: int, p2: int, p3: int, p4: int) -> int: ...
+    @staticmethod
+    def mlock(p0: int, p1: int) -> None: ...
+    @staticmethod
+    def getpid() -> int: ...
+    @staticmethod
+    def isatty(p0: FileDescriptor) -> bool: ...
+    @staticmethod
+    def dup2(p0: FileDescriptor, p1: int) -> FileDescriptor: ...
+    @staticmethod
+    def environ() -> Any: ...
+    @staticmethod
+    def fcntlInt(p0: FileDescriptor, p1: int, p2: int) -> int: ...
+    @staticmethod
+    def fdatasync(p0: FileDescriptor) -> None: ...
+    @staticmethod
+    def fstatvfs(p0: FileDescriptor) -> StructStatVfs: ...
+    @staticmethod
+    def ftruncate(p0: FileDescriptor, p1: int) -> None: ...
+    @staticmethod
+    def gai_strerror(p0: int) -> str: ...
+    @staticmethod
+    def getpeername(p0: FileDescriptor) -> SocketAddress: ...
+    @staticmethod
+    def getppid() -> int: ...
+    @staticmethod
+    def getsockname(p0: FileDescriptor) -> SocketAddress: ...
+    @staticmethod
+    def getsockoptTimeval(p0: FileDescriptor, p1: int, p2: int) -> StructTimeval: ...
+    @staticmethod
+    def getxattr(p0: str, p1: str) -> Any: ...
+    @staticmethod
+    def if_indextoname(p0: int) -> str: ...
+    @staticmethod
+    def if_nametoindex(p0: str) -> int: ...
+    @staticmethod
+    def inet_pton(p0: int, p1: str) -> InetAddress: ...
+    @staticmethod
+    def listxattr(p0: str) -> Any: ...
+    @staticmethod
+    def memfd_create(p0: str, p1: int) -> FileDescriptor: ...
+    @staticmethod
+    def mincore(p0: int, p1: int, p2: Any) -> None: ...
+    @staticmethod
+    def munlock(p0: int, p1: int) -> None: ...
+    @staticmethod
+    def posix_fallocate(p0: FileDescriptor, p1: int, p2: int) -> None: ...
+    @overload
+    @staticmethod
+    def pread(p0: FileDescriptor, p1: ByteBuffer, p2: int) -> int: ...
+    @overload
+    @staticmethod
+    def pread(p0: FileDescriptor, p1: Any, p2: int, p3: int, p4: int) -> int: ...
+    @overload
+    @staticmethod
+    def pwrite(p0: FileDescriptor, p1: Any, p2: int, p3: int, p4: int) -> int: ...
+    @overload
+    @staticmethod
+    def pwrite(p0: FileDescriptor, p1: ByteBuffer, p2: int) -> int: ...
+    @staticmethod
+    def readv(p0: FileDescriptor, p1: Any, p2: Any, p3: Any) -> int: ...
+    @overload
+    @staticmethod
+    def recvfrom(p0: FileDescriptor, p1: ByteBuffer, p2: int, p3: InetSocketAddress) -> int: ...
+    @overload
+    @staticmethod
+    def recvfrom(p0: FileDescriptor, p1: Any, p2: int, p3: int, p4: int, p5: InetSocketAddress) -> int: ...
+    @staticmethod
+    def recvmsg(p0: FileDescriptor, p1: StructMsghdr, p2: int) -> int: ...
+    @staticmethod
+    def removexattr(p0: str, p1: str) -> None: ...
+    @staticmethod
+    def sendfile(p0: FileDescriptor, p1: FileDescriptor, p2: Int64Ref, p3: int) -> int: ...
+    @staticmethod
+    def sendmsg(p0: FileDescriptor, p1: StructMsghdr, p2: int) -> int: ...
+    @overload
+    @staticmethod
+    def sendto(p0: FileDescriptor, p1: Any, p2: int, p3: int, p4: int, p5: SocketAddress) -> int: ...
+    @overload
+    @staticmethod
+    def sendto(p0: FileDescriptor, p1: ByteBuffer, p2: int, p3: InetAddress, p4: int) -> int: ...
+    @overload
+    @staticmethod
+    def sendto(p0: FileDescriptor, p1: Any, p2: int, p3: int, p4: int, p5: InetAddress, p6: int) -> int: ...
+    @staticmethod
+    def setegid(p0: int) -> None: ...
+    @staticmethod
+    def setenv(p0: str, p1: str, p2: bool) -> None: ...
+    @staticmethod
+    def seteuid(p0: int) -> None: ...
+    @staticmethod
+    def setgid(p0: int) -> None: ...
+    @staticmethod
+    def setsid() -> int: ...
+    @staticmethod
+    def setsockoptInt(p0: FileDescriptor, p1: int, p2: int, p3: int) -> None: ...
+    @staticmethod
+    def setsockoptTimeval(p0: FileDescriptor, p1: int, p2: int, p3: StructTimeval) -> None: ...
+    @staticmethod
+    def setuid(p0: int) -> None: ...
+    @staticmethod
+    def setxattr(p0: str, p1: str, p2: Any, p3: int) -> None: ...
+    @staticmethod
+    def socketpair(p0: int, p1: int, p2: int, p3: FileDescriptor, p4: FileDescriptor) -> None: ...
+    @staticmethod
+    def strsignal(p0: int) -> str: ...
+    @staticmethod
+    def sysconf(p0: int) -> int: ...
+    @staticmethod
+    def tcdrain(p0: FileDescriptor) -> None: ...
+    @staticmethod
+    def tcsendbreak(p0: FileDescriptor, p1: int) -> None: ...
+    @staticmethod
+    def umask(p0: int) -> int: ...
+    @staticmethod
+    def uname() -> StructUtsname: ...
+    @staticmethod
+    def unsetenv(p0: str) -> None: ...
+    @staticmethod
+    def writev(p0: FileDescriptor, p1: Any, p2: Any, p3: Any) -> int: ...
+    @staticmethod
+    def poll(p0: Any, p1: int) -> int: ...
+    @staticmethod
+    def chown(p0: str, p1: int, p2: int) -> None: ...
+    @staticmethod
+    def fchown(p0: FileDescriptor, p1: int, p2: int) -> None: ...
+    @staticmethod
+    def fchmod(p0: FileDescriptor, p1: int) -> None: ...
+    @staticmethod
+    def chmod(p0: str, p1: int) -> None: ...
+    @staticmethod
+    def lchown(p0: str, p1: int, p2: int) -> None: ...
+    @staticmethod
+    def lstat(p0: str) -> StructStat: ...
+    @staticmethod
+    def fstat(p0: FileDescriptor) -> StructStat: ...
+    @staticmethod
+    def statvfs(p0: str) -> StructStatVfs: ...
+    @staticmethod
+    def strerror(p0: int) -> str: ...
+    @staticmethod
+    def remove(p0: str) -> None: ...
+    @staticmethod
+    def shutdown(p0: FileDescriptor, p1: int) -> None: ...
+    @overload
+    @staticmethod
+    def write(p0: FileDescriptor, p1: Any, p2: int, p3: int) -> int: ...
+    @overload
+    @staticmethod
+    def write(p0: FileDescriptor, p1: ByteBuffer) -> int: ...
+    @staticmethod
+    def getenv(p0: str) -> str: ...
+    @overload
+    @staticmethod
+    def read(p0: FileDescriptor, p1: Any, p2: int, p3: int) -> int: ...
+    @overload
+    @staticmethod
+    def read(p0: FileDescriptor, p1: ByteBuffer) -> int: ...
+    @overload
+    @staticmethod
+    def connect(p0: FileDescriptor, p1: InetAddress, p2: int) -> None: ...
+    @overload
+    @staticmethod
+    def connect(p0: FileDescriptor, p1: SocketAddress) -> None: ...
+    @staticmethod
+    def listen(p0: FileDescriptor, p1: int) -> None: ...
+    @staticmethod
+    def accept(p0: FileDescriptor, p1: InetSocketAddress) -> FileDescriptor: ...
+    @staticmethod
+    def access(p0: str, p1: int) -> bool: ...
+    @staticmethod
+    def close(p0: FileDescriptor) -> None: ...
+    @staticmethod
+    def open(p0: str, p1: int, p2: int) -> FileDescriptor: ...
+    @staticmethod
+    def stat(p0: str) -> StructStat: ...
+    @staticmethod
+    def getuid() -> int: ...
+    @staticmethod
+    def geteuid() -> int: ...
+    @staticmethod
+    def getgid() -> int: ...
+    @staticmethod
+    def getegid() -> int: ...
+    @staticmethod
+    def fsync(p0: FileDescriptor) -> None: ...
+    @staticmethod
+    def mkdir(p0: str, p1: int) -> None: ...
+    @staticmethod
+    def rename(p0: str, p1: str) -> None: ...
+    @staticmethod
+    def dup(p0: FileDescriptor) -> FileDescriptor: ...
+    @staticmethod
+    def symlink(p0: str, p1: str) -> None: ...
+    @staticmethod
+    def link(p0: str, p1: str) -> None: ...
+    @staticmethod
+    def readlink(p0: str) -> str: ...
+    @overload
+    @staticmethod
+    def bind(p0: FileDescriptor, p1: InetAddress, p2: int) -> None: ...
+    @overload
+    @staticmethod
+    def bind(p0: FileDescriptor, p1: SocketAddress) -> None: ...
+    @staticmethod
+    def socket(p0: int, p1: int, p2: int) -> FileDescriptor: ...
+
+from typing import Any, ClassVar, overload
+from java.lang.ref.Cleaner import Cleaner
+
+class SystemCleaner:
+    @staticmethod
+    def cleaner() -> Cleaner: ...
+
+from typing import Any, ClassVar, overload
+
+class StructTimeval:
+    tv_sec: int
+    tv_usec: int
+    @staticmethod
+    def fromMillis(p0: int) -> "StructTimeval": ...
+    def equals(self, p0: Any) -> bool: ...
+    def toString(self) -> str: ...
+    def hashCode(self) -> int: ...
+    def toMillis(self) -> int: ...
+
+from typing import Any, ClassVar, overload
+
+class Int64Ref:
+    value: int
+    def __init__(self, p0: int) -> None: ...
+    def toString(self) -> str: ...
+
+from typing import Any, ClassVar, overload
+
+class VmSocketAddress:
+    def __init__(self, p0: int, p1: int) -> None: ...
+    def getSvmCid(self) -> int: ...
+    def getSvmPort(self) -> int: ...
+
+from typing import Any, ClassVar, overload
+
+class StructStatVfs:
+    f_bavail: int
+    f_bfree: int
+    f_blocks: int
+    f_bsize: int
+    f_favail: int
+    f_ffree: int
+    f_files: int
+    f_flag: int
+    f_frsize: int
+    f_fsid: int
+    f_namemax: int
+    def __init__(self, p0: int, p1: int, p2: int, p3: int, p4: int, p5: int, p6: int, p7: int, p8: int, p9: int, p10: int) -> None: ...
+    def toString(self) -> str: ...
+
+from typing import Any, ClassVar, overload
+
+class StructUtsname:
+    machine: str
+    nodename: str
+    release: str
+    sysname: str
+    version: str
+    def __init__(self, p0: str, p1: str, p2: str, p3: str, p4: str) -> None: ...
+    def toString(self) -> str: ...
+
+from typing import Any, ClassVar, overload
+from java.io.IOException import IOException
+from java.lang.Throwable import Throwable
+from java.net.SocketException import SocketException
+
+class ErrnoException:
+    errno: int
+    @overload
+    def __init__(self, p0: str, p1: int) -> None: ...
+    @overload
+    def __init__(self, p0: str, p1: int, p2: Throwable) -> None: ...
+    def rethrowAsSocketException(self) -> SocketException: ...
+    def getMessage(self) -> str: ...
+    def rethrowAsIOException(self) -> IOException: ...
+
+from typing import Any, ClassVar, overload
+
+class StructCmsghdr:
+    cmsg_data: Any
+    cmsg_level: int
+    cmsg_type: int
+    @overload
+    def __init__(self, p0: int, p1: int, p2: Any) -> None: ...
+    @overload
+    def __init__(self, p0: int, p1: int, p2: int) -> None: ...
+
+from typing import Any, ClassVar, overload
+
+class OsConstants:
+    AF_INET: ClassVar[int]
+    AF_INET6: ClassVar[int]
+    AF_NETLINK: ClassVar[int]
+    AF_PACKET: ClassVar[int]
+    AF_UNIX: ClassVar[int]
+    AF_UNSPEC: ClassVar[int]
+    AF_VSOCK: ClassVar[int]
+    AI_ADDRCONFIG: ClassVar[int]
+    AI_ALL: ClassVar[int]
+    AI_CANONNAME: ClassVar[int]
+    AI_NUMERICHOST: ClassVar[int]
+    AI_NUMERICSERV: ClassVar[int]
+    AI_PASSIVE: ClassVar[int]
+    AI_V4MAPPED: ClassVar[int]
+    ARPHRD_ETHER: ClassVar[int]
+    CAP_AUDIT_CONTROL: ClassVar[int]
+    CAP_AUDIT_WRITE: ClassVar[int]
+    CAP_BLOCK_SUSPEND: ClassVar[int]
+    CAP_CHOWN: ClassVar[int]
+    CAP_DAC_OVERRIDE: ClassVar[int]
+    CAP_DAC_READ_SEARCH: ClassVar[int]
+    CAP_FOWNER: ClassVar[int]
+    CAP_FSETID: ClassVar[int]
+    CAP_IPC_LOCK: ClassVar[int]
+    CAP_IPC_OWNER: ClassVar[int]
+    CAP_KILL: ClassVar[int]
+    CAP_LAST_CAP: ClassVar[int]
+    CAP_LEASE: ClassVar[int]
+    CAP_LINUX_IMMUTABLE: ClassVar[int]
+    CAP_MAC_ADMIN: ClassVar[int]
+    CAP_MAC_OVERRIDE: ClassVar[int]
+    CAP_MKNOD: ClassVar[int]
+    CAP_NET_ADMIN: ClassVar[int]
+    CAP_NET_BIND_SERVICE: ClassVar[int]
+    CAP_NET_BROADCAST: ClassVar[int]
+    CAP_NET_RAW: ClassVar[int]
+    CAP_SETFCAP: ClassVar[int]
+    CAP_SETGID: ClassVar[int]
+    CAP_SETPCAP: ClassVar[int]
+    CAP_SETUID: ClassVar[int]
+    CAP_SYSLOG: ClassVar[int]
+    CAP_SYS_ADMIN: ClassVar[int]
+    CAP_SYS_BOOT: ClassVar[int]
+    CAP_SYS_CHROOT: ClassVar[int]
+    CAP_SYS_MODULE: ClassVar[int]
+    CAP_SYS_NICE: ClassVar[int]
+    CAP_SYS_PACCT: ClassVar[int]
+    CAP_SYS_PTRACE: ClassVar[int]
+    CAP_SYS_RAWIO: ClassVar[int]
+    CAP_SYS_RESOURCE: ClassVar[int]
+    CAP_SYS_TIME: ClassVar[int]
+    CAP_SYS_TTY_CONFIG: ClassVar[int]
+    CAP_WAKE_ALARM: ClassVar[int]
+    E2BIG: ClassVar[int]
+    EACCES: ClassVar[int]
+    EADDRINUSE: ClassVar[int]
+    EADDRNOTAVAIL: ClassVar[int]
+    EAFNOSUPPORT: ClassVar[int]
+    EAGAIN: ClassVar[int]
+    EAI_AGAIN: ClassVar[int]
+    EAI_BADFLAGS: ClassVar[int]
+    EAI_FAIL: ClassVar[int]
+    EAI_FAMILY: ClassVar[int]
+    EAI_MEMORY: ClassVar[int]
+    EAI_NODATA: ClassVar[int]
+    EAI_NONAME: ClassVar[int]
+    EAI_OVERFLOW: ClassVar[int]
+    EAI_SERVICE: ClassVar[int]
+    EAI_SOCKTYPE: ClassVar[int]
+    EAI_SYSTEM: ClassVar[int]
+    EALREADY: ClassVar[int]
+    EBADF: ClassVar[int]
+    EBADMSG: ClassVar[int]
+    EBUSY: ClassVar[int]
+    ECANCELED: ClassVar[int]
+    ECHILD: ClassVar[int]
+    ECONNABORTED: ClassVar[int]
+    ECONNREFUSED: ClassVar[int]
+    ECONNRESET: ClassVar[int]
+    EDEADLK: ClassVar[int]
+    EDESTADDRREQ: ClassVar[int]
+    EDOM: ClassVar[int]
+    EDQUOT: ClassVar[int]
+    EEXIST: ClassVar[int]
+    EFAULT: ClassVar[int]
+    EFBIG: ClassVar[int]
+    EHOSTUNREACH: ClassVar[int]
+    EIDRM: ClassVar[int]
+    EILSEQ: ClassVar[int]
+    EINPROGRESS: ClassVar[int]
+    EINTR: ClassVar[int]
+    EINVAL: ClassVar[int]
+    EIO: ClassVar[int]
+    EISCONN: ClassVar[int]
+    EISDIR: ClassVar[int]
+    ELOOP: ClassVar[int]
+    EMFILE: ClassVar[int]
+    EMLINK: ClassVar[int]
+    EMSGSIZE: ClassVar[int]
+    EMULTIHOP: ClassVar[int]
+    ENAMETOOLONG: ClassVar[int]
+    ENETDOWN: ClassVar[int]
+    ENETRESET: ClassVar[int]
+    ENETUNREACH: ClassVar[int]
+    ENFILE: ClassVar[int]
+    ENOBUFS: ClassVar[int]
+    ENODATA: ClassVar[int]
+    ENODEV: ClassVar[int]
+    ENOENT: ClassVar[int]
+    ENOEXEC: ClassVar[int]
+    ENOLCK: ClassVar[int]
+    ENOLINK: ClassVar[int]
+    ENOMEM: ClassVar[int]
+    ENOMSG: ClassVar[int]
+    ENONET: ClassVar[int]
+    ENOPROTOOPT: ClassVar[int]
+    ENOSPC: ClassVar[int]
+    ENOSR: ClassVar[int]
+    ENOSTR: ClassVar[int]
+    ENOSYS: ClassVar[int]
+    ENOTCONN: ClassVar[int]
+    ENOTDIR: ClassVar[int]
+    ENOTEMPTY: ClassVar[int]
+    ENOTSOCK: ClassVar[int]
+    ENOTSUP: ClassVar[int]
+    ENOTTY: ClassVar[int]
+    ENXIO: ClassVar[int]
+    EOPNOTSUPP: ClassVar[int]
+    EOVERFLOW: ClassVar[int]
+    EPERM: ClassVar[int]
+    EPIPE: ClassVar[int]
+    EPROTO: ClassVar[int]
+    EPROTONOSUPPORT: ClassVar[int]
+    EPROTOTYPE: ClassVar[int]
+    ERANGE: ClassVar[int]
+    EROFS: ClassVar[int]
+    ESPIPE: ClassVar[int]
+    ESRCH: ClassVar[int]
+    ESTALE: ClassVar[int]
+    ETH_P_ALL: ClassVar[int]
+    ETH_P_ARP: ClassVar[int]
+    ETH_P_IP: ClassVar[int]
+    ETH_P_IPV6: ClassVar[int]
+    ETIME: ClassVar[int]
+    ETIMEDOUT: ClassVar[int]
+    ETXTBSY: ClassVar[int]
+    EXDEV: ClassVar[int]
+    EXIT_FAILURE: ClassVar[int]
+    EXIT_SUCCESS: ClassVar[int]
+    FD_CLOEXEC: ClassVar[int]
+    FIONREAD: ClassVar[int]
+    F_DUPFD: ClassVar[int]
+    F_DUPFD_CLOEXEC: ClassVar[int]
+    F_GETFD: ClassVar[int]
+    F_GETFL: ClassVar[int]
+    F_GETLK: ClassVar[int]
+    F_GETLK64: ClassVar[int]
+    F_GETOWN: ClassVar[int]
+    F_OK: ClassVar[int]
+    F_RDLCK: ClassVar[int]
+    F_SETFD: ClassVar[int]
+    F_SETFL: ClassVar[int]
+    F_SETLK: ClassVar[int]
+    F_SETLK64: ClassVar[int]
+    F_SETLKW: ClassVar[int]
+    F_SETLKW64: ClassVar[int]
+    F_SETOWN: ClassVar[int]
+    F_UNLCK: ClassVar[int]
+    F_WRLCK: ClassVar[int]
+    ICMP6_ECHO_REPLY: ClassVar[int]
+    ICMP6_ECHO_REQUEST: ClassVar[int]
+    ICMP_ECHO: ClassVar[int]
+    ICMP_ECHOREPLY: ClassVar[int]
+    IFA_F_DADFAILED: ClassVar[int]
+    IFA_F_DEPRECATED: ClassVar[int]
+    IFA_F_HOMEADDRESS: ClassVar[int]
+    IFA_F_MANAGETEMPADDR: ClassVar[int]
+    IFA_F_NODAD: ClassVar[int]
+    IFA_F_NOPREFIXROUTE: ClassVar[int]
+    IFA_F_OPTIMISTIC: ClassVar[int]
+    IFA_F_PERMANENT: ClassVar[int]
+    IFA_F_SECONDARY: ClassVar[int]
+    IFA_F_TEMPORARY: ClassVar[int]
+    IFA_F_TENTATIVE: ClassVar[int]
+    IFF_ALLMULTI: ClassVar[int]
+    IFF_AUTOMEDIA: ClassVar[int]
+    IFF_BROADCAST: ClassVar[int]
+    IFF_DEBUG: ClassVar[int]
+    IFF_DYNAMIC: ClassVar[int]
+    IFF_LOOPBACK: ClassVar[int]
+    IFF_MASTER: ClassVar[int]
+    IFF_MULTICAST: ClassVar[int]
+    IFF_NOARP: ClassVar[int]
+    IFF_NOTRAILERS: ClassVar[int]
+    IFF_POINTOPOINT: ClassVar[int]
+    IFF_PORTSEL: ClassVar[int]
+    IFF_PROMISC: ClassVar[int]
+    IFF_RUNNING: ClassVar[int]
+    IFF_SLAVE: ClassVar[int]
+    IFF_UP: ClassVar[int]
+    IPPROTO_ESP: ClassVar[int]
+    IPPROTO_ICMP: ClassVar[int]
+    IPPROTO_ICMPV6: ClassVar[int]
+    IPPROTO_IP: ClassVar[int]
+    IPPROTO_IPV6: ClassVar[int]
+    IPPROTO_RAW: ClassVar[int]
+    IPPROTO_TCP: ClassVar[int]
+    IPPROTO_UDP: ClassVar[int]
+    IPV6_CHECKSUM: ClassVar[int]
+    IPV6_MULTICAST_HOPS: ClassVar[int]
+    IPV6_MULTICAST_IF: ClassVar[int]
+    IPV6_MULTICAST_LOOP: ClassVar[int]
+    IPV6_PKTINFO: ClassVar[int]
+    IPV6_RECVDSTOPTS: ClassVar[int]
+    IPV6_RECVHOPLIMIT: ClassVar[int]
+    IPV6_RECVHOPOPTS: ClassVar[int]
+    IPV6_RECVPKTINFO: ClassVar[int]
+    IPV6_RECVRTHDR: ClassVar[int]
+    IPV6_RECVTCLASS: ClassVar[int]
+    IPV6_TCLASS: ClassVar[int]
+    IPV6_UNICAST_HOPS: ClassVar[int]
+    IPV6_V6ONLY: ClassVar[int]
+    IP_MULTICAST_IF: ClassVar[int]
+    IP_MULTICAST_LOOP: ClassVar[int]
+    IP_MULTICAST_TTL: ClassVar[int]
+    IP_TOS: ClassVar[int]
+    IP_TTL: ClassVar[int]
+    MAP_ANONYMOUS: ClassVar[int]
+    MAP_FIXED: ClassVar[int]
+    MAP_PRIVATE: ClassVar[int]
+    MAP_SHARED: ClassVar[int]
+    MCAST_BLOCK_SOURCE: ClassVar[int]
+    MCAST_JOIN_GROUP: ClassVar[int]
+    MCAST_JOIN_SOURCE_GROUP: ClassVar[int]
+    MCAST_LEAVE_GROUP: ClassVar[int]
+    MCAST_LEAVE_SOURCE_GROUP: ClassVar[int]
+    MCAST_UNBLOCK_SOURCE: ClassVar[int]
+    MCL_CURRENT: ClassVar[int]
+    MCL_FUTURE: ClassVar[int]
+    MFD_CLOEXEC: ClassVar[int]
+    MSG_CTRUNC: ClassVar[int]
+    MSG_DONTROUTE: ClassVar[int]
+    MSG_EOR: ClassVar[int]
+    MSG_OOB: ClassVar[int]
+    MSG_PEEK: ClassVar[int]
+    MSG_TRUNC: ClassVar[int]
+    MSG_WAITALL: ClassVar[int]
+    MS_ASYNC: ClassVar[int]
+    MS_INVALIDATE: ClassVar[int]
+    MS_SYNC: ClassVar[int]
+    NETLINK_INET_DIAG: ClassVar[int]
+    NETLINK_NETFILTER: ClassVar[int]
+    NETLINK_ROUTE: ClassVar[int]
+    NETLINK_XFRM: ClassVar[int]
+    NI_DGRAM: ClassVar[int]
+    NI_NAMEREQD: ClassVar[int]
+    NI_NOFQDN: ClassVar[int]
+    NI_NUMERICHOST: ClassVar[int]
+    NI_NUMERICSERV: ClassVar[int]
+    O_ACCMODE: ClassVar[int]
+    O_APPEND: ClassVar[int]
+    O_CLOEXEC: ClassVar[int]
+    O_CREAT: ClassVar[int]
+    O_DSYNC: ClassVar[int]
+    O_EXCL: ClassVar[int]
+    O_NOCTTY: ClassVar[int]
+    O_NOFOLLOW: ClassVar[int]
+    O_NONBLOCK: ClassVar[int]
+    O_RDONLY: ClassVar[int]
+    O_RDWR: ClassVar[int]
+    O_SYNC: ClassVar[int]
+    O_TRUNC: ClassVar[int]
+    O_WRONLY: ClassVar[int]
+    PACKET_IGNORE_OUTGOING: ClassVar[int]
+    POLLERR: ClassVar[int]
+    POLLHUP: ClassVar[int]
+    POLLIN: ClassVar[int]
+    POLLNVAL: ClassVar[int]
+    POLLOUT: ClassVar[int]
+    POLLPRI: ClassVar[int]
+    POLLRDBAND: ClassVar[int]
+    POLLRDNORM: ClassVar[int]
+    POLLWRBAND: ClassVar[int]
+    POLLWRNORM: ClassVar[int]
+    PROT_EXEC: ClassVar[int]
+    PROT_NONE: ClassVar[int]
+    PROT_READ: ClassVar[int]
+    PROT_WRITE: ClassVar[int]
+    PR_GET_DUMPABLE: ClassVar[int]
+    PR_SET_DUMPABLE: ClassVar[int]
+    PR_SET_NO_NEW_PRIVS: ClassVar[int]
+    RTMGRP_NEIGH: ClassVar[int]
+    RT_SCOPE_HOST: ClassVar[int]
+    RT_SCOPE_LINK: ClassVar[int]
+    RT_SCOPE_NOWHERE: ClassVar[int]
+    RT_SCOPE_SITE: ClassVar[int]
+    RT_SCOPE_UNIVERSE: ClassVar[int]
+    R_OK: ClassVar[int]
+    SEEK_CUR: ClassVar[int]
+    SEEK_END: ClassVar[int]
+    SEEK_SET: ClassVar[int]
+    SHUT_RD: ClassVar[int]
+    SHUT_RDWR: ClassVar[int]
+    SHUT_WR: ClassVar[int]
+    SIGABRT: ClassVar[int]
+    SIGALRM: ClassVar[int]
+    SIGBUS: ClassVar[int]
+    SIGCHLD: ClassVar[int]
+    SIGCONT: ClassVar[int]
+    SIGFPE: ClassVar[int]
+    SIGHUP: ClassVar[int]
+    SIGILL: ClassVar[int]
+    SIGINT: ClassVar[int]
+    SIGIO: ClassVar[int]
+    SIGKILL: ClassVar[int]
+    SIGPIPE: ClassVar[int]
+    SIGPROF: ClassVar[int]
+    SIGPWR: ClassVar[int]
+    SIGQUIT: ClassVar[int]
+    SIGRTMAX: ClassVar[int]
+    SIGRTMIN: ClassVar[int]
+    SIGSEGV: ClassVar[int]
+    SIGSTKFLT: ClassVar[int]
+    SIGSTOP: ClassVar[int]
+    SIGSYS: ClassVar[int]
+    SIGTERM: ClassVar[int]
+    SIGTRAP: ClassVar[int]
+    SIGTSTP: ClassVar[int]
+    SIGTTIN: ClassVar[int]
+    SIGTTOU: ClassVar[int]
+    SIGURG: ClassVar[int]
+    SIGUSR1: ClassVar[int]
+    SIGUSR2: ClassVar[int]
+    SIGVTALRM: ClassVar[int]
+    SIGWINCH: ClassVar[int]
+    SIGXCPU: ClassVar[int]
+    SIGXFSZ: ClassVar[int]
+    SIOCGIFADDR: ClassVar[int]
+    SIOCGIFBRDADDR: ClassVar[int]
+    SIOCGIFDSTADDR: ClassVar[int]
+    SIOCGIFNETMASK: ClassVar[int]
+    SOCK_CLOEXEC: ClassVar[int]
+    SOCK_DGRAM: ClassVar[int]
+    SOCK_NONBLOCK: ClassVar[int]
+    SOCK_RAW: ClassVar[int]
+    SOCK_SEQPACKET: ClassVar[int]
+    SOCK_STREAM: ClassVar[int]
+    SOL_PACKET: ClassVar[int]
+    SOL_SOCKET: ClassVar[int]
+    SOL_UDP: ClassVar[int]
+    SO_BINDTODEVICE: ClassVar[int]
+    SO_BROADCAST: ClassVar[int]
+    SO_DEBUG: ClassVar[int]
+    SO_DONTROUTE: ClassVar[int]
+    SO_ERROR: ClassVar[int]
+    SO_KEEPALIVE: ClassVar[int]
+    SO_LINGER: ClassVar[int]
+    SO_OOBINLINE: ClassVar[int]
+    SO_PASSCRED: ClassVar[int]
+    SO_PEERCRED: ClassVar[int]
+    SO_RCVBUF: ClassVar[int]
+    SO_RCVLOWAT: ClassVar[int]
+    SO_RCVTIMEO: ClassVar[int]
+    SO_REUSEADDR: ClassVar[int]
+    SO_SNDBUF: ClassVar[int]
+    SO_SNDLOWAT: ClassVar[int]
+    SO_SNDTIMEO: ClassVar[int]
+    SO_TYPE: ClassVar[int]
+    STDERR_FILENO: ClassVar[int]
+    STDIN_FILENO: ClassVar[int]
+    STDOUT_FILENO: ClassVar[int]
+    ST_MANDLOCK: ClassVar[int]
+    ST_NOATIME: ClassVar[int]
+    ST_NODEV: ClassVar[int]
+    ST_NODIRATIME: ClassVar[int]
+    ST_NOEXEC: ClassVar[int]
+    ST_NOSUID: ClassVar[int]
+    ST_RDONLY: ClassVar[int]
+    ST_RELATIME: ClassVar[int]
+    ST_SYNCHRONOUS: ClassVar[int]
+    S_IFBLK: ClassVar[int]
+    S_IFCHR: ClassVar[int]
+    S_IFDIR: ClassVar[int]
+    S_IFIFO: ClassVar[int]
+    S_IFLNK: ClassVar[int]
+    S_IFMT: ClassVar[int]
+    S_IFREG: ClassVar[int]
+    S_IFSOCK: ClassVar[int]
+    S_IRGRP: ClassVar[int]
+    S_IROTH: ClassVar[int]
+    S_IRUSR: ClassVar[int]
+    S_IRWXG: ClassVar[int]
+    S_IRWXO: ClassVar[int]
+    S_IRWXU: ClassVar[int]
+    S_ISGID: ClassVar[int]
+    S_ISUID: ClassVar[int]
+    S_ISVTX: ClassVar[int]
+    S_IWGRP: ClassVar[int]
+    S_IWOTH: ClassVar[int]
+    S_IWUSR: ClassVar[int]
+    S_IXGRP: ClassVar[int]
+    S_IXOTH: ClassVar[int]
+    S_IXUSR: ClassVar[int]
+    TCP_NODELAY: ClassVar[int]
+    TCP_USER_TIMEOUT: ClassVar[int]
+    UDP_GRO: ClassVar[int]
+    UDP_SEGMENT: ClassVar[int]
+    VMADDR_CID_ANY: ClassVar[int]
+    VMADDR_CID_HOST: ClassVar[int]
+    VMADDR_CID_LOCAL: ClassVar[int]
+    VMADDR_PORT_ANY: ClassVar[int]
+    WCONTINUED: ClassVar[int]
+    WEXITED: ClassVar[int]
+    WNOHANG: ClassVar[int]
+    WNOWAIT: ClassVar[int]
+    WSTOPPED: ClassVar[int]
+    WUNTRACED: ClassVar[int]
+    W_OK: ClassVar[int]
+    X_OK: ClassVar[int]
+    _SC_2_CHAR_TERM: ClassVar[int]
+    _SC_2_C_BIND: ClassVar[int]
+    _SC_2_C_DEV: ClassVar[int]
+    _SC_2_C_VERSION: ClassVar[int]
+    _SC_2_FORT_DEV: ClassVar[int]
+    _SC_2_FORT_RUN: ClassVar[int]
+    _SC_2_LOCALEDEF: ClassVar[int]
+    _SC_2_SW_DEV: ClassVar[int]
+    _SC_2_UPE: ClassVar[int]
+    _SC_2_VERSION: ClassVar[int]
+    _SC_AIO_LISTIO_MAX: ClassVar[int]
+    _SC_AIO_MAX: ClassVar[int]
+    _SC_AIO_PRIO_DELTA_MAX: ClassVar[int]
+    _SC_ARG_MAX: ClassVar[int]
+    _SC_ASYNCHRONOUS_IO: ClassVar[int]
+    _SC_ATEXIT_MAX: ClassVar[int]
+    _SC_AVPHYS_PAGES: ClassVar[int]
+    _SC_BC_BASE_MAX: ClassVar[int]
+    _SC_BC_DIM_MAX: ClassVar[int]
+    _SC_BC_SCALE_MAX: ClassVar[int]
+    _SC_BC_STRING_MAX: ClassVar[int]
+    _SC_CHILD_MAX: ClassVar[int]
+    _SC_CLK_TCK: ClassVar[int]
+    _SC_COLL_WEIGHTS_MAX: ClassVar[int]
+    _SC_DELAYTIMER_MAX: ClassVar[int]
+    _SC_EXPR_NEST_MAX: ClassVar[int]
+    _SC_FSYNC: ClassVar[int]
+    _SC_GETGR_R_SIZE_MAX: ClassVar[int]
+    _SC_GETPW_R_SIZE_MAX: ClassVar[int]
+    _SC_IOV_MAX: ClassVar[int]
+    _SC_JOB_CONTROL: ClassVar[int]
+    _SC_LINE_MAX: ClassVar[int]
+    _SC_LOGIN_NAME_MAX: ClassVar[int]
+    _SC_MAPPED_FILES: ClassVar[int]
+    _SC_MEMLOCK: ClassVar[int]
+    _SC_MEMLOCK_RANGE: ClassVar[int]
+    _SC_MEMORY_PROTECTION: ClassVar[int]
+    _SC_MESSAGE_PASSING: ClassVar[int]
+    _SC_MQ_OPEN_MAX: ClassVar[int]
+    _SC_MQ_PRIO_MAX: ClassVar[int]
+    _SC_NGROUPS_MAX: ClassVar[int]
+    _SC_NPROCESSORS_CONF: ClassVar[int]
+    _SC_NPROCESSORS_ONLN: ClassVar[int]
+    _SC_OPEN_MAX: ClassVar[int]
+    _SC_PAGESIZE: ClassVar[int]
+    _SC_PAGE_SIZE: ClassVar[int]
+    _SC_PASS_MAX: ClassVar[int]
+    _SC_PHYS_PAGES: ClassVar[int]
+    _SC_PRIORITIZED_IO: ClassVar[int]
+    _SC_PRIORITY_SCHEDULING: ClassVar[int]
+    _SC_REALTIME_SIGNALS: ClassVar[int]
+    _SC_RE_DUP_MAX: ClassVar[int]
+    _SC_RTSIG_MAX: ClassVar[int]
+    _SC_SAVED_IDS: ClassVar[int]
+    _SC_SEMAPHORES: ClassVar[int]
+    _SC_SEM_NSEMS_MAX: ClassVar[int]
+    _SC_SEM_VALUE_MAX: ClassVar[int]
+    _SC_SHARED_MEMORY_OBJECTS: ClassVar[int]
+    _SC_SIGQUEUE_MAX: ClassVar[int]
+    _SC_STREAM_MAX: ClassVar[int]
+    _SC_SYNCHRONIZED_IO: ClassVar[int]
+    _SC_THREADS: ClassVar[int]
+    _SC_THREAD_ATTR_STACKADDR: ClassVar[int]
+    _SC_THREAD_ATTR_STACKSIZE: ClassVar[int]
+    _SC_THREAD_DESTRUCTOR_ITERATIONS: ClassVar[int]
+    _SC_THREAD_KEYS_MAX: ClassVar[int]
+    _SC_THREAD_PRIORITY_SCHEDULING: ClassVar[int]
+    _SC_THREAD_PRIO_INHERIT: ClassVar[int]
+    _SC_THREAD_PRIO_PROTECT: ClassVar[int]
+    _SC_THREAD_SAFE_FUNCTIONS: ClassVar[int]
+    _SC_THREAD_STACK_MIN: ClassVar[int]
+    _SC_THREAD_THREADS_MAX: ClassVar[int]
+    _SC_TIMERS: ClassVar[int]
+    _SC_TIMER_MAX: ClassVar[int]
+    _SC_TTY_NAME_MAX: ClassVar[int]
+    _SC_TZNAME_MAX: ClassVar[int]
+    _SC_VERSION: ClassVar[int]
+    _SC_XBS5_ILP32_OFF32: ClassVar[int]
+    _SC_XBS5_ILP32_OFFBIG: ClassVar[int]
+    _SC_XBS5_LP64_OFF64: ClassVar[int]
+    _SC_XBS5_LPBIG_OFFBIG: ClassVar[int]
+    _SC_XOPEN_CRYPT: ClassVar[int]
+    _SC_XOPEN_ENH_I18N: ClassVar[int]
+    _SC_XOPEN_LEGACY: ClassVar[int]
+    _SC_XOPEN_REALTIME: ClassVar[int]
+    _SC_XOPEN_REALTIME_THREADS: ClassVar[int]
+    _SC_XOPEN_SHM: ClassVar[int]
+    _SC_XOPEN_UNIX: ClassVar[int]
+    _SC_XOPEN_VERSION: ClassVar[int]
+    _SC_XOPEN_XCU_VERSION: ClassVar[int]
+    @staticmethod
+    def S_ISBLK(p0: int) -> bool: ...
+    @staticmethod
+    def S_ISCHR(p0: int) -> bool: ...
+    @staticmethod
+    def S_ISDIR(p0: int) -> bool: ...
+    @staticmethod
+    def S_ISFIFO(p0: int) -> bool: ...
+    @staticmethod
+    def S_ISLNK(p0: int) -> bool: ...
+    @staticmethod
+    def S_ISREG(p0: int) -> bool: ...
+    @staticmethod
+    def S_ISSOCK(p0: int) -> bool: ...
+    @staticmethod
+    def WCOREDUMP(p0: int) -> bool: ...
+    @staticmethod
+    def WEXITSTATUS(p0: int) -> int: ...
+    @staticmethod
+    def WIFEXITED(p0: int) -> bool: ...
+    @staticmethod
+    def WIFSIGNALED(p0: int) -> bool: ...
+    @staticmethod
+    def WIFSTOPPED(p0: int) -> bool: ...
+    @staticmethod
+    def WSTOPSIG(p0: int) -> int: ...
+    @staticmethod
+    def WTERMSIG(p0: int) -> int: ...
+    @staticmethod
+    def errnoName(p0: int) -> str: ...
+    @staticmethod
+    def gaiName(p0: int) -> str: ...
+
+from typing import Any, ClassVar, overload
+from android.system.StructTimespec import StructTimespec
+
+class StructStat:
+    st_atim: StructTimespec
+    st_atime: int
+    st_blksize: int
+    st_blocks: int
+    st_ctim: StructTimespec
+    st_ctime: int
+    st_dev: int
+    st_gid: int
+    st_ino: int
+    st_mode: int
+    st_mtim: StructTimespec
+    st_mtime: int
+    st_nlink: int
+    st_rdev: int
+    st_size: int
+    st_uid: int
+    @overload
+    def __init__(self, p0: int, p1: int, p2: int, p3: int, p4: int, p5: int, p6: int, p7: int, p8: StructTimespec, p9: StructTimespec, p10: StructTimespec, p11: int, p12: int) -> None: ...
+    @overload
+    def __init__(self, p0: int, p1: int, p2: int, p3: int, p4: int, p5: int, p6: int, p7: int, p8: int, p9: int, p10: int, p11: int, p12: int) -> None: ...
+    def toString(self) -> str: ...
+
+from typing import Any, ClassVar, overload
+
+class StructTimespec:
+    tv_nsec: int
+    tv_sec: int
+    def __init__(self, p0: int, p1: int) -> None: ...
+    def equals(self, p0: Any) -> bool: ...
+    def toString(self) -> str: ...
+    def hashCode(self) -> int: ...
+    @overload
+    def compareTo(self, p0: "StructTimespec") -> int: ...
+    @overload
+    def compareTo(self, p0: Any) -> int: ...
+

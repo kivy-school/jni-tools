@@ -1,6 +1,0 @@
-from typing import Any, ClassVar, overload
-from javax.sql.StatementEvent import StatementEvent
-
-class StatementEventListener:
-    def statementClosed(self, p0: StatementEvent) -> None: ...
-    def statementErrorOccurred(self, p0: StatementEvent) -> None: ...

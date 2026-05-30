@@ -1,9 +1,0 @@
-from typing import Any, ClassVar, overload
-from java.util.concurrent.TimeUnit import TimeUnit
-
-class Exchanger:
-    def __init__(self) -> None: ...
-    @overload
-    def exchange(self, p0: Any, p1: int, p2: TimeUnit) -> Any: ...
-    @overload
-    def exchange(self, p0: Any) -> Any: ...

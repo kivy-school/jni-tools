@@ -1,6 +1,0 @@
-from typing import Any, ClassVar, overload
-from java.security.cert.CRL import CRL
-
-class CRLSelector:
-    def clone(self) -> Any: ...
-    def match_(self, p0: CRL) -> bool: ...

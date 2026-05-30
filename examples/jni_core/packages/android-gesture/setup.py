@@ -43,30 +43,24 @@ os.chdir(HERE)
 def _jni_include_dirs() -> list[str]:
     """Locate jni.h.
 
-    Priority:
-      1. ``JNI_INCLUDE_DIR`` env var (set by p4a / cibuildwheel for NDK builds).
-      2. ``CC`` env var — cibuildwheel Android sets this to the NDK clang;
-         derive sysroot as ``$(dirname $CC)/../sysroot``.
-      3. ``JAVA_HOME`` env var + per-platform subdir.
-      4. ``/usr/libexec/java_home`` (macOS auto-detect).
+    On Android (NDK cross-compile), the NDK clang wrapper automatically passes
+    ``--sysroot`` so ``jni.h`` is already on the compiler's default search path.
+    Adding an explicit JDK include dir would pull in the host ``jni.h`` which
+    includes ``jni_md.h`` — a host-only header the NDK clang cannot find.
+
+    Priority for non-Android (host) builds:
+      1. ``JNI_INCLUDE_DIR`` env var.
+      2. ``JAVA_HOME`` env var + per-platform subdir.
+      3. ``/usr/libexec/java_home`` (macOS auto-detect).
     """
+    if _ANDROID:
+        return []
+
     override = os.environ.get("JNI_INCLUDE_DIR")
     if override:
         # Caller supplies a colon-separated list.
         parts = override.split(os.pathsep) if os.pathsep in override else [override]
         return [p for p in parts if p]
-
-    # cibuildwheel Android sets CC to the NDK clang binary, from which we
-    # can derive the sysroot that contains jni.h without any extra config.
-    cc_parts = os.environ.get("CC", "").split()
-    cc = cc_parts[0] if cc_parts else ""
-    if cc:
-        cc_path = Path(cc)
-        # .../bin/<triple>-clangXX -> parent = bin/ -> parent = toolchain root
-        sysroot = cc_path.parent.parent / "sysroot"
-        jni_h = sysroot / "usr" / "include" / "jni.h"
-        if jni_h.exists():
-            return [str(sysroot / "usr" / "include")]
 
     java_home = os.environ.get("JAVA_HOME")
     if not java_home and sys.platform == "darwin":
@@ -91,29 +85,12 @@ def _jni_include_dirs() -> list[str]:
 
 
 def _jni_core_include_dirs() -> list[str]:
-    """Locate jni_core .pxd/.pxi Cython headers.
-
-    Priority:
-      1. ``vendor/jni_core/`` bundled alongside setup.py — preferred for
-         cross-compile environments where jni_core can't be pip-installed
-         for the target.
-      2. Installed ``jni_core`` package (development / host builds).
-    """
-    vendor = HERE / "vendor"
-    if (vendor / "jni_core" / "_core.pxd").exists():
-        # vendor/ acts as the include root so that
-        # `include "jni_core/conversions.pxi"` and
-        # `from jni_core._core cimport ...` both resolve.
-        # vendor/jni_core/ is also added so that C-level #include
-        # "_jni_dispatch.h" (from _dispatch.pxd extern) is found.
-        return [str(vendor), str(vendor / "jni_core")]
-
+    """Locate jni_core .pxd/.pxi Cython headers from the installed jni-core package."""
     try:
         import jni_core  # type: ignore
     except ImportError as exc:
         raise SystemExit(
-            "jni_core headers not found. Either run from the repo (vendor/ "
-            "is present) or install jni_core: pip install jni_core"
+            "jni_core headers not found. Install jni-core: pip install jni-core"
         ) from exc
     pkg_dir = Path(jni_core.__file__).parent
     return [str(pkg_dir.parent), str(pkg_dir)]
@@ -210,13 +187,21 @@ else:
 class _FilteredBuildPy(_build_py):
     """Keep only target-appropriate typing/cimport artifacts in wheels."""
 
+    _ALWAYS_STRIP = {"*.c", "*.pyx"}
+
     def run(self) -> None:
         super().run()
         root = Path(self.build_lib)
         if not root.exists():
             return
-        pattern = "*.pyi" if _ANDROID else "*.pxd"
-        for path in root.rglob(pattern):
+        # Strip source files that must never ship in a wheel.
+        for pattern in self._ALWAYS_STRIP:
+            for path in root.rglob(pattern):
+                path.unlink()
+        # On Android wheels: strip .pxd (not needed at runtime).
+        # On desktop wheels: strip .pyi (already in .pxd).
+        strip_pattern = "*.pxd" if _ANDROID else "*.pyi"
+        for path in root.rglob(strip_pattern):
             path.unlink()
 
 setup(

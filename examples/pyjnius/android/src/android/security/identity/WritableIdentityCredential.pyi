@@ -1,6 +1,0 @@
-from typing import Any, ClassVar, overload
-from android.security.identity.PersonalizationData import PersonalizationData
-
-class WritableIdentityCredential:
-    def getCredentialKeyCertificateChain(self, p0: Any) -> list: ...
-    def personalize(self, p0: PersonalizationData) -> Any: ...

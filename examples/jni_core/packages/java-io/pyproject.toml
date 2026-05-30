@@ -1,11 +1,11 @@
 [build-system]
-requires = ["setuptools>=68", "wheel", "cython>=3.0"]
+requires = ["setuptools>=68", "wheel", "cython>=3.0", "jni-core"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "android-java-io"
 version = "35.0.0"
-description = "Cython JNI wrappers for the java.io.* subpackage (android.jar, API 35). Imports as android.java.io.*."
+description = "Cython JNI wrapper for java.io (android.jar, API 35). Imports as android.java.io."
 requires-python = ">=3.11"
 dependencies = [
     "jni-core",

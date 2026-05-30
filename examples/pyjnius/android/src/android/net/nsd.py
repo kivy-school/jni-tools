@@ -1,0 +1,123 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+class AdvertisingRequest(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/net/nsd/AdvertisingRequest"
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    FLAG_SKIP_PROBING = JavaStaticField("J")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getServiceInfo = JavaMethod("()Landroid/net/nsd/NsdServiceInfo;")
+    getProtocolType = JavaMethod("()I")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    getFlags = JavaMethod("()J")
+    describeContents = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+
+    class Builder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/net/nsd/AdvertisingRequest$Builder"
+        __javaconstructor__ = [("(Landroid/net/nsd/NsdServiceInfo;)V", False)]
+        setProtocolType = JavaMethod("(I)Landroid/net/nsd/AdvertisingRequest$Builder;")
+        setFlags = JavaMethod("(J)Landroid/net/nsd/AdvertisingRequest$Builder;")
+        build = JavaMethod("()Landroid/net/nsd/AdvertisingRequest;")
+
+class NsdManager(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/net/nsd/NsdManager"
+    ACTION_NSD_STATE_CHANGED = JavaStaticField("Ljava/lang/String;")
+    EXTRA_NSD_STATE = JavaStaticField("Ljava/lang/String;")
+    FAILURE_ALREADY_ACTIVE = JavaStaticField("I")
+    FAILURE_BAD_PARAMETERS = JavaStaticField("I")
+    FAILURE_INTERNAL_ERROR = JavaStaticField("I")
+    FAILURE_MAX_LIMIT = JavaStaticField("I")
+    FAILURE_OPERATION_NOT_RUNNING = JavaStaticField("I")
+    NSD_STATE_DISABLED = JavaStaticField("I")
+    NSD_STATE_ENABLED = JavaStaticField("I")
+    PROTOCOL_DNS_SD = JavaStaticField("I")
+    resolveService = JavaMultipleMethod([("(Landroid/net/nsd/NsdServiceInfo;Landroid/net/nsd/NsdManager$ResolveListener;)V", False, False), ("(Landroid/net/nsd/NsdServiceInfo;Ljava/util/concurrent/Executor;Landroid/net/nsd/NsdManager$ResolveListener;)V", False, False)])
+    discoverServices = JavaMultipleMethod([("(Ljava/lang/String;ILandroid/net/NetworkRequest;Ljava/util/concurrent/Executor;Landroid/net/nsd/NsdManager$DiscoveryListener;)V", False, False), ("(Ljava/lang/String;ILandroid/net/nsd/NsdManager$DiscoveryListener;)V", False, False), ("(Landroid/net/nsd/DiscoveryRequest;Ljava/util/concurrent/Executor;Landroid/net/nsd/NsdManager$DiscoveryListener;)V", False, False), ("(Ljava/lang/String;ILandroid/net/Network;Ljava/util/concurrent/Executor;Landroid/net/nsd/NsdManager$DiscoveryListener;)V", False, False)])
+    registerService = JavaMultipleMethod([("(Landroid/net/nsd/NsdServiceInfo;ILandroid/net/nsd/NsdManager$RegistrationListener;)V", False, False), ("(Landroid/net/nsd/NsdServiceInfo;ILjava/util/concurrent/Executor;Landroid/net/nsd/NsdManager$RegistrationListener;)V", False, False)])
+    registerServiceInfoCallback = JavaMethod("(Landroid/net/nsd/NsdServiceInfo;Ljava/util/concurrent/Executor;Landroid/net/nsd/NsdManager$ServiceInfoCallback;)V")
+    stopServiceDiscovery = JavaMethod("(Landroid/net/nsd/NsdManager$DiscoveryListener;)V")
+    stopServiceResolution = JavaMethod("(Landroid/net/nsd/NsdManager$ResolveListener;)V")
+    unregisterService = JavaMethod("(Landroid/net/nsd/NsdManager$RegistrationListener;)V")
+    unregisterServiceInfoCallback = JavaMethod("(Landroid/net/nsd/NsdManager$ServiceInfoCallback;)V")
+
+    class ServiceInfoCallback(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/net/nsd/NsdManager$ServiceInfoCallback"
+        onServiceLost = JavaMethod("()V")
+        onServiceInfoCallbackRegistrationFailed = JavaMethod("(I)V")
+        onServiceUpdated = JavaMethod("(Landroid/net/nsd/NsdServiceInfo;)V")
+        onServiceInfoCallbackUnregistered = JavaMethod("()V")
+
+    class ResolveListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/net/nsd/NsdManager$ResolveListener"
+        onResolutionStopped = JavaMethod("(Landroid/net/nsd/NsdServiceInfo;)V")
+        onResolveFailed = JavaMethod("(Landroid/net/nsd/NsdServiceInfo;I)V")
+        onServiceResolved = JavaMethod("(Landroid/net/nsd/NsdServiceInfo;)V")
+        onStopResolutionFailed = JavaMethod("(Landroid/net/nsd/NsdServiceInfo;I)V")
+
+    class RegistrationListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/net/nsd/NsdManager$RegistrationListener"
+        onRegistrationFailed = JavaMethod("(Landroid/net/nsd/NsdServiceInfo;I)V")
+        onServiceRegistered = JavaMethod("(Landroid/net/nsd/NsdServiceInfo;)V")
+        onServiceUnregistered = JavaMethod("(Landroid/net/nsd/NsdServiceInfo;)V")
+        onUnregistrationFailed = JavaMethod("(Landroid/net/nsd/NsdServiceInfo;I)V")
+
+    class DiscoveryListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/net/nsd/NsdManager$DiscoveryListener"
+        onServiceLost = JavaMethod("(Landroid/net/nsd/NsdServiceInfo;)V")
+        onServiceFound = JavaMethod("(Landroid/net/nsd/NsdServiceInfo;)V")
+        onStartDiscoveryFailed = JavaMethod("(Ljava/lang/String;I)V")
+        onStopDiscoveryFailed = JavaMethod("(Ljava/lang/String;I)V")
+        onDiscoveryStarted = JavaMethod("(Ljava/lang/String;)V")
+        onDiscoveryStopped = JavaMethod("(Ljava/lang/String;)V")
+
+class DiscoveryRequest(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/net/nsd/DiscoveryRequest"
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getNetwork = JavaMethod("()Landroid/net/Network;")
+    getServiceType = JavaMethod("()Ljava/lang/String;")
+    getSubtype = JavaMethod("()Ljava/lang/String;")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    describeContents = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+
+    class Builder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/net/nsd/DiscoveryRequest$Builder"
+        __javaconstructor__ = [("(Ljava/lang/String;)V", False)]
+        setNetwork = JavaMethod("(Landroid/net/Network;)Landroid/net/nsd/DiscoveryRequest$Builder;")
+        setSubtype = JavaMethod("(Ljava/lang/String;)Landroid/net/nsd/DiscoveryRequest$Builder;")
+        build = JavaMethod("()Landroid/net/nsd/DiscoveryRequest;")
+
+class NsdServiceInfo(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/net/nsd/NsdServiceInfo"
+    __javaconstructor__ = [("()V", False)]
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getServiceName = JavaMethod("()Ljava/lang/String;")
+    setPort = JavaMethod("(I)V")
+    getNetwork = JavaMethod("()Landroid/net/Network;")
+    getHostname = JavaMethod("()Ljava/lang/String;")
+    getServiceType = JavaMethod("()Ljava/lang/String;")
+    setServiceName = JavaMethod("(Ljava/lang/String;)V")
+    getHostAddresses = JavaMethod("()Ljava/util/List;")
+    getSubtypes = JavaMethod("()Ljava/util/Set;")
+    removeAttribute = JavaMethod("(Ljava/lang/String;)V")
+    setHost = JavaMethod("(Ljava/net/InetAddress;)V")
+    setHostAddresses = JavaMethod("(Ljava/util/List;)V")
+    setNetwork = JavaMethod("(Landroid/net/Network;)V")
+    setServiceType = JavaMethod("(Ljava/lang/String;)V")
+    setSubtypes = JavaMethod("(Ljava/util/Set;)V")
+    setAttribute = JavaMethod("(Ljava/lang/String;Ljava/lang/String;)V")
+    toString = JavaMethod("()Ljava/lang/String;")
+    describeContents = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    getAttributes = JavaMethod("()Ljava/util/Map;")
+    getHost = JavaMethod("()Ljava/net/InetAddress;")
+    getPort = JavaMethod("()I")

@@ -1,9 +1,0 @@
-from typing import Any, ClassVar, overload
-from java.security.cert.CertPathBuilderResult import CertPathBuilderResult
-from java.security.cert.CertPathChecker import CertPathChecker
-from java.security.cert.CertPathParameters import CertPathParameters
-
-class CertPathBuilderSpi:
-    def __init__(self) -> None: ...
-    def engineBuild(self, p0: CertPathParameters) -> CertPathBuilderResult: ...
-    def engineGetRevocationChecker(self) -> CertPathChecker: ...

@@ -1,9 +1,0 @@
-from typing import Any, ClassVar, overload
-from java.lang.Exception import Exception
-from java.lang.Throwable import Throwable
-
-class WriteAbortedException:
-    detail: Exception
-    def __init__(self, p0: str, p1: Exception) -> None: ...
-    def getCause(self) -> Throwable: ...
-    def getMessage(self) -> str: ...

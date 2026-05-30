@@ -1,9 +1,0 @@
-from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
-
-__all__ = ["SSLSessionBindingEvent"]
-
-class SSLSessionBindingEvent(JavaClass, metaclass=MetaJavaClass):
-    __javaclass__ = "javax/net/ssl/SSLSessionBindingEvent"
-    __javaconstructor__ = [("(Ljavax/net/ssl/SSLSession;Ljava/lang/String;)V", False)]
-    getSession = JavaMethod("()Ljavax/net/ssl/SSLSession;")
-    getName = JavaMethod("()Ljava/lang/String;")

@@ -1,9 +1,0 @@
-from typing import Any, ClassVar, overload
-from javax.security.auth.callback.Callback import Callback
-
-class UnsupportedCallbackException:
-    @overload
-    def __init__(self, p0: Callback) -> None: ...
-    @overload
-    def __init__(self, p0: Callback, p1: str) -> None: ...
-    def getCallback(self) -> Callback: ...

@@ -1,90 +1,78 @@
-from jnius import JavaClass, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
 
-__all__ = ["StrictMode"]
+class ServiceConnectionLeakedViolation(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/os/strictmode/ServiceConnectionLeakedViolation"
 
-class StrictMode(JavaClass, metaclass=MetaJavaClass):
-    __javaclass__ = "android/os/StrictMode"
-    getThreadPolicy = JavaStaticMethod("()Landroid/os/StrictMode$ThreadPolicy;")
-    getVmPolicy = JavaStaticMethod("()Landroid/os/StrictMode$VmPolicy;")
-    setVmPolicy = JavaStaticMethod("(Landroid/os/StrictMode$VmPolicy;)V")
-    setThreadPolicy = JavaStaticMethod("(Landroid/os/StrictMode$ThreadPolicy;)V")
-    noteSlowCall = JavaStaticMethod("(Ljava/lang/String;)V")
-    allowThreadDiskReads = JavaStaticMethod("()Landroid/os/StrictMode$ThreadPolicy;")
-    allowThreadDiskWrites = JavaStaticMethod("()Landroid/os/StrictMode$ThreadPolicy;")
-    enableDefaults = JavaStaticMethod("()V")
+class InstanceCountViolation(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/os/strictmode/InstanceCountViolation"
+    getNumberOfInstances = JavaMethod("()J")
 
-    class VmPolicy(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/os/StrictMode$VmPolicy"
-        LAX = JavaStaticField("Landroid/os/StrictMode$VmPolicy;")
-        toString = JavaMethod("()Ljava/lang/String;")
+class Violation(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/os/strictmode/Violation"
+    fillInStackTrace = JavaMethod("()Ljava/lang/Throwable;")
+    initCause = JavaMethod("(Ljava/lang/Throwable;)Ljava/lang/Throwable;")
+    hashCode = JavaMethod("()I")
+    setStackTrace = JavaMethod("([Ljava/lang/StackTraceElement;)V")
 
-        class Builder(JavaClass, metaclass=MetaJavaClass):
-            __javaclass__ = "android/os/StrictMode$VmPolicy$Builder"
-            __javaconstructor__ = [("()V", False), ("(Landroid/os/StrictMode$VmPolicy;)V", False)]
-            detectAll = JavaMethod("()Landroid/os/StrictMode$VmPolicy$Builder;")
-            detectActivityLeaks = JavaMethod("()Landroid/os/StrictMode$VmPolicy$Builder;")
-            detectBlockedBackgroundActivityLaunch = JavaMethod("()Landroid/os/StrictMode$VmPolicy$Builder;")
-            detectCleartextNetwork = JavaMethod("()Landroid/os/StrictMode$VmPolicy$Builder;")
-            detectContentUriWithoutPermission = JavaMethod("()Landroid/os/StrictMode$VmPolicy$Builder;")
-            detectCredentialProtectedWhileLocked = JavaMethod("()Landroid/os/StrictMode$VmPolicy$Builder;")
-            detectFileUriExposure = JavaMethod("()Landroid/os/StrictMode$VmPolicy$Builder;")
-            detectImplicitDirectBoot = JavaMethod("()Landroid/os/StrictMode$VmPolicy$Builder;")
-            detectIncorrectContextUse = JavaMethod("()Landroid/os/StrictMode$VmPolicy$Builder;")
-            detectLeakedClosableObjects = JavaMethod("()Landroid/os/StrictMode$VmPolicy$Builder;")
-            detectLeakedRegistrationObjects = JavaMethod("()Landroid/os/StrictMode$VmPolicy$Builder;")
-            detectLeakedSqlLiteObjects = JavaMethod("()Landroid/os/StrictMode$VmPolicy$Builder;")
-            detectNonSdkApiUsage = JavaMethod("()Landroid/os/StrictMode$VmPolicy$Builder;")
-            detectUnsafeIntentLaunch = JavaMethod("()Landroid/os/StrictMode$VmPolicy$Builder;")
-            detectUntaggedSockets = JavaMethod("()Landroid/os/StrictMode$VmPolicy$Builder;")
-            ignoreBlockedBackgroundActivityLaunch = JavaMethod("()Landroid/os/StrictMode$VmPolicy$Builder;")
-            penaltyDeath = JavaMethod("()Landroid/os/StrictMode$VmPolicy$Builder;")
-            penaltyDeathOnCleartextNetwork = JavaMethod("()Landroid/os/StrictMode$VmPolicy$Builder;")
-            penaltyDeathOnFileUriExposure = JavaMethod("()Landroid/os/StrictMode$VmPolicy$Builder;")
-            penaltyDropBox = JavaMethod("()Landroid/os/StrictMode$VmPolicy$Builder;")
-            penaltyListener = JavaMethod("(Ljava/util/concurrent/Executor;Landroid/os/StrictMode$OnVmViolationListener;)Landroid/os/StrictMode$VmPolicy$Builder;")
-            penaltyLog = JavaMethod("()Landroid/os/StrictMode$VmPolicy$Builder;")
-            permitNonSdkApiUsage = JavaMethod("()Landroid/os/StrictMode$VmPolicy$Builder;")
-            permitUnsafeIntentLaunch = JavaMethod("()Landroid/os/StrictMode$VmPolicy$Builder;")
-            setClassInstanceLimit = JavaMethod("(Ljava/lang/Class;I)Landroid/os/StrictMode$VmPolicy$Builder;")
-            build = JavaMethod("()Landroid/os/StrictMode$VmPolicy;")
+class CleartextNetworkViolation(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/os/strictmode/CleartextNetworkViolation"
 
-    class ThreadPolicy(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/os/StrictMode$ThreadPolicy"
-        LAX = JavaStaticField("Landroid/os/StrictMode$ThreadPolicy;")
-        toString = JavaMethod("()Ljava/lang/String;")
+class NetworkViolation(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/os/strictmode/NetworkViolation"
 
-        class Builder(JavaClass, metaclass=MetaJavaClass):
-            __javaclass__ = "android/os/StrictMode$ThreadPolicy$Builder"
-            __javaconstructor__ = [("()V", False), ("(Landroid/os/StrictMode$ThreadPolicy;)V", False)]
-            permitNetwork = JavaMethod("()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-            permitExplicitGc = JavaMethod("()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-            detectExplicitGc = JavaMethod("()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-            detectNetwork = JavaMethod("()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-            detectDiskWrites = JavaMethod("()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-            permitUnbufferedIo = JavaMethod("()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-            permitDiskReads = JavaMethod("()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-            permitAll = JavaMethod("()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-            penaltyDialog = JavaMethod("()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-            permitDiskWrites = JavaMethod("()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-            detectUnbufferedIo = JavaMethod("()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-            penaltyFlashScreen = JavaMethod("()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-            detectCustomSlowCalls = JavaMethod("()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-            detectDiskReads = JavaMethod("()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-            detectResourceMismatches = JavaMethod("()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-            penaltyDeathOnNetwork = JavaMethod("()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-            permitCustomSlowCalls = JavaMethod("()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-            permitResourceMismatches = JavaMethod("()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-            detectAll = JavaMethod("()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-            penaltyDeath = JavaMethod("()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-            penaltyDropBox = JavaMethod("()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-            penaltyListener = JavaMethod("(Ljava/util/concurrent/Executor;Landroid/os/StrictMode$OnThreadViolationListener;)Landroid/os/StrictMode$ThreadPolicy$Builder;")
-            penaltyLog = JavaMethod("()Landroid/os/StrictMode$ThreadPolicy$Builder;")
-            build = JavaMethod("()Landroid/os/StrictMode$ThreadPolicy;")
+class ResourceMismatchViolation(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/os/strictmode/ResourceMismatchViolation"
 
-    class OnVmViolationListener(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/os/StrictMode$OnVmViolationListener"
-        onVmViolation = JavaMethod("(Landroid/os/strictmode/Violation;)V")
+class DiskReadViolation(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/os/strictmode/DiskReadViolation"
 
-    class OnThreadViolationListener(JavaClass, metaclass=MetaJavaClass):
-        __javaclass__ = "android/os/StrictMode$OnThreadViolationListener"
-        onThreadViolation = JavaMethod("(Landroid/os/strictmode/Violation;)V")
+class UntaggedSocketViolation(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/os/strictmode/UntaggedSocketViolation"
+
+class IntentReceiverLeakedViolation(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/os/strictmode/IntentReceiverLeakedViolation"
+
+class FileUriExposedViolation(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/os/strictmode/FileUriExposedViolation"
+
+class ContentUriWithoutPermissionViolation(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/os/strictmode/ContentUriWithoutPermissionViolation"
+
+class ExplicitGcViolation(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/os/strictmode/ExplicitGcViolation"
+
+class SqliteObjectLeakedViolation(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/os/strictmode/SqliteObjectLeakedViolation"
+
+class CustomViolation(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/os/strictmode/CustomViolation"
+
+class DiskWriteViolation(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/os/strictmode/DiskWriteViolation"
+
+class ImplicitDirectBootViolation(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/os/strictmode/ImplicitDirectBootViolation"
+
+class NonSdkApiUsedViolation(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/os/strictmode/NonSdkApiUsedViolation"
+
+class IncorrectContextUseViolation(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/os/strictmode/IncorrectContextUseViolation"
+    __javaconstructor__ = [("(Ljava/lang/String;Ljava/lang/Throwable;)V", False)]
+
+class UnbufferedIoViolation(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/os/strictmode/UnbufferedIoViolation"
+
+class CredentialProtectedWhileLockedViolation(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/os/strictmode/CredentialProtectedWhileLockedViolation"
+
+class UnsafeIntentLaunchViolation(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/os/strictmode/UnsafeIntentLaunchViolation"
+    __javaconstructor__ = [("(Landroid/content/Intent;)V", False)]
+    getIntent = JavaMethod("()Landroid/content/Intent;")
+
+class LeakedClosableViolation(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/os/strictmode/LeakedClosableViolation"
+
+class WebViewMethodCalledOnWrongThreadViolation(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/os/strictmode/WebViewMethodCalledOnWrongThreadViolation"

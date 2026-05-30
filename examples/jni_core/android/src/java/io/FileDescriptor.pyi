@@ -1,9 +1,0 @@
-from typing import Any, ClassVar, overload
-
-class FileDescriptor:
-    in_: ClassVar["FileDescriptor"]
-    out: ClassVar["FileDescriptor"]
-    err: ClassVar["FileDescriptor"]
-    def __init__(self) -> None: ...
-    def sync(self) -> None: ...
-    def valid(self) -> bool: ...

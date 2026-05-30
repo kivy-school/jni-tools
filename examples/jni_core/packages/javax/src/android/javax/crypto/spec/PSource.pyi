@@ -1,9 +1,0 @@
-from typing import Any, ClassVar, overload
-
-class PSource:
-    def getAlgorithm(self) -> str: ...
-
-    class PSpecified:
-        DEFAULT: ClassVar[Any]
-        def __init__(self, p0: Any) -> None: ...
-        def getValue(self) -> Any: ...

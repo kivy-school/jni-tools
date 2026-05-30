@@ -1,11 +1,11 @@
 [build-system]
-requires = ["setuptools>=68", "wheel", "cython>=3.0"]
+requires = ["setuptools>=68", "wheel", "cython>=3.0", "jni-core"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "android-java-net"
 version = "35.0.0"
-description = "Cython JNI wrappers for the java.net.* subpackage (android.jar, API 35). Imports as android.java.net.*."
+description = "Cython JNI wrapper for java.net (android.jar, API 35). Imports as android.java.net."
 requires-python = ">=3.11"
 dependencies = [
     "jni-core",

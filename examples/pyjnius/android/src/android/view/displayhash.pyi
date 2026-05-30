@@ -1,0 +1,49 @@
+from typing import Any, ClassVar, overload
+from android.view.displayhash.DisplayHash import DisplayHash
+
+class DisplayHashResultCallback:
+    DISPLAY_HASH_ERROR_INVALID_BOUNDS: ClassVar[int]
+    DISPLAY_HASH_ERROR_INVALID_HASH_ALGORITHM: ClassVar[int]
+    DISPLAY_HASH_ERROR_MISSING_WINDOW: ClassVar[int]
+    DISPLAY_HASH_ERROR_NOT_VISIBLE_ON_SCREEN: ClassVar[int]
+    DISPLAY_HASH_ERROR_TOO_MANY_REQUESTS: ClassVar[int]
+    DISPLAY_HASH_ERROR_UNKNOWN: ClassVar[int]
+    def onDisplayHashError(self, p0: int) -> None: ...
+    def onDisplayHashResult(self, p0: DisplayHash) -> None: ...
+
+from typing import Any, ClassVar, overload
+from android.graphics.Rect import Rect
+from android.os.Parcel import Parcel
+
+class VerifiedDisplayHash:
+    CREATOR: ClassVar[Any]
+    CONTENTS_FILE_DESCRIPTOR: ClassVar[int]
+    PARCELABLE_WRITE_RETURN_VALUE: ClassVar[int]
+    def __init__(self, p0: int, p1: Rect, p2: str, p3: Any) -> None: ...
+    def getHashAlgorithm(self) -> str: ...
+    def getImageHash(self) -> Any: ...
+    def getTimeMillis(self) -> int: ...
+    def toString(self) -> str: ...
+    def describeContents(self) -> int: ...
+    def writeToParcel(self, p0: Parcel, p1: int) -> None: ...
+    def getBoundsInWindow(self) -> Rect: ...
+
+from typing import Any, ClassVar, overload
+from android.os.Parcel import Parcel
+
+class DisplayHash:
+    CREATOR: ClassVar[Any]
+    CONTENTS_FILE_DESCRIPTOR: ClassVar[int]
+    PARCELABLE_WRITE_RETURN_VALUE: ClassVar[int]
+    def toString(self) -> str: ...
+    def describeContents(self) -> int: ...
+    def writeToParcel(self, p0: Parcel, p1: int) -> None: ...
+
+from typing import Any, ClassVar, overload
+from android.view.displayhash.DisplayHash import DisplayHash
+from android.view.displayhash.VerifiedDisplayHash import VerifiedDisplayHash
+
+class DisplayHashManager:
+    def getSupportedHashAlgorithms(self) -> set: ...
+    def verifyDisplayHash(self, p0: DisplayHash) -> VerifiedDisplayHash: ...
+

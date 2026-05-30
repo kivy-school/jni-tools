@@ -1,0 +1,120 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+class TextInfo(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/view/textservice/TextInfo"
+    __javaconstructor__ = [("(Landroid/os/Parcel;)V", False), ("(Ljava/lang/String;II)V", False), ("(Ljava/lang/String;)V", False), ("(Ljava/lang/CharSequence;IIII)V", False)]
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getCookie = JavaMethod("()I")
+    getSequence = JavaMethod("()I")
+    getText = JavaMethod("()Ljava/lang/String;")
+    describeContents = JavaMethod("()I")
+    getCharSequence = JavaMethod("()Ljava/lang/CharSequence;")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+
+class SentenceSuggestionsInfo(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/view/textservice/SentenceSuggestionsInfo"
+    __javaconstructor__ = [("(Landroid/os/Parcel;)V", False), ("([Landroid/view/textservice/SuggestionsInfo;[I[I)V", False)]
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getSuggestionsCount = JavaMethod("()I")
+    getLengthAt = JavaMethod("(I)I")
+    getOffsetAt = JavaMethod("(I)I")
+    getSuggestionsInfoAt = JavaMethod("(I)Landroid/view/textservice/SuggestionsInfo;")
+    describeContents = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+
+class SpellCheckerSession(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/view/textservice/SpellCheckerSession"
+    SERVICE_META_DATA = JavaStaticField("Ljava/lang/String;")
+    getSentenceSuggestions = JavaMethod("([Landroid/view/textservice/TextInfo;I)V")
+    getSpellChecker = JavaMethod("()Landroid/view/textservice/SpellCheckerInfo;")
+    getSuggestions = JavaMultipleMethod([("(Landroid/view/textservice/TextInfo;I)V", False, False), ("([Landroid/view/textservice/TextInfo;IZ)V", False, False)])
+    isSessionDisconnected = JavaMethod("()Z")
+    cancel = JavaMethod("()V")
+    close = JavaMethod("()V")
+
+    class SpellCheckerSessionParams(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/view/textservice/SpellCheckerSession$SpellCheckerSessionParams"
+        shouldReferToSpellCheckerLanguageSettings = JavaMethod("()Z")
+        getLocale = JavaMethod("()Ljava/util/Locale;")
+        getExtras = JavaMethod("()Landroid/os/Bundle;")
+        getSupportedAttributes = JavaMethod("()I")
+
+        class Builder(JavaClass, metaclass=MetaJavaClass):
+            __javaclass__ = "android/view/textservice/SpellCheckerSession$SpellCheckerSessionParams$Builder"
+            __javaconstructor__ = [("()V", False)]
+            setSupportedAttributes = JavaMethod("(I)Landroid/view/textservice/SpellCheckerSession$SpellCheckerSessionParams$Builder;")
+            setShouldReferToSpellCheckerLanguageSettings = JavaMethod("(Z)Landroid/view/textservice/SpellCheckerSession$SpellCheckerSessionParams$Builder;")
+            setLocale = JavaMethod("(Ljava/util/Locale;)Landroid/view/textservice/SpellCheckerSession$SpellCheckerSessionParams$Builder;")
+            setExtras = JavaMethod("(Landroid/os/Bundle;)Landroid/view/textservice/SpellCheckerSession$SpellCheckerSessionParams$Builder;")
+            build = JavaMethod("()Landroid/view/textservice/SpellCheckerSession$SpellCheckerSessionParams;")
+
+    class SpellCheckerSessionListener(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/view/textservice/SpellCheckerSession$SpellCheckerSessionListener"
+        onGetSentenceSuggestions = JavaMethod("([Landroid/view/textservice/SentenceSuggestionsInfo;)V")
+        onGetSuggestions = JavaMethod("([Landroid/view/textservice/SuggestionsInfo;)V")
+
+class SpellCheckerInfo(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/view/textservice/SpellCheckerInfo"
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    loadIcon = JavaMethod("(Landroid/content/pm/PackageManager;)Landroid/graphics/drawable/Drawable;")
+    loadLabel = JavaMethod("(Landroid/content/pm/PackageManager;)Ljava/lang/CharSequence;")
+    getServiceInfo = JavaMethod("()Landroid/content/pm/ServiceInfo;")
+    getSettingsActivity = JavaMethod("()Ljava/lang/String;")
+    getSubtypeAt = JavaMethod("(I)Landroid/view/textservice/SpellCheckerSubtype;")
+    getSubtypeCount = JavaMethod("()I")
+    getPackageName = JavaMethod("()Ljava/lang/String;")
+    getId = JavaMethod("()Ljava/lang/String;")
+    getComponent = JavaMethod("()Landroid/content/ComponentName;")
+    describeContents = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+
+class TextServicesManager(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/view/textservice/TextServicesManager"
+    getEnabledSpellCheckerInfos = JavaMethod("()Ljava/util/List;")
+    getCurrentSpellCheckerInfo = JavaMethod("()Landroid/view/textservice/SpellCheckerInfo;")
+    isSpellCheckerEnabled = JavaMethod("()Z")
+    newSpellCheckerSession = JavaMultipleMethod([("(Landroid/os/Bundle;Ljava/util/Locale;Landroid/view/textservice/SpellCheckerSession$SpellCheckerSessionListener;Z)Landroid/view/textservice/SpellCheckerSession;", False, False), ("(Landroid/view/textservice/SpellCheckerSession$SpellCheckerSessionParams;Ljava/util/concurrent/Executor;Landroid/view/textservice/SpellCheckerSession$SpellCheckerSessionListener;)Landroid/view/textservice/SpellCheckerSession;", False, False)])
+
+class SpellCheckerSubtype(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/view/textservice/SpellCheckerSubtype"
+    __javaconstructor__ = [("(ILjava/lang/String;Ljava/lang/String;)V", False)]
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getExtraValue = JavaMethod("()Ljava/lang/String;")
+    getExtraValueOf = JavaMethod("(Ljava/lang/String;)Ljava/lang/String;")
+    containsExtraValueKey = JavaMethod("(Ljava/lang/String;)Z")
+    getLanguageTag = JavaMethod("()Ljava/lang/String;")
+    getNameResId = JavaMethod("()I")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    hashCode = JavaMethod("()I")
+    getLocale = JavaMethod("()Ljava/lang/String;")
+    describeContents = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+    getDisplayName = JavaMethod("(Landroid/content/Context;Ljava/lang/String;Landroid/content/pm/ApplicationInfo;)Ljava/lang/CharSequence;")
+
+class SuggestionsInfo(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/view/textservice/SuggestionsInfo"
+    __javaconstructor__ = [("(Landroid/os/Parcel;)V", False), ("(I[Ljava/lang/String;)V", False), ("(I[Ljava/lang/String;II)V", False)]
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    RESULT_ATTR_DONT_SHOW_UI_FOR_SUGGESTIONS = JavaStaticField("I")
+    RESULT_ATTR_HAS_RECOMMENDED_SUGGESTIONS = JavaStaticField("I")
+    RESULT_ATTR_IN_THE_DICTIONARY = JavaStaticField("I")
+    RESULT_ATTR_LOOKS_LIKE_GRAMMAR_ERROR = JavaStaticField("I")
+    RESULT_ATTR_LOOKS_LIKE_TYPO = JavaStaticField("I")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getCookie = JavaMethod("()I")
+    getSequence = JavaMethod("()I")
+    getSuggestionAt = JavaMethod("(I)Ljava/lang/String;")
+    getSuggestionsAttributes = JavaMethod("()I")
+    getSuggestionsCount = JavaMethod("()I")
+    setCookieAndSequence = JavaMethod("(II)V")
+    describeContents = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")

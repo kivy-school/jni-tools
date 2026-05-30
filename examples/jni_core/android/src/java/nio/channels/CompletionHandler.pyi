@@ -1,6 +1,0 @@
-from typing import Any, ClassVar, overload
-from java.lang.Throwable import Throwable
-
-class CompletionHandler:
-    def failed(self, p0: Throwable, p1: Any) -> None: ...
-    def completed(self, p0: Any, p1: Any) -> None: ...

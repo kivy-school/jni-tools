@@ -6,40 +6,41 @@ from jni_core.jni cimport (
     jboolean, jbyte, jchar, jshort, jint, jlong, jfloat, jdouble,
 )
 
-cdef class Vibrator(JavaObject):
-    cdef void _vibrate(self, JNIEnv* env, jlong p0) except *
-    cdef void _vibrate_0(self, JNIEnv* env, jlong p0) except *
-    cdef void _vibrate_1(self, JNIEnv* env, jobject p0, jobject p1) except *
-    cdef void _vibrate_2(self, JNIEnv* env, jobject p0, jobject p1) except *
-    cdef void _vibrate_3(self, JNIEnv* env, jobject p0) except *
-    cdef void _vibrate_4(self, JNIEnv* env, jobject p0, jint p1, jobject p2) except *
-    cdef void _vibrate_5(self, JNIEnv* env, jobject p0, jint p1) except *
-    cdef void _vibrate_6(self, JNIEnv* env, jlong p0, jobject p1) except *
-    cdef jfloat _getQFactor(self, JNIEnv* env) except *
-    cdef jfloat _getQFactor_0(self, JNIEnv* env) except *
-    cdef jboolean _hasVibrator(self, JNIEnv* env) except *
-    cdef jboolean _hasVibrator_0(self, JNIEnv* env) except *
-    cdef jint _areAllEffectsSupported(self, JNIEnv* env, jobject p0) except *
-    cdef jint _areAllEffectsSupported_0(self, JNIEnv* env, jobject p0) except *
-    cdef jboolean _areAllPrimitivesSupported(self, JNIEnv* env, jobject p0) except *
-    cdef jboolean _areAllPrimitivesSupported_0(self, JNIEnv* env, jobject p0) except *
-    cdef jobject _areEffectsSupported(self, JNIEnv* env, jobject p0) except? NULL
-    cdef jobject _areEffectsSupported_0(self, JNIEnv* env, jobject p0) except? NULL
-    cdef jboolean _areEnvelopeEffectsSupported(self, JNIEnv* env) except *
-    cdef jboolean _areEnvelopeEffectsSupported_0(self, JNIEnv* env) except *
-    cdef jobject _arePrimitivesSupported(self, JNIEnv* env, jobject p0) except? NULL
-    cdef jobject _arePrimitivesSupported_0(self, JNIEnv* env, jobject p0) except? NULL
-    cdef jobject _getEnvelopeEffectInfo(self, JNIEnv* env) except? NULL
-    cdef jobject _getEnvelopeEffectInfo_0(self, JNIEnv* env) except? NULL
-    cdef jobject _getFrequencyProfile(self, JNIEnv* env) except? NULL
-    cdef jobject _getFrequencyProfile_0(self, JNIEnv* env) except? NULL
-    cdef jobject _getPrimitiveDurations(self, JNIEnv* env, jobject p0) except? NULL
-    cdef jobject _getPrimitiveDurations_0(self, JNIEnv* env, jobject p0) except? NULL
-    cdef jfloat _getResonantFrequency(self, JNIEnv* env) except *
-    cdef jfloat _getResonantFrequency_0(self, JNIEnv* env) except *
-    cdef jboolean _hasAmplitudeControl(self, JNIEnv* env) except *
-    cdef jboolean _hasAmplitudeControl_0(self, JNIEnv* env) except *
-    cdef jint _getId(self, JNIEnv* env) except *
-    cdef jint _getId_0(self, JNIEnv* env) except *
-    cdef void _cancel(self, JNIEnv* env) except *
-    cdef void _cancel_0(self, JNIEnv* env) except *
+cdef class VibratorEnvelopeEffectInfo(JavaObject):
+    cdef jlong _getMaxControlPointDurationMillis(self, JNIEnv* env) except *
+    cdef jlong _getMaxControlPointDurationMillis_0(self, JNIEnv* env) except *
+    cdef jlong _getMaxDurationMillis(self, JNIEnv* env) except *
+    cdef jlong _getMaxDurationMillis_0(self, JNIEnv* env) except *
+    cdef jlong _getMinControlPointDurationMillis(self, JNIEnv* env) except *
+    cdef jlong _getMinControlPointDurationMillis_0(self, JNIEnv* env) except *
+    cdef jboolean _equals(self, JNIEnv* env, jobject p0) except *
+    cdef jboolean _equals_0(self, JNIEnv* env, jobject p0) except *
+    cdef jstring _toString(self, JNIEnv* env) except? NULL
+    cdef jstring _toString_0(self, JNIEnv* env) except? NULL
+    cdef jint _hashCode(self, JNIEnv* env) except *
+    cdef jint _hashCode_0(self, JNIEnv* env) except *
+    cdef jint _describeContents(self, JNIEnv* env) except *
+    cdef jint _describeContents_0(self, JNIEnv* env) except *
+    cdef void _writeToParcel(self, JNIEnv* env, jobject p0, jint p1) except *
+    cdef void _writeToParcel_0(self, JNIEnv* env, jobject p0, jint p1) except *
+    cdef jint _getMaxSize(self, JNIEnv* env) except *
+    cdef jint _getMaxSize_0(self, JNIEnv* env) except *
+
+from jni_core.jni cimport (
+    JNIEnv, jobject, jstring,
+    jboolean, jbyte, jchar, jshort, jint, jlong, jfloat, jdouble,
+)
+
+cdef class VibratorFrequencyProfile(JavaObject):
+    cdef jobject _getFrequencyRange(self, JNIEnv* env, jfloat p0) except? NULL
+    cdef jobject _getFrequencyRange_0(self, JNIEnv* env, jfloat p0) except? NULL
+    cdef jfloat _getMaxFrequencyHz(self, JNIEnv* env) except *
+    cdef jfloat _getMaxFrequencyHz_0(self, JNIEnv* env) except *
+    cdef jfloat _getMaxOutputAccelerationGs(self, JNIEnv* env) except *
+    cdef jfloat _getMaxOutputAccelerationGs_0(self, JNIEnv* env) except *
+    cdef jfloat _getMinFrequencyHz(self, JNIEnv* env) except *
+    cdef jfloat _getMinFrequencyHz_0(self, JNIEnv* env) except *
+    cdef jfloat _getOutputAccelerationGs(self, JNIEnv* env, jfloat p0) except *
+    cdef jfloat _getOutputAccelerationGs_0(self, JNIEnv* env, jfloat p0) except *
+    cdef jobject _getFrequenciesOutputAcceleration(self, JNIEnv* env) except? NULL
+    cdef jobject _getFrequenciesOutputAcceleration_0(self, JNIEnv* env) except? NULL

@@ -1,6 +1,0 @@
-from typing import Any, ClassVar, overload
-from java.security.cert.CertPathParameters import CertPathParameters
-
-class CertPathTrustManagerParameters:
-    def __init__(self, p0: CertPathParameters) -> None: ...
-    def getParameters(self) -> CertPathParameters: ...

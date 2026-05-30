@@ -1,6 +1,0 @@
-from typing import Any, ClassVar, overload
-from java.security.cert.Certificate import Certificate
-
-class CertSelector:
-    def clone(self) -> Any: ...
-    def match_(self, p0: Certificate) -> bool: ...

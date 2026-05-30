@@ -1,9 +1,0 @@
-from typing import Any, ClassVar, overload
-from android.content.IntentSender import IntentSender
-
-class SaveCallback:
-    def onFailure(self, p0: str) -> None: ...
-    @overload
-    def onSuccess(self, p0: IntentSender) -> None: ...
-    @overload
-    def onSuccess(self) -> None: ...

@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=68", "wheel", "cython>=3.0"]
+requires = ["setuptools>=68", "wheel", "cython>=3.0", "jni-core"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -12,8 +12,11 @@ dependencies = ["jni-core"]
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.setuptools.package-data]
+"*" = ["*.pxd", "*.pyi"]
+
 [tool.setuptools.exclude-package-data]
-"*" = [".DS_Store", "*.DS_Store", "*.c", "*.pyx", "*.pxd", "*.pxi"]
+"*" = [".DS_Store", "*.DS_Store", "*.c", "*.pyx", "*.pxi"]
 
 # ---------------------------------------------------------------------------
 # cibuildwheel — cross-compile for Android (cp313 first; add cp314 later)

@@ -1,11 +1,11 @@
 [build-system]
-requires = ["setuptools>=68", "wheel", "cython>=3.0"]
+requires = ["setuptools>=68", "wheel", "cython>=3.0", "jni-core"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "android-android-printservice"
 version = "35.0.0"
-description = "Cython JNI wrappers for the android.printservice.* subpackage (android.jar, API 35). Imports as android.android.printservice.*."
+description = "Cython JNI wrapper for android.printservice (android.jar, API 35). Imports as android.android.printservice."
 requires-python = ">=3.11"
 dependencies = [
     "jni-core",

@@ -1,9 +1,0 @@
-from typing import Any, ClassVar, overload
-from android.transition.Transition import Transition
-from android.transition.TransitionValues import TransitionValues
-from android.view.ViewGroup import ViewGroup
-
-class CircularPropagation:
-    def __init__(self) -> None: ...
-    def setPropagationSpeed(self, p0: float) -> None: ...
-    def getStartDelay(self, p0: ViewGroup, p1: Transition, p2: TransitionValues, p3: TransitionValues) -> int: ...

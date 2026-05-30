@@ -44,612 +44,149 @@ from jni_core.jni cimport (
 
 include "jni_core/conversions.pxi"
 
-__javaclass__ = "java/lang/Runtime"  # java.lang.Runtime
+__javaclass__ = "java/lang/runtime/SwitchBootstraps"  # java.lang.runtime.SwitchBootstraps
 
-cdef jclass _cls_Runtime = NULL
-cdef jmethodID _m_Runtime_getRuntime_0 = NULL
-cdef jmethodID _m_Runtime_exit_0 = NULL
-cdef jmethodID _m_Runtime_runFinalization_0 = NULL
-cdef jmethodID _m_Runtime_version_0 = NULL
-cdef jmethodID _m_Runtime_load_0 = NULL
-cdef jmethodID _m_Runtime_loadLibrary_0 = NULL
-cdef jmethodID _m_Runtime_gc_0 = NULL
-cdef jmethodID _m_Runtime_availableProcessors_0 = NULL
-cdef jmethodID _m_Runtime_freeMemory_0 = NULL
-cdef jmethodID _m_Runtime_halt_0 = NULL
-cdef jmethodID _m_Runtime_addShutdownHook_0 = NULL
-cdef jmethodID _m_Runtime_removeShutdownHook_0 = NULL
-cdef jmethodID _m_Runtime_totalMemory_0 = NULL
-cdef jmethodID _m_Runtime_maxMemory_0 = NULL
-cdef jmethodID _m_Runtime_exec_0 = NULL
-cdef jmethodID _m_Runtime_exec_1 = NULL
-cdef jmethodID _m_Runtime_exec_2 = NULL
-cdef jmethodID _m_Runtime_exec_3 = NULL
-cdef jmethodID _m_Runtime_exec_4 = NULL
-cdef jmethodID _m_Runtime_exec_5 = NULL
+cdef jclass _cls_SwitchBootstraps = NULL
+cdef jmethodID _m_SwitchBootstraps_enumSwitch_0 = NULL
+cdef jmethodID _m_SwitchBootstraps_typeSwitch_0 = NULL
 
-cdef int _ensure_ids_Runtime(JNIEnv* env) except -1:
-    global _cls_Runtime, _m_Runtime_getRuntime_0, _m_Runtime_exit_0, _m_Runtime_runFinalization_0, _m_Runtime_version_0, _m_Runtime_load_0, _m_Runtime_loadLibrary_0, _m_Runtime_gc_0, _m_Runtime_availableProcessors_0, _m_Runtime_freeMemory_0, _m_Runtime_halt_0, _m_Runtime_addShutdownHook_0, _m_Runtime_removeShutdownHook_0, _m_Runtime_totalMemory_0, _m_Runtime_maxMemory_0, _m_Runtime_exec_0, _m_Runtime_exec_1, _m_Runtime_exec_2, _m_Runtime_exec_3, _m_Runtime_exec_4, _m_Runtime_exec_5
-    if _cls_Runtime != NULL:
+cdef int _ensure_ids_SwitchBootstraps(JNIEnv* env) except -1:
+    global _cls_SwitchBootstraps, _m_SwitchBootstraps_enumSwitch_0, _m_SwitchBootstraps_typeSwitch_0
+    if _cls_SwitchBootstraps != NULL:
         return 0
-    _cls_Runtime = find_class_global(env, b"java/lang/Runtime")
-    _m_Runtime_getRuntime_0 = get_static_method_id(env, _cls_Runtime, b"getRuntime", b"()Ljava/lang/Runtime;")
-    _m_Runtime_exit_0 = get_method_id(env, _cls_Runtime, b"exit", b"(I)V")
-    _m_Runtime_runFinalization_0 = get_method_id(env, _cls_Runtime, b"runFinalization", b"()V")
-    _m_Runtime_version_0 = get_static_method_id(env, _cls_Runtime, b"version", b"()Ljava/lang/Runtime$Version;")
-    _m_Runtime_load_0 = get_method_id(env, _cls_Runtime, b"load", b"(Ljava/lang/String;)V")
-    _m_Runtime_loadLibrary_0 = get_method_id(env, _cls_Runtime, b"loadLibrary", b"(Ljava/lang/String;)V")
-    _m_Runtime_gc_0 = get_method_id(env, _cls_Runtime, b"gc", b"()V")
-    _m_Runtime_availableProcessors_0 = get_method_id(env, _cls_Runtime, b"availableProcessors", b"()I")
-    _m_Runtime_freeMemory_0 = get_method_id(env, _cls_Runtime, b"freeMemory", b"()J")
-    _m_Runtime_halt_0 = get_method_id(env, _cls_Runtime, b"halt", b"(I)V")
-    _m_Runtime_addShutdownHook_0 = get_method_id(env, _cls_Runtime, b"addShutdownHook", b"(Ljava/lang/Thread;)V")
-    _m_Runtime_removeShutdownHook_0 = get_method_id(env, _cls_Runtime, b"removeShutdownHook", b"(Ljava/lang/Thread;)Z")
-    _m_Runtime_totalMemory_0 = get_method_id(env, _cls_Runtime, b"totalMemory", b"()J")
-    _m_Runtime_maxMemory_0 = get_method_id(env, _cls_Runtime, b"maxMemory", b"()J")
-    _m_Runtime_exec_0 = get_method_id(env, _cls_Runtime, b"exec", b"(Ljava/lang/String;)Ljava/lang/Process;")
-    _m_Runtime_exec_1 = get_method_id(env, _cls_Runtime, b"exec", b"([Ljava/lang/String;[Ljava/lang/String;Ljava/io/File;)Ljava/lang/Process;")
-    _m_Runtime_exec_2 = get_method_id(env, _cls_Runtime, b"exec", b"([Ljava/lang/String;[Ljava/lang/String;)Ljava/lang/Process;")
-    _m_Runtime_exec_3 = get_method_id(env, _cls_Runtime, b"exec", b"([Ljava/lang/String;)Ljava/lang/Process;")
-    _m_Runtime_exec_4 = get_method_id(env, _cls_Runtime, b"exec", b"(Ljava/lang/String;[Ljava/lang/String;Ljava/io/File;)Ljava/lang/Process;")
-    _m_Runtime_exec_5 = get_method_id(env, _cls_Runtime, b"exec", b"(Ljava/lang/String;[Ljava/lang/String;)Ljava/lang/Process;")
+    _cls_SwitchBootstraps = find_class_global(env, b"java/lang/runtime/SwitchBootstraps")
+    _m_SwitchBootstraps_enumSwitch_0 = get_static_method_id(env, _cls_SwitchBootstraps, b"enumSwitch", b"(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;")
+    _m_SwitchBootstraps_typeSwitch_0 = get_static_method_id(env, _cls_SwitchBootstraps, b"typeSwitch", b"(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;")
     return 0
 
-cdef class Runtime(JavaObject):
-    """java.lang.Runtime"""
+cdef class SwitchBootstraps(JavaObject):
+    """java.lang.runtime.SwitchBootstraps"""
 
     def __init__(self, *args, **kwargs):
-        raise TypeError("Runtime has no public constructor")
+        raise TypeError("SwitchBootstraps has no public constructor")
 
     @staticmethod
-    cdef jobject _getRuntime(JNIEnv* env) except? NULL:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_Runtime, _m_Runtime_getRuntime_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    @staticmethod
-    def getRuntime() -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = Runtime._getRuntime(env)
-        if _ret == NULL:
-            return None
-        cdef Runtime _wrapped = Runtime.__new__(Runtime)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    @staticmethod
-    cdef jobject _getRuntime_0(JNIEnv* env) except? NULL:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_Runtime, _m_Runtime_getRuntime_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    @staticmethod
-    def getRuntime_0() -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = Runtime._getRuntime_0(env)
-        if _ret == NULL:
-            return None
-        cdef Runtime _wrapped = Runtime.__new__(Runtime)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef void _exit(self, JNIEnv* env, jint p0) except *:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]
-        _args[0].i = p0
-        jnicore_CallVoidMethodA(env, self._handle, _m_Runtime_exit_0, _args)
-        check_jni_exc(env)
-
-    def exit(self, p0) -> None:
-        cdef JNIEnv* env = get_env()
-        cdef jint _c0 = py_to_jint(p0)
-        self._exit(env, _c0)
-
-    cdef void _exit_0(self, JNIEnv* env, jint p0) except *:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]
-        _args[0].i = p0
-        jnicore_CallVoidMethodA(env, self._handle, _m_Runtime_exit_0, _args)
-        check_jni_exc(env)
-
-    def exit_0(self, p0) -> None:
-        cdef JNIEnv* env = get_env()
-        cdef jint _c0 = py_to_jint(p0)
-        self._exit_0(env, _c0)
-
-    cdef void _runFinalization(self, JNIEnv* env) except *:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        jnicore_CallVoidMethodA(env, self._handle, _m_Runtime_runFinalization_0, _args)
-        check_jni_exc(env)
-
-    def runFinalization(self) -> None:
-        cdef JNIEnv* env = get_env()
-        self._runFinalization(env)
-
-    cdef void _runFinalization_0(self, JNIEnv* env) except *:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        jnicore_CallVoidMethodA(env, self._handle, _m_Runtime_runFinalization_0, _args)
-        check_jni_exc(env)
-
-    def runFinalization_0(self) -> None:
-        cdef JNIEnv* env = get_env()
-        self._runFinalization_0(env)
-
-    @staticmethod
-    cdef jobject _version(JNIEnv* env) except? NULL:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_Runtime, _m_Runtime_version_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    @staticmethod
-    def version() -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = Runtime._version(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    @staticmethod
-    cdef jobject _version_0(JNIEnv* env) except? NULL:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_Runtime, _m_Runtime_version_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    @staticmethod
-    def version_0() -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = Runtime._version_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef void _load(self, JNIEnv* env, jstring p0) except *:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]
-        _args[0].l = <jobject>p0
-        jnicore_CallVoidMethodA(env, self._handle, _m_Runtime_load_0, _args)
-        check_jni_exc(env)
-
-    def load(self, p0) -> None:
-        cdef JNIEnv* env = get_env()
-        cdef jstring _arg0_s = NULL
-        _arg0_s = j_str(env, p0) if p0 is not None else <jstring>NULL
-        try:
-            self._load(env, _arg0_s)
-        finally:
-            if _arg0_s != NULL:
-                jnicore_DeleteLocalRef(env, <jobject>_arg0_s)
-
-    cdef void _load_0(self, JNIEnv* env, jstring p0) except *:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]
-        _args[0].l = <jobject>p0
-        jnicore_CallVoidMethodA(env, self._handle, _m_Runtime_load_0, _args)
-        check_jni_exc(env)
-
-    def load_0(self, p0) -> None:
-        cdef JNIEnv* env = get_env()
-        cdef jstring _arg0_s = NULL
-        _arg0_s = j_str(env, p0) if p0 is not None else <jstring>NULL
-        try:
-            self._load_0(env, _arg0_s)
-        finally:
-            if _arg0_s != NULL:
-                jnicore_DeleteLocalRef(env, <jobject>_arg0_s)
-
-    cdef void _loadLibrary(self, JNIEnv* env, jstring p0) except *:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]
-        _args[0].l = <jobject>p0
-        jnicore_CallVoidMethodA(env, self._handle, _m_Runtime_loadLibrary_0, _args)
-        check_jni_exc(env)
-
-    def loadLibrary(self, p0) -> None:
-        cdef JNIEnv* env = get_env()
-        cdef jstring _arg0_s = NULL
-        _arg0_s = j_str(env, p0) if p0 is not None else <jstring>NULL
-        try:
-            self._loadLibrary(env, _arg0_s)
-        finally:
-            if _arg0_s != NULL:
-                jnicore_DeleteLocalRef(env, <jobject>_arg0_s)
-
-    cdef void _loadLibrary_0(self, JNIEnv* env, jstring p0) except *:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]
-        _args[0].l = <jobject>p0
-        jnicore_CallVoidMethodA(env, self._handle, _m_Runtime_loadLibrary_0, _args)
-        check_jni_exc(env)
-
-    def loadLibrary_0(self, p0) -> None:
-        cdef JNIEnv* env = get_env()
-        cdef jstring _arg0_s = NULL
-        _arg0_s = j_str(env, p0) if p0 is not None else <jstring>NULL
-        try:
-            self._loadLibrary_0(env, _arg0_s)
-        finally:
-            if _arg0_s != NULL:
-                jnicore_DeleteLocalRef(env, <jobject>_arg0_s)
-
-    cdef void _gc(self, JNIEnv* env) except *:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        jnicore_CallVoidMethodA(env, self._handle, _m_Runtime_gc_0, _args)
-        check_jni_exc(env)
-
-    def gc(self) -> None:
-        cdef JNIEnv* env = get_env()
-        self._gc(env)
-
-    cdef void _gc_0(self, JNIEnv* env) except *:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        jnicore_CallVoidMethodA(env, self._handle, _m_Runtime_gc_0, _args)
-        check_jni_exc(env)
-
-    def gc_0(self) -> None:
-        cdef JNIEnv* env = get_env()
-        self._gc_0(env)
-
-    cdef jint _availableProcessors(self, JNIEnv* env) except *:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Runtime_availableProcessors_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def availableProcessors(self) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jint _ret = 0
-        _ret = self._availableProcessors(env)
-        return <int>_ret
-
-    cdef jint _availableProcessors_0(self, JNIEnv* env) except *:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Runtime_availableProcessors_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def availableProcessors_0(self) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jint _ret = 0
-        _ret = self._availableProcessors_0(env)
-        return <int>_ret
-
-    cdef jlong _freeMemory(self, JNIEnv* env) except *:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jlong _ret = jnicore_CallLongMethodA(env, self._handle, _m_Runtime_freeMemory_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def freeMemory(self) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jlong _ret = 0
-        _ret = self._freeMemory(env)
-        return <long long>_ret
-
-    cdef jlong _freeMemory_0(self, JNIEnv* env) except *:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jlong _ret = jnicore_CallLongMethodA(env, self._handle, _m_Runtime_freeMemory_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def freeMemory_0(self) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jlong _ret = 0
-        _ret = self._freeMemory_0(env)
-        return <long long>_ret
-
-    cdef void _halt(self, JNIEnv* env, jint p0) except *:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]
-        _args[0].i = p0
-        jnicore_CallVoidMethodA(env, self._handle, _m_Runtime_halt_0, _args)
-        check_jni_exc(env)
-
-    def halt(self, p0) -> None:
-        cdef JNIEnv* env = get_env()
-        cdef jint _c0 = py_to_jint(p0)
-        self._halt(env, _c0)
-
-    cdef void _halt_0(self, JNIEnv* env, jint p0) except *:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]
-        _args[0].i = p0
-        jnicore_CallVoidMethodA(env, self._handle, _m_Runtime_halt_0, _args)
-        check_jni_exc(env)
-
-    def halt_0(self, p0) -> None:
-        cdef JNIEnv* env = get_env()
-        cdef jint _c0 = py_to_jint(p0)
-        self._halt_0(env, _c0)
-
-    cdef void _addShutdownHook(self, JNIEnv* env, jobject p0) except *:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]
+    cdef jobject _enumSwitch(JNIEnv* env, jobject p0, jstring p1, jobject p2, jobject p3) except? NULL:
+        _ensure_ids_SwitchBootstraps(env)
+        cdef jvalue _args[4]
         _args[0].l = p0
-        jnicore_CallVoidMethodA(env, self._handle, _m_Runtime_addShutdownHook_0, _args)
-        check_jni_exc(env)
-
-    def addShutdownHook(self, p0) -> None:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        self._addShutdownHook(env, _h0)
-
-    cdef void _addShutdownHook_0(self, JNIEnv* env, jobject p0) except *:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        jnicore_CallVoidMethodA(env, self._handle, _m_Runtime_addShutdownHook_0, _args)
-        check_jni_exc(env)
-
-    def addShutdownHook_0(self, p0) -> None:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        self._addShutdownHook_0(env, _h0)
-
-    cdef jboolean _removeShutdownHook(self, JNIEnv* env, jobject p0) except *:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_Runtime_removeShutdownHook_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def removeShutdownHook(self, p0) -> bool:
-        cdef JNIEnv* env = get_env()
-        cdef jboolean _ret = 0
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        _ret = self._removeShutdownHook(env, _h0)
-        return jboolean_to_py(_ret)
-
-    cdef jboolean _removeShutdownHook_0(self, JNIEnv* env, jobject p0) except *:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_Runtime_removeShutdownHook_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def removeShutdownHook_0(self, p0) -> bool:
-        cdef JNIEnv* env = get_env()
-        cdef jboolean _ret = 0
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        _ret = self._removeShutdownHook_0(env, _h0)
-        return jboolean_to_py(_ret)
-
-    cdef jlong _totalMemory(self, JNIEnv* env) except *:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jlong _ret = jnicore_CallLongMethodA(env, self._handle, _m_Runtime_totalMemory_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def totalMemory(self) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jlong _ret = 0
-        _ret = self._totalMemory(env)
-        return <long long>_ret
-
-    cdef jlong _totalMemory_0(self, JNIEnv* env) except *:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jlong _ret = jnicore_CallLongMethodA(env, self._handle, _m_Runtime_totalMemory_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def totalMemory_0(self) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jlong _ret = 0
-        _ret = self._totalMemory_0(env)
-        return <long long>_ret
-
-    cdef jlong _maxMemory(self, JNIEnv* env) except *:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jlong _ret = jnicore_CallLongMethodA(env, self._handle, _m_Runtime_maxMemory_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def maxMemory(self) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jlong _ret = 0
-        _ret = self._maxMemory(env)
-        return <long long>_ret
-
-    cdef jlong _maxMemory_0(self, JNIEnv* env) except *:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jlong _ret = jnicore_CallLongMethodA(env, self._handle, _m_Runtime_maxMemory_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def maxMemory_0(self) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jlong _ret = 0
-        _ret = self._maxMemory_0(env)
-        return <long long>_ret
-
-    cdef jobject _exec(self, JNIEnv* env, jstring p0) except? NULL:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]
-        _args[0].l = <jobject>p0
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Runtime_exec_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def exec(self, p0) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        cdef jstring _arg0_s = NULL
-        _arg0_s = j_str(env, p0) if p0 is not None else <jstring>NULL
-        try:
-            _ret = self._exec(env, _arg0_s)
-        finally:
-            if _arg0_s != NULL:
-                jnicore_DeleteLocalRef(env, <jobject>_arg0_s)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _exec_0(self, JNIEnv* env, jstring p0) except? NULL:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]
-        _args[0].l = <jobject>p0
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Runtime_exec_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def exec_0(self, p0) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        cdef jstring _arg0_s = NULL
-        _arg0_s = j_str(env, p0) if p0 is not None else <jstring>NULL
-        try:
-            _ret = self._exec_0(env, _arg0_s)
-        finally:
-            if _arg0_s != NULL:
-                jnicore_DeleteLocalRef(env, <jobject>_arg0_s)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _exec_1(self, JNIEnv* env, jobject p0, jobject p1, jobject p2) except? NULL:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[3]
-        _args[0].l = p0
-        _args[1].l = p1
+        _args[1].l = <jobject>p1
         _args[2].l = p2
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Runtime_exec_1, _args)
+        _args[3].l = p3
+        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_SwitchBootstraps, _m_SwitchBootstraps_enumSwitch_0, _args)
         check_jni_exc(env)
         return _ret
 
-    def exec_1(self, p0, p1, p2) -> object:
+    @staticmethod
+    def enumSwitch(p0, p1, p2, p3) -> object:
         cdef JNIEnv* env = get_env()
         cdef jobject _ret = NULL
+        cdef jstring _arg1_s = NULL
         cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        cdef jobject _h1 = (<JavaObject?>p1)._handle if p1 is not None else <jobject>NULL
+        _arg1_s = j_str(env, p1) if p1 is not None else <jstring>NULL
         cdef jobject _h2 = (<JavaObject?>p2)._handle if p2 is not None else <jobject>NULL
-        _ret = self._exec_1(env, _h0, _h1, _h2)
+        cdef jobject _h3 = (<JavaObject?>p3)._handle if p3 is not None else <jobject>NULL
+        try:
+            _ret = SwitchBootstraps._enumSwitch(env, _h0, _arg1_s, _h2, _h3)
+        finally:
+            if _arg1_s != NULL:
+                jnicore_DeleteLocalRef(env, <jobject>_arg1_s)
         if _ret == NULL:
             return None
         cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
         _wrapped._adopt_local(env, _ret)
         return _wrapped
 
-    cdef jobject _exec_2(self, JNIEnv* env, jobject p0, jobject p1) except? NULL:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[2]
+    @staticmethod
+    cdef jobject _enumSwitch_0(JNIEnv* env, jobject p0, jstring p1, jobject p2, jobject p3) except? NULL:
+        _ensure_ids_SwitchBootstraps(env)
+        cdef jvalue _args[4]
         _args[0].l = p0
-        _args[1].l = p1
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Runtime_exec_2, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def exec_2(self, p0, p1) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        cdef jobject _h1 = (<JavaObject?>p1)._handle if p1 is not None else <jobject>NULL
-        _ret = self._exec_2(env, _h0, _h1)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _exec_3(self, JNIEnv* env, jobject p0) except? NULL:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Runtime_exec_3, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def exec_3(self, p0) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        _ret = self._exec_3(env, _h0)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _exec_4(self, JNIEnv* env, jstring p0, jobject p1, jobject p2) except? NULL:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[3]
-        _args[0].l = <jobject>p0
-        _args[1].l = p1
+        _args[1].l = <jobject>p1
         _args[2].l = p2
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Runtime_exec_4, _args)
+        _args[3].l = p3
+        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_SwitchBootstraps, _m_SwitchBootstraps_enumSwitch_0, _args)
         check_jni_exc(env)
         return _ret
 
-    def exec_4(self, p0, p1, p2) -> object:
+    @staticmethod
+    def enumSwitch_0(p0, p1, p2, p3) -> object:
         cdef JNIEnv* env = get_env()
         cdef jobject _ret = NULL
-        cdef jstring _arg0_s = NULL
-        _arg0_s = j_str(env, p0) if p0 is not None else <jstring>NULL
-        cdef jobject _h1 = (<JavaObject?>p1)._handle if p1 is not None else <jobject>NULL
+        cdef jstring _arg1_s = NULL
+        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
+        _arg1_s = j_str(env, p1) if p1 is not None else <jstring>NULL
         cdef jobject _h2 = (<JavaObject?>p2)._handle if p2 is not None else <jobject>NULL
+        cdef jobject _h3 = (<JavaObject?>p3)._handle if p3 is not None else <jobject>NULL
         try:
-            _ret = self._exec_4(env, _arg0_s, _h1, _h2)
+            _ret = SwitchBootstraps._enumSwitch_0(env, _h0, _arg1_s, _h2, _h3)
         finally:
-            if _arg0_s != NULL:
-                jnicore_DeleteLocalRef(env, <jobject>_arg0_s)
+            if _arg1_s != NULL:
+                jnicore_DeleteLocalRef(env, <jobject>_arg1_s)
         if _ret == NULL:
             return None
         cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
         _wrapped._adopt_local(env, _ret)
         return _wrapped
 
-    cdef jobject _exec_5(self, JNIEnv* env, jstring p0, jobject p1) except? NULL:
-        _ensure_ids_Runtime(env)
-        cdef jvalue _args[2]
-        _args[0].l = <jobject>p0
-        _args[1].l = p1
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Runtime_exec_5, _args)
+    @staticmethod
+    cdef jobject _typeSwitch(JNIEnv* env, jobject p0, jstring p1, jobject p2, jobject p3) except? NULL:
+        _ensure_ids_SwitchBootstraps(env)
+        cdef jvalue _args[4]
+        _args[0].l = p0
+        _args[1].l = <jobject>p1
+        _args[2].l = p2
+        _args[3].l = p3
+        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_SwitchBootstraps, _m_SwitchBootstraps_typeSwitch_0, _args)
         check_jni_exc(env)
         return _ret
 
-    def exec_5(self, p0, p1) -> object:
+    @staticmethod
+    def typeSwitch(p0, p1, p2, p3) -> object:
         cdef JNIEnv* env = get_env()
         cdef jobject _ret = NULL
-        cdef jstring _arg0_s = NULL
-        _arg0_s = j_str(env, p0) if p0 is not None else <jstring>NULL
-        cdef jobject _h1 = (<JavaObject?>p1)._handle if p1 is not None else <jobject>NULL
+        cdef jstring _arg1_s = NULL
+        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
+        _arg1_s = j_str(env, p1) if p1 is not None else <jstring>NULL
+        cdef jobject _h2 = (<JavaObject?>p2)._handle if p2 is not None else <jobject>NULL
+        cdef jobject _h3 = (<JavaObject?>p3)._handle if p3 is not None else <jobject>NULL
         try:
-            _ret = self._exec_5(env, _arg0_s, _h1)
+            _ret = SwitchBootstraps._typeSwitch(env, _h0, _arg1_s, _h2, _h3)
         finally:
-            if _arg0_s != NULL:
-                jnicore_DeleteLocalRef(env, <jobject>_arg0_s)
+            if _arg1_s != NULL:
+                jnicore_DeleteLocalRef(env, <jobject>_arg1_s)
+        if _ret == NULL:
+            return None
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
+        _wrapped._adopt_local(env, _ret)
+        return _wrapped
+
+    @staticmethod
+    cdef jobject _typeSwitch_0(JNIEnv* env, jobject p0, jstring p1, jobject p2, jobject p3) except? NULL:
+        _ensure_ids_SwitchBootstraps(env)
+        cdef jvalue _args[4]
+        _args[0].l = p0
+        _args[1].l = <jobject>p1
+        _args[2].l = p2
+        _args[3].l = p3
+        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_SwitchBootstraps, _m_SwitchBootstraps_typeSwitch_0, _args)
+        check_jni_exc(env)
+        return _ret
+
+    @staticmethod
+    def typeSwitch_0(p0, p1, p2, p3) -> object:
+        cdef JNIEnv* env = get_env()
+        cdef jobject _ret = NULL
+        cdef jstring _arg1_s = NULL
+        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
+        _arg1_s = j_str(env, p1) if p1 is not None else <jstring>NULL
+        cdef jobject _h2 = (<JavaObject?>p2)._handle if p2 is not None else <jobject>NULL
+        cdef jobject _h3 = (<JavaObject?>p3)._handle if p3 is not None else <jobject>NULL
+        try:
+            _ret = SwitchBootstraps._typeSwitch_0(env, _h0, _arg1_s, _h2, _h3)
+        finally:
+            if _arg1_s != NULL:
+                jnicore_DeleteLocalRef(env, <jobject>_arg1_s)
         if _ret == NULL:
             return None
         cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
@@ -658,629 +195,116 @@ cdef class Runtime(JavaObject):
 
     @staticmethod
     def from_java_object(obj) -> object:
-        """Wrap a plain JavaObject as Runtime (no JNI type check)."""
+        """Wrap a plain JavaObject as SwitchBootstraps (no JNI type check)."""
         cdef JNIEnv* env = get_env()
-        cdef Runtime inst = Runtime.__new__(Runtime)
+        cdef SwitchBootstraps inst = SwitchBootstraps.__new__(SwitchBootstraps)
         cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
         inst._adopt_global(env, global_ref)
         return inst
 
-# Nested class: java.lang.Runtime$Version  (JNI: java/lang/Runtime$Version)
-cdef jclass _cls_Version = NULL
-cdef jmethodID _m_Version_equals_0 = NULL
-cdef jmethodID _m_Version_toString_0 = NULL
-cdef jmethodID _m_Version_version_0 = NULL
-cdef jmethodID _m_Version_hashCode_0 = NULL
-cdef jmethodID _m_Version_compareTo_0 = NULL
-cdef jmethodID _m_Version_compareTo_1 = NULL
-cdef jmethodID _m_Version_update_0 = NULL
-cdef jmethodID _m_Version_feature_0 = NULL
-cdef jmethodID _m_Version_parse_0 = NULL
-cdef jmethodID _m_Version_pre_0 = NULL
-cdef jmethodID _m_Version_build_0 = NULL
-cdef jmethodID _m_Version_optional_0 = NULL
-cdef jmethodID _m_Version_major_0 = NULL
-cdef jmethodID _m_Version_minor_0 = NULL
-cdef jmethodID _m_Version_interim_0 = NULL
-cdef jmethodID _m_Version_equalsIgnoreOptional_0 = NULL
-cdef jmethodID _m_Version_patch_0 = NULL
-cdef jmethodID _m_Version_security_0 = NULL
-cdef jmethodID _m_Version_compareToIgnoreOptional_0 = NULL
 
-cdef int _ensure_ids_Version(JNIEnv* env) except -1:
-    global _cls_Version, _m_Version_equals_0, _m_Version_toString_0, _m_Version_version_0, _m_Version_hashCode_0, _m_Version_compareTo_0, _m_Version_compareTo_1, _m_Version_update_0, _m_Version_feature_0, _m_Version_parse_0, _m_Version_pre_0, _m_Version_build_0, _m_Version_optional_0, _m_Version_major_0, _m_Version_minor_0, _m_Version_interim_0, _m_Version_equalsIgnoreOptional_0, _m_Version_patch_0, _m_Version_security_0, _m_Version_compareToIgnoreOptional_0
-    if _cls_Version != NULL:
+__javaclass__ = "java/lang/runtime/ObjectMethods"  # java.lang.runtime.ObjectMethods
+
+cdef jclass _cls_ObjectMethods = NULL
+cdef jmethodID _m_ObjectMethods_bootstrap_0 = NULL
+
+cdef int _ensure_ids_ObjectMethods(JNIEnv* env) except -1:
+    global _cls_ObjectMethods, _m_ObjectMethods_bootstrap_0
+    if _cls_ObjectMethods != NULL:
         return 0
-    _cls_Version = find_class_global(env, b"java/lang/Runtime$Version")
-    _m_Version_equals_0 = get_method_id(env, _cls_Version, b"equals", b"(Ljava/lang/Object;)Z")
-    _m_Version_toString_0 = get_method_id(env, _cls_Version, b"toString", b"()Ljava/lang/String;")
-    _m_Version_version_0 = get_method_id(env, _cls_Version, b"version", b"()Ljava/util/List;")
-    _m_Version_hashCode_0 = get_method_id(env, _cls_Version, b"hashCode", b"()I")
-    _m_Version_compareTo_0 = get_method_id(env, _cls_Version, b"compareTo", b"(Ljava/lang/Runtime$Version;)I")
-    _m_Version_compareTo_1 = get_method_id(env, _cls_Version, b"compareTo", b"(Ljava/lang/Object;)I")
-    _m_Version_update_0 = get_method_id(env, _cls_Version, b"update", b"()I")
-    _m_Version_feature_0 = get_method_id(env, _cls_Version, b"feature", b"()I")
-    _m_Version_parse_0 = get_static_method_id(env, _cls_Version, b"parse", b"(Ljava/lang/String;)Ljava/lang/Runtime$Version;")
-    _m_Version_pre_0 = get_method_id(env, _cls_Version, b"pre", b"()Ljava/util/Optional;")
-    _m_Version_build_0 = get_method_id(env, _cls_Version, b"build", b"()Ljava/util/Optional;")
-    _m_Version_optional_0 = get_method_id(env, _cls_Version, b"optional", b"()Ljava/util/Optional;")
-    _m_Version_major_0 = get_method_id(env, _cls_Version, b"major", b"()I")
-    _m_Version_minor_0 = get_method_id(env, _cls_Version, b"minor", b"()I")
-    _m_Version_interim_0 = get_method_id(env, _cls_Version, b"interim", b"()I")
-    _m_Version_equalsIgnoreOptional_0 = get_method_id(env, _cls_Version, b"equalsIgnoreOptional", b"(Ljava/lang/Object;)Z")
-    _m_Version_patch_0 = get_method_id(env, _cls_Version, b"patch", b"()I")
-    _m_Version_security_0 = get_method_id(env, _cls_Version, b"security", b"()I")
-    _m_Version_compareToIgnoreOptional_0 = get_method_id(env, _cls_Version, b"compareToIgnoreOptional", b"(Ljava/lang/Runtime$Version;)I")
+    _cls_ObjectMethods = find_class_global(env, b"java/lang/runtime/ObjectMethods")
+    _m_ObjectMethods_bootstrap_0 = get_static_method_id(env, _cls_ObjectMethods, b"bootstrap", b"(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/TypeDescriptor;Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/invoke/MethodHandle;)Ljava/lang/Object;")
     return 0
 
-cdef class Version(JavaObject):
-    """java.lang.Runtime$Version"""
+cdef class ObjectMethods(JavaObject):
+    """java.lang.runtime.ObjectMethods"""
 
     def __init__(self, *args, **kwargs):
-        raise TypeError("Version has no public constructor")
-
-    cdef jboolean _equals(self, JNIEnv* env, jobject p0) except *:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_Version_equals_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def equals(self, p0) -> bool:
-        cdef JNIEnv* env = get_env()
-        cdef jboolean _ret = 0
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        _ret = self._equals(env, _h0)
-        return jboolean_to_py(_ret)
-
-    cdef jboolean _equals_0(self, JNIEnv* env, jobject p0) except *:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_Version_equals_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def equals_0(self, p0) -> bool:
-        cdef JNIEnv* env = get_env()
-        cdef jboolean _ret = 0
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        _ret = self._equals_0(env, _h0)
-        return jboolean_to_py(_ret)
-
-    cdef jstring _toString(self, JNIEnv* env) except? NULL:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jstring _ret = <jstring>jnicore_CallObjectMethodA(env, self._handle, _m_Version_toString_0, _args)
-        check_jni_exc(env)
-        return <jstring>_ret
-
-    def toString(self) -> str:
-        cdef JNIEnv* env = get_env()
-        cdef jstring _ret = NULL
-        _ret = self._toString(env)
-        return py_str(env, _ret)
-
-    cdef jstring _toString_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jstring _ret = <jstring>jnicore_CallObjectMethodA(env, self._handle, _m_Version_toString_0, _args)
-        check_jni_exc(env)
-        return <jstring>_ret
-
-    def toString_0(self) -> str:
-        cdef JNIEnv* env = get_env()
-        cdef jstring _ret = NULL
-        _ret = self._toString_0(env)
-        return py_str(env, _ret)
-
-    cdef jobject _version(self, JNIEnv* env) except? NULL:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Version_version_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def version(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._version(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _version_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Version_version_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def version_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._version_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jint _hashCode(self, JNIEnv* env) except *:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Version_hashCode_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def hashCode(self) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jint _ret = 0
-        _ret = self._hashCode(env)
-        return <int>_ret
-
-    cdef jint _hashCode_0(self, JNIEnv* env) except *:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Version_hashCode_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def hashCode_0(self) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jint _ret = 0
-        _ret = self._hashCode_0(env)
-        return <int>_ret
-
-    cdef jint _compareTo(self, JNIEnv* env, jobject p0) except *:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Version_compareTo_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def compareTo(self, p0) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jint _ret = 0
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        _ret = self._compareTo(env, _h0)
-        return <int>_ret
-
-    cdef jint _compareTo_0(self, JNIEnv* env, jobject p0) except *:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Version_compareTo_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def compareTo_0(self, p0) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jint _ret = 0
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        _ret = self._compareTo_0(env, _h0)
-        return <int>_ret
-
-    cdef jint _compareTo_1(self, JNIEnv* env, jobject p0) except *:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Version_compareTo_1, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def compareTo_1(self, p0) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jint _ret = 0
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        _ret = self._compareTo_1(env, _h0)
-        return <int>_ret
-
-    cdef jint _update(self, JNIEnv* env) except *:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Version_update_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def update(self) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jint _ret = 0
-        _ret = self._update(env)
-        return <int>_ret
-
-    cdef jint _update_0(self, JNIEnv* env) except *:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Version_update_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def update_0(self) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jint _ret = 0
-        _ret = self._update_0(env)
-        return <int>_ret
-
-    cdef jint _feature(self, JNIEnv* env) except *:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Version_feature_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def feature(self) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jint _ret = 0
-        _ret = self._feature(env)
-        return <int>_ret
-
-    cdef jint _feature_0(self, JNIEnv* env) except *:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Version_feature_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def feature_0(self) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jint _ret = 0
-        _ret = self._feature_0(env)
-        return <int>_ret
+        raise TypeError("ObjectMethods has no public constructor")
 
     @staticmethod
-    cdef jobject _parse(JNIEnv* env, jstring p0) except? NULL:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]
-        _args[0].l = <jobject>p0
-        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_Version, _m_Version_parse_0, _args)
+    cdef jobject _bootstrap(JNIEnv* env, jobject p0, jstring p1, jobject p2, jobject p3, jstring p4, jobject p5) except? NULL:
+        _ensure_ids_ObjectMethods(env)
+        cdef jvalue _args[6]
+        _args[0].l = p0
+        _args[1].l = <jobject>p1
+        _args[2].l = p2
+        _args[3].l = p3
+        _args[4].l = <jobject>p4
+        _args[5].l = p5
+        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_ObjectMethods, _m_ObjectMethods_bootstrap_0, _args)
         check_jni_exc(env)
         return _ret
 
     @staticmethod
-    def parse(p0) -> object:
+    def bootstrap(p0, p1, p2, p3, p4, p5) -> object:
         cdef JNIEnv* env = get_env()
         cdef jobject _ret = NULL
-        cdef jstring _arg0_s = NULL
-        _arg0_s = j_str(env, p0) if p0 is not None else <jstring>NULL
+        cdef jstring _arg1_s = NULL
+        cdef jstring _arg4_s = NULL
+        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
+        _arg1_s = j_str(env, p1) if p1 is not None else <jstring>NULL
+        cdef jobject _h2 = (<JavaObject?>p2)._handle if p2 is not None else <jobject>NULL
+        cdef jobject _h3 = (<JavaObject?>p3)._handle if p3 is not None else <jobject>NULL
+        _arg4_s = j_str(env, p4) if p4 is not None else <jstring>NULL
+        cdef jobject _h5 = (<JavaObject?>p5)._handle if p5 is not None else <jobject>NULL
         try:
-            _ret = Version._parse(env, _arg0_s)
+            _ret = ObjectMethods._bootstrap(env, _h0, _arg1_s, _h2, _h3, _arg4_s, _h5)
         finally:
-            if _arg0_s != NULL:
-                jnicore_DeleteLocalRef(env, <jobject>_arg0_s)
+            if _arg1_s != NULL:
+                jnicore_DeleteLocalRef(env, <jobject>_arg1_s)
+            if _arg4_s != NULL:
+                jnicore_DeleteLocalRef(env, <jobject>_arg4_s)
         if _ret == NULL:
             return None
-        cdef Version _wrapped = Version.__new__(Version)
+        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
         _wrapped._adopt_local(env, _ret)
         return _wrapped
 
     @staticmethod
-    cdef jobject _parse_0(JNIEnv* env, jstring p0) except? NULL:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]
-        _args[0].l = <jobject>p0
-        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_Version, _m_Version_parse_0, _args)
+    cdef jobject _bootstrap_0(JNIEnv* env, jobject p0, jstring p1, jobject p2, jobject p3, jstring p4, jobject p5) except? NULL:
+        _ensure_ids_ObjectMethods(env)
+        cdef jvalue _args[6]
+        _args[0].l = p0
+        _args[1].l = <jobject>p1
+        _args[2].l = p2
+        _args[3].l = p3
+        _args[4].l = <jobject>p4
+        _args[5].l = p5
+        cdef jobject _ret = jnicore_CallStaticObjectMethodA(env, _cls_ObjectMethods, _m_ObjectMethods_bootstrap_0, _args)
         check_jni_exc(env)
         return _ret
 
     @staticmethod
-    def parse_0(p0) -> object:
+    def bootstrap_0(p0, p1, p2, p3, p4, p5) -> object:
         cdef JNIEnv* env = get_env()
         cdef jobject _ret = NULL
-        cdef jstring _arg0_s = NULL
-        _arg0_s = j_str(env, p0) if p0 is not None else <jstring>NULL
+        cdef jstring _arg1_s = NULL
+        cdef jstring _arg4_s = NULL
+        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
+        _arg1_s = j_str(env, p1) if p1 is not None else <jstring>NULL
+        cdef jobject _h2 = (<JavaObject?>p2)._handle if p2 is not None else <jobject>NULL
+        cdef jobject _h3 = (<JavaObject?>p3)._handle if p3 is not None else <jobject>NULL
+        _arg4_s = j_str(env, p4) if p4 is not None else <jstring>NULL
+        cdef jobject _h5 = (<JavaObject?>p5)._handle if p5 is not None else <jobject>NULL
         try:
-            _ret = Version._parse_0(env, _arg0_s)
+            _ret = ObjectMethods._bootstrap_0(env, _h0, _arg1_s, _h2, _h3, _arg4_s, _h5)
         finally:
-            if _arg0_s != NULL:
-                jnicore_DeleteLocalRef(env, <jobject>_arg0_s)
-        if _ret == NULL:
-            return None
-        cdef Version _wrapped = Version.__new__(Version)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _pre(self, JNIEnv* env) except? NULL:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Version_pre_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def pre(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._pre(env)
+            if _arg1_s != NULL:
+                jnicore_DeleteLocalRef(env, <jobject>_arg1_s)
+            if _arg4_s != NULL:
+                jnicore_DeleteLocalRef(env, <jobject>_arg4_s)
         if _ret == NULL:
             return None
         cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
         _wrapped._adopt_local(env, _ret)
         return _wrapped
-
-    cdef jobject _pre_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Version_pre_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def pre_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._pre_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _build(self, JNIEnv* env) except? NULL:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Version_build_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def build(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._build(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _build_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Version_build_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def build_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._build_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _optional(self, JNIEnv* env) except? NULL:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Version_optional_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def optional(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._optional(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jobject _optional_0(self, JNIEnv* env) except? NULL:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jobject _ret = jnicore_CallObjectMethodA(env, self._handle, _m_Version_optional_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def optional_0(self) -> object:
-        cdef JNIEnv* env = get_env()
-        cdef jobject _ret = NULL
-        _ret = self._optional_0(env)
-        if _ret == NULL:
-            return None
-        cdef JavaObject _wrapped = JavaObject.__new__(JavaObject)
-        _wrapped._adopt_local(env, _ret)
-        return _wrapped
-
-    cdef jint _major(self, JNIEnv* env) except *:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Version_major_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def major(self) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jint _ret = 0
-        _ret = self._major(env)
-        return <int>_ret
-
-    cdef jint _major_0(self, JNIEnv* env) except *:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Version_major_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def major_0(self) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jint _ret = 0
-        _ret = self._major_0(env)
-        return <int>_ret
-
-    cdef jint _minor(self, JNIEnv* env) except *:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Version_minor_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def minor(self) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jint _ret = 0
-        _ret = self._minor(env)
-        return <int>_ret
-
-    cdef jint _minor_0(self, JNIEnv* env) except *:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Version_minor_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def minor_0(self) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jint _ret = 0
-        _ret = self._minor_0(env)
-        return <int>_ret
-
-    cdef jint _interim(self, JNIEnv* env) except *:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Version_interim_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def interim(self) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jint _ret = 0
-        _ret = self._interim(env)
-        return <int>_ret
-
-    cdef jint _interim_0(self, JNIEnv* env) except *:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Version_interim_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def interim_0(self) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jint _ret = 0
-        _ret = self._interim_0(env)
-        return <int>_ret
-
-    cdef jboolean _equalsIgnoreOptional(self, JNIEnv* env, jobject p0) except *:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_Version_equalsIgnoreOptional_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def equalsIgnoreOptional(self, p0) -> bool:
-        cdef JNIEnv* env = get_env()
-        cdef jboolean _ret = 0
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        _ret = self._equalsIgnoreOptional(env, _h0)
-        return jboolean_to_py(_ret)
-
-    cdef jboolean _equalsIgnoreOptional_0(self, JNIEnv* env, jobject p0) except *:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        cdef jboolean _ret = jnicore_CallBooleanMethodA(env, self._handle, _m_Version_equalsIgnoreOptional_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def equalsIgnoreOptional_0(self, p0) -> bool:
-        cdef JNIEnv* env = get_env()
-        cdef jboolean _ret = 0
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        _ret = self._equalsIgnoreOptional_0(env, _h0)
-        return jboolean_to_py(_ret)
-
-    cdef jint _patch(self, JNIEnv* env) except *:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Version_patch_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def patch(self) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jint _ret = 0
-        _ret = self._patch(env)
-        return <int>_ret
-
-    cdef jint _patch_0(self, JNIEnv* env) except *:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Version_patch_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def patch_0(self) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jint _ret = 0
-        _ret = self._patch_0(env)
-        return <int>_ret
-
-    cdef jint _security(self, JNIEnv* env) except *:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Version_security_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def security(self) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jint _ret = 0
-        _ret = self._security(env)
-        return <int>_ret
-
-    cdef jint _security_0(self, JNIEnv* env) except *:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]  # zero-arg call; _args ignored by JNI
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Version_security_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def security_0(self) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jint _ret = 0
-        _ret = self._security_0(env)
-        return <int>_ret
-
-    cdef jint _compareToIgnoreOptional(self, JNIEnv* env, jobject p0) except *:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Version_compareToIgnoreOptional_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def compareToIgnoreOptional(self, p0) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jint _ret = 0
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        _ret = self._compareToIgnoreOptional(env, _h0)
-        return <int>_ret
-
-    cdef jint _compareToIgnoreOptional_0(self, JNIEnv* env, jobject p0) except *:
-        _ensure_ids_Version(env)
-        cdef jvalue _args[1]
-        _args[0].l = p0
-        cdef jint _ret = jnicore_CallIntMethodA(env, self._handle, _m_Version_compareToIgnoreOptional_0, _args)
-        check_jni_exc(env)
-        return _ret
-
-    def compareToIgnoreOptional_0(self, p0) -> int:
-        cdef JNIEnv* env = get_env()
-        cdef jint _ret = 0
-        cdef jobject _h0 = (<JavaObject?>p0)._handle if p0 is not None else <jobject>NULL
-        _ret = self._compareToIgnoreOptional_0(env, _h0)
-        return <int>_ret
 
     @staticmethod
     def from_java_object(obj) -> object:
-        """Wrap a plain JavaObject as Version (no JNI type check)."""
+        """Wrap a plain JavaObject as ObjectMethods (no JNI type check)."""
         cdef JNIEnv* env = get_env()
-        cdef Version inst = Version.__new__(Version)
+        cdef ObjectMethods inst = ObjectMethods.__new__(ObjectMethods)
         cdef jobject global_ref = jnicore_NewGlobalRef(env, (<JavaObject?>obj)._handle)
         inst._adopt_global(env, global_ref)
         return inst

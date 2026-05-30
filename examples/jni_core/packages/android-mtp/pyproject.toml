@@ -1,11 +1,11 @@
 [build-system]
-requires = ["setuptools>=68", "wheel", "cython>=3.0"]
+requires = ["setuptools>=68", "wheel", "cython>=3.0", "jni-core"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "android-android-mtp"
 version = "35.0.0"
-description = "Cython JNI wrappers for the android.mtp.* subpackage (android.jar, API 35). Imports as android.android.mtp.*."
+description = "Cython JNI wrapper for android.mtp (android.jar, API 35). Imports as android.android.mtp."
 requires-python = ">=3.11"
 dependencies = [
     "jni-core",

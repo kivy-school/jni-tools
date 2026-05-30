@@ -1,0 +1,137 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+class VcnGatewayConnectionConfig(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/net/vcn/VcnGatewayConnectionConfig"
+    MIN_UDP_PORT_4500_NAT_TIMEOUT_UNSET = JavaStaticField("I")
+    VCN_GATEWAY_OPTION_ENABLE_DATA_STALL_RECOVERY_WITH_MOBILITY = JavaStaticField("I")
+    getGatewayConnectionName = JavaMethod("()Ljava/lang/String;")
+    getExposedCapabilities = JavaMethod("()[I")
+    getMaxMtu = JavaMethod("()I")
+    getMinUdpPort4500NatTimeoutSeconds = JavaMethod("()I")
+    getRetryIntervalsMillis = JavaMethod("()[J")
+    getVcnUnderlyingNetworkPriorities = JavaMethod("()Ljava/util/List;")
+    hasGatewayOption = JavaMethod("(I)Z")
+    isSafeModeEnabled = JavaMethod("()Z")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    hashCode = JavaMethod("()I")
+
+    class Builder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/net/vcn/VcnGatewayConnectionConfig$Builder"
+        __javaconstructor__ = [("(Ljava/lang/String;Landroid/net/ipsec/ike/IkeTunnelConnectionParams;)V", False)]
+        removeExposedCapability = JavaMethod("(I)Landroid/net/vcn/VcnGatewayConnectionConfig$Builder;")
+        addExposedCapability = JavaMethod("(I)Landroid/net/vcn/VcnGatewayConnectionConfig$Builder;")
+        setMaxMtu = JavaMethod("(I)Landroid/net/vcn/VcnGatewayConnectionConfig$Builder;")
+        addGatewayOption = JavaMethod("(I)Landroid/net/vcn/VcnGatewayConnectionConfig$Builder;")
+        removeGatewayOption = JavaMethod("(I)Landroid/net/vcn/VcnGatewayConnectionConfig$Builder;")
+        setMinUdpPort4500NatTimeoutSeconds = JavaMethod("(I)Landroid/net/vcn/VcnGatewayConnectionConfig$Builder;")
+        setRetryIntervalsMillis = JavaMethod("([J)Landroid/net/vcn/VcnGatewayConnectionConfig$Builder;")
+        setSafeModeEnabled = JavaMethod("(Z)Landroid/net/vcn/VcnGatewayConnectionConfig$Builder;")
+        setVcnUnderlyingNetworkPriorities = JavaMethod("(Ljava/util/List;)Landroid/net/vcn/VcnGatewayConnectionConfig$Builder;")
+        build = JavaMethod("()Landroid/net/vcn/VcnGatewayConnectionConfig;")
+
+class VcnConfig(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/net/vcn/VcnConfig"
+    CREATOR = JavaStaticField("Landroid/os/Parcelable$Creator;")
+    CONTENTS_FILE_DESCRIPTOR = JavaStaticField("I")
+    PARCELABLE_WRITE_RETURN_VALUE = JavaStaticField("I")
+    getGatewayConnectionConfigs = JavaMethod("()Ljava/util/Set;")
+    getRestrictedUnderlyingNetworkTransports = JavaMethod("()Ljava/util/Set;")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    hashCode = JavaMethod("()I")
+    describeContents = JavaMethod("()I")
+    writeToParcel = JavaMethod("(Landroid/os/Parcel;I)V")
+
+    class Builder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/net/vcn/VcnConfig$Builder"
+        __javaconstructor__ = [("(Landroid/content/Context;)V", False)]
+        setRestrictedUnderlyingNetworkTransports = JavaMethod("(Ljava/util/Set;)Landroid/net/vcn/VcnConfig$Builder;")
+        addGatewayConnectionConfig = JavaMethod("(Landroid/net/vcn/VcnGatewayConnectionConfig;)Landroid/net/vcn/VcnConfig$Builder;")
+        build = JavaMethod("()Landroid/net/vcn/VcnConfig;")
+
+class VcnCellUnderlyingNetworkTemplate(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/net/vcn/VcnCellUnderlyingNetworkTemplate"
+    MATCH_ANY = JavaStaticField("I")
+    MATCH_FORBIDDEN = JavaStaticField("I")
+    MATCH_REQUIRED = JavaStaticField("I")
+    getRoaming = JavaMethod("()I")
+    getDun = JavaMethod("()I")
+    getCbs = JavaMethod("()I")
+    getMms = JavaMethod("()I")
+    getSimSpecificCarrierIds = JavaMethod("()Ljava/util/Set;")
+    getOperatorPlmnIds = JavaMethod("()Ljava/util/Set;")
+    getInternet = JavaMethod("()I")
+    getIms = JavaMethod("()I")
+    getOpportunistic = JavaMethod("()I")
+    getRcs = JavaMethod("()I")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    hashCode = JavaMethod("()I")
+
+    class Builder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/net/vcn/VcnCellUnderlyingNetworkTemplate$Builder"
+        __javaconstructor__ = [("()V", False)]
+        setRoaming = JavaMethod("(I)Landroid/net/vcn/VcnCellUnderlyingNetworkTemplate$Builder;")
+        setOpportunistic = JavaMethod("(I)Landroid/net/vcn/VcnCellUnderlyingNetworkTemplate$Builder;")
+        setMms = JavaMethod("(I)Landroid/net/vcn/VcnCellUnderlyingNetworkTemplate$Builder;")
+        setDun = JavaMethod("(I)Landroid/net/vcn/VcnCellUnderlyingNetworkTemplate$Builder;")
+        setIms = JavaMethod("(I)Landroid/net/vcn/VcnCellUnderlyingNetworkTemplate$Builder;")
+        setRcs = JavaMethod("(I)Landroid/net/vcn/VcnCellUnderlyingNetworkTemplate$Builder;")
+        setCbs = JavaMethod("(I)Landroid/net/vcn/VcnCellUnderlyingNetworkTemplate$Builder;")
+        setInternet = JavaMethod("(I)Landroid/net/vcn/VcnCellUnderlyingNetworkTemplate$Builder;")
+        setMinDownstreamBandwidthKbps = JavaMethod("(II)Landroid/net/vcn/VcnCellUnderlyingNetworkTemplate$Builder;")
+        setMinUpstreamBandwidthKbps = JavaMethod("(II)Landroid/net/vcn/VcnCellUnderlyingNetworkTemplate$Builder;")
+        setOperatorPlmnIds = JavaMethod("(Ljava/util/Set;)Landroid/net/vcn/VcnCellUnderlyingNetworkTemplate$Builder;")
+        setSimSpecificCarrierIds = JavaMethod("(Ljava/util/Set;)Landroid/net/vcn/VcnCellUnderlyingNetworkTemplate$Builder;")
+        setMetered = JavaMethod("(I)Landroid/net/vcn/VcnCellUnderlyingNetworkTemplate$Builder;")
+        build = JavaMethod("()Landroid/net/vcn/VcnCellUnderlyingNetworkTemplate;")
+
+class VcnWifiUnderlyingNetworkTemplate(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/net/vcn/VcnWifiUnderlyingNetworkTemplate"
+    MATCH_ANY = JavaStaticField("I")
+    MATCH_FORBIDDEN = JavaStaticField("I")
+    MATCH_REQUIRED = JavaStaticField("I")
+    getSsids = JavaMethod("()Ljava/util/Set;")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    hashCode = JavaMethod("()I")
+
+    class Builder(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/net/vcn/VcnWifiUnderlyingNetworkTemplate$Builder"
+        __javaconstructor__ = [("()V", False)]
+        setMinDownstreamBandwidthKbps = JavaMethod("(II)Landroid/net/vcn/VcnWifiUnderlyingNetworkTemplate$Builder;")
+        setMinUpstreamBandwidthKbps = JavaMethod("(II)Landroid/net/vcn/VcnWifiUnderlyingNetworkTemplate$Builder;")
+        setSsids = JavaMethod("(Ljava/util/Set;)Landroid/net/vcn/VcnWifiUnderlyingNetworkTemplate$Builder;")
+        setMetered = JavaMethod("(I)Landroid/net/vcn/VcnWifiUnderlyingNetworkTemplate$Builder;")
+        build = JavaMethod("()Landroid/net/vcn/VcnWifiUnderlyingNetworkTemplate;")
+
+class VcnManager(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/net/vcn/VcnManager"
+    VCN_ERROR_CODE_CONFIG_ERROR = JavaStaticField("I")
+    VCN_ERROR_CODE_INTERNAL_ERROR = JavaStaticField("I")
+    VCN_ERROR_CODE_NETWORK_ERROR = JavaStaticField("I")
+    VCN_STATUS_CODE_ACTIVE = JavaStaticField("I")
+    VCN_STATUS_CODE_INACTIVE = JavaStaticField("I")
+    VCN_STATUS_CODE_NOT_CONFIGURED = JavaStaticField("I")
+    VCN_STATUS_CODE_SAFE_MODE = JavaStaticField("I")
+    clearVcnConfig = JavaMethod("(Landroid/os/ParcelUuid;)V")
+    getConfiguredSubscriptionGroups = JavaMethod("()Ljava/util/List;")
+    registerVcnStatusCallback = JavaMethod("(Landroid/os/ParcelUuid;Ljava/util/concurrent/Executor;Landroid/net/vcn/VcnManager$VcnStatusCallback;)V")
+    setVcnConfig = JavaMethod("(Landroid/os/ParcelUuid;Landroid/net/vcn/VcnConfig;)V")
+    unregisterVcnStatusCallback = JavaMethod("(Landroid/net/vcn/VcnManager$VcnStatusCallback;)V")
+
+    class VcnStatusCallback(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "android/net/vcn/VcnManager$VcnStatusCallback"
+        __javaconstructor__ = [("()V", False)]
+        onGatewayConnectionError = JavaMethod("(Ljava/lang/String;ILjava/lang/Throwable;)V")
+        onStatusChanged = JavaMethod("(I)V")
+
+class VcnUnderlyingNetworkTemplate(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "android/net/vcn/VcnUnderlyingNetworkTemplate"
+    MATCH_ANY = JavaStaticField("I")
+    MATCH_FORBIDDEN = JavaStaticField("I")
+    MATCH_REQUIRED = JavaStaticField("I")
+    getMetered = JavaMethod("()I")
+    getMinEntryDownstreamBandwidthKbps = JavaMethod("()I")
+    getMinEntryUpstreamBandwidthKbps = JavaMethod("()I")
+    getMinExitDownstreamBandwidthKbps = JavaMethod("()I")
+    getMinExitUpstreamBandwidthKbps = JavaMethod("()I")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    hashCode = JavaMethod("()I")

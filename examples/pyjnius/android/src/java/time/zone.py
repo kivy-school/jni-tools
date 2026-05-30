@@ -1,0 +1,71 @@
+from jnius import JavaClass, JavaInterface, MetaJavaClass, JavaMethod, JavaStaticMethod, JavaMultipleMethod, JavaField, JavaStaticField
+
+class ZoneRulesException(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "java/time/zone/ZoneRulesException"
+    __javaconstructor__ = [("(Ljava/lang/String;)V", False), ("(Ljava/lang/String;Ljava/lang/Throwable;)V", False)]
+
+class ZoneOffsetTransition(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "java/time/zone/ZoneOffsetTransition"
+    toEpochSecond = JavaMethod("()J")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    compareTo = JavaMultipleMethod([("(Ljava/time/zone/ZoneOffsetTransition;)I", False, False), ("(Ljava/lang/Object;)I", False, False)])
+    of = JavaStaticMethod("(Ljava/time/LocalDateTime;Ljava/time/ZoneOffset;Ljava/time/ZoneOffset;)Ljava/time/zone/ZoneOffsetTransition;")
+    isGap = JavaMethod("()Z")
+    getDateTimeAfter = JavaMethod("()Ljava/time/LocalDateTime;")
+    getOffsetAfter = JavaMethod("()Ljava/time/ZoneOffset;")
+    isValidOffset = JavaMethod("(Ljava/time/ZoneOffset;)Z")
+    isOverlap = JavaMethod("()Z")
+    getOffsetBefore = JavaMethod("()Ljava/time/ZoneOffset;")
+    getDuration = JavaMethod("()Ljava/time/Duration;")
+    getInstant = JavaMethod("()Ljava/time/Instant;")
+    getDateTimeBefore = JavaMethod("()Ljava/time/LocalDateTime;")
+
+class ZoneRules(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "java/time/zone/ZoneRules"
+    getDaylightSavings = JavaMethod("(Ljava/time/Instant;)Ljava/time/Duration;")
+    nextTransition = JavaMethod("(Ljava/time/Instant;)Ljava/time/zone/ZoneOffsetTransition;")
+    previousTransition = JavaMethod("(Ljava/time/Instant;)Ljava/time/zone/ZoneOffsetTransition;")
+    getTransitions = JavaMethod("()Ljava/util/List;")
+    getTransitionRules = JavaMethod("()Ljava/util/List;")
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    of = JavaMultipleMethod([("(Ljava/time/ZoneOffset;Ljava/time/ZoneOffset;Ljava/util/List;Ljava/util/List;Ljava/util/List;)Ljava/time/zone/ZoneRules;", True, False), ("(Ljava/time/ZoneOffset;)Ljava/time/zone/ZoneRules;", True, False)])
+    getTransition = JavaMethod("(Ljava/time/LocalDateTime;)Ljava/time/zone/ZoneOffsetTransition;")
+    isFixedOffset = JavaMethod("()Z")
+    getOffset = JavaMultipleMethod([("(Ljava/time/Instant;)Ljava/time/ZoneOffset;", False, False), ("(Ljava/time/LocalDateTime;)Ljava/time/ZoneOffset;", False, False)])
+    getValidOffsets = JavaMethod("(Ljava/time/LocalDateTime;)Ljava/util/List;")
+    isValidOffset = JavaMethod("(Ljava/time/LocalDateTime;Ljava/time/ZoneOffset;)Z")
+    isDaylightSavings = JavaMethod("(Ljava/time/Instant;)Z")
+    getStandardOffset = JavaMethod("(Ljava/time/Instant;)Ljava/time/ZoneOffset;")
+
+class ZoneOffsetTransitionRule(JavaClass, metaclass=MetaJavaClass):
+    __javaclass__ = "java/time/zone/ZoneOffsetTransitionRule"
+    equals = JavaMethod("(Ljava/lang/Object;)Z")
+    toString = JavaMethod("()Ljava/lang/String;")
+    hashCode = JavaMethod("()I")
+    of = JavaStaticMethod("(Ljava/time/Month;ILjava/time/DayOfWeek;Ljava/time/LocalTime;ZLjava/time/zone/ZoneOffsetTransitionRule$TimeDefinition;Ljava/time/ZoneOffset;Ljava/time/ZoneOffset;Ljava/time/ZoneOffset;)Ljava/time/zone/ZoneOffsetTransitionRule;")
+    getDayOfWeek = JavaMethod("()Ljava/time/DayOfWeek;")
+    getOffsetAfter = JavaMethod("()Ljava/time/ZoneOffset;")
+    getOffsetBefore = JavaMethod("()Ljava/time/ZoneOffset;")
+    getMonth = JavaMethod("()Ljava/time/Month;")
+    getDayOfMonthIndicator = JavaMethod("()I")
+    getLocalTime = JavaMethod("()Ljava/time/LocalTime;")
+    isMidnightEndOfDay = JavaMethod("()Z")
+    getTimeDefinition = JavaMethod("()Ljava/time/zone/ZoneOffsetTransitionRule$TimeDefinition;")
+    createTransition = JavaMethod("(I)Ljava/time/zone/ZoneOffsetTransition;")
+    getStandardOffset = JavaMethod("()Ljava/time/ZoneOffset;")
+
+    class TimeDefinition(JavaClass, metaclass=MetaJavaClass):
+        __javaclass__ = "java/time/zone/ZoneOffsetTransitionRule$TimeDefinition"
+        UTC = JavaStaticField("Ljava/time/zone/ZoneOffsetTransitionRule$TimeDefinition;")
+        WALL = JavaStaticField("Ljava/time/zone/ZoneOffsetTransitionRule$TimeDefinition;")
+        STANDARD = JavaStaticField("Ljava/time/zone/ZoneOffsetTransitionRule$TimeDefinition;")
+        values = JavaStaticMethod("()[Ljava/time/zone/ZoneOffsetTransitionRule$TimeDefinition;")
+        valueOf = JavaStaticMethod("(Ljava/lang/String;)Ljava/time/zone/ZoneOffsetTransitionRule$TimeDefinition;")
+        createDateTime = JavaMethod("(Ljava/time/LocalDateTime;Ljava/time/ZoneOffset;Ljava/time/ZoneOffset;)Ljava/time/LocalDateTime;")
+        UTC = JavaStaticField("Ljava/time/zone/ZoneOffsetTransitionRule$TimeDefinition;")
+        WALL = JavaStaticField("Ljava/time/zone/ZoneOffsetTransitionRule$TimeDefinition;")
+        STANDARD = JavaStaticField("Ljava/time/zone/ZoneOffsetTransitionRule$TimeDefinition;")

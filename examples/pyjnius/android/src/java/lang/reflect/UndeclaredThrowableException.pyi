@@ -1,9 +1,0 @@
-from typing import Any, ClassVar, overload
-from java.lang.Throwable import Throwable
-
-class UndeclaredThrowableException:
-    @overload
-    def __init__(self, p0: Throwable) -> None: ...
-    @overload
-    def __init__(self, p0: Throwable, p1: str) -> None: ...
-    def getUndeclaredThrowable(self) -> Throwable: ...

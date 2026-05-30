@@ -1,6 +1,0 @@
-from typing import Any, ClassVar, overload
-
-class AconfigPackage:
-    @staticmethod
-    def load(p0: str) -> "AconfigPackage": ...
-    def getBooleanFlagValue(self, p0: str, p1: bool) -> bool: ...

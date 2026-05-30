@@ -1,9 +1,0 @@
-from typing import Any, ClassVar, overload
-from android.bluetooth.BluetoothDevice import BluetoothDevice
-from android.bluetooth.BluetoothHealthAppConfiguration import BluetoothHealthAppConfiguration
-from android.os.ParcelFileDescriptor import ParcelFileDescriptor
-
-class BluetoothHealthCallback:
-    def __init__(self) -> None: ...
-    def onHealthChannelStateChange(self, p0: BluetoothHealthAppConfiguration, p1: BluetoothDevice, p2: int, p3: int, p4: ParcelFileDescriptor, p5: int) -> None: ...
-    def onHealthAppConfigurationStatusChange(self, p0: BluetoothHealthAppConfiguration, p1: int) -> None: ...

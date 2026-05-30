@@ -1,7 +1,0 @@
-from typing import Any, ClassVar, overload
-from android.graphics.Rect import Rect
-from android.view.View import View
-
-class TransformationMethod:
-    def getTransformation(self, p0: str, p1: View) -> str: ...
-    def onFocusChanged(self, p0: View, p1: str, p2: bool, p3: int, p4: Rect) -> None: ...

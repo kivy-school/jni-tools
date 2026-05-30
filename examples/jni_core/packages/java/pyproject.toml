@@ -5,14 +5,13 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "android-java"
 version = "35.0.0"
-description = "Meta-package for the android.java.* namespace (android.jar, API 35). Use extras to pull in individual dists: [awt, beans, io, …, all]."
+description = "Meta-package for the android.java.* namespace (android.jar, API 35). Use extras to pull in individual dists: [beans, io, lang, …, all]."
 requires-python = ">=3.11"
 dependencies = [
 ]
 
 [project.optional-dependencies]
 all = [
-    "android-java-awt == 35.0.0",
     "android-java-beans == 35.0.0",
     "android-java-io == 35.0.0",
     "android-java-lang == 35.0.0",
@@ -22,6 +21,12 @@ all = [
     "android-java-security == 35.0.0",
     "android-java-sql == 35.0.0",
     "android-java-text == 35.0.0",
+    "android-java-time == 35.0.0",
+    "android-java-util == 35.0.0",
+    "android-java-awt == 35.0.0",
+    "android-java-lang == 35.0.0",
+    "android-java-nio == 35.0.0",
+    "android-java-security == 35.0.0",
     "android-java-time == 35.0.0",
     "android-java-util == 35.0.0",
 ]
