@@ -97,7 +97,7 @@ jobs:
 
       - name: Build x86_64 binary
         working-directory: jni-wrapper/JniWrap
-        run: swift build --configuration release
+        run: swift build --configuration release -Xswiftc -Onone
         env:
           JAVA_HOME: ${{ env.JAVA_HOME }}
 
