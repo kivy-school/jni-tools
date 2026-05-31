@@ -75,6 +75,12 @@ jobs:
         env:
           JNI_TOOLS_SKIP_SWIFT_BUILD: "1"
 
+      - name: Smoke test wheel
+        run: |
+          uv venv /tmp/smoke
+          uv pip install --python /tmp/smoke dist/*.whl
+          /tmp/smoke/bin/jni-wrap --help
+
       - name: Upload wheel to release
         uses: softprops/action-gh-release@v2
         with:
