@@ -53,6 +53,12 @@ jobs:
         env:
           JNI_TOOLS_SKIP_SWIFT_BUILD: "1"
 
+      - name: Smoke test wheel
+        run: |
+          uv tool install dist/*.whl
+          export PATH="$(uv tool bin):$PATH"
+          jni-wrap --help
+
       - name: Upload wheel artifact
         uses: actions/upload-artifact@v4
         with:
@@ -127,6 +133,14 @@ jobs:
         run: uv build --wheel
         env:
           JNI_TOOLS_SKIP_SWIFT_BUILD: "1"
+
+      - name: Smoke test wheel
+        shell: pwsh
+        run: |
+          $whl = (Get-ChildItem dist\*.whl | Select-Object -First 1).FullName
+          uv tool install $whl
+          $env:PATH = "$(uv tool bin);$env:PATH"
+          jni-wrap --help
 
       - name: Upload wheel artifact
         uses: actions/upload-artifact@v4
