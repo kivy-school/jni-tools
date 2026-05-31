@@ -78,8 +78,30 @@ jobs:
           Write-Output "Installer exit code: $($proc.ExitCode)"
           # Toolchain binaries (swift.exe, swiftc.exe, etc.)
           Add-Content $env:GITHUB_PATH "$env:LOCALAPPDATA\Programs\Swift\Toolchains\6.2.4+Asserts\usr\bin"
-          # Runtime DLLs (vcruntime140.dll, msvcp140.dll, swift*.dll, etc.)
-          Add-Content $env:GITHUB_PATH "C:\LocalPrograms\Swift\Runtimes\6.2.4\usr\bin"
+          # Runtime DLLs - find actual location
+          $runtimeCandidates = @(
+            "$env:LOCALAPPDATA\Programs\Swift\Runtimes\6.2.4\usr\bin",
+            "C:\LocalPrograms\Swift\Runtimes\6.2.4\usr\bin"
+          )
+          foreach ($p in $runtimeCandidates) {
+            if (Test-Path $p) {
+              Write-Output "Runtimes found at: $p"
+              Add-Content $env:GITHUB_PATH $p
+              break
+            } else {
+              Write-Output "Not found: $p"
+            }
+          }
+          # Also list what's under Programs\Swift for diagnostics
+          Write-Output "=== Swift install tree ==="
+          Get-ChildItem "$env:LOCALAPPDATA\Programs\Swift" -Directory | ForEach-Object { Write-Output $_.FullName }
+
+      - name: Verify Swift in PATH
+        shell: pwsh
+        run: |
+          Write-Output "PATH entries with swift:"
+          $env:PATH -split ';' | Where-Object { $_ -like '*swift*' -or $_ -like '*Swift*' }
+          swift --version
 
       - uses: astral-sh/setup-uv@v6
 
