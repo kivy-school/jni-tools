@@ -112,11 +112,13 @@ jobs:
           mkdir -p bin
           cp jni-wrapper/JniWrap/.build/release/jni-wrap bin/jni-wrap
           chmod +x bin/jni-wrap
+          # Bundle product .so files built alongside the binary (e.g. libSwiftJava.so)
+          find jni-wrapper/JniWrap/.build/release -maxdepth 1 -name "*.so" -exec cp -v {} bin/ \;
           # Locate the Swift runtime library directory
           SWIFT_LIB=$(swiftc -print-target-info | python3 -c "import json,sys; d=json.load(sys.stdin); print(d['paths']['runtimeLibraryPaths'][0])")
           echo "Swift runtime dir: $SWIFT_LIB"
           # Bundle every Swift runtime lib that jni-wrap resolves to (by path prefix)
-          LD_LIBRARY_PATH="$SWIFT_LIB" ldd bin/jni-wrap | awk '{print $3}' | while read f; do
+          LD_LIBRARY_PATH="$SWIFT_LIB:bin" ldd bin/jni-wrap | awk '{print $3}' | while read f; do
             case "$f" in "$SWIFT_LIB"*) cp -v "$f" bin/ || true ;; esac
           done
           ls -la bin/
