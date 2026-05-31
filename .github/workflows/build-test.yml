@@ -70,10 +70,15 @@ jobs:
           distribution: temurin
           java-version: 21
 
-      - name: Install Swift
-        uses: swift-actions/setup-swift@v3
-        with:
-          swift-version: "6.2"
+      - name: Install Swift via swiftly
+        shell: pwsh
+        run: |
+          Invoke-WebRequest "https://download.swift.org/swiftly/windows/swiftly-x86_64.exe" -OutFile swiftly.exe -UseBasicParsing
+          .\swiftly.exe init --no-modify-profile --assume-yes
+          $env:PATH = "$env:USERPROFILE\.swiftly\bin;$env:PATH"
+          swiftly install 6.2
+          $swiftBin = (Get-ChildItem "$env:USERPROFILE\.swiftly\toolchains" -Recurse -Filter "swiftc.exe" | Select-Object -First 1).DirectoryName
+          echo $swiftBin >> $env:GITHUB_PATH
 
       - uses: astral-sh/setup-uv@v6
 
