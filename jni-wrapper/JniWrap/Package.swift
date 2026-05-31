@@ -14,7 +14,7 @@ let package = Package(
         .package(url: "https://github.com/Py-Swift/PySwiftAST.git", branch: "master"),
         .package(url: "https://github.com/Py-Swift/CySwiftAst.git", branch: "master"),
         .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.3.0"),
-        .package(url: "https://github.com/swiftlang/swift-java.git", from: "0.3.0"),
+        .package(url: "https://github.com/swiftlang/swift-java.git", from: "0.4.0"),
     ],
     targets: [
         .executableTarget(
