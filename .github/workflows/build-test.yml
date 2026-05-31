@@ -76,32 +76,10 @@ jobs:
           Invoke-WebRequest "https://download.swift.org/swift-6.2.4-release/windows10/swift-6.2.4-RELEASE/swift-6.2.4-RELEASE-windows10.exe" -OutFile swift.exe -UseBasicParsing
           $proc = Start-Process -FilePath ".\swift.exe" -ArgumentList "/S" -Wait -PassThru
           Write-Output "Installer exit code: $($proc.ExitCode)"
-          $swiftExe = Get-ChildItem "$env:LOCALAPPDATA\Programs\Swift" -Recurse -Filter "swift.exe" -ErrorAction SilentlyContinue | Select-Object -First 1
-          if (-not $swiftExe) { throw "swift.exe not found" }
-          Write-Output "Found: $($swiftExe.FullName)"
-          Add-Content $env:GITHUB_PATH $swiftExe.DirectoryName
-
-      - name: Diagnose Swift crash
-        shell: pwsh
-        continue-on-error: true
-        run: |
-          $swiftBin = "$env:LOCALAPPDATA\Programs\Swift\Toolchains\6.2.4+Asserts\usr\bin"
-          $swift = "$swiftBin\swift.exe"
-          Write-Output "=== DLLs in swift bin ==="
-          (Get-ChildItem $swiftBin -Filter "*.dll").Count | Write-Output
-          Write-Output "=== MSVCRT DLLs present ==="
-          @("vcruntime140.dll","msvcp140.dll","vcruntime140_1.dll") | ForEach-Object {
-            Write-Output "$_ : $(Test-Path "$swiftBin\$_")"
-          }
-          Write-Output "=== Run via cmd ==="
-          cmd /c "`"$swift`" --version 2>&1"
-          Write-Output "Exit (cmd): $LASTEXITCODE"
-          Write-Output "=== Run via full path ==="
-          $output = & $swift --version 2>&1
-          Write-Output "Output: $output"
-          Write-Output "Exit: $LASTEXITCODE"
-          Write-Output "=== where swift ==="
-          where.exe swift
+          # Toolchain binaries (swift.exe, swiftc.exe, etc.)
+          Add-Content $env:GITHUB_PATH "$env:LOCALAPPDATA\Programs\Swift\Toolchains\6.2.4+Asserts\usr\bin"
+          # Runtime DLLs (vcruntime140.dll, msvcp140.dll, swift*.dll, etc.)
+          Add-Content $env:GITHUB_PATH "C:\LocalPrograms\Swift\Runtimes\6.2.4\usr\bin"
 
       - uses: astral-sh/setup-uv@v6
 
