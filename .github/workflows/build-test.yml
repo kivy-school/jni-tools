@@ -94,6 +94,11 @@ jobs:
           Write-Output "Using: $($swiftExe.DirectoryName)"
           Add-Content $env:GITHUB_PATH $swiftExe.DirectoryName
 
+      - name: Initialize MSVC developer environment
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+
       - name: Verify Swift
         shell: pwsh
         run: swift --version
