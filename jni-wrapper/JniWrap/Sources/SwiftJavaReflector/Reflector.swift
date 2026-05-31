@@ -76,7 +76,7 @@ public struct Reflector: Sendable {
                 }
             } catch {
                 // Log and continue — a missing dependency shouldn't abort the whole run.
-                fputs("[warning] Failed to load class '\(className)': \(error)\n", stderr)
+                FileHandle.standardError.write(Data("[warning] Failed to load class '\(className)': \(error)\n".utf8))
             }
         }
 
