@@ -73,11 +73,30 @@ jobs:
       - name: Install Swift
         shell: pwsh
         run: |
+          Write-Output "=== Downloading Swift 6.2.4 ==="
           Invoke-WebRequest "https://download.swift.org/swift-6.2.4-release/windows10/swift-6.2.4-RELEASE/swift-6.2.4-RELEASE-windows10.exe" -OutFile swift.exe -UseBasicParsing
-          Start-Process -FilePath .\swift.exe -ArgumentList "/S" -Wait -NoNewWindow
-          $toolchain = Get-ChildItem "$env:LOCALAPPDATA\Programs\Swift\Toolchains" -ErrorAction Stop |
-            Sort-Object Name -Descending | Select-Object -First 1
-          echo "$($toolchain.FullName)\usr\bin" >> $env:GITHUB_PATH
+          Write-Output "=== Running installer ==="
+          $proc = Start-Process -FilePath ".\swift.exe" -ArgumentList "/S" -Wait -PassThru
+          Write-Output "Installer exit code: $($proc.ExitCode)"
+          Write-Output "=== Searching for swift.exe ==="
+          $roots = @("$env:LOCALAPPDATA\Programs\Swift", "$env:PROGRAMFILES\Swift", "C:\Library\Developer\Toolchains")
+          foreach ($r in $roots) {
+            if (Test-Path $r) {
+              Get-ChildItem $r -Recurse -Filter "swift.exe" -ErrorAction SilentlyContinue |
+                ForEach-Object { Write-Output "Found: $($_.FullName)" }
+            }
+          }
+          $swiftExe = $roots | ForEach-Object {
+            Get-ChildItem $_ -Recurse -Filter "swift.exe" -ErrorAction SilentlyContinue |
+              Select-Object -First 1
+          } | Select-Object -First 1
+          if (-not $swiftExe) { Write-Error "swift.exe not found"; exit 1 }
+          Write-Output "Using: $($swiftExe.DirectoryName)"
+          Add-Content $env:GITHUB_PATH $swiftExe.DirectoryName
+
+      - name: Verify Swift
+        shell: pwsh
+        run: swift --version
 
       - uses: astral-sh/setup-uv@v6
 
