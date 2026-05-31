@@ -117,7 +117,7 @@ jobs:
           }
           # Bundle Swift runtime DLLs (needed on machines without Swift installed)
           $runtimeDir = "$env:LOCALAPPDATA\Programs\Swift\Runtimes\6.2.4\usr\bin"
-          Get-ChildItem $runtimeDir -Filter "swift*.dll" | ForEach-Object {
+          Get-ChildItem $runtimeDir -Filter "*.dll" | ForEach-Object {
             Copy-Item $_.FullName "bin\$($_.Name)"
             Write-Output "Bundled runtime DLL: $($_.Name)"
           }
