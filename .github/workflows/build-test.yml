@@ -42,9 +42,9 @@ jobs:
           # Locate the Swift runtime library directory
           SWIFT_LIB=$(swiftc -print-target-info | python3 -c "import json,sys; d=json.load(sys.stdin); print(d['paths']['runtimeLibraryPaths'][0])")
           echo "Swift runtime dir: $SWIFT_LIB"
-          # Bundle every libswift*.so* that jni-wrap actually links against
-          LD_LIBRARY_PATH="$SWIFT_LIB" ldd bin/jni-wrap | awk '/libswift/{print $3}' | while read f; do
-            [ -f "$f" ] && cp -v "$f" bin/ || true
+          # Bundle every Swift runtime lib that jni-wrap resolves to (by path prefix)
+          LD_LIBRARY_PATH="$SWIFT_LIB" ldd bin/jni-wrap | awk '{print $3}' | while read f; do
+            case "$f" in "$SWIFT_LIB"*) cp -v "$f" bin/ || true ;; esac
           done
           ls -la bin/
 
