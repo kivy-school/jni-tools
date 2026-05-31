@@ -74,6 +74,9 @@ dist/
 .venv/
 venv/
 
+# Build hook output — pre-built binary, not committed
+bin/
+
 # macOS
 .DS_Store
 
@@ -87,3 +90,17 @@ examples/**/.DS_Store
 examples/**/build/
 examples/**/wheelhouse/
 examples/**/__pycache__/
+
+
+# Python wheels and shared objects
+*.so
+*.whl
+
+
+# test-suite
+test-suite/build/
+test-suite/dist/
+test-suite/**/*.c
+test-suite/**/*.so
+test-suite/**/*.whl
+test-suite/**/__pycache__/

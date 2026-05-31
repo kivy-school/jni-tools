@@ -17,6 +17,10 @@ public struct CythonPipeline: Sendable {
         public var jniCoreImport: String
         /// When true, flatten output into a single `wrappers.pyx`/`.pxd`/`.pyi`.
         public var singleFile: Bool
+        /// When true, merge all classes in the same Java package into a single
+        /// `.pyx`/`.pxd`/`.pyi` file (e.g. `language.pyx` instead of
+        /// `language/LanguageContext.pyx`). Takes precedence over `singleFile`.
+        public var perPackage: Bool
         /// When true, strip the longest common reverse-DNS package prefix
         /// from emitted module paths (mirrors `Pipeline.Options`).
         public var stripCommonPackagePrefix: Bool
@@ -25,11 +29,13 @@ public struct CythonPipeline: Sendable {
                     outputDir: URL,
                     jniCoreImport: String = "jni_core",
                     singleFile: Bool = false,
+                    perPackage: Bool = false,
                     stripCommonPackagePrefix: Bool = true) {
             self.inputDir = inputDir
             self.outputDir = outputDir
             self.jniCoreImport = jniCoreImport
             self.singleFile = singleFile
+            self.perPackage = perPackage
             self.stripCommonPackagePrefix = stripCommonPackagePrefix
         }
     }
@@ -82,6 +88,57 @@ public struct CythonPipeline: Sendable {
             externalModules: []
         )
         let pyxOptions = CythonClassEmitter.Options(jniCoreImport: opts.jniCoreImport)
+
+        if opts.perPackage {
+            // Group classes by their package path, emit one .pyx/.pxd/.pyi per package.
+            var byPackage: [([String], [ClassNode])] = []
+            var pkgIndex: [[String]: Int] = [:]
+            for cls in doc.classes {
+                let pkg = packageParts(of: cls.fqcn, stripping: stripPrefix)
+                if let idx = pkgIndex[pkg] {
+                    byPackage[idx].1.append(cls)
+                } else {
+                    pkgIndex[pkg] = byPackage.count
+                    byPackage.append((pkg, [cls]))
+                }
+            }
+            for (pkgParts, classes) in byPackage {
+                var dir = opts.outputDir
+                for part in pkgParts.dropLast() {
+                    dir.appendPathComponent(part)
+                    try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
+                    let initFile = dir.appendingPathComponent("__init__.py")
+                    if !FileManager.default.fileExists(atPath: initFile.path) {
+                        try "".write(to: initFile, atomically: true, encoding: .utf8)
+                        written.append(initFile)
+                    }
+                }
+                let moduleName = pkgParts.last ?? "wrappers"
+                let pyxParts = classes.enumerated().map { (i, cls) -> String in
+                    let rendered = classEmitter.renderPyx(cls, options: pyxOptions)
+                    return i == 0 ? rendered : stripCythonHeader(rendered)
+                }
+                let pxdParts = classes.enumerated().map { (i, cls) -> String in
+                    let rendered = classEmitter.renderPxd(cls, options: pyxOptions)
+                    return i == 0 ? rendered : stripPxdHeader(rendered)
+                }
+                let pyxFile = dir.appendingPathComponent("\(moduleName).pyx")
+                try pyxParts.joined(separator: "\n").write(to: pyxFile, atomically: true, encoding: .utf8)
+                written.append(pyxFile)
+                let pxdFile = dir.appendingPathComponent("\(moduleName).pxd")
+                try pxdParts.joined(separator: "\n").write(to: pxdFile, atomically: true, encoding: .utf8)
+                written.append(pxdFile)
+                var pyiBuf = ""
+                for cls in classes {
+                    pyiBuf += pyiEmitter.render(cls, resolution: resolution)
+                    pyiBuf += "\n"
+                }
+                let pyiFile = dir.appendingPathComponent("\(moduleName).pyi")
+                try pyiBuf.write(to: pyiFile, atomically: true, encoding: .utf8)
+                written.append(pyiFile)
+            }
+            return written
+        }
 
         if opts.singleFile {
             // Flatten everything into wrappers.pyx + wrappers.pxd + wrappers.pyi.

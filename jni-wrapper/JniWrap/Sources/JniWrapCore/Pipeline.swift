@@ -49,6 +49,10 @@ public struct Pipeline {
     public enum FileLayout {
         /// One `.py` file per class, mirroring the Java package hierarchy.
         case perClass
+        /// One `.py` file per Java package — all classes in the same package
+        /// are merged into a single module file (e.g. `language.py` instead
+        /// of `language/LanguageContext.py`). Enables `from pkg.language import LanguageContext`.
+        case perPackage
         /// All classes flattened into a single file (debug helper).
         case singleFile
     }
@@ -135,6 +139,62 @@ public struct Pipeline {
                     try "".write(to: initFile, atomically: true, encoding: .utf8)
                     written.append(initFile)
                 }
+            }
+
+        case .perPackage:
+            // Group classes by their package path.
+            var byPackage: [([String], [ClassNode])] = []
+            var pkgIndex: [[String]: Int] = [:]
+            for cls in doc.classes {
+                let pkg = packageParts(of: cls.fqcn, stripping: stripPrefix)
+                if let idx = pkgIndex[pkg] {
+                    byPackage[idx].1.append(cls)
+                } else {
+                    pkgIndex[pkg] = byPackage.count
+                    byPackage.append((pkg, [cls]))
+                }
+            }
+            for (pkgParts, classes) in byPackage {
+                // Build the output directory for parent packages.
+                var dir = opts.outputDir
+                for part in pkgParts.dropLast() {
+                    dir.appendPathComponent(part)
+                    try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
+                    let initFile = dir.appendingPathComponent("__init__.py")
+                    if !FileManager.default.fileExists(atPath: initFile.path) {
+                        try "".write(to: initFile, atomically: true, encoding: .utf8)
+                        written.append(initFile)
+                    }
+                }
+                let moduleName = pkgParts.last ?? "wrappers"
+                let moduleFile = dir.appendingPathComponent("\(moduleName).py")
+                let stubFile   = dir.appendingPathComponent("\(moduleName).pyi")
+                var body: [Statement] = [.importFrom(.init(
+                    module: "jnius",
+                    names: [
+                        Alias(name: "JavaClass", asName: nil),
+                        Alias(name: "JavaInterface", asName: nil),
+                        Alias(name: "MetaJavaClass", asName: nil),
+                        Alias(name: "JavaMethod", asName: nil),
+                        Alias(name: "JavaStaticMethod", asName: nil),
+                        Alias(name: "JavaMultipleMethod", asName: nil),
+                        Alias(name: "JavaField", asName: nil),
+                        Alias(name: "JavaStaticField", asName: nil),
+                    ],
+                    level: 0
+                ))]
+                var pyiBuf = ""
+                for cls in classes {
+                    body.append(.blank(.init(count: 1)))
+                    body.append(.classDef(emitter.classDef(for: cls)))
+                    pyiBuf += pyiEmitter.render(cls, resolution: resolution)
+                    pyiBuf += "\n"
+                }
+                let code = generatePythonCode(from: .module(body))
+                try code.write(to: moduleFile, atomically: true, encoding: .utf8)
+                written.append(moduleFile)
+                try pyiBuf.write(to: stubFile, atomically: true, encoding: .utf8)
+                written.append(stubFile)
             }
 
         case .singleFile:

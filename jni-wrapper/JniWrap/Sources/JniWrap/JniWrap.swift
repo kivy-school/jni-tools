@@ -78,6 +78,10 @@ struct LayoutOptions: ParsableArguments {
     var singleFile: Bool = false
 
     @Flag(name: .long,
+          help: "Merge all classes in the same Java package into one Python module file (e.g. language.py instead of language/LanguageContext.py). Enables `from pkg.language import LanguageContext`.")
+    var perPackage: Bool = false
+
+    @Flag(name: .long,
           help: "Keep the full Java reverse-DNS package path. Default: strip the longest common prefix.")
     var keepPackagePrefix: Bool = false
 }
@@ -103,10 +107,18 @@ struct PyjniusCmd: ParsableCommand {
     func run() throws {
         let (doc, inURL, outURL) = try extraction.extract()
         let externals = try parseExternalModules(externalModule)
+        let fileLayout: Pipeline.FileLayout
+        if layout.perPackage {
+            fileLayout = .perPackage
+        } else if layout.singleFile {
+            fileLayout = .singleFile
+        } else {
+            fileLayout = .perClass
+        }
         let written = try Pipeline().emit(doc: doc, opts: .init(
             inputDir: inURL,
             outputDir: outURL,
-            fileLayout: layout.singleFile ? .singleFile : .perClass,
+            fileLayout: fileLayout,
             backend: try extraction.parsedBackend(),
             stripCommonPackagePrefix: !layout.keepPackagePrefix,
             externalModules: externals
@@ -165,6 +177,7 @@ struct CythonCmd: ParsableCommand {
             outputDir: outURL,
             jniCoreImport: jniCoreImport,
             singleFile: layout.singleFile,
+            perPackage: layout.perPackage,
             stripCommonPackagePrefix: !layout.keepPackagePrefix
         ))
         for url in written { print(url.path) }
