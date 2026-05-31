@@ -55,9 +55,9 @@ jobs:
 
       - name: Smoke test wheel
         run: |
-          uv tool install dist/*.whl
-          export PATH="$(uv tool bin):$PATH"
-          jni-wrap --help
+          uv venv /tmp/smoke
+          uv pip install --python /tmp/smoke dist/*.whl
+          LD_LIBRARY_PATH="/tmp/smoke/bin" /tmp/smoke/bin/jni-wrap --help
 
       - name: Upload wheel artifact
         uses: actions/upload-artifact@v4
@@ -137,10 +137,10 @@ jobs:
       - name: Smoke test wheel
         shell: pwsh
         run: |
+          uv venv C:\smoke
           $whl = (Get-ChildItem dist\*.whl | Select-Object -First 1).FullName
-          uv tool install $whl
-          $env:PATH = "$(uv tool bin);$env:PATH"
-          jni-wrap --help
+          uv pip install --python C:\smoke $whl
+          C:\smoke\Scripts\jni-wrap.exe --help
 
       - name: Upload wheel artifact
         uses: actions/upload-artifact@v4
