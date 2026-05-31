@@ -39,14 +39,24 @@ jobs:
           mkdir -p bin
           cp jni-wrapper/JniWrap/.build/release/jni-wrap bin/jni-wrap
           chmod +x bin/jni-wrap
-          # Bundle product .so files built alongside the binary (e.g. libSwiftJava.so)
-          find jni-wrapper/JniWrap/.build/release -maxdepth 1 -name "*.so" -exec cp -v {} bin/ \;
+          # Bundle product .so files built alongside the binary (e.g. libSwiftJava.so).
+          # Do NOT use -maxdepth 1: swift-java 0.4.0 may place libSwiftJava.so in a
+          # nested subdirectory of the release dir rather than at the top level.
+          find jni-wrapper/JniWrap/.build/release \
+            -name "*.so" \
+            -not -path "*/checkouts/*" \
+            -not -path "*/index-build/*" \
+            -exec cp -v {} bin/ \;
           # Locate the Swift runtime library directory
           SWIFT_LIB=$(swiftc -print-target-info | python3 -c "import json,sys; d=json.load(sys.stdin); print(d['paths']['runtimeLibraryPaths'][0])")
           echo "Swift runtime dir: $SWIFT_LIB"
-          # Bundle every Swift runtime lib that jni-wrap resolves to (by path prefix)
-          LD_LIBRARY_PATH="$SWIFT_LIB:bin" ldd bin/jni-wrap | awk '{print $3}' | while read f; do
-            case "$f" in "$SWIFT_LIB"*) cp -v "$f" bin/ || true ;; esac
+          BUILD_RELEASE=$(realpath jni-wrapper/JniWrap/.build/release)
+          # Bundle every lib that jni-wrap dynamically resolves: Swift runtime libs
+          # and any product .so from the build dir not already copied above.
+          LD_LIBRARY_PATH="$SWIFT_LIB:$BUILD_RELEASE:bin" ldd bin/jni-wrap | awk '{print $3}' | while read f; do
+            case "$f" in
+              "$SWIFT_LIB"*|"$BUILD_RELEASE"*) cp -vn "$f" bin/ || true ;;
+            esac
           done
           ls -la bin/
 
