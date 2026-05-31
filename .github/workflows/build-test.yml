@@ -76,32 +76,22 @@ jobs:
           Invoke-WebRequest "https://download.swift.org/swift-6.2.4-release/windows10/swift-6.2.4-RELEASE/swift-6.2.4-RELEASE-windows10.exe" -OutFile swift.exe -UseBasicParsing
           $proc = Start-Process -FilePath ".\swift.exe" -ArgumentList "/S" -Wait -PassThru
           Write-Output "Installer exit code: $($proc.ExitCode)"
-          # Toolchain binaries (swift.exe, swiftc.exe, etc.)
-          Add-Content $env:GITHUB_PATH "$env:LOCALAPPDATA\Programs\Swift\Toolchains\6.2.4+Asserts\usr\bin"
-          # Runtime DLLs - find actual location
-          $runtimeCandidates = @(
-            "$env:LOCALAPPDATA\Programs\Swift\Runtimes\6.2.4\usr\bin",
-            "C:\LocalPrograms\Swift\Runtimes\6.2.4\usr\bin"
-          )
-          foreach ($p in $runtimeCandidates) {
-            if (Test-Path $p) {
-              Write-Output "Runtimes found at: $p"
-              Add-Content $env:GITHUB_PATH $p
-              break
-            } else {
-              Write-Output "Not found: $p"
-            }
+          $base = "$env:LOCALAPPDATA\Programs\Swift"
+          # Toolchain binaries + runtime DLLs on PATH
+          Add-Content $env:GITHUB_PATH "$base\Toolchains\6.2.4+Asserts\usr\bin"
+          Add-Content $env:GITHUB_PATH "$base\Runtimes\6.2.4\usr\bin"
+          # SDKROOT — swiftc needs this to find the standard library on Windows
+          $sdk = Get-ChildItem "$base\Platforms" -Recurse -Filter "Windows.sdk" -ErrorAction SilentlyContinue | Select-Object -First 1
+          if ($sdk) {
+            Write-Output "SDKROOT=$($sdk.FullName)" >> $env:GITHUB_ENV
+            Write-Output "SDK found: $($sdk.FullName)"
+          } else {
+            Write-Error "Windows.sdk not found under $base\Platforms"
           }
-          # Also list what's under Programs\Swift for diagnostics
-          Write-Output "=== Swift install tree ==="
-          Get-ChildItem "$env:LOCALAPPDATA\Programs\Swift" -Directory | ForEach-Object { Write-Output $_.FullName }
 
-      - name: Verify Swift in PATH
+      - name: Verify Swift
         shell: pwsh
-        run: |
-          Write-Output "PATH entries with swift:"
-          $env:PATH -split ';' | Where-Object { $_ -like '*swift*' -or $_ -like '*Swift*' }
-          swift --version
+        run: swift --version
 
       - uses: astral-sh/setup-uv@v6
 
