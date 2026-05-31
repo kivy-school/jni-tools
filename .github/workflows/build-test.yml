@@ -70,15 +70,14 @@ jobs:
           distribution: temurin
           java-version: 21
 
-      - name: Install Swift via swiftly
+      - name: Install Swift
         shell: pwsh
         run: |
-          Invoke-WebRequest "https://download.swift.org/swiftly/windows/swiftly-x86_64.exe" -OutFile swiftly.exe -UseBasicParsing
-          .\swiftly.exe init --no-modify-profile --assume-yes
-          $env:PATH = "$env:USERPROFILE\.swiftly\bin;$env:PATH"
-          swiftly install 6.2
-          $swiftBin = (Get-ChildItem "$env:USERPROFILE\.swiftly\toolchains" -Recurse -Filter "swiftc.exe" | Select-Object -First 1).DirectoryName
-          echo $swiftBin >> $env:GITHUB_PATH
+          Invoke-WebRequest "https://download.swift.org/swift-6.2-release/windows10/swift-6.2-RELEASE/swift-6.2-RELEASE-windows10.exe" -OutFile swift.exe -UseBasicParsing
+          Start-Process -FilePath .\swift.exe -ArgumentList "/S" -Wait -NoNewWindow
+          $toolchain = Get-ChildItem "$env:LOCALAPPDATA\Programs\Swift\Toolchains" -ErrorAction Stop |
+            Sort-Object Name -Descending | Select-Object -First 1
+          echo "$($toolchain.FullName)\usr\bin" >> $env:GITHUB_PATH
 
       - uses: astral-sh/setup-uv@v6
 
