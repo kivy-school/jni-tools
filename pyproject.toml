@@ -4,11 +4,11 @@ build-backend = "hatchling.build"
 
 [project]
 name = "jni-tools"
-version = "0.1.0"
+version = "0.0.0"
 description = "Java JNI tooling for Python — jni-wrap CLI and supporting libraries"
 readme = "README.md"
 license = { file = "LICENSE" }
-requires-python = ">=3.11"
+requires-python = ">=3.13"
 dependencies = []
 
 # ---------------------------------------------------------------------------

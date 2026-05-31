@@ -96,6 +96,9 @@ examples/**/__pycache__/
 *.so
 *.whl
 
+# uv
+uv.lock
+
 
 # test-suite
 test-suite/build/
