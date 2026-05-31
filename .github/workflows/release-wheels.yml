@@ -107,18 +107,19 @@ jobs:
         env:
           JAVA_HOME: ${{ env.JAVA_HOME }}
 
-      - name: Stage binary and stub dylibs
+      - name: Stage binary and Swift runtime libs
         run: |
           mkdir -p bin
           cp jni-wrapper/JniWrap/.build/release/jni-wrap bin/jni-wrap
           chmod +x bin/jni-wrap
-          # Create stub .so files for any @rpath dynamic library dependencies.
-          # (Same rationale as macOS: symbols are statically embedded.)
-          echo 'void __jni_wrap_stub(void){}' > /tmp/stub.c
-          for dep in $(objdump -p bin/jni-wrap 2>/dev/null | grep 'NEEDED' | awk '{print $2}' | grep -v '^lib'); do
-            gcc -shared -fPIC -o "bin/$dep" /tmp/stub.c 2>/dev/null && echo "Created stub: bin/$dep" || true
+          # Locate the Swift runtime library directory
+          SWIFT_LIB=$(swiftc -print-target-info | python3 -c "import json,sys; d=json.load(sys.stdin); print(d['paths']['runtimeLibraryPaths'][0])")
+          echo "Swift runtime dir: $SWIFT_LIB"
+          # Bundle every libswift*.so* that jni-wrap actually links against
+          LD_LIBRARY_PATH="$SWIFT_LIB" ldd bin/jni-wrap | awk '/libswift/{print $3}' | while read f; do
+            [ -f "$f" ] && cp -v "$f" bin/ || true
           done
-          rm -f /tmp/stub.c
+          ls -la bin/
 
       - name: Build wheel
         run: uv build --wheel

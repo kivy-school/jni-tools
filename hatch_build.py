@@ -26,29 +26,40 @@ class JniWrapBuildHook(BuildHookInterface):
 
     def initialize(self, version: str, build_data: dict) -> None:
         system = platform.system()
-        if system not in ("Darwin", "Linux"):
-            return
+        is_windows = system == "Windows"
 
-        dest = BIN_DIR / "jni-wrap"
+        exe_name = "jni-wrap.exe" if is_windows else "jni-wrap"
+        dest = BIN_DIR / exe_name
 
         if os.environ.get("JNI_TOOLS_SKIP_SWIFT_BUILD"):
             # Binary was pre-built by CI — just verify it exists.
             if not dest.exists():
                 sys.exit(f"JNI_TOOLS_SKIP_SWIFT_BUILD set but binary not found: {dest}")
-        else:
+        elif not is_windows:
             self._build_native(dest)
+        else:
+            sys.exit("Windows local builds are not supported — use CI with JNI_TOOLS_SKIP_SWIFT_BUILD=1")
 
         build_data["tag"] = self._wheel_tag(system, dest)
 
-        # Bundle any dylibs/so files that were copied to bin/ alongside jni-wrap.
-        # The binary has @loader_path in its rpath, so dylibs in the same
-        # directory as the installed binary will be found automatically.
         proj_version = self.metadata.version
         dist = "jni_tools"
         force: dict[str, str] = build_data.setdefault("force_include", {})
+
+        # On Windows the binary is jni-wrap.exe; shared-scripts only covers the
+        # Unix name, so include the exe explicitly into the scripts data dir.
+        if is_windows:
+            force[str(dest)] = f"{dist}-{proj_version}.data/scripts/jni-wrap.exe"
+
+        # Bundle Swift runtime libs copied to bin/ alongside the binary.
+        # - macOS: stub .dylib files (real runtime is system-provided)
+        # - Linux: real libswift*.so files copied by CI
+        # - Windows: real swift*.dll files copied by CI
         for lib in BIN_DIR.glob("*.dylib"):
             force[str(lib)] = f"{dist}-{proj_version}.data/scripts/{lib.name}"
-        for lib in BIN_DIR.glob("*.so"):
+        for lib in BIN_DIR.glob("*.so*"):
+            force[str(lib)] = f"{dist}-{proj_version}.data/scripts/{lib.name}"
+        for lib in BIN_DIR.glob("*.dll"):
             force[str(lib)] = f"{dist}-{proj_version}.data/scripts/{lib.name}"
 
     def _build_native(self, dest: Path) -> None:
@@ -124,5 +135,7 @@ class JniWrapBuildHook(BuildHookInterface):
             import sysconfig
             plat = sysconfig.get_platform().replace("-", "_").replace(".", "_")
             return f"py3-none-{plat}"
+        if system == "Windows":
+            return "py3-none-win_amd64"
         # Linux — built on x86_64 runner.
         return "py3-none-linux_x86_64"
